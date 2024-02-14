@@ -61,7 +61,6 @@
                     <a href="#">
                         <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Summary of Trainings Conducted</h5>
                     </a>
-                    {{-- <p class="mb-3 font-normal text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> --}}
                     <a href="#" class="inline-flex items-center px-3 py-2 mx-0.5text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300">  Fill-Up Form
                         <box-icon name='edit-alt' type="solid" color="#ffffff"></box-icon>
                     </a>
@@ -80,7 +79,6 @@
                     <a href="#">
                         <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Technical Dispatch Monitoring</h5>
                     </a>
-                    {{-- <p class="mb-3 font-normal text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> --}}
                     <a href="#" class="inline-flex items-center px-3 py-2 mx-0.5text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300">  Fill-Up Form
                         <box-icon name='edit-alt' type="solid" color="#ffffff"></box-icon>
                     </a>
