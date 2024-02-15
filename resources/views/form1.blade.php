@@ -171,16 +171,13 @@
                             <label for="age_group" class="block mb-2 text-sm font-medium text-gray-900">Age Group</label>                                               
                             <div class="relative">
                                 <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="age_group">
-                                    <option selected>Select</option>
+                                    <option selected disabled>Select</option>
                                     <option>Below 18</option>
                                     <option>18 - 30</option>
                                     <option>31 - 45</option>
                                     <option>46 - 59</option>
                                     <option>Above 60</option>
                                 </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                </div>
                               </div>
                         </div>
 
@@ -188,13 +185,10 @@
                             <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Sex</label>                                               
                             <div class="relative">
                                 <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
-                                    <option selected>Select</option>
+                                    <option selected disabled>Select</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                </div>
                             </div>
                         </div>
 
@@ -202,7 +196,7 @@
                             <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Offices and Divisions</label>                                               
                             <div class="relative">
                                 <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
-                                    <option selected>Select</option>
+                                    <option selected disabled>Select</option>
                                     <option>ASD (Admin)</option>
                                     <option>ASPPD</option>
                                     <option>BDD</option>
@@ -230,9 +224,6 @@
                                     <option>SED</option>
                                     <option>TMSD</option>
                                 </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                </div>
                               </div>
                         </div>
                         
@@ -264,7 +255,7 @@
                         <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">KSL Opportunity</label>    
                         <div class="relative">
                             <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
-                                <option selected>Select</option>
+                                <option selected disabled>Select</option>
                                 <option>Briefing</option>
                                 <option>Conference</option>
                                 <option>Dialogue</option>
@@ -279,9 +270,6 @@
                                 <option>E-Inquiry (e.g. email, text, social media, etc.)</option>
                                 <option>Other</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
                         </div>
                     </div>
                 </form>
@@ -375,7 +363,7 @@
                         <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Province</label>    
                         <div class="relative">
                             <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
-                                <option selected>Select</option>
+                                <option selected disabled>Select</option>
                                 <option>Abra</option>
                                 <option>NCR</option>
                                 <option>Agusan Del Norte</option>
@@ -460,9 +448,6 @@
                                 <option>Zamboanga Del Sur</option>
                                 <option>Zamboanga Sibugay</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
                         </div>
                     </div>
                     <div class="gap-6 mb-6">
@@ -525,16 +510,13 @@
                         <label for="scope" class="block mb-2 text-sm font-medium text-gray-900">Scope/Reach of Program</label>    
                         <div class="relative">
                             <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
-                                <option selected>Select</option>
+                                <option selected disabled>Select</option>
                                 <option>Community-Based</option>
                                 <option>Provincial</option>
                                 <option>Regional</option>
                                 <option>National</option>
                                 <option>International</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
                         </div>
                     </div>
 
@@ -560,7 +542,7 @@
                         <label for="scope" class="block mb-2 text-sm font-medium text-gray-900">Source of Inquiry</label>    
                         <div class="relative">
                             <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
-                                <option selected>Select</option>
+                                <option selected disabled>Select</option>
                                 <option>Email</option>
                                 <option>Phone Call</option>
                                 <option>Text/SMS</option>
