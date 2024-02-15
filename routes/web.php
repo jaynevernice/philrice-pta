@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/analytics', 'AnalyticsController@index')->name('analytics.index');
+Route::get('/form1', function () {
+    return view('form1');
+});
+
+Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
