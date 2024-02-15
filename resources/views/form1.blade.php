@@ -11,6 +11,9 @@
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     @vite('resources/css/app.css')
 
+    {{-- Boxicons --}}
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
     {{-- Flowbite CDN --}}
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" /> --}}
 
@@ -34,7 +37,7 @@
 
 <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
 
-    {{-- Container --}}
+    {{-- Menu Container --}}
     <div class="container w-full flex flex-wrap mx-auto px-2 mt-16">
         <div class="w-full lg:w-1/5 px-6 text-xl text-gray-800 leading-normal">
             <p class="text-base font-bold py-2 lg:pb-6 text-gray-700">Menu</p>
@@ -45,7 +48,8 @@
                     </svg>
                 </button>
             </div>
-            <div class="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
+            {{-- <div class="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content"> --}}
+            <div class="w-full sticky inset-0 hidden max-h-screen lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
                 <ul class="list-reset py-2 md:py-0">
                     <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent font-bold border-yellow-600">
                         <a href='#section1' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
@@ -77,6 +81,36 @@
                             <span class="pb-1 md:pb-0 text-sm">Section 6</span>
                         </a>
                     </li>
+                    <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                        <a href='#section7' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
+                            <span class="pb-1 md:pb-0 text-sm">Section 7</span>
+                        </a>
+                    </li>
+                    <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                        <a href='#section8' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
+                            <span class="pb-1 md:pb-0 text-sm">Section 8</span>
+                        </a>
+                    </li>
+                    <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                        <a href='#section9' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
+                            <span class="pb-1 md:pb-0 text-sm">Section 9</span>
+                        </a>
+                    </li>
+                    <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                        <a href='#section10' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
+                            <span class="pb-1 md:pb-0 text-sm">Section 10</span>
+                        </a>
+                    </li>
+                    <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                        <a href='#section11' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
+                            <span class="pb-1 md:pb-0 text-sm">Section 11</span>
+                        </a>
+                    </li>
+                    <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                        <a href='#section12' class="block pl-4 align-middle text-gray-700 no-underline hover:text-yellow-600">
+                            <span class="pb-1 md:pb-0 text-sm">Section 12</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -84,10 +118,12 @@
         {{-- Section Container --}}
         <section class="w-full lg:w-4/5">
 
-            {{-- Section 1 --}}
+            {{-- Form Title --}}
             <h1 class="flex items-center font-sans font-bold break-normal text-gray-700 px-2 text-xl mt-12 lg:mt-0 md:text-2xl">
-				PhilRice CES Knowledge Sharing and Learning (KSL) Monitoring
+                PhilRice CES Knowledge Sharing and Learning (KSL) Monitoring
 			</h1>
+            
+            {{-- Section 1 --}}
             <hr class="bg-gray-300 my-12">
             <h2 id='section1' class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Section 1</h2>
             <div class="p-8 mt-6 lg:mt-0 leading-normal rounded shadow bg-white">
@@ -436,21 +472,371 @@
                 </div>
             </div>
 
+            {{-- Section 6 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">International</h2>
+            <div id='section6' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                
+                <p class="text-sm text-gray-500 mb-2">Please specify the city and country where the activity was held</p>
+
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+
+                    {{-- Country --}}
+                    <div>
+                        <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Country</label>
+                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
+                    </div>
+
+                    {{-- State/City/Province --}}
+                    <div>
+                        <label for="state" class="block mb-2 text-sm font-medium text-gray-900">State/City/Province</label>
+                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Section 7 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Radio/TV Interview</h2>
+            <div id='section7' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+
+                <div class="grid gap-6 mb-6 md:grid-cols-3">
+                    <div>
+                        <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Date of Interview</label>     
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                            </div>
+                            <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select date of interview">
+                        </div>
+                    </div>
+
+                    {{-- Name of station/agency --}}
+                    <div>
+                        <label for="station" class="block mb-2 text-sm font-medium text-gray-900">Name of Station/Agency</label>
+                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name of station/agency" required>
+                    </div>
+
+                    {{-- Scope/Reach of Program --}}
+                    <div>
+                        <label for="scope" class="block mb-2 text-sm font-medium text-gray-900">Scope/Reach of Program</label>    
+                        <div class="relative">
+                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                                <option selected>Select</option>
+                                <option>Community-Based</option>
+                                <option>Provincial</option>
+                                <option>Regional</option>
+                                <option>National</option>
+                                <option>International</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {{-- Title of Program --}}
+                <div class="gap-6 mb-6">
+                    <div>
+                        <label for="station" class="block mb-2 text-sm font-medium text-gray-900">Title of Program</label>
+                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Program" required>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Section 8 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">E-Inquiry</h2>
+            <div id='section8' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+
+                    {{-- Source of Inquiry --}}
+                    <div>
+                        <label for="scope" class="block mb-2 text-sm font-medium text-gray-900">Source of Inquiry</label>    
+                        <div class="relative">
+                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                                <option selected>Select</option>
+                                <option>Email</option>
+                                <option>Phone Call</option>
+                                <option>Text/SMS</option>
+                                <option>Online Messaging Tool</option>
+                                <option>Social Media Platforms</option>
+                                <option>Other</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Date inquiry was answered --}}
+                    <div>
+                        <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Date inquiry was answered</label>     
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                            </div>
+                            <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select date inquiry was answered">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Section 9 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">E-Inquiry</h2>
+            <div id='section9' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                
+                {{-- Topics Shared --}}
+                <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Topic shared</label>  
+                <p class="text-sm text-gray-500 mb-6">Specify the topic of your technical dispatch. Multiple Response. Select all that applies.</p>
+
+                <div class="grid gap-6 mb-6 md:grid-cols-3">
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Varieties</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Seeds</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Land Preparation</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Crop Establishment</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Nutrient Management (including decision support tools)</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Water Management</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Pest Management (insect pests, rats, birds, snails, etc)</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Disease Management</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Harvest Management</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Post Harvest</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Overview of the PalayChecl System</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Rice Machines and Mechanization</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Climate Change and rice</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Rice-based farming technologies</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Organic Agriculture</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">ICT-based knowledge tools (e.g PTC, PinoyRice)</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Mindsetting</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Rice Industry Situation</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Other soft skills (e.g communication, management, negotiation, leadership, teamwork, etc)</label>
+                    </div>
+                    <div class="flex items-center me-4">
+                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Other...</label>
+                    </div>
+                </div>
+
+                {{-- Title of Presentation --}}
+                <div class="gap-6 mb-6">
+                    <label for="presentation_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Prensentation</label>
+                    <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Presentation" required>
+                </div>
+            </div>
+
+
+            {{-- Section 10 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Participant's Profile 1</h2>
+            <div id='section10' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+
+                {{-- Classification of Participants --}}
+                <div class="mb-10">
+                    <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Classification of Participants</label>  
+                    <p class="text-sm text-gray-500 mb-6">Multiple Response. Select all that applies.</p>
+    
+                    <div class="grid gap-6 mb-6 md:grid-cols-3">
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Farmer or Seed grower</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Extension workers or other intermediaries (e.g LFT, trainer, extension worker)</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Researcher</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Educator (elementary/high school/college teachers)</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Student (e.g college student, post-graduate student)</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Policy maker (e.g local chief executive)</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Media (e.g broadcaster, vlogger, etc)</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Industry Player (e.g trader, miller, wholesaler, retailer)</label>
+                        </div>
+                        <div class="flex items-center me-4">
+                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">other (e.g OFW, job seeker, freelancer, consultant)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid gap-6 mb-6 md:grid-cols-2"> 
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Number of Participants</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are farmers and seed growers</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are extension workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are members of the scientific community (researchers, academe)</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                </div>
+                <div>
+                    <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total number of other participants from other sectors (rice industry players, media, policymakers, general rice consumers)</label>
+                    <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                </div>
+            </div>
+
+            {{-- Section 11 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Participant's Profile 2</h2>
+            <div id='section11' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                <div class="grid gap-6 mb-6 md:grid-cols-2"> 
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Male Participants</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Female Participants</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Indigenous People</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                    <div>
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of PWD</label>
+                        <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    </div>
+                </div>
+            </div>
+
+            {{-- Section 12 --}}
+            <hr class="bg-gray-300 my-12">
+            <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Documentation</h2>
+            <div id='section12' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                <div class="mb-6">                        
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Photo documentation of event/activity</label>
+                    <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the event/activity</p>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+                </div>
+                <div class="mb-6">                        
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Photo documentation of event/activity</label>
+                    <p class="text-sm text-gray-500 mb-6">You may upload other forms of documentation such as request letter, copy of event program, attendance/registration sheet, and other relevant documents, spreadsheet, or PDF file, as applicable</p>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+                </div>
+            </div>
+
 
 
         </section>
 
         {{-- Back Link --}}
-        <div class="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-600 px-4 py-24 mb-12">
-          <span class="text-base text-yellow-600 font-bold">&lt;</span> <a href="#" class="text-base md:text-sm text-yellow-600 font-bold no-underline hover:underline">Back link</a>
-         </div>
+        <div class="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-600 px-4 py-24 mb-12 flex items-center justify-between">
+            <span class="text-base text-yellow-600 font-bold">&lt;</span> 
+            <a href="#" class="text-base md:text-sm text-yellow-600 font-bold no-underline hover:underline mr-auto">Go back to home</a>
+            
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                {{-- <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                    <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+                </svg> --}}
+                <box-icon name='send' color="#ffffff"></box-icon>
+                Submit
+            </button>
+        </div>
+        
+        
 
-      </div>
-      <!--/container-->
+    </div>
 
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+{{-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> --}}
 
 <!-- Toggle dropdown list -->
+
 <script>
 
 var userMenuDiv = document.getElementById("userMenu");
