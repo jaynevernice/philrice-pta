@@ -22,8 +22,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/form1', function () {
-    return view('form1');
+Route::get('/kslform', function () {
+    return view('kslform');
 });
 
 Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
