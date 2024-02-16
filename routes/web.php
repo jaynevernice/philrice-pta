@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DispatchFormController;
 use App\Http\Controllers\KSLAnalyticsController;
 use App\Http\Controllers\KSLFormController;
 use App\Http\Controllers\TrainingsFormController;
@@ -40,7 +41,11 @@ Route::group(['prefix' => 'ksl'], function () {
 
 
 // Form 2
-
 Route::group(['prefix' => 'trainings'], function() {
     Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
+});
+
+// Form 3
+Route::group(['prefix' => 'dispatch'], function() {
+    Route::get('/form', [DispatchFormController::class, 'index'])->name('dispatchform.index');
 });
