@@ -154,14 +154,14 @@
                         
                         {{-- Middle Initial --}}
                         <div>
-                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Middle Initial</label>
-                            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="F." required>
+                            <label for="middle_initial" class="block mb-2 text-sm font-medium text-gray-900">Middle Initial</label>
+                            <input type="text" id="middle_initial" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="F." required>
                         </div>
                         
                         {{-- Last Name --}}
                         <div>
-                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
-                            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" required>
+                            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
+                            <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" required>
                         </div>
                     </div>
 
@@ -181,10 +181,11 @@
                               </div>
                         </div>
 
+                        {{-- Sex --}}
                         <div>
                             <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Sex</label>                                               
                             <div class="relative">
-                                <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                                <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="sex">
                                     <option selected disabled>Select</option>
                                     <option>Male</option>
                                     <option>Female</option>
@@ -193,9 +194,9 @@
                         </div>
 
                         <div>
-                            <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Offices and Divisions</label>                                               
+                            <label for="offices_and_division" class="block mb-2 text-sm font-medium text-gray-900">Offices and Divisions</label>                                               
                             <div class="relative">
-                                <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                                <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="offices_and_division">
                                     <option selected disabled>Select</option>
                                     <option>ASD (Admin)</option>
                                     <option>ASPPD</option>
@@ -238,23 +239,23 @@
                 <form>
 
                     {{-- Mode of Sharing --}}
-                    <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Mode of Sharing</label>    
+                    <label for="mode_of_sharing" class="block mb-2 text-sm font-medium text-gray-900">Mode of Sharing</label>    
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <input id="bordered-radio-1" type="radio" value="face-to-face" name="mode_of_sharing_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                             <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Face-to-Face</label>
                         </div>
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <input id="bordered-radio-2" type="radio" value="online/virtual" name="mode_of_sharing_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                             <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Online/Virtual</label>
                         </div>
                     </div>
 
                     {{-- KSL Opportunity --}}
                     <div>
-                        <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">KSL Opportunity</label>    
+                        <label for="ksl_opportunity" class="block mb-2 text-sm font-medium text-gray-900">KSL Opportunity</label>    
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="ksl_opportunity">
                                 <option selected disabled>Select</option>
                                 <option>Briefing</option>
                                 <option>Conference</option>
@@ -282,15 +283,15 @@
                 <form>
 
                     {{-- Title of Event/Activity --}}
-                    <div class=" gap-6 mb-6">
+                    <div class="gap-6 mb-6">
                         <label for="event_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Event/Activity</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Event/Activity" required>
+                        <input type="text" id="event_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Event/Activity" required>
                     </div>
 
                     {{-- Start Date and End Date --}}
                     <div class="grid gap-6 mb-6 md:grid-cols-2">    
                         <div class=" gap-6 mb-6">                   
-                            <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Start Date</label>     
+                            <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900">Start Date</label>     
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -301,7 +302,7 @@
                             </div>
                         </div>
                         <div class="gap-6 mb-6">                   
-                            <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">End Date</label>     
+                            <label for="end_date" class="block mb-2 text-sm font-medium text-gray-900">End Date</label>     
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -317,36 +318,36 @@
                     <label for="event_organizer" class="block mb-2 text-sm font-medium text-gray-900">Event Organizer/Lead</label>    
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                            <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">PhilRice-organized/sponsored</label>
+                            <input id="bordered-radio-3" type="radio" value="PhilRice-organized/sponsored" name="event_organizer_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <label for="bordered-radio-3" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">PhilRice-organized/sponsored</label>
                         </div>
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                            <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Organized/sponsored by other agency/partners</label>
+                            <input checked id="bordered-radio-4" type="radio" value="Organized/sponsored by other agency/partners" name="event_organizer_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <label for="bordered-radio-4" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Organized/sponsored by other agency/partners</label>
                         </div>
                     </div>
 
                     {{-- If not --}}
                     <div class="gap-6 mb-6">
-                        <label for="event_title" class="block mb-2 text-sm font-medium text-gray-900">If not PhilRice-organized/sponsored, write name of organizing or sponsoring agency/partner</label>
+                        <label for="sponsor_name" class="block mb-2 text-sm font-medium text-gray-900">If not PhilRice-organized/sponsored, write name of organizing or sponsoring agency/partner</label>
                         <p class="text-sm text-gray-500 mb-2">Write N/A if none</p>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Event/Activity" required>
+                        <input type="text" id="sponsor_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Event/Activity" required>
                     </div>
 
                     {{-- Venue --}}
-                    <label for="venue" class="block mb-2 text-sm font-medium text-gray-900">Event Organizer/Lead</label>    
+                    <label for="venue" class="block mb-2 text-sm font-medium text-gray-900">Venue</label>    
                     <div class="grid gap-6 mb-6 md:grid-cols-3">
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                            <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Within PhilRice station</label>
+                            <input id="bordered-radio-5" type="radio" value="Within PhilRice station" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <label for="bordered-radio-5" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Within PhilRice station</label>
                         </div>
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                            <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Local (but outside PhilRice station)</label>
+                            <input checked id="bordered-radio-6" type="radio" value="Local (but outside PhilRice station)" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <label for="bordered-radio-6" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Local (but outside PhilRice station)</label>
                         </div>
                         <div class="flex items-center ps-4 border border-gray-200 rounded">
-                            <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                            <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">International</label>
+                            <input checked id="bordered-radio-7" type="radio" value="International" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                            <label for="bordered-radio-7" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">International</label>
                         </div>
                     </div>                    
                 </form>
@@ -360,9 +361,9 @@
 
                     {{-- Province --}}
                     <div>
-                        <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Province</label>    
+                        <label for="province" class="block mb-2 text-sm font-medium text-gray-900">Province</label>    
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="province">
                                 <option selected disabled>Select</option>
                                 <option>Abra</option>
                                 <option>NCR</option>
@@ -452,7 +453,7 @@
                     </div>
                     <div class="gap-6 mb-6">
                         <label for="city" class="block mb-2 text-sm font-medium text-gray-900">City/Municipality</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
+                        <input type="text" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
                     </div>
                 </div>
             </div>
@@ -469,13 +470,13 @@
                     {{-- Country --}}
                     <div>
                         <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Country</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
+                        <input type="text" id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Country" required>
                     </div>
 
                     {{-- State/City/Province --}}
                     <div>
                         <label for="state" class="block mb-2 text-sm font-medium text-gray-900">State/City/Province</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
+                        <input type="text" id="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="State/City/Province" required>
                     </div>
 
                 </div>
@@ -488,7 +489,7 @@
 
                 <div class="grid gap-6 mb-6 md:grid-cols-3">
                     <div>
-                        <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Date of Interview</label>     
+                        <label for="date_of_interview" class="block mb-2 text-sm font-medium text-gray-900">Date of Interview</label>     
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -502,14 +503,14 @@
                     {{-- Name of station/agency --}}
                     <div>
                         <label for="station" class="block mb-2 text-sm font-medium text-gray-900">Name of Station/Agency</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name of station/agency" required>
+                        <input type="text" id="station" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name of station/agency" required>
                     </div>
 
                     {{-- Scope/Reach of Program --}}
                     <div>
                         <label for="scope" class="block mb-2 text-sm font-medium text-gray-900">Scope/Reach of Program</label>    
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="scope">
                                 <option selected disabled>Select</option>
                                 <option>Community-Based</option>
                                 <option>Provincial</option>
@@ -525,8 +526,8 @@
                 {{-- Title of Program --}}
                 <div class="gap-6 mb-6">
                     <div>
-                        <label for="station" class="block mb-2 text-sm font-medium text-gray-900">Title of Program</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Program" required>
+                        <label for="program_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Program</label>
+                        <input type="text" id="program_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Program" required>
                     </div>
                 </div>
             </div>
@@ -539,9 +540,9 @@
 
                     {{-- Source of Inquiry --}}
                     <div>
-                        <label for="scope" class="block mb-2 text-sm font-medium text-gray-900">Source of Inquiry</label>    
+                        <label for="source_of_inquiry" class="block mb-2 text-sm font-medium text-gray-900">Source of Inquiry</label>    
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="grid-state">
+                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="source_of_inquiry">
                                 <option selected disabled>Select</option>
                                 <option>Email</option>
                                 <option>Phone Call</option>
@@ -550,9 +551,6 @@
                                 <option>Social Media Platforms</option>
                                 <option>Other</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
                         </div>
                     </div>
 
@@ -577,88 +575,88 @@
             <div id='section9' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                 
                 {{-- Topics Shared --}}
-                <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Topic shared</label>  
+                <label for="topic_shared" class="block mb-2 text-sm font-medium text-gray-900">Topic shared</label>  
                 <p class="text-sm text-gray-500 mb-6">Specify the topic of your technical dispatch. Multiple Response. Select all that applies.</p>
 
                 <div class="grid gap-6 mb-6 md:grid-cols-3">
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Varieties" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Varieties</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Seeds" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Seeds</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Land Preparation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Land Preparation</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Crop Establishment" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Crop Establishment</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Nutrient Management (including decision support tools)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Nutrient Management (including decision support tools)</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Water Management" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Water Management</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Pest Management (insect pests, rats, birds, snails, etc)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Pest Management (insect pests, rats, birds, snails, etc)</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Disease Management" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Disease Management</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Harvest Management" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Harvest Management</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Post Harvest" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Post Harvest</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Overview of the PalayChecl System</label>
+                        <input id="inline-checkbox" type="checkbox" value="Overview of the PalayCheck System" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Overview of the PalayCheck System</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Rice Machines and Mechanization" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Rice Machines and Mechanization</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Climate Change and rice" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Climate Change and rice</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Rice-based farming technologies" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Rice-based farming technologies</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Organic Agriculture" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Organic Agriculture</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="ICT-based knowledge tools (e.g PTC, PinoyRice)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">ICT-based knowledge tools (e.g PTC, PinoyRice)</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Mindsetting" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Mindsetting</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Rice Industry Situation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Rice Industry Situation</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Other soft skills (e.g communication, management, negotiation, leadership, teamwork, etc)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Other soft skills (e.g communication, management, negotiation, leadership, teamwork, etc)</label>
                     </div>
                     <div class="flex items-center me-4">
-                        <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="inline-checkbox" type="checkbox" value="Other..." class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Other...</label>
                     </div>
                 </div>
@@ -666,7 +664,7 @@
                 {{-- Title of Presentation --}}
                 <div class="gap-6 mb-6">
                     <label for="presentation_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Prensentation</label>
-                    <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Presentation" required>
+                    <input type="text" id="presentation_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Presentation" required>
                 </div>
             </div>
 
@@ -678,74 +676,74 @@
 
                 {{-- Classification of Participants --}}
                 <div class="mb-10">
-                    <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Classification of Participants</label>  
+                    <label for="classification_of_participants" class="block mb-2 text-sm font-medium text-gray-900">Classification of Participants</label>  
                     <p class="text-sm text-gray-500 mb-6">Multiple Response. Select all that applies.</p>
     
                     <div class="grid gap-6 mb-6 md:grid-cols-3">
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Farmer or Seed grower" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Farmer or Seed grower</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Extension workers or other intermediaries (e.g LFT, trainer, extension worker)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Extension workers or other intermediaries (e.g LFT, trainer, extension worker)</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Researcher" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Researcher</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Educator (elementary/high school/college teachers)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Educator (elementary/high school/college teachers)</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Student (e.g college student, post-graduate student)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Student (e.g college student, post-graduate student)</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Policy maker (e.g local chief executive)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Policy maker (e.g local chief executive)</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Media (e.g broadcaster, vlogger, etc)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Media (e.g broadcaster, vlogger, etc)</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="Industry Player (e.g trader, miller, wholesaler, retailer)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Industry Player (e.g trader, miller, wholesaler, retailer)</label>
                         </div>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="inline-checkbox" type="checkbox" value="other (e.g OFW, job seeker, freelancer, consultant)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">other (e.g OFW, job seeker, freelancer, consultant)</label>
                         </div>
                     </div>
                 </div>
                 <div class="grid gap-6 mb-6 md:grid-cols-2"> 
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Number of Participants</label>
+                        <label for="num_of_participants" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Number of Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_participants" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are farmers and seed growers</label>
+                        <label for="num_of_farmers_and_growers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are farmers and seed growers</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_farmers_and_growers" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are extension workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)</label>
+                        <label for="num_of_extension_workers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are extension workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_extension_workers" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are members of the scientific community (researchers, academe)</label>
+                        <label for="num_of_scientific_com" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are members of the scientific community (researchers, academe)</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_scientific_com" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
                 <div>
-                    <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total number of other participants from other sectors (rice industry players, media, policymakers, general rice consumers)</label>
+                    <label for="num_of_other_participants" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total number of other participants from other sectors (rice industry players, media, policymakers, general rice consumers)</label>
                     <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    <input type="number" id="num_of_other_participants" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                 </div>
             </div>
 
@@ -755,24 +753,24 @@
             <div id='section11' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                 <div class="grid gap-6 mb-6 md:grid-cols-2"> 
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Male Participants</label>
+                        <label for="num_of_male" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Male Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_male" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Female Participants</label>
+                        <label for="num_of_female" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Female Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_female" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Indigenous People</label>
+                        <label for="num_of_indigenous" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Indigenous People</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_indigenous" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of PWD</label>
+                        <label for="num_of_pwd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of PWD</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_pwd" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
             </div>
@@ -782,14 +780,14 @@
             <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Documentation</h2>
             <div id='section12' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                 <div class="mb-6">                        
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Photo documentation of event/activity</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="photo_doc_event">Photo documentation of event/activity</label>
                     <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the event/activity</p>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo_doc_event" type="file" multiple>
                 </div>
                 <div class="mb-6">                        
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Photo documentation of event/activity</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other forms of documentation</label>
                     <p class="text-sm text-gray-500 mb-6">You may upload other forms of documentation such as request letter, copy of event program, attendance/registration sheet, and other relevant documents, spreadsheet, or PDF file, as applicable</p>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="other_doc" type="file" multiple>
                 </div>
             </div>
 
