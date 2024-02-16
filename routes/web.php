@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KSLAnalyticsController;
 use App\Http\Controllers\KSLFormController;
+use App\Http\Controllers\TrainingsFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,3 +40,7 @@ Route::group(['prefix' => 'ksl'], function () {
 
 
 // Form 2
+
+Route::group(['prefix' => 'trainings'], function() {
+    Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
+});
