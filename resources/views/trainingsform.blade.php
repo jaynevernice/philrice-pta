@@ -524,12 +524,12 @@
             <div id='section9' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                 <div class="mb-6">                        
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="photo_doc_event">Photo documentation of event/activity</label>
-                    <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the event/activity</p>
+                    <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the training conducted. Ensure that photo files have been named properly before uploading using the Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo_doc_event" type="file" multiple>
                 </div>
                 <div class="mb-6">                        
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other forms of documentation</label>
-                    <p class="text-sm text-gray-500 mb-6">You may upload other forms of documentation such as request letter, copy of event program, attendance/registration sheet, and other relevant documents, spreadsheet, or PDF file, as applicable</p>
+                    <p class="text-sm text-gray-500 mb-6">You may upload other forms of training documentation such as attendance/registration sheet, copy of event program, short video or audio clip, and other relevant documents, spreadsheet, or PDF file.</p>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="other_doc" type="file" multiple>
                 </div>
             </div>
