@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\KSLAnalyticsController;
+use App\Http\Controllers\KSLFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,19 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/kslform', function () {
-    return view('kslform');
+// Form 1
+// Route::get('/kslform', function () {
+//     return view('kslform');
+// });
+
+// KSL Routes but not grouped
+// Route::get('/kslform', [KSLFormController::class, 'index'])->name('kslform.index');
+// Route::get('/kslanalytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
+
+Route::group(['prefix' => 'ksl'], function () {
+    Route::get('/form', [KSLFormController::class, 'index'])->name('kslform.index');
+    Route::get('/analytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
 });
 
-Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
+
+// Form 2
