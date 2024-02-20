@@ -22,8 +22,18 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('landing');
+})->name('landing');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
 
 // Form 1
 // Route::get('/kslform', function () {
