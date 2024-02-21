@@ -12,6 +12,28 @@
 <body>
     <div class="h-screen bg-gray-100 text-gray-900 flex justify-center">
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+            
+            {{-- Left Side --}}
+            <div class="flex-1 bg-green-100 text-center hidden lg:flex">
+                {{-- <div class="m-12 xl:m-16 w-full overflow-hidden"> --}}
+                <div class="m-2 xl:m-4 w-full overflow-hidden relative">
+                    {{-- <video autoplay muted loop class="w-full"> --}}
+                    <video autoplay muted loop class="h-full object-cover w-full">
+                        <source src="{{ asset('assets/hero.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    {{-- Dim Video using Overlay --}}
+                    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+                    {{-- Text Overlay --}}
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
+                        <h1 class="text-5xl font-bold pb-4">PhilRice Training Database Management System</h1>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Right Side --}}
             <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
                 <div class="mt-12 flex flex-col items-center">
                     <h1 class="text-2xl xl:text-3xl font-extrabold">Login</h1>
@@ -57,7 +79,10 @@
                             <input
                                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                 type="password" placeholder="Password" />
-                           
+                            
+                            {{-- Forgot Password --}}
+                            <a href="#" class="text-xs text-gray-600 my-4  block text-right">Forgot Password?</a>
+
                             <a href="{{ route('dashboard') }}">
                                 <button
                                     class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
@@ -66,7 +91,7 @@
                                     </span>
                                 </button>
                             </a>
-                            {{-- <p class="mt-6 text-xs text-gray-600 text-center">
+                            <p class="mt-6 text-xs text-gray-600 text-center">
                                 I agree to abide by PhilRice's
                                 <a href="#" class="border-b border-gray-500 border-dotted">
                                     Terms of Service
@@ -75,32 +100,12 @@
                                 <a href="#" class="border-b border-gray-500 border-dotted">
                                     Privacy Policy
                                 </a>
-                            </p> --}}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {{-- Right Side --}}
-            <div class="flex-1 bg-green-100 text-center hidden lg:flex">
-                {{-- <div class="m-12 xl:m-16 w-full overflow-hidden"> --}}
-                <div class="m-2 xl:m-4 w-full overflow-hidden relative">
-                    {{-- <video autoplay muted loop class="w-full"> --}}
-                    <video autoplay muted loop class="h-full object-cover w-full">
-                        <source src="{{ asset('assets/hero.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-
-                    {{-- Dim Video using Overlay --}}
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
-
-                    {{-- Text Overlay --}}
-                    <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-5xl font-bold pb-4">PhilRice Training Database Management System</h1>
-                    </div>
-                </div>
-            </div>
-            
+          
         </div>
     </div>
 </body>

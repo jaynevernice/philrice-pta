@@ -26,7 +26,8 @@
                     <div class="flex items-center lg:order-2">
                         <div>
                             <a href="{{ route('login') }}">
-                                <button type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
+                                {{-- <button type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button> --}}
+                                <button type="button" class="text-white bg-gradient-to-br from-[#16A44B] to-[#14506A] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
                             </a>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
 
             {{-- Text Overlay --}}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                <h1 class="text-5xl font-bold pb-4">PhilRice Training Database Management System</h1>
+                <h1 class="text-5xl font-bold pb-4 text-center">PhilRice Training Database Management System</h1>
                 <p class="text-lg text-center">The PTDMS efficiently organizes and manages training-related information <br> for the Philippine Rice Research Institute, enhancing the effectiveness of their agricultural education initiatives.</p>
             </div>
         </div>
