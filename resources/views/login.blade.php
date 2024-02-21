@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
 
+    {{-- Flowbite JS CDN --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     @vite('resources/css/app.css')
 </head>
@@ -51,21 +54,25 @@
                         </div>
 
                         <div class="mx-auto max-w-xs">
-                            <input
-                                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                type="email" placeholder="Email" />
-                            <input
-                                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                type="password" placeholder="Password" />
-                           
-                            <a href="{{ route('dashboard') }}">
-                                <button
-                                    class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                    <span class="ml-3">
-                                        Log In
-                                    </span>
-                                </button>
-                            </a>
+                            @include('_message')
+                            <form action="{{ route('auth_login') }}" method="post">
+                                @csrf
+                                <input
+                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                    type="email" name="email" placeholder="Email" />
+                                <input
+                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                    type="password" name="password" placeholder="Password" />
+                            
+                                {{-- <a href=""> --}}
+                                    <button
+                                        type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        <span class="ml-3">
+                                            Log In
+                                        </span>
+                                    </button>
+                                {{-- </a> --}}
+                            </form>
                             {{-- <p class="mt-6 text-xs text-gray-600 text-center">
                                 I agree to abide by PhilRice's
                                 <a href="#" class="border-b border-gray-500 border-dotted">
@@ -103,5 +110,6 @@
             
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
