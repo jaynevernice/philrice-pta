@@ -39,7 +39,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'super_admin'], function () {
     Route::group(['prefix' => 'super_admin'],function(){
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('super_admin.dashboard');
         })->name('super_admin.dashboard');
         
     });
@@ -48,7 +48,7 @@ Route::group(['middleware' => 'super_admin'], function () {
 Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin'],function(){
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('admin.dashboard');
         })->name('admin.dashboard');
         
     });
@@ -57,7 +57,7 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'encoder'], function () {
     Route::group(['prefix' => 'encoder'],function(){
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('encoder.dashboard');
         })->name('encoder.dashboard');
         
     });
@@ -66,7 +66,7 @@ Route::group(['middleware' => 'encoder'], function () {
 Route::group(['middleware' => 'rcef_user'], function () {
     Route::group(['prefix' => 'rcef_user'],function(){
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('rcef_user.dashboard');
         })->name('rcef_user.dashboard');
         
     });
