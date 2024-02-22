@@ -19,7 +19,7 @@
             {{-- Left Side --}}
             <div class="flex-1 bg-green-100 text-center hidden lg:flex">
                 {{-- <div class="m-12 xl:m-16 w-full overflow-hidden"> --}}
-                <div class="m-2 xl:m-4 w-full overflow-hidden relative">
+                <div class="w-full overflow-hidden relative">
                     {{-- <video autoplay muted loop class="w-full"> --}}
                     <video autoplay muted loop class="h-full object-cover w-full">
                         <source src="{{ asset('assets/hero.mp4') }}" type="video/mp4">
