@@ -68,6 +68,7 @@
                             </button>
                         </div>
 
+                        {{-- Sign in with Email --}}
                         <div class="my-12 border-b text-center">
                             <div
                                 class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
@@ -86,17 +87,18 @@
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="password" name="password" placeholder="Password" />
 
+                                {{-- Forgot Password --}}
                                 <a href="#" class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right">Forgot Password?</a>
                             
-                                {{-- <a href="{{ route('login') }}"> --}}
-                                    <button
-                                        type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                        <span class="ml-3">
-                                            Log In
-                                        </span>
-                                    </button>
-                                {{-- </a> --}}
+                                <button
+                                    type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                    <span class="ml-3">
+                                        Log In
+                                    </span>
+                                </button>
                             </form>
+
+                            {{-- Terms and Conditions --}}
                             <p class="mt-6 text-xs text-gray-600 text-center">
                                 I agree to abide by PhilRice's
                                 <a href="#" class="border-b border-gray-500 border-dotted">
@@ -107,6 +109,7 @@
                                     Privacy Policy
                                 </a>
                             </p>
+
                         </div>
                     </div>
                 </div>
