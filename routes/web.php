@@ -28,6 +28,14 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+Route::get('/forgot',function() {
+    return view('forgot');
+})->name('forgot');
+
+Route::get('/reset', function() {
+    return view('reset');
+})->name('reset');
+
 // Route::get('/login', function () {
 //     return view('login');
 // })->name('login');
@@ -59,6 +67,10 @@ Route::group(['middleware' => 'encoder'], function () {
         Route::get('/dashboard', function () {
             return view('encoder.dashboard');
         })->name('encoder.dashboard');
+
+        Route::get('/dashboard/ces', function() {
+            return  view('encoder.ces');
+        })->name('encoder.ces');
         
     });
 });

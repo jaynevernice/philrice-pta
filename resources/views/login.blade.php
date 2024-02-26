@@ -9,6 +9,9 @@
     {{-- Flowbite JS CDN --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
+    {{-- Boxicons CDN --}}
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     @vite('resources/css/app.css')
 </head>
@@ -41,38 +44,11 @@
                 <div class="mt-12 flex flex-col items-center">
                     <h1 class="text-2xl xl:text-3xl font-extrabold">Login</h1>
                     <div class="w-full flex-1 mt-8">
-                        <div class="flex flex-col items-center">
-                            
-                            {{-- Sign in With Google --}}
-                            <button
-                                class="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-green-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
-                                <div class="bg-white p-2 rounded-full">
-                                    <svg class="w-4" viewBox="0 0 533.5 544.3">
-                                        <path
-                                            d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
-                                            fill="#4285f4" />
-                                        <path
-                                            d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z"
-                                            fill="#34a853" />
-                                        <path
-                                            d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z"
-                                            fill="#fbbc04" />
-                                        <path
-                                            d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z"
-                                            fill="#ea4335" />
-                                    </svg>
-                                </div>
-                                <span class="ml-4">
-                                    Log In with Google
-                                </span>
-                            </button>
-                        </div>
 
-                        {{-- Sign in with Email --}}
                         <div class="my-12 border-b text-center">
                             <div
                                 class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                Or log in with e-mail
+                                Welcome to PTDMS
                             </div>
                         </div>
 
@@ -83,23 +59,38 @@
                                 <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                     type="email" name="email" placeholder="Email" />
-                                <input
+                                    
+                                {{-- <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="password" name="password" placeholder="Password" />
+                                    type="password" name="password" placeholder="Password" /> --}}
 
-                                {{-- Forgot Password --}}
-                                <a href="#" class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right">Forgot Password?</a>
-                            
+                                <div class="relative mt-5">
+                                    <input id="password" class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                            type="password" name="password" placeholder="Password" />
+                                    <!-- Toggle button for password visibility -->
+                                    <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-4 py-2 mr-2 focus:outline-none">
+                                        <!-- Default Hide Password SVG icon -->
+                                        <svg id="hidePasswordIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <path d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
                                 <button
                                     type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                     <span class="ml-3">
                                         Log In
                                     </span>
                                 </button>
+
+                                {{-- Forgot Password --}}
+                                <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right underline">Forgot Password?</a>
                             </form>
 
+                            
+
                             {{-- Terms and Conditions --}}
-                            <p class="mt-6 text-xs text-gray-600 text-center">
+                            {{-- <p class="mt-6 text-xs text-gray-600 text-center">
                                 I agree to abide by PhilRice's
                                 <a href="#" class="border-b border-gray-500 border-dotted">
                                     Terms of Service
@@ -108,7 +99,7 @@
                                 <a href="#" class="border-b border-gray-500 border-dotted">
                                     Privacy Policy
                                 </a>
-                            </p>
+                            </p> --}}
 
                         </div>
                     </div>
@@ -117,6 +108,22 @@
           
         </div>
     </div>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password');
+            var hidePasswordIcon = document.getElementById('hidePasswordIcon');
+    
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                // Change SVG to Show Password
+                hidePasswordIcon.innerHTML = '<path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"/>';
+            } else {
+                passwordInput.type = "password";
+                // Change SVG to Hide Password
+                hidePasswordIcon.innerHTML = '<path d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"/>';
+            }
+        }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
