@@ -19,7 +19,7 @@ class AuthController extends Controller
             } else if(Auth::user()->user_type == 'admin') {
                 return redirect('/admin/dashboard');
             } else if (Auth::user()->user_type == 'encoder'){
-                return redirect('/encoder/dashboard');
+                return redirect('/encoder/overview');
             } else if (Auth::user()->user_type == 'rcef_user'){
                 return redirect('/rcef_user/overview'); // Changed directory to overview, wala ng dashboard na term para di nakakalito
             }     
@@ -41,7 +41,7 @@ class AuthController extends Controller
             } else if(Auth::user()->user_type == 'admin') {
                 return redirect('/admin/dashboard');
             } else if (Auth::user()->user_type == 'encoder'){
-                return redirect('/encoder/dashboard');
+                return redirect('/encoder/overview');
             } else if (Auth::user()->user_type == 'rcef_user'){
                 return redirect('/rcef_user/overview'); //Changed directory to overview, wala ng dashboard na term para di nakakalito
             }             

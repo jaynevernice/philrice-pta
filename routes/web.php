@@ -62,20 +62,30 @@ Route::group(['middleware' => 'admin'], function () {
     });
 });
 
+// Encoder
 Route::group(['middleware' => 'encoder'], function () {
     Route::group(['prefix' => 'encoder'],function(){
-        Route::get('/dashboard', function () {
-            return view('encoder.dashboard');
-        })->name('encoder.dashboard');
 
-        Route::get('/dashboard/ces', function() {
+        Route::get('/overview', function () {
+            return view('encoder.overview');
+        })->name('encoder.overview');
+
+        Route::get('/ces', function () {
             return view('encoder.ces');
         })->name('encoder.ces');
+
+        Route::get('/ces_add', function () {
+            return view('encoder.ces_add');
+        })->name('encoder.ces_add');
+
+        Route::get('/ces_edit', function () {
+            return view('encoder.ces_edit');
+        })->name('encoder.ces_edit');
         
     });
 });
 
-
+// RCEF User
 Route::group(['middleware' => 'rcef_user'], function () {
     Route::group(['prefix' => 'rcef_user'],function(){
         
