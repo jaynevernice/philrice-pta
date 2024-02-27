@@ -94,11 +94,11 @@
             </a>
           </li>
 
-          {{-- NEGROS --}}
+          {{-- Manage Encoders --}}
           <li>
-            <a href="{{ route('admin.negros') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-              <box-icon name='building' type='solid'></box-icon>
-              <span class="ml-3">NEGROS</span>
+            <a href="{{ route('admin.manage_encoders') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+              <box-icon type='solid' name='user-account'></box-icon>
+              <span class="ml-3">Manage Encoders</span>
             </a>
           </li>
 

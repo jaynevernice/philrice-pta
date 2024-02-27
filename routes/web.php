@@ -91,6 +91,10 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/negros', function() {
             return view('admin.negros');
         })->name('admin.negros');
+
+        Route::get('/manage_encoders', function(){
+            return view('admin.manage_encoders');
+        })->name('admin.manage_encoders');
         
     });
 });
