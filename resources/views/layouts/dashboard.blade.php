@@ -18,8 +18,10 @@
 <body>
   <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
+    @include('layouts.navbar')
+
     {{-- Navbar and Sidebar --}}
-    @yield('menu')
+    @yield('sidebar')
 
     {{-- Main Content --}}
     @yield('content')

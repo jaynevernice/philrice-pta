@@ -76,13 +76,44 @@ Route::group(['middleware' => 'encoder'], function () {
 });
 
 
-// Fixed
 Route::group(['middleware' => 'rcef_user'], function () {
     Route::group(['prefix' => 'rcef_user'],function(){
+        
         Route::get('/overview', function() {
             return view('rcef_user.overview');
         })->name('rcef_user.overview');
         
+        Route::get('/ces', function() {
+            return view('rcef_user.ces');
+        })->name('rcef_user.ces');
+
+        Route::get('/batac', function() {
+            return view('rcef_user.batac');
+        })->name('rcef_user.batac');
+
+        Route::get('/agusan', function() {
+            return view('rcef_user.agusan');
+        })->name('rcef_user.agusan');
+
+        Route::get('/bicol', function() {
+            return view('rcef_user.bicol');
+        })->name('rcef_user.bicol');
+
+        Route::get('/isabela', function() {
+            return view('rcef_user.isabela');
+        })->name('rcef_user.isabela');
+
+        Route::get('/losbaños', function() {
+            return view('rcef_user.losbaños');
+        })->name('rcef_user.losbaños');
+
+        Route::get('/midsayap', function() {
+            return view('rcef_user.midsayap');
+        })->name('rcef_user.midsayap');
+
+        Route::get('/negros', function() {
+            return view('rcef_user.negros');
+        })->name('rcef_user.negros');
     });
 });
 
