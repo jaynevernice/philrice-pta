@@ -17,7 +17,7 @@ class AuthController extends Controller
             if(Auth::user()->user_type == 'super_admin') {
                 return redirect('/super_admin/dashboard');
             } else if(Auth::user()->user_type == 'admin') {
-                return redirect('/admin/dashboard');
+                return redirect('/admin/overview');
             } else if (Auth::user()->user_type == 'encoder'){
                 return redirect('/encoder/overview');
             } else if (Auth::user()->user_type == 'rcef_user'){
@@ -39,7 +39,7 @@ class AuthController extends Controller
             if(Auth::user()->user_type == 'super_admin') {
                 return redirect('/super_admin/dashboard');
             } else if(Auth::user()->user_type == 'admin') {
-                return redirect('/admin/dashboard');
+                return redirect('/admin/overview');
             } else if (Auth::user()->user_type == 'encoder'){
                 return redirect('/encoder/overview');
             } else if (Auth::user()->user_type == 'rcef_user'){

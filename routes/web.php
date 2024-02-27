@@ -53,11 +53,44 @@ Route::group(['middleware' => 'super_admin'], function () {
     });
 });
 
+// 
 Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin'],function(){
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
+        Route::get('/overview', function () {
+            return view('admin.overview');
+        })->name('admin.overview');
+
+        Route::get('/ces', function() {
+            return view('admin.ces');
+        })->name('admin.ces');
+
+        Route::get('/batac', function() {
+            return view('admin.batac');
+        })->name('admin.batac');
+
+        Route::get('/agusan', function() {
+            return view('admin.agusan');
+        })->name('admin.agusan');
+
+        Route::get('/bicol', function() {
+            return view('admin.bicol');
+        })->name('admin.bicol');
+
+        Route::get('/isabela', function() {
+            return view('admin.isabela');
+        })->name('admin.isabela');
+
+        Route::get('/losbaños', function() {
+            return view('admin.losbaños');
+        })->name('admin.losbaños');
+
+        Route::get('/midsayap', function() {
+            return view('admin.midsayap');
+        })->name('admin.midsayap');
+
+        Route::get('/negros', function() {
+            return view('admin.negros');
+        })->name('admin.negros');
         
     });
 });
