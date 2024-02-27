@@ -70,7 +70,7 @@
                 
                 {{-- Card for Summary of Trainings --}}
                 <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2">
-                    <a href="{{ route('encoder.ces_add') }}" target="_blank">
+                    <a href="{{ route('trainingsform.index') }}" target="_blank">
                         <img class="rounded-t-lg" src={{ asset('assets/form1.jpg') }} alt="" />
                         <div class="p-5">
                             <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Summary of Trainings Conducted</h5>
