@@ -21,7 +21,7 @@ class AuthController extends Controller
             } else if (Auth::user()->user_type == 'encoder'){
                 return redirect('/encoder/dashboard');
             } else if (Auth::user()->user_type == 'rcef_user'){
-                return redirect('/rcef_user/dashboard');
+                return redirect('/rcef_user/overview'); // Changed directory to overview, wala ng dashboard na term para di nakakalito
             }     
         }
 
@@ -43,7 +43,7 @@ class AuthController extends Controller
             } else if (Auth::user()->user_type == 'encoder'){
                 return redirect('/encoder/dashboard');
             } else if (Auth::user()->user_type == 'rcef_user'){
-                return redirect('/rcef_user/dashboard');
+                return redirect('/rcef_user/overview'); //Changed directory to overview, wala ng dashboard na term para di nakakalito
             }             
         } else {
             return redirect()->back()->with('error', 'Please enter correct email and password');

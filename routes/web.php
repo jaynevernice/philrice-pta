@@ -69,17 +69,19 @@ Route::group(['middleware' => 'encoder'], function () {
         })->name('encoder.dashboard');
 
         Route::get('/dashboard/ces', function() {
-            return  view('encoder.ces');
+            return view('encoder.ces');
         })->name('encoder.ces');
         
     });
 });
 
+
+// Fixed
 Route::group(['middleware' => 'rcef_user'], function () {
     Route::group(['prefix' => 'rcef_user'],function(){
-        Route::get('/dashboard', function () {
-            return view('rcef_user.dashboard');
-        })->name('rcef_user.dashboard');
+        Route::get('/overview', function() {
+            return view('rcef_user.overview');
+        })->name('rcef_user.overview');
         
     });
 });
