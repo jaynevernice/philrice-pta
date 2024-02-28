@@ -50,16 +50,58 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'AuthLogin'])->name('auth_login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+// Super Admin
 Route::group(['middleware' => 'super_admin'], function () {
     Route::group(['prefix' => 'super_admin'],function(){
-        Route::get('/dashboard', function () {
-            return view('super_admin.dashboard');
-        })->name('super_admin.dashboard');
+        
+        Route::get('/overview', function () {
+            return view('super_admin.overview');
+        })->name('super_admin.overview');
+
+        Route::get('/ces', function() {
+            return view('super_admin.ces');
+        })->name('super_admin.ces');
+
+        Route::get('/batac', function() {
+            return view('super_admin.batac');
+        })->name('super_admin.batac');
+
+        Route::get('/agusan', function() {
+            return view('super_admin.agusan');
+        })->name('super_admin.agusan');
+
+        Route::get('/bicol', function() {
+            return view('super_admin.bicol');
+        })->name('super_admin.bicol');
+
+        Route::get('/isabela', function() {
+            return view('super_admin.isabela');
+        })->name('super_admin.isabela');
+
+        Route::get('/losbaños', function() {
+            return view('super_admin.losbaños');
+        })->name('super_admin.losbaños');
+
+        Route::get('/midsayap', function() {
+            return view('super_admin.midsayap');
+        })->name('super_admin.midsayap');
+
+        Route::get('/negros', function() {
+            return view('super_admin.negros');
+        })->name('super_admin.negros');
+
+        Route::get('/manage_rcef', function(){
+            return view('super_admin.manage_rcef');
+        })->name('super_admin.manage_rcef');
+
+        Route::get('/manage_admins', function(){
+            return view('super_admin.manage_admins');
+        })->name('super_admin.manage_admins');
         
     });
 });
 
-// 
+// Admin
 Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin'],function(){
         Route::get('/overview', function () {

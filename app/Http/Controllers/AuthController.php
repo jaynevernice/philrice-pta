@@ -19,7 +19,7 @@ class AuthController extends Controller
         // para hindi bumalik sa login page kung talagang nakalog in na
         if(!empty(Auth::check())) {
             if(Auth::user()->user_type == 'super_admin') {
-                return redirect('/super_admin/dashboard');
+                return redirect('/super_admin/overview');
             } else if(Auth::user()->user_type == 'admin') {
                 return redirect('/admin/overview');
             } else if (Auth::user()->user_type == 'encoder'){
@@ -41,7 +41,7 @@ class AuthController extends Controller
         // if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if(Auth::user()->user_type == 'super_admin') {
-                return redirect('/super_admin/dashboard');
+                return redirect('/super_admin/overview');
             } else if(Auth::user()->user_type == 'admin') {
                 return redirect('/admin/overview');
             } else if (Auth::user()->user_type == 'encoder'){
