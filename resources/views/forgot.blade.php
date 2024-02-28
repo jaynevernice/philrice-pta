@@ -53,12 +53,12 @@
                         </div>
 
                         <div class="mx-auto max-w-xs">
-                            <form action="{{ url('/reset') }}" method="POST">
+                            <form action="{{ url('/forgot') }}" method="POST">
                                 @include('_message')
                                 @csrf
                                 <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                    type="email" name="email" placeholder="Email" />
+                                    type="email" name="email" placeholder="Email" required/>
                                 
                                 <button
                                     type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
