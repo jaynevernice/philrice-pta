@@ -46,17 +46,17 @@
                     <div class="w-full flex-1 mt-8">
 
                         <div class="mx-auto max-w-xs">
-                            <form action="{{ route('auth_login') }}" method="POST">
+                            <form action="" method="POST">
                                 @include('_message')
                                 @csrf
 
                                 <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="password" name="password" placeholder="Password" id="password" />
+                                    type="password" name="password" placeholder="Password" id="password" required />
 
                                 <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="password" name="password" placeholder="Confirm Password" id="confirm_password" />
+                                    type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required />
 
                                 {{-- Tailwind checkbox for showing password field --}}
                                 <div class="mt-4 flex items-center">

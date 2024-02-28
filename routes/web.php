@@ -22,19 +22,25 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// php artisan make:middleware AdminMiddleware
 // php artisan make:controller AuthController
 
 Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+// php artisan make:mail ForgotPasswordMail
+// kapag inedit yung MAIL_USERNAME sa .env run this: php artisan config:cache
 Route::get('/forgot',function() {
     return view('forgot');
 })->name('forgot');
+Route::post('/forgot', [AuthController::class, 'PostForgot']);
 
-Route::get('/reset', function() {
-    return view('reset');
-})->name('reset');
+Route::get('/reset/{token}', [AuthController::class, 'reset']);
+Route::post('/reset/{token}', [AuthController::class, 'PostReset']);
+// Route::get('/reset/{token}', function() {
+//     return view('reset');
+// })->name('reset');
 
 // Route::get('/login', function () {
 //     return view('login');
