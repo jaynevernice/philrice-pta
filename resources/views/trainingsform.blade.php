@@ -145,8 +145,8 @@
                                 <option>SED</option>
                                 <option>TMSD</option>
                             </select>
-                            </div>
                         </div>
+                    </div>
                 </form>
             </div>
 

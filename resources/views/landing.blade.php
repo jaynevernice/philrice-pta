@@ -38,7 +38,7 @@
         {{-- Hero --}}
         <div class="relative flex-1">
             <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop>
-                <source src="{{ asset('assets/hero.mp4') }}" type="video/mp4">
+                <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
@@ -47,8 +47,9 @@
 
             {{-- Text Overlay --}}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                <h1 class="text-5xl font-bold pb-4 text-center">PhilRice Training Database Management System</h1>
-                <p class="text-lg text-center">The PTDMS efficiently organizes and manages training-related information <br> for the Philippine Rice Research Institute, enhancing the effectiveness of their agricultural education initiatives.</p>
+                {{-- <h1 class="text-5xl font-bold pb-4 text-center">PhilRice Training Database Management System</h1> --}}
+                <h1 class="text-5xl font-bold pb-4 text-center">Training Records Analysis and Charting for Enhanced Results</h1>
+                <p class="text-lg text-center">TRACER efficiently organizes and manages training-related information <br> for the Philippine Rice Research Institute, enhancing the effectiveness of their agricultural education initiatives.</p>
             </div>
         </div>
     </div>

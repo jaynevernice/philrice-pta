@@ -36,6 +36,10 @@ Route::get('/forgot',function() {
 })->name('forgot');
 Route::post('/forgot', [AuthController::class, 'PostForgot']);
 
+Route::get('/register', function() {
+    return view('register');
+})->name('register');
+
 Route::get('/reset/{token}', [AuthController::class, 'reset']);
 Route::post('/reset/{token}', [AuthController::class, 'PostReset']);
 // Route::get('/reset/{token}', function() {
@@ -170,45 +174,45 @@ Route::group(['middleware' => 'encoder'], function () {
     });
 });
 
-// RCEF User
-Route::group(['middleware' => 'rcef_user'], function () {
-    Route::group(['prefix' => 'rcef_user'],function(){
+// Viewer
+Route::group(['middleware' => 'viewer'], function () {
+    Route::group(['prefix' => 'viewer'],function(){
         
         Route::get('/overview', function() {
-            return view('rcef_user.overview');
-        })->name('rcef_user.overview');
+            return view('viewer.overview');
+        })->name('viewer.overview');
         
         Route::get('/ces', function() {
-            return view('rcef_user.ces');
-        })->name('rcef_user.ces');
+            return view('viewer.ces');
+        })->name('viewer.ces');
 
         Route::get('/batac', function() {
-            return view('rcef_user.batac');
-        })->name('rcef_user.batac');
+            return view('viewer.batac');
+        })->name('viewer.batac');
 
         Route::get('/agusan', function() {
-            return view('rcef_user.agusan');
-        })->name('rcef_user.agusan');
+            return view('viewer.agusan');
+        })->name('viewer.agusan');
 
         Route::get('/bicol', function() {
-            return view('rcef_user.bicol');
-        })->name('rcef_user.bicol');
+            return view('viewer.bicol');
+        })->name('viewer.bicol');
 
         Route::get('/isabela', function() {
-            return view('rcef_user.isabela');
-        })->name('rcef_user.isabela');
+            return view('viewer.isabela');
+        })->name('viewer.isabela');
 
         Route::get('/losbaños', function() {
-            return view('rcef_user.losbaños');
-        })->name('rcef_user.losbaños');
+            return view('viewer.losbaños');
+        })->name('viewer.losbaños');
 
         Route::get('/midsayap', function() {
-            return view('rcef_user.midsayap');
-        })->name('rcef_user.midsayap');
+            return view('viewer.midsayap');
+        })->name('viewer.midsayap');
 
         Route::get('/negros', function() {
-            return view('rcef_user.negros');
-        })->name('rcef_user.negros');
+            return view('viewer.negros');
+        })->name('viewer.negros');
     });
 });
 
@@ -227,18 +231,25 @@ Route::group(['middleware' => 'rcef_user'], function () {
 // Route::get('/kslform', [KSLFormController::class, 'index'])->name('kslform.index');
 // Route::get('/kslanalytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
 
+
+// KSL Monitoring
 Route::group(['prefix' => 'ksl'], function () {
     Route::get('/form', [KSLFormController::class, 'index'])->name('kslform.index');
     Route::get('/analytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
 });
 
 
-// Form 2
+// Summary of Trainings
 Route::group(['prefix' => 'trainings'], function() {
     Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
 });
 
-// Form 3
+// Technical Dispatch
 Route::group(['prefix' => 'dispatch'], function() {
     Route::get('/form', [DispatchFormController::class, 'index'])->name('dispatchform.index');
 });
+
+// Techno Demo
+Route::get('/technodemo', function() {
+    return view('technodemo');
+})->name('technodemo');

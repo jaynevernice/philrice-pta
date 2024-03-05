@@ -25,7 +25,7 @@
                 <div class="w-full overflow-hidden relative">
                     {{-- <video autoplay muted loop class="w-full"> --}}
                     <video autoplay muted loop class="h-full object-cover w-full">
-                        <source src="{{ asset('assets/hero.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
@@ -34,7 +34,7 @@
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-5xl font-bold pb-4">PhilRice Training Database Management System</h1>
+                        <h1 class="text-5xl font-bold pb-4">Training Records <br> Analysis and Charting <br> for Enhanced Results</h1>
                     </div>
                 </div>
             </div>
