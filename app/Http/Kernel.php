@@ -68,6 +68,6 @@ class Kernel extends HttpKernel
         'super_admin' => \App\Http\Middleware\SuperAdminMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'encoder' => \App\Http\Middleware\EncoderMiddleware::class,
-        'rcef_user' => \App\Http\Middleware\RcefUserMiddleware::class,
+        'viewer' => \App\Http\Middleware\ViewerMiddleware::class,
     ];
 }

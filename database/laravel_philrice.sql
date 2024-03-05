@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2024 at 03:09 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Mar 05, 2024 at 06:45 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -47,32 +47,32 @@ CREATE TABLE `ksl_form` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `staff_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `age_group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sex` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `staff_name` varchar(255) DEFAULT NULL,
+  `age_group` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
   `offices_divisions_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `mode_of_sharing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `opportunity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mode_of_sharing` varchar(255) DEFAULT NULL,
+  `opportunity` varchar(255) DEFAULT NULL,
+  `activity` varchar(255) DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
-  `event_organizer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sponsor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `venue` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `event_organizer` varchar(255) DEFAULT NULL,
+  `sponsor` varchar(255) DEFAULT NULL,
+  `venue` varchar(255) DEFAULT NULL,
   `province_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `municipality` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `municipality` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
   `interview_date` date DEFAULT NULL,
-  `agency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `program_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `scope` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `inquiry` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `inquiry_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `topic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `presentation_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `classification` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `agency` varchar(255) DEFAULT NULL,
+  `program_title` varchar(255) DEFAULT NULL,
+  `scope` varchar(255) DEFAULT NULL,
+  `inquiry` varchar(255) DEFAULT NULL,
+  `inquiry_date` varchar(255) DEFAULT NULL,
+  `topic` varchar(255) DEFAULT NULL,
+  `presentation_title` varchar(255) DEFAULT NULL,
+  `classification` varchar(255) DEFAULT NULL,
   `total_participants` int(11) DEFAULT NULL,
   `total_farmers` int(11) DEFAULT NULL,
   `total_workers` int(11) DEFAULT NULL,
@@ -82,8 +82,8 @@ CREATE TABLE `ksl_form` (
   `total_female` int(11) DEFAULT NULL,
   `total_indigenous` int(11) DEFAULT NULL,
   `total_pwd` int(11) DEFAULT NULL,
-  `photo_docu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `other_docu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `photo_docu` varchar(255) DEFAULT NULL,
+  `other_docu` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -94,7 +94,7 @@ CREATE TABLE `ksl_form` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -119,7 +119,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `offices_divisions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `offs_divs` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `offs_divs` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -161,8 +161,8 @@ INSERT INTO `offices_divisions` (`id`, `offs_divs`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -174,11 +174,11 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -193,7 +193,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `provinces` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `province_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `province_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -293,12 +293,12 @@ INSERT INTO `provinces` (`id`, `province_name`) VALUES
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `user_type` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -310,8 +310,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `user_type`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'superadmin@gmail.com', NULL, '$2y$12$xGbaF21.s6l5UJ9zcjRSKeL7Kt.sF2QQnnwfhaXAZgq91yUycZWQO', NULL, 'super_admin', '2024-02-21 00:35:04', '2024-02-21 00:35:04'),
 (2, 'Admin', 'admin@gmail.com', NULL, '$2y$12$xGbaF21.s6l5UJ9zcjRSKeL7Kt.sF2QQnnwfhaXAZgq91yUycZWQO', NULL, 'admin', '2024-02-21 00:35:04', '2024-02-21 00:35:04'),
-(3, 'Encoder', 'encoder@gmail.com', NULL, '$2y$12$xGbaF21.s6l5UJ9zcjRSKeL7Kt.sF2QQnnwfhaXAZgq91yUycZWQO', NULL, 'encoder', '2024-02-21 00:35:04', '2024-02-21 00:35:04'),
-(4, 'RCEF User', 'rcef_user@gmail.com', NULL, '$2y$12$xGbaF21.s6l5UJ9zcjRSKeL7Kt.sF2QQnnwfhaXAZgq91yUycZWQO', NULL, 'rcef_user', '2024-02-21 00:35:04', '2024-02-21 00:35:04');
+(3, 'Encoder', 'encoder@gmail.com', NULL, '$2y$12$xGbaF21.s6l5UJ9zcjRSKeL7Kt.sF2QQnnwfhaXAZgq91yUycZWQO', 'yBbbnEtNBnTbdoVAW3qSxZPIw652Yc', 'encoder', '2024-02-21 00:35:04', '2024-03-04 18:50:19'),
+(4, 'Viewer', 'viewer@gmail.com', NULL, '$2y$12$xGbaF21.s6l5UJ9zcjRSKeL7Kt.sF2QQnnwfhaXAZgq91yUycZWQO', NULL, 'viewer', '2024-02-21 00:35:04', '2024-02-21 00:35:04');
 
 --
 -- Indexes for dumped tables

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Auth;
 
-class RcefUserMiddleware
+class ViewerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class RcefUserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!empty(Auth::check())) {
-            if(Auth::user()->user_type == 'rcef_user') {
+            if(Auth::user()->user_type == 'viewer') {
                 return $next($request);
             } else {
                 Auth::logout();
