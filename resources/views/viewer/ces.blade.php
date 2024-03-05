@@ -104,6 +104,11 @@
     
     {{-- Content --}}
     <main class="p-4 md:ml-64 h-auto pt-20">
+
+      <div class="flex">        
+        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Central Experimental Station</h1>
+      </div>
+
       
     </main>
 
