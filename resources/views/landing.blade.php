@@ -48,7 +48,7 @@
             {{-- Text Overlay --}}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
                 {{-- <h1 class="text-5xl font-bold pb-4 text-center">PhilRice Training Database Management System</h1> --}}
-                <h1 class="text-5xl font-bold pb-4 text-center">Training Records Analysis and Charting for Enhanced Results</h1>
+                <h1 class="text-5xl font-bold pb-4 text-center">Training Records Analysis and Charting <br> for Enhanced Results</h1>
                 <p class="text-lg text-center">TRACER efficiently organizes and manages training-related information <br> for the Philippine Rice Research Institute, enhancing the effectiveness of their agricultural education initiatives.</p>
             </div>
         </div>

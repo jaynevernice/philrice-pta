@@ -34,7 +34,7 @@
             class="mr-3 h-8"
             alt="Flowbite Logo"
           />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PTDMS</span>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRACER</span>
         </a>
 
       </div>
@@ -59,7 +59,8 @@
           <span class="sr-only">Open user menu</span>
           <img
             class="w-8 h-8 rounded-full"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+            {{-- src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" --}}
+            src="{{ asset('assets/icon.jpg') }}"
             alt="user photo"
           />
         </button>
@@ -71,7 +72,7 @@
         >
           {{-- User Name and Email --}}
           <div class="py-3 px-4">
-            <span class="block text-sm font-semibold text-gray-900 dark:text-white" >Neil Sims</span>
+            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
             <span class="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
           </div>
 

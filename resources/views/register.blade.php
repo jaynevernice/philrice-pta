@@ -14,6 +14,10 @@
     
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     @vite('resources/css/app.css')
+
+    {{-- jQuery CDN --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
 </head>
 <body>
     <div class="h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -52,6 +56,8 @@
                             <form action="{{ route('auth_login') }}" method="POST">
                                 {{-- @include('_message') --}}
                                 @csrf
+
+
                                 
                                 {{-- PhilRice Staff or Not --}}
                                 <label for="staff" class="block mb-2 text-sm font-medium text-gray-900">What kind of user are you?</label> 
