@@ -258,3 +258,7 @@ Route::get('/technodemo', function() {
 Route::get('/test', function() {
     return view('test');
 })->name('test');
+
+Route::get('/test2', function() {
+    return view('test');
+})->name('test');

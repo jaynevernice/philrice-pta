@@ -185,86 +185,86 @@
         }
     </script>
 
-<script>
-    var currentStep = 0; // Current step is set to be the first step (0)
-    updateStep(currentStep); // Display the current step
+    <script>
+        var currentStep = 0; // Current step is set to be the first step (0)
+        updateStep(currentStep); // Display the current step
 
-    function updateStep(n) {
-        // This function will display the specified step of the form...
-        var steps = document.getElementsByClassName("stepIndicator");
-        var x = document.getElementsByClassName("step");
-        // Hide all steps:
-        for (var i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        // Show the current step:
-        x[n].style.display = "block";
-        // Fix the Previous/Next buttons:
-        if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none";
-        } else {
-            document.getElementById("prevBtn").style.display = "inline";
-        }
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
-        } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
-        }
-        // Run a function that will display the correct step indicator:
-        fixStepIndicator(n);
-    }
-
-    function nextPrev(n) {
-        // This function will figure out which step to display
-        var x = document.getElementsByClassName("step");
-        // Exit the function if any field in the current step is invalid:
-        if (n == 1 && !validateForm()) return false;
-        // Hide the current step:
-        x[currentStep].style.display = "none";
-        // Increase or decrease the current step by 1:
-        currentStep = currentStep + n;
-        // If you have reached the end of the steps...
-        if (currentStep >= x.length) {
-            // ...the form gets submitted:
-            document.getElementById("registrationForm").submit();
-            return false;
-        }
-        // Otherwise, display the correct step:
-        updateStep(currentStep);
-    }
-
-    function validateForm() {
-        // This function deals with validation of the form fields
-        var x, y, i, valid = true;
-        x = document.getElementsByClassName("step");
-        y = x[currentStep].getElementsByTagName("input");
-        // A loop that checks every input field in the current step:
-        for (i = 0; i < y.length; i++) {
-            // If a field is empty...
-            if (y[i].value == "") {
-                // Add an "invalid" class to the field:
-                y[i].className += " invalid";
-                // And set the current valid status to false
-                valid = false;
+        function updateStep(n) {
+            // This function will display the specified step of the form...
+            var steps = document.getElementsByClassName("stepIndicator");
+            var x = document.getElementsByClassName("step");
+            // Hide all steps:
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
             }
+            // Show the current step:
+            x[n].style.display = "block";
+            // Fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            // Run a function that will display the correct step indicator:
+            fixStepIndicator(n);
         }
-        // If the valid status is true, mark the step as finished and valid:
-        if (valid) {
-            document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
-        }
-        return valid; // Return the valid status
-    }
 
-    function fixStepIndicator(n) {
-        // This function removes the "active" class of all steps...
-        var i, x = document.getElementsByClassName("stepIndicator");
-        for (i = 0; i < x.length; i++) {
-            x[i].classList.remove("active");
+        function nextPrev(n) {
+            // This function will figure out which step to display
+            var x = document.getElementsByClassName("step");
+            // Exit the function if any field in the current step is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current step:
+            x[currentStep].style.display = "none";
+            // Increase or decrease the current step by 1:
+            currentStep = currentStep + n;
+            // If you have reached the end of the steps...
+            if (currentStep >= x.length) {
+                // ...the form gets submitted:
+                document.getElementById("registrationForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct step:
+            updateStep(currentStep);
         }
-        //... and adds the "active" class on the current step:
-        x[n].classList.add("active");
-    }
-</script>
+
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("step");
+            y = x[currentStep].getElementsByTagName("input");
+            // A loop that checks every input field in the current step:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                    // Add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // And set the current valid status to false
+                    valid = false;
+                }
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
+            }
+            return valid; // Return the valid status
+        }
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("stepIndicator");
+            for (i = 0; i < x.length; i++) {
+                x[i].classList.remove("active");
+            }
+            //... and adds the "active" class on the current step:
+            x[n].classList.add("active");
+        }
+    </script>
     
     <script>
         // Function to toggle password visibility for PhilRice Staff form
