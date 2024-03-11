@@ -17,6 +17,12 @@
 
     {{-- jQuery CDN --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        .step {
+            display: none;
+        }
+    </style>
     
 </head>
 <body>
@@ -45,147 +51,131 @@
 
             {{-- Right Side --}}
             <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-                {{-- <div class="mt-12 flex flex-col items-center"> --}}
                 <div class="flex flex-col items-center">
                     <h1 class="text-2xl xl:text-3xl font-extrabold">Register</h1>
-                    {{-- <div class="w-full flex-1 mt-8"> --}}
                     <div class="w-full flex-1">
-
-                        {{-- <div class="mx-auto max-w-xs"> --}}
                         <div class="mx-auto my-3">
-                            <form action="{{ route('auth_login') }}" method="POST">
-                                {{-- @include('_message') --}}
-                                @csrf
-
-
-                                
-                                {{-- PhilRice Staff or Not --}}
-                                <label for="staff" class="block mb-2 text-sm font-medium text-gray-900">What kind of user are you?</label> 
-                                <div class="grid grid-cols-2 mb-4">                            
-                                    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mr-1">
-                                        <input id="bordered-radio-2" type="radio" value="non-philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required checked onclick="showForm('non-philrice')">
-                                        <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non-PhilRice Staff</label>
+                        
+                            <ol id="stepper" class="flex items-stretch w-full my-8 sm:mb-5 mx-auto">
+                                {{-- Step 1 --}}
+                                <li class="stepIndicator flex w-full items-center text-green-600 dark:text-green-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-green-100 after:border-4 after:inline-block dark:after:border-green-800">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full lg:h-12 lg:w-12 dark:bg-green-800 shrink-0">
+                                        <box-icon name='user-detail' type='solid'></box-icon>
                                     </div>
-                                    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 ml-1">
-                                        <input id="bordered-radio-1" type="radio" value="philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required onclick="showForm('philrice')">
-                                        <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">PhilRice Staff</label>
+                                </li>
+                            
+                                {{-- Step 2 --}}
+                                <li class="stepIndicator flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                        <box-icon type='solid' name='briefcase-alt'></box-icon>
                                     </div>
-                                    
+                                </li>
+                            
+                                {{-- Step 3 --}}
+                                <li class="stepIndicator flex items-center">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                        <box-icon name='lock' type='solid'></box-icon>
+                                    </div>
+                                </li>
+                            </ol>
+                            
+                            <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">User Information</h3>
+                            <form action="#" id="registrationForm">
+                                {{-- Step 1 --}}
+                                <div class="step">   
+                                    <div class="my-4">
+                                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                                        <input type="text" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First Name">
+                                    </div>
+                                    <div class="my-4">
+                                        <label for="mi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Initial</label>
+                                        <input type="text" name="mi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Middle Initial">
+                                    </div>
+                                    <div class="my-4">
+                                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                                        <input type="text" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last Name">
+                                    </div>
                                 </div>
-
-                                <!-- PhilRice Staff Form -->
-                                <div id="philrice-form" style="display: none;">
                                     
-                                    <div class="grid grid-cols-3 mb-2">
-                                        <div class="mr-1">
-                                            <label for="philrice_id" class="block mb-1 text-sm font-medium text-gray-900">PhilRice ID</label> 
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="philrice_id" placeholder="PhilRice ID" />
-                                        </div>
-                                        <div class="ml-1 col-span-2">
-                                            <label for="staff" class="block mb-1 text-sm font-medium text-gray-900">Email</label> 
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="email" name="email" placeholder="Email" />
-                                        </div>
-                                    </div>
-
-                                    <label for="full_name" class="block mb-1 text-sm font-medium text-gray-900">Full Name</label> 
-                                    <div class="grid grid-cols-3 mb-2">
-                                        <div class="mr-1">
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="first_name" placeholder="Given" />
-                                        </div>
-                                        <div class="mr-1 ">
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="last_name" placeholder="Last" />
+                                {{-- Step 2 --}}
+                                <div class="step">
+                                    <div>
+                                        <label for="staff" class="block mb-2 text-sm font-medium text-gray-900">What kind of user are you?</label> 
+                                        <div class="grid grid-cols-2 mb-4">                            
+                                            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mr-1">
+                                                <input id="bordered-radio-2" type="radio" value="non-philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required checked onclick="hideFields()">
+                                                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non-PhilRice Staff</label>
+                                            </div>
+                                            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 ml-1">
+                                                <input id="bordered-radio-1" type="radio" value="philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required onclick="showFields()">
+                                                <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">PhilRice Staff</label>
+                                            </div>
                                         </div>
                                         <div>
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="last_name" placeholder="Suffix" />
-                                        </div>
-                                    </div>
+                                            {{-- Email --}}
+                                            <div class="my-2">
+                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com">
+                                            </div>
 
-                                    <div class="grid grid-cols-2 mb-2">
-                                        <div class="relative mr-1">
-                                            <label for="position" class="block text-sm font-medium text-gray-900 mb-1">Position</label> 
-                                            <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="position">
-                                                <option selected disabled>Select Position</option>
-                                                <option>ASD (Admin)</option>
-                                            </select>
-                                        </div>
-                                        <div class="relative ml-1">
-                                            <label for="office" class="block text-sm font-medium text-gray-900 mb-1">Office</label> 
-                                            <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="office">
-                                                <option selected disabled>Select Office</option>
-                                                <option>ASD (Admin)</option>
-                                            </select>
-                                        </div>
-                                    </div>  
+                                            {{-- PhilRice ID --}}
+                                            <div class="my-2" id="idField" style="display: none">
+                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID #</label>
+                                                <input type="tect" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
+                                            </div>
 
-                                    <div>
-                                        <div class="ml-1 mb-2">
-                                            <label for="staff" class="block mb-1 text-sm font-medium text-gray-900">Password</label> 
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-mediumborder border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="password" name="password" placeholder="Password" />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="ml-1 mb-2">
-                                            <label for="staff" class="block mb-1 text-sm font-medium text-gray-900">Confirm Password</label> 
-                                            <input class="w-full h-10 px-8 py-4 rounded-lg font-mediumborder border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="password" name="confirm_password" placeholder="Confirm Password" />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="relative">
-                                            <input type="checkbox" id="show-philrice-password" class="absolute top-2 right-2" />
-                                            <label for="show-password" class="absolute top-2 right-8 cursor-pointer">Show Password</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Non-PhilRice Staff Form -->
-                                <div id="non-philrice-form" style="display: block;">
-                                    <label for="full_name" class="block mb-1 text-sm font-medium text-gray-900">Full Name</label> 
-                                    <div class="grid grid-cols-3 mb-4">
-                                        <div class="mr-1">
-                                            <input class="w-full px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="first_name" placeholder="Given" required/>
-                                        </div>
-                                        <div class="mr-1">
-                                            <input class="w-full px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="last_name" placeholder="Last" required />
-                                        </div>
-                                        <div>
-                                            <input class="w-full px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="text" name="last_name" placeholder="Suffix" />
-                                        </div>
-                                    </div>
-                                                                    
-                                    <div class="ml-1 mb-4">
-                                        <label for="staff" class="block mb-1 text-sm font-medium text-gray-900">Email</label> 
-                                        <input class="w-full px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="email" name="email" placeholder="Email" required />
-                                    </div>
-                                
-                                    <div class="ml-1 mb-4">
-                                        <label for="staff" class="block mb-1 text-sm font-medium text-gray-900">Password</label> 
-                                        <input class="w-full px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="password" name="password" placeholder="Password" required />
-                                    </div>
-                                
-                                    <div class="ml-1">
-                                        <label for="staff" class="block mb-1 text-sm font-medium text-gray-900">Confirm Password</label> 
-                                        <input class="w-full px-8 py-4 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="password" name="confirm_password" placeholder="Confirm Password" required />
-                                    </div>
+                                            <div class="grid grid-cols-3 my-2">
+                                                {{-- Station --}}
+                                                <div class="relative mr-1 my-2" id="stationField" style="display: none;">
+                                                    <label for="station" class="block text-sm font-medium text-gray-900 mb-1">Station</label> 
+                                                    <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="station" required>
+                                                        <option selected disabled>Station</option>
+                                                        <option>ASD (Admin)</option>
+                                                    </select>
+                                                </div>
                                     
-                                    <div>
-                                        <div class="relative">
-                                            <input type="checkbox" id="show-non-philrice-password" class="absolute top-2 right-2" />
-                                            <label for="show-password" class="absolute top-2 right-8 cursor-pointer">Show Password</label>
+                                                {{-- Division --}}
+                                                <div class="relative mr-1 my-2" id="divisionField" style="display: none;">
+                                                    <label for="division" class="block text-sm font-medium text-gray-900 mb-1">Division</label> 
+                                                    <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="division" required>
+                                                        <option selected disabled>Division</option>
+                                                        <option>ASD (Admin)</option>
+                                                    </select>
+                                                </div>
+                                    
+                                                {{-- Position --}}
+                                                <div class="relative my-2" id="positionField" style="display: none;">
+                                                    <label for="position" class="block text-sm font-medium text-gray-900 mb-1">Position</label> 
+                                                    <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="position" required>
+                                                        <option selected disabled>Position</option>
+                                                        <option>ASD (Admin)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                
-                                <button
-                                    type="submit" class="mt-12 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                    <span>
-                                        Register
-                                    </span>
-                                </button>
-
-                                <p class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-center">Already have an account? <a href="{{ url('/login') }}" class="text-sm text-green-600 hover:text-green-900 text-center underline">Back to Login</a></p>
+                                    
+                                {{-- Step 3 --}}
+                                <div class="step">
+                                    <div>
+                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                        <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••">
+                                    </div>                        <div>
+                                        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                                        <input type="password" name="confirm_password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••">
+                                    </div>
+                                    {{-- Show Password --}}
+                                    <div class="flex items-center justify-end my-2">
+                                        <input type="checkbox" id="showPasswordCheckbox" class="form-checkbox rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-blue-600 dark:focus:ring-blue-600 dark:focus:ring-opacity-50 dark:text-blue-500">
+                                        <label for="showPasswordCheckbox" class="text-sm font-medium text-gray-900 dark:text-white ml-2 cursor-pointer">Show Password</label>
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-footer flex gap-3 my-4">
+                                    <button type="button" id="prevBtn" class="flex-1 focus:outline-none border border-gray-300 py-2 px-5 rounded-lg shadow-sm text-center text-gray-700 bg-white hover:bg-gray-100 text-lg" onclick="nextPrev(-1)">Previous</button>
+                                    <button type="button" id="nextBtn" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white bg-green-600 hover:bg-green-700 text-lg" onclick="nextPrev(1)">Next</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -196,48 +186,179 @@
     </div>
 
     <script>
-        // Function to toggle password visibility for PhilRice Staff form
-        document.getElementById('show-philrice-password').addEventListener('change', function() {
-            var passwordInput = document.querySelector('#philrice-form input[name="password"]');
-            var confirmPasswordInput = document.querySelector('#philrice-form input[name="confirm_password"]');
-    
+        document.getElementById("showPasswordCheckbox").addEventListener("change", function() {
+            var passwordInput = document.getElementById("password");
+            var confirmPasswordInput = document.getElementById("confirm_password");
+            
             if (this.checked) {
-                passwordInput.type = 'text';
-                confirmPasswordInput.type = 'text';
+                passwordInput.type = "text";
+                confirmPasswordInput.type = "text";
             } else {
-                passwordInput.type = 'password';
-                confirmPasswordInput.type = 'password';
-            }
-        });
-    
-        // Function to toggle password visibility for Non-PhilRice Staff form
-        document.getElementById('show-non-philrice-password').addEventListener('change', function() {
-            var passwordInput = document.querySelector('#non-philrice-form input[name="password"]');
-            var confirmPasswordInput = document.querySelector('#non-philrice-form input[name="confirm_password"]');
-    
-            if (this.checked) {
-                passwordInput.type = 'text';
-                confirmPasswordInput.type = 'text';
-            } else {
-                passwordInput.type = 'password';
-                confirmPasswordInput.type = 'password';
+                passwordInput.type = "password";
+                confirmPasswordInput.type = "password";
             }
         });
     </script>
     
-
-    {{-- Display form depending if PhilRice staff or not --}}
     <script>
-        function showForm(type) {
-            if (type === 'philrice') {
-                document.getElementById('philrice-form').style.display = 'block';
-                document.getElementById('non-philrice-form').style.display = 'none';
-            } else {
-                document.getElementById('philrice-form').style.display = 'none';
-                document.getElementById('non-philrice-form').style.display = 'block';
-            }
+        function showFields() {
+            document.getElementById("idField").style.display = "block";
+            document.getElementById("stationField").style.display = "block";
+            document.getElementById("divisionField").style.display = "block";
+            document.getElementById("positionField").style.display = "block";
+        }
+    
+        function hideFields() {
+            document.getElementById("idField").style.display = "none";
+            document.getElementById("stationField").style.display = "none";
+            document.getElementById("divisionField").style.display = "none";
+            document.getElementById("positionField").style.display = "none";
         }
     </script>
+
+    <script>
+        var currentStep = 0; // Current step is set to be the first step (0)
+        updateStep(currentStep); // Display the current step
+
+        function updateStep(n) {
+            // This function will display the specified step of the form...
+            var steps = document.getElementsByClassName("stepIndicator");
+            var x = document.getElementsByClassName("step");
+            // Hide all steps:
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            // Show the current step:
+            x[n].style.display = "block";
+            // Fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            // Run a function that will display the correct step indicator:
+            fixStepIndicator(n);
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which step to display
+            var x = document.getElementsByClassName("step");
+            // Exit the function if any field in the current step is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current step:
+            x[currentStep].style.display = "none";
+            // Increase or decrease the current step by 1:
+            currentStep = currentStep + n;
+            // If you have reached the end of the steps...
+            if (currentStep >= x.length) {
+                // ...the form gets submitted:
+                document.getElementById("registrationForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct step:
+            updateStep(currentStep);
+        }
+
+        // function validateForm() {
+        //     // This function deals with validation of the form fields
+        //     var x, y, i, valid = true;
+        //     x = document.getElementsByClassName("step");
+        //     y = x[currentStep].getElementsByTagName("input");
+        //     // A loop that checks every input field in the current step:
+        //     for (i = 0; i < y.length; i++) {
+        //         // If a field is empty...
+        //         if (y[i].value == "") {
+        //             // Add an "invalid" class to the field:
+        //             y[i].className += " invalid";
+        //             // And set the current valid status to false
+        //             valid = false;
+        //         }
+        //     }
+        //     // If the valid status is true, mark the step as finished and valid:
+        //     if (valid) {
+        //         document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
+        //     }
+        //     return valid; // Return the valid status
+        // }
+
+        function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("step");
+        y = x[currentStep].getElementsByTagName("input");
+        // A loop that checks every input field in the current step:
+        for (i = 0; i < y.length; i++) {
+            // Only validate visible fields
+            if (y[i].offsetParent !== null) {
+                // If a field is empty...
+                if (y[i].value.trim() === "") {
+                    // Add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // And set the current valid status to false
+                    valid = false;
+                }
+            }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+            document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
+        }
+        return valid; // Return the valid status
+    }
+
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("stepIndicator");
+            for (i = 0; i < x.length; i++) {
+                x[i].classList.remove("active");
+            }
+            //... and adds the "active" class on the current step:
+            x[n].classList.add("active");
+        }
+    </script>
+
+    <script>
+        var current = 1; // Initialize current step to Step 1
+
+        document.getElementById("nextBtn").addEventListener("click", function() {
+            var step2Div = document.querySelector('#stepper li:nth-child(2) div');
+            var step2Li = document.querySelector('#stepper li:nth-child(2)');
+            var step3Div = document.querySelector('#stepper li:nth-child(3) div');
+
+            if (current === 1) {
+                step2Div.classList.add("bg-green-100");
+                step2Li.classList.remove("after:border-gray-100");
+                step2Li.classList.add("after:border-green-100");
+                current = 2;
+            } else if (current === 2) {
+                step3Div.classList.add("bg-green-100");
+                current = 3;
+            }
+        });
+
+        document.getElementById("prevBtn").addEventListener("click", function() {
+            var step2Div = document.querySelector('#stepper li:nth-child(2) div');
+            var step2Li = document.querySelector('#stepper li:nth-child(2)');
+            var step3Div = document.querySelector('#stepper li:nth-child(3) div');
+
+            if (current === 3) {
+                step3Div.classList.remove("bg-green-100");
+                current = 2;
+            } else if (current === 2) {
+                step2Div.classList.remove("bg-green-100");
+                step2Li.classList.remove("after:border-green-100");
+                step2Li.classList.add("after:border-gray-100");
+                current = 1;
+            }
+        });
+    </script>
+
 
     {{-- Password Toggle --}}
     <script>
