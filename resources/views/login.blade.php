@@ -41,23 +41,56 @@
 
             {{-- Right Side --}}
             <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-                <div class="mt-12 flex flex-col items-center">
-                    <h1 class="text-2xl xl:text-3xl font-extrabold">Login</h1>
-                    <div class="w-full flex-1 mt-8">
+                <div class=" flex flex-col items-center">
+                {{-- <div class="mt-12 flex flex-col items-center"> --}}
+                    {{-- <h1 class="text-2xl xl:text-3xl font-extrabold">Login</h1> --}}
 
-                        <div class="my-12 border-b text-center">
-                            <div
-                                class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                Welcome to TRACER
-                            </div>
+                    
+                    {{-- <div class="w-full flex-1 mt-8"> --}}
+                    <div class="w-full flex-1">
+
+                        <div class="flex flex-row items-center justify-center">
+                            <a href="{{ url('/login') }}">
+                                <button type="button" class="w-56 text-[#1A73E8] bg-white border-b-4 border-[#1A73E8] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">LOGIN</button>
+                            </a>
+
+                            <a href="{{ url('/register') }}">
+                                <button type="button" class="w-56 text-gray-600 bg-white border-b-4 border-gray-300 focus:outline-none hover:bg-gray-100 hover:border-[#1A73E8] hover:text-[#1A73E8] focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">REGISTER</button>
+                            </a>
                         </div>
 
-                        <div class="mx-auto max-w-xs">
+                        <h1 class="text-2xl xl:text-3xl font-extrabold my-4">LOGIN</h1>
+                        <p class="justify-right text-lg text-gray-700 mb-8">Welcome to TRACER. Please login with your data that you entered during registration</p>
+
+
+                        <div class="drop-shadow flex items-center justify-center my-4">
+                            <a href="{{ route('guest.overview') }}">
+                                <button type="button" class="lg:w-[436px] flex items-center justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
+                                    <box-icon name='user' class="mr-4" ></box-icon>
+                                    Browse as Guest
+                                </button>
+                            </a>
+                        </div>
+
+
+
+                        {{-- <div class="my-12 border-b text-center"> --}}
+                        <div class="my-4 border-b text-center">
+                            <div
+                                class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                                {{-- Welcome to TRACER --}}
+                                OR
+                            </div>
+                        </div>
+                        
+
+                        <div class="w-full flex-1 mt-8">
+                        {{-- <div class="mx-auto max-w-xs"> --}}
                             <form action="{{ route('auth_login') }}" method="POST">
                                 @include('_message')
                                 @csrf
                                 <input
-                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]"
                                     type="email" name="email" placeholder="Email" />
                                     
                                 {{-- <input
@@ -65,8 +98,8 @@
                                     type="password" name="password" placeholder="Password" /> --}}
 
                                 <div class="relative mt-5">
-                                    <input id="password" class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                            type="password" name="password" placeholder="Password" />
+                                    <input id="password" class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]"
+                                            type="password" name="password" placeholder="Password"  />
                                     <!-- Toggle button for password visibility -->
                                     <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-4 py-2 mr-2 focus:outline-none">
                                         <!-- Default Hide Password SVG icon -->
@@ -76,18 +109,27 @@
                                     </button>
                                 </div>
                                 
-                                <button
-                                    type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                    <span class="ml-3">
-                                        Log In
-                                    </span>
-                                </button>
+                                <div class="grid grid-cols-2">
+                                    <div>
+                                        <button
+                                            type="submit" class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                            <span class="ml-3 text-base">
+                                                LOG IN
+                                            </span>
+                                        </button>
+                                    </div>  
 
-                                {{-- Forgot Password --}}
-                                <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right underline">Forgot Password?</a>
+                                    <div class="flex items-center justify-center h-full">
+                                    {{-- Forgot Password --}}
+                                    {{-- <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right underline">Forgot Password?</a> --}}
+                                        <a href="{{ url('/forgot') }}" class="block text-base text-[#1A73E8] mt-5 hover:text-blue-700 text-left">
+                                            Forgot Password?
+                                        </a>
+                                    </div>
+                                </div>
 
 
-                                <p class="block text-sm text-gray-600 my-8 hover:text-gray-900 text-center">Don't have an account? <a href="{{ url('/register') }}" class="text-sm text-green-600 my-4 hover:text-green-900 text-center underline">Register Now</a></p>
+                                {{-- <p class="block text-sm text-gray-600 my-8 hover:text-gray-900 text-center">Don't have an account? <a href="{{ url('/register') }}" class="text-sm text-green-600 my-4 hover:text-green-900 text-center underline">Register Now</a></p> --}}
                             </form>
 
                             

@@ -40,6 +40,14 @@ Route::get('/register', function() {
     return view('register');
 })->name('register');
 
+Route::get('/profile', function() {
+    return view('profile');
+})->name('profile');
+
+// Route::get('/overview', function() {
+//     return view('overview');
+// })->name('overview');
+
 Route::get('/reset/{token}', [AuthController::class, 'reset']);
 Route::post('/reset/{token}', [AuthController::class, 'PostReset']);
 // Route::get('/reset/{token}', function() {
@@ -53,6 +61,46 @@ Route::post('/reset/{token}', [AuthController::class, 'PostReset']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'AuthLogin'])->name('auth_login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+// Guest
+Route::group(['prefix' => 'guest'], function() {
+
+    Route::get('/overview', function() {
+        return view('guest.overview');
+    })->name('guest.overview');
+
+    Route::get('/ces', function() {
+        return view('guest.ces');
+    })->name('guest.ces');
+
+    Route::get('/batac', function() {
+        return view('guest.batac');
+    })->name('guest.batac');
+
+    Route::get('/agusan', function() {
+        return view('guest.agusan');
+    })->name('guest.agusan');
+
+    Route::get('/bicol', function() {
+        return view('guest.bicol');
+    })->name('guest.bicol');
+
+    Route::get('/isabela', function() {
+        return view('guest.isabela');
+    })->name('guest.isabela');
+
+    Route::get('/losbaños', function() {
+        return view('guest.losbaños');
+    })->name('guest.losbaños');
+
+    Route::get('/midsayap', function() {
+        return view('guest.midsayap');
+    })->name('guest.midsayap');
+
+    Route::get('/negros', function() {
+        return view('guest.negros');
+    })->name('guest.negros');
+});
 
 // Super Admin
 Route::group(['middleware' => 'super_admin'], function () {
@@ -253,12 +301,3 @@ Route::group(['prefix' => 'dispatch'], function() {
 Route::get('/technodemo', function() {
     return view('technodemo');
 })->name('technodemo');
-
-
-Route::get('/test', function() {
-    return view('test');
-})->name('test');
-
-Route::get('/test2', function() {
-    return view('test');
-})->name('test');

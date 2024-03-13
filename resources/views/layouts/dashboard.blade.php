@@ -29,14 +29,10 @@
 
   </div>
 
+    {{-- Charts --}}
+    @yield('charts')
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-  {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
-
-  {{-- ApexCharts CDN --}}
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-  {{-- Charts --}}
-  <script src="{{ asset('data/data.js') }}" ></script>
 </body>
 </html>
 

@@ -4,6 +4,9 @@ var pie = {
         chart: {
         width: 300,
         type: 'pie',
+        toolbar: {
+          show: true,
+        },
     },
 
     title: {
@@ -38,7 +41,6 @@ var pie = {
     legend: {
         show: false
     }
-    
   };
 
   var chart = new ApexCharts(document.querySelector("#chart1"), pie);
@@ -165,10 +167,6 @@ var line = {
     },
     stroke: {
       curve: 'smooth'
-    },
-    title: {
-      text: 'Average High & Low Temperature',
-      align: 'left'
     },
     grid: {
       borderColor: '#e7e7e7',

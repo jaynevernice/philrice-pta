@@ -99,9 +99,9 @@
                                     
                                 {{-- Step 2 --}}
                                 <div class="step">
-                                    {{-- <div> --}}
-                                        {{-- <label for="staff" class="block mb-2 text-sm font-medium text-gray-900">What kind of user are you?</label>  --}}
-                                        {{-- <div class="grid grid-cols-2 mb-4">                            
+                                    <div>
+                                        <label for="staff" class="block mb-2 text-sm font-medium text-gray-900">What kind of user are you?</label> 
+                                        <div class="grid grid-cols-2 mb-4">                            
                                             <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mr-1">
                                                 <input id="bordered-radio-2" type="radio" value="non-philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required checked onclick="hideFields()">
                                                 <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non-PhilRice Staff</label>
@@ -110,7 +110,7 @@
                                                 <input id="bordered-radio-1" type="radio" value="philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required onclick="showFields()">
                                                 <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">PhilRice Staff</label>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div>
                                             {{-- Email --}}
                                             <div class="my-2">
@@ -153,7 +153,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {{-- </div> --}}
+                                    </div>
                                 </div>
                                     
                                 {{-- Step 3 --}}
@@ -200,7 +200,7 @@
         });
     </script>
     
-    {{-- <script>
+    <script>
         function showFields() {
             document.getElementById("idField").style.display = "block";
             document.getElementById("stationField").style.display = "block";
@@ -214,7 +214,7 @@
             document.getElementById("divisionField").style.display = "none";
             document.getElementById("positionField").style.display = "none";
         }
-    </script> --}}
+    </script>
 
     <script>
         var currentStep = 0; // Current step is set to be the first step (0)
@@ -264,52 +264,52 @@
             updateStep(currentStep);
         }
 
-        function validateForm() {
-            // This function deals with validation of the form fields
-            var x, y, i, valid = true;
-            x = document.getElementsByClassName("step");
-            y = x[currentStep].getElementsByTagName("input");
-            // A loop that checks every input field in the current step:
-            for (i = 0; i < y.length; i++) {
-                // If a field is empty...
-                if (y[i].value == "") {
-                    // Add an "invalid" class to the field:
-                    y[i].className += " invalid";
-                    // And set the current valid status to false
-                    valid = false;
-                }
-            }
-            // If the valid status is true, mark the step as finished and valid:
-            if (valid) {
-                document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
-            }
-            return valid; // Return the valid status
-        }
-
         // function validateForm() {
-        // // This function deals with validation of the form fields
-        // var x, y, i, valid = true;
-        // x = document.getElementsByClassName("step");
-        // y = x[currentStep].getElementsByTagName("input");
-        // // A loop that checks every input field in the current step:
-        // for (i = 0; i < y.length; i++) {
-        //     // Only validate visible fields
-        //     if (y[i].offsetParent !== null) {
+        //     // This function deals with validation of the form fields
+        //     var x, y, i, valid = true;
+        //     x = document.getElementsByClassName("step");
+        //     y = x[currentStep].getElementsByTagName("input");
+        //     // A loop that checks every input field in the current step:
+        //     for (i = 0; i < y.length; i++) {
         //         // If a field is empty...
-        //         if (y[i].value.trim() === "") {
+        //         if (y[i].value == "") {
         //             // Add an "invalid" class to the field:
         //             y[i].className += " invalid";
         //             // And set the current valid status to false
         //             valid = false;
         //         }
         //     }
+        //     // If the valid status is true, mark the step as finished and valid:
+        //     if (valid) {
+        //         document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
+        //     }
+        //     return valid; // Return the valid status
         // }
-        // // If the valid status is true, mark the step as finished and valid:
-        // if (valid) {
-        //     document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
-        // }
-        //  return valid; // Return the valid status
-        // }
+
+        function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("step");
+        y = x[currentStep].getElementsByTagName("input");
+        // A loop that checks every input field in the current step:
+        for (i = 0; i < y.length; i++) {
+            // Only validate visible fields
+            if (y[i].offsetParent !== null) {
+                // If a field is empty...
+                if (y[i].value.trim() === "") {
+                    // Add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // And set the current valid status to false
+                    valid = false;
+                }
+            }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+            document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
+        }
+        return valid; // Return the valid status
+    }
 
 
         function fixStepIndicator(n) {
