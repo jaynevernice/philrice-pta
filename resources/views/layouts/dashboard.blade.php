@@ -9,6 +9,9 @@
   {{-- Include compiled css to start using Tailwind Utility Classes --}}
   @vite('resources/css/app.css')
 
+   {{-- ApexCharts CDN --}}
+   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
   {{-- Boxicons --}}
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 

@@ -104,7 +104,7 @@
 @section('content')
 <main class="p-4 md:ml-64 h-auto pt-20">
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-      <div id="chart" class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"></div>
+      <div id="chart1" class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"></div>
       <div id="chart2" class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
     </div>
     <div
@@ -142,4 +142,58 @@
       ></div>
     </div>
   </main>
+@endsection
+
+@section('charts')
+{{-- Charts --}}
+<script>
+  var pie = {
+        series: [44, 55, 13, 43, 22],
+        chart: {
+        width: 300,
+        type: 'pie',
+        toolbar: {
+          show: false,
+        },
+    },
+
+    title: {
+        text: 'Chart Title',
+        align: 'center',
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#263238'
+        },
+    },
+    
+    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+ 
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 200
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }],
+
+    legend: {
+        show: false
+    }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart1"), pie);
+  chart.render();
+
+
+</script>
 @endsection

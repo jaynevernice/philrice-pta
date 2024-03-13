@@ -18,11 +18,11 @@
     {{-- jQuery CDN --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    {{-- <style>
+    <style>
         .step {
             display: none;
         }
-    </style> --}}
+    </style>
     
 </head>
 <body>
@@ -113,6 +113,18 @@
                                     
                                 {{-- Step 2 --}}
                                 <div class="step">
+                                    {{-- <div> --}}
+                                        {{-- <label for="staff" class="block mb-2 text-sm font-medium text-gray-900">What kind of user are you?</label>  --}}
+                                        {{-- <div class="grid grid-cols-2 mb-4">                            
+                                            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mr-1">
+                                                <input id="bordered-radio-2" type="radio" value="non-philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required checked onclick="hideFields()">
+                                                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non-PhilRice Staff</label>
+                                            </div>
+                                            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 ml-1">
+                                                <input id="bordered-radio-1" type="radio" value="philrice" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required onclick="showFields()">
+                                                <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">PhilRice Staff</label>
+                                            </div>
+                                        </div> --}}
                                         <div>
                                             {{-- Email --}}
                                             <div class="my-2">
@@ -121,14 +133,14 @@
                                             </div>
 
                                             {{-- PhilRice ID --}}
-                                            <div class="my-2" id="idField">
+                                            <div class="my-2" id="idField" style="display: none">
                                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID #</label>
                                                 <input type="tect" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
                                             </div>
 
                                             <div class="grid grid-cols-3 my-2">
                                                 {{-- Station --}}
-                                                <div class="relative mr-1 my-2" id="stationField">
+                                                <div class="relative mr-1 my-2" id="stationField" style="display: none;">
                                                     <label for="station" class="block text-sm font-medium text-gray-900 mb-1">Station</label> 
                                                     <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="station" required>
                                                         <option selected disabled>Station</option>
@@ -137,7 +149,7 @@
                                                 </div>
                                     
                                                 {{-- Division --}}
-                                                <div class="relative mr-1 my-2" id="divisionField">
+                                                <div class="relative mr-1 my-2" id="divisionField" style="display: none;">
                                                     <label for="division" class="block text-sm font-medium text-gray-900 mb-1">Division</label> 
                                                     <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="division" required>
                                                         <option selected disabled>Division</option>
@@ -146,7 +158,7 @@
                                                 </div>
                                     
                                                 {{-- Position --}}
-                                                <div class="relative my-2" id="positionField">
+                                                <div class="relative my-2" id="positionField" style="display: none;">
                                                     <label for="position" class="block text-sm font-medium text-gray-900 mb-1">Position</label> 
                                                     <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="position" required>
                                                         <option selected disabled>Position</option>
@@ -201,6 +213,22 @@
             }
         });
     </script>
+    
+    {{-- <script>
+        function showFields() {
+            document.getElementById("idField").style.display = "block";
+            document.getElementById("stationField").style.display = "block";
+            document.getElementById("divisionField").style.display = "block";
+            document.getElementById("positionField").style.display = "block";
+        }
+    
+        function hideFields() {
+            document.getElementById("idField").style.display = "none";
+            document.getElementById("stationField").style.display = "none";
+            document.getElementById("divisionField").style.display = "none";
+            document.getElementById("positionField").style.display = "none";
+        }
+    </script> --}}
 
     <script>
         var currentStep = 0; // Current step is set to be the first step (0)

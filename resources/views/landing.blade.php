@@ -67,7 +67,7 @@
                         </button>
                     </a>                     --}}
                     <a href="{{ route('login') }}">
-                        <button type="button" class="flex items-center justify-center text-gray-900 w-40 bg-[#2FCC70] font-medium rounded-lg text-base px-5 py-3 text-center me-2 mb-2">
+                        <button type="button" class="flex items-center justify-center text-gray-900 w-40 bg-slate-300 hover:bg-white font-medium rounded-lg text-base px-5 py-3 text-center me-2 mb-2">
                             Login
                             {{-- <box-icon name='log-in' color="#111827" class="mr-2" ></box-icon> --}}
                             <box-icon name='right-arrow-alt' color="#111827" class="ml-4"></box-icon>
