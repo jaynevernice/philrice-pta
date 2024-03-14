@@ -46,11 +46,10 @@
           </button>
   
   
-          <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
+          <a href="{{ url('/') }}" class="flex items-center justify-between mr-4">
             <img
               src="{{ asset('assets/logo.png') }}"
               class="mr-3 h-8"
-              alt="Flowbite Logo"
             />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRACER</span>
           </a>
@@ -68,7 +67,7 @@
           </div>
           
           <a href="{{ route('login') }}">
-            <button type="button" class="flex items-center text-white bg-gradient-to-br from-[#16A44B] to-[#14506A] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            <button type="button" class="flex items-center text-white bg-gray-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
               <box-icon name='log-in' class="mr-2" color="#ffffff" ></box-icon>
               Login
             </button>
@@ -141,20 +140,20 @@
               <span class="ml-3">CES</span>
           </a>
         </li>
+        
+        {{-- AGUSAN --}}
+        <li>
+          <a href="{{ route('guest.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+            <box-icon name='building' type='solid'></box-icon>
+            <span class="ml-3">AGUSAN</span>
+          </a>
+        </li>
 
         {{-- BATAC --}}
         <li>
           <a href="{{ route('guest.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
             <box-icon name='building' type='solid'></box-icon>
             <span class="ml-3">BATAC</span>
-          </a>
-        </li>
-
-        {{-- AGUSAN --}}
-        <li>
-          <a href="{{ route('guest.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-            <box-icon name='building' type='solid'></box-icon>
-            <span class="ml-3">AGUSAN</span>
           </a>
         </li>
 
@@ -206,6 +205,48 @@
 
     {{-- Main Content --}}
     <main class="p-4 md:ml-64 h-auto pt-20">
+
+
+      {{-- Filters and Export --}}
+      <div class="flex my-4">
+        
+        {{-- Form --}}
+        <div class="mr-2">
+          <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="form">
+              <option selected disabled>Select Form</option>
+              <option>Summary of Trainings</option>
+              <option>Technical Dispatch</option>
+              <option>KSL</option>
+          </select>
+        </div>
+
+        {{-- Year --}}
+        <div class="mx-2">
+          <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="year">
+              <option selected disabled>Select Year</option>
+              <option>2024</option>
+              <option>2023</option>
+          </select>
+        </div>
+
+        {{-- Quarter --}}
+        <div class="mx-2">
+          <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="quarter">
+              <option selected disabled>Select Quarter</option>
+              <option>ASD (Admin)</option>
+          </select>
+        </div>
+
+        {{-- Export Button --}}
+        <div class="ml-auto">
+          <button type="button" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
+            <box-icon name='file-export' type='solid' color="#ffffff" size="sm" ></box-icon>
+                <span class="px-1">Export</span>
+          </button>
+        </div>
+
+      </div>
+
       <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
         {{-- <div class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64">
           <div id="chart1" class="items-center"></div>

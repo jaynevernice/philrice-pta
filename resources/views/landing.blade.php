@@ -60,19 +60,19 @@
                 </div>
                 
                 <div class="flex flex-row">
-                    {{-- <a href="{{ route('guest.overview') }}">
-                        <button type="button" class="flex items-center justify-center w-60 text-gray-900 bg-slate-200 border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                            <box-icon name='user' color="#111827" class="mr-2"></box-icon>
-                            Browse as Guest
+                    <a href="{{ route('guest.overview') }}">
+                        <button type="button" class="flex items-center justify-center w-60 text-gray-900 bg-white hover:bg-slate-100 border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            <box-icon type='solid' name='user' class="mr-2"></box-icon>
+                            View
                         </button>
-                    </a>                     --}}
+                    </a>                    
                     <a href="{{ route('login') }}">
-                        <button type="button" class="flex items-center justify-center text-gray-900 w-40 bg-slate-300 hover:bg-white font-medium rounded-lg text-base px-5 py-3 text-center me-2 mb-2">
-                            Login
-                            {{-- <box-icon name='log-in' color="#111827" class="mr-2" ></box-icon> --}}
-                            <box-icon name='right-arrow-alt' color="#111827" class="ml-4"></box-icon>
+                        <button type="button" class="flex items-center justify-center w-60 text-gray-900 bg-green-300 hover:bg-green-400 border border-green-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            <box-icon name='edit-alt' type='solid' class="mr-2" ></box-icon>
+                            Encode
                         </button>
-                    </a> 
+                    </a>                    
+                   
                 </div>
             </div>
         </div>

@@ -66,22 +66,11 @@
     {{-- Content --}}
     <main class="p-4 md:ml-64 h-auto pt-20">
         <div class="justify-center">
-            <div class="grid grid-cols-2 lg:grid-cols-4">
-                
-                {{-- Card for Summary of Trainings --}}
-                <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2">
-                    <a href="{{ route('trainingsform.index') }}" target="_blank">
-                        <img class="rounded-t-lg" src={{ asset('assets/form1.jpg') }} alt="" />
-                        <div class="p-5">
-                            <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Summary of Trainings Conducted</h5>
-                        </div>
-                    </a>
-                </div>
-                
+            <div class="grid grid-cols-2 lg:grid-cols-4">                
 
                 {{-- Card for KSL Monitoring --}}
-                <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2 opacity-50">
-                    <a href="{{ route('kslform.index') }}" target="_blank" class="cursor-not-allowed">
+                <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2">
+                    <a href="{{ route('kslform.index') }}" target="_blank" >
                         <img class="rounded-t-lg" src={{ asset('assets/form1.jpg') }} alt="" />
                         <div class="p-5">
                             <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES KSL Monitoring</h5>
@@ -90,8 +79,8 @@
                 </div>
 
                 {{-- Card for Technical Dispatch Monitoring --}}
-                <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2 opacity-50">
-                    <a href="{{ route('dispatchform.index') }}" target="_blank" class="cursor-not-allowed">
+                <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2">
+                    <a href="{{ route('dispatchform.index') }}" target="_blank">
                         <img class="rounded-t-lg" src={{ asset('assets/form1.jpg') }} alt="" />
                         <div class="p-5">
                             <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Technical Dispatch Monitoring</h5>
@@ -105,6 +94,16 @@
                         <img class="rounded-t-lg" src={{ asset('assets/form1.jpg') }} alt="" />
                         <div class="p-5">
                             <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Techno Demo Monitoring</h5>
+                        </div>
+                    </a>
+                </div>
+
+                {{-- Card for Summary of Trainings --}}
+                <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow m-2 opacity-50">
+                    <a href="{{ route('trainingsform.index') }}" target="_blank" class="cursor-not-allowed">
+                        <img class="rounded-t-lg" src={{ asset('assets/form1.jpg') }} alt="" />
+                        <div class="p-5">
+                            <h5 class="mb-4 text-xl font-bold leading-tight text-gray-900">CES Summary of Trainings Conducted</h5>
                         </div>
                     </a>
                 </div>

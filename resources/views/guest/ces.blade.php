@@ -25,7 +25,99 @@
   <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
     {{-- Navbar --}}
-    @include('layouts.navbar')
+    <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+      <div class="flex flex-wrap justify-between items-center">
+        <div class="flex justify-start items-center">
+          
+          <button
+            data-drawer-target="drawer-navigation"
+            data-drawer-toggle="drawer-navigation"
+            aria-controls="drawer-navigation"
+            class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd">
+              </path>
+            </svg>
+  
+            <svg aria-hidden="true" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd">
+              </path>
+            </svg>
+  
+            <span class="sr-only">Toggle sidebar</span>
+          </button>
+  
+  
+          <a href="{{ url('/') }}" class="flex items-center justify-between mr-4">
+            <img
+              src="{{ asset('assets/logo.png') }}"
+              class="mr-3 h-8"
+            />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRACER</span>
+          </a>
+  
+        </div>
+  
+  
+        <div class="flex items-center lg:order-2">
+  
+          <!-- Dropdown menu -->
+          <div
+            class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
+            id="notification-dropdown"
+          >
+          </div>
+          
+          <a href="{{ route('login') }}">
+            <button type="button" class="flex items-center text-white bg-gray-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+              <box-icon name='log-in' class="mr-2" color="#ffffff" ></box-icon>
+              Login
+            </button>
+          </a> 
+          
+          <!-- Dropdown menu -->
+          <div
+            class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+            id="dropdown"
+          >
+            {{-- User Name and Email --}}
+            <div class="py-3 px-4">
+              <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
+              <span class="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
+            </div>
+  
+            {{-- User Profile --}}
+            <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+              <li>
+                <a
+                  href="{{ route('profile') }}"
+                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"> 
+                  Manage profile
+                </a>
+              </li>
+            </ul>
+  
+            {{-- Sign Out --}}
+            <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+              <li>
+                <a
+                  href="{{ route('logout') }}"
+                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  Sign out
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     {{-- Sidebar --}}
     <aside class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidenav" id="drawer-navigation">
@@ -47,20 +139,20 @@
               <span class="ml-3">CES</span>
             </a>
           </li>
-    
-          {{-- BATAC --}}
-          <li>
-            <a href="{{ route('guest.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-              <box-icon name='building' type='solid'></box-icon>
-              <span class="ml-3">BATAC</span>
-            </a>
-          </li>
 
           {{-- AGUSAN --}}
           <li>
             <a href="{{ route('guest.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
               <box-icon name='building' type='solid'></box-icon>
               <span class="ml-3">AGUSAN</span>
+            </a>
+          </li>
+
+          {{-- BATAC --}}
+          <li>
+            <a href="{{ route('guest.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+              <box-icon name='building' type='solid'></box-icon>
+              <span class="ml-3">BATAC</span>
             </a>
           </li>
 
@@ -123,7 +215,7 @@
         <div class="mr-2">
           <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="form">
               <option selected disabled>Select Form</option>
-              <option>Techno Demo</option>
+              <option>Summary of Trainings</option>
               <option>Technical Dispatch</option>
               <option>KSL</option>
           </select>
@@ -225,29 +317,55 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Apple MacBook Pro 17"
+                        RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds, and Farm Mechanization - CES 2023 Batch 01
                       </th>
                       <td class="px-6 py-4">
-                          Silver
+                          TMSD
                       </td>
                       <td class="px-6 py-4">
-                          Laptop
+                          March 13, 2023
                       </td>
                       <td class="px-6 py-4">
-                          $2999
+                          Within PhilRice Station
                       </td>
                       <td class="px-6 py-4 text-right">
-                          <button type="button" class="text-white bg-yellow-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <box-icon name='expand-alt' size="xs"></box-icon>
-                            <span class="sr-only">Edit</span>
-                          </button>
+                          <a href="" target="_blank">
+                            <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                              <box-icon name='expand-alt' size="xs" ></box-icon>
+                              <span class="sr-only">Edit</span>
+                            </button>
+                          </a>
                           
                           
-                          {{-- <a href="" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><box-icon name='expand-alt'></box-icon></a> --}}
+                          //<a href="" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><box-icon name='expand-alt'></box-icon></a>
                       </td>
-                  </tr>
+                  </tr> --}}
+
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
+                        RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds, and Farm Mechanization - CES 2023 Batch 01
+                    </th>
+                    <td class="px-6 py-4">
+                        TMSD
+                    </td>
+                    <td class="px-6 py-4">
+                        March 13, 2023
+                    </td>
+                    <td class="px-6 py-4">
+                        Within PhilRice Station
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <a href="#" target="_blank">
+                            <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <box-icon name='expand-alt' size="xs"></box-icon>
+                                {{-- <span class="sr-only">Edit</span> --}}
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                
               </tbody>
           </table>
         </div>
@@ -272,7 +390,7 @@
           width: 300,
           type: 'pie',
           toolbar: {
-            show: false,
+            show: true,
           },
       },
 

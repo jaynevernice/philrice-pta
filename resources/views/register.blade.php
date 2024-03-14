@@ -26,8 +26,8 @@
     
 </head>
 <body>
-    <div class="h-screen bg-gray-100 text-gray-900 flex justify-center">
-        <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+    <div class="h-screen bg-gray-100 text-gray-900 flex justify-center bg-gradient-to-r from-[#D1DCD8] to-[#CDD9D5]">
+        <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 drop-shadow-lg">
             
             {{-- Left Side --}}
             <div class="flex-1 bg-green-100 text-center hidden lg:flex">
@@ -84,19 +84,27 @@
                                         <box-icon type='solid' name='briefcase-alt'></box-icon>
                                     </div>
                                 </li>
-                            
+
                                 {{-- Step 3 --}}
+                                <li class="stepIndicator flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                        <box-icon type='solid' name='lock'></box-icon>
+                                    </div>
+                                </li>
+                            
+                                {{-- Step 4 --}}
                                 <li class="stepIndicator flex items-center">
                                     <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-                                        <box-icon name='lock' type='solid'></box-icon>
+                                        <box-icon name='question-mark' ></box-icon>
                                     </div>
                                 </li>
                             </ol>
                             
-                            <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">User Information</h3>
+                            {{-- <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">User Information</h3> --}}
                             <form action="#" id="registrationForm">
                                 {{-- Step 1 --}}
                                 <div class="step">   
+                                    <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Personal Information</h3>
                                     <div class="my-4">
                                         <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
                                         <input type="text" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First Name">
@@ -114,6 +122,7 @@
                                 {{-- Step 2 --}}
                                 <div class="step">
                                         <div>
+                                            <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Professional Information</h3>
                                             {{-- Email --}}
                                             <div class="my-2">
                                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -123,7 +132,7 @@
                                             {{-- PhilRice ID --}}
                                             <div class="my-2" id="idField">
                                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID #</label>
-                                                <input type="tect" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
+                                                <input type="text" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
                                             </div>
 
                                             <div class="grid grid-cols-3 my-2">
@@ -132,7 +141,14 @@
                                                     <label for="station" class="block text-sm font-medium text-gray-900 mb-1">Station</label> 
                                                     <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="station" required>
                                                         <option selected disabled>Station</option>
-                                                        <option>ASD (Admin)</option>
+                                                        <option>CES</option>
+                                                        <option>Agusan</option>
+                                                        <option>Batac</option>
+                                                        <option>Bicol</option>
+                                                        <option>Isabela</option>
+                                                        <option>Los Baños</option>
+                                                        <option>Midsayap</option>
+                                                        <option>Negros</option>
                                                     </select>
                                                 </div>
                                     
@@ -141,7 +157,7 @@
                                                     <label for="division" class="block text-sm font-medium text-gray-900 mb-1">Division</label> 
                                                     <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="division" required>
                                                         <option selected disabled>Division</option>
-                                                        <option>ASD (Admin)</option>
+                                                        <option>TMSD</option>
                                                     </select>
                                                 </div>
                                     
@@ -150,7 +166,7 @@
                                                     <label for="position" class="block text-sm font-medium text-gray-900 mb-1">Position</label> 
                                                     <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="position" required>
                                                         <option selected disabled>Position</option>
-                                                        <option>ASD (Admin)</option>
+                                                        <option>Division Head</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -160,6 +176,7 @@
                                     
                                 {{-- Step 3 --}}
                                 <div class="step">
+                                    <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Credentials</h3>
                                     <div>
                                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                         <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••">
@@ -171,6 +188,23 @@
                                     <div class="flex items-center justify-end my-2">
                                         <input type="checkbox" id="showPasswordCheckbox" class="form-checkbox rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-blue-600 dark:focus:ring-blue-600 dark:focus:ring-opacity-50 dark:text-blue-500">
                                         <label for="showPasswordCheckbox" class="text-sm font-medium text-gray-900 dark:text-white ml-2 cursor-pointer">Show Password</label>
+                                    </div>
+                                </div>
+
+                                {{-- Step 4 --}}
+                                <div class="step">
+                                    <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Security Questions</h3>
+                                    <div class="my-2">
+                                        <label for="sq1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is the name of your first pet?</label>
+                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 1">
+                                    </div>
+                                    <div class="my-2">
+                                        <label for="sq2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What city were you born in?</label>
+                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 2">
+                                    </div>
+                                    <div class="my-2">
+                                        <label for="sq3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is the name of your elementary school?</label>
+                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 3">
                                     </div>
                                 </div>
                                     
@@ -309,7 +343,7 @@
         }
     </script>
 
-    <script>
+    {{-- <script>
         var current = 1; // Initialize current step to Step 1
 
         document.getElementById("nextBtn").addEventListener("click", function() {
@@ -343,7 +377,56 @@
                 current = 1;
             }
         });
+    </script> --}}
+
+    <script>
+        var current = 1; // Initialize current step to Step 1
+    
+        document.getElementById("nextBtn").addEventListener("click", function() {
+            var step2Div = document.querySelector('#stepper li:nth-child(2) div');
+            var step2Li = document.querySelector('#stepper li:nth-child(2)');
+            var step3Div = document.querySelector('#stepper li:nth-child(3) div');
+            var step3Li = document.querySelector('#stepper li:nth-child(3)');
+            var step4Div = document.querySelector('#stepper li:nth-child(4) div');
+    
+            if (current === 1) {
+                step2Div.classList.add("bg-green-100");
+                step2Li.classList.remove("after:border-gray-100");
+                step2Li.classList.add("after:border-green-100");
+                current = 2;
+            } else if (current === 2) {
+                step3Div.classList.add("bg-green-100");
+                step3Li.classList.remove("after:border-gray-100");
+                step3Li.classList.add("after:border-green-100");
+                current = 3;
+            } else if (current === 3) {
+                step4Div.classList.add("bg-green-100");
+                current = 4;
+            }
+        });
+    
+        document.getElementById("prevBtn").addEventListener("click", function() {
+            var step2Div = document.querySelector('#stepper li:nth-child(2) div');
+            var step2Li = document.querySelector('#stepper li:nth-child(2)');
+            var step3Div = document.querySelector('#stepper li:nth-child(3) div');
+            var step3Li = document.querySelector('#stepper li:nth-child(3)');
+            var step4Div = document.querySelector('#stepper li:nth-child(4) div');
+    
+            if (current === 4) {
+                step4Div.classList.remove("bg-green-100");
+                current = 3;
+            } else if (current === 3) {
+                step3Div.classList.remove("bg-green-100");
+                current = 2;
+            } else if (current === 2) {
+                step2Div.classList.remove("bg-green-100");
+                step2Li.classList.remove("after:border-green-100");
+                step2Li.classList.add("after:border-gray-100");
+                current = 1;
+            }
+        });
     </script>
+    
 
 
     {{-- Password Toggle --}}

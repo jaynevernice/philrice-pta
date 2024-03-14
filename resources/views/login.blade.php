@@ -16,8 +16,8 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    <div class="h-screen bg-gray-100 text-gray-900 flex justify-center">
-        <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+    <div class="h-screen text-gray-900 flex justify-center bg-gradient-to-r from-[#D1DCD8] to-[#CDD9D5]">
+        <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 drop-shadow-lg">
             
             {{-- Left Side --}}
             <div class="flex-1 bg-green-100 text-center hidden lg:flex">
@@ -63,25 +63,24 @@
                         <p class="justify-right text-lg text-gray-700 mb-8">Welcome to TRACER. Please login with your data that you entered during registration</p>
 
 
-                        <div class="drop-shadow flex items-center justify-center my-4">
+                        {{-- <div class="drop-shadow flex items-center justify-center my-4">
                             <a href="{{ route('guest.overview') }}">
                                 <button type="button" class="lg:w-[436px] flex items-center justify-center text-white bg-gray-700 border border-gray-300 focus:outline-none hover:bg-gray-900 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-900 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
                                     <box-icon name='user' color="#ffffff" class="mr-4" ></box-icon>
                                     Browse as Guest
                                 </button>
                             </a>
-                        </div>
+                        </div> --}}
 
 
 
                         {{-- <div class="my-12 border-b text-center"> --}}
-                        <div class="my-4 border-b text-center">
+                        {{-- <div class="my-4 border-b text-center">
                             <div
                                 class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                {{-- Welcome to TRACER --}}
                                 OR
                             </div>
-                        </div>
+                        </div> --}}
                         
 
                         <div class="w-full flex-1 mt-8">
