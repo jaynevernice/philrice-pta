@@ -28,11 +28,10 @@
         </button>
 
 
-        <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
+        <a href="" onclick="location.reload();" class="flex items-center justify-between mr-4">
           <img
             src="{{ asset('assets/logo.png') }}"
             class="mr-3 h-8"
-            alt="Flowbite Logo"
           />
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRACER</span>
         </a>

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-<title>Admin | PhilRice Midsayap</title>
+<title>Admin Overview</title>
 @endsection
 
 @section('sidebar')
@@ -19,14 +19,14 @@
 
       {{-- CES --}}
       <li>
-        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700" aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700" aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
           <box-icon name='building' type='solid'></box-icon>
           <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
           <box-icon name='chevron-down'></box-icon>
          </a>
-        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+        <ul id="dropdown-sales" class="py-2 space-y-2">
           <li>
-            <a href="{{ route('admin.ces_view') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+            <a href="" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
               <box-icon name='line-chart' ></box-icon>
               <span class="ml-3">View Data</span>
             </a>  
@@ -80,7 +80,7 @@
 
       {{-- LOS BAÑOS --}}
       <li>
-        <a href="{{ route('admin.losbaños') }}" class=" flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('admin.losbaños') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">LOS BAÑOS</span>
         </a>
@@ -88,7 +88,7 @@
 
       {{-- MIDSAYAP --}}
       <li>
-        <a href="{{ route('admin.midsayap') }}" class="bg-green-100 flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('admin.midsayap') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">MIDSAYAP</span>
         </a>
@@ -113,7 +113,7 @@
 
   {{-- Station --}}
   <div class="flex">        
-    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Midsayap</h1>
+    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Central Experimental Station</h1>
   </div>
 
   {{-- Filters and Export --}}

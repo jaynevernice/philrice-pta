@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-<title>Admin | PhilRice Midsayap</title>
+<title>Encoder | PhilRice Los Baños</title>
 @endsection
 
 @section('sidebar')
@@ -11,7 +11,7 @@
 
       {{-- Overview --}}
       <li>
-        <a href="{{ route('admin.overview') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.overview') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon type='solid' name='pie-chart-alt-2'></box-icon>
           <span class="ml-3">Overview</span>
         </a>
@@ -26,19 +26,19 @@
          </a>
         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
           <li>
-            <a href="{{ route('admin.ces_view') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+            <a href="{{ route('encoder.ces_view') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
               <box-icon name='line-chart' ></box-icon>
               <span class="ml-3">View Data</span>
             </a>  
           </li>
           <li>
-            <a href="{{ route('admin.ces_add') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+            <a href="{{ route('encoder.ces_add') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
               <box-icon name='plus'></box-icon>
               <span class="ml-3">Add Data</span>
             </a>  
           </li>
           <li>
-            <a href="{{ route('admin.ces_edit') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+            <a href="{{ route('encoder.ces_edit') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
               <box-icon name='edit-alt' type='solid'></box-icon>
               <span class="ml-3">Edit Data</span>
             </a>  
@@ -48,7 +48,7 @@
 
       {{-- AGUSAN --}}
       <li>
-        <a href="{{ route('admin.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">AGUSAN</span>
         </a>
@@ -56,7 +56,7 @@
 
       {{-- BATAC --}}
       <li>
-        <a href="{{ route('admin.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">BATAC</span>
         </a>
@@ -64,7 +64,7 @@
 
       {{-- BICOL --}}
       <li>
-        <a href="{{ route('admin.bicol') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.bicol') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">BICOL</span>
         </a>
@@ -72,7 +72,7 @@
 
       {{-- ISABELA --}}
       <li>
-        <a href="{{ route('admin.isabela') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.isabela') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">ISABELA</span>
         </a>
@@ -80,7 +80,7 @@
 
       {{-- LOS BAÑOS --}}
       <li>
-        <a href="{{ route('admin.losbaños') }}" class=" flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.losbaños') }}" class="bg-green-100 flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">LOS BAÑOS</span>
         </a>
@@ -88,7 +88,7 @@
 
       {{-- MIDSAYAP --}}
       <li>
-        <a href="{{ route('admin.midsayap') }}" class="bg-green-100 flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.midsayap') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">MIDSAYAP</span>
         </a>
@@ -96,7 +96,7 @@
 
       {{-- NEGROS --}}
       <li>
-        <a href="{{ route('admin.negros') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.negros') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">NEGROS</span>
         </a>
@@ -113,7 +113,7 @@
 
   {{-- Station --}}
   <div class="flex">        
-    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Midsayap</h1>
+    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Los Baños</h1>
   </div>
 
   {{-- Filters and Export --}}

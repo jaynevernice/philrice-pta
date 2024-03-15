@@ -541,7 +541,7 @@
         {{-- Back Link --}}
         <div class="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-600 px-4 py-24 mb-12 flex items-center justify-between">
             <span class="text-base text-yellow-600 font-bold">&lt;</span> 
-            <a href="{{ url('/') }}" class="text-base md:text-sm text-yellow-600 font-bold no-underline hover:underline mr-auto">Go back to home</a>
+            <a href="{{ route('encoder.ces_view') }}" class="text-base md:text-sm text-yellow-600 font-bold no-underline hover:underline mr-auto">Go back to home</a>
             
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                 <box-icon name='send' color="#ffffff"></box-icon>
