@@ -98,19 +98,11 @@
             </a>
           </li>
 
-          {{-- Manage RCEF Users --}}
+          {{-- Manage Encoders --}}
           <li>
-            <a href="{{ route('super_admin.manage_rcef') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+            <a href="{{ route('super_admin.manage_encoders') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
               <box-icon type='solid' name='user-account'></box-icon>
-              <span class="ml-3">Manage RCEF Users</span>
-            </a>
-          </li>
-
-          {{-- Manage Admins --}}
-          <li>
-            <a href="{{ route('super_admin.manage_admins') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-              <box-icon type='solid' name='user-account'></box-icon>
-              <span class="ml-3">Manage Admins</span>
+              <span class="ml-3">Manage Encoders</span>
             </a>
           </li>
     

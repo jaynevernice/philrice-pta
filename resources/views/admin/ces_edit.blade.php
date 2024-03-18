@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-<title>Admin | PhilRice Midsayap</title>
+<title>Admin Overview</title>
 @endsection
 
 @section('sidebar')
@@ -19,12 +19,12 @@
 
       {{-- CES --}}
       <li>
-        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700" aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700" aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
           <box-icon name='building' type='solid'></box-icon>
           <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
           <box-icon name='chevron-down'></box-icon>
          </a>
-        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+        <ul id="dropdown-sales" class="py-2 space-y-2">
           <li>
             <a href="{{ route('admin.ces_view') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
               <box-icon name='line-chart' ></box-icon>
@@ -38,7 +38,7 @@
             </a>  
           </li>
           <li>
-            <a href="{{ route('admin.ces_edit') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+            <a href="{{ route('admin.ces_edit') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
               <box-icon name='edit-alt' type='solid'></box-icon>
               <span class="ml-3">Edit Data</span>
             </a>  
@@ -60,7 +60,7 @@
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">BATAC</span>
         </a>
-      </li> 
+      </li>
 
       {{-- BICOL --}}
       <li>
@@ -80,7 +80,7 @@
 
       {{-- LOS BAÑOS --}}
       <li>
-        <a href="{{ route('admin.losbaños') }}" class=" flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('admin.losbaños') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">LOS BAÑOS</span>
         </a>
@@ -88,7 +88,7 @@
 
       {{-- MIDSAYAP --}}
       <li>
-        <a href="{{ route('admin.midsayap') }}" class="bg-green-100 flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('admin.midsayap') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">MIDSAYAP</span>
         </a>
@@ -113,12 +113,11 @@
 
   {{-- Station --}}
   <div class="flex">        
-    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Midsayap</h1>
+    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Central Experimental Station</h1>
   </div>
 
   {{-- Filters and Export --}}
   <div class="flex my-4">
-    
     {{-- Form --}}
     <div class="mr-2">
       <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="form">
@@ -139,50 +138,15 @@
     </div>
 
     {{-- Quarter --}}
-    <div class="mx-2">
+    <div class="mx-2 mr-auto">
       <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="quarter">
           <option selected disabled>Select Quarter</option>
           <option>ASD (Admin)</option>
       </select>
     </div>
 
-    {{-- Export Button --}}
-    <div class="ml-auto">
-      <button type="button" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
-        <box-icon name='file-export' type='solid' color="#ffffff" size="sm" ></box-icon>
-            <span class="px-1">Export</span>
-      </button>
-    </div>
-
-  </div>
-
-  <div class="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-
-    <div class="border-2 mx-auto border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
-      <div id="chart1"></div>
-    </div>
-
-    <div class="border-2 mx-auto border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
-      <div id="chart2"></div>
-    </div>
-
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
-      <div id="chart3"></div>
-    </div>
-
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
-      <div id="chart4"></div>
-    </div>
-  
-  </div>
-
-  {{-- Line --}}
-  <div class="border-t-2 border-gray-300 mt-6 my-4"></div>
-
-  <div class="drop-shadow-md p-2 rounded-lg">
     {{-- Search --}}
-    <div class="mb-2 ">
-      <label for="table-search" class="sr-only">Search</label>
+    <div class="mr-2">
       <div class="relative">
           <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -192,76 +156,80 @@
           <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
       </div>
     </div>
-    
 
-    {{-- Table --}}
-    <div class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                  <th scope="col" class="px-6 py-3">
-                      Title of Event
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      <div class="flex items-center">
-                          Offices and Divisions
-                          <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a>
-                      </div>
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      <div class="flex items-center">
-                          Date
-                          <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a>
-                      </div>
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      <div class="flex items-center">
-                          Venue
-                          <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a>
-                      </div>
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      <span class="sr-only">Edit</span>
-                  </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
-                    RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds, and Farm Mechanization - CES 2023 Batch 01
-                </th>
-                <td class="px-6 py-4">
-                    TMSD
-                </td>
-                <td class="px-6 py-4">
-                    March 13, 2023
-                </td>
-                <td class="px-6 py-4">
-                    Within PhilRice Station
-                </td>
-                <td class="px-6 py-4 text-right">
-                    <a href="#" target="_blank">
-                        <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <box-icon name='expand-alt' size="xs"></box-icon>
-                            {{-- <span class="sr-only">Edit</span> --}}
-                        </button>
-                    </a>
-                </td>
-            </tr>
-            
-          </tbody>
-      </table>
+    {{-- Export Button --}}
+    <div class="mr-2">
+      <button type="button" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
+        <box-icon name='file-export' type='solid' color="#ffffff" size="sm" ></box-icon>
+            <span class="px-1">Export</span>
+      </button>
     </div>
-
   </div>
 
-  
+  {{-- Table --}}
+  <div class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Title of Training
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Offices and Divisions
+                        <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                        </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Date
+                        <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                        </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Venue
+                        <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                        </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
+                  RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds, and Farm Mechanization - CES 2023 Batch 01
+              </th>
+              <td class="px-6 py-4">
+                  TMSD
+              </td>
+              <td class="px-6 py-4">
+                  March 13, 2023
+              </td>
+              <td class="px-6 py-4">
+                  Within PhilRice Station
+              </td>
+              <td class="px-6 py-4 text-right">
+                  <a href="#" target="_blank">
+                      <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          <box-icon name='expand-alt' size="xs"></box-icon>
+                          {{-- <span class="sr-only">Edit</span> --}}
+                      </button>
+                  </a>
+              </td>
+          </tr>
+          
+        </tbody>
+    </table>
+  </div>
 
 </main>
 @endsection

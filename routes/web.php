@@ -115,9 +115,21 @@ Route::group(['middleware' => 'super_admin'], function () {
             return view('super_admin.overview');
         })->name('super_admin.overview');
 
-        Route::get('/ces', function() {
-            return view('super_admin.ces');
-        })->name('super_admin.ces');
+        // Route::get('/ces', function() {
+        //     return view('super_admin.ces');
+        // })->name('super_admin.ces');
+
+        Route::get('/ces_view', function () {
+            return view('super_admin.ces_view');
+        })->name('super_admin.ces_view');
+
+        Route::get('/ces_add', function () {
+            return view('super_admin.ces_add');
+        })->name('super_admin.ces_add');
+
+        Route::get('/ces_edit', function () {
+            return view('super_admin.ces_edit');
+        })->name('super_admin.ces_edit');
 
         Route::get('/batac', function() {
             return view('super_admin.batac');
@@ -165,17 +177,29 @@ Route::group(['middleware' => 'admin'], function () {
             return view('admin.overview');
         })->name('admin.overview');
 
-        Route::get('/ces', function() {
-            return view('admin.ces');
-        })->name('admin.ces');
+        // Route::get('/ces', function() {
+        //     return view('admin.ces');
+        // })->name('admin.ces');
 
-        Route::get('/batac', function() {
-            return view('admin.batac');
-        })->name('admin.batac');
+        Route::get('/ces_view', function () {
+            return view('admin.ces_view');
+        })->name('admin.ces_view');
+
+        Route::get('/ces_add', function () {
+            return view('admin.ces_add');
+        })->name('admin.ces_add');
+
+        Route::get('/ces_edit', function () {
+            return view('admin.ces_edit');
+        })->name('admin.ces_edit');
 
         Route::get('/agusan', function() {
             return view('admin.agusan');
         })->name('admin.agusan');
+
+        Route::get('/batac', function() {
+            return view('admin.batac');
+        })->name('admin.batac');
 
         Route::get('/bicol', function() {
             return view('admin.bicol');
@@ -212,9 +236,9 @@ Route::group(['middleware' => 'encoder'], function () {
             return view('encoder.overview');
         })->name('encoder.overview');
 
-        Route::get('/ces', function () {
-            return view('encoder.ces');
-        })->name('encoder.ces');
+        Route::get('/ces_view', function () {
+            return view('encoder.ces_view');
+        })->name('encoder.ces_view');
 
         Route::get('/ces_add', function () {
             return view('encoder.ces_add');
@@ -223,6 +247,34 @@ Route::group(['middleware' => 'encoder'], function () {
         Route::get('/ces_edit', function () {
             return view('encoder.ces_edit');
         })->name('encoder.ces_edit');
+
+        Route::get('/agusan', function() {
+            return view('encoder.agusan');
+        })->name('encoder.agusan');
+
+        Route::get('/batac', function() {
+            return view('encoder.batac');
+        })->name('encoder.batac');
+
+        Route::get('/bicol', function() {
+            return view('encoder.bicol');
+        })->name('encoder.bicol');
+
+        Route::get('/isabela', function() {
+            return view('encoder.isabela');
+        })->name('encoder.isabela');
+
+        Route::get('/losbaños', function() {
+            return view('encoder.losbaños');
+        })->name('encoder.losbaños');
+
+        Route::get('/midsayap', function() {
+            return view('encoder.midsayap');
+        })->name('encoder.midsayap');
+
+        Route::get('/negros', function() {
+            return view('encoder.negros');
+        })->name('encoder.negros');
         
     });
 });
@@ -239,13 +291,13 @@ Route::group(['middleware' => 'viewer'], function () {
             return view('viewer.ces');
         })->name('viewer.ces');
 
-        Route::get('/batac', function() {
-            return view('viewer.batac');
-        })->name('viewer.batac');
-
         Route::get('/agusan', function() {
             return view('viewer.agusan');
         })->name('viewer.agusan');
+
+        Route::get('/batac', function() {
+            return view('viewer.batac');
+        })->name('viewer.batac');
 
         Route::get('/bicol', function() {
             return view('viewer.bicol');
