@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
 
+    {{-- important sa paggamit ng ajax --}}
+    <meta name="csrf-token" content="content">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     {{-- Flowbite JS CDN --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
@@ -101,21 +105,32 @@
                             </ol>
                             
                             {{-- <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">User Information</h3> --}}
-                            <form action="#" id="registrationForm">
+                            @include('_message')
+                            @if ($errors->any())
+                                <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="{{ route('register.store') }}" method="POST" id="registrationForm">
+                                @csrf
                                 {{-- Step 1 --}}
                                 <div class="step">   
                                     <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Personal Information</h3>
                                     <div class="my-4">
                                         <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                                        <input type="text" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First Name">
+                                        <input required type="text" name="first_name" value="{{ old('first_name') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First Name">
                                     </div>
                                     <div class="my-4">
                                         <label for="mi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle Initial</label>
-                                        <input type="text" name="mi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Middle Initial">
+                                        <input required type="text" name="mi" value="{{ old('mi') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Middle Initial">
                                     </div>
                                     <div class="my-4">
                                         <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                                        <input type="text" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last Name">
+                                        <input required type="text" name="last_name" value="{{ old('last_name') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Last Name">
                                     </div>
                                 </div>
                                     
@@ -126,50 +141,57 @@
                                             {{-- Email --}}
                                             <div class="my-2">
                                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com">
+                                                <input type="email" name="email" value="{{ old('email') }}" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com">
                                             </div>
 
                                             {{-- PhilRice ID --}}
                                             <div class="my-2" id="idField">
-                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID #</label>
-                                                <input type="text" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
+                                                <label for="philrice_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID #</label>
+                                                <input type="text" name="philrice_id" value="{{ old('philrice_id') }}" id="philrice_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
                                             </div>
 
+                                            {{-- <form> --}}
                                             <div class="grid grid-cols-3 my-2">
                                                 {{-- Station --}}
                                                 <div class="relative mr-1 my-2" id="stationField">
                                                     <label for="station" class="block text-sm font-medium text-gray-900 mb-1">Station</label> 
-                                                    <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="station" required>
+                                                    <select name="station" id="station" {{ old('station') }} required class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                                         <option selected disabled>Station</option>
-                                                        <option>CES</option>
-                                                        <option>Agusan</option>
-                                                        <option>Batac</option>
-                                                        <option>Bicol</option>
-                                                        <option>Isabela</option>
-                                                        <option>Los Baños</option>
-                                                        <option>Midsayap</option>
-                                                        <option>Negros</option>
+                                                        @foreach ($stations as $data)
+                                                            <option value="{{$data->id}}">{{$data->station}}</option>
+                                                        @endforeach
+                                                        {{-- <option value="CES" >CES</option>
+                                                        <option value="Agusan" >Agusan</option>
+                                                        <option value="Batac" >Batac</option>
+                                                        <option value="Bicol" >Bicol</option>
+                                                        <option value="CMU" >CMU</option>
+                                                        <option value="Isabela" >Isabela</option>
+                                                        <option value="Los Baños" >Los Baños</option>
+                                                        <option value="Midsayap" >Midsayap</option>
+                                                        <option value="Negros" >Negros</option> --}}
                                                     </select>
                                                 </div>
-                                    
+                                                
                                                 {{-- Division --}}
                                                 <div class="relative mr-1 my-2" id="divisionField">
                                                     <label for="division" class="block text-sm font-medium text-gray-900 mb-1">Division</label> 
-                                                    <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="division" required>
-                                                        <option selected disabled>Division</option>
-                                                        <option>TMSD</option>
+                                                    <select name="division" id="division" class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
+                                                        {{-- <option value="" selected disabled>Division</option> --}}
+                                                        {{-- <option value="TMSD" >TMSD</option> --}}
+                                                        
                                                     </select>
                                                 </div>
                                     
                                                 {{-- Position --}}
                                                 <div class="relative my-2" id="positionField">
                                                     <label for="position" class="block text-sm font-medium text-gray-900 mb-1">Position</label> 
-                                                    <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="position" required>
-                                                        <option selected disabled>Position</option>
-                                                        <option>Division Head</option>
+                                                    <select name="position" id="position" class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
+                                                        {{-- <option value="" selected disabled>Position</option> --}}
+                                                        {{-- <option value="Division Head">Division Head</option> --}}
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- </form> --}}
                                         </div>
                                     {{-- </div> --}}
                                 </div>
@@ -197,15 +219,15 @@
                                     <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Security Questions</h3>
                                     <div class="my-2">
                                         <label for="sq1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is the name of your first pet?</label>
-                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 1">
+                                        <input type="text" id="sq1" name="sq1" value="{{ old('sq1') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 1">
                                     </div>
                                     <div class="my-2">
                                         <label for="sq2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What city were you born in?</label>
-                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 2">
+                                        <input type="text" id="sq2" name="sq2" value="{{ old('sq2') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 2">
                                     </div>
                                     <div class="my-2">
                                         <label for="sq3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is the name of your elementary school?</label>
-                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 3">
+                                        <input type="text" id="sq3" name="sq3" value="{{ old('sq3') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Security Question 3">
                                     </div>
                                 </div>
                                     
@@ -221,6 +243,8 @@
           
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
         document.getElementById("showPasswordCheckbox").addEventListener("change", function() {
@@ -427,8 +451,6 @@
             }
         });
     </script>
-    
-
 
     {{-- Password Toggle --}}
     <script>
@@ -446,6 +468,59 @@
                 hidePasswordIcon.innerHTML = '<path d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"/>';
             }
         }
+    </script>
+    {{-- Changing Dropdown Choices in Registration --}}
+    <script>
+        $(document).ready(function (){
+            // station dropdown change event
+            $('#station').on('change', function () {
+                var idStation = this.value;
+                $("#division").html('');
+                $.ajax({
+                    url: "{{ route('register.fetchDivisions') }}",
+                    type: "POST",
+                    data: {
+                        station_id: idStation,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+
+                    success: function (result) {
+                        console.log(result);
+
+                        $('#division').html('<option selected disabled value="">Division</option>');
+                        $.each(result.divisions, function (key, value) {
+                            $("#division").append('<option value="' + value.id + '">' + value.division + '</option>');
+                        });
+                        $('#position').html('<option selected disabled value="">Position</option>');
+                    }
+                });
+            });
+
+            // division dropdown change event
+            $('#division').on('change', function () {
+                var idDivision = this.value;
+                $("#position").html('');
+                $.ajax({
+                    url: "{{ route('register.fetchPositions') }}",
+                    type: "POST",
+                    data: {
+                        division_id: idDivision,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+
+                    success: function (res) {
+                        console.log(res);
+
+                        $('#position').html('<option selected disabled value="">Position</option>');
+                        $.each(res.positions, function (key, value) {
+                            $("#position").append('<option value="' + value.id + '">' + value.position + '</option>');
+                        });
+                    }
+                });
+            });
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>

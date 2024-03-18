@@ -35,22 +35,33 @@ class AuthController extends Controller
     public function AuthLogin(Request $request)
     {
         // dd($request->all());
+        $user = User::getEmailSingle($request->email);
 
         // $remember = !empty($request->remember) ? true : false;
 
-        // if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            if(Auth::user()->user_type == 'super_admin') {
-                return redirect('/super_admin/overview');
-            } else if(Auth::user()->user_type == 'admin') {
-                return redirect('/admin/overview');
-            } else if (Auth::user()->user_type == 'encoder'){
-                return redirect('/encoder/overview');
-            } else if (Auth::user()->user_type == 'viewer'){
-                return redirect('/viewer/overview'); //Changed directory to overview, wala ng dashboard na term para di nakakalito
-            }             
+        if(!empty($user)) {
+            if($user->email_verified_at == '') {
+                return redirect()->back()->with('error', 'Your account is not yet verified.');
+            }
+            // if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                if(!empty(Auth::check())) {
+
+                    if(Auth::user()->user_type == 'super_admin') {
+                        return redirect('/super_admin/overview');
+                    } else if(Auth::user()->user_type == 'admin') {
+                        return redirect('/admin/overview');
+                    } else if (Auth::user()->user_type == 'encoder'){
+                        return redirect('/encoder/overview');
+                    } else if (Auth::user()->user_type == 'viewer'){
+                        return redirect('/viewer/overview'); //Changed directory to overview, wala ng dashboard na term para di nakakalito
+                    }
+                }            
+            } else {
+                return redirect()->back()->with('error', 'Please enter correct email and password');
+            }
         } else {
-            return redirect()->back()->with('error', 'Please enter correct email and password');
+            return redirect()->back()->with('error', 'Please create an account before logging in.');
         }
     }
 

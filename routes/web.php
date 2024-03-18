@@ -5,6 +5,7 @@ use App\Http\Controllers\KSLAnalyticsController;
 use App\Http\Controllers\KSLFormController;
 use App\Http\Controllers\TrainingsFormController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,9 +37,13 @@ Route::get('/forgot',function() {
 })->name('forgot');
 Route::post('/forgot', [AuthController::class, 'PostForgot']);
 
-Route::get('/register', function() {
-    return view('register');
-})->name('register');
+// Route::get('/register', function() {
+//     return view('register');})->name('register');
+Route::get('/register', [UserController::class, 'create'])->name('register');
+Route::post('register', [UserController::class, 'store'])->name('register.store');
+Route::get('verify/{token}', [UserController::class, 'verify'])->name('verify');
+Route::post('register/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('register.fetchDivisions');
+Route::post('register/fetch-positons', [UserController::class, 'fetchPositions'])->name('register.fetchPositions');
 
 Route::get('/profile', function() {
     return view('profile');
