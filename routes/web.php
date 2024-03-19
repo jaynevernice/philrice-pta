@@ -248,6 +248,12 @@ Route::group(['middleware' => 'encoder'], function () {
             return view('encoder.ces_edit');
         })->name('encoder.ces_edit');
 
+        // Summary of Trainings Form
+        Route::group(['prefix' => 'trainings'], function() {
+            Route::get('/form', [TrainingsFormController::class, 'create'])->name('trainingsform.create');
+            Route::post('form-store', [TrainingsFormController::class, 'store'])->name('trainingsform.store');
+        });
+
         Route::get('/agusan', function() {
             return view('encoder.agusan');
         })->name('encoder.agusan');
@@ -345,9 +351,9 @@ Route::group(['prefix' => 'ksl'], function () {
 
 
 // Summary of Trainings
-Route::group(['prefix' => 'trainings'], function() {
-    Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
-});
+// Route::group(['prefix' => 'trainings'], function() {
+//     Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
+// });
 
 // Technical Dispatch
 Route::group(['prefix' => 'dispatch'], function() {

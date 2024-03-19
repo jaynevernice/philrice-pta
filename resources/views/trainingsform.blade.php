@@ -93,6 +93,7 @@
             
             {{-- Section 1 --}}
             <hr class="bg-gray-300 my-12">
+            @include('_message')
             <h2 id='section1' class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Section 1</h2>
             <div class="p-8 mt-6 lg:mt-0 leading-normal rounded shadow bg-white">
                 <blockquote class="border-l-4 border-yellow-600 italic my-4 pl-8 md:pl-12">
@@ -101,9 +102,23 @@
                     Privacy Notice: PhilRice is committed to comply with Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012 to safeguard your privacy and personal information.
                 </blockquote>
 
+                @if ($errors->any())
+                    <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('trainingsform.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="my-10">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email Address</label>
-                    <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required>
+                    <input type="email" id="email" value="{{ Auth::user()->email }}" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required>
+                    <input type="hidden" name="email" value="{{ Auth::user()->email }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <input type="hidden" name="name" value="{{ Auth::user()->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 </div>
             </div>
             
@@ -111,14 +126,17 @@
             <hr class="bg-gray-300 my-12">
             <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">PhilRice CES Offices/Divisions</h2>
             <div id='section2' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                <form>
+                {{-- <form> --}}
                     {{-- Offices and Division --}}
                     <div class="grid gap-6">
                         <label for="offices_and_division" class="block mb-2 text-sm font-medium text-gray-900">Offices and Divisions</label>                                               
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="offices_and_division">
+                            <select id="offices_and_division" name="offices_and_division" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
                                 <option selected disabled>Select</option>
-                                <option>ASD (Admin)</option>
+                                @foreach ($ces_divisions as $ces_division)
+                                    <option value="{{ $ces_division->division }}">{{ $ces_division->division }}</option>
+                                @endforeach
+                                {{-- <option>ASD (Admin)</option>
                                 <option>ASPPD</option>
                                 <option>BDD</option>
                                 <option>CBC</option>
@@ -143,43 +161,43 @@
                                 <option>RCFSD</option>
                                 <option>REMD</option>
                                 <option>SED</option>
-                                <option>TMSD</option>
+                                <option>TMSD</option> --}}
                             </select>
                         </div>
                     </div>
-                </form>
+                {{-- </form> --}}
             </div>
 
             {{-- Section 3 --}}
             <hr class="bg-gray-300 my-12">
             <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Training Details</h2>
             <div id='section3' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                <form>
+                {{-- <form> --}}
                     <div>
-
                         {{-- Title of Training and Type of Training --}}
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
                                 <label for="training_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Training</label>
-                                <input type="text" id="training_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Training" required>
+                                <input type="text" id="training_title" name="training_title" value="{{ old('training_title') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Training" required>
                             </div>
                             <div>   
-                                <label for="training_type" class="block mb-2 text-sm font-medium text-gray-900">Offices and Divisions</label>                                               
+                                <label for="training_type" class="block mb-2 text-sm font-medium text-gray-900">Type of Training</label>                                               
                                 <div class="relative">
-                                    <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="training_type">
+                                    <select id="training_type" name="training_type" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
                                         <option selected disabled>Select</option>
-                                        <option>Rice Specialists' Training Course (RSTC)</option>
-                                        <option>Farmer's Field School (FFS)</option>
-                                        <option>Training of Trainers (TOT)</option>
-                                        <option>Specialized Course</option>
-                                        <option>Customized/Short Course</option>
-                                        <option>Refresher Course</option>
-                                        <option>Other</option>
+                                        <option value="Rice Specialists' Training Course (RSTC)" >Rice Specialists' Training Course (RSTC)</option>
+                                        <option value="Farmer's Field School (FFS)" >Farmer's Field School (FFS)</option>
+                                        <option value="Training of Trainers (TOT)" >Training of Trainers (TOT)</option>
+                                        <option value="Specialized Course" >Specialized Course</option>
+                                        <option value="Customized/Short Course" >Customized/Short Course</option>
+                                        <option value="Refresher Course" >Refresher Course</option>
+                                        <option value="other" >Other</option>
                                     </select>
+                                    <input type="text" name="other_trainingType" id="other_trainingType" value="{{ old('other_trainingType') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" style="display: none;">
                                 </div>
                             </div>
                         </div>
-
+                        
                         {{-- Training Style/Format --}}
                         <label for="training_style" class="block mb-2 text-sm font-medium text-gray-900">Training Style/Format</label>    
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
@@ -188,11 +206,11 @@
                                 <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Face-to-Face</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input checked id="bordered-radio-2" type="radio" value="Online" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-2" type="radio" value="Online" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Online</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input checked id="bordered-radio-3" type="radio" value="Blended (Online + Face-to-Face)" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-3" type="radio" value="Blended (Online + Face-to-Face)" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-3" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Blended (Online + Face-to-Face)</label>
                             </div>
                         </div>
@@ -207,7 +225,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                     </div>
-                                    <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select start date">
+                                    <input datepicker type="text" name="start_date" value="{{ old('start_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select start date" required>
                                 </div>
                             </div>
                             <div class="gap-6 mb-6">                   
@@ -218,7 +236,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                     </div>
-                                    <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select end date">
+                                    <input datepicker type="text" name="end_date" value="{{ old('end_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select end date" required>
                                 </div>
                             </div>
                         </div>
@@ -227,35 +245,38 @@
                         <label for="venue" class="block mb-2 text-sm font-medium text-gray-900">Venue</label>    
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-5" type="radio" value="Within PhilRice station" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-5" type="radio" value="Within PhilRice station" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
                                 <label for="bordered-radio-5" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Within PhilRice station</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input checked id="bordered-radio-6" type="radio" value="Local (but outside PhilRice station)" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-6" type="radio" value="Local (but outside PhilRice station)" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-6" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Local (but outside PhilRice station)</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input checked id="bordered-radio-7" type="radio" value="International" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-7" type="radio" value="International" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-7" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">International</label>
                             </div>
                         </div>           
                     </div>                   
-                </form>
+                {{-- </form> --}}
             </div>
         
             {{-- Section 4 --}}
             <hr class="bg-gray-300 my-12">
             <h2 class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Local Venue (but outside station)</h2>
             <div id='section4' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                <form>
+                {{-- <form> --}}
                     {{-- Province and Municipality --}}
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="province" class="block mb-2 text-sm font-medium text-gray-900">Province</label>    
                             <div class="relative">
-                                <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="province">
+                                <select id="province" name="province" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                     <option selected disabled>Select</option>
-                                    <option>Abra</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{ $province->province_name }}">{{ $province->province_name }}</option>
+                                    @endforeach
+                                    {{-- <option>Abra</option>
                                     <option>NCR</option>
                                     <option>Agusan Del Norte</option>
                                     <option>Agusan Del Sur</option>
@@ -337,16 +358,16 @@
                                     <option>Zambales</option>
                                     <option>Zamboanga Del Norte</option>
                                     <option>Zamboanga Del Sur</option>
-                                    <option>Zamboanga Sibugay</option>
+                                    <option>Zamboanga Sibugay</option> --}}
                                 </select>
                             </div>
                         </div>
                         <div>
                             <label for="city" class="block mb-2 text-sm font-medium text-gray-900">City/Municipality</label>
-                            <input type="text" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality" required>
+                            <input type="text" id="city" name="city" value="{{ old('city') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality">
                         </div>
                     </div>
-                </form>
+                {{-- </form> --}}
             </div>
 
             {{-- Section 5 --}}
@@ -358,11 +379,11 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                         <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Country</label>
-                        <input type="text" id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Country" required>
+                        <input type="text" id="country" name="country" value="{{ old('country') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Country" >
                     </div>
                     <div>
                         <label for="state" class="block mb-2 text-sm font-medium text-gray-900">State/City/Province</label>
-                        <input type="text" id="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="State/City/Province" required>
+                        <input type="text" id="state" name="state" value="{{ old('state') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="State/City/Province" >
                     </div>
                 </div>
             </div>
@@ -375,9 +396,9 @@
                 {{-- Name of Implementing Partner/s or Co-Organizer/s --}}
                 <div class="gap-6 mb-6">
                     <div>
-                        <label for="program_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Program</label>
+                        <label for="sponsor" class="block mb-2 text-sm font-medium text-gray-900">Name of Implementing Partner/s or Co-Organizer/s</label>
                         <p class="text-sm text-gray-500 mb-2">Specify name of partner, sponsor, or co-organizer. If more than one, separate with comma. If no co-implementer write NONE.</p>
-                        <input type="text" id="program_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Program" required>
+                        <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
                     </div>
                 </div>
 
@@ -385,30 +406,31 @@
                 <div class="gap-6 mb-6">
                     <div>
                         <label for="average_gik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge (GIK)</label>
-                        <input type="number" id="average_gik" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="average_gik" name="average_gik" value="{{ old('average_gik') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
 
-                {{-- Source of Inquiry and Overall Training Evaluation --}}
+                {{-- Source of Fund --}}
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
-                        <label for="source_of_inquiry" class="block mb-2 text-sm font-medium text-gray-900">Source of Inquiry</label>    
+                        <label for="source_of_fund" class="block mb-2 text-sm font-medium text-gray-900">Source of Fund</label>    
                         <p class="text-sm text-gray-500 mb-2">Specify source of fund for conduct of training</p>
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="source_of_inquiry">
+                            <select id="source_of_fund" name="source_of_fund" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
                                 <option selected disabled>Select</option>
-                                <option>Core Fund</option>
-                                <option>RCEF</option>
-                                <option>Other: Extra-core Fund</option>
-                                <option>Other: External Fund</option>
-                                <option>Other</option>
+                                <option value="Core Fund" >Core Fund</option>
+                                <option value="RCEF" >RCEF</option>
+                                <option value="Other: Extra-core Fund" >Other: Extra-core Fund</option>
+                                <option value="Other: External Fund" >Other: External Fund</option>
+                                <option value="other" >Other</option>
                             </select>
+                            <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" style="display: none;">
                         </div>
                     </div>
                     <div>
                         <label for="evaluation" class="block mb-2 text-sm font-medium text-gray-900">Overall Training Evaluation Rating</label>
                         <p class="text-sm text-gray-500 mb-2">Write numerical score(average) and its corresponding rating</p>
-                        <input type="text" id="evaluation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="4.8 = Excellent" required>
+                        <input type="text" id="evaluation" name="evaluation" value="{{ old('evaluation') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="4.8 = Excellent" required>
                     </div>
                 </div>
             </div>
@@ -423,7 +445,13 @@
                 <div class="mb-10">
                     <label for="classification_of_participants" class="block mb-2 text-sm font-medium text-gray-900">Participants</label>  
                     <div class="grid gap-6 mb-6 md:grid-cols-3">
-                        <div class="flex items-center me-4">
+                        @foreach ($participants as $participant)
+                            <div class="flex items-center me-4">
+                                <input id="inline-checkbox" type="checkbox" value="{{ $participant->classification }}" name="participants[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">{{ $participant->classification }}</label>
+                            </div>
+                        @endforeach
+                        {{-- <div class="flex items-center me-4">
                             <input id="inline-checkbox" type="checkbox" value="Farmer or Seed grower" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Farmer or Seed grower</label>
                         </div>
@@ -458,35 +486,35 @@
                         <div class="flex items-center me-4">
                             <input id="inline-checkbox" type="checkbox" value="other (e.g OFW, job seeker, freelancer, consultant)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">other (e.g OFW, job seeker, freelancer, consultant)</label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="grid gap-6 mb-6 md:grid-cols-2"> 
                     <div>
                         <label for="num_of_participants" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Number of Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_participants" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_participants" name="num_of_participants" value="{{ old('num_of_participants') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_farmers_and_growers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are farmers and seed growers</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_farmers_and_growers" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_farmers_and_growers" name="num_of_farmers_and_growers" value="{{ old('num_of_farmers_and_growers') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_extension_workers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are extension workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_extension_workers" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_extension_workers" name="num_of_extension_workers" value="{{ old('num_of_extension_workers') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_scientific_com" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are members of the scientific community (researchers, academe)</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_scientific_com" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_scientific_com" name="num_of_scientific_com" value="{{ old('num_of_scientific_com') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
                 <div>
                     <label for="num_of_other_participants" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total number of other participants from other sectors (rice industry players, media, policymakers, general rice consumers)</label>
                     <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                    <input type="number" id="num_of_other_participants" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    <input type="number" id="num_of_other_participants" name="num_of_other_participants" value="{{ old('num_of_other_participants') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                 </div>
             </div>
 
@@ -498,22 +526,22 @@
                     <div>
                         <label for="num_of_male" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Male Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_male" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_male" name="num_of_male" value="{{ old('num_of_male') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_female" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Female Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_female" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_female" name="num_of_female" value="{{ old('num_of_female') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_indigenous" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Indigenous People</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_indigenous" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_indigenous" name="num_of_indigenous" value="{{ old('num_of_indigenous') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_pwd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of PWD</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_pwd" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_pwd" name="num_of_pwd" value="{{ old('num_of_pwd') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
             </div>
@@ -525,13 +553,15 @@
                 <div class="mb-6">                        
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="photo_doc_event">Photo documentation of event/activity</label>
                     <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the training conducted. Ensure that photo files have been named properly before uploading using the Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo_doc_event" type="file" multiple>
+                    <input required id="photo_doc_event" name="photo_doc_event[]" accept="image/png, image/gif, image/jpeg" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
                 </div>
                 <div class="mb-6">                        
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other forms of documentation</label>
                     <p class="text-sm text-gray-500 mb-6">You may upload other forms of training documentation such as attendance/registration sheet, copy of event program, short video or audio clip, and other relevant documents, spreadsheet, or PDF file.</p>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="other_doc" type="file" multiple>
+                    <input required id="other_doc" name="other_doc[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
                 </div>
+
+                {{-- </form> --}}
             </div>
 
 
@@ -541,13 +571,17 @@
         {{-- Back Link --}}
         <div class="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-600 px-4 py-24 mb-12 flex items-center justify-between">
             <span class="text-base text-yellow-600 font-bold">&lt;</span> 
-            <a href="{{ route('encoder.ces_view') }}" class="text-base md:text-sm text-yellow-600 font-bold no-underline hover:underline mr-auto">Go back to home</a>
+            <a 
+                @if(Auth::user()->user_type == 'encoder') href="{{ route('encoder.ces_view') }}" @endif 
+                class="text-base md:text-sm text-yellow-600 font-bold no-underline hover:underline mr-auto">Go back to home</a>
             
-            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                 <box-icon name='send' color="#ffffff"></box-icon>
                 Submit
             </button>
         </div>
+
+                </form>
     </div>
 
 <script>
@@ -659,6 +693,68 @@ $(window).scroll(function(){
    }                   
 });
 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // training_type
+        // other_trainingType
+        // other
+        const selectElement = document.getElementById("training_type");
+        const otherTrainingType = document.getElementById("other_trainingType");
+        const otherOption = selectElement.querySelector('option[value="other"]');
+
+        // Function to toggle the display of the custom occupation input field
+        function toggleCustomInputDisplay() {
+            otherTrainingType.style.display = selectElement.value === "other" ? "block" : "none";
+        }
+
+        // Event listener for the change event on the select element
+        selectElement.addEventListener("change", function() {
+            toggleCustomInputDisplay();
+        });
+
+        // Event listener for the input event on the custom occupation input field
+        otherTrainingType.addEventListener("input", function() {
+            const otherValue = otherTrainingType.value.trim();
+            otherOption.textContent = otherValue || "Other";
+            otherOption.value = otherValue || "other";
+        });
+
+        // Initial call to toggleCustomInputDisplay to ensure correct initial display state
+        toggleCustomInputDisplay();
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // source_of_fund
+        // other_fund
+        // other
+        const selectElement = document.getElementById("source_of_fund");
+        const otherFund = document.getElementById("other_fund");
+        const otherOption = selectElement.querySelector('option[value="other"]');
+
+        // Function to toggle the display of the custom occupation input field
+        function toggleCustomInputDisplay() {
+            otherFund.style.display = selectElement.value === "other" ? "block" : "none";
+        }
+
+        // Event listener for the change event on the select element
+        selectElement.addEventListener("change", function() {
+            toggleCustomInputDisplay();
+        });
+
+        // Event listener for the input event on the custom occupation input field
+        otherFund.addEventListener("input", function() {
+            const otherValue = otherFund.value.trim();
+            otherOption.textContent = otherValue || "Other";
+            otherOption.value = otherValue || "other";
+        });
+
+        // Initial call to toggleCustomInputDisplay to ensure correct initial display state
+        toggleCustomInputDisplay();
+    });
 </script>
 
 </body>

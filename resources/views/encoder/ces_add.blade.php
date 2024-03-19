@@ -120,7 +120,7 @@
       <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
 
           {{-- Card 1 --}}
-          <a href="{{ route('trainingsform.index') }}" target="_blank">
+          <a href="{{ route('trainingsform.create') }}" target="_blank">
             <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 hover:drop-shadow-lg hover:animate-pulse">
                 <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('assets/rice.jpg') }}">
                 <div class="p-5">
