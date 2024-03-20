@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('trainings_forms', function (Blueprint $table) {
             $table->id();
-            $table->string('encoder_name');
-            $table->string('encoder_email');
+            // $table->string('encoder_name');
+            // $table->string('encoder_email');
+            $table->bigInteger('encoder_id');
             $table->string('division');
             $table->string('title');
             $table->string('training_type');

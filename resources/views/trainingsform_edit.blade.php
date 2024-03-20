@@ -93,7 +93,9 @@
             
             {{-- Section 1 --}}
             <hr class="bg-gray-300 my-12">
+
             @include('_message')
+
             <h2 id='section1' class="font-sans font-bold break-normal text-gray-700 px-2 pb-8 text-xl">Section 1</h2>
             <div class="p-8 mt-6 lg:mt-0 leading-normal rounded shadow bg-white">
                 <blockquote class="border-l-4 border-yellow-600 italic my-4 pl-8 md:pl-12">
@@ -112,13 +114,11 @@
                     </div>
                 @endif
 
-                <form action="{{ route('trainingsform.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('trainingsform.update', $record->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="my-10">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email Address</label>
-                    <input type="email" id="email" value="{{ Auth::user()->email }}" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required>
-                    {{-- <input type="hidden" name="email" value="{{ Auth::user()->email }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                    <input type="hidden" name="name" value="{{ Auth::user()->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required> --}}
+                    <input type="email" id="email" value="{{ Auth::user()->email }}" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required>    
                 </div>
             </div>
             
@@ -134,34 +134,8 @@
                             <select id="offices_and_division" name="offices_and_division" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
                                 <option selected disabled>Select</option>
                                 @foreach ($divisions as $division)
-                                    <option value="{{ $division->division }}">{{ $division->division }}</option>
+                                    <option value="{{ $division->division }}" @if($record->division == $division->division) selected @endif >{{ $division->division }}</option>
                                 @endforeach
-                                {{-- <option>ASD (Admin)</option>
-                                <option>ASPPD</option>
-                                <option>BDD</option>
-                                <option>CBC</option>
-                                <option>COA</option>
-                                <option>ComRel</option>
-                                <option>CPD</option>
-                                <option>CSD</option>
-                                <option>DevCom</option>
-                                <option>FMD</option>
-                                <option>GRD</option>
-                                <option>IAU</option>
-                                <option>IMSSO</option>
-                                <option>ISD</option>
-                                <option>ODEDASF</option>
-                                <option>ODEDD</option>
-                                <option>ODEDR</option>
-                                <option>OED</option>
-                                <option>PBBD</option>
-                                <option>PMD</option>
-                                <option>PPD</option>
-                                <option>RCEF</option>
-                                <option>RCFSD</option>
-                                <option>REMD</option>
-                                <option>SED</option>
-                                <option>TMSD</option> --}}
                             </select>
                         </div>
                     </div>
@@ -178,7 +152,7 @@
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
                                 <label for="training_title" class="block mb-2 text-sm font-medium text-gray-900">Title of Training</label>
-                                <input type="text" id="training_title" name="training_title" value="{{ old('training_title') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Training" required>
+                                <input type="text" id="training_title" name="training_title" value="{{ $record->title }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title of Training" required>
                             </div>
                             <div>   
                                 <label for="training_type" class="block mb-2 text-sm font-medium text-gray-900">Type of Training</label>                                               
@@ -186,17 +160,13 @@
                                     <select id="training_type" name="training_type" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
                                         <option selected disabled>Select</option>
                                         @foreach ($training_types as $training_type)
-                                            <option value="{{ $training_type->training_type }}" >{{ $training_type->training_type }}</option>
+                                            <option value="{{ $training_type->training_type }}" @if($record->training_type == $training_type->training_type) selected @endif >{{ $training_type->training_type }}</option>
                                         @endforeach
-                                        {{-- <option value="Rice Specialists' Training Course (RSTC)" >Rice Specialists' Training Course (RSTC)</option>
-                                        <option value="Farmer's Field School (FFS)" >Farmer's Field School (FFS)</option>
-                                        <option value="Training of Trainers (TOT)" >Training of Trainers (TOT)</option>
-                                        <option value="Specialized Course" >Specialized Course</option>
-                                        <option value="Customized/Short Course" >Customized/Short Course</option>
-                                        <option value="Refresher Course" >Refresher Course</option> --}}
-                                        <option value="other" >Other</option>
+                                        <option value="other" @if (!in_array((string)$record->training_type, $training_types->pluck('training_type')->toArray()))
+                                            selected
+                                        @endif >Other</option>
                                     </select>
-                                    <input type="text" name="other_trainingType" id="other_trainingType" value="{{ old('other_trainingType') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" style="display: none;">
+                                    <input type="text" name="other_trainingType" id="other_trainingType" value="{{ $record->training_type }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" style="display: none;">
                                 </div>
                             </div>
                         </div>
@@ -205,15 +175,15 @@
                         <label for="training_style" class="block mb-2 text-sm font-medium text-gray-900">Training Style/Format</label>    
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-1" type="radio" value="Face-to-Face" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
+                                <input id="bordered-radio-1" type="radio" value="Face-to-Face" @if($record->training_style =='Face-to-Face') checked @endif name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
                                 <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Face-to-Face</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-2" type="radio" value="Online" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-2" type="radio" value="Online" @if($record->training_style =='Online') checked @endif name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Online</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-3" type="radio" value="Blended (Online + Face-to-Face)" name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-3" type="radio" value="Blended (Online + Face-to-Face)" @if($record->training_style =='Blended (Online + Face-to-Face)') checked @endif name="training_style_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-3" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Blended (Online + Face-to-Face)</label>
                             </div>
                         </div>
@@ -228,7 +198,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                     </div>
-                                    <input datepicker type="text" name="start_date" value="{{ old('start_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select start date" required>
+                                    <input datepicker type="text" name="start_date" value="{{ \Carbon\Carbon::parse($record->start_date)->format('m-d-Y') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select start date" required>
                                 </div>
                             </div>
                             <div class="gap-6 mb-6">                   
@@ -239,7 +209,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                     </div>
-                                    <input datepicker type="text" name="end_date" value="{{ old('end_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select end date" required>
+                                    <input datepicker type="text" name="end_date" value="{{ \Carbon\Carbon::parse($record->end_date)->format('m-d-Y') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Select end date" required>
                                 </div>
                             </div>
                         </div>
@@ -248,15 +218,15 @@
                         <label for="venue" class="block mb-2 text-sm font-medium text-gray-900">Venue</label>    
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-5" type="radio" value="Within PhilRice station" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
+                                <input id="bordered-radio-5" type="radio" value="Within PhilRice station" name="venue_group" @if($record->venue =='Within PhilRice station') checked @endif class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
                                 <label for="bordered-radio-5" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Within PhilRice station</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-6" type="radio" value="Local (but outside PhilRice station)" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-6" type="radio" value="Local (but outside PhilRice station)" name="venue_group" @if($record->venue =='Local (but outside PhilRice station)') checked @endif class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-6" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Local (but outside PhilRice station)</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded">
-                                <input id="bordered-radio-7" type="radio" value="International" name="venue_group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                <input id="bordered-radio-7" type="radio" value="International" name="venue_group" @if($record->venue =='International') checked @endif class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="bordered-radio-7" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">International</label>
                             </div>
                         </div>           
@@ -277,97 +247,14 @@
                                 <select id="province" name="province" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                     <option selected disabled>Select</option>
                                     @foreach ($provinces as $province)
-                                        <option value="{{ $province->province_name }}">{{ $province->province_name }}</option>
+                                        <option value="{{ $province->province_name }}" @if($record->province == $province->province_name) selected @endif >{{ $province->province_name }}</option>
                                     @endforeach
-                                    {{-- <option>Abra</option>
-                                    <option>NCR</option>
-                                    <option>Agusan Del Norte</option>
-                                    <option>Agusan Del Sur</option>
-                                    <option>Aklan</option>
-                                    <option>Albay</option>
-                                    <option>Antique</option>
-                                    <option>Apayao</option>
-                                    <option>Aurora</option>
-                                    <option>Basilan</option>
-                                    <option>Bataan</option>
-                                    <option>Batanes</option>
-                                    <option>Batangas</option>
-                                    <option>Benguet</option>
-                                    <option>Biliran</option>
-                                    <option>Bohol</option>
-                                    <option>Bukidnon</option>
-                                    <option>Bulacan</option>
-                                    <option>Cagayan</option>
-                                    <option>Camarines Norte</option>
-                                    <option>Camarines Sur</option>
-                                    <option>Camiguin</option>
-                                    <option>Capiz</option>
-                                    <option>Catanduanes</option>
-                                    <option>Cavite</option>
-                                    <option>Cebu</option>
-                                    <option>Compostella Valley</option>
-                                    <option>Cotabato</option>
-                                    <option>Davao Del Norte</option>
-                                    <option>Davao Del Sur</option>
-                                    <option>Davao Occidental</option>
-                                    <option>Davao Oriental</option>
-                                    <option>Dinagat Islands</option>
-                                    <option>Eastern Samar</option>
-                                    <option>Guimaras</option>
-                                    <option>Ifugao</option>
-                                    <option>Ilocos Norte</option>
-                                    <option>Ilocos Sur</option>
-                                    <option>Iloilo</option>
-                                    <option>Isabela</option>
-                                    <option>Kalinga</option>
-                                    <option>La Union</option>
-                                    <option>Laguna</option>
-                                    <option>Lanao Del Norte</option>
-                                    <option>Lanao Del Sur</option>
-                                    <option>Leyte</option>
-                                    <option>Maguindanao</option>
-                                    <option>Marinduque</option>
-                                    <option>Masbate</option>
-                                    <option>Misamis Occidental</option>
-                                    <option>Misamis Oriental</option>
-                                    <option>Mountain Province</option>
-                                    <option>Metro Manila</option>
-                                    <option>Negros Occidental</option>
-                                    <option>Negros Oriental</option>
-                                    <option>Northern Samar</option>
-                                    <option>Nueva Ecija</option>
-                                    <option>Nueva Vizcaya</option>
-                                    <option>Occidental Mindoro</option>
-                                    <option>Oriental Mindoro</option>
-                                    <option>Palawan</option>
-                                    <option>Pampanga</option>
-                                    <option>Pangasinan</option>
-                                    <option>Quezon</option>
-                                    <option>Quirino</option>
-                                    <option>Rizal</option>
-                                    <option>Romblon</option>
-                                    <option>Samar</option>
-                                    <option>Sarangani</option>
-                                    <option>Siquijor</option>
-                                    <option>Sorsogon</option>
-                                    <option>South Cotabato</option>
-                                    <option>Southern Leyte</option>
-                                    <option>Sultan Kudarat</option>
-                                    <option>Sulu</option>
-                                    <option>Surigao Del Norte</option>
-                                    <option>Surigao Del Sur</option>
-                                    <option>Tarlac</option>
-                                    <option>Tawi-Tawi</option>
-                                    <option>Zambales</option>
-                                    <option>Zamboanga Del Norte</option>
-                                    <option>Zamboanga Del Sur</option>
-                                    <option>Zamboanga Sibugay</option> --}}
                                 </select>
                             </div>
                         </div>
                         <div>
                             <label for="city" class="block mb-2 text-sm font-medium text-gray-900">City/Municipality</label>
-                            <input type="text" id="city" name="city" value="{{ old('city') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality">
+                            <input type="text" id="city" name="city" value="{{ $record->municipality }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Municipality">
                         </div>
                     </div>
                 {{-- </form> --}}
@@ -382,11 +269,11 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                         <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Country</label>
-                        <input type="text" id="country" name="country" value="{{ old('country') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Country" >
+                        <input type="text" id="country" name="country" value="{{ $record->country }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Country" >
                     </div>
                     <div>
                         <label for="state" class="block mb-2 text-sm font-medium text-gray-900">State/City/Province</label>
-                        <input type="text" id="state" name="state" value="{{ old('state') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="State/City/Province" >
+                        <input type="text" id="state" name="state" value="{{ $record->state }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="State/City/Province" >
                     </div>
                 </div>
             </div>
@@ -401,7 +288,7 @@
                     <div>
                         <label for="sponsor" class="block mb-2 text-sm font-medium text-gray-900">Name of Implementing Partner/s or Co-Organizer/s</label>
                         <p class="text-sm text-gray-500 mb-2">Specify name of partner, sponsor, or co-organizer. If more than one, separate with comma. If no co-implementer write NONE.</p>
-                        <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
+                        <input type="text" id="sponsor" name="sponsor" value="{{ $record->sponsor }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
                     </div>
                 </div>
 
@@ -409,7 +296,7 @@
                 <div class="gap-6 mb-6">
                     <div>
                         <label for="average_gik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge (GIK)</label>
-                        <input type="number" id="average_gik" name="average_gik" value="{{ old('average_gik') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="average_gik" name="average_gik" value="{{ $record->average_gik }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
 
@@ -422,21 +309,19 @@
                             <select id="source_of_fund" name="source_of_fund" class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" required>
                                 <option selected disabled>Select</option>
                                 @foreach ($funds as $fund)
-                                    <option value="{{ $fund->fund }}" >{{ $fund->fund }}</option>
+                                    <option value="{{ $fund->fund }}" @if($record->fund == $fund->fund) selected @endif >{{ $fund->fund }}</option>
                                 @endforeach
-                                {{-- <option value="Core Fund" >Core Fund</option>
-                                <option value="RCEF" >RCEF</option>
-                                <option value="Other: Extra-core Fund" >Other: Extra-core Fund</option>
-                                <option value="Other: External Fund" >Other: External Fund</option> --}}
-                                <option value="other" >Other</option>
+                                <option value="other" @if (!in_array((string)$record->fund, $funds->pluck('fund')->toArray()))
+                                    selected
+                                @endif >Other</option>
                             </select>
-                            <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" style="display: none;">
+                            <input type="text" name="other_fund" id="other_fund" value="{{ $record->fund }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" style="display: none;">
                         </div>
                     </div>
                     <div>
                         <label for="evaluation" class="block mb-2 text-sm font-medium text-gray-900">Overall Training Evaluation Rating</label>
                         <p class="text-sm text-gray-500 mb-2">Write numerical score(average) and its corresponding rating</p>
-                        <input type="text" id="evaluation" name="evaluation" value="{{ old('evaluation') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="4.8 = Excellent" required>
+                        <input type="text" id="evaluation" name="evaluation" value="{{ $record->evaluation }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="4.8 = Excellent" required>
                     </div>
                 </div>
             </div>
@@ -453,74 +338,38 @@
                     <div class="grid gap-6 mb-6 md:grid-cols-3">
                         @foreach ($participants as $participant)
                             <div class="flex items-center me-4">
-                                <input id="inline-checkbox" type="checkbox" value="{{ $participant->classification }}" name="participants[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <input id="inline-checkbox" type="checkbox" value="{{ $participant->classification }}" name="participants[]" @foreach($participants_cb as $check_single) @if($check_single == $participant->classification) checked @endif @endforeach class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                                 <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">{{ $participant->classification }}</label>
                             </div>
                         @endforeach
-                        {{-- <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Farmer or Seed grower" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Farmer or Seed grower</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Extension workers or other intermediaries (e.g LFT, trainer, extension worker)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Extension workers or other intermediaries (e.g LFT, trainer, extension worker)</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Researcher" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Researcher</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Educator (elementary/high school/college teachers)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Educator (elementary/high school/college teachers)</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Student (e.g college student, post-graduate student)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Student (e.g college student, post-graduate student)</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Policy maker (e.g local chief executive)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Policy maker (e.g local chief executive)</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Media (e.g broadcaster, vlogger, etc)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Media (e.g broadcaster, vlogger, etc)</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="Industry Player (e.g trader, miller, wholesaler, retailer)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">Industry Player (e.g trader, miller, wholesaler, retailer)</label>
-                        </div>
-                        <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="other (e.g OFW, job seeker, freelancer, consultant)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900">other (e.g OFW, job seeker, freelancer, consultant)</label>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="grid gap-6 mb-6 md:grid-cols-2"> 
                     <div>
                         <label for="num_of_participants" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Number of Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_participants" name="num_of_participants" value="{{ old('num_of_participants') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_participants" name="num_of_participants" value="{{ $record->num_of_participants }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_farmers_and_growers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are farmers and seed growers</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_farmers_and_growers" name="num_of_farmers_and_growers" value="{{ old('num_of_farmers_and_growers') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_farmers_and_growers" name="num_of_farmers_and_growers" value="{{ $record->num_of_farmers }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_extension_workers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are extension workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_extension_workers" name="num_of_extension_workers" value="{{ old('num_of_extension_workers') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_extension_workers" name="num_of_extension_workers" value="{{ $record->num_of_extworkers }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_scientific_com" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Of the total number, how many are members of the scientific community (researchers, academe)</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_scientific_com" name="num_of_scientific_com" value="{{ old('num_of_scientific_com') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_scientific_com" name="num_of_scientific_com" value="{{ $record->num_of_scientific }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
                 <div>
                     <label for="num_of_other_participants" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total number of other participants from other sectors (rice industry players, media, policymakers, general rice consumers)</label>
                     <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                    <input type="number" id="num_of_other_participants" name="num_of_other_participants" value="{{ old('num_of_other_participants') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                    <input type="number" id="num_of_other_participants" name="num_of_other_participants" value="{{ $record->num_of_other_sectors }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                 </div>
             </div>
 
@@ -532,25 +381,31 @@
                     <div>
                         <label for="num_of_male" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Male Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_male" name="num_of_male" value="{{ old('num_of_male') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_male" name="num_of_male" value="{{ $record->num_of_male }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_female" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Female Participants</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_female" name="num_of_female" value="{{ old('num_of_female') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_female" name="num_of_female" value="{{ $record->num_of_female }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_indigenous" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Indigenous People</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_indigenous" name="num_of_indigenous" value="{{ old('num_of_indigenous') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_indigenous" name="num_of_indigenous" value="{{ $record->num_of_indigenous }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                     <div>
                         <label for="num_of_pwd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of PWD</label>
                         <p class="text-sm text-gray-500 mb-6">If exact number is unknown, make rough estimate</p>
-                        <input type="number" id="num_of_pwd" name="num_of_pwd" value="{{ old('num_of_pwd') }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
+                        <input type="number" id="num_of_pwd" name="num_of_pwd" value="{{ $record->num_of_pwd }}" min="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="50" required />
                     </div>
                 </div>
             </div>
+
+            @php
+                $images = explode('|', $record->image);
+                $files = explode('|', $record->file);
+                // $check_me = explode(',', $record->check_me);
+            @endphp
 
             {{-- Section 9 --}}
             <hr class="bg-gray-300 my-12">
@@ -559,12 +414,18 @@
                 <div class="mb-6">                        
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="photo_doc_event">Photo documentation of event/activity</label>
                     <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the training conducted. Ensure that photo files have been named properly before uploading using the Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
-                    <input required id="photo_doc_event" name="photo_doc_event[]" accept="image/png, image/gif, image/jpeg" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
+                    <input id="photo_doc_event" name="photo_doc_event[]" accept="image/png, image/gif, image/jpeg" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
+                    @foreach ($images as $image)
+                        <a href="{{ URL::to('public/images/' . $image) }}" target="_blank" >{{ $image }},</a>
+                    @endforeach
                 </div>
                 <div class="mb-6">                        
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other forms of documentation</label>
                     <p class="text-sm text-gray-500 mb-6">You may upload other forms of training documentation such as attendance/registration sheet, copy of event program, short video or audio clip, and other relevant documents, spreadsheet, or PDF file.</p>
-                    <input required id="other_doc" name="other_doc[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
+                    <input id="other_doc" name="other_doc[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
+                    @foreach ($files as $file)
+                        <a href="{{ URL::to('public/files/' . $file) }}" download="{{ 'public/files/' . $file }}">{{ $file }},</a>
+                    @endforeach
                 </div>
 
                 {{-- </form> --}}
@@ -583,7 +444,7 @@
             
             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                 <box-icon name='send' color="#ffffff"></box-icon>
-                Submit
+                Save
             </button>
         </div>
 

@@ -10,8 +10,9 @@ class TrainingsForm extends Model
     use HasFactory;
 
     protected $fillable = [
-        'encoder_name',
-        'encoder_email',
+        'encoder_id',
+        // 'encoder_name',
+        // 'encoder_email',
         'division',
         'title',
         'training_type',

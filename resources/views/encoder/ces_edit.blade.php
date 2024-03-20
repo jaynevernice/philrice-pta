@@ -166,6 +166,8 @@
     </div>
   </div>
 
+  @include('_message')
+
   {{-- Table --}}
   <div class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -184,7 +186,7 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <div class="flex items-center">
-                        Offices and Divisions
+                        Office
                         <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a>
@@ -207,36 +209,83 @@
                     </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Location
+                        <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                        </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Participants
+                        <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                        </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Action
+                        <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                        </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
                 </th>
             </tr>
         </thead>
         <tbody>
+          @foreach($records as $record)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
-                  RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds, and Farm Mechanization - CES 2023 Batch 01
-              </th>
-              <td class="px-6 py-4">
-                  TMSD
-              </td>
-              <td class="px-6 py-4">
-                  March 13, 2023
-              </td>
-              <td class="px-6 py-4">
-                  Within PhilRice Station
-              </td>
-              <td class="px-6 py-4 text-right">
-                  <a href="#" target="_blank">
-                      <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                          <box-icon name='expand-alt' size="xs"></box-icon>
-                          {{-- <span class="sr-only">Edit</span> --}}
-                      </button>
-                  </a>
-              </td>
-          </tr>
-          
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
+                    {{ $record->title }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ $record->division }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $record->start_date }} - {{ $record->end_date }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $record->venue }}
+                </td>
+                <td class="px-6 py-4">
+                    @if (!empty($record->province && $record->municipality))
+                      {{ $record->province }}, {{ $record->municipality }}
+                    @else
+                      {{ $record->state }}, {{ $record->country }}
+                    @endif
+                </td>
+                <td class="px-6 py-4">
+                    {{ $record->num_of_participants }}
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" target="_blank">
+                        <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <box-icon name='expand-alt' size="xs"></box-icon>
+                            {{-- <span class="sr-only">Edit</span> --}}
+                        </button>
+                    </a>
+                    <a href="{{ route('trainingsform.edit', $record->id) }}">
+                      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                    </a>
+                    <form action="{{ route('trainingsform.delete', $record->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" onclick="return confirm('Are you sure to delete?')" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                    </form>
+                </td>
+            </tr>
+          @endforeach
         </tbody>
     </table>
+  </div>
+
+  <div class="card-footer">
+      {!! $records->links() !!}
   </div>
 
 </main>
