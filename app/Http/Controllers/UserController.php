@@ -53,7 +53,7 @@ class UserController extends Controller
     public function fetchDivisions(Request $request)
     {
         // $divisions = Division::where("station_id", $request->station_id)->get(["division", "station_id"]);
-        $data['divisions'] = Division::where("station_id", $request->station_id)->get(["division", "id"]);
+        $data['divisions'] = Division::where("station_id", $request->station_id)->orderBy('division', 'asc')->get(["division", "id"]);
 
         // dd($divisions);
         // dd($data);
@@ -64,7 +64,7 @@ class UserController extends Controller
     public function fetchPositions(Request $request)
     {
         // $positions = Position::where("division_id", $request->division_id)->get(["position", "division_id"]);    
-        $data['positions'] = Position::where("division_id", $request->division_id)->get(["position", "id"]);    
+        $data['positions'] = Position::where("division_id", $request->division_id)->orderBy('position', 'asc')->get(["position", "id"]);    
         
         return response()->json($data);
     }

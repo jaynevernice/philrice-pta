@@ -67,6 +67,9 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'AuthLogin'])->name('auth_login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+// live search and filter
+// Route::post('/trainings/year', [TrainingsFormController::class, 'yearAjax']);
+
 // Guest
 Route::group(['prefix' => 'guest'], function() {
 
@@ -244,7 +247,11 @@ Route::group(['middleware' => 'encoder'], function () {
             return view('encoder.ces_add');
         })->name('encoder.ces_add');
 
+        // live search and filter
         Route::get('/ces_edit',[TrainingsFormController::class,'cesEditView'])->name('encoder.ces_edit');
+        Route::post('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
+        // Route::get('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
+        // Route::post('/trainings/year',[TrainingsFormController::class,'yearAjax']);
         // Route::get('/ces_edit', function () {
         //     return view('encoder.ces_edit');
         // })->name('encoder.ces_edit');

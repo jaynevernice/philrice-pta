@@ -31,20 +31,106 @@ class TrainingsFormController extends Controller
 
     public function cesEditView()
     {
-        if(!empty(Auth::check())) {
-            $encoder_id = Auth::user()->id;
+        // if(!empty(Auth::check())) {
+        //     $encoder_id = Auth::user()->id;
+        // }
+
+        // $records = DB::table('trainings_forms')
+        // ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+        // ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
+        // // remove the line below to show all records
+        // ->where("encoder_id", '=', $encoder_id)
+        // ->latest('trainings_forms.created_at')
+        // // ->simplePaginate(5);
+        // // ->paginate(5);
+        // ->get();
+
+        if(empty(Auth::check())) {
+            abort(404);
         }
 
-        $records = DB::table('trainings_forms')
-        ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-        ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
-        // remove the line below to show all records
-        ->where("encoder_id", '=', $encoder_id)
-        ->latest('trainings_forms.created_at')
-        ->simplePaginate(5);
-
         // dd($records->all());
-        return view('encoder.ces_edit', compact('records'));
+        // return view('encoder.ces_edit', compact('records'));
+        return view('encoder.ces_edit');
+    }
+
+    /**
+     * Live Search and Filter
+     */
+    public function filterAjax(Request $request)
+    {
+        if (!empty(Auth::check())) {
+            $encoder_id = Auth::user()->id;
+        } else {
+            abort(404);
+        }
+
+        if ($request->boolean('showTraining')) {
+            // Get the current page number from the request, default to 1 if not provided
+            $page = $request->input('page', 1);
+
+            // Get the number of records to display per page from the request or use a default value
+            $recordsPerPage = $request->input('recordsPerPage', 5);
+
+            // Calculate the offset to skip records based on the current page number
+            $offset = ($page - 1) * $recordsPerPage;
+
+            // Query to fetch records with pagination
+            $records = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
+                ->where('encoder_id', $encoder_id)
+                ->latest('trainings_forms.id')
+                ->skip($offset) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+
+            return response()->json(['records' => $records]);
+        }
+
+       if ($request->boolean('filterTrainings')) {
+            $searchInput = $request->searchInput ?? '';
+            $yearSelect = $request->yearSelect ?? '';
+            $quarterSelect = $request->quarterSelect ?? '';
+
+            $records = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
+                ->where('encoder_id', $encoder_id)
+                ->when(!empty($quarterSelect), function ($query) use ($quarterSelect) {
+                    if ($quarterSelect == 'Q1') {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', 1)
+                                ->whereMonth('trainings_forms.start_date', '<=', 3);
+                    } elseif ($quarterSelect == 'Q2') {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', 4)
+                                ->whereMonth('trainings_forms.start_date', '<=', 6);
+                    } elseif ($quarterSelect == 'Q3') {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', 7)
+                                ->whereMonth('trainings_forms.start_date', '<=', 9);
+                    } elseif ($quarterSelect == 'Q4') {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', 10)
+                                ->whereMonth('trainings_forms.start_date', '<=', 12);
+                    }
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('start_date', '=', $yearSelect);
+                })
+                ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                    return $query->where('title', 'LIKE', "%$searchInput%")
+                                ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                ->orWhere('venue', 'LIKE', "%$searchInput%")
+                                ->orWhere('province', 'LIKE', "%$searchInput%")
+                                ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                ->orWhere('country', 'LIKE', "%$searchInput%")
+                                ->orWhere('state', 'LIKE', "%$searchInput%")
+                                ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                })
+                ->orderBy('title', 'ASC')
+                ->get();
+
+            return response()->json(['records' => $records]);
+        }
+
     }
 
     /**
@@ -480,6 +566,7 @@ class TrainingsFormController extends Controller
 
         $record->delete();
  
-        return redirect()->back()->with('warning', "You successfully deleted a data.");
+        // return redirect()->back()->with('warning', "You successfully deleted a data.");
+        return response()->json(['message' => 'Record deleted successfully']);
     }
 }
