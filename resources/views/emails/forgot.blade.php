@@ -7,7 +7,7 @@ Hello {{ $user->name }},
 Reset Your Password
 @endcomponent
 
-<p>In case you have any issues recovering your password, please contact us.</p>
+<p>In case you have any issues recovering your password, please contact philrice.tmsd@gmail.com</p>
 
 Thanks,<br>
 {{ config('app.name') }}

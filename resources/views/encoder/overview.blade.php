@@ -48,7 +48,7 @@
 
       {{-- BATAC --}}
       <li>
-        <a href="{{ route('viewer.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">BATAC</span>
         </a>
@@ -56,7 +56,7 @@
 
       {{-- AGUSAN --}}
       <li>
-        <a href="{{ route('viewer.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">AGUSAN</span>
         </a>
@@ -64,7 +64,7 @@
 
       {{-- BICOL --}}
       <li>
-        <a href="{{ route('viewer.bicol') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.bicol') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">BICOL</span>
         </a>
@@ -72,7 +72,7 @@
 
       {{-- ISABELA --}}
       <li>
-        <a href="{{ route('viewer.isabela') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.isabela') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">ISABELA</span>
         </a>
@@ -80,7 +80,7 @@
 
       {{-- LOS BAÑOS --}}
       <li>
-        <a href="{{ route('viewer.losbaños') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.losbaños') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">LOS BAÑOS</span>
         </a>
@@ -88,7 +88,7 @@
 
       {{-- MIDSAYAP --}}
       <li>
-        <a href="{{ route('viewer.midsayap') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.midsayap') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">MIDSAYAP</span>
         </a>
@@ -96,7 +96,7 @@
 
       {{-- NEGROS --}}
       <li>
-        <a href="{{ route('viewer.negros') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+        <a href="{{ route('encoder.negros') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
           <box-icon name='building' type='solid'></box-icon>
           <span class="ml-3">NEGROS</span>
         </a>

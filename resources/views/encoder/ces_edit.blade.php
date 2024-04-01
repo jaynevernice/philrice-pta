@@ -165,12 +165,12 @@
     </div>
 
     {{-- Export Button --}}
-    <div class="mr-2">
+    {{-- <div class="mr-2">
       <button type="button" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
         <box-icon name='file-export' type='solid' color="#ffffff" size="sm" ></box-icon>
             <span class="px-1">Export</span>
       </button>
-    </div>
+    </div> --}}
   </div>
 
   @include('_message')
@@ -631,68 +631,68 @@
   });
 
   $('#yearSelect').on('change', function() {
-        var searchInput = $('#trainingsSearch').val();
-        var yearSelect = $('#yearSelect').val();
-        var quarterSelect = $('#quarterSelect').val();
+      var searchInput = $('#trainingsSearch').val();
+      var yearSelect = $('#yearSelect').val();
+      var quarterSelect = $('#quarterSelect').val();
 
-        if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-          loadTrainings(1);
-        } else {
-          $.ajax({
-              url: "/encoder/trainings/filter",
-              method: "POST",
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-              },
-              data: {
-                  'filterTrainings': true,
-                  'searchInput': searchInput,
-                  'yearSelect': yearSelect,
-                  'quarterSelect': quarterSelect,
-              },
-              success: function(result) {
-                  showTrainings(result['records']);
-                  $('#nextButton').hide();
-                  $('#prevButton').hide();
-              },
-              error: function(error) {
-                  alert("Oops something went wrong!");
-              }
-          })
-        }
-    })
+      if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
+        loadTrainings(1);
+      } else {
+        $.ajax({
+            url: "/encoder/trainings/filter",
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            data: {
+                'filterTrainings': true,
+                'searchInput': searchInput,
+                'yearSelect': yearSelect,
+                'quarterSelect': quarterSelect,
+            },
+            success: function(result) {
+                showTrainings(result['records']);
+                $('#nextButton').hide();
+                $('#prevButton').hide();
+            },
+            error: function(error) {
+                alert("Oops something went wrong!");
+            }
+        })
+      }
+  })
 
-    $('#quarterSelect').on('change', function() {
-        var searchInput = $('#trainingsSearch').val();
-        var yearSelect = $('#yearSelect').val();
-        var quarterSelect = $('#quarterSelect').val();
+  $('#quarterSelect').on('change', function() {
+      var searchInput = $('#trainingsSearch').val();
+      var yearSelect = $('#yearSelect').val();
+      var quarterSelect = $('#quarterSelect').val();
 
-        if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-          loadTrainings(1);
-        } else {
-          $.ajax({
-              url: "/encoder/trainings/filter",
-              method: "POST",
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-              },
-              data: {
-                  'filterTrainings': true,
-                  'searchInput': searchInput,
-                  'yearSelect': yearSelect,
-                  'quarterSelect': quarterSelect,
-              },
-              success: function(result) {
-                  showTrainings(result['records']);
-                  $('#nextButton').hide();
-                  $('#prevButton').hide();
-              },
-              error: function(error) {
-                  alert("Oops something went wrong!");
-              }
-          })
-        }
-    })
+      if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
+        loadTrainings(1);
+      } else {
+        $.ajax({
+            url: "/encoder/trainings/filter",
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            data: {
+                'filterTrainings': true,
+                'searchInput': searchInput,
+                'yearSelect': yearSelect,
+                'quarterSelect': quarterSelect,
+            },
+            success: function(result) {
+                showTrainings(result['records']);
+                $('#nextButton').hide();
+                $('#prevButton').hide();
+            },
+            error: function(error) {
+                alert("Oops something went wrong!");
+            }
+        })
+      }
+  })
 
   function nextPage() {
     loadTrainings(currentPage + 1);
