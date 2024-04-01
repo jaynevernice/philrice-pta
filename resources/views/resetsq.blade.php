@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Forgot Password
+    Forgot Password | Security Questions
 @endsection
 
 @section('content')
