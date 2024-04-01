@@ -133,7 +133,6 @@
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    {{-- <option selected disabled>Select Form</option> --}}
                     <option selected>Summary of Trainings</option>
                 </select>
             </div>
@@ -143,7 +142,6 @@
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="year">
-                    {{-- <option selected disabled>Select Year</option> --}}
                     <option selected>2024</option>
                 </select>
             </div>
@@ -153,7 +151,6 @@
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="quarter">
-                    {{-- <option selected disabled>Select Quarter</option> --}}
                     <option>Q1 | January - March </option>
                     <option selected> Q2 | April - June </option>
                 </select>
@@ -163,9 +160,7 @@
             <div class="ml-auto">
                 <button type="button"
                     class="h-12 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    {{-- <box-icon name='file-export' type='solid' color="#ffffff" size="sm"></box-icon> --}}
                     <span class="px-1">Export</span>
-                    {{-- <box-icon name='export' size="m" color="#ffffff" ></box-icon> --}}
                 </button>
             </div>
 
