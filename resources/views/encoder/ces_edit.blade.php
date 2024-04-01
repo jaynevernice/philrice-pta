@@ -1,168 +1,194 @@
 @extends('layouts.dashboard')
 
 @section('title')
-{{-- <title>Encoder Overview</title> --}}
-<title>PhilRice CES - Summary of Trainings ({{ date('Y') }})</title>
+    {{-- <title>Encoder Overview</title> --}}
+    {{-- PhilRice CES - Summary of Trainings ({{ date('Y') }}) --}}
+    PhilRice CES | Edit Data
 @endsection
 
 @section('sidebar')
-<aside class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidenav" id="drawer-navigation">
-  <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
-    <ul class="space-y-2">
+    <aside
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidenav" id="drawer-navigation">
+        <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+            <ul class="space-y-2">
 
-      {{-- Overview --}}
-      <li>
-        <a href="{{ route('encoder.overview') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon type='solid' name='pie-chart-alt-2'></box-icon>
-          <span class="ml-3">Overview</span>
-        </a>
-      </li>
+                {{-- Overview --}}
+                <li>
+                    <a href="{{ route('encoder.overview') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon type='solid' name='pie-chart-alt-2'></box-icon>
+                        <span class="ml-3">Overview</span>
+                    </a>
+                </li>
 
-      {{-- CES --}}
-      <li>
-        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700" aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
-          <box-icon name='chevron-down'></box-icon>
-         </a>
-        <ul id="dropdown-sales" class="py-2 space-y-2">
-          <li>
-            <a href="{{ route('encoder.ces_view') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-              <box-icon name='line-chart' ></box-icon>
-              <span class="ml-3">View Data</span>
-            </a>  
-          </li>
-          <li>
-            <a href="{{ route('encoder.ces_add') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-              <box-icon name='plus'></box-icon>
-              <span class="ml-3">Add Data</span>
-            </a>  
-          </li>
-          <li>
-            <a href="{{ route('encoder.ces_edit') }}" class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-              <box-icon name='edit-alt' type='solid'></box-icon>
-              <span class="ml-3">Edit Data</span>
-            </a>  
-          </li>
-        </ul>
-      </li>
+                {{-- CES --}}
+                <li>
+                    <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
+                        <box-icon name='chevron-down'></box-icon>
+                    </a>
+                    <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <li>
+                            <a href="{{ route('encoder.ces_view') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                <box-icon name='line-chart'></box-icon>
+                                <span class="ml-3">View Data</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('encoder.ces_add') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                <box-icon name='plus'></box-icon>
+                                <span class="ml-3">Add Data</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('encoder.ces_edit') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                <box-icon name='edit-alt' type='solid'></box-icon>
+                                <span class="ml-3">Edit Data</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-      {{-- AGUSAN --}}
-      <li>
-        <a href="{{ route('encoder.agusan') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">AGUSAN</span>
-        </a>
-      </li>
+                {{-- AGUSAN --}}
+                <li>
+                    <a href="{{ route('encoder.agusan') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">AGUSAN</span>
+                    </a>
+                </li>
 
-      {{-- BATAC --}}
-      <li>
-        <a href="{{ route('encoder.batac') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">BATAC</span>
-        </a>
-      </li>
+                {{-- BATAC --}}
+                <li>
+                    <a href="{{ route('encoder.batac') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">BATAC</span>
+                    </a>
+                </li>
 
-      {{-- BICOL --}}
-      <li>
-        <a href="{{ route('encoder.bicol') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">BICOL</span>
-        </a>
-      </li>
+                {{-- BICOL --}}
+                <li>
+                    <a href="{{ route('encoder.bicol') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">BICOL</span>
+                    </a>
+                </li>
 
-      {{-- ISABELA --}}
-      <li>
-        <a href="{{ route('encoder.isabela') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">ISABELA</span>
-        </a>
-      </li>
+                {{-- ISABELA --}}
+                <li>
+                    <a href="{{ route('encoder.isabela') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">ISABELA</span>
+                    </a>
+                </li>
 
-      {{-- LOS BAÑOS --}}
-      <li>
-        <a href="{{ route('encoder.losbaños') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">LOS BAÑOS</span>
-        </a>
-      </li>
+                {{-- LOS BAÑOS --}}
+                <li>
+                    <a href="{{ route('encoder.losbaños') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">LOS BAÑOS</span>
+                    </a>
+                </li>
 
-      {{-- MIDSAYAP --}}
-      <li>
-        <a href="{{ route('encoder.midsayap') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">MIDSAYAP</span>
-        </a>
-      </li>
+                {{-- MIDSAYAP --}}
+                <li>
+                    <a href="{{ route('encoder.midsayap') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">MIDSAYAP</span>
+                    </a>
+                </li>
 
-      {{-- NEGROS --}}
-      <li>
-        <a href="{{ route('encoder.negros') }}" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-          <box-icon name='building' type='solid'></box-icon>
-          <span class="ml-3">NEGROS</span>
-        </a>
-      </li>
+                {{-- NEGROS --}}
+                <li>
+                    <a href="{{ route('encoder.negros') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">NEGROS</span>
+                    </a>
+                </li>
 
-    </ul>
-  </div>
-</aside>
-
+            </ul>
+        </div>
+    </aside>
 @endsection
 
 @section('content')
-<main class="p-4 md:ml-64 h-auto pt-20">
+    <main class="p-4 md:ml-64 h-auto pt-20">
 
-  {{-- Station --}}
-  <div class="flex">        
-    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Central Experimental Station</h1>
-  </div>
+        {{-- Station --}}
+        <div class="flex">
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
+                    class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span>
+                Central Experimental Station</h1>
+        </div>
 
-  {{-- Filters and Export --}}
-  <div class="flex my-4">
-    {{-- Form --}}
-    <div class="mr-2">
-      <select class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="form">
-          <option selected disabled>Select Form</option>
-          <option>Summary of Trainings</option>
-          <option disabled>Technical Dispatch</option>
-          <option disabled>KSL</option>
-      </select>
-    </div>
+        {{-- Filters and Export --}}
+        <div class="flex my-4">
+            {{-- Form --}}
+            <div class="mr-2">
+                <select
+                    class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="form">
+                    <option selected disabled>Select Form</option>
+                    <option>Summary of Trainings</option>
+                    <option disabled>Technical Dispatch</option>
+                    <option disabled>KSL</option>
+                </select>
+            </div>
 
-    {{-- Year --}}
-    <div class="mx-2">
-      <select name="year" class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="yearSelect">
-          <option value="" selected >All Year</option>
-          @for ($year = date('Y'); $year >= 1990; $year--)
-              <option value="{{ $year }}" @if ($year == date('Y')) @endif>
-              {{ $year }}
-              </option>
-          @endfor
-      </select>
-    </div>
+            {{-- Year --}}
+            <div class="mx-2">
+                <select name="year"
+                    class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="yearSelect">
+                    <option value="" selected>All Year</option>
+                    @for ($year = date('Y'); $year >= 1990; $year--)
+                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
+                            {{ $year }}
+                        </option>
+                    @endfor
+                </select>
+            </div>
 
-    {{-- Quarter --}}
-    <div class="mx-2 mr-auto">
-      <select name="quarter" class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm" id="quarterSelect">
-          <option value="" selected >All Quarter</option>
-          <option value="Q1" >January - March</option>
-          <option value="Q2" >April - June</option>
-          <option value="Q3" >July - September</option>
-          <option value="Q4" >October - December</option>
-      </select>
-    </div>
+            {{-- Quarter --}}
+            <div class="mx-2 mr-auto">
+                <select name="quarter"
+                    class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="quarterSelect">
+                    <option value="" selected>All Quarter</option>
+                    <option value="Q1">January - March</option>
+                    <option value="Q2">April - June</option>
+                    <option value="Q3">July - September</option>
+                    <option value="Q4">October - December</option>
+                </select>
+            </div>
 
-    {{-- Search --}}
-    <div class="mr-2">
-      <div class="relative">
-          <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-              </svg>
-          </div>
-          <input type="search" id="trainingsSearch" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
-      </div>
-    </div>
+            {{-- Search --}}
+            <div class="mr-2">
+                <div class="relative">
+                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="search" id="trainingsSearch"
+                        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search...">
+                </div>
+            </div>
 
     {{-- Export Button --}}
     {{-- <div class="mr-2">
@@ -173,81 +199,82 @@
     </div> --}}
   </div>
 
-  @include('_message')
+        @include('_message')
 
-  {{-- Table --}}
-  <div id="custom_table" class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table id="table_data" data-page-length='5' class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Title of Training
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        {{-- Table --}}
+        <div id="custom_table" class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table id="table_data" data-page-length='5'
+                class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Title of Training
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Office
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Office
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Date
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Date
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Venue
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Venue
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Location
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Location
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Participants
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Participants
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Date Encoded
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Date Encoded
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Action
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Action
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                    </div>
-                </th>
-            </tr>
-        </thead>
-        <tbody id="table-body" >
-          {{-- @foreach($records as $key => $record)
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    {{-- @foreach ($records as $key => $record)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="px-6 py-4">
                     {{ ($records->currentPage() - 1) * $records->perPage() + $loop->iteration }}
@@ -296,25 +323,25 @@
                 </td>
             </tr>
           @endforeach --}}
-        </tbody>
-    </table>
+                </tbody>
+            </table>
 
-    <button id="prevButton" onclick="prevPage()">Previous</button> 
-    <button id="nextButton" onclick="nextPage()">Next</button>
+            <button id="prevButton" onclick="prevPage()">Previous</button>
+            <button id="nextButton" onclick="nextPage()">Next</button>
 
-  </div>
+        </div>
 
-  {{-- <div class="pagination-container">
+        {{-- <div class="pagination-container">
       <ul class="pagination flex list-none justify-center">
         {!! $records->links() !!}
       </ul>
   </div> --}}
 
-</main>
+    </main>
 @endsection
 
 @section('charts')
-  {{-- <script>
+    {{-- <script>
     // Chart 1
   var pie = {
           series: [44, 55, 13, 43, 22],
@@ -527,215 +554,237 @@
 @endsection
 
 @section('datatable')
+    <script>
+        let currentPage = 1;
+        const recordsPerPage = 5; // Change this number according to your preference
 
-<script>
-  let currentPage = 1;
-  const recordsPerPage = 5; // Change this number according to your preference
+        $(document).ready(function() {
+            loadTrainings(currentPage);
+        });
 
-  $(document).ready(function() {
-    loadTrainings(currentPage);
-  });
+        function showTrainings(result) {
+            const tableBody = $('#table-body');
 
-  function showTrainings(result) {
-    const tableBody = $('#table-body');
+            // Efficient template literal construction using map()
+            const trainingRows = result.map(data => `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
+                <td class="px-6 py-4">${data.division || '-'}</td>  
+                <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
+                <td class="px-6 py-4">${data.venue || '-'}</td>  
+                <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
+                <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
+                <td class="px-6 py-4">${data.created_at || '-'}</td>  
+                <td class="px-6 py-4">
+                <a href="#" target="_blank">
+                    <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <box-icon name='expand-alt' size="xs"></box-icon>
+                        <span class="sr-only">Edit</span>
+                    </button>
+                </a>
+                <button onclick="showRecord(${data.id || '-'})" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="deleteRecord(${data.id || '-'})">Delete</button>
+                </td>  
+            </tr>
+            `).join('');
 
-    // Efficient template literal construction using map()
-    const trainingRows = result.map(data => `
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-        <td class="px-6 py-4">${data.division || '-'}</td>  
-        <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
-        <td class="px-6 py-4">${data.venue || '-'}</td>  
-        <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
-        <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
-        <td class="px-6 py-4">${data.created_at || '-'}</td>  
-        <td class="px-6 py-4">
-          <a href="#" target="_blank">
-              <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  <box-icon name='expand-alt' size="xs"></box-icon>
-                  <span class="sr-only">Edit</span>
-              </button>
-          </a>
-          <button onclick="showRecord(${data.id || '-'})" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-          <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="deleteRecord(${data.id || '-'})">Delete</button>
-        </td>  
-      </tr>
-    `).join('');
+            // Single DOM manipulation for better performance
+            tableBody.html(trainingRows);
 
-    // Single DOM manipulation for better performance
-    tableBody.html(trainingRows);
-
-  }
-
-  function loadTrainings(page) {
-    $.ajax({
-      url: "/encoder/trainings/filter",
-      method: "POST",
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-      },
-      data: {
-        'showTraining': true,
-        'page': page,
-        'recordsPerPage': recordsPerPage
-      },
-      success: function(result) {
-        showTrainings(result['records']);
-        currentPage = page; // Update current page
-
-        // Check if there are more records beyond the current page
-        if (currentPage < result['records'].length) {
-          $('#nextButton').show();
-          $('#prevButton').show();
-        } else {
-          $('#nextButton').hide();
-          $('#prevButton').show();
         }
-      },
-      error: function(error) {
-        alert("Oops something went wrong!");
-      }
-    })
-  }
 
-  $('#trainingsSearch').on('keyup input', function() {
-      var searchInput = $('#trainingsSearch').val();
-      var yearSelect = $('#yearSelect').val();
-      var quarterSelect = $('#quarterSelect').val();
-      
-      if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-        loadTrainings(1);
-      } else {
-        $.ajax({
-            url: "/encoder/trainings/filter",
-            method: "POST",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            data: {
-                'filterTrainings': true,
-                'searchInput': searchInput,
-                'yearSelect': yearSelect,
-                'quarterSelect': quarterSelect,
-            },
-            success: function(result) {
-                showTrainings(result['records']);
-                $('#nextButton').hide();
-                $('#prevButton').hide();
-            },
-            error: function(error) {
-                alert("Oops something went wrong!");
-            }
-        })
-      }
-  });
+        function loadTrainings(page) {
+            $.ajax({
+                url: "/encoder/trainings/filter",
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                data: {
+                    'showTraining': true,
+                    'page': page,
+                    'recordsPerPage': recordsPerPage
+                },
+                success: function(result) {
+                    showTrainings(result['records']);
+                    currentPage = page; // Update current page
 
-  $('#yearSelect').on('change', function() {
-      var searchInput = $('#trainingsSearch').val();
-      var yearSelect = $('#yearSelect').val();
-      var quarterSelect = $('#quarterSelect').val();
-
-      if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-        loadTrainings(1);
-      } else {
-        $.ajax({
-            url: "/encoder/trainings/filter",
-            method: "POST",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            data: {
-                'filterTrainings': true,
-                'searchInput': searchInput,
-                'yearSelect': yearSelect,
-                'quarterSelect': quarterSelect,
-            },
-            success: function(result) {
-                showTrainings(result['records']);
-                $('#nextButton').hide();
-                $('#prevButton').hide();
-            },
-            error: function(error) {
-                alert("Oops something went wrong!");
-            }
-        })
-      }
-  })
-
-  $('#quarterSelect').on('change', function() {
-      var searchInput = $('#trainingsSearch').val();
-      var yearSelect = $('#yearSelect').val();
-      var quarterSelect = $('#quarterSelect').val();
-
-      if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-        loadTrainings(1);
-      } else {
-        $.ajax({
-            url: "/encoder/trainings/filter",
-            method: "POST",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            data: {
-                'filterTrainings': true,
-                'searchInput': searchInput,
-                'yearSelect': yearSelect,
-                'quarterSelect': quarterSelect,
-            },
-            success: function(result) {
-                showTrainings(result['records']);
-                $('#nextButton').hide();
-                $('#prevButton').hide();
-            },
-            error: function(error) {
-                alert("Oops something went wrong!");
-            }
-        })
-      }
-  })
-
-  function nextPage() {
-    loadTrainings(currentPage + 1);
-  }
-
-  function prevPage() {
-    if (currentPage > 1) {
-      loadTrainings(currentPage - 1);
-    }
-  }
-
-  function showRecord(id) {
-    window.location.href = "{{ route('trainingsform.edit', ':id') }}".replace(':id', id);
-  }
-
-  function deleteRecord(id) {
-    if (confirm('Are you sure you want to delete this record?')) {
-      // Use AJAX to send a DELETE request to the appropriate route
-      $.ajax({
-        url: '/encoder/trainings/form-delete/' + id, // Replace with the correct route for deleting training
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        },
-        data: {
-          'deleteRecord': true,
-        },
-        success: function(response) {
-          if (response.message === 'Record deleted successfully') {
-            $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
-            alert('Successfully deleted');
-          } else {
-            console.error('Error deleting training:', response.error); // Handle potential errors
-          }
-          loadTrainings(currentPage); // Reload current page's trainings
-        },
-        error: function(error) {
-          // Handle any errors during deletion
-          console.error('Error deleting record:', error);
+                    // Check if there are more records beyond the current page
+                    if (currentPage < result['records'].length) {
+                        $('#nextButton').show();
+                        $('#prevButton').show();
+                    } else {
+                        $('#nextButton').hide();
+                        $('#prevButton').show();
+                    }
+                },
+                error: function(error) {
+                    alert("Oops something went wrong!");
+                }
+            })
         }
-      });
-    }
-  }
-</script>
 
+        $('#trainingsSearch').on('keyup input', function() {
+            var searchInput = $('#trainingsSearch').val();
+            var yearSelect = $('#yearSelect').val();
+            var quarterSelect = $('#quarterSelect').val();
+
+            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'quarterSelect': quarterSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        });
+
+        // $('#yearSelect').on('change', function() {
+        //     var searchInput = $('#trainingsSearch').val();
+        //     var yearSelect = $('#yearSelect').val();
+        //     var quarterSelect = $('#quarterSelect').val();
+
+        //     if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+        //         loadTrainings(1);
+        //     } else {
+        //         $.ajax({
+        //             url: "/encoder/trainings/filter",
+        //             method: "POST",
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        //             },
+        //             data: {
+        //                 'filterTrainings': true,
+        //                 'searchInput': searchInput,
+        //                 'yearSelect': yearSelect,
+        //                 'quarterSelect': quarterSelect,
+        //             },
+        //             success: function(result) {
+        //                 showTrainings(result['records']);
+        //                 $('#nextButton').hide();
+        //                 $('#prevButton').hide();
+        //             },
+        //             error: function(error) {
+        //                 alert("Oops something went wrong!");
+        //             }
+        //         })
+        //     }
+        // })
+
+        $('#yearSelect').on('change', function() {
+            var searchInput = $('#trainingsSearch').val();
+            var yearSelect = $('#yearSelect').val();
+            var quarterSelect = $('#quarterSelect').val();
+
+            if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'quarterSelect': quarterSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        })
+
+        $('#quarterSelect').on('change', function() {
+            var searchInput = $('#trainingsSearch').val();
+            var yearSelect = $('#yearSelect').val();
+            var quarterSelect = $('#quarterSelect').val();
+
+            if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'quarterSelect': quarterSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        })
+
+        function showRecord(id) {
+            window.location.href = "{{ route('trainingsform.edit', ':id') }}".replace(':id', id);
+        }
+
+        function deleteRecord(id) {
+            if (confirm('Are you sure you want to delete this record?')) {
+                // Use AJAX to send a DELETE request to the appropriate route
+                $.ajax({
+                    url: '/encoder/trainings/form-delete/' +
+                    id, // Replace with the correct route for deleting training
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'deleteRecord': true,
+                    },
+                    success: function(response) {
+                        if (response.message === 'Record deleted successfully') {
+                            $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
+                            alert('Successfully deleted');
+                        } else {
+                            console.error('Error deleting training:', response
+                            .error); // Handle potential errors
+                        }
+                        loadTrainings(currentPage); // Reload current page's trainings
+                    },
+                    error: function(error) {
+                        // Handle any errors during deletion
+                        console.error('Error deleting record:', error);
+                    }
+                });
+            }
+        }
+    </script>
 @endsection
