@@ -542,7 +542,7 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         },
         data: {
-          'showTraining': true,
+          'showTrainingView': true,
           'page': page,
           'recordsPerPage': recordsPerPage
         },
@@ -580,7 +580,7 @@
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
               },
               data: {
-                  'filterTrainings': true,
+                  'filterTrainingsView': true,
                   'searchInput': searchInput,
                   'yearSelect': yearSelect,
                   'quarterSelect': quarterSelect,
@@ -612,7 +612,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
                 data: {
-                    'filterTrainings': true,
+                    'filterTrainingsView': true,
                     'searchInput': searchInput,
                     'yearSelect': yearSelect,
                     'quarterSelect': quarterSelect,
@@ -644,7 +644,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
                 data: {
-                    'filterTrainings': true,
+                    'filterTrainingsView': true,
                     'searchInput': searchInput,
                     'yearSelect': yearSelect,
                     'quarterSelect': quarterSelect,
