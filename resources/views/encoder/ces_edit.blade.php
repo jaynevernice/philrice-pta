@@ -190,15 +190,14 @@
                 </div>
             </div>
 
-            {{-- Export Button --}}
-            <div class="mr-2">
-                <button type="button"
-                    class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
-                    <box-icon name='file-export' type='solid' color="#ffffff" size="sm"></box-icon>
-                    <span class="px-1">Export</span>
-                </button>
-            </div>
-        </div>
+    {{-- Export Button --}}
+    {{-- <div class="mr-2">
+      <button type="button" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
+        <box-icon name='file-export' type='solid' color="#ffffff" size="sm" ></box-icon>
+            <span class="px-1">Export</span>
+      </button>
+    </div> --}}
+  </div>
 
         @include('_message')
 
@@ -568,26 +567,26 @@
 
             // Efficient template literal construction using map()
             const trainingRows = result.map(data => `
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-        <td class="px-6 py-4">${data.division || '-'}</td>  
-        <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
-        <td class="px-6 py-4">${data.venue || '-'}</td>  
-        <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
-        <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
-        <td class="px-6 py-4">${data.created_at || '-'}</td>  
-        <td class="px-6 py-4">
-          <a href="#" target="_blank">
-              <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  <box-icon name='expand-alt' size="xs"></box-icon>
-                  <span class="sr-only">Edit</span>
-              </button>
-          </a>
-          <button onclick="showRecord(${data.id || '-'})" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-          <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="deleteRecord(${data.id || '-'})">Delete</button>
-        </td>  
-      </tr>
-    `).join('');
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
+                <td class="px-6 py-4">${data.division || '-'}</td>  
+                <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
+                <td class="px-6 py-4">${data.venue || '-'}</td>  
+                <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
+                <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
+                <td class="px-6 py-4">${data.created_at || '-'}</td>  
+                <td class="px-6 py-4">
+                <a href="#" target="_blank">
+                    <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <box-icon name='expand-alt' size="xs"></box-icon>
+                        <span class="sr-only">Edit</span>
+                    </button>
+                </a>
+                <button onclick="showRecord(${data.id || '-'})" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="deleteRecord(${data.id || '-'})">Delete</button>
+                </td>  
+            </tr>
+            `).join('');
 
             // Single DOM manipulation for better performance
             tableBody.html(trainingRows);
@@ -657,12 +656,44 @@
             }
         });
 
+        // $('#yearSelect').on('change', function() {
+        //     var searchInput = $('#trainingsSearch').val();
+        //     var yearSelect = $('#yearSelect').val();
+        //     var quarterSelect = $('#quarterSelect').val();
+
+        //     if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+        //         loadTrainings(1);
+        //     } else {
+        //         $.ajax({
+        //             url: "/encoder/trainings/filter",
+        //             method: "POST",
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        //             },
+        //             data: {
+        //                 'filterTrainings': true,
+        //                 'searchInput': searchInput,
+        //                 'yearSelect': yearSelect,
+        //                 'quarterSelect': quarterSelect,
+        //             },
+        //             success: function(result) {
+        //                 showTrainings(result['records']);
+        //                 $('#nextButton').hide();
+        //                 $('#prevButton').hide();
+        //             },
+        //             error: function(error) {
+        //                 alert("Oops something went wrong!");
+        //             }
+        //         })
+        //     }
+        // })
+
         $('#yearSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
             var quarterSelect = $('#quarterSelect').val();
 
-            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -694,7 +725,7 @@
             var yearSelect = $('#yearSelect').val();
             var quarterSelect = $('#quarterSelect').val();
 
-            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -720,16 +751,6 @@
                 })
             }
         })
-
-        function nextPage() {
-            loadTrainings(currentPage + 1);
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                loadTrainings(currentPage - 1);
-            }
-        }
 
         function showRecord(id) {
             window.location.href = "{{ route('trainingsform.edit', ':id') }}".replace(':id', id);

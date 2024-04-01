@@ -49,9 +49,9 @@ Route::get('verify/{token}', [UserController::class, 'verify'])->name('verify');
 Route::post('register/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('register.fetchDivisions');
 Route::post('register/fetch-positons', [UserController::class, 'fetchPositions'])->name('register.fetchPositions');
 
-Route::get('/profile', function () {
-    return view('profile');
-})->name('profile');
+// Route::get('/profile', function() {
+//     return view('profile');
+// })->name('profile');
 
 // Route::get('/overview', function() {
 //     return view('overview');
@@ -70,9 +70,6 @@ Route::post('/reset/{token}', [AuthController::class, 'PostReset']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'AuthLogin'])->name('auth_login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
-// live search and filter
-// Route::post('/trainings/year', [TrainingsFormController::class, 'yearAjax']);
 
 // Guest
 Route::group(['prefix' => 'guest'], function () {
@@ -233,7 +230,12 @@ Route::group(['middleware' => 'admin'], function () {
 
 // Encoder
 Route::group(['middleware' => 'encoder'], function () {
-    Route::group(['prefix' => 'encoder'], function () {
+    Route::group(['prefix' => 'encoder'],function(){
+
+        Route::get('/profile', function() {
+            return view('profile');
+        })->name('profile');
+
         Route::get('/overview', function () {
             return view('encoder.overview');
         })->name('encoder.overview');
@@ -247,13 +249,8 @@ Route::group(['middleware' => 'encoder'], function () {
         })->name('encoder.ces_add');
 
         // live search and filter
-        Route::get('/ces_edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.ces_edit');
-        Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax']);
-        // Route::get('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
-        // Route::post('/trainings/year',[TrainingsFormController::class,'yearAjax']);
-        // Route::get('/ces_edit', function () {
-        //     return view('encoder.ces_edit');
-        // })->name('encoder.ces_edit');
+        Route::get('/ces_edit',[TrainingsFormController::class,'cesEditView'])->name('encoder.ces_edit');
+        Route::post('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
 
         // Summary of Trainings Form
         Route::group(['prefix' => 'trainings'], function () {
@@ -264,7 +261,11 @@ Route::group(['middleware' => 'encoder'], function () {
             Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
         });
 
-        Route::get('/agusan', function () {
+        // Export Data into excel
+        // composer require maatwebsite/excel
+        Route::post('/export/record',[TrainingsFormController::class,'export'])->name('export.record');
+
+        Route::get('/agusan', function() {
             return view('encoder.agusan');
         })->name('encoder.agusan');
 

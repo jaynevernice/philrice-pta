@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         if(!empty($user)) {
             if($user->email_verified_at == '') {
-                return redirect()->back()->with('error', 'Your account is not yet verified.');
+                return redirect()->back()->with('error', 'Please check your email to verify your account.');
             }
             // if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

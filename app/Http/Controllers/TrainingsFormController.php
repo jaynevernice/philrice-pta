@@ -540,7 +540,7 @@ class TrainingsFormController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
         $record = TrainingsForm::findOrFail($id);
 
@@ -548,25 +548,39 @@ class TrainingsFormController extends Controller
             abort(404);
         }
 
-        $deleteImages = explode('|', $record->image);
-        foreach($deleteImages as $deleteImg) {
-            $deleteImg = 'public/images/' . $deleteImg;
-            if (file_exists($deleteImg)) {
-                File::delete($deleteImg);
+        if($request->boolean('deleteRecord')) {
+            $deleteImages = explode('|', $record->image);
+            foreach($deleteImages as $deleteImg) {
+                $deleteImg = 'public/images/' . $deleteImg;
+                if (file_exists($deleteImg)) {
+                    File::delete($deleteImg);
+                }
             }
+
+            $deleteFiles = explode('|', $record->file);
+            foreach($deleteFiles as $deleteFile) {
+                $deleteFile =  'public/files/' . $deleteFile;
+                if (file_exists($deleteFile)) {
+                    File::delete($deleteFile);
+                }
+            }
+
+            $record->delete();
+    
+            // return redirect()->back()->with('warning', "You successfully deleted a data.");
+            return response()->json(['message' => 'Record deleted successfully']);
+        }
+    }
+
+    public function export(Request $request)
+    {
+        if($request->boolean('exportFilteredRecords')) {
+            $searchInput = $request->input('searchInput');
+            $occupationSelect = $request->input('occupationSelect');
+            $genderSelect = $request->input('genderSelect');
+
+            return Excel::download(new ExportRecords($searchInput, $occupationSelect, $genderSelect), 'test.xls');
         }
 
-        $deleteFiles = explode('|', $record->file);
-        foreach($deleteFiles as $deleteFile) {
-            $deleteFile =  'public/files/' . $deleteFile;
-            if (file_exists($deleteFile)) {
-                File::delete($deleteFile);
-            }
-        }
-
-        $record->delete();
- 
-        // return redirect()->back()->with('warning', "You successfully deleted a data.");
-        return response()->json(['message' => 'Record deleted successfully']);
     }
 }
