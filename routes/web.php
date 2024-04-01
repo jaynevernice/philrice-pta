@@ -298,46 +298,46 @@ Route::group(['middleware' => 'encoder'], function () {
 });
 
 // Viewer
-Route::group(['middleware' => 'viewer'], function () {
-    Route::group(['prefix' => 'viewer'],function(){
+// Route::group(['middleware' => 'viewer'], function () {
+//     Route::group(['prefix' => 'viewer'],function(){
         
-        Route::get('/overview', function() {
-            return view('viewer.overview');
-        })->name('viewer.overview');
+//         Route::get('/overview', function() {
+//             return view('viewer.overview');
+//         })->name('viewer.overview');
         
-        Route::get('/ces', function() {
-            return view('viewer.ces');
-        })->name('viewer.ces');
+//         Route::get('/ces', function() {
+//             return view('viewer.ces');
+//         })->name('viewer.ces');
 
-        Route::get('/agusan', function() {
-            return view('viewer.agusan');
-        })->name('viewer.agusan');
+//         Route::get('/agusan', function() {
+//             return view('viewer.agusan');
+//         })->name('viewer.agusan');
 
-        Route::get('/batac', function() {
-            return view('viewer.batac');
-        })->name('viewer.batac');
+//         Route::get('/batac', function() {
+//             return view('viewer.batac');
+//         })->name('viewer.batac');
 
-        Route::get('/bicol', function() {
-            return view('viewer.bicol');
-        })->name('viewer.bicol');
+//         Route::get('/bicol', function() {
+//             return view('viewer.bicol');
+//         })->name('viewer.bicol');
 
-        Route::get('/isabela', function() {
-            return view('viewer.isabela');
-        })->name('viewer.isabela');
+//         Route::get('/isabela', function() {
+//             return view('viewer.isabela');
+//         })->name('viewer.isabela');
 
-        Route::get('/losbaños', function() {
-            return view('viewer.losbaños');
-        })->name('viewer.losbaños');
+//         Route::get('/losbaños', function() {
+//             return view('viewer.losbaños');
+//         })->name('viewer.losbaños');
 
-        Route::get('/midsayap', function() {
-            return view('viewer.midsayap');
-        })->name('viewer.midsayap');
+//         Route::get('/midsayap', function() {
+//             return view('viewer.midsayap');
+//         })->name('viewer.midsayap');
 
-        Route::get('/negros', function() {
-            return view('viewer.negros');
-        })->name('viewer.negros');
-    });
-});
+//         Route::get('/negros', function() {
+//             return view('viewer.negros');
+//         })->name('viewer.negros');
+//     });
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
