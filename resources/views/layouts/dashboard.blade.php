@@ -35,14 +35,17 @@
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
         @include('layouts.navbar')
-        
+
         {{-- Navbar and Sidebar --}}
         @yield('sidebar')
-        
+
         {{-- Main Content --}}
         @yield('content')
 
     </div>
+
+    {{-- ApexCharts CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     {{-- Charts --}}
     @yield('charts')
