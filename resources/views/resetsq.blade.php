@@ -37,7 +37,7 @@
                         <div class="my-12 border-b text-center">
                             <div
                                 class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                Enter the email associated with your account
+                                Choose a security question and provide the response you provided during registration.
                             </div>
                         </div>
 
@@ -45,9 +45,31 @@
                             <form action="{{ url('/forgot') }}" method="POST">
                                 @include('_message')
                                 @csrf
-                                <input
+                                {{-- <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                    type="email" name="email" placeholder="Email" required />
+                                    type="email" name="email" placeholder="Email" required /> --}}
+
+                                <div class="relative">
+                                    <select id="security_question"
+                                        class="block appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white">
+                                        <option value="" disabled selected>Choose security question</option>
+                                        <option value="favorite_color">What is your favorite color?</option>
+                                        <option value="birth_location">What province/city were you born in?</option>
+                                        <option value="elementary_school">What is the name of your elementary school?
+                                        </option>
+                                    </select>
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        {{-- <box-icon name='chevron-down'></box-icon> --}}
+                                    </div>
+                                </div>
+
+                                <div id="additional_field" style="display: none;">
+                                    <input id="answer_input" type="text"
+                                        class="w-full px-8 py-4 mt-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        name="answer" placeholder="Your answer" />
+                                </div>
+
 
                                 <button type="submit"
                                     class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
@@ -56,8 +78,10 @@
                                     </span>
                                 </button>
 
-                                <div class="text-center my-16">    
-                                    <a href="{{ url('/resetsq') }}" class="font-medium text-green-400 hover:text-green-500 hover:underline">Reset Using Security Questions</a>
+                                <div class="text-center my-16">
+                                    <a href="{{ url('/forgot') }}"
+                                        class="font-medium text-green-400 hover:text-green-500 hover:underline">Reset Using
+                                        Email</a>
                                 </div>
 
                             </form>
@@ -68,4 +92,22 @@
 
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        document.getElementById('security_question').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var additionalField = document.getElementById('additional_field');
+            var answerInput = document.getElementById('answer_input');
+
+            if (selectedOption !== '') {
+                additionalField.style.display = 'block';
+                answerInput.setAttribute('required', 'required');
+            } else {
+                additionalField.style.display = 'none';
+                answerInput.removeAttribute('required');
+            }
+        });
+    </script>
 @endsection

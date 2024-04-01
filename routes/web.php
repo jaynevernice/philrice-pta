@@ -32,10 +32,14 @@ Route::get('/', function () {
 
 // php artisan make:mail ForgotPasswordMail
 // kapag inedit yung MAIL_USERNAME sa .env run this: php artisan config:cache
-Route::get('/forgot',function() {
+Route::get('/forgot', function () {
     return view('forgot');
 })->name('forgot');
 Route::post('/forgot', [AuthController::class, 'PostForgot']);
+
+Route::get('/resetsq', function() {
+    return view('resetsq');
+});
 
 // Route::get('/register', function() {
 //     return view('register');})->name('register');
@@ -45,7 +49,7 @@ Route::get('verify/{token}', [UserController::class, 'verify'])->name('verify');
 Route::post('register/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('register.fetchDivisions');
 Route::post('register/fetch-positons', [UserController::class, 'fetchPositions'])->name('register.fetchPositions');
 
-Route::get('/profile', function() {
+Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
 
@@ -71,49 +75,47 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 // Route::post('/trainings/year', [TrainingsFormController::class, 'yearAjax']);
 
 // Guest
-Route::group(['prefix' => 'guest'], function() {
-
-    Route::get('/overview', function() {
+Route::group(['prefix' => 'guest'], function () {
+    Route::get('/overview', function () {
         return view('guest.overview');
     })->name('guest.overview');
 
-    Route::get('/ces', function() {
+    Route::get('/ces', function () {
         return view('guest.ces');
     })->name('guest.ces');
 
-    Route::get('/batac', function() {
+    Route::get('/batac', function () {
         return view('guest.batac');
     })->name('guest.batac');
 
-    Route::get('/agusan', function() {
+    Route::get('/agusan', function () {
         return view('guest.agusan');
     })->name('guest.agusan');
 
-    Route::get('/bicol', function() {
+    Route::get('/bicol', function () {
         return view('guest.bicol');
     })->name('guest.bicol');
 
-    Route::get('/isabela', function() {
+    Route::get('/isabela', function () {
         return view('guest.isabela');
     })->name('guest.isabela');
 
-    Route::get('/losbaños', function() {
+    Route::get('/losbaños', function () {
         return view('guest.losbaños');
     })->name('guest.losbaños');
 
-    Route::get('/midsayap', function() {
+    Route::get('/midsayap', function () {
         return view('guest.midsayap');
     })->name('guest.midsayap');
 
-    Route::get('/negros', function() {
+    Route::get('/negros', function () {
         return view('guest.negros');
     })->name('guest.negros');
 });
 
 // Super Admin
 Route::group(['middleware' => 'super_admin'], function () {
-    Route::group(['prefix' => 'super_admin'],function(){
-        
+    Route::group(['prefix' => 'super_admin'], function () {
         Route::get('/overview', function () {
             return view('super_admin.overview');
         })->name('super_admin.overview');
@@ -134,48 +136,47 @@ Route::group(['middleware' => 'super_admin'], function () {
             return view('super_admin.ces_edit');
         })->name('super_admin.ces_edit');
 
-        Route::get('/batac', function() {
+        Route::get('/batac', function () {
             return view('super_admin.batac');
         })->name('super_admin.batac');
 
-        Route::get('/agusan', function() {
+        Route::get('/agusan', function () {
             return view('super_admin.agusan');
         })->name('super_admin.agusan');
 
-        Route::get('/bicol', function() {
+        Route::get('/bicol', function () {
             return view('super_admin.bicol');
         })->name('super_admin.bicol');
 
-        Route::get('/isabela', function() {
+        Route::get('/isabela', function () {
             return view('super_admin.isabela');
         })->name('super_admin.isabela');
 
-        Route::get('/losbaños', function() {
+        Route::get('/losbaños', function () {
             return view('super_admin.losbaños');
         })->name('super_admin.losbaños');
 
-        Route::get('/midsayap', function() {
+        Route::get('/midsayap', function () {
             return view('super_admin.midsayap');
         })->name('super_admin.midsayap');
 
-        Route::get('/negros', function() {
+        Route::get('/negros', function () {
             return view('super_admin.negros');
         })->name('super_admin.negros');
 
-        Route::get('/manage_rcef', function(){
+        Route::get('/manage_rcef', function () {
             return view('super_admin.manage_rcef');
         })->name('super_admin.manage_rcef');
 
-        Route::get('/manage_admins', function(){
+        Route::get('/manage_admins', function () {
             return view('super_admin.manage_admins');
         })->name('super_admin.manage_admins');
-        
     });
 });
 
 // Admin
 Route::group(['middleware' => 'admin'], function () {
-    Route::group(['prefix' => 'admin'],function(){
+    Route::group(['prefix' => 'admin'], function () {
         Route::get('/overview', function () {
             return view('admin.overview');
         })->name('admin.overview');
@@ -196,45 +197,43 @@ Route::group(['middleware' => 'admin'], function () {
             return view('admin.ces_edit');
         })->name('admin.ces_edit');
 
-        Route::get('/agusan', function() {
+        Route::get('/agusan', function () {
             return view('admin.agusan');
         })->name('admin.agusan');
 
-        Route::get('/batac', function() {
+        Route::get('/batac', function () {
             return view('admin.batac');
         })->name('admin.batac');
 
-        Route::get('/bicol', function() {
+        Route::get('/bicol', function () {
             return view('admin.bicol');
         })->name('admin.bicol');
 
-        Route::get('/isabela', function() {
+        Route::get('/isabela', function () {
             return view('admin.isabela');
         })->name('admin.isabela');
 
-        Route::get('/losbaños', function() {
+        Route::get('/losbaños', function () {
             return view('admin.losbaños');
         })->name('admin.losbaños');
 
-        Route::get('/midsayap', function() {
+        Route::get('/midsayap', function () {
             return view('admin.midsayap');
         })->name('admin.midsayap');
 
-        Route::get('/negros', function() {
+        Route::get('/negros', function () {
             return view('admin.negros');
         })->name('admin.negros');
 
-        Route::get('/manage_encoders', function(){
+        Route::get('/manage_encoders', function () {
             return view('admin.manage_encoders');
         })->name('admin.manage_encoders');
-        
     });
 });
 
 // Encoder
 Route::group(['middleware' => 'encoder'], function () {
-    Route::group(['prefix' => 'encoder'],function(){
-
+    Route::group(['prefix' => 'encoder'], function () {
         Route::get('/overview', function () {
             return view('encoder.overview');
         })->name('encoder.overview');
@@ -248,8 +247,8 @@ Route::group(['middleware' => 'encoder'], function () {
         })->name('encoder.ces_add');
 
         // live search and filter
-        Route::get('/ces_edit',[TrainingsFormController::class,'cesEditView'])->name('encoder.ces_edit');
-        Route::post('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
+        Route::get('/ces_edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.ces_edit');
+        Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax']);
         // Route::get('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
         // Route::post('/trainings/year',[TrainingsFormController::class,'yearAjax']);
         // Route::get('/ces_edit', function () {
@@ -257,102 +256,43 @@ Route::group(['middleware' => 'encoder'], function () {
         // })->name('encoder.ces_edit');
 
         // Summary of Trainings Form
-        Route::group(['prefix' => 'trainings'], function() {
+        Route::group(['prefix' => 'trainings'], function () {
             Route::get('/form', [TrainingsFormController::class, 'create'])->name('trainingsform.create');
             Route::post('form-store', [TrainingsFormController::class, 'store'])->name('trainingsform.store');
             Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
             Route::post('/form-update/{id}', [TrainingsFormController::class, 'update'])->name('trainingsform.update');
             Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
-            
         });
 
-        Route::get('/agusan', function() {
+        Route::get('/agusan', function () {
             return view('encoder.agusan');
         })->name('encoder.agusan');
 
-        Route::get('/batac', function() {
+        Route::get('/batac', function () {
             return view('encoder.batac');
         })->name('encoder.batac');
 
-        Route::get('/bicol', function() {
+        Route::get('/bicol', function () {
             return view('encoder.bicol');
         })->name('encoder.bicol');
 
-        Route::get('/isabela', function() {
+        Route::get('/isabela', function () {
             return view('encoder.isabela');
         })->name('encoder.isabela');
 
-        Route::get('/losbaños', function() {
+        Route::get('/losbaños', function () {
             return view('encoder.losbaños');
         })->name('encoder.losbaños');
 
-        Route::get('/midsayap', function() {
+        Route::get('/midsayap', function () {
             return view('encoder.midsayap');
         })->name('encoder.midsayap');
 
-        Route::get('/negros', function() {
+        Route::get('/negros', function () {
             return view('encoder.negros');
         })->name('encoder.negros');
-        
     });
 });
-
-// Viewer
-// Route::group(['middleware' => 'viewer'], function () {
-//     Route::group(['prefix' => 'viewer'],function(){
-        
-//         Route::get('/overview', function() {
-//             return view('viewer.overview');
-//         })->name('viewer.overview');
-        
-//         Route::get('/ces', function() {
-//             return view('viewer.ces');
-//         })->name('viewer.ces');
-
-//         Route::get('/agusan', function() {
-//             return view('viewer.agusan');
-//         })->name('viewer.agusan');
-
-//         Route::get('/batac', function() {
-//             return view('viewer.batac');
-//         })->name('viewer.batac');
-
-//         Route::get('/bicol', function() {
-//             return view('viewer.bicol');
-//         })->name('viewer.bicol');
-
-//         Route::get('/isabela', function() {
-//             return view('viewer.isabela');
-//         })->name('viewer.isabela');
-
-//         Route::get('/losbaños', function() {
-//             return view('viewer.losbaños');
-//         })->name('viewer.losbaños');
-
-//         Route::get('/midsayap', function() {
-//             return view('viewer.midsayap');
-//         })->name('viewer.midsayap');
-
-//         Route::get('/negros', function() {
-//             return view('viewer.negros');
-//         })->name('viewer.negros');
-//     });
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-
-
-
-// Form 1
-// Route::get('/kslform', function () {
-//     return view('kslform');
-// });
-
-// KSL Routes but not grouped
-// Route::get('/kslform', [KSLFormController::class, 'index'])->name('kslform.index');
-// Route::get('/kslanalytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
 
 
 // KSL Monitoring
@@ -361,18 +301,17 @@ Route::group(['prefix' => 'ksl'], function () {
     Route::get('/analytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
 });
 
-
 // Summary of Trainings
 // Route::group(['prefix' => 'trainings'], function() {
 //     Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
 // });
 
 // Technical Dispatch
-Route::group(['prefix' => 'dispatch'], function() {
+Route::group(['prefix' => 'dispatch'], function () {
     Route::get('/form', [DispatchFormController::class, 'index'])->name('dispatchform.index');
 });
 
 // Techno Demo
-Route::get('/technodemo', function() {
+Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');

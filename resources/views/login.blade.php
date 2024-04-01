@@ -23,8 +23,7 @@
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-5xl font-bold pb-4">Training Records <br> Analysis and Charting <br> for
-                            Enhanced Results</h1>
+                        <h1 class="text-5xl font-bold pb-4">{{ config('app.name') }}</h1>
                     </div>
                 </div>
             </div>

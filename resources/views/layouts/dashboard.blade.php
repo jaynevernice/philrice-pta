@@ -49,7 +49,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
-    {{-- @yield('scripts') --}}
+    @yield('scripts')
 </body>
 
 {{-- <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
