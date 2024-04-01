@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Guest
+    Overview
 @endsection
 
 @section('sidebar')
