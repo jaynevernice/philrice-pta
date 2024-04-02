@@ -303,9 +303,9 @@ Route::group(['prefix' => 'ksl'], function () {
 });
 
 // Summary of Trainings
-// Route::group(['prefix' => 'trainings'], function() {
-//     Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
-// });
+Route::group(['prefix' => 'trainings'], function() {
+    Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
+});
 
 // Technical Dispatch
 Route::group(['prefix' => 'dispatch'], function () {

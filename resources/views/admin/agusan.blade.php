@@ -173,19 +173,21 @@
 
         <div class="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
 
-            <div class="border-2 mx-auto rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
+            <div
+                class="bg-slate-100 shadow-lg border-2 mx-auto rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
                 <div id="chart1"></div>
             </div>
 
-            <div class="border-2 mx-auto rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
+            <div
+                class="bg-slate-100 shadow-lg border-2 mx-auto rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
                 <div id="chart2"></div>
             </div>
 
-            <div class="border-2 rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
                 <div id="chart3"></div>
             </div>
 
-            <div class="border-2 rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64">
                 <div id="chart4"></div>
             </div>
 
@@ -207,7 +209,7 @@
                         </svg>
                     </div>
                     <input type="text" id="table-search-users"
-                        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="h-12 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for users">
                 </div>
             </div>
@@ -251,8 +253,8 @@
                                         </svg></a>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                            <th scope="col" class="px-6 py-3 text-center">
+                                <span>Expand</span>
                             </th>
                         </tr>
                     </thead>
@@ -272,14 +274,13 @@
                             <td class="px-6 py-4">
                                 Within PhilRice Station
                             </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" target="_blank">
-                                    <button type="button"
-                                        class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        <box-icon name='expand-alt' size="xs"></box-icon>
-                                        {{-- <span class="sr-only">Edit</span> --}}
-                                    </button>
-                                </a>
+                            <td class="px-6 py-4 text-center">
+                                <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
+                                    type="button"
+                                    class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8"
+                                    type="button">
+                                    <box-icon name='expand-alt' size="xs"></box-icon>
+                                </button>
                             </td>
                         </tr>
 
@@ -288,6 +289,71 @@
             </div>
         </div>
     </main>
+
+    {{-- Modal for CES Summary of Trainings --}}
+    <div id="trainings-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            {{-- Modal Content --}}
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                {{-- Modal Header --}}
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                        Training Title
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="trainings-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                {{-- Modal Body --}}
+                <form class="p-4 md:p-5">
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input type="text" name="name" id="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Type product name" required="">
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="price"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                            <input type="number" name="price" id="price"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="$2999" required="">
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="category"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                            <select id="category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option selected="">Select category</option>
+                                <option value="TV">TV/Monitors</option>
+                                <option value="PC">PC</option>
+                                <option value="GA">Gaming/Console</option>
+                                <option value="PH">Phones</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="description"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                Description</label>
+                            <textarea id="description" rows="4"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Write product description here"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('charts')
@@ -348,7 +414,7 @@
                 width: 300,
                 type: 'polarArea',
                 toolbar: {
-                  show: true
+                    show: true
                 }
             },
 
