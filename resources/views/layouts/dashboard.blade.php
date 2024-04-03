@@ -16,6 +16,8 @@
 
     {{-- Boxicons --}}
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    {{-- FontAwesome --}}
+    <script src="https://kit.fontawesome.com/bc66a62b0a.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 

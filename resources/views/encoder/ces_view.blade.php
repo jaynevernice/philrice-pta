@@ -133,21 +133,12 @@
         {{-- Filters and Export --}}
         <div class="flex my-4">
 
-            {{-- Form --}}
-            <div class="mr-2">
-                <select
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="form">
-                    <option selected>Summary of Trainings</option>
-                </select>
-            </div>
-
             {{-- Year --}}
-            <div class="mx-2">
+            <div class="mr-2">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    <option value="">2024</option>
+                    <option selected>Year</option>
                     {{-- <option value="" selected>All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
@@ -157,26 +148,71 @@
                 </select>
             </div>
 
-            {{-- Quarter --}}
-            <div class="mx-2 mr-auto">
+            {{-- From --}}
+            <div class="mx-2">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="quarterSelect">
-                    <option>Q1 | January - March </option>
-                    <option selected> Q2 | April - June </option>
+                    <option selected>From</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+            
+            {{-- To --}}
+            <div class="mx-2">
+                <select name="quarter"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="quarterSelect">
+                    <option selected>To</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+            {{-- Form --}}
+            <div class="mx-2 mr-auto">
+                <select
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="form">
+                    <option selected>Form Type</option>
+                    <option>Summary of Trainings Conducted</option>
                 </select>
             </div>
 
             {{-- Export Button --}}
             <div class="ml-auto">
                 <button type="button"
-                    class="h-12 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    <span class="px-1">Export</span>
+                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span class="pl-2">Export</span>
                 </button>
             </div>
 
         </div>
 
+        {{-- Charts --}}
         <div class="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
 
             <div class="bg-slate-100 shadow-lg border-2 mx-auto rounded-lg dark:border-gray-600 h-32 md:h-64">
