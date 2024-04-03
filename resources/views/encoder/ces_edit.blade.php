@@ -135,42 +135,73 @@
 
         {{-- Filters and Export --}}
         <div class="flex my-4">
-            {{-- Form --}}
-            <div class="mr-2">
-                <select
-                    class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="form">
-                    <option selected disabled>Select Form</option>
-                    <option>Summary of Trainings</option>
-                    <option disabled>Technical Dispatch</option>
-                    <option disabled>KSL</option>
-                </select>
-            </div>
 
             {{-- Year --}}
-            <div class="mx-2">
+            <div class="mr-2">
                 <select name="year"
-                    class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    <option value="" selected>All Year</option>
+                    <option selected>Year</option>
+                    <option>2024</option>
+                    {{-- <option value="" selected>All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
                             {{ $year }}
                         </option>
-                    @endfor
+                    @endfor --}}
                 </select>
             </div>
 
-            {{-- Quarter --}}
-            <div class="mx-2 mr-auto">
+            {{-- From --}}
+            <div class="mx-2">
                 <select name="quarter"
-                    class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="quarterSelect">
-                    <option value="" selected>All Quarter</option>
-                    <option value="Q1">January - March</option>
-                    <option value="Q2">April - June</option>
-                    <option value="Q3">July - September</option>
-                    <option value="Q4">October - December</option>
+                    <option selected>From</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+
+            {{-- To --}}
+            <div class="mx-2">
+                <select name="quarter"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="quarterSelect">
+                    <option selected>To</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+            {{-- Form --}}
+            <div class="mx-2 mr-auto">
+                <select
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="form">
+                    <option selected>Form Type</option>
+                    <option>Summary of Trainings Conducted</option>
                 </select>
             </div>
 
@@ -184,20 +215,22 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" id="trainingsSearch"
-                        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search...">
+                    <input type="text" id="table-search-users"
+                        class="h-12 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Search">
                 </div>
             </div>
 
-    {{-- Export Button --}}
-    {{-- <div class="mr-2">
-      <button type="button" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-green-50 me-2 mb-2">
-        <box-icon name='file-export' type='solid' color="#ffffff" size="sm" ></box-icon>
-            <span class="px-1">Export</span>
-      </button>
-    </div> --}}
-  </div>
+            {{-- Export Button --}}
+            <div>
+                <button type="button"
+                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span class="pl-2">Export</span>
+                </button>
+            </div>
+
+        </div>
 
         @include('_message')
 
@@ -263,13 +296,11 @@
                         </svg></a> --}}
                             </div>
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            <div class="flex items-center">
-                                Action
+                        <th scope="col" class="px-6 py-3 text-center">
+                                Actions
                                 {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                         </svg></a> --}}
-                            </div>
                         </th>
                     </tr>
                 </thead>
@@ -325,10 +356,24 @@
           @endforeach --}}
                 </tbody>
             </table>
+        </div>
 
-            <button id="prevButton" onclick="prevPage()">Previous</button>
-            <button id="nextButton" onclick="nextPage()">Next</button>
-
+        {{-- Previous and Next Buttons for Pagination --}}
+        <div class="flex justify-end">
+            <div>
+                <button id="prevButton" onclick="prevPage()"
+                    class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
+                    Previous
+                </button>
+            </div>
+            <div class="ml-1">
+                <button id="nextButton" onclick="nextPage()"
+                    class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Next
+                    <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
+                </button>
+            </div>
         </div>
 
         {{-- <div class="pagination-container">
@@ -575,16 +620,26 @@
                 <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
                 <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
                 <td class="px-6 py-4">${data.created_at || '-'}</td>  
-                <td class="px-6 py-4">
-                <a href="#" target="_blank">
-                    <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <td class="px-6 py-4 text-center">
+                    <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
+                        type="button"
+                        class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
+                        type="button">
                         <box-icon name='expand-alt' size="xs"></box-icon>
-                        <span class="sr-only">Edit</span>
                     </button>
-                </a>
-                <button onclick="showRecord(${data.id || '-'})" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-                <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="deleteRecord(${data.id || '-'})">Delete</button>
-                </td>  
+                    <button onclick="showRecord(${data.id || '-'})"
+                        type="button"
+                        class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
+                        type="button">
+                        <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
+                    </button>
+                    <button onclick="deleteRecord(${data.id || '-'})"
+                        type="button"
+                        class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
+                        type="button">
+                        <box-icon name='trash' type='solid' size="xs"></box-icon>
+                    </button>
+                </td>
             </tr>
             `).join('');
 
@@ -693,7 +748,7 @@
             var yearSelect = $('#yearSelect').val();
             var quarterSelect = $('#quarterSelect').val();
 
-            if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -725,7 +780,7 @@
             var yearSelect = $('#yearSelect').val();
             var quarterSelect = $('#quarterSelect').val();
 
-            if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -761,7 +816,7 @@
                 // Use AJAX to send a DELETE request to the appropriate route
                 $.ajax({
                     url: '/encoder/trainings/form-delete/' +
-                    id, // Replace with the correct route for deleting training
+                        id, // Replace with the correct route for deleting training
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -775,7 +830,7 @@
                             alert('Successfully deleted');
                         } else {
                             console.error('Error deleting training:', response
-                            .error); // Handle potential errors
+                                .error); // Handle potential errors
                         }
                         loadTrainings(currentPage); // Reload current page's trainings
                     },
