@@ -104,8 +104,6 @@ class UserController extends Controller
         // dd($division->all());
 
         $full_name = trim($request->first_name) . ' ' . trim($request->mi) . ' ' . trim($request->last_name);
-        $remember_token = Str::random(30);
-        // $new_user = new User;
 
         User::create([
             'philrice_id'=>$request->philrice_id,

@@ -42,13 +42,23 @@
                         </div>
 
                         <div class="mx-auto max-w-xs">
-                            <form action="{{ url('/forgot') }}" method="POST">
+                            <form action="{{ url('/resetsq') }}" method="POST">
                                 @include('_message')
                                 @csrf
                                 {{-- <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                     type="email" name="email" placeholder="Email" required /> --}}
 
+                                {{-- PhilRice ID --}}
+                                <div class="my-2" id="idField">
+                                    <label for="philrice_id"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
+                                    <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
+                                        id="philrice_id"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="XX-XXXX">
+                                </div>
+                                
                                 <div class="relative">
                                     <select id="security_question"
                                         class="block appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white">
