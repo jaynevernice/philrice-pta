@@ -150,12 +150,11 @@
                                     {{-- PhilRice ID --}}
                                     <div class="my-2" id="idField">
                                         <label for="philrice_id"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID
-                                            #</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
                                         <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
                                             id="philrice_id"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="">
+                                            placeholder="XX-XXXX">
                                     </div>
 
                                     {{-- <form> --}}
@@ -165,7 +164,7 @@
                                             <label for="station"
                                                 class="block text-sm font-medium text-gray-900 mb-1">Station</label>
                                             <select name="station" id="station" {{ old('station') }} required
-                                                class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                                 <option selected disabled>Station</option>
                                                 @foreach ($stations as $data)
                                                     <option value="{{ $data->id }}">{{ $data->station }}</option>
@@ -187,7 +186,7 @@
                                             <label for="division"
                                                 class="block text-sm font-medium text-gray-900 mb-1">Division</label>
                                             <select name="division" id="division"
-                                                class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                                 required>
                                                 {{-- <option value="" selected disabled>Division</option> --}}
                                                 {{-- <option value="TMSD" >TMSD</option> --}}
@@ -200,7 +199,7 @@
                                             <label for="position"
                                                 class="block text-sm font-medium text-gray-900 mb-1">Position</label>
                                             <select name="position" id="position"
-                                                class="block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                                 required>
                                                 {{-- <option value="" selected disabled>Position</option> --}}
                                                 {{-- <option value="Division Head">Division Head</option> --}}

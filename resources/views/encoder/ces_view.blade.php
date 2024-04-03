@@ -169,11 +169,11 @@
 
             {{-- Export Button --}}
             <div class="ml-auto">
-              <button type="button"
-                  class="h-12 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                  <span class="px-1">Export</span>
-              </button>
-          </div>
+                <button type="button"
+                    class="h-12 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
+                    <span class="px-1">Export</span>
+                </button>
+            </div>
 
         </div>
 
@@ -213,8 +213,8 @@
                         </svg>
                     </div>
                     <input type="text" id="trainingsSearch"
-                        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for users">
+                        class="h-12 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search">
                 </div>
             </div>
 
@@ -250,43 +250,102 @@
                           </svg></a> --}}
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3 text-center">
                                 <span>Expand</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
-                        {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
-                    RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds, and Farm Mechanization - CES 2023 Batch 01
-                </th>
-                <td class="px-6 py-4">
-                    TMSD
-                </td>
-                <td class="px-6 py-4">
-                    March 13, 2023
-                </td>
-                <td class="px-6 py-4">
-                    Within PhilRice Station
-                </td>
-                <td class="px-6 py-4 text-right">
-                    <a href="#" target="_blank">
-                        <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <box-icon name='expand-alt' size="xs"></box-icon>
-                            <span class="sr-only">Edit</span>
-                        </button>
-                    </a>
-                </td>
-              </tr> --}}
+                        {{-- Records --}}
+
                     </tbody>
                 </table>
-                <button id="prevButton" onclick="prevPage()">Previous</button>
-                <button id="nextButton" onclick="nextPage()">Next</button>
             </div>
 
+            {{-- Previous and Next Buttons for Pagination --}}
+            <div class="flex justify-end">
+                <div>
+                    <button id="prevButton" onclick="prevPage()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
+                        Previous
+                    </button>
+                </div>
+                <div class="ml-1">
+                    <button id="nextButton" onclick="nextPage()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Next
+                        <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
+                    </button>
+                </div>
+            </div>
         </div>
-
     </main>
+
+    {{-- Modal for CES Summary of Trainings --}}
+    <div id="trainings-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            {{-- Modal Content --}}
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                {{-- Modal Header --}}
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                        Training Title
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="trainings-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                {{-- Modal Body --}}
+                <form class="p-4 md:p-5">
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input type="text" name="name" id="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Type product name" required="">
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="price"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                            <input type="number" name="price" id="price"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="$2999" required="">
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="category"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                            <select id="category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option selected="">Select category</option>
+                                <option value="TV">TV/Monitors</option>
+                                <option value="PC">PC</option>
+                                <option value="GA">Gaming/Console</option>
+                                <option value="PH">Phones</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="description"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                Description</label>
+                            <textarea id="description" rows="4"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Write product description here"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('charts')
@@ -346,6 +405,9 @@
             chart: {
                 width: 300,
                 type: 'polarArea',
+                toolbar: {
+                    show: true,
+                }
             },
 
             title: {
@@ -406,7 +468,7 @@
                 height: 240,
                 type: 'area',
                 toolbar: {
-                    show: false,
+                    show: true,
                 },
             },
             dataLabels: {
@@ -456,7 +518,7 @@
                     opacity: 0.2
                 },
                 toolbar: {
-                    show: false
+                    show: true,
                 }
             },
             colors: ['#77B6EA', '#545454'],
@@ -517,42 +579,43 @@
 
             // Efficient template literal construction using map()
             const trainingRows = result.map(data => `
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-          <td class="px-6 py-4">${data.division || '-'}</td>  
-          <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
-          <td class="px-6 py-4">${data.venue || '-'}</td>  
-          <td class="px-6 py-4">
-            <a href="#" target="_blank">
-                <button type="button" class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <box-icon name='expand-alt' size="xs"></box-icon>
-                    <span class="sr-only">Edit</span>
-                </button>
-            </a>
-          </td>  
-        </tr>
-      `).join('');
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
+                <td class="px-6 py-4">${data.division || '-'}</td>
+                <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>
+                <td class="px-6 py-4">${data.venue || '-'}</td>
+                <td class="px-6 py-4 text-center">
+                    <button
+                    data-modal-target="trainings-modal" 
+                    data-modal-toggle="trainings-modal" 
+                    type="button" 
+                    class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
+                        <box-icon name='expand-alt' size="xs"></box-icon>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
 
             // Single DOM manipulation for better performance
             tableBody.html(trainingRows);
 
         }
 
-    function loadTrainings(page) {
-      $.ajax({
-        url: "/encoder/trainings/filter",
-        method: "POST",
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        },
-        data: {
-          'showTraining': true,
-          'page': page,
-          'recordsPerPage': recordsPerPage
-        },
-        success: function(result) {
-          showTrainings(result['records']);
-          currentPage = page; // Update current page
+        function loadTrainings(page) {
+            $.ajax({
+                url: "/encoder/trainings/filter",
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                data: {
+                    'showTraining': true,
+                    'page': page,
+                    'recordsPerPage': recordsPerPage
+                },
+                success: function(result) {
+                    showTrainings(result['records']);
+                    currentPage = page; // Update current page
 
                     // Check if there are more records beyond the current page
                     if (currentPage < result['records'].length) {
@@ -569,101 +632,101 @@
             })
         }
 
-    $('#trainingsSearch').on('keyup input', function() {
-        var searchInput = $('#trainingsSearch').val();
-        var yearSelect = $('#yearSelect').val();
-        var quarterSelect = $('#quarterSelect').val();
-        
-        if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-          loadTrainings(1);
-        } else {
-          $.ajax({
-              url: "/encoder/trainings/filter",
-              method: "POST",
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-              },
-              data: {
-                  'filterTrainings': true,
-                  'searchInput': searchInput,
-                  'yearSelect': yearSelect,
-                  'quarterSelect': quarterSelect,
-              },
-              success: function(result) {
-                  showTrainings(result['records']);
-                  $('#nextButton').hide();
-                  $('#prevButton').hide();
-              },
-              error: function(error) {
-                  alert("Oops something went wrong!");
-              }
-          })
-        }
-    });
+        $('#trainingsSearch').on('keyup input', function() {
+            var searchInput = $('#trainingsSearch').val();
+            var yearSelect = $('#yearSelect').val();
+            var quarterSelect = $('#quarterSelect').val();
+
+            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'quarterSelect': quarterSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        });
 
         $('#yearSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
             var quarterSelect = $('#quarterSelect').val();
 
-          if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-            loadTrainings(1);
-          } else {
-            $.ajax({
-                url: "/encoder/trainings/filter",
-                method: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
-                data: {
-                    'filterTrainings': true,
-                    'searchInput': searchInput,
-                    'yearSelect': yearSelect,
-                    'quarterSelect': quarterSelect,
-                },
-                success: function(result) {
-                    showTrainings(result['records']);
-                    $('#nextButton').hide();
-                    $('#prevButton').hide();
-                },
-                error: function(error) {
-                    alert("Oops something went wrong!");
-                }
-            })
-          }
-      })
+            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'quarterSelect': quarterSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        })
 
         $('#quarterSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
             var quarterSelect = $('#quarterSelect').val();
 
-          if(searchInput == '' && quarterSelect == '' && yearSelect == '') {
-            loadTrainings(1);
-          } else {
-            $.ajax({
-                url: "/encoder/trainings/filter",
-                method: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
-                data: {
-                    'filterTrainings': true,
-                    'searchInput': searchInput,
-                    'yearSelect': yearSelect,
-                    'quarterSelect': quarterSelect,
-                },
-                success: function(result) {
-                    showTrainings(result['records']);
-                    $('#nextButton').hide();
-                    $('#prevButton').hide();
-                },
-                error: function(error) {
-                    alert("Oops something went wrong!");
-                }
-            })
-          }
-      })
+            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'quarterSelect': quarterSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        })
 
         function nextPage() {
             loadTrainings(currentPage + 1);
@@ -684,7 +747,7 @@
                 // Use AJAX to send a DELETE request to the appropriate route
                 $.ajax({
                     url: '/encoder/trainings/form-delete/' +
-                    id, // Replace with the correct route for deleting training
+                        id, // Replace with the correct route for deleting training
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -698,7 +761,7 @@
                             alert('Successfully deleted');
                         } else {
                             console.error('Error deleting training:', response
-                            .error); // Handle potential errors
+                                .error); // Handle potential errors
                         }
                         loadTrainings(currentPage); // Reload current page's trainings
                     },

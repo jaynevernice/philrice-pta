@@ -163,20 +163,13 @@
             <div class="ml-auto">
                 <button type="button"
                     class="h-12 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    {{-- <box-icon name='file-export' type='solid' color="#ffffff" size="sm"></box-icon> --}}
                     <span class="px-1">Export</span>
-                    {{-- <box-icon name='export' size="m" color="#ffffff" ></box-icon> --}}
                 </button>
             </div>
 
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-            {{-- <div class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64">
-      <div id="chart1" class="items-center"></div>
-    </div> --}}
-            {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div> --}}
-
             <div
                 class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
                 <div id="chart1"></div>
@@ -192,7 +185,6 @@
             <div id="chart3"></div>
         </div>
 
-
         <div class="grid grid-cols-2 gap-4 mb-4">
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
                 <div id="chart4"></div>
@@ -200,16 +192,7 @@
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
                 <div id="chart5"></div>
             </div>
-            {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div> --}}
-            {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div> --}}
         </div>
-        {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div> --}}
-        {{-- <div class="grid grid-cols-2 gap-4">
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-  </div> --}}
     </main>
 @endsection
 
