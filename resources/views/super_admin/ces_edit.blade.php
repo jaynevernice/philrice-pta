@@ -133,57 +133,85 @@
 
         {{-- Filters and Export --}}
         <div class="flex my-4">
-            {{-- Form --}}
-            <div class="mr-2">
-                <select
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="form">
-                    <option selected>Summary of Trainings</option>
-                </select>
-            </div>
 
             {{-- Year --}}
-            <div class="mx-2">
-                <select
+            <div class="mr-2">
+                <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="year">
-                    <option selected>2024</option>
+                    id="yearSelect">
+                    <option selected>Year</option>
+                    <option>2024</option>
+                    {{-- <option value="" selected>All Year</option>
+                    @for ($year = date('Y'); $year >= 1990; $year--)
+                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
+                            {{ $year }}
+                        </option>
+                    @endfor --}}
                 </select>
             </div>
 
-            {{-- Quarter --}}
+            {{-- From --}}
+            <div class="mx-2">
+                <select name="quarter"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="quarterSelect">
+                    <option selected>From</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+
+            {{-- To --}}
+            <div class="mx-2">
+                <select name="quarter"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="quarterSelect">
+                    <option selected>To</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+            {{-- Form --}}
             <div class="mx-2 mr-auto">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="quarter">
-                    <option>Q1 | January - March </option>
-                    <option selected> Q2 | April - June </option>
+                    id="form">
+                    <option selected>Form Type</option>
+                    <option>Summary of Trainings Conducted</option>
                 </select>
             </div>
 
-            {{-- Search --}}
-            <div class="mr-2">
-                <div class="relative">
-                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="text" id="table-search-users"
-                        class="h-12 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search">
-                </div>
-            </div>
-
             {{-- Export Button --}}
-            <div>
+            <div class="ml-auto">
                 <button type="button"
-                    class="h-12 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    <span class="px-1">Export</span>
+                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span class="pl-2">Export</span>
                 </button>
             </div>
+
         </div>
 
         {{-- Table --}}
