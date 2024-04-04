@@ -40,6 +40,7 @@ Route::post('/forgot', [AuthController::class, 'PostForgot']);
 Route::get('/resetsq', function() {
     return view('resetsq');
 });
+Route::post('/resetsq', [AuthController::class, 'PostSecurityQuestions']);
 
 // Route::get('/register', function() {
 //     return view('register');})->name('register');

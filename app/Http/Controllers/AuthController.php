@@ -81,6 +81,11 @@ class AuthController extends Controller
         }
     }
 
+    public function PostSecurityQuestions(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function reset($remember_token) 
     {
         $user = User::getTokenSingle($remember_token);

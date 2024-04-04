@@ -492,7 +492,52 @@ class TrainingsFormController extends Controller
                 $city = 'Science City of Muñoz';
                 $country = '';
                 $state = '';
-            } 
+            } elseif(Auth::user()->station == 'Agusan' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Agusan del Norte';
+                $city = 'Basilisa, RTRomualdez';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'Batac' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Ilocos Norte';
+                $city = 'Batac';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'Bicol' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Albay';
+                $city = 'Ligao City';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'CMU' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Bukidnon';
+                $city = 'Maramag';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'Isabela' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Isabela';
+                $city = 'San Mateo';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'Los Baños' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Laguna';
+                $city = 'Los Baños';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'Midsayap' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'North Cotabato';
+                $city = 'Midsayap';
+                $country = '';
+                $state = '';
+            } elseif(Auth::user()->station == 'Negros' && $request->venue_group == 'Within PhilRice station') {
+                $province = 'Negros Occidental';
+                $city = 'Murcia';
+                $country = '';
+                $state = '';
+            } else {
+                $province = 'N/A';
+                $city = 'N/A';
+                $country = '';
+                $state = '';
+            }
         }
 
         // Serialize the array of participants checkbox values
