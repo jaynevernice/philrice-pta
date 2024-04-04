@@ -83,7 +83,32 @@ class AuthController extends Controller
 
     public function PostSecurityQuestions(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $user = User::where('philrice_id', '=', $request->philrice_id)->first();
+
+        if(!empty($user->email_verified_at)) {
+
+            $auth_user = User::where('philrice_id', '=', $request->philrice_id)
+                            ->where($request->security_question, '=', strtolower($request->answer))
+                            ->first();
+
+            if(!empty($auth_user)) {
+                $auth_user->remember_token = Str::random(30);
+                $auth_user->save();
+
+                Mail::to($auth_user->email)->send(new ForgotPasswordMail($auth_user));
+
+                return redirect()->back()->with('success', "Please check your email: " . $auth_user->email . " and reset your password.");
+            } else {
+                return redirect()->back()->with('error', "Your PhilRice ID or your answer is incorrect");
+            }
+
+        } else {
+            return redirect()->back()->with('error', "Your PhilRice ID is not existing or not verified"); 
+        }
+
+        // $user = User::where('remember_token', '=', $remember_token)->first();
     }
 
     public function reset($remember_token) 
@@ -102,6 +127,11 @@ class AuthController extends Controller
     public function PostReset($remember_token, Request $request)
     {
         if($request->password == $request->confirm_password) {
+            
+            $request->validate([
+                'password' => 'required|min:8|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()\-^\/])/',
+            ]);
+
             $user = User::getTokenSingle($remember_token);
             $user->password = Hash::make($request->password);
             $user->remember_token = Str::random(30);

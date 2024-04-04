@@ -12,6 +12,9 @@ use App\Models\Participant;
 use App\Models\SourceFund;
 use App\Models\TrainingsForm;
 
+use App\Exports\ExportRecords;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Support\Facades\DB;
 
 use Auth;
@@ -89,39 +92,32 @@ class TrainingsFormController extends Controller
         if ($request->boolean('filterTrainingsView')) {
             $searchInput = $request->searchInput ?? '';
             $yearSelect = $request->yearSelect ?? '';
-            $quarterSelect = $request->quarterSelect ?? '';
+            $start_MonthSelect = $request->start_MonthSelect ?? '';
+            $end_MonthSelect = $request->end_MonthSelect ?? '';
 
             $records = DB::table('trainings_forms')
                 ->select('*')
-                ->when(!empty($quarterSelect), function ($query) use ($quarterSelect) {
-                    if ($quarterSelect == 'Q1') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 1)
-                                ->whereMonth('trainings_forms.start_date', '<=', 3);
-                    } elseif ($quarterSelect == 'Q2') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 4)
-                                ->whereMonth('trainings_forms.start_date', '<=', 6);
-                    } elseif ($quarterSelect == 'Q3') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 7)
-                                ->whereMonth('trainings_forms.start_date', '<=', 9);
-                    } elseif ($quarterSelect == 'Q4') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 10)
-                                ->whereMonth('trainings_forms.start_date', '<=', 12);
-                    }
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
                 })
                 ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('start_date', '=', $yearSelect);
+                    return $query->whereYear('end_date', '=', $yearSelect);
                 })
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
                     return $query->where('title', 'LIKE', "%$searchInput%")
                                 ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                                ->orWhere('venue', 'LIKE', "%$searchInput%")
-                                ->orWhere('province', 'LIKE', "%$searchInput%")
-                                ->orWhere('municipality', 'LIKE', "%$searchInput%")
-                                ->orWhere('country', 'LIKE', "%$searchInput%")
-                                ->orWhere('state', 'LIKE', "%$searchInput%")
-                                ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                                ->orWhere('venue', 'LIKE', "%$searchInput%");
+                                // ->orWhere('province', 'LIKE', "%$searchInput%")
+                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                // ->orWhere('country', 'LIKE', "%$searchInput%")
+                                // ->orWhere('state', 'LIKE', "%$searchInput%")
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
                 })
-                ->orderBy('title', 'ASC')
+                // ->orderBy('title', 'ASC')
+                ->latest('id')
                 ->get();
 
             return response()->json(['records' => $records]);
@@ -142,7 +138,7 @@ class TrainingsFormController extends Controller
             $records = DB::table('trainings_forms')
                 ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
                 ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
-                ->where('encoder_id', $encoder_id)
+                ->where('encoder_id', '=', $encoder_id)
                 ->latest('trainings_forms.id')
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
@@ -154,41 +150,36 @@ class TrainingsFormController extends Controller
         if ($request->boolean('filterTrainings')) {
             $searchInput = $request->searchInput ?? '';
             $yearSelect = $request->yearSelect ?? '';
-            $quarterSelect = $request->quarterSelect ?? '';
+            $start_MonthSelect = $request->start_MonthSelect ?? '';
+            $end_MonthSelect = $request->end_MonthSelect ?? '';
 
             $records = DB::table('trainings_forms')
                 ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
                 ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
-                ->where('encoder_id', $encoder_id)
-                ->when(!empty($quarterSelect), function ($query) use ($quarterSelect) {
-                    if ($quarterSelect == 'Q1') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 1)
-                                ->whereMonth('trainings_forms.start_date', '<=', 3);
-                    } elseif ($quarterSelect == 'Q2') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 4)
-                                ->whereMonth('trainings_forms.start_date', '<=', 6);
-                    } elseif ($quarterSelect == 'Q3') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 7)
-                                ->whereMonth('trainings_forms.start_date', '<=', 9);
-                    } elseif ($quarterSelect == 'Q4') {
-                        return $query->whereMonth('trainings_forms.start_date', '>=', 10)
-                                ->whereMonth('trainings_forms.start_date', '<=', 12);
-                    }
+                ->where('encoder_id', '=', $encoder_id)
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
                 })
                 ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
                     return $query->whereYear('start_date', '=', $yearSelect);
                 })
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
-                    return $query->where('title', 'LIKE', "%$searchInput%")
-                                ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                                ->orWhere('venue', 'LIKE', "%$searchInput%")
-                                ->orWhere('province', 'LIKE', "%$searchInput%")
-                                ->orWhere('municipality', 'LIKE', "%$searchInput%")
-                                ->orWhere('country', 'LIKE', "%$searchInput%")
-                                ->orWhere('state', 'LIKE', "%$searchInput%")
-                                ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                    $query->where(function ($subquery) use ($searchInput) {
+                        $subquery->where('title', 'LIKE', "%$searchInput%")
+                            ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                            ->orWhere('venue', 'LIKE', "%$searchInput%")
+                            ->orWhere('province', 'LIKE', "%$searchInput%")
+                            ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                            ->orWhere('country', 'LIKE', "%$searchInput%")
+                            ->orWhere('state', 'LIKE', "%$searchInput%")
+                            ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                    });
                 })
-                ->orderBy('title', 'ASC')
+                // ->orderBy('title', 'ASC')
+                ->latest('trainings_forms.id')
                 ->get();
 
             return response()->json(['records' => $records]);
@@ -683,11 +674,12 @@ class TrainingsFormController extends Controller
     public function export(Request $request)
     {
         if($request->boolean('exportFilteredRecords')) {
-            $searchInput = $request->input('searchInput');
-            $occupationSelect = $request->input('occupationSelect');
-            $genderSelect = $request->input('genderSelect');
+            $searchInput = $request->searchInput ?? '';
+            $yearSelect = $request->yearSelect ?? '';
+            $start_MonthSelect = $request->start_MonthSelect ?? '';
+            $end_MonthSelect = $request->end_MonthSelect ?? '';
 
-            return Excel::download(new ExportRecords($searchInput, $occupationSelect, $genderSelect), 'test.xls');
+            return Excel::download(new ExportRecords($searchInput, $yearSelect, $start_MonthSelect, $end_MonthSelect), 'test.xls');
         }
 
     }

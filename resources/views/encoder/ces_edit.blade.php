@@ -141,14 +141,14 @@
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    <option selected>Year</option>
-                    <option>2024</option>
-                    {{-- <option value="" selected>All Year</option>
+                    {{-- <option selected>Year</option>
+                    <option>2024</option> --}}
+                    <option value="" selected>All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
                             {{ $year }}
                         </option>
-                    @endfor --}}
+                    @endfor
                 </select>
             </div>
 
@@ -156,20 +156,20 @@
             <div class="mx-2">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="quarterSelect">
-                    <option selected>From</option>
-                    <option>January</option>
-                    <option>February</option>
-                    <option>March</option>
-                    <option>April</option>
-                    <option>May</option>
-                    <option>June</option>
-                    <option>July</option>
-                    <option>August</option>
-                    <option>September</option>
-                    <option>October</option>
-                    <option>November</option>
-                    <option>December</option>
+                    id="start_MonthSelect">
+                    <option value="" selected>From</option>
+                    <option value="1" >January</option>
+                    <option value="2" >February</option>
+                    <option value="3" >March</option>
+                    <option value="4" >April</option>
+                    <option value="5" >May</option>
+                    <option value="6" >June</option>
+                    <option value="7" >July</option>
+                    <option value="8" >August</option>  
+                    <option value="9" >September</option>
+                    <option value="10" >October</option>
+                    <option value="11" >November</option>
+                    <option value="12" >December</option>
                 </select>
             </div>
 
@@ -178,20 +178,20 @@
             <div class="mx-2">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="quarterSelect">
-                    <option selected>To</option>
-                    <option>January</option>
-                    <option>February</option>
-                    <option>March</option>
-                    <option>April</option>
-                    <option>May</option>
-                    <option>June</option>
-                    <option>July</option>
-                    <option>August</option>
-                    <option>September</option>
-                    <option>October</option>
-                    <option>November</option>
-                    <option>December</option>
+                    id="end_MonthSelect">
+                    <option value="" selected>To</option>
+                    <option value="1" >January</option>
+                    <option value="2" >February</option>
+                    <option value="3" >March</option>
+                    <option value="4" >April</option>
+                    <option value="5" >May</option>
+                    <option value="6" >June</option>
+                    <option value="7" >July</option>
+                    <option value="8" >August</option>  
+                    <option value="9" >September</option>
+                    <option value="10" >October</option>
+                    <option value="11" >November</option>
+                    <option value="12" >December</option>
                 </select>
             </div>
 
@@ -215,7 +215,7 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="text" id="table-search-users"
+                    <input type="text" id="trainingsSearch"
                         class="h-12 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Search">
                 </div>
@@ -665,11 +665,11 @@
                     currentPage = page; // Update current page
 
                     // Check if there are more records beyond the current page
-                    if (currentPage < result['records'].length) {
-                        $('#nextButton').show();
+                    if (recordsPerPage != result['records'].length) {
+                        $('#nextButton').hide();
                         $('#prevButton').show();
                     } else {
-                        $('#nextButton').hide();
+                        $('#nextButton').show();
                         $('#prevButton').show();
                     }
                 },
@@ -682,9 +682,10 @@
         $('#trainingsSearch').on('keyup input', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
-            var quarterSelect = $('#quarterSelect').val();
+            var start_MonthSelect = $('#start_MonthSelect').val();
+            var end_MonthSelect = $('#end_MonthSelect').val();
 
-            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -697,7 +698,8 @@
                         'filterTrainings': true,
                         'searchInput': searchInput,
                         'yearSelect': yearSelect,
-                        'quarterSelect': quarterSelect,
+                        'start_MonthSelect': start_MonthSelect,
+                        'end_MonthSelect': end_MonthSelect,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -711,44 +713,13 @@
             }
         });
 
-        // $('#yearSelect').on('change', function() {
-        //     var searchInput = $('#trainingsSearch').val();
-        //     var yearSelect = $('#yearSelect').val();
-        //     var quarterSelect = $('#quarterSelect').val();
-
-        //     if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
-        //         loadTrainings(1);
-        //     } else {
-        //         $.ajax({
-        //             url: "/encoder/trainings/filter",
-        //             method: "POST",
-        //             headers: {
-        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        //             },
-        //             data: {
-        //                 'filterTrainings': true,
-        //                 'searchInput': searchInput,
-        //                 'yearSelect': yearSelect,
-        //                 'quarterSelect': quarterSelect,
-        //             },
-        //             success: function(result) {
-        //                 showTrainings(result['records']);
-        //                 $('#nextButton').hide();
-        //                 $('#prevButton').hide();
-        //             },
-        //             error: function(error) {
-        //                 alert("Oops something went wrong!");
-        //             }
-        //         })
-        //     }
-        // })
-
         $('#yearSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
-            var quarterSelect = $('#quarterSelect').val();
+            var start_MonthSelect = $('#start_MonthSelect').val();
+            var end_MonthSelect = $('#end_MonthSelect').val();
 
-            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -761,7 +732,8 @@
                         'filterTrainings': true,
                         'searchInput': searchInput,
                         'yearSelect': yearSelect,
-                        'quarterSelect': quarterSelect,
+                        'start_MonthSelect': start_MonthSelect,
+                        'end_MonthSelect': end_MonthSelect,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -775,12 +747,13 @@
             }
         })
 
-        $('#quarterSelect').on('change', function() {
+        $('#start_MonthSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
-            var quarterSelect = $('#quarterSelect').val();
+            var start_MonthSelect = $('#start_MonthSelect').val();
+            var end_MonthSelect = $('#end_MonthSelect').val();
 
-            if (searchInput == '' && quarterSelect == '' && yearSelect == '') {
+            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
                 $.ajax({
@@ -793,7 +766,8 @@
                         'filterTrainings': true,
                         'searchInput': searchInput,
                         'yearSelect': yearSelect,
-                        'quarterSelect': quarterSelect,
+                        'start_MonthSelect': start_MonthSelect,
+                        'end_MonthSelect': end_MonthSelect,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -806,6 +780,50 @@
                 })
             }
         })
+
+        $('#end_MonthSelect').on('change', function() {
+            var searchInput = $('#trainingsSearch').val();
+            var yearSelect = $('#yearSelect').val();
+            var start_MonthSelect = $('#start_MonthSelect').val();
+            var end_MonthSelect = $('#end_MonthSelect').val();
+
+            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+                loadTrainings(1);
+            } else {
+                $.ajax({
+                    url: "/encoder/trainings/filter",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: {
+                        'filterTrainings': true,
+                        'searchInput': searchInput,
+                        'yearSelect': yearSelect,
+                        'start_MonthSelect': start_MonthSelect,
+                        'end_MonthSelect': end_MonthSelect,
+                    },
+                    success: function(result) {
+                        showTrainings(result['records']);
+                        $('#nextButton').hide();
+                        $('#prevButton').hide();
+                    },
+                    error: function(error) {
+                        alert("Oops something went wrong!");
+                    }
+                })
+            }
+        })
+
+        function nextPage() {
+            loadTrainings(currentPage + 1);
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                loadTrainings(currentPage - 1);
+            }
+        }
 
         function showRecord(id) {
             window.location.href = "{{ route('trainingsform.edit', ':id') }}".replace(':id', id);

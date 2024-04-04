@@ -117,9 +117,9 @@ class UserController extends Controller
             'station'=>$station->station,
             'division'=>$division->division,
             'position'=>$position->position,
-            'sq1'=>$request->sq1,
-            'sq2'=>$request->sq2,
-            'sq3'=>$request->sq3,
+            'sq1'=>strtolower($request->sq1),
+            'sq2'=>strtolower($request->sq2),
+            'sq3'=>strtolower($request->sq3),
         ]);
 
         $new_user = User::getEmailSingle($request->email);

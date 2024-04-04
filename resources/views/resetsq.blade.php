@@ -53,19 +53,19 @@
                                 <div class="my-2" id="idField">
                                     <label for="philrice_id"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
-                                    <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
+                                    <input required type="text" name="philrice_id" value="{{ old('philrice_id') }}"
                                         id="philrice_id"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="XX-XXXX">
                                 </div>
                                 
                                 <div class="relative">
-                                    <select id="security_question"
+                                    <select required id="security_question" name="security_question"
                                         class="block appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white">
                                         <option value="" disabled selected>Choose security question</option>
-                                        <option value="favorite_color">What is your favorite color?</option>
-                                        <option value="birth_location">What province/city were you born in?</option>
-                                        <option value="elementary_school">What is the name of your elementary school?
+                                        <option value="sq1">What is your favorite color?</option>
+                                        <option value="sq2">What province/city were you born in?</option>
+                                        <option value="sq3">What is the name of your elementary school?
                                         </option>
                                     </select>
                                     <div
@@ -75,7 +75,7 @@
                                 </div>
 
                                 <div id="additional_field" style="display: none;">
-                                    <input id="answer_input" type="text"
+                                    <input required id="answer_input" type="text"
                                         class="w-full px-8 py-4 mt-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                         name="answer" placeholder="Your answer" />
                                 </div>

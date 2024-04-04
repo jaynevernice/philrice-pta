@@ -63,4 +63,5 @@ class User extends Authenticatable
     {
         return User::where('remember_token', '=', $remember_token)->first();
     }
+
 }
