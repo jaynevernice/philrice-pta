@@ -101,7 +101,7 @@
 
 @section('content')
     {{-- Main Content --}}
-    <main class="p-4 md:ml-64 h-auto pt-20">
+    <main class="p-4 md:ml-64 h-screen pt-20">
 
 
         {{-- Filters and Export --}}
@@ -175,16 +175,6 @@
                     <option>Summary of Trainings Conducted</option>
                 </select>
             </div>
-
-            {{-- Export Button --}}
-            <div class="ml-auto">
-                <button type="button"
-                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    <i class="fa-solid fa-file-excel"></i>
-                    <span class="pl-2">Export</span>
-                </button>
-            </div>
-
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">

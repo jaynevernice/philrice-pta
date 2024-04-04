@@ -14,7 +14,7 @@
                 <div class="w-full overflow-hidden relative">
                     {{-- <video autoplay muted loop class="w-full"> --}}
                     <video autoplay muted loop class="h-full object-cover w-full">
-                        <source src="{{ asset('assets/hero.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
@@ -23,7 +23,7 @@
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-5xl font-bold pb-4">PhilRice Training Database Management System</h1>
+                        <h1 class="text-5xl font-bold pb-4">{{ config('app.name') }}</h1>
                     </div>
                 </div>
             </div>
@@ -60,11 +60,13 @@
                                     id="confirm_password" onkeyup="matchPassword(this)" required />
                                 <div id="password-match-message"></div>
 
-                                {{-- Tailwind checkbox for showing password field --}}
-                                <div class="mt-4 flex items-center">
+                                {{-- ShowPassword --}}
+                                <div class="flex items-center justify-end my-4">
                                     <input type="checkbox" id="show_password" onchange="togglePasswordVisibility()"
-                                        class="form-checkbox h-5 w-5 text-green-500 transition duration-150 ease-in-out">
-                                    <label for="show_password" class="ml-2 text-sm text-gray-600">Show Password</label>
+                                        class="form-checkbox rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-blue-600 dark:focus:ring-blue-600 dark:focus:ring-opacity-50 dark:text-blue-500">
+                                    <label for="showPasswordCheckbox"
+                                        class="text-sm font-medium text-gray-900 dark:text-white ml-2 cursor-pointer">Show
+                                        Password</label>
                                 </div>
 
                                 <button type="submit"

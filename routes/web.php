@@ -317,3 +317,8 @@ Route::group(['prefix' => 'dispatch'], function () {
 Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');
+
+
+Route::get('/trainings', function () {
+    return view('trainings');
+})->name('trainings');

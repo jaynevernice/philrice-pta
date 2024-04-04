@@ -31,8 +31,10 @@
     {{-- csrf for ajax --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-</head>
+    {{-- Flowbite CDN --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
+</head>
 <body>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 

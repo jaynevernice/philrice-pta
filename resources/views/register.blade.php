@@ -616,6 +616,7 @@
             }
         }
     </script>
+    
     {{-- Changing Dropdown Choices in Registration --}}
     <script>
         $(document).ready(function() {

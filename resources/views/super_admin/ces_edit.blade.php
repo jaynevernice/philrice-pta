@@ -122,7 +122,7 @@
 @endsection
 
 @section('content')
-    <main class="p-4 md:ml-64 h-auto pt-20">
+    <main class="p-4 md:ml-64 h-screen pt-20">
 
         {{-- Station --}}
         <div class="flex">
@@ -131,7 +131,7 @@
                 Central Experimental Station</h1>
         </div>
 
-        {{-- Filters and Export --}}
+        {{-- Filters --}}
         <div class="flex my-4">
 
             {{-- Year --}}
@@ -218,16 +218,6 @@
                         placeholder="Search">
                 </div>
             </div>
-
-            {{-- Export Button --}}
-            <div>
-                <button type="button"
-                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    <i class="fa-solid fa-file-excel"></i>
-                    <span class="pl-2">Export</span>
-                </button>
-            </div>
-
         </div>
 
         {{-- Table --}}

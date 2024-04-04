@@ -122,7 +122,7 @@
 @endsection
 
 @section('content')
-    <main class="p-4 md:ml-64 h-auto pt-20">
+    <main class="p-4 md:ml-64 h-screen pt-20">
 
         <div class="flex">
             <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
