@@ -122,7 +122,7 @@
 
 @section('content')
     {{-- Main Content --}}
-    <main class="p-4 md:ml-64 h-auto pt-20">
+    <main class="p-4 md:ml-64 h-screen pt-20">
 
         {{-- Filters and Export --}}
         <div class="flex my-4">
