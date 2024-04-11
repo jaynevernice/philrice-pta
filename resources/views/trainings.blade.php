@@ -219,9 +219,6 @@
                         </div>
                     </div>
 
-                    <div>
-
-
                     {{-- Venue --}}
                     <div>
                         <div>
@@ -244,6 +241,7 @@
                             <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                                 class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         </div> --}}
+
                     </div>
                 </div>
                 
