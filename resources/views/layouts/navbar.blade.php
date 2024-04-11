@@ -37,8 +37,8 @@
         <div class="flex items-center lg:order-2">
 
             <!-- Dropdown menu -->
-            <div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
-                id="notification-dropdown">
+            <div
+                class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl">
             </div>
 
             @if (!Auth::check() || Auth::user()->user_type === 'guest')
@@ -49,18 +49,23 @@
                     </button>
                 </a>
             @else
-
-            <button type="button"
-                class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
-                <span class="sr-only">Open user menu</span>
-                {{-- <img class="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" src="{{ asset('assets/icon.jpg') }}" --}}
-                {{-- alt="user photo" /> --}}
-                <img class="w-8 h-8 rounded-full"
-                    @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}" @else src="{{ asset('assets/icon.jpg') }}" @endif
-                    alt="Profile Picture" />
-            </button>
-
+                <button type="button"
+                    class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                    id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown"
+                    data-tooltip-target="user-menu-tooltip">
+                    <div id="user-menu-tooltip" role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        User Menu
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    {{-- <img class="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" src="{{ asset('assets/icon.jpg') }}" --}}
+                    {{-- alt="user photo" /> --}}
+                    <img class="w-8 h-8 rounded-full"
+                        @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}" 
+                    @else 
+                    src="{{ asset('assets/icon.jpg') }}" @endif
+                        alt="Profile Picture" />
+                </button>
             @endif
 
             <!-- Dropdown menu -->

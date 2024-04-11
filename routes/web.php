@@ -161,10 +161,10 @@ Route::group(['middleware' => 'super_admin'], function () {
         Route::get('/negros', function () {
             return view('super_admin.negros');
         })->name('super_admin.negros');
-
-        Route::get('/manage_rcef', function () {
-            return view('super_admin.manage_rcef');
-        })->name('super_admin.manage_rcef');
+        
+        Route::get('/manage_encoders', function () {
+            return view('super_admin.manage_encoders');
+        })->name('super_admin.manage_encoders');
 
         Route::get('/manage_admins', function () {
             return view('super_admin.manage_admins');
@@ -236,6 +236,10 @@ Route::group(['middleware' => 'encoder'], function () {
         Route::get('/profile', function() {
             return view('profile');
         })->name('profile');
+
+        Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
+        Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
+        Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
 
         Route::get('/overview', function () {
             return view('encoder.overview');

@@ -221,7 +221,9 @@
 
                     <div>
 
-                        {{-- Venue --}}
+
+                    {{-- Venue --}}
+                    <div>
                         <div>
                             <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
                             <div class="relative">
@@ -235,14 +237,22 @@
                         </div>
 
                         {{-- Additional Input Field for Outside PhilRice Station --}}
-                        <div id="outsidePhilrice" style="display: none;" class="col-span-3">
+                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
+                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
                             <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
                                 PhilRice Station (Local)</label>
                             <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                                 class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                        </div>
+                        </div> --}}
                     </div>
-
+                </div>
+                
+                {{-- Additional Input Field for Outside PhilRice Station --}}
+                <div id="outsidePhilrice" style="display: none;" class="col-span-3">
+                    <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
+                        PhilRice Station (Local)</label>
+                    <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
+                        class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
 
                 {{-- Start Date and End Date --}}

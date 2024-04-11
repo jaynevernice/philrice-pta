@@ -204,11 +204,15 @@
 
             {{-- Export Button --}}
             <div class="ml-auto">
-                <button type="button"
+                <button type="button" data-tooltip-target="export-tooltip"
                     class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
                     <i class="fa-solid fa-file-excel"></i>
                     <span class="pl-2">Export</span>
                 </button>
+                <div id="export-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Export
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
             </div>
 
         </div>
