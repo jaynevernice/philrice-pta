@@ -32,6 +32,8 @@ class User extends Authenticatable
         'sq1',
         'sq2',
         'sq3',
+
+        'profile_picture',
     ];
 
     /**

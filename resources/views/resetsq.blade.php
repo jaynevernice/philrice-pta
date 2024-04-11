@@ -52,10 +52,10 @@
                                 {{-- PhilRice ID --}}
                                 <div class="my-2" id="idField">
                                     <label for="philrice_id"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
+                                        class="block text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
                                     <input required type="text" name="philrice_id" value="{{ old('philrice_id') }}"
                                         id="philrice_id"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="w-full px-8 py-4 mt-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                         placeholder="XX-XXXX">
                                 </div>
                                 
@@ -76,7 +76,7 @@
 
                                 <div id="additional_field" style="display: none;">
                                     <input required id="answer_input" type="text"
-                                        class="w-full px-8 py-4 mt-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        class="w-full px-8 py-4 mt-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                         name="answer" placeholder="Your answer" />
                                 </div>
 

@@ -171,6 +171,9 @@ return [
 
         // Important to export datas in table into excel/csv
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        // realrashid/sweet-alert
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         
     ])->toArray(),
 
@@ -190,6 +193,9 @@ return [
 
         // Important to export datas in table into excel/csv
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+        // realrashid/sweet-alert
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ])->toArray(),
 

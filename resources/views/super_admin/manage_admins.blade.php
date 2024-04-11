@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Manage Admin
+    Manage Admins
 @endsection
 
 @section('sidebar')
@@ -30,21 +30,21 @@
                     </a>
                     <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="{{ route('admin.ces_view') }}"
+                            <a href="{{ route('super_admin.ces_view') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='line-chart'></box-icon>
                                 <span class="ml-3">View Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.ces_add') }}"
+                            <a href="{{ route('super_admin.ces_add') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='plus'></box-icon>
                                 <span class="ml-3">Add Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.ces_edit') }}"
+                            <a href="{{ route('super_admin.ces_edit') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='edit-alt' type='solid'></box-icon>
                                 <span class="ml-3">Edit Data</span>
@@ -120,10 +120,19 @@
 
                 {{-- Manage Encoders --}}
                 <li>
-                    <a href="{{ route('admin.manage_encoders') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg bg-green-100 dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('super_admin.manage_encoders') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon type='solid' name='user-account'></box-icon>
                         <span class="ml-3">Manage Encoders</span>
+                    </a>
+                </li>
+
+                {{-- Manage Admins --}}
+                <li>
+                    <a href="{{ route('super_admin.manage_encoders') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg bg-green-100 dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon type='solid' name='user-account'></box-icon>
+                        <span class="ml-3">Manage Admins</span>
                     </a>
                 </li>
 

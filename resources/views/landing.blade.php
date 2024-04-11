@@ -35,10 +35,10 @@
                 <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-        
+
             {{-- Dim video using overlay --}}
             <div class="absolute inset-0 bg-black opacity-50"></div>
-        
+
             {{-- Text Overlay --}}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
                 <div class="max-w-2xl mx-auto px-4">
@@ -47,10 +47,10 @@
                         training-related information for the Philippine Rice Research Institute, enhancing the effectiveness
                         of their agricultural education initiatives.</p>
                 </div>
-        
+
                 <div class="flex flex-col lg:flex-row">
                     <a href="{{ route('guest.overview') }}" class="mb-2 lg:mb-0">
-                        <button type="button"
+                        <button type="button" onclick="showAlert"
                             class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-white hover:bg-slate-100 border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                             <box-icon type='solid' name='user' class="mr-2"></box-icon>
                             View
@@ -66,6 +66,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 @endsection

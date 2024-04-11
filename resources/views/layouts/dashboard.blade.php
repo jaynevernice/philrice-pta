@@ -35,6 +35,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
 </head>
+
 <body>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
@@ -54,9 +55,13 @@
     {{-- Charts --}}
     @yield('charts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-
+    {{-- Scripts --}}
     @yield('scripts')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    
+    {{-- realrashid/sweet-alert --}}
+    @include('sweetalert::alert')
 </body>
 
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
