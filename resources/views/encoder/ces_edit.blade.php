@@ -738,6 +738,47 @@
             })
         }
 
+        function loadFilterTrainings(page) {
+            var searchInput = $('#trainingsSearch').val();
+            var yearSelect = $('#yearSelect').val();
+            var start_MonthSelect = $('#start_MonthSelect').val();
+            var end_MonthSelect = $('#end_MonthSelect').val();
+
+            $.ajax({
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                data: {
+                    'filterTrainings': true,
+                    'searchInput': searchInput,
+                    'yearSelect': yearSelect,
+                    'start_MonthSelect': start_MonthSelect,
+                    'end_MonthSelect': end_MonthSelect,
+                    'station': station,
+                    'page': page,
+                    'recordsPerPage': recordsPerPage,
+                },
+                success: function(result) {
+                    showTrainings(result['records']);
+                    currentPage = page; // Update current page
+
+                    if (recordsPerPage != result["records"].length) {
+                        $("#nextButton").hide();
+                        $("#prevButton").show();
+                    } else {
+                        $("#nextButton").show();
+                        $("#prevButton").show();
+                    }
+                },
+                error: function(error) {
+                    alert("Oops something went wrong!");
+                }
+            })
+        }
+
         $('#trainingsSearch').on('keyup input', function() {
             var searchInput = $('#trainingsSearch').val();
             var yearSelect = $('#yearSelect').val();
@@ -747,30 +788,31 @@
             if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    // url: "/encoder/trainings/filter",
-                    url: "{{ route('filter_data') }}",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainings': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                        'station': station,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     // url: "/encoder/trainings/filter",
+                //     url: "{{ route('filter_data') }}",
+                //     method: "POST",
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                //     },
+                //     data: {
+                //         'filterTrainings': true,
+                //         'searchInput': searchInput,
+                //         'yearSelect': yearSelect,
+                //         'start_MonthSelect': start_MonthSelect,
+                //         'end_MonthSelect': end_MonthSelect,
+                //         'station': station,
+                //     },
+                //     success: function(result) {
+                //         showTrainings(result['records']);
+                //         $('#nextButton').hide();
+                //         $('#prevButton').hide();
+                //     },
+                //     error: function(error) {
+                //         alert("Oops something went wrong!");
+                //     }
+                // })
+                loadFilterTrainings(1);
             }
         });
 
@@ -783,30 +825,31 @@
             if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    // url: "/encoder/trainings/filter",
-                    url: "{{ route('filter_data') }}",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainings': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                        'station': station,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     // url: "/encoder/trainings/filter",
+                //     url: "{{ route('filter_data') }}",
+                //     method: "POST",
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                //     },
+                //     data: {
+                //         'filterTrainings': true,
+                //         'searchInput': searchInput,
+                //         'yearSelect': yearSelect,
+                //         'start_MonthSelect': start_MonthSelect,
+                //         'end_MonthSelect': end_MonthSelect,
+                //         'station': station,
+                //     },
+                //     success: function(result) {
+                //         showTrainings(result['records']);
+                //         $('#nextButton').hide();
+                //         $('#prevButton').hide();
+                //     },
+                //     error: function(error) {
+                //         alert("Oops something went wrong!");
+                //     }
+                // })
+                loadFilterTrainings(1);
             }
         })
 
@@ -819,30 +862,31 @@
             if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    // url: "/encoder/trainings/filter",
-                    url: "{{ route('filter_data') }}",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainings': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                        'station': station,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     // url: "/encoder/trainings/filter",
+                //     url: "{{ route('filter_data') }}",
+                //     method: "POST",
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                //     },
+                //     data: {
+                //         'filterTrainings': true,
+                //         'searchInput': searchInput,
+                //         'yearSelect': yearSelect,
+                //         'start_MonthSelect': start_MonthSelect,
+                //         'end_MonthSelect': end_MonthSelect,
+                //         'station': station,
+                //     },
+                //     success: function(result) {
+                //         showTrainings(result['records']);
+                //         $('#nextButton').hide();
+                //         $('#prevButton').hide();
+                //     },
+                //     error: function(error) {
+                //         alert("Oops something went wrong!");
+                //     }
+                // })
+                loadFilterTrainings(1);
             }
         })
 
@@ -855,40 +899,71 @@
             if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    // url: "/encoder/trainings/filter",
-                    url: "{{ route('filter_data') }}",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainings': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                        'station': station,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     // url: "/encoder/trainings/filter",
+                //     url: "{{ route('filter_data') }}",
+                //     method: "POST",
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                //     },
+                //     data: {
+                //         'filterTrainings': true,
+                //         'searchInput': searchInput,
+                //         'yearSelect': yearSelect,
+                //         'start_MonthSelect': start_MonthSelect,
+                //         'end_MonthSelect': end_MonthSelect,
+                //         'station': station,
+                //     },
+                //     success: function(result) {
+                //         showTrainings(result['records']);
+                //         $('#nextButton').hide();
+                //         $('#prevButton').hide();
+                //     },
+                //     error: function(error) {
+                //         alert("Oops something went wrong!");
+                //     }
+                // })
+                loadFilterTrainings(1);
             }
         })
 
         function nextPage() {
-            loadTrainings(currentPage + 1);
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
+                loadTrainings(currentPage + 1);
+            } else {
+                loadFilterTrainings(currentPage + 1);
+            }
         }
 
         function prevPage() {
-            if (currentPage > 1) {
-                loadTrainings(currentPage - 1);
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
+                if (currentPage > 1) {
+                    loadTrainings(currentPage - 1);
+                }
+            } else {
+                if (currentPage > 1) {
+                    loadFilterTrainings(currentPage - 1);
+                }
             }
         }
 

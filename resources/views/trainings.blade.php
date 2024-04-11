@@ -131,6 +131,9 @@
                 Summary of Trainings Conducted</h1>
         </div>
 
+        {{-- Success/Error Message from TrainingsFormController --}}
+        @include('_message')
+
         {{-- Multi Page Form --}}
         <form id="trainingsForm" action="{{ route('trainingsform.store') }}" method="POST" enctype="multipart/form-data"
             class="px-10 py-8 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100">
@@ -1038,10 +1041,6 @@
             }
         }
 
-        // Show the initial section
-        // showSection(currentSection);
-        // updateButtons();
-
         $(document).ready(function() {
             loadFormData(); // Load form data when document is ready
 
@@ -1075,7 +1074,7 @@
             $('#nextBtn').on('click', function () {
                 saveFormData();
                 // changes the type of nextBtn into submit
-                if(toSubmit()) {
+                if(toSubmit() && currentSection == 6) {
                     nextBtn.type = 'submit';
                 } else {
                     nextBtn.type = 'button';
@@ -1109,6 +1108,7 @@
                         }
                     }
                 }
+
             });
 
             $('#total_participants, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_educators, #num_of_industry_players, #num_of_policy_makers, #num_of_researchers, #num_of_students, #num_of_media, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd').on('keyup input', function() {

@@ -7,6 +7,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Models\TrainingsForm;
 
+use Carbon\Carbon;
+
 class ExportRecords implements FromCollection, WithMapping, WithHeadings
 {
     /**
@@ -39,8 +41,8 @@ class ExportRecords implements FromCollection, WithMapping, WithHeadings
 
     public function map($records): array
     {
-        $date = $records->start_date . " - " . $records->end_date;
-
+        $date = date("F-d-Y", strtotime($records->start_date)) . " - " . date("F-d-Y", strtotime($records->end_date));
+        
         return [
             $records->title,
             $records->division,

@@ -92,6 +92,15 @@ class TrainingsFormController extends Controller
         }
 
         if ($request->boolean('filterTrainingsView')) {
+            // Get the current page number from the request, default to 1 if not provided
+            $page = $request->input('page', 1);
+
+            // Get the number of records to display per page from the request or use a default value
+            $recordsPerPage = $request->input('recordsPerPage', 5);
+
+            // Calculate the offset to skip records based on the current page number
+            $offset = ($page - 1) * $recordsPerPage;
+
             $searchInput = $request->searchInput ?? '';
             $yearSelect = $request->yearSelect ?? '';
             $start_MonthSelect = $request->start_MonthSelect ?? '';
@@ -121,6 +130,8 @@ class TrainingsFormController extends Controller
                 // ->orderBy('title', 'ASC')
                 ->where('station', '=', $request->station)
                 ->latest('id')
+                ->skip($offset) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
 
             return response()->json(['records' => $records]);
@@ -152,6 +163,15 @@ class TrainingsFormController extends Controller
         }
 
         if ($request->boolean('filterTrainings')) {
+            // Get the current page number from the request, default to 1 if not provided
+            $page = $request->input('page', 1);
+
+            // Get the number of records to display per page from the request or use a default value
+            $recordsPerPage = $request->input('recordsPerPage', 5);
+
+            // Calculate the offset to skip records based on the current page number
+            $offset = ($page - 1) * $recordsPerPage;
+
             $searchInput = $request->searchInput ?? '';
             $yearSelect = $request->yearSelect ?? '';
             $start_MonthSelect = $request->start_MonthSelect ?? '';
@@ -185,6 +205,8 @@ class TrainingsFormController extends Controller
                 // ->orderBy('title', 'ASC')
                 ->where('trainings_forms.station', '=', $request->station)
                 ->latest('trainings_forms.id')
+                ->skip($offset) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
 
             return response()->json(['records' => $records]);
@@ -416,7 +438,7 @@ class TrainingsFormController extends Controller
         //     'file'=>implode('|', $fileNames),
         // ]);
 
-        // return redirect()->back()->with('success', "You successfully added a data.");
+        return redirect()->back()->with('success', "You successfully added a data.");
     }
 
     /**

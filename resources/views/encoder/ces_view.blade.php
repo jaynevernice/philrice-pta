@@ -301,18 +301,32 @@
             {{-- Previous and Next Buttons for Pagination --}}
             <div class="flex justify-end">
                 <div>
+                    {{-- page button for no filter --}}
                     <button id="prevButton" onclick="prevPage()"
                         class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
                         Previous
                     </button>
+                    {{-- page button for filter --}}
+                    {{-- <button id="prevButton-filter" onclick="prevPageFilter()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
+                        Previous
+                    </button> --}}
                 </div>
                 <div class="ml-1">
+                    {{-- page button for no filter --}}
                     <button id="nextButton" onclick="nextPage()"
                         class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         Next
                         <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
                     </button>
+                    {{-- page button for filter --}}
+                    {{-- <button id="nextButton-filter" onclick="nextPageFilter()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Next
+                        <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
+                    </button> --}}
                 </div>
             </div>
         </div>
@@ -602,11 +616,14 @@
 @endsection
 
 @section('datatable')
-    {{-- <script>
+    <script type="text/javascript">
+        let station = 'CES';
+    </script>
+    <script type="text/javascript" >
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             loadTrainings(currentPage);
         });
 
@@ -616,13 +633,24 @@
             var datas = result;
             var tableRow = ``;
 
-            datas.forEach(function(data) {
-                tableRow += `
+            datas.forEach(function (data) {
+                tableRow +=
+                    `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">` + data['title'] + `</th>
-                        <td class="px-6 py-4">` + data['division'] + `</td>
-                        <td class="px-6 py-4">` + formatDate(data['start_date']) + ` - ` + formatDate(data['end_date']) + `</td>
-                        <td class="px-6 py-4">` + data['venue'] + `</td>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">` +
+                    data["title"] +
+                    `</th>
+                        <td class="px-6 py-4">` +
+                    data["division"] +
+                    `</td>
+                        <td class="px-6 py-4">` +
+                    formatDate(data["start_date"]) +
+                    ` - ` +
+                    formatDate(data["end_date"]) +
+                    `</td>
+                        <td class="px-6 py-4">` +
+                    data["venue"] +
+                    `</td>
                         <td class="px-6 py-4 text-center">
                             <button
                             data-modal-target="trainings-modal" 
@@ -645,9 +673,9 @@
             //     <td class="px-6 py-4">${data.venue || '-'}</td>
             //     <td class="px-6 py-4 text-center">
             //         <button
-            //         data-modal-target="trainings-modal" 
-            //         data-modal-toggle="trainings-modal" 
-            //         type="button" 
+            //         data-modal-target="trainings-modal"
+            //         data-modal-toggle="trainings-modal"
+            //         type="button"
             //         class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
             //             <box-icon name='expand-alt' size="xs"></box-icon>
             //         </button>
@@ -657,19 +685,30 @@
 
             // Single DOM manipulation for better performance
             // tableBody.html(trainingRows);
-            $('#table-body').html(tableRow);
+            $("#table-body").html(tableRow);
         }
 
         function formatDate(dateString) {
-            if (!dateString) return '-';
+            if (!dateString) return "-";
 
             const date = new Date(dateString);
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
+            const monthNames = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
             ];
 
             const month = monthNames[date.getMonth()];
-            const day = String(date.getDate()).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, "0");
             const year = date.getFullYear();
 
             return `${month}-${day}-${year}`;
@@ -677,228 +716,331 @@
 
         function loadTrainings(page) {
             $.ajax({
-                url: "/encoder/trainings/filter",
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
                 method: "POST",
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
                 data: {
-                    'showTrainingView': true,
-                    'page': page,
-                    'recordsPerPage': recordsPerPage
+                    showTrainingView: true,
+                    page: page,
+                    recordsPerPage: recordsPerPage,
+                    station: station,
                 },
-                success: function(result) {
-                    showTrainings(result['records']);
+                success: function (result) {
+                    showTrainings(result["records"]);
                     currentPage = page; // Update current page
 
                     // Check if there are more records beyond the current page
-                    if (recordsPerPage != result['records'].length) {
-                        $('#nextButton').hide();
-                        $('#prevButton').show();
+                    if (recordsPerPage != result["records"].length) {
+                        $("#nextButton").hide();
+                        $("#prevButton").show();
                     } else {
-                        $('#nextButton').show();
-                        $('#prevButton').show();
+                        $("#nextButton").show();
+                        $("#prevButton").show();
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     alert("Oops something went wrong!");
-                }
-            })
+                },
+            });
         }
 
-        $('#trainingsSearch').on('keyup input', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+        function loadFilterTrainings(page) {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            $.ajax({
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                data: {
+                    filterTrainingsView: true,
+                    searchInput: searchInput,
+                    yearSelect: yearSelect,
+                    start_MonthSelect: start_MonthSelect,
+                    end_MonthSelect: end_MonthSelect,
+                    station: station,
+                    page: page,
+                    recordsPerPage: recordsPerPage,
+                },
+                success: function (result) {
+                    showTrainings(result["records"]);
+                    currentPage = page; // Update current page
+
+                    if (recordsPerPage != result["records"].length) {
+                        $("#nextButton").hide();
+                        $("#prevButton").show();
+                    } else {
+                        $("#nextButton").show();
+                        $("#prevButton").show();
+                    }
+                },
+                error: function (error) {
+                    alert("Oops something went wrong!");
+                },
+            });
+        }
+
+        $("#trainingsSearch").on("keyup input", function () {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    url: "/encoder/trainings/filter",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainingsView': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     // url: "/encoder/trainings/filter",
+                //     url: "{{ route('filter_data') }}",
+                //     method: "POST",
+                //     headers: {
+                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                //     },
+                //     data: {
+                //         filterTrainingsView: true,
+                //         searchInput: searchInput,
+                //         yearSelect: yearSelect,
+                //         start_MonthSelect: start_MonthSelect,
+                //         end_MonthSelect: end_MonthSelect,
+                //         station: station,
+                //         page: page,
+                //         recordsPerPage: recordsPerPage,
+                //     },
+                //     success: function (result) {
+                //         showTrainings(result["records"]);
+                //         $("#nextButton").hide();
+                //         $("#prevButton").hide();
+                //     },
+                //     error: function (error) {
+                //         alert("Oops something went wrong!");
+                //     },
+                // });
+                loadFilterTrainings(1);
             }
         });
 
-        $('#yearSelect').on('change', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+        $("#yearSelect").on("change", function () {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    url: "/encoder/trainings/filter",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainingsView': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     url: "/encoder/trainings/filter",
+                //     method: "POST",
+                //     headers: {
+                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                //     },
+                //     data: {
+                //         filterTrainingsView: true,
+                //         searchInput: searchInput,
+                //         yearSelect: yearSelect,
+                //         start_MonthSelect: start_MonthSelect,
+                //         end_MonthSelect: end_MonthSelect,
+                //         station: station,
+                //     },
+                //     success: function (result) {
+                //         showTrainings(result["records"]);
+                //         $("#nextButton").hide();
+                //         $("#prevButton").hide();
+                //     },
+                //     error: function (error) {
+                //         alert("Oops something went wrong!");
+                //     },
+                // });
+                loadFilterTrainings(1);
             }
-        })
+        });
 
-        $('#start_MonthSelect').on('change', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+        $("#start_MonthSelect").on("change", function () {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    url: "/encoder/trainings/filter",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainingsView': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     url: "/encoder/trainings/filter",
+                //     method: "POST",
+                //     headers: {
+                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                //     },
+                //     data: {
+                //         filterTrainingsView: true,
+                //         searchInput: searchInput,
+                //         yearSelect: yearSelect,
+                //         start_MonthSelect: start_MonthSelect,
+                //         end_MonthSelect: end_MonthSelect,
+                //         station: station,
+                //     },
+                //     success: function (result) {
+                //         showTrainings(result["records"]);
+                //         $("#nextButton").hide();
+                //         $("#prevButton").hide();
+                //     },
+                //     error: function (error) {
+                //         alert("Oops something went wrong!");
+                //     },
+                // });
+                loadFilterTrainings(1);
             }
-        })
+        });
 
-        $('#end_MonthSelect').on('change', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+        $("#end_MonthSelect").on("change", function () {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
                 loadTrainings(1);
             } else {
-                $.ajax({
-                    url: "/encoder/trainings/filter",
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'filterTrainingsView': true,
-                        'searchInput': searchInput,
-                        'yearSelect': yearSelect,
-                        'start_MonthSelect': start_MonthSelect,
-                        'end_MonthSelect': end_MonthSelect,
-                    },
-                    success: function(result) {
-                        showTrainings(result['records']);
-                        $('#nextButton').hide();
-                        $('#prevButton').hide();
-                    },
-                    error: function(error) {
-                        alert("Oops something went wrong!");
-                    }
-                })
+                // $.ajax({
+                //     url: "/encoder/trainings/filter",
+                //     method: "POST",
+                //     headers: {
+                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                //     },
+                //     data: {
+                //         filterTrainingsView: true,
+                //         searchInput: searchInput,
+                //         yearSelect: yearSelect,
+                //         start_MonthSelect: start_MonthSelect,
+                //         end_MonthSelect: end_MonthSelect,
+                //         station: station,
+                //     },
+                //     success: function (result) {
+                //         showTrainings(result["records"]);
+                //         $("#nextButton").hide();
+                //         $("#prevButton").hide();
+                //     },
+                //     error: function (error) {
+                //         alert("Oops something went wrong!");
+                //     },
+                // });
+                loadFilterTrainings(1);
             }
-        })
+        });
 
         function nextPage() {
-            loadTrainings(currentPage + 1);
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
+                loadTrainings(currentPage + 1);
+            } else {
+                loadFilterTrainings(currentPage + 1);
+            }
         }
 
         function prevPage() {
-            if (currentPage > 1) {
-                loadTrainings(currentPage - 1);
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == ""
+            ) {
+                if (currentPage > 1) {
+                    loadTrainings(currentPage - 1);
+                }
+            } else {
+                if (currentPage > 1) {
+                    loadFilterTrainings(currentPage - 1);
+                }
             }
         }
 
         function exportRecord() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
 
             $.ajax({
                 url: "/encoder/export/record",
                 method: "POST",
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
                 data: {
-                    'exportFilteredRecords': true,
-                    'searchInput': searchInput,
-                    'yearSelect': yearSelect,
-                    'start_MonthSelect': start_MonthSelect,
-                    'end_MonthSelect': end_MonthSelect,
+                    exportFilteredRecords: true,
+                    searchInput: searchInput,
+                    yearSelect: yearSelect,
+                    start_MonthSelect: start_MonthSelect,
+                    end_MonthSelect: end_MonthSelect,
                 },
                 cache: false,
                 xhrFields: {
-                    responseType: 'blob'
+                    responseType: "blob",
                 },
-                success: function(result) {
-
+                success: function (result) {
                     // var fileName = 'PhilRice Central Experimental Station (' . date('Y') . ') - Summary of Trainings';
-                    var fileName = 'PhilRice CES (' + new Date().getFullYear() + ') - Summary of Trainings';
+                    var fileName =
+                        "PhilRice CES (" +
+                        new Date().getFullYear() +
+                        ") - Summary of Trainings";
 
                     var blob = new Blob([result], {
-                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     });
                     var link = document.createElement("a");
                     link.href = URL.createObjectURL(result);
                     link.href = URL.createObjectURL(blob);
-                    link.download = fileName + '.xls';
+                    link.download = fileName + ".xls";
                     link.click();
 
                     alert("Thank you!");
                 },
-                error: function(error) {
+                error: function (error) {
                     alert("Oops something went wrong!");
-                }
-            })
+                },
+            });
         }
-    </script> --}}
-    <script type="text/javascript">
-        let station = 'CES';
+
     </script>
-    <script type="text/javascript" src="{{ asset('assets/datatable_view.js') }}"></script>
 @endsection
