@@ -14,6 +14,7 @@ class TrainingsForm extends Model
         'encoder_id',
         // 'encoder_name',
         // 'encoder_email',
+        'station',
         'division',
         'title',
         'training_type',

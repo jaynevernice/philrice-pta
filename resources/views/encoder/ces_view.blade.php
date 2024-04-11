@@ -602,7 +602,7 @@
 @endsection
 
 @section('datatable')
-    <script>
+    {{-- <script>
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference
 
@@ -611,30 +611,53 @@
         });
 
         function showTrainings(result) {
-            const tableBody = $('#table-body');
+            // const tableBody = $('#table-body');
+
+            var datas = result;
+            var tableRow = ``;
+
+            datas.forEach(function(data) {
+                tableRow += `
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">` + data['title'] + `</th>
+                        <td class="px-6 py-4">` + data['division'] + `</td>
+                        <td class="px-6 py-4">` + formatDate(data['start_date']) + ` - ` + formatDate(data['end_date']) + `</td>
+                        <td class="px-6 py-4">` + data['venue'] + `</td>
+                        <td class="px-6 py-4 text-center">
+                            <button
+                            data-modal-target="trainings-modal" 
+                            data-modal-toggle="trainings-modal" 
+                            type="button" 
+                            class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
+                                <box-icon name='expand-alt' size="xs"></box-icon>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
 
             // Efficient template literal construction using map()
-            const trainingRows = result.map(data => `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-                <td class="px-6 py-4">${data.division || '-'}</td>
-                <td class="px-6 py-4">${formatDate(data.start_date)} - ${formatDate(data.end_date)}</td>
-                <td class="px-6 py-4">${data.venue || '-'}</td>
-                <td class="px-6 py-4 text-center">
-                    <button
-                    data-modal-target="trainings-modal" 
-                    data-modal-toggle="trainings-modal" 
-                    type="button" 
-                    class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
-                        <box-icon name='expand-alt' size="xs"></box-icon>
-                    </button>
-                </td>
-            </tr>
-            `).join('');
+            // const trainingRows = result.map(data => `
+            // <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            //     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
+            //     <td class="px-6 py-4">${data.division || '-'}</td>
+            //     <td class="px-6 py-4">${formatDate(data.start_date)} - ${formatDate(data.end_date)}</td>
+            //     <td class="px-6 py-4">${data.venue || '-'}</td>
+            //     <td class="px-6 py-4 text-center">
+            //         <button
+            //         data-modal-target="trainings-modal" 
+            //         data-modal-toggle="trainings-modal" 
+            //         type="button" 
+            //         class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
+            //             <box-icon name='expand-alt' size="xs"></box-icon>
+            //         </button>
+            //     </td>
+            // </tr>
+            // `).join('');
 
             // Single DOM manipulation for better performance
-            tableBody.html(trainingRows);
-
+            // tableBody.html(trainingRows);
+            $('#table-body').html(tableRow);
         }
 
         function formatDate(dateString) {
@@ -873,5 +896,9 @@
                 }
             })
         }
+    </script> --}}
+    <script type="text/javascript">
+        let station = 'CES';
     </script>
+    <script type="text/javascript" src="{{ asset('assets/datatable_view.js') }}"></script>
 @endsection

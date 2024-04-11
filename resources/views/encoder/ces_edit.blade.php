@@ -590,6 +590,7 @@
 
 @section('datatable')
     <script>
+        let station = 'CES';
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference
 
@@ -598,49 +599,116 @@
         });
 
         function showTrainings(result) {
-            const tableBody = $('#table-body');
+            // const tableBody = $('#table-body');
+
+            var datas = result;
+            var tableRow = ``;
+
+            datas.forEach(function (data) {
+                // console.log(data["id"]);
+                tableRow +=
+                    `
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">` + data["title"] + `</th>
+                        <td class="px-6 py-4">` + data["division"] + `</td>
+                        <td class="px-6 py-4">` + formatDate(data["start_date"]) + ` - ` + formatDate(data["end_date"]) + `</td>
+                        <td class="px-6 py-4">` + data["venue"] + `</td>
+                        <td class="px-6 py-4">` + (data["municipality"] || data["state"]) + `, ` + (data["province"] || data["country"]) + `</td>
+                        <td class="px-6 py-4">` + data["num_of_participants"] + `</td>
+                        <td class="px-6 py-4">` + data["created_at"] + `</td>
+                        <td class="px-6 py-4 text-center">
+                            <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal" 
+                            type="button" 
+                            class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
+                                <box-icon name='expand-alt' size="xs"></box-icon>
+                            </button>`;
+                tableRow += `
+                            <form action="{{ route('trainingsform.edit', ':id') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]">
+                                    <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
+                                </button>
+                            </form>
+                            `.replace(':id', data["id"]);
+                tableRow +=
+                            `
+                            <button onclick="deleteRecord(` + data["id"] + `)" type="button"
+                                class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]">
+                                <box-icon name='trash' type='solid' size="xs"></box-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    `;
+            });
 
             // Efficient template literal construction using map()
-            const trainingRows = result.map(data => `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-                <td class="px-6 py-4">${data.division || '-'}</td>  
-                <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
-                <td class="px-6 py-4">${data.venue || '-'}</td>  
-                <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
-                <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
-                <td class="px-6 py-4">${data.created_at || '-'}</td>  
-                <td class="px-6 py-4 text-center">
-                    <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
-                        type="button"
-                        class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-                        type="button">
-                        <box-icon name='expand-alt' size="xs"></box-icon>
-                    </button>
-                    <button onclick="showRecord(${data.id || '-'})"
-                        type="button"
-                        class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-                        type="button">
-                        <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
-                    </button>
-                    <button onclick="deleteRecord(${data.id || '-'})"
-                        type="button"
-                        class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-                        type="button">
-                        <box-icon name='trash' type='solid' size="xs"></box-icon>
-                    </button>
-                </td>
-            </tr>
-            `).join('');
+            // const trainingRows = result.map(data => `
+            // <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            //     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
+            //     <td class="px-6 py-4">${data.division || '-'}</td>  
+            //     <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
+            //     <td class="px-6 py-4">${data.venue || '-'}</td>  
+            //     <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
+            //     <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
+            //     <td class="px-6 py-4">${data.created_at || '-'}</td>  
+            //     <td class="px-6 py-4 text-center">
+            //         <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
+            //             type="button"
+            //             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
+            //             type="button">
+            //             <box-icon name='expand-alt' size="xs"></box-icon>
+            //         </button>
+            //         <button onclick="showRecord(${data.id || '-'})"
+            //             type="button"
+            //             class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
+            //             type="button">
+            //             <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
+            //         </button>
+            //         <button onclick="deleteRecord(${data.id || '-'})"
+            //             type="button"
+            //             class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
+            //             type="button">
+            //             <box-icon name='trash' type='solid' size="xs"></box-icon>
+            //         </button>
+            //     </td>
+            // </tr>
+            // `).join('');
 
             // Single DOM manipulation for better performance
-            tableBody.html(trainingRows);
+            // tableBody.html(trainingRows);
+            $("#table-body").html(tableRow);
+        }
 
+        function formatDate(dateString) {
+            if (!dateString) return "-";
+
+            const date = new Date(dateString);
+            const monthNames = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ];
+
+            const month = monthNames[date.getMonth()];
+            const day = String(date.getDate()).padStart(2, "0");
+            const year = date.getFullYear();
+
+            return `${month}-${day}-${year}`;
         }
 
         function loadTrainings(page) {
             $.ajax({
-                url: "/encoder/trainings/filter",
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
                 method: "POST",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -648,7 +716,8 @@
                 data: {
                     'showTraining': true,
                     'page': page,
-                    'recordsPerPage': recordsPerPage
+                    'recordsPerPage': recordsPerPage,
+                    'station': station,
                 },
                 success: function(result) {
                     showTrainings(result['records']);
@@ -679,7 +748,8 @@
                 loadTrainings(1);
             } else {
                 $.ajax({
-                    url: "/encoder/trainings/filter",
+                    // url: "/encoder/trainings/filter",
+                    url: "{{ route('filter_data') }}",
                     method: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -690,6 +760,7 @@
                         'yearSelect': yearSelect,
                         'start_MonthSelect': start_MonthSelect,
                         'end_MonthSelect': end_MonthSelect,
+                        'station': station,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -713,7 +784,8 @@
                 loadTrainings(1);
             } else {
                 $.ajax({
-                    url: "/encoder/trainings/filter",
+                    // url: "/encoder/trainings/filter",
+                    url: "{{ route('filter_data') }}",
                     method: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -724,6 +796,7 @@
                         'yearSelect': yearSelect,
                         'start_MonthSelect': start_MonthSelect,
                         'end_MonthSelect': end_MonthSelect,
+                        'station': station,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -747,7 +820,8 @@
                 loadTrainings(1);
             } else {
                 $.ajax({
-                    url: "/encoder/trainings/filter",
+                    // url: "/encoder/trainings/filter",
+                    url: "{{ route('filter_data') }}",
                     method: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -758,6 +832,7 @@
                         'yearSelect': yearSelect,
                         'start_MonthSelect': start_MonthSelect,
                         'end_MonthSelect': end_MonthSelect,
+                        'station': station,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -781,7 +856,8 @@
                 loadTrainings(1);
             } else {
                 $.ajax({
-                    url: "/encoder/trainings/filter",
+                    // url: "/encoder/trainings/filter",
+                    url: "{{ route('filter_data') }}",
                     method: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -792,6 +868,7 @@
                         'yearSelect': yearSelect,
                         'start_MonthSelect': start_MonthSelect,
                         'end_MonthSelect': end_MonthSelect,
+                        'station': station,
                     },
                     success: function(result) {
                         showTrainings(result['records']);
@@ -850,4 +927,5 @@
             }
         }
     </script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/datatable_edit.js') }}"></script> --}}
 @endsection

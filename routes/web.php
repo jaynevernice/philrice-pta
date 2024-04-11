@@ -251,13 +251,14 @@ Route::group(['middleware' => 'encoder'], function () {
 
         // live search and filter
         Route::get('/ces_edit',[TrainingsFormController::class,'cesEditView'])->name('encoder.ces_edit');
-        Route::post('/trainings/filter',[TrainingsFormController::class,'filterAjax']);
+        Route::post('/trainings/filter',[TrainingsFormController::class,'filterAjax'])->name('filter_data');
 
         // Summary of Trainings Form
         Route::group(['prefix' => 'trainings'], function () {
             Route::get('/form', [TrainingsFormController::class, 'create'])->name('trainingsform.create');
             Route::post('form-store', [TrainingsFormController::class, 'store'])->name('trainingsform.store');
-            Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
+            // Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
+            Route::post('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
             Route::post('/form-update/{id}', [TrainingsFormController::class, 'update'])->name('trainingsform.update');
             Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
         });
@@ -319,6 +320,6 @@ Route::get('/technodemo', function () {
 })->name('technodemo');
 
 
-Route::get('/trainings', function () {
-    return view('trainings');
-})->name('trainings');
+// Route::get('/trainings', function () {
+//     return view('trainings');
+// })->name('trainings');

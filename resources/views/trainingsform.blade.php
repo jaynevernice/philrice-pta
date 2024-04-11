@@ -590,178 +590,178 @@
                 </form>
     </div>
 
-<script>
+    <script>
 
-var userMenuDiv = document.getElementById("userMenu");
-var userMenu = document.getElementById("userButton");
+        var userMenuDiv = document.getElementById("userMenu");
+        var userMenu = document.getElementById("userButton");
 
- var helpMenuDiv = document.getElementById("menu-content");
- var helpMenu = document.getElementById("menu-toggle");
+        var helpMenuDiv = document.getElementById("menu-content");
+        var helpMenu = document.getElementById("menu-toggle");
 
-document.onclick = check;
+        document.onclick = check;
 
-function check(e){
-  var target = (e && e.target) || (event && event.srcElement);
+        function check(e){
+        var target = (e && e.target) || (event && event.srcElement);
 
-  //User Menu
-  if (!checkParent(target, userMenuDiv)) {
-	// click NOT on the menu
-	if (checkParent(target, userMenu)) {
-	  // click on the link
-	  if (userMenuDiv.classList.contains("invisible")) {
-		userMenuDiv.classList.remove("invisible");
-	  } else {userMenuDiv.classList.add("invisible");}
-	} else {
-	  // click both outside link and outside menu, hide menu
-	  userMenuDiv.classList.add("invisible");
-	}
-  }
-
-   //Help Menu
-   if (!checkParent(target, helpMenuDiv)) {
-	// click NOT on the menu
-	if (checkParent(target, helpMenu)) {
-	  // click on the link
-	  if (helpMenuDiv.classList.contains("hidden")) {
-		helpMenuDiv.classList.remove("hidden");
-	  } else {helpMenuDiv.classList.add("hidden");}
-	} else {
-	  // click both outside link and outside menu, hide menu
-	  helpMenuDiv.classList.add("hidden");
-	}
-   }
-
-}
-
-function checkParent(t, elm) {
-  while(t.parentNode) {
-	if( t == elm ) {return true;}
-	t = t.parentNode;
-  }
-  return false;
-}
-
-</script>
-
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-<!-- Scroll Spy -->
-<script>
-/* http://jsfiddle.net/LwLBx/ */
-
-// Cache selectors
-var lastId,
-    topMenu = $("#menu-content"),
-    topMenuHeight = topMenu.outerHeight()+175,
-    // All list items
-    menuItems = topMenu.find("a"),
-    // Anchors corresponding to menu items
-    scrollItems = menuItems.map(function(){
-      var item = $($(this).attr("href"));
-      if (item.length) { return item; }
-    });
-
-// Bind click handler to menu items
-// so we can get a fancy scroll animation
-menuItems.click(function(e){
-  var href = $(this).attr("href"),
-      offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
-  $('html, body').stop().animate({ 
-      scrollTop: offsetTop
-  }, 300);
-  if (!helpMenuDiv.classList.contains("hidden")) {
-		helpMenuDiv.classList.add("hidden");
-	  }
-  e.preventDefault();
-});
-
-// Bind to scroll
-$(window).scroll(function(){
-   // Get container scroll position
-   var fromTop = $(this).scrollTop()+topMenuHeight;
-
-   // Get id of current scroll item
-   var cur = scrollItems.map(function(){
-     if ($(this).offset().top < fromTop)
-       return this;
-   });
-   // Get the id of the current element
-   cur = cur[cur.length-1];
-   var id = cur && cur.length ? cur[0].id : "";
-
-   if (lastId !== id) {
-       lastId = id;
-       // Set/remove active class
-       menuItems
-         .parent().removeClass("font-bold border-yellow-600")
-         .end().filter("[href='#"+id+"']").parent().addClass("font-bold border-yellow-600");
-   }                   
-});
-
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // training_type
-        // other_trainingType
-        // other
-        const selectElement = document.getElementById("training_type");
-        const otherTrainingType = document.getElementById("other_trainingType");
-        const otherOption = selectElement.querySelector('option[value="other"]');
-
-        // Function to toggle the display of the custom occupation input field
-        function toggleCustomInputDisplay() {
-            otherTrainingType.style.display = selectElement.value === "other" ? "block" : "none";
+        //User Menu
+        if (!checkParent(target, userMenuDiv)) {
+            // click NOT on the menu
+            if (checkParent(target, userMenu)) {
+            // click on the link
+            if (userMenuDiv.classList.contains("invisible")) {
+                userMenuDiv.classList.remove("invisible");
+            } else {userMenuDiv.classList.add("invisible");}
+            } else {
+            // click both outside link and outside menu, hide menu
+            userMenuDiv.classList.add("invisible");
+            }
         }
 
-        // Event listener for the change event on the select element
-        selectElement.addEventListener("change", function() {
-            toggleCustomInputDisplay();
-        });
-
-        // Event listener for the input event on the custom occupation input field
-        otherTrainingType.addEventListener("input", function() {
-            const otherValue = otherTrainingType.value.trim();
-            otherOption.textContent = otherValue || "Other";
-            otherOption.value = otherValue || "other";
-        });
-
-        // Initial call to toggleCustomInputDisplay to ensure correct initial display state
-        toggleCustomInputDisplay();
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // source_of_fund
-        // other_fund
-        // other
-        const selectElement = document.getElementById("source_of_fund");
-        const otherFund = document.getElementById("other_fund");
-        const otherOption = selectElement.querySelector('option[value="other"]');
-
-        // Function to toggle the display of the custom occupation input field
-        function toggleCustomInputDisplay() {
-            otherFund.style.display = selectElement.value === "other" ? "block" : "none";
+        //Help Menu
+        if (!checkParent(target, helpMenuDiv)) {
+            // click NOT on the menu
+            if (checkParent(target, helpMenu)) {
+            // click on the link
+            if (helpMenuDiv.classList.contains("hidden")) {
+                helpMenuDiv.classList.remove("hidden");
+            } else {helpMenuDiv.classList.add("hidden");}
+            } else {
+            // click both outside link and outside menu, hide menu
+            helpMenuDiv.classList.add("hidden");
+            }
         }
 
-        // Event listener for the change event on the select element
-        selectElement.addEventListener("change", function() {
+        }
+
+        function checkParent(t, elm) {
+        while(t.parentNode) {
+            if( t == elm ) {return true;}
+            t = t.parentNode;
+        }
+        return false;
+        }
+
+    </script>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- Scroll Spy -->
+    <script>
+        /* http://jsfiddle.net/LwLBx/ */
+
+        // Cache selectors
+        var lastId,
+            topMenu = $("#menu-content"),
+            topMenuHeight = topMenu.outerHeight()+175,
+            // All list items
+            menuItems = topMenu.find("a"),
+            // Anchors corresponding to menu items
+            scrollItems = menuItems.map(function(){
+            var item = $($(this).attr("href"));
+            if (item.length) { return item; }
+            });
+
+        // Bind click handler to menu items
+        // so we can get a fancy scroll animation
+        menuItems.click(function(e){
+        var href = $(this).attr("href"),
+            offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+        $('html, body').stop().animate({ 
+            scrollTop: offsetTop
+        }, 300);
+        if (!helpMenuDiv.classList.contains("hidden")) {
+                helpMenuDiv.classList.add("hidden");
+            }
+        e.preventDefault();
+        });
+
+        // Bind to scroll
+        $(window).scroll(function(){
+        // Get container scroll position
+        var fromTop = $(this).scrollTop()+topMenuHeight;
+
+        // Get id of current scroll item
+        var cur = scrollItems.map(function(){
+            if ($(this).offset().top < fromTop)
+            return this;
+        });
+        // Get the id of the current element
+        cur = cur[cur.length-1];
+        var id = cur && cur.length ? cur[0].id : "";
+
+        if (lastId !== id) {
+            lastId = id;
+            // Set/remove active class
+            menuItems
+                .parent().removeClass("font-bold border-yellow-600")
+                .end().filter("[href='#"+id+"']").parent().addClass("font-bold border-yellow-600");
+        }                   
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // training_type
+            // other_trainingType
+            // other
+            const selectElement = document.getElementById("training_type");
+            const otherTrainingType = document.getElementById("other_trainingType");
+            const otherOption = selectElement.querySelector('option[value="other"]');
+
+            // Function to toggle the display of the custom occupation input field
+            function toggleCustomInputDisplay() {
+                otherTrainingType.style.display = selectElement.value === "other" ? "block" : "none";
+            }
+
+            // Event listener for the change event on the select element
+            selectElement.addEventListener("change", function() {
+                toggleCustomInputDisplay();
+            });
+
+            // Event listener for the input event on the custom occupation input field
+            otherTrainingType.addEventListener("input", function() {
+                const otherValue = otherTrainingType.value.trim();
+                otherOption.textContent = otherValue || "Other";
+                otherOption.value = otherValue || "other";
+            });
+
+            // Initial call to toggleCustomInputDisplay to ensure correct initial display state
             toggleCustomInputDisplay();
         });
+    </script>
 
-        // Event listener for the input event on the custom occupation input field
-        otherFund.addEventListener("input", function() {
-            const otherValue = otherFund.value.trim();
-            otherOption.textContent = otherValue || "Other";
-            otherOption.value = otherValue || "other";
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // source_of_fund
+            // other_fund
+            // other
+            const selectElement = document.getElementById("source_of_fund");
+            const otherFund = document.getElementById("other_fund");
+            const otherOption = selectElement.querySelector('option[value="other"]');
+
+            // Function to toggle the display of the custom occupation input field
+            function toggleCustomInputDisplay() {
+                otherFund.style.display = selectElement.value === "other" ? "block" : "none";
+            }
+
+            // Event listener for the change event on the select element
+            selectElement.addEventListener("change", function() {
+                toggleCustomInputDisplay();
+            });
+
+            // Event listener for the input event on the custom occupation input field
+            otherFund.addEventListener("input", function() {
+                const otherValue = otherFund.value.trim();
+                otherOption.textContent = otherValue || "Other";
+                otherOption.value = otherValue || "other";
+            });
+
+            // Initial call to toggleCustomInputDisplay to ensure correct initial display state
+            toggleCustomInputDisplay();
         });
-
-        // Initial call to toggleCustomInputDisplay to ensure correct initial display state
-        toggleCustomInputDisplay();
-    });
-</script>
+    </script>
 
 </body>
 </html>

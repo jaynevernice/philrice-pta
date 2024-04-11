@@ -132,9 +132,9 @@
         </div>
 
         {{-- Multi Page Form --}}
-        <form id="trainingsForm"
+        <form id="trainingsForm" action="{{ route('trainingsform.store') }}" method="POST" enctype="multipart/form-data"
             class="px-10 py-8 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100">
-
+            @csrf
             {{-- Section 1 --}}
             <div class="section" data-section="1">
                 <div>
@@ -168,34 +168,13 @@
                         <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Title of
                             Training</label>
                         <div class="relative">
-                            <select id="training_title" name="training_title" onchange="toggleOtherTitle()"
+                            <select required id="training_title" name="training_title" onchange="toggleOtherTitle()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled>Select</option>
-                                <option>RCEF Training of Trainers on the Production of High-Quality Inbred Rice and Seeds,
-                                    and Farm Mechanization - CES 2023 Batch 01</option>
-                                <option>BC1- Introduction to the PalayCheck System for Irrigated Lowland Rice</option>
-                                <option>Farmers Field School on Mechanized Direct-seeded Rice</option>
-                                <option>RCEF Refresher Course for Rice Specialists</option>
-                                <option>RCEF Short Course on Pest and Nutrient Management</option>
-                                <option>Integrated Nutrient Management in Rice</option>
-                                <option>RCEF Refresher Course for AgRiDOCs</option>
-                                <option>Training of Trainers on pest and nutrient management</option>
-                                <option>Integrated Pest Management in Rice</option>
-                                <option>RCEF-Rice Specialists' Training Course</option>
-                                <option>RCEF Refresher Course for Rice Trainers</option>
-                                <option>Training on Internal Seed Quality Control and Assurance for the Internal Seed
-                                    Quality Control Committee (IQCC) of Siquijor Province</option>
-                                <option>RCEF Short Course on Pest and Nutrient Management (Batch 04)</option>
-                                <option>RCEF Farmer Field School on the Production of High-Quality Inbred Rice, Seed
-                                    Certification, and Farm Mechanization (Batch 01)</option>
-                                <option>Specialized Training on High Quality Inbre Rice Seed Production, and
-                                    Entrepreneurship and Marketing for Local Seed Producers in Siquijor, Province</option>
-                                <option>Rice Crop Manager Services Regional Training - Region 7</option>
-                                <option>RCMAS Retooling, Target Setting, and Strategic Planning MIMAROPA in Magsaysay,
-                                    Occidental Mindoro</option>
-                                <option>Rice Crop Manager Advisory Services Training DA RFO 9</option>
-                                <option>Philippine Good Agricultural Practices</option>
-                                <option>Other</option>
+                                <option selected disabled value="">Select</option>
+                                @foreach ($titles as $title)
+                                    <option value="{{ $title->training_title }}" >{{ $title->training_title }}</option>
+                                @endforeach
+                                <option value="other" >Other</option>
                             </select>
                         </div>
                     </div>
@@ -215,18 +194,12 @@
                         <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
                             Category</label>
                         <div class="relative">
-                            <select id="training_category" name="training_category" onchange="toggleOtherTitle()"
+                            <select id="training_category" name="training_category" onchange="toggleOtherTitle()" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled>Select</option>
-                                <option>Specialized Course</option>
-                                <option>Customized/Short Course</option>
-                                <option>Farmers' Field School (FFS)</option>
-                                <option>Refresher Course</option>
-                                <option>Training of Trainers (TOT)</option>
-                                <option>Rice Specialists' Training Course (RSTC)</option>
-                                <option>Short Course</option>
-                                <option>PhilGap Training</option>
-                                <option>Philippine Good Agricultural Practices Training</option>
+                                <option selected disabled value="">Select</option>
+                                @foreach ($training_types as $training_type)
+                                    <option value="{{ $training_type->training_type }}" >{{ $training_type->training_type }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -236,28 +209,27 @@
                         <label for="training_style" class="block my-2 text-sm font-medium text-gray-900">Training
                             Style</label>
                         <div class="relative">
-                            <select id="training_style" name="training_style"
+                            <select id="training_style" name="training_style" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled>Select</option>
-                                <option>Face to Face</option>
-                                <option>Online</option>
-                                <option>Blended (Online + Face to Face)</option>
+                                <option selected disabled value="">Select</option>
+                                <option value="Face to Face" >Face to Face</option>
+                                <option value="Online" >Online</option>
+                                <option value="Blended (Online + Face to Face)" >Blended (Online + Face to Face)</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
 
-
                         {{-- Venue --}}
                         <div>
                             <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
                             <div class="relative">
-                                <select id="training_venue" name="training_venue" onchange="toggleOutsidePhilrice()"
+                                <select id="training_venue" name="training_venue" onchange="toggleOutsidePhilrice()" required
                                     class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled>Select</option>
-                                    <option>Within PhilRice Station</option>
-                                    <option>Outside PhilRice Station (Local)</option>
+                                    <option selected disabled value="">Select</option>
+                                    <option value="Within PhilRice Station" >Within PhilRice Station</option>
+                                    <option value="Outside PhilRice Station (Local)" >Outside PhilRice Station (Local)</option>
                                 </select>
                             </div>
                         </div>
@@ -274,7 +246,7 @@
                 </div>
 
                 {{-- Start Date and End Date --}}
-                <div class="my-2 grid grid-cols-2 gap-x-4">
+                <div date-rangepicker class="my-2 grid grid-cols-2 gap-x-4">
                     <div>
                         <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start Date</label>
                         <div class="relative w-full">
@@ -285,9 +257,9 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input datepicker type="text" name="start_date" value="{{ old('start_date') }}"
+                            <input type="text" id="start_date" name="start" value="{{ old('start_date') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                placeholder="MM/DD/YYYY" required>
+                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)"  required>
                         </div>
                     </div>
                     <div>
@@ -300,9 +272,9 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input datepicker type="text" name="end_date" value="{{ old('end_date') }}"
+                            <input type="text" id="end_date" name="end" value="{{ old('end_date') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                placeholder="MM/DD/YYYY" required>
+                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)"  required>
                         </div>
                     </div>
                 </div>
@@ -337,11 +309,10 @@
                             <select id="source_of_fund" name="source_of_fund"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                 required>
-                                <option selected disabled>Select</option>
-                                <option value="Core Fund">Core Fund</option>
-                                <option value="RCEF">RCEF</option>
-                                <option value="Other: Extra-core Fund">Other: Extra-core Fund</option>
-                                <option value="Other: External Fund">Other: External Fund</option>
+                                <option selected disabled value="">Select</option>
+                                @foreach ($funds as $fund)
+                                    <option value="{{ $fund->fund }}" >{{ $fund->fund }}</option>
+                                @endforeach
                                 <option value="other">Other</option>
                             </select>
                             <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
@@ -373,13 +344,13 @@
                         <div class="grid grid-cols-2 gap-x-1">
                             <div>
                                 <input type="number" id="evaluationInput" name="evaluationInput"
-                                    value="{{ old('evaluation') }}" min="1" max="5"
+                                    value="{{ old('evaluationInput') }}" min="1" max="5"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="4.8" required>
                             </div>
                             <div>
                                 <input disabled type="text" id="evaluationOutput" name="evaluationOutput"
-                                    value="{{ old('evaluation') }}"
+                                    value="{{ old('evaluationOutput') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="">
                             </div>
@@ -420,12 +391,12 @@
                                 many are farmers and seed growers?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button"
+                            <button type="button" id="decrement-button1"
                                 data-input-counter-decrement="num_of_farmers_and_growers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_farmers_and_growers" data-input-counter
+                            <input type="text" id="num_of_farmers_and_growers" name="num_of_farmers_and_growers" data-input-counter
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
@@ -435,7 +406,7 @@
                                 <i class="fa-solid fa-seedling"></i>
                                 {{-- <span>Farmers and Seed Growers</span> --}}
                             </div>
-                            <button type="button" id="increment-button"
+                            <button type="button" id="increment-button1"
                                 data-input-counter-increment="num_of_farmers_and_growers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
@@ -451,13 +422,13 @@
                                 workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button"
+                            <button type="button" id="decrement-button2"
                                 data-input-counter-decrement="num_of_extension_workers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_extension_workers" data-input-counter
-                                data-input-counter-min="1" data-input-counter-max=""
+                            <input type="text" id="num_of_extension_workers" name="num_of_extension_workers" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -465,7 +436,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-user-tie"></i>
                             </div>
-                            <button type="button" id="increment-button"
+                            <button type="button" id="increment-button2"
                                 data-input-counter-increment="num_of_extension_workers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
@@ -481,11 +452,11 @@
                                 of the scientific community (researchers, academe)?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_scientific"
+                            <button type="button" id="decrement-button3" data-input-counter-decrement="num_of_scientific"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_scientific" data-input-counter data-input-counter-min="1"
+                            <input type="text" id="num_of_scientific" name="num_of_scientific" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -493,7 +464,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-book-open-reader"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_scientific"
+                            <button type="button" id="increment-button3" data-input-counter-increment="num_of_scientific"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -510,11 +481,11 @@
                                 many are educators (elementary/high school/college teachers)?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_educators"
+                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_educators"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_educators" data-input-counter data-input-counter-min="0"
+                            <input type="text" id="num_of_educators" name="num_of_educators" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -522,7 +493,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person-chalkboard"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_educators"
+                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_educators"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -537,13 +508,13 @@
                                 Players (e.g trader, miller, wholesaler, retailer)?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button"
+                            <button type="button" id="decrement-button5"
                                 data-input-counter-decrement="num_of_industry_players"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_industry_players" data-input-counter
-                                data-input-counter-min="1" data-input-counter-max=""
+                            <input type="text" id="num_of_industry_players" name="num_of_industry_players" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -551,7 +522,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-industry"></i>
                             </div>
-                            <button type="button" id="increment-button"
+                            <button type="button" id="increment-button5"
                                 data-input-counter-increment="num_of_industry_players"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
@@ -567,12 +538,12 @@
                                 makers (e.g local chief executive)?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button"
+                            <button type="button" id="decrement-button6"
                                 data-input-counter-decrement="num_of_policy_makers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_policy_makers" data-input-counter data-input-counter-min="1"
+                            <input type="text" id="num_of_policy_makers" name="num_of_policy_makers" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -580,7 +551,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-building-shield"></i>
                             </div>
-                            <button type="button" id="increment-button"
+                            <button type="button" id="increment-button6"
                                 data-input-counter-increment="num_of_policy_makers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
@@ -598,12 +569,12 @@
                                 many are Researchers?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button"
+                            <button type="button" id="decrement-button7"
                                 data-input-counter-decrement="num_of_researchers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_researchers" data-input-counter data-input-counter-min="0"
+                            <input type="text" id="num_of_researchers" name="num_of_researchers" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -611,7 +582,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-book"></i>
                             </div>
-                            <button type="button" id="increment-button"
+                            <button type="button" id="increment-button7"
                                 data-input-counter-increment="num_of_researchers"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
@@ -627,11 +598,11 @@
                                 Students?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_students"
+                            <button type="button" id="decrement-button8" data-input-counter-decrement="num_of_students"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_students" data-input-counter data-input-counter-min="1"
+                            <input type="text" id="num_of_students" name="num_of_students" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -639,7 +610,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-school"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_students"
+                            <button type="button" id="increment-button8" data-input-counter-increment="num_of_students"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -654,11 +625,11 @@
                                 (e.g broadcaster, vlogger, etc)?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_media"
+                            <button type="button" id="decrement-button9" data-input-counter-decrement="num_of_media"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_media" data-input-counter data-input-counter-min="1"
+                            <input type="text" id="num_of_media" name="num_of_media" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -666,7 +637,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-building-shield"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_media"
+                            <button type="button" id="increment-button9" data-input-counter-increment="num_of_media"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -691,11 +662,11 @@
                                 many are female?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_female"
+                            <button type="button" id="decrement-button10" data-input-counter-decrement="num_of_female"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_female" data-input-counter data-input-counter-min="0"
+                            <input type="text" id="num_of_female" name="num_of_female" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -703,7 +674,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person-dress"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_female"
+                            <button type="button" id="increment-button10" data-input-counter-increment="num_of_female"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -718,11 +689,11 @@
                                 many are male?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_male"
+                            <button type="button" id="decrement-button11" data-input-counter-decrement="num_of_male"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_male" data-input-counter data-input-counter-min="0"
+                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -730,7 +701,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_male"
+                            <button type="button" id="increment-button11" data-input-counter-increment="num_of_male"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -745,11 +716,11 @@
                                 many are indigenous?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_indigenous"
+                            <button type="button" id="decrement-button12" data-input-counter-decrement="num_of_indigenous"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_indigenous" data-input-counter data-input-counter-min="0"
+                            <input type="text" id="num_of_indigenous" name="num_of_indigenous" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -757,7 +728,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-people-group"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_indigenous"
+                            <button type="button" id="increment-button12" data-input-counter-increment="num_of_indigenous"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -772,11 +743,11 @@
                                 many are PWD?</label>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button" data-input-counter-decrement="num_of_pwd"
+                            <button type="button" id="decrement-button13" data-input-counter-decrement="num_of_pwd"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_pwd" data-input-counter data-input-counter-min="0"
+                            <input type="text" id="num_of_pwd" name="num_of_pwd" data-input-counter data-input-counter-min="0"
                                 data-input-counter-max="" aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
@@ -784,7 +755,7 @@
                                 class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-wheelchair"></i>
                             </div>
-                            <button type="button" id="increment-button" data-input-counter-increment="num_of_pwd"
+                            <button type="button" id="increment-button13" data-input-counter-increment="num_of_pwd"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -824,7 +795,6 @@
                     </div>
                 </div>
             </div>
-
 
             {{-- Previous and Next Button --}}
             <div class="mt my-4 flex justify-between items-center">
@@ -911,6 +881,79 @@
         const nextBtn = document.getElementById('nextBtn');
         const sectionNumberElement = document.getElementById('sectionNumber'); // Added
 
+        // Function to save form data to localStorage
+        function saveFormData() {
+            let formData = {
+                // Section 2
+                "training_title": $("#training_title").val(),
+                "training_category": $("#training_category").val(),
+                "training_style": $("#training_style").val(),
+                "training_venue": $("#training_venue").val(),
+                "start_date": $("#start_date").val(),
+                "end_date": $("#end_date").val(),
+                // Section 3
+                "sponsor": $("#sponsor").val(),
+                "source_of_fund": $("#source_of_fund").val(),
+                "average_gik": $("#average_gik").val(),
+                "evaluationInput": $("#evaluationInput").val(),
+                // Section 4 
+                "total_participants": $("#total_participants").val(),
+                "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
+                "num_of_extension_workers": $("#num_of_extension_workers").val(),
+                "num_of_scientific": $("#num_of_scientific").val(),
+                "num_of_educators": $("#num_of_educators").val(),
+                "num_of_industry_players": $("#num_of_industry_players").val(),
+                "num_of_policy_makers": $("#num_of_policy_makers").val(),
+                "num_of_researchers": $("#num_of_researchers").val(),
+                "num_of_students": $("#num_of_students").val(),
+                "num_of_media": $("#num_of_media").val(),
+                // Section 5
+                "num_of_female": $("#num_of_female").val(),
+                "num_of_male": $("#num_of_male").val(),
+                "num_of_indigenous": $("#num_of_indigenous").val(),
+                "num_of_pwd": $("#num_of_pwd").val(),
+            };
+
+            localStorage.setItem('formTrainings', JSON.stringify(formData));
+        }
+        // Function to load form data from localStorage
+        function loadFormData() {
+            var storedData = localStorage.getItem('formTrainings');
+
+            if (storedData) {
+                var formData = JSON.parse(storedData);
+                // Section 2
+                $("#training_title").val(formData.training_title);
+                $("#training_category").val(formData.training_category);
+                $("#training_style").val(formData.training_style);
+                $("#training_venue").val(formData.training_venue);
+                $("#start_date").val(formData.start_date);
+                $("#end_date").val(formData.end_date);
+                // Section 3
+                $("#sponsor").val(formData.sponsor);
+                $("#source_of_fund").val(formData.source_of_fund);
+                $("#average_gik").val(formData.average_gik);
+                $("#evaluationInput").val(formData.evaluationInput);
+                // Section 4 
+                $("#total_participants").val(formData.total_participants);
+                $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
+                $("#num_of_extension_workers").val(formData.num_of_extension_workers);
+                $("#num_of_scientific").val(formData.num_of_scientific);
+                $("#num_of_educators").val(formData.num_of_educators);
+                $("#num_of_industry_players").val(formData.num_of_industry_players);
+                $("#num_of_policy_makers").val(formData.num_of_policy_makers);
+                $("#num_of_researchers").val(formData.num_of_researchers);
+                $("#num_of_students").val(formData.num_of_students);
+                $("#num_of_media").val(formData.num_of_media);
+                // Section 5
+                $("#num_of_female").val(formData.num_of_female);
+                $("#num_of_male").val(formData.num_of_male);
+                $("#num_of_indigenous").val(formData.num_of_indigenous);
+                $("#num_of_pwd").val(formData.num_of_pwd);
+            }
+
+        }
+
         function showSection(sectionNumber) {
             sections.forEach(section => {
                 if (section.dataset.section == sectionNumber) {
@@ -924,9 +967,12 @@
         function prevSection() {
             if (currentSection > 1) {
                 currentSection--;
+                console.log(currentSection);
+
                 showSection(currentSection);
             }
             updateButtons();
+            
         }
 
         function nextSection() {
@@ -947,6 +993,7 @@
             }
 
             if (currentSection === sections.length) {
+                // nextBtn.type = 'submit';
                 nextBtn.innerHTML = 'Submit';
             } else {
                 nextBtn.innerHTML = 'Next';
@@ -956,8 +1003,212 @@
             sectionNumberElement.innerText = "Section " + currentSection + " of " + sections.length; // Added
         }
 
+        // Function to check if all keys have values
+        function allKeysHaveValues(obj) {
+            for (var key in obj) {
+                if (!obj[key]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // function to change the type of next button into submit
+        function toSubmit()
+        {
+            var storedData = localStorage.getItem('formTrainings');
+            if (storedData) {
+                var formData = JSON.parse(storedData);
+
+                if (allKeysHaveValues(formData)) {
+                    // All keys have values
+                    return true;
+                } else {
+                    // Some keys are missing values
+                    return false;
+                }
+            }
+        }
+
         // Show the initial section
-        showSection(currentSection);
-        updateButtons();
+        // showSection(currentSection);
+        // updateButtons();
+
+        $(document).ready(function() {
+            loadFormData(); // Load form data when document is ready
+
+            // Show the initial section
+            showSection(currentSection);
+            updateButtons();
+
+            $('#prevBtn').on('click', function () {
+                saveFormData();
+                nextBtn.disabled = false;
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 4)
+                if(currentSection == 4) {
+                    // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                    if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                        nextBtn.disabled = false;
+                    } else {
+                        nextBtn.disabled = true;
+                    }
+                }
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                if(currentSection == 5) {
+                    // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                    if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                        nextBtn.disabled = false;
+                    } else {
+                        nextBtn.disabled = true;
+                    }
+                }
+            });
+
+            $('#nextBtn').on('click', function () {
+                saveFormData();
+                // changes the type of nextBtn into submit
+                if(toSubmit()) {
+                    nextBtn.type = 'submit';
+                } else {
+                    nextBtn.type = 'button';
+                }
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 4)
+                if(currentSection == 4) {
+                    // if(!total_participants || !num_of_farmers_and_growers || !num_of_extension_workers || !num_of_scientific || !num_of_educators || !num_of_industry_players || !num_of_policy_makers || !num_of_researchers || !num_of_students || !num_of_media) {
+                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                if(currentSection == 5) {
+                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+            });
+
+            $('#total_participants, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_educators, #num_of_industry_players, #num_of_policy_makers, #num_of_researchers, #num_of_students, #num_of_media, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd').on('keyup input', function() {
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
+                if(currentSection == 4) {
+                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                if(currentSection == 5) {
+                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+            });
+
+            $('#decrement-button1, #decrement-button2, #decrement-button3, #decrement-button4, #decrement-button5, #decrement-button6, #decrement-button7, #decrement-button8, #decrement-button9, #decrement-button10, #decrement-button11, #decrement-button12, #decrement-button13').on('click', function() {
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
+                if(currentSection == 4) {
+                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                if(currentSection == 5) {
+                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+            });
+
+            $('#increment-button1, #increment-button2, #increment-button3, #increment-button4, #increment-button5, #increment-button6, #increment-button7, #increment-button8, #increment-button9, #increment-button10, #increment-button11, #increment-button12, #increment-button13').on('click', function() {
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
+                if(currentSection == 4) {
+                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                if(currentSection == 5) {
+                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
+                        // console.log('empty');
+                        nextBtn.disabled = true;
+                    } else {
+                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }
+            });
+
+        });
+
     </script>
+
+    {{-- start_date and end_date restrictions for letters --}}
+    <script>
+        function isNumericDateInput(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 47 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
 @endsection

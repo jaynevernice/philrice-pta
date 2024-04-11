@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     @vite('resources/css/app.css')
 
@@ -34,6 +33,8 @@
     {{-- Flowbite CDN --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
+    {{-- jquery CDN --}}
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
@@ -59,6 +60,7 @@
     @yield('scripts')
 </body>
 
+{{-- jquery CDN --}}
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js">
