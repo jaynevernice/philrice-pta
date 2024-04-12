@@ -50,13 +50,13 @@ class AuthController extends Controller
                 if(!empty(Auth::check())) {
 
                     if(Auth::user()->user_type == 'super_admin') {
-                        Alert::success('Login Successful', 'Welcome Super Admin');
-                        return redirect('/super_admin/overview')->autoClose(2000);
+                        // Alert::success('Login Successful', 'Welcome Super Admin');
+                        return redirect('/super_admin/overview');
                     } else if(Auth::user()->user_type == 'admin') {
-                        Alert::success('Login Successful', 'Welcome Admin');
-                        return redirect('/admin/overview')->autoClose(2000);
+                        // Alert::success('Login Successful', 'Welcome Admin');
+                        return redirect('/admin/overview');
                     } else if (Auth::user()->user_type == 'encoder'){
-                        Alert::success('Login Successful', 'Welcome Encoder')->autoClose(2000);
+                        // Alert::success('Login Successful', 'Welcome Encoder')->autoClose(2000);
                         return redirect('/encoder/overview');
                     } else if (Auth::user()->user_type == 'viewer'){
                         return redirect('/viewer/overview');

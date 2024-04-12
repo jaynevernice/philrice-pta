@@ -175,86 +175,119 @@
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
                                 @foreach ($titles as $title)
-                                    <option value="{{ $title->training_title }}" >{{ $title->training_title }}</option>
+                                    <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
                                 @endforeach
-                                <option value="other" >Other</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
 
                     {{-- Additional Input Field for Training Title when Other is selected --}}
                     <div id="otherTrainingTitle" style="display: none;" class="col-span-2">
-                        <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other Training
+                        <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
+                            Training
                             Title</label>
                         <input type="text" id="otherTrainingInput" name="otherTrainingInput"
                             class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                     </div>
                 </div>
 
-                <div class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                <div id="row2" class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
                     {{-- Training Category --}}
                     <div>
                         <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
                             Category</label>
                         <div class="relative">
-                            <select id="training_category" name="training_category" onchange="toggleOtherTitle()" required
+                            <select id="training_category" name="training_category" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                @foreach ($training_types as $training_type)
-                                    <option value="{{ $training_type->training_type }}" >{{ $training_type->training_type }}</option>
-                                @endforeach
+                                <option value="">Beginner Course</option>
+                                <option value="">Intermediate Course</option>
+                                <option value="">Advanced Course</option>
                             </select>
                         </div>
                     </div>
 
-                    {{-- Training Style --}}
+                    {{-- Type of Training --}}
                     <div>
-                        <label for="training_style" class="block my-2 text-sm font-medium text-gray-900">Training
-                            Style</label>
+                        <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
+                            Training</label>
                         <div class="relative">
-                            <select id="training_style" name="training_style" required
+                            <select id="training_type" name="training_type" onchange="toggleType()" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Face to Face" >Face to Face</option>
-                                <option value="Online" >Online</option>
-                                <option value="Blended (Online + Face to Face)" >Blended (Online + Face to Face)</option>
+                                <option value="Local">Local</option>
+                                <option value="International">International</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- Mode of Delivery --}}
+                    <div>
+                        <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
+                            Delivery</label>
+                        <div class="relative">
+                            <select id="mod" name="mod" required
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Face to Face">Face-to-Face</option>
+                                <option value="Online">Online</option>
+                                <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)</option>
                             </select>
                         </div>
                     </div>
 
                     {{-- Venue --}}
-                    <div>
-                        <div>
-                            <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
-                            <div class="relative">
-                                <select id="training_venue" name="training_venue" onchange="toggleOutsidePhilrice()" required
-                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled value="">Select</option>
-                                    <option value="Within PhilRice Station" >Within PhilRice Station</option>
-                                    <option value="Outside PhilRice Station (Local)" >Outside PhilRice Station (Local)</option>
-                                </select>
-                            </div>
+                    <div id="training_venue_container" style="display: none;">
+                        <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
+                        <div class="relative">
+                            <select id="training_venue" name="training_venue" onchange="toggleVenue()" required
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Within PhilRice Station">Within PhilRice Station</option>
+                                <option value="Outside PhilRice Station">Outside PhilRice Station</option>
+                            </select>
                         </div>
+                    </div>
 
-                        {{-- Additional Input Field for Outside PhilRice Station --}}
-                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
-                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
+                    {{-- Additional Input Field for Outside PhilRice Station --}}
+                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
+                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
                             <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
-                                PhilRice Station (Local)</label>
+                                PhilRice Station</label>
                             <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                                 class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         </div> --}}
 
-                    </div>
                 </div>
-                
+
+                {{-- Additional Input Field for International Training Type --}}
+                <div id="internationalTraining" style="display: none;" class="col-span-2">
+                    <label for="internationalTrainingInput"
+                        class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
+                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput"
+                        class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                </div>
+
+                {{-- Additional Input Field for Within PhilRice Station --}}
+                <div id="withinPhilrice" style="display: none;" class="col-span-3">
+                    <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within PhilRice
+                        Station</label>
+                    <select name="withinPhilriceInput" id="withinPhilriceInput"
+                        class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                        <option selected disabled>Select</option>
+                        <option value="">CES</option>
+                    </select>
+                </div>
+
                 {{-- Additional Input Field for Outside PhilRice Station --}}
                 <div id="outsidePhilrice" style="display: none;" class="col-span-3">
                     <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
-                        PhilRice Station (Local)</label>
+                        PhilRice Station</label>
                     <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
+
 
                 {{-- Start Date and End Date --}}
                 <div date-rangepicker class="my-2 grid grid-cols-2 gap-x-4">
@@ -270,7 +303,7 @@
                             </div>
                             <input type="text" id="start_date" name="start" value="{{ old('start_date') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)"  required>
+                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
                     </div>
                     <div>
@@ -285,7 +318,7 @@
                             </div>
                             <input type="text" id="end_date" name="end" value="{{ old('end_date') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)"  required>
+                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
                     </div>
                 </div>
@@ -303,7 +336,8 @@
                         <label for="sponsor" class="block my-2 text-sm font-medium text-gray-900">Name of Implementing
                             Partner/s or Co-Organizer/s</label>
                         <p class="text-sm text-gray-500 mb-2">Specify name of partner, sponsor, or co-organizer. If more
-                            than one, separate with comma. If no co-implementer write NONE.</p>
+                            than one, separate with comma. Please do not abbreviate the name(s). If no co-implementer write
+                            N/A. </p>
                         <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
@@ -322,7 +356,7 @@
                                 required>
                                 <option selected disabled value="">Select</option>
                                 @foreach ($funds as $fund)
-                                    <option value="{{ $fund->fund }}" >{{ $fund->fund }}</option>
+                                    <option value="{{ $fund->fund }}">{{ $fund->fund }}</option>
                                 @endforeach
                                 <option value="other">Other</option>
                             </select>
@@ -339,11 +373,12 @@
                         <label for="average_gik"
                             class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge
                             (GIK)</label>
-                        <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage</p>
+                        <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage. Write N/A if
+                            there is no GIK to input.</p>
                         <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') }}"
                             min="0" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="100%" required />
+                            placeholder="40%" required />
                     </div>
 
                     {{-- Overall Training Evaluation --}}
@@ -355,15 +390,14 @@
                         <div class="grid grid-cols-2 gap-x-1">
                             <div>
                                 <input type="number" id="evaluationInput" name="evaluationInput"
-                                    value="{{ old('evaluationInput') }}" min="1" max="5"
+                                    value="{{ old('evaluationInput') }}" min="1" max="5" step="0.01"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="4.8" required>
                             </div>
                             <div>
                                 <input disabled type="text" id="evaluationOutput" name="evaluationOutput"
                                     value="{{ old('evaluationOutput') }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="">
+                                    class="border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-white font-bold">
                             </div>
                         </div>
                     </div>
@@ -391,15 +425,18 @@
                     </div>
                 </div>
 
+                <hr class="my-4">
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
+
+
                 {{-- Breakdown of Participants  --}}
-                <div class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                <div class="my-1 grid grid-cols-4 gap-x-4 max-[760px]:grid-cols-1">
 
                     {{-- Total Num of Farmers and Seed Growers --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_farmers_and_growers"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are farmers and seed growers?</label>
+                            <p class="text-sm text-gray-500 mb-2">How
+                                many are farmers and seed growers?</p>
                         </div>
                         <div class="relative flex items-center">
                             <button type="button" id="decrement-button1"
@@ -407,13 +444,13 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_farmers_and_growers" name="num_of_farmers_and_growers" data-input-counter
-                                data-input-counter-min="0" data-input-counter-max=""
+                            <input type="text" id="num_of_farmers_and_growers" name="num_of_farmers_and_growers"
+                                data-input-counter data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" value="0" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-seedling"></i>
                                 {{-- <span>Farmers and Seed Growers</span> --}}
                             </div>
@@ -428,9 +465,8 @@
                     {{-- Total Num of Extension Workers  --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_extension_workers"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are extension
-                                workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)?</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are extension
+                                workers and intermediaries (ATs/AEWs, AgRiDOCs, etc.)?</p>
                         </div>
                         <div class="relative flex items-center">
                             <button type="button" id="decrement-button2"
@@ -438,13 +474,13 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_extension_workers" name="num_of_extension_workers" data-input-counter
-                                data-input-counter-min="0" data-input-counter-max=""
+                            <input type="text" id="num_of_extension_workers" name="num_of_extension_workers"
+                                data-input-counter data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" value="0" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-user-tie"></i>
                             </div>
                             <button type="button" id="increment-button2"
@@ -458,112 +494,53 @@
                     {{-- Total Num of Scientific Community --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_scientific"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are members
-                                of the scientific community (researchers, academe)?</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are members
+                                of the scientific community (researchers, academe)?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button3" data-input-counter-decrement="num_of_scientific"
+                            <button type="button" id="decrement-button3"
+                                data-input-counter-decrement="num_of_scientific"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_scientific" name="num_of_scientific" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
+                            <input type="text" id="num_of_scientific" name="num_of_scientific" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" value="0" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-book-open-reader"></i>
                             </div>
-                            <button type="button" id="increment-button3" data-input-counter-increment="num_of_scientific"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
-                    {{-- Total Num of Educator (elementary/high school/college teachers) --}}
-                    <div class="grid grid-rows-2">
-                        <div>
-                            <label for="num_of_educators"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are educators (elementary/high school/college teachers)?</label>
-                        </div>
-                        <div class="relative flex items-center">
-                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_educators"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <input type="text" id="num_of_educators" name="num_of_educators" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
-                            <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-person-chalkboard"></i>
-                            </div>
-                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_educators"
+                            <button type="button" id="increment-button3"
+                                data-input-counter-increment="num_of_scientific"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
                     </div>
 
-                    {{-- Total Num of Industry Players (e.g trader, miller, wholesaler, retailer)  --}}
+                    {{-- Total Num of Other Participants --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_industry_players"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are Industry
-                                Players (e.g trader, miller, wholesaler, retailer)?</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are from
+                                other sectors (rice industry players, media, policymakers, general rice consumers)?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button5"
-                                data-input-counter-decrement="num_of_industry_players"
+                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_other"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_industry_players" name="num_of_industry_players" data-input-counter
+                            <input type="text" id="num_of_other" name="num_of_other" data-input-counter
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-industry"></i>
-                            </div>
-                            <button type="button" id="increment-button5"
-                                data-input-counter-increment="num_of_industry_players"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    {{-- Total Num of Policy maker (e.g local chief executive) --}}
-                    <div class="grid grid-rows-2">
-                        <div>
-                            <label for="num_of_policy_makers"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are Policy
-                                makers (e.g local chief executive)?</label>
-                        </div>
-                        <div class="relative flex items-center">
-                            <button type="button" id="decrement-button6"
-                                data-input-counter-decrement="num_of_policy_makers"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <input type="text" id="num_of_policy_makers" name="num_of_policy_makers" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
-                            <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-building-shield"></i>
                             </div>
-                            <button type="button" id="increment-button6"
-                                data-input-counter-increment="num_of_policy_makers"
+                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_other"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -571,175 +548,91 @@
                     </div>
                 </div>
 
-                <div class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
-                    {{-- Total Num of Researchers --}}
-                    <div class="grid grid-rows-2">
-                        <div>
-                            <label for="num_of_researchers"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are Researchers?</label>
-                        </div>
-                        <div class="relative flex items-center">
-                            <button type="button" id="decrement-button7"
-                                data-input-counter-decrement="num_of_researchers"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <input type="text" id="num_of_researchers" name="num_of_researchers" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
-                            <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-book"></i>
-                            </div>
-                            <button type="button" id="increment-button7"
-                                data-input-counter-increment="num_of_researchers"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
+                <hr class="my-4">
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
 
-                    {{-- Total Num of Students  --}}
-                    <div class="grid grid-rows-2">
-                        <div>
-                            <label for="num_of_students"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are
-                                Students?</label>
-                        </div>
-                        <div class="relative flex items-center">
-                            <button type="button" id="decrement-button8" data-input-counter-decrement="num_of_students"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <input type="text" id="num_of_students" name="num_of_students" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
-                            <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-school"></i>
-                            </div>
-                            <button type="button" id="increment-button8" data-input-counter-increment="num_of_students"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    {{-- Total Num of Media (e.g broadcaster, vlogger, etc) --}}
-                    <div class="grid grid-rows-2">
-                        <div>
-                            <label for="num_of_media"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are Media
-                                (e.g broadcaster, vlogger, etc)?</label>
-                        </div>
-                        <div class="relative flex items-center">
-                            <button type="button" id="decrement-button9" data-input-counter-decrement="num_of_media"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <input type="text" id="num_of_media" name="num_of_media" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
-                            <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-building-shield"></i>
-                            </div>
-                            <button type="button" id="increment-button9" data-input-counter-increment="num_of_media"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Section 5 --}}
-            <div class="section" data-section="5" style="display: none;">
-                <div class="flex">
-                    <h6 class="text-lg font-bold dark:text-white">Participant's Profile (Demographic)</h6>
-                </div>
-
-                <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
-
-                    {{-- Total Num of Female Participants --}}
-                    <div class="grid grid-rows-2">
-                        <div>
-                            <label for="num_of_female"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are female?</label>
-                        </div>
-                        <div class="relative flex items-center">
-                            <button type="button" id="decrement-button10" data-input-counter-decrement="num_of_female"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <input type="text" id="num_of_female" name="num_of_female" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
-                            <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-person-dress"></i>
-                            </div>
-                            <button type="button" id="increment-button10" data-input-counter-increment="num_of_female"
-                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
 
                     {{-- Total Num of Male Participants --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_male"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are male?</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are male?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button11" data-input-counter-decrement="num_of_male"
+                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_male"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
+                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person"></i>
                             </div>
-                            <button type="button" id="increment-button11" data-input-counter-increment="num_of_male"
+                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_male"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
                     </div>
 
-                    {{-- Total Num of Indigenous --}}
+                    {{-- Total Num of Female Participants --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_indigenous"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are indigenous?</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are female?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button12" data-input-counter-decrement="num_of_indigenous"
+                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_female"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_indigenous" name="num_of_indigenous" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
+                            <input type="text" id="num_of_female" name="num_of_female" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-people-group"></i>
                             </div>
-                            <button type="button" id="increment-button12" data-input-counter-increment="num_of_indigenous"
+                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_female"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
+                    {{-- Total Num of Indigenous People --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total
+                                number,</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are indigenous individuals?</p>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button5"
+                                data-input-counter-decrement="num_of_indigenous"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_indigenous" name="num_of_indigenous" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-person-dress"></i>
+                            </div>
+                            <button type="button" id="increment-button5"
+                                data-input-counter-increment="num_of_indigenous"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -749,30 +642,30 @@
                     {{-- Total Num of PWD --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label for="num_of_pwd"
-                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
-                                many are PWD?</label>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total
+                                number,</label>
+                            <p class="text-sm text-gray-500 mb-2">How many are differently abled individuals (PWD)?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button13" data-input-counter-decrement="num_of_pwd"
+                            <button type="button" id="decrement-button6" data-input-counter-decrement="num_of_pwd"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_pwd" name="num_of_pwd" data-input-counter data-input-counter-min="0"
-                                data-input-counter-max="" aria-describedby="helper-text-explanation"
+                            <input type="text" id="num_of_pwd" name="num_of_pwd" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" value="" required />
                             <div
-                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-wheelchair"></i>
                             </div>
-                            <button type="button" id="increment-button13" data-input-counter-increment="num_of_pwd"
+                            <button type="button" id="increment-button6" data-input-counter-increment="num_of_pwd"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -826,6 +719,72 @@
 
 @section('scripts')
     {{-- Toggle for Optional Inputs --}}
+    {{-- <script>
+        function toggleOtherTitle() {
+            var selectElement = document.getElementById("training_title");
+            var otherTrainingTitle = document.getElementById("otherTrainingTitle");
+
+            if (selectElement.value === "Other") {
+                otherTrainingTitle.style.display = "block";
+            } else {
+                otherTrainingTitle.style.display = "none";
+            }
+        }
+
+        function toggleVenue() {
+            var selectElement = document.getElementById("training_venue");
+            var outsidePhilrice = document.getElementById("outsidePhilrice");
+            var withinPhilrice = document.getElementById("withinPhilrice");
+
+            if (selectElement.value === "Outside PhilRice Station") {
+                outsidePhilrice.style.display = "block";
+                withinPhilrice.style.display = "none"; // Ensure this is hidden when the other is shown
+            } else if (selectElement.value === "Within PhilRice Station") {
+                withinPhilrice.style.display = "block";
+                outsidePhilrice.style.display = "none"; // Ensure this is hidden when the other is shown
+            } 
+            else {
+                outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
+            }
+        }
+
+
+        function toggleType() {
+            var selectElement = document.getElementById("training_type");
+            var localTraining = document.getElementById("training_venue_container");
+            var internationalTraining = document.getElementById("internationalTraining");
+
+            // Store row2 na div sa variable
+            var row2 = document.getElementById("row2");
+            var row2Classes = row2.classList;
+
+            if (selectElement.value === "Local") {
+                localTraining.style.display = "block";
+                internationalTraining.style.display = "none";
+
+                // Adjust grid columns
+                row2Classes.remove("grid-cols-3");
+                row2Classes.add("grid-cols-4");
+            } else if (selectElement.value === "International") {
+                localTraining.style.display = "none";
+                internationalTraining.style.display = "block";
+
+                outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
+
+                // Adjust grid columns
+                row2Classes.remove("grid-cols-4");
+                row2Classes.add("grid-cols-3");
+            } else {
+                localTraining.style.display = "none";
+                internationalTraining.style.display = "none";
+                outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
+            }
+        }
+    </script> --}}
+    {{-- Toggle for Optional Inputs --}}
     <script>
         function toggleOtherTitle() {
             var selectElement = document.getElementById("training_title");
@@ -838,20 +797,152 @@
             }
         }
 
-        function toggleOutsidePhilrice() {
+        function toggleVenue() {
             var selectElement = document.getElementById("training_venue");
             var outsidePhilrice = document.getElementById("outsidePhilrice");
+            var withinPhilrice = document.getElementById("withinPhilrice");
 
-            if (selectElement.value === "Outside PhilRice Station (Local)") {
+            if (selectElement.value === "Outside PhilRice Station") {
                 outsidePhilrice.style.display = "block";
+                withinPhilrice.style.display = "none"; // Ensure this is hidden when the other is shown
+            } else if (selectElement.value === "Within PhilRice Station") {
+                withinPhilrice.style.display = "block";
+                outsidePhilrice.style.display = "none"; // Ensure this is hidden when the other is shown
             } else {
                 outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
+            }
+        }
+
+        function toggleType() {
+            var selectElement = document.getElementById("training_type");
+            var localTraining = document.getElementById("training_venue_container");
+            var internationalTraining = document.getElementById("internationalTraining");
+            var outsidePhilrice = document.getElementById("outsidePhilrice");
+            var withinPhilrice = document.getElementById("withinPhilrice");
+
+            // Store row2 na div sa variable
+            var row2 = document.getElementById("row2");
+            var row2Classes = row2.classList;
+
+            if (selectElement.value === "Local") {
+                localTraining.style.display = "block";
+                internationalTraining.style.display = "none";
+                outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
+
+                // Adjust grid columns
+                row2Classes.remove("grid-cols-3");
+                row2Classes.add("grid-cols-4");
+            } else if (selectElement.value === "International") {
+                localTraining.style.display = "none";
+                internationalTraining.style.display = "block";
+                outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
+
+                // Adjust grid columns
+                row2Classes.remove("grid-cols-4");
+                row2Classes.add("grid-cols-3");
+            } else {
+                localTraining.style.display = "none";
+                internationalTraining.style.display = "none";
+                outsidePhilrice.style.display = "none";
+                withinPhilrice.style.display = "none";
             }
         }
     </script>
 
-    {{-- 1 to 5 Evaluation Scale --}}
+
+    {{-- Likert Scale --}}
     <script>
+        document.getElementById('evaluationInput').addEventListener('input', function() {
+            var evaluationInput = parseFloat(this.value);
+            var evaluationOutput = document.getElementById('evaluationOutput');
+
+            var evaluationOutputClass = evaluationOutput.classList;
+
+            if (isNaN(evaluationInput)) {
+                evaluationOutput.value = 'Invalid input';
+                evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500",
+                    "bg-green-600");
+                evaluationOutputClass.add("bg-gray-900");
+            } else {
+                // Round up if the decimal part is .50 or greater
+                if (evaluationInput % 1 >= 0.5) {
+                    evaluationInput = Math.ceil(evaluationInput);
+                }
+
+                if (evaluationInput < 1) {
+                    evaluationOutput.value = 'Minimum rate is 1';
+                    evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500",
+                        "bg-green-600");
+                    evaluationOutputClass.add("bg-gray-900");
+                } else if (evaluationInput <= 1.5) {
+                    evaluationOutput.value = 'Poor';
+                    evaluationOutputClass.remove("bg-orange-500", "bg-yellow-300", "bg-lime-500", "bg-green-600");
+                    evaluationOutputClass.add("bg-red-700");
+                } else if (evaluationInput <= 2.5) {
+                    evaluationOutput.value = 'Unsatisfactory';
+                    evaluationOutputClass.remove("bg-red-700", "bg-yellow-300", "bg-lime-500", "bg-green-600");
+                    evaluationOutputClass.add("bg-orange-500");
+                } else if (evaluationInput <= 3.5) {
+                    evaluationOutput.value = 'Satisfactory';
+                    evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-lime-500", "bg-green-600");
+                    evaluationOutputClass.add("bg-yellow-300");
+                } else if (evaluationInput <= 4.5) {
+                    evaluationOutput.value = 'Very Satisfactory';
+                    evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-green-600");
+                    evaluationOutputClass.add("bg-lime-500");
+                } else if (evaluationInput <= 5) {
+                    evaluationOutput.value = 'Outstanding';
+                    evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500");
+                    evaluationOutputClass.add("bg-green-600");
+                } else {
+                    evaluationOutput.value = 'Maximum rate is 5';
+                    evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500",
+                        "bg-green-600");
+                    evaluationOutputClass.add("bg-gray-900");
+                }
+            }
+        });
+    </script>
+
+
+
+    {{-- <script>
+        document.getElementById('evaluationInput').addEventListener('input', function() {
+            var evaluationInput = parseFloat(this.value);
+            var evaluationOutput = document.getElementById('evaluationOutput');
+
+            if (evaluationInput === 0) {
+                evaluationOutput.value = 'Minimum rate is 1';
+            } else if (evaluationInput > 5) {
+                evaluationOutput.value = "Maximum rate is 5"
+            } else {
+                switch (evaluationInput) {
+                    case 1:
+                        evaluationOutput.value = 'Poor';
+                        break;
+                    case 2:
+                        evaluationOutput.value = 'Unsatisfactory';
+                        break;
+                    case 3:
+                        evaluationOutput.value = 'Satisfactory';
+                        break;
+                    case 4:
+                        evaluationOutput.value = 'Very Satisfactory';
+                        break;
+                    case 5:
+                        evaluationOutput.value = 'Outstanding';
+                        break;
+                    default:
+                        evaluationOutput.value = '';
+                }
+            }
+        });
+    </script> --}}
+
+    {{-- <script>
         document.getElementById('evaluationInput').addEventListener('input', function() {
             var evaluationInput = parseInt(this.value);
             var evaluationOutput = document.getElementById('evaluationOutput');
@@ -882,7 +973,7 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 
     {{-- Paginate Trainings Form --}}
     <script>
@@ -983,7 +1074,7 @@
                 showSection(currentSection);
             }
             updateButtons();
-            
+
         }
 
         function nextSection() {
@@ -1025,8 +1116,7 @@
         }
 
         // function to change the type of next button into submit
-        function toSubmit()
-        {
+        function toSubmit() {
             var storedData = localStorage.getItem('formTrainings');
             if (storedData) {
                 var formData = JSON.parse(storedData);
@@ -1048,22 +1138,30 @@
             showSection(currentSection);
             updateButtons();
 
-            $('#prevBtn').on('click', function () {
+            $('#prevBtn').on('click', function() {
                 saveFormData();
                 nextBtn.disabled = false;
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 4)
-                if(currentSection == 4) {
+                if (currentSection == 4) {
                     // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                    if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                    if (parseInt($("#total_participants").val()) == (parseInt($(
+                            "#num_of_farmers_and_growers").val()) + parseInt($(
+                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                            .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
+                            "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
+                            .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
+                            "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
                         nextBtn.disabled = false;
                     } else {
                         nextBtn.disabled = true;
                     }
                 }
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if(currentSection == 5) {
+                if (currentSection == 5) {
                     // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                    if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                    if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) +
+                            parseInt($("#num_of_pwd").val()))) {
                         nextBtn.disabled = false;
                     } else {
                         nextBtn.disabled = true;
@@ -1071,23 +1169,33 @@
                 }
             });
 
-            $('#nextBtn').on('click', function () {
+            $('#nextBtn').on('click', function() {
                 saveFormData();
                 // changes the type of nextBtn into submit
-                if(toSubmit() && currentSection == 6) {
+                if (toSubmit() && currentSection == 6) {
                     nextBtn.type = 'submit';
                 } else {
                     nextBtn.type = 'button';
                 }
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 4)
-                if(currentSection == 4) {
+                if (currentSection == 4) {
                     // if(!total_participants || !num_of_farmers_and_growers || !num_of_extension_workers || !num_of_scientific || !num_of_educators || !num_of_industry_players || !num_of_policy_makers || !num_of_researchers || !num_of_students || !num_of_media) {
-                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
+                    if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
+                            "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
+                            "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
+                            "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
+                            "#num_of_students").val() || !$("#num_of_media").val()) {
                         // console.log('empty');
                         nextBtn.disabled = true;
                     } else {
                         // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                        if (parseInt($("#total_participants").val()) == (parseInt($(
+                                "#num_of_farmers_and_growers").val()) + parseInt($(
+                                "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                                .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
+                                "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
+                                .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
+                                "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
                             nextBtn.disabled = false;
                         } else {
                             nextBtn.disabled = true;
@@ -1095,13 +1203,17 @@
                     }
                 }
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if(currentSection == 5) {
-                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
+                if (currentSection == 5) {
+                    if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
+                        .val() || !$("#num_of_pwd").val()) {
                         // console.log('empty');
                         nextBtn.disabled = true;
                     } else {
                         // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
+                        if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
+                                .val()) + parseInt($("#num_of_male").val()) + parseInt($(
+                                    "#num_of_indigenous")
+                                .val()) + parseInt($("#num_of_pwd").val()))) {
                             nextBtn.disabled = false;
                         } else {
                             nextBtn.disabled = true;
@@ -1111,101 +1223,145 @@
 
             });
 
-            $('#total_participants, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_educators, #num_of_industry_players, #num_of_policy_makers, #num_of_researchers, #num_of_students, #num_of_media, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd').on('keyup input', function() {
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
-                if(currentSection == 4) {
-                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
+            $('#total_participants, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_educators, #num_of_industry_players, #num_of_policy_makers, #num_of_researchers, #num_of_students, #num_of_media, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd')
+                .on('keyup input', function() {
+                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
+                    if (currentSection == 4) {
+                        if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
+                                "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
+                                "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
+                                "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
+                                "#num_of_students").val() || !$("#num_of_media").val()) {
+                            // console.log('empty');
                             nextBtn.disabled = true;
+                        } else {
+                            // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                            if (parseInt($("#total_participants").val()) == (parseInt($(
+                                    "#num_of_farmers_and_growers").val()) + parseInt($(
+                                    "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                                    .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
+                                    "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
+                                    .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
+                                    "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
                         }
                     }
-                }
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if(currentSection == 5) {
-                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
+                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                    if (currentSection == 5) {
+                        if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
+                            .val() || !$("#num_of_pwd").val()) {
+                            // console.log('empty');
                             nextBtn.disabled = true;
+                        } else {
+                            // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                            if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
+                                    .val()) + parseInt($("#num_of_male").val()) + parseInt($(
+                                        "#num_of_indigenous")
+                                    .val()) + parseInt($("#num_of_pwd").val()))) {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            $('#decrement-button1, #decrement-button2, #decrement-button3, #decrement-button4, #decrement-button5, #decrement-button6, #decrement-button7, #decrement-button8, #decrement-button9, #decrement-button10, #decrement-button11, #decrement-button12, #decrement-button13').on('click', function() {
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
-                if(currentSection == 4) {
-                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
+            $('#decrement-button1, #decrement-button2, #decrement-button3, #decrement-button4, #decrement-button5, #decrement-button6, #decrement-button7, #decrement-button8, #decrement-button9, #decrement-button10, #decrement-button11, #decrement-button12, #decrement-button13')
+                .on('click', function() {
+                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
+                    if (currentSection == 4) {
+                        if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
+                                "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
+                                "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
+                                "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
+                                "#num_of_students").val() || !$("#num_of_media").val()) {
+                            // console.log('empty');
                             nextBtn.disabled = true;
+                        } else {
+                            // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                            if (parseInt($("#total_participants").val()) == (parseInt($(
+                                    "#num_of_farmers_and_growers").val()) + parseInt($(
+                                    "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                                    .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
+                                    "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
+                                    .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
+                                    "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
                         }
                     }
-                }
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if(currentSection == 5) {
-                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
+                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                    if (currentSection == 5) {
+                        if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
+                            .val() || !$("#num_of_pwd").val()) {
+                            // console.log('empty');
                             nextBtn.disabled = true;
+                        } else {
+                            // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                            if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
+                                    .val()) + parseInt($("#num_of_male").val()) + parseInt($(
+                                        "#num_of_indigenous")
+                                    .val()) + parseInt($("#num_of_pwd").val()))) {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            $('#increment-button1, #increment-button2, #increment-button3, #increment-button4, #increment-button5, #increment-button6, #increment-button7, #increment-button8, #increment-button9, #increment-button10, #increment-button11, #increment-button12, #increment-button13').on('click', function() {
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
-                if(currentSection == 4) {
-                    if(!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$("#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$("#num_of_educators").val() || !$("#num_of_industry_players").val() || !$("#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$("#num_of_students").val() || !$("#num_of_media").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_farmers_and_growers").val()) + parseInt($("#num_of_extension_workers").val()) + parseInt($("#num_of_scientific").val()) + parseInt($("#num_of_educators").val()) + parseInt($("#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers").val()) + parseInt($("#num_of_researchers").val()) + parseInt($("#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
+            $('#increment-button1, #increment-button2, #increment-button3, #increment-button4, #increment-button5, #increment-button6, #increment-button7, #increment-button8, #increment-button9, #increment-button10, #increment-button11, #increment-button12, #increment-button13')
+                .on('click', function() {
+                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
+                    if (currentSection == 4) {
+                        if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
+                                "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
+                                "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
+                                "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
+                                "#num_of_students").val() || !$("#num_of_media").val()) {
+                            // console.log('empty');
                             nextBtn.disabled = true;
+                        } else {
+                            // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
+                            if (parseInt($("#total_participants").val()) == (parseInt($(
+                                    "#num_of_farmers_and_growers").val()) + parseInt($(
+                                    "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                                    .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
+                                    "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
+                                    .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
+                                    "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
                         }
                     }
-                }
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if(currentSection == 5) {
-                    if(!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous").val() || !$("#num_of_pwd").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                        if(parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) + parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) + parseInt($("#num_of_pwd").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
+                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
+                    if (currentSection == 5) {
+                        if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
+                            .val() || !$("#num_of_pwd").val()) {
+                            // console.log('empty');
                             nextBtn.disabled = true;
+                        } else {
+                            // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                            if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
+                                    .val()) + parseInt($("#num_of_male").val()) + parseInt($(
+                                        "#num_of_indigenous")
+                                    .val()) + parseInt($("#num_of_pwd").val()))) {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
                         }
                     }
-                }
-            });
+                });
 
         });
-
     </script>
 
     {{-- start_date and end_date restrictions for letters --}}
@@ -1218,5 +1374,4 @@
             return true;
         }
     </script>
-
 @endsection

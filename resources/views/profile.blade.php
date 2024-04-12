@@ -6,6 +6,27 @@
 
 @section('content')
     <main class="p-4 h-screen pt-1 bg-gray-100 flex items-center justify-center">
+
+        {{-- Redirect to Overview --}}
+        {{-- <a href={{ route('encoder.overview') }}>
+        <div
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 w-60 h-60 bg-gray-400 hover:bg-gray-800 rounded-r-full flex items-center justify-center">
+            <div class="text-white">
+                    <box-icon name='arrow-back' color="white" type='solid' class="w-16 h-16"></box-icon>
+                </div>
+            </div>
+        </a> --}}
+        {{-- Redirect to Overview --}}
+        <a href="{{ route('encoder.overview') }}">
+            <div
+                class="absolute -left-16 top-1/2 transform -translate-y-1/2 w-60 h-60 bg-gray-400 hover:bg-gray-700 rounded-r-full flex items-center justify-center hover:-translate-x-8 transition-transform duration-300 ease-in-out">
+                <div class="text-white">
+                    <box-icon name='arrow-back' color="white" type='solid' class="w-16 h-16 ml-10"></box-icon>
+                </div>
+            </div>
+        </a>
+
+
         <div class="w-full max-w-4xl">
             {{-- Tabs --}}
             <div class="border-b border-gray-200 dark:border-gray-700">

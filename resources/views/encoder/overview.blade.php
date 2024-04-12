@@ -188,11 +188,24 @@
             </div>
 
             {{-- Form --}}
-            <div class="mx-2 mr-auto">
+            <div class="mx-2">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
                     <option selected>Form Type</option>
+                    <option>Summary of Trainings Conducted</option>
+                    <option>Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option>Technical Dispatch Monitoring</option>
+                    <option>Technology Demonstration Monitoring</option>
+                </select>
+            </div>
+
+            {{-- Form --}}
+            <div class="mx-2 mr-auto">
+                <select
+                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="form">
+                    <option selected>Training Title</option>
                     <option>Summary of Trainings Conducted</option>
                 </select>
             </div>
