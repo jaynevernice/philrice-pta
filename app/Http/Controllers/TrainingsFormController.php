@@ -120,12 +120,12 @@ class TrainingsFormController extends Controller
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
                     return $query->where('title', 'LIKE', "%$searchInput%")
                                 ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                                ->orWhere('venue', 'LIKE', "%$searchInput%");
+                                ->orWhere('venue', 'LIKE', "%$searchInput%")
                                 // ->orWhere('province', 'LIKE', "%$searchInput%")
                                 // ->orWhere('municipality', 'LIKE', "%$searchInput%")
                                 // ->orWhere('country', 'LIKE', "%$searchInput%")
                                 // ->orWhere('state', 'LIKE', "%$searchInput%")
-                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                                ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
                 })
                 // ->orderBy('title', 'ASC')
                 ->where('station', '=', $request->station)

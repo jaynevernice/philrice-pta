@@ -7,6 +7,16 @@
 @section('content')
     <main class="p-4 h-screen pt-1 bg-gray-100 flex items-center justify-center">
         <div class="w-full max-w-4xl">
+            @if ($errors->any())
+                <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {{-- Tabs --}}
             <div class="border-b border-gray-200 dark:border-gray-700">
                 <ul
@@ -180,7 +190,7 @@
                     <div class="my-4">
                         <label for="sq1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is
                             the name of your favorite color?</label>
-                        <input type="text" id="sq1" name="sq1"
+                        <input type="text" id="sq1" name="sq1" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Security Question 1" value="{{ old('sq1', Auth::user()->sq1) }}">
                         {{-- @if (Auth::check()) value="{{ Auth::user()->sq1 }}" @endif> --}}
@@ -188,7 +198,7 @@
                     <div class="my-4">
                         <label for="sq2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What
                             province/city were you born in?</label>
-                        <input type="text" id="sq2" name="sq2"
+                        <input type="text" id="sq2" name="sq2" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Security Question 2" value="{{ old('sq2', Auth::user()->sq2) }}">
                         {{-- @if (Auth::check()) value="{{ Auth::user()->sq2 }}" @endif> --}}
@@ -196,7 +206,7 @@
                     <div class="my-4">
                         <label for="sq3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is
                             the name of your elementary school?</label>
-                        <input type="text" id="sq3" name="sq3"
+                        <input type="text" id="sq3" name="sq3" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Security Question 3" value="{{ old('sq3', Auth::user()->sq3) }}">
                         {{-- @if (Auth::check()) value="{{ Auth::user()->sq3 }}" @endif> --}}
@@ -216,20 +226,22 @@
                     <div class="my-2 w-full">
                         <label for="old_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old
                             Password</label>
-                        <input type="password" name="old_password" id="old_password" autocomplete="off"
+                        <input type="password" name="old_password" id="old_password" autocomplete="off" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div class="my-2 w-full">
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New
                             Password</label>
-                        <input type="password" name="password" id="password" autocomplete="off"
+                        <input type="password" name="password" id="password" autocomplete="off" required onkeyup="validatePassword(this)"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div id="password-error-message"></div>
                     </div>
                     <div class="my-2 w-full">
                         <label for="confirm_password"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                        <input type="password" name="password_confirmation" id="confirm_password" autocomplete="off"
+                        <input type="password" name="password_confirmation" id="confirm_password" autocomplete="off" required onkeyup="matchPassword(this)"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div id="password-match-message"></div>
                     </div>
                     {{-- Show Password --}}
                     <div class="flex items-center justify-end my-2 w-full">
@@ -376,4 +388,106 @@
             }
         });
     </script> --}}
+
+    <script>
+        function validatePassword(inputField) {
+            const password = inputField.value;
+            const confirm_password = document.getElementById("confirm_password");
+            const errorMessage = document.getElementById("password-error-message");
+            errorMessage.textContent = ""; // Clear previous error message
+
+            // call the matchPassword() function
+            matchPassword(confirm_password);
+
+            // Define password requirements
+            const minLength = 8;
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasNumber = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*()]/.test(password);
+
+            let isValid = true;
+
+            // Check each requirement and update error message
+            const errorList = [];
+            if (password.length < minLength) {
+                isValid = false;
+                errorList.push("Password must be at least " + minLength + " characters long.");
+            }
+            if (!hasLowerCase) {
+                isValid = false;
+                errorList.push("Password must contain at least one lowercase letter (a-z).");
+            }
+            if (!hasUpperCase) {
+                isValid = false;
+                errorList.push("Password must contain at least one uppercase letter (A-Z).");
+            }
+            if (!hasNumber) {
+                isValid = false;
+                errorList.push("Password must contain at least one number (0-9).");
+            }
+            if (!hasSpecialChar) {
+                isValid = false;
+                errorList.push("Password must contain at least one special character (!@#$%^&*()).");
+            }
+
+            // Update error message with list and red color
+            errorMessage.innerHTML = ""; // Clear previous content (optional)
+            if (!isValid) {
+                const errorElement = document.createElement("ul");
+                errorElement.style.color = "red"; // Set error message color to red
+                for (const error of errorList) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = error;
+                    errorElement.appendChild(listItem);
+                }
+                errorMessage.appendChild(errorElement);
+            }
+
+            // You can use "isValid" for further actions like enabling/disabling submit button
+            // based on password validity
+        }
+
+        function matchPassword(inputField) {
+            const password = $('#password').val();
+            const confirm_password = inputField.value;
+            const matchMessage = document.getElementById("password-match-message");
+            matchMessage.textContent = ""; // Clear previous error message
+
+            let isMatch = true;
+
+            const errorList = [];
+            if (password != confirm_password) {
+                isMatch = false;
+                errorList.push("Password and Confirm Password did not match.");
+            } else {
+                isMatch = true;
+                errorList.push("Password and Confirm Password are match.");
+            }
+
+            // Update error message with list and red color
+            matchMessage.innerHTML = ""; // Clear previous content (optional)
+            if (!isMatch) {
+                const errorElement = document.createElement("ul");
+                errorElement.style.color = "red"; // Set error message color to red
+                for (const error of errorList) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = error;
+                    errorElement.appendChild(listItem);
+                }
+                matchMessage.appendChild(errorElement);
+            }
+            // Update match message with green color 
+            else  {
+                const errorElement = document.createElement("ul");
+                errorElement.style.color = "green"; // Set match message color to green
+                for (const error of errorList) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = error;
+                    errorElement.appendChild(listItem);
+                }
+                matchMessage.appendChild(errorElement);
+            }
+        }
+    </script>
 @endsection
