@@ -1,0 +1,302 @@
+<div class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                    {{-- Total Num of Educator (elementary/high school/college teachers) --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_educators"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
+                                many are educators (elementary/high school/college teachers)?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_educators"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_educators" name="num_of_educators" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </div>
+                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_educators"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of Industry Players (e.g trader, miller, wholesaler, retailer)  --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_industry_players"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are Industry
+                                Players (e.g trader, miller, wholesaler, retailer)?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button5"
+                                data-input-counter-decrement="num_of_industry_players"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_industry_players" name="num_of_industry_players"
+                                data-input-counter data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <button type="button" id="increment-button5"
+                                data-input-counter-increment="num_of_industry_players"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of Policy maker (e.g local chief executive) --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_policy_makers"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are Policy
+                                makers (e.g local chief executive)?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button6"
+                                data-input-counter-decrement="num_of_policy_makers"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_policy_makers" name="num_of_policy_makers"
+                                data-input-counter data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-building-shield"></i>
+                            </div>
+                            <button type="button" id="increment-button6"
+                                data-input-counter-increment="num_of_policy_makers"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                    {{-- Total Num of Researchers --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_researchers"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
+                                many are Researchers?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button7"
+                                data-input-counter-decrement="num_of_researchers"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_researchers" name="num_of_researchers" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <button type="button" id="increment-button7"
+                                data-input-counter-increment="num_of_researchers"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of Students  --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_students"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are
+                                Students?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button8" data-input-counter-decrement="num_of_students"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_students" name="num_of_students" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-school"></i>
+                            </div>
+                            <button type="button" id="increment-button8" data-input-counter-increment="num_of_students"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of Media (e.g broadcaster, vlogger, etc) --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_media"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How many are Media
+                                (e.g broadcaster, vlogger, etc)?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button9" data-input-counter-decrement="num_of_media"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_media" name="num_of_media" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-building-shield"></i>
+                            </div>
+                            <button type="button" id="increment-button9" data-input-counter-increment="num_of_media"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Section 5 --}}
+            <div class="section" data-section="5" style="display: none;">
+                <div class="flex">
+                    <h6 class="text-lg font-bold dark:text-white">Participant's Profile (Demographic)</h6>
+                </div>
+
+                <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
+
+                    {{-- Total Num of Female Participants --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_female"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
+                                many are female?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button10" data-input-counter-decrement="num_of_female"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_female" name="num_of_female" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-person-dress"></i>
+                            </div>
+                            <button type="button" id="increment-button10" data-input-counter-increment="num_of_female"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of Male Participants --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_male"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
+                                many are male?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button11" data-input-counter-decrement="num_of_male"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-person"></i>
+                            </div>
+                            <button type="button" id="increment-button11" data-input-counter-increment="num_of_male"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of Indigenous --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_indigenous"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
+                                many are indigenous?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button12"
+                                data-input-counter-decrement="num_of_indigenous"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_indigenous" name="num_of_indigenous" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-people-group"></i>
+                            </div>
+                            <button type="button" id="increment-button12"
+                                data-input-counter-increment="num_of_indigenous"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Total Num of PWD --}}
+                    <div class="grid grid-rows-2">
+                        <div>
+                            <label for="num_of_pwd"
+                                class="block my-2 text-sm font-medium text-gray-900 dark:text-white">How
+                                many are PWD?</label>
+                        </div>
+                        <div class="relative flex items-center">
+                            <button type="button" id="decrement-button13" data-input-counter-decrement="num_of_pwd"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="text" id="num_of_pwd" name="num_of_pwd" data-input-counter
+                                data-input-counter-min="0" data-input-counter-max=""
+                                aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
+                                placeholder="0" value="" required />
+                            <div
+                                class="absolute bottom-3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
+                                <i class="fa-solid fa-wheelchair"></i>
+                            </div>
+                            <button type="button" id="increment-button13" data-input-counter-increment="num_of_pwd"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
