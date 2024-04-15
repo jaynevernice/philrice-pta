@@ -201,9 +201,9 @@
                             <select id="training_category" name="training_category" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="">Beginner Course</option>
-                                <option value="">Intermediate Course</option>
-                                <option value="">Advanced Course</option>
+                                <option value="Beginner Course">Beginner Course</option>
+                                <option value="Intermediate Course">Intermediate Course</option>
+                                <option value="Advanced Course">Advanced Course</option>
                             </select>
                         </div>
                     </div>
@@ -276,7 +276,9 @@
                     <select name="withinPhilriceInput" id="withinPhilriceInput"
                         class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         <option selected disabled>Select</option>
-                        <option value="">CES</option>
+                        @foreach ($stations as $station)
+                            <option value="{{ $station->id }}">{{ $station->station }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -301,7 +303,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="start_date" name="start" value="{{ old('start_date') }}"
+                            <input type="text" id="start_date" name="start" value="{{ old('start') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                 placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
@@ -316,7 +318,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="end_date" name="end" value="{{ old('end_date') }}"
+                            <input type="text" id="end_date" name="end" value="{{ old('end') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                 placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
@@ -531,11 +533,11 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_other" name="num_of_other" data-input-counter
+                            <input type="text" id="num_of_other" name="num_of_other" data-input-counter value="0"
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-building-shield"></i>
@@ -559,20 +561,20 @@
                             <p class="text-sm text-gray-500 mb-2">How many are male?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_male"
+                            <button type="button" id="decrement-button5" data-input-counter-decrement="num_of_male"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter
+                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter value="0"
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person"></i>
                             </div>
-                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_male"
+                            <button type="button" id="increment-button5" data-input-counter-increment="num_of_male"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -585,7 +587,7 @@
                             <p class="text-sm text-gray-500 mb-2">How many are female?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button4" data-input-counter-decrement="num_of_female"
+                            <button type="button" id="decrement-button6" data-input-counter-decrement="num_of_female"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
@@ -593,12 +595,12 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" value="0" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-people-group"></i>
                             </div>
-                            <button type="button" id="increment-button4" data-input-counter-increment="num_of_female"
+                            <button type="button" id="increment-button6" data-input-counter-increment="num_of_female"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -617,7 +619,7 @@
                             <p class="text-sm text-gray-500 mb-2">How many are indigenous individuals?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button5"
+                            <button type="button" id="decrement-button7"
                                 data-input-counter-decrement="num_of_indigenous"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
@@ -626,12 +628,12 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" value="0" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person-dress"></i>
                             </div>
-                            <button type="button" id="increment-button5"
+                            <button type="button" id="increment-button7"
                                 data-input-counter-increment="num_of_indigenous"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
@@ -647,7 +649,7 @@
                             <p class="text-sm text-gray-500 mb-2">How many are differently abled individuals (PWD)?</p>
                         </div>
                         <div class="relative flex items-center">
-                            <button type="button" id="decrement-button6" data-input-counter-decrement="num_of_pwd"
+                            <button type="button" id="decrement-button8" data-input-counter-decrement="num_of_pwd"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
@@ -655,12 +657,12 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="" required />
+                                placeholder="0" value="0" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-wheelchair"></i>
                             </div>
-                            <button type="button" id="increment-button6" data-input-counter-increment="num_of_pwd"
+                            <button type="button" id="increment-button8" data-input-counter-increment="num_of_pwd"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -669,8 +671,8 @@
                 </div>
             </div>
 
-            {{-- Section 6 --}}
-            <div class="section" data-section="6" style="display: none;">
+            {{-- Section 5 --}}
+            <div class="section" data-section="5" style="display: none;">
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Documentation</h6>
                 </div>
@@ -693,7 +695,7 @@
                         <p class="text-sm text-gray-500 mb-6">You may upload other forms of training documentation such as
                             attendance/registration sheet, copy of event program, short video or audio clip, and other
                             relevant documents, spreadsheet, or PDF file.</p>
-                        <input required id="other_doc" name="other_doc[]"
+                        <input id="other_doc" name="other_doc[]"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
                     </div>
@@ -710,6 +712,10 @@
                         class="text-gray-900 border border-gray-300 bg-gray-50 hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2">Previous</button>
                     <button type="button" id="nextBtn" onclick="nextSection()"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next</button>
+                    <button type="submit" id="submitBtn" hidden
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Submit
+                    </button>
                 </div>
             </div>
 
@@ -907,8 +913,6 @@
         });
     </script>
 
-
-
     {{-- <script>
         document.getElementById('evaluationInput').addEventListener('input', function() {
             var evaluationInput = parseFloat(this.value);
@@ -988,9 +992,14 @@
             let formData = {
                 // Section 2
                 "training_title": $("#training_title").val(),
+                "otherTrainingInput": $("#otherTrainingInput").val(),
                 "training_category": $("#training_category").val(),
-                "training_style": $("#training_style").val(),
+                "training_type": $("#training_type").val(),
+                "mod": $("#mod").val(),
                 "training_venue": $("#training_venue").val(),
+                "internationalTrainingInput": $("#internationalTrainingInput").val(),
+                "withinPhilriceInput": $("#withinPhilriceInput").val(),
+                "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
                 "start_date": $("#start_date").val(),
                 "end_date": $("#end_date").val(),
                 // Section 3
@@ -1003,13 +1012,7 @@
                 "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
                 "num_of_extension_workers": $("#num_of_extension_workers").val(),
                 "num_of_scientific": $("#num_of_scientific").val(),
-                "num_of_educators": $("#num_of_educators").val(),
-                "num_of_industry_players": $("#num_of_industry_players").val(),
-                "num_of_policy_makers": $("#num_of_policy_makers").val(),
-                "num_of_researchers": $("#num_of_researchers").val(),
-                "num_of_students": $("#num_of_students").val(),
-                "num_of_media": $("#num_of_media").val(),
-                // Section 5
+                "num_of_other": $("#num_of_other").val(),
                 "num_of_female": $("#num_of_female").val(),
                 "num_of_male": $("#num_of_male").val(),
                 "num_of_indigenous": $("#num_of_indigenous").val(),
@@ -1026,9 +1029,14 @@
                 var formData = JSON.parse(storedData);
                 // Section 2
                 $("#training_title").val(formData.training_title);
+                $("#otherTrainingInput").val(formData.otherTrainingInput);
                 $("#training_category").val(formData.training_category);
-                $("#training_style").val(formData.training_style);
+                $("#training_type").val(formData.training_type);
+                $("#mod").val(formData.mod);
                 $("#training_venue").val(formData.training_venue);
+                $("#internationalTrainingInput").val(formData.internationalTrainingInput);
+                $("#withinPhilriceInput").val(formData.withinPhilriceInput);
+                $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
                 $("#start_date").val(formData.start_date);
                 $("#end_date").val(formData.end_date);
                 // Section 3
@@ -1041,13 +1049,7 @@
                 $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
                 $("#num_of_extension_workers").val(formData.num_of_extension_workers);
                 $("#num_of_scientific").val(formData.num_of_scientific);
-                $("#num_of_educators").val(formData.num_of_educators);
-                $("#num_of_industry_players").val(formData.num_of_industry_players);
-                $("#num_of_policy_makers").val(formData.num_of_policy_makers);
-                $("#num_of_researchers").val(formData.num_of_researchers);
-                $("#num_of_students").val(formData.num_of_students);
-                $("#num_of_media").val(formData.num_of_media);
-                // Section 5
+                $("#num_of_other").val(formData.num_of_other);
                 $("#num_of_female").val(formData.num_of_female);
                 $("#num_of_male").val(formData.num_of_male);
                 $("#num_of_indigenous").val(formData.num_of_indigenous);
@@ -1140,130 +1142,199 @@
 
             $('#prevBtn').on('click', function() {
                 saveFormData();
+                $("#nextBtn").removeAttr("hidden");
+                $("#submitBtn").attr("hidden", true);
                 nextBtn.disabled = false;
+                nextBtn.type = 'button';
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 4)
                 if (currentSection == 4) {
                     // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                    if (parseInt($("#total_participants").val()) == (parseInt($(
+                    if ((parseInt($("#total_participants").val()) == (parseInt($(
                             "#num_of_farmers_and_growers").val()) + parseInt($(
                             "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                            .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
-                            "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
-                            .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
-                            "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                         nextBtn.disabled = false;
                     } else {
                         nextBtn.disabled = true;
                     }
+
                 }
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if (currentSection == 5) {
-                    // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                    if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
-                            parseInt($("#num_of_male").val()) + parseInt($("#num_of_indigenous").val()) +
-                            parseInt($("#num_of_pwd").val()))) {
-                        nextBtn.disabled = false;
-                    } else {
-                        nextBtn.disabled = true;
-                    }
-                }
+
             });
 
             $('#nextBtn').on('click', function() {
                 saveFormData();
+                
                 // changes the type of nextBtn into submit
-                if (toSubmit() && currentSection == 6) {
-                    nextBtn.type = 'submit';
-                } else {
-                    nextBtn.type = 'button';
+                if (currentSection == 5) {
+                    $("#submitBtn").removeAttr("hidden");
+                    $("#nextBtn").attr("hidden", true);
                 }
+
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 4)
                 if (currentSection == 4) {
                     // if(!total_participants || !num_of_farmers_and_growers || !num_of_extension_workers || !num_of_scientific || !num_of_educators || !num_of_industry_players || !num_of_policy_makers || !num_of_researchers || !num_of_students || !num_of_media) {
-                    if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
-                            "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
-                            "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
-                            "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
-                            "#num_of_students").val() || !$("#num_of_media").val()) {
+                    if (!$("#total_participants").val()) {
                         // console.log('empty');
                         nextBtn.disabled = true;
                     } else {
                         // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                        if (parseInt($("#total_participants").val()) == (parseInt($(
-                                "#num_of_farmers_and_growers").val()) + parseInt($(
-                                "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                                .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
-                                "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
-                                .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
-                                "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                        if ((parseInt($("#total_participants").val()) == (parseInt($(
+                            "#num_of_farmers_and_growers").val()) + parseInt($(
+                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                             nextBtn.disabled = false;
                         } else {
                             nextBtn.disabled = true;
+                        }
+
+                    }
+                }
+                // disable nextBtn if any of the input are blank (Section 3)
+                if(currentSection == 3) {
+                    if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                        nextBtn.disabled = true;
+                    } else {
+                        nextBtn.disabled = false;
+                    }
+                }
+                // disable nextBtn if any of the input are blank (Section 2)
+                if(currentSection == 2) {
+                    // disable nextBtn if one of the input field is blank
+                    if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
+                        nextBtn.disabled = true;
+                    } else {
+                        if($("#training_type").val() == 'Local') {
+                            // disable nextBtn if training_venue is blank and training_type == Local
+                            if(!$("#training_venue").val()) {
+                                nextBtn.disabled = true;
+                            } else {
+                                if($("#training_venue").val() == 'Within PhilRice Station') {
+                                    // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
+                                    if(!$("#withinPhilriceInput").val()) {
+                                        nextBtn.disabled = true;
+                                    } else {
+                                        nextBtn.disabled = false;
+                                    }
+                                    
+                                } else if($("#training_venue").val() == 'Outside PhilRice Station') {
+                                    // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
+                                    if(!$("#outsidePhilriceInput").val()) {
+                                        nextBtn.disabled = true;
+                                    } else {
+                                        nextBtn.disabled = false;
+                                    }
+                                }
+                            }
+                        } else if($("#training_type").val() == 'International') {
+                            // disable nextBtn if internationalTrainingInput is blank and training_type == International
+                            if(!$("#internationalTrainingInput").val()) {
+                                nextBtn.disabled = true;
+                            } else {
+                                nextBtn.disabled = false;
+                            }
                         }
                     }
                 }
                 // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                if (currentSection == 5) {
-                    if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
-                        .val() || !$("#num_of_pwd").val()) {
-                        // console.log('empty');
-                        nextBtn.disabled = true;
-                    } else {
-                        // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                        if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
-                                .val()) + parseInt($("#num_of_male").val()) + parseInt($(
-                                    "#num_of_indigenous")
-                                .val()) + parseInt($("#num_of_pwd").val()))) {
-                            nextBtn.disabled = false;
-                        } else {
-                            nextBtn.disabled = true;
-                        }
-                    }
-                }
-
+                // if (currentSection == 5) {
+                //     if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
+                //         .val() || !$("#num_of_pwd").val()) {
+                //         // console.log('empty');
+                //         nextBtn.disabled = true;
+                //     } else {
+                //         // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
+                //         if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
+                //                 .val()) + parseInt($("#num_of_male").val()) + parseInt($(
+                //                     "#num_of_indigenous")
+                //                 .val()) + parseInt($("#num_of_pwd").val()))) {
+                //             nextBtn.disabled = false;
+                //         } else {
+                //             nextBtn.disabled = true;
+                //         }
+                //     }
+                // }
+                // currentSection++;
+                // console.log(currentSection);
             });
 
-            $('#total_participants, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_educators, #num_of_industry_players, #num_of_policy_makers, #num_of_researchers, #num_of_students, #num_of_media, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd')
+            $('#otherTrainingInput, #internationalTrainingInput, #outsidePhilriceInput, #total_participants, #start_date, #end_date, #sponsor, #average_gik, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd, #evaluationInput')
                 .on('keyup input', function() {
                     // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
                     if (currentSection == 4) {
-                        if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
-                                "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
-                                "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
-                                "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
-                                "#num_of_students").val() || !$("#num_of_media").val()) {
+                        if (!$("#total_participants").val()) {
                             // console.log('empty');
                             nextBtn.disabled = true;
                         } else {
                             // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                            if (parseInt($("#total_participants").val()) == (parseInt($(
-                                    "#num_of_farmers_and_growers").val()) + parseInt($(
-                                    "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                                    .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
-                                    "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
-                                    .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
-                                    "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            if ((parseInt($("#total_participants").val()) == (parseInt($(
+                            "#num_of_farmers_and_growers").val()) + parseInt($(
+                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
                             }
+
                         }
                     }
-                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                    if (currentSection == 5) {
-                        if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
-                            .val() || !$("#num_of_pwd").val()) {
-                            // console.log('empty');
+                    // Prevent input exceed more than 5 and less than 1
+                    if(parseFloat($("#evaluationInput").val()) > 5) {
+                        parseFloat($("#evaluationInput").val(5));
+                        $("#evaluationOutput").val('Outstanding');
+                        $("#evaluationOutput").addClass("bg-green-600");
+                    } else if(parseFloat($("#evaluationInput").val()) < 1) {
+                        parseFloat($("#evaluationInput").val(1));
+                        $("#evaluationOutput").val('Poor');
+                        $("#evaluationOutput").addClass("bg-red-700");
+                    }
+
+                    // disable nextBtn if any of the input are blank (Section 3)
+                    if(currentSection == 3) {
+                        if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
                             nextBtn.disabled = true;
                         } else {
-                            // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                            if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
-                                    .val()) + parseInt($("#num_of_male").val()) + parseInt($(
-                                        "#num_of_indigenous")
-                                    .val()) + parseInt($("#num_of_pwd").val()))) {
-                                nextBtn.disabled = false;
-                            } else {
-                                nextBtn.disabled = true;
+                            nextBtn.disabled = false;
+                        }
+                    }
+                    // disable nextBtn if any of the input are blank (Section 2)
+                    if(currentSection == 2) {
+                        // disable nextBtn if one of the input field is blank
+                        if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
+                            nextBtn.disabled = true;
+                        } else {
+                            if($("#training_type").val() == 'Local') {
+                                // disable nextBtn if training_venue is blank and training_type == Local
+                                if(!$("#training_venue").val()) {
+                                    nextBtn.disabled = true;
+                                } else {
+                                    if($("#training_venue").val() == 'Within PhilRice Station') {
+                                        // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
+                                        if(!$("#withinPhilriceInput").val()) {
+                                            nextBtn.disabled = true;
+                                        } else {
+                                            nextBtn.disabled = false;
+                                        }
+                                        
+                                    } else if($("#training_venue").val() == 'Outside PhilRice Station') {
+                                        // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
+                                        if(!$("#outsidePhilriceInput").val()) {
+                                            nextBtn.disabled = true;
+                                        } else {
+                                            nextBtn.disabled = false;
+                                        }
+                                    }
+                                }
+                            } else if($("#training_type").val() == 'International') {
+                                // disable nextBtn if internationalTrainingInput is blank and training_type == International
+                                if(!$("#internationalTrainingInput").val()) {
+                                    nextBtn.disabled = true;
+                                } else {
+                                    nextBtn.disabled = false;
+                                }
                             }
                         }
                     }
@@ -1273,90 +1344,45 @@
                 .on('click', function() {
                     // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
                     if (currentSection == 4) {
-                        if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
-                                "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
-                                "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
-                                "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
-                                "#num_of_students").val() || !$("#num_of_media").val()) {
+                        if (!$("#total_participants").val()) {
                             // console.log('empty');
                             nextBtn.disabled = true;
                         } else {
                             // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                            if (parseInt($("#total_participants").val()) == (parseInt($(
-                                    "#num_of_farmers_and_growers").val()) + parseInt($(
-                                    "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                                    .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
-                                    "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
-                                    .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
-                                    "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            if ((parseInt($("#total_participants").val()) == (parseInt($(
+                            "#num_of_farmers_and_growers").val()) + parseInt($(
+                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
                             }
+
                         }
                     }
-                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                    if (currentSection == 5) {
-                        if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
-                            .val() || !$("#num_of_pwd").val()) {
-                            // console.log('empty');
-                            nextBtn.disabled = true;
-                        } else {
-                            // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                            if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
-                                    .val()) + parseInt($("#num_of_male").val()) + parseInt($(
-                                        "#num_of_indigenous")
-                                    .val()) + parseInt($("#num_of_pwd").val()))) {
-                                nextBtn.disabled = false;
-                            } else {
-                                nextBtn.disabled = true;
-                            }
-                        }
-                    }
+
                 });
 
             $('#increment-button1, #increment-button2, #increment-button3, #increment-button4, #increment-button5, #increment-button6, #increment-button7, #increment-button8, #increment-button9, #increment-button10, #increment-button11, #increment-button12, #increment-button13')
                 .on('click', function() {
                     // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
                     if (currentSection == 4) {
-                        if (!$("#total_participants").val() || !$("#num_of_farmers_and_growers").val() || !$(
-                                "#num_of_extension_workers").val() || !$("#num_of_scientific").val() || !$(
-                                "#num_of_educators").val() || !$("#num_of_industry_players").val() || !$(
-                                "#num_of_policy_makers").val() || !$("#num_of_researchers").val() || !$(
-                                "#num_of_students").val() || !$("#num_of_media").val()) {
+                        if (!$("#total_participants").val()) {
                             // console.log('empty');
                             nextBtn.disabled = true;
                         } else {
                             // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                            if (parseInt($("#total_participants").val()) == (parseInt($(
-                                    "#num_of_farmers_and_growers").val()) + parseInt($(
-                                    "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                                    .val()) + parseInt($("#num_of_educators").val()) + parseInt($(
-                                    "#num_of_industry_players").val()) + parseInt($("#num_of_policy_makers")
-                                    .val()) + parseInt($("#num_of_researchers").val()) + parseInt($(
-                                    "#num_of_students").val()) + parseInt($("#num_of_media").val()))) {
+                            if ((parseInt($("#total_participants").val()) == (parseInt($(
+                            "#num_of_farmers_and_growers").val()) + parseInt($(
+                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
+                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
                             }
-                        }
-                    }
-                    // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                    if (currentSection == 5) {
-                        if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
-                            .val() || !$("#num_of_pwd").val()) {
-                            // console.log('empty');
-                            nextBtn.disabled = true;
-                        } else {
-                            // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                            if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
-                                    .val()) + parseInt($("#num_of_male").val()) + parseInt($(
-                                        "#num_of_indigenous")
-                                    .val()) + parseInt($("#num_of_pwd").val()))) {
-                                nextBtn.disabled = false;
-                            } else {
-                                nextBtn.disabled = true;
-                            }
+
                         }
                     }
                 });

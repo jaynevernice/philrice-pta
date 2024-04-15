@@ -239,8 +239,10 @@ class TrainingsFormController extends Controller
         
         $titles = TrainingsTitle::select('*')->orderBy('training_title', 'asc')->get();
 
+        $stations = Station::select('*')->orderBy('station', 'asc')->get();
+
         // return view('trainingsform', compact('provinces', 'divisions', 'training_types', 'participants', 'funds'));
-        return view('trainings', compact('provinces', 'divisions', 'training_types', 'participants', 'funds', 'titles'));
+        return view('trainings', compact('provinces', 'divisions', 'training_types', 'participants', 'funds', 'titles', 'stations'));
     }
 
     /**
@@ -248,7 +250,7 @@ class TrainingsFormController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // if( $request->venue_group == 'Local (but outside PhilRice station)' ) {
         //     $request->validate([
         //         'province'=>'required',
