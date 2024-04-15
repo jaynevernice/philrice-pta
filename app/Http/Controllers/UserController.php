@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Str;
 use Hash;
-use Auth;
+use Mail;
 use App\Models\User;
 use App\Models\Station;
 use App\Models\Division;
 use App\Models\Position;
-use Mail;
-use Str;
 use App\Mail\RegisterMail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -157,6 +157,8 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+        $user = Auth::user();
+        return view('profile', compact('user'));
     }
 
     /**
@@ -250,6 +252,7 @@ class UserController extends Controller
 
     public function promoteEncoder($id)
     {
+        // dd($id);
         $encoder = User::findOrFail($id);
         $encoder->user_type = 'admin';
         $encoder->save();
@@ -265,6 +268,7 @@ class UserController extends Controller
     }
     public function demoteAdmin($id)
     {
+        // dd($id);
         $admin = User::findOrFail($id);
         $admin->user_type = 'encoder';
         $admin->save();

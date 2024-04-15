@@ -230,7 +230,7 @@
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center">
                                     @if ($encoder->user_type === 'encoder')
-                                        <form id="promote-encoder"
+                                        <form id="promote-encoder-{{ $encoder->id }}"
                                             action="{{ route('super_admin.promote_encoder', $encoder->id) }}"
                                             method="POST">
                                             @csrf
@@ -269,7 +269,7 @@
                 confirmButtonText: "Yes, promote!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('promote-encoder').submit();
+                    document.getElementById('promote-encoder-' + id).submit();
                     Swal.fire({
                         title: "Deleted!",
                         text: "Encoder has been promoted to Admin.",

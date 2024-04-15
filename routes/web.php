@@ -30,7 +30,7 @@ Route::get('/forgot', function () {
 })->name('forgot');
 Route::post('/forgot', [AuthController::class, 'PostForgot']);
 
-Route::get('/resetsq', function() {
+Route::get('/resetsq', function () {
     return view('resetsq');
 });
 Route::post('/resetsq', [AuthController::class, 'PostSecurityQuestions']);
@@ -133,15 +133,19 @@ Route::group(['middleware' => 'super_admin'], function () {
         Route::get('/negros', function () {
             return view('super_admin.negros');
         })->name('super_admin.negros');
-        
-        Route::get('/manage_encoders', function () {
-            return view('super_admin.manage_encoders');
-        })->name('super_admin.manage_encoders');
 
         Route::get('/manage_encoders', [UserController::class, 'superadminGetEncoders'])->name('super_admin.manage_encoders');
-        Route::put('/promote_encoder/{id}', [UserController::class,'promoteEncoder'])->name('super_admin.promote_encoder');
+        Route::put('/promote_encoder/{id}', [UserController::class, 'promoteEncoder'])->name('super_admin.promote_encoder');
         Route::get('/manage_admins', [UserController::class, 'superadminGetAdmins'])->name('super_admin.manage_admins');
-        Route::put('/demote_admin/{id}', [UserController::class,'demoteAdmin'])->name('super_admin.demote_admin');
+        Route::put('/demote_admin/{id}', [UserController::class, 'demoteAdmin'])->name('super_admin.demote_admin');
+
+        // Route::get('/profile', function () {
+        //     return view('profile');
+        // })->name('profile');
+
+        // Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
+        // Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
+        // Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
 
     });
 });
@@ -197,17 +201,16 @@ Route::group(['middleware' => 'admin'], function () {
         //     return view('admin.manage_encoders');
         // })->name('admin.manage_encoders');
         Route::get('/manage_encoders', [UserController::class, 'adminGetEncoders'])->name('admin.manage_encoders');
-        Route::put('/promote_encoder/{id}', [UserController::class,'promoteEncoder'])->name('admin.promote_encoder');
+        Route::put('/promote_encoder/{id}', [UserController::class, 'promoteEncoder'])->name('admin.promote_encoder');
     });
 });
 
 // Encoder
 Route::group(['middleware' => 'encoder'], function () {
-    Route::group(['prefix' => 'encoder'],function(){
-
-        Route::get('/profile', function() {
-            return view('profile');
-        })->name('profile');
+    Route::group(['prefix' => 'encoder'], function () {
+        // Route::get('/profile', function () {
+        //     return view('profile');
+        // })->name('profile');
 
         Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
         Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
@@ -226,8 +229,8 @@ Route::group(['middleware' => 'encoder'], function () {
         })->name('encoder.ces_add');
 
         // live search and filter
-        Route::get('/ces_edit',[TrainingsFormController::class,'cesEditView'])->name('encoder.ces_edit');
-        Route::post('/trainings/filter',[TrainingsFormController::class,'filterAjax'])->name('filter_data');
+        Route::get('/ces_edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.ces_edit');
+        Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax'])->name('filter_data');
 
         // Summary of Trainings Form
         Route::group(['prefix' => 'trainings'], function () {
@@ -241,9 +244,9 @@ Route::group(['middleware' => 'encoder'], function () {
 
         // Export Data into excel
         // composer require maatwebsite/excel
-        Route::post('/export/record',[TrainingsFormController::class,'export'])->name('export.record');
+        Route::post('/export/record', [TrainingsFormController::class, 'export'])->name('export.record');
 
-        Route::get('/agusan', function() {
+        Route::get('/agusan', function () {
             return view('encoder.agusan');
         })->name('encoder.agusan');
 
@@ -273,7 +276,6 @@ Route::group(['middleware' => 'encoder'], function () {
     });
 });
 
-
 // KSL Monitoring
 Route::group(['prefix' => 'ksl'], function () {
     Route::get('/form', [KSLFormController::class, 'index'])->name('kslform.index');
@@ -281,7 +283,7 @@ Route::group(['prefix' => 'ksl'], function () {
 });
 
 // Summary of Trainings
-Route::group(['prefix' => 'trainings'], function() {
+Route::group(['prefix' => 'trainings'], function () {
     Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
 });
 
@@ -295,7 +297,6 @@ Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');
 
-
-// Route::get('/trainings', function () {
-//     return view('trainings');
-// })->name('trainings');
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');

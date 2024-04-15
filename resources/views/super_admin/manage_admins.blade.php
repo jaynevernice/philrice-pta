@@ -230,7 +230,7 @@
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center">
                                     @if ($admin->user_type === 'admin')
-                                        <form id="demote-admin"
+                                        <form id="demote-admin-{{ $admin->id }}"
                                             action="{{ route('super_admin.demote_admin', $admin->id) }}"
                                             method="POST">
                                             @csrf
@@ -269,7 +269,7 @@
                 confirmButtonText: "Yes, demote!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('demote-admin').submit();
+                    document.getElementById('demote-admin-' + id).submit();
                     Swal.fire({
                         title: "Deleted!",
                         text: "Admin has been demoted to Encoder.",
