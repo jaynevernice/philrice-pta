@@ -130,7 +130,7 @@
                 {{-- Manage Admins --}}
                 <li>
                     <a href="{{ route('super_admin.manage_admins') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg group">
                         <box-icon type='solid' name='user-account'></box-icon>
                         <span class="ml-3">Manage Admins</span>
                     </a>
@@ -145,7 +145,7 @@
 
 @section('content')
     <main class="p-4 md:ml-64 h-screen pt-20">
-      
+
         {{-- Search --}}
         <div class="mb-2 ">
             <label for="table-search" class="sr-only">Search</label>
@@ -169,21 +169,32 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
+                            PhilRice ID
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Email
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
-                                Offices and Divisions
+                                Station
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
-                                Date
+                                Division
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
-                                Venue
+                                Position
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                User Type
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3 text-center">
@@ -192,43 +203,80 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
-                            Juan Dela Cruz
-                        </th>
-                        <td class="px-6 py-4">
-                            TMSD
-                        </td>
-                        <td class="px-6 py-4">
-                            March 13, 2023
-                        </td>
-                        <td class="px-6 py-4">
-                            Within PhilRice Station
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
-                                type="button"
-                                class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-                                type="button">
-                                <box-icon name='expand-alt' size="xs"></box-icon>
-                            </button>
-                            <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
-                                type="button"
-                                class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-                                type="button">
-                                <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
-                            </button>
-                            <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
-                                type="button"
-                                class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-                                type="button">
-                                <box-icon name='trash' type='solid' size="xs"></box-icon>
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach ($encoders as $encoder)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
+                                {{ $encoder->philrice_id }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">
+                                {{ $encoder->first_name }} {{ $encoder->mi }} {{ $encoder->last_name }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $encoder->email }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $encoder->station }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $encoder->division }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $encoder->position }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ ucwords($encoder->user_type) }}
+                            </td>
+                            {{-- Action Buttons --}}
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex items-center justify-center">
+                                    @if ($encoder->user_type === 'encoder')
+                                        <form id="promote-encoder-{{ $encoder->id }}"
+                                            action="{{ route('super_admin.promote_encoder', $encoder->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" onclick="confirmPromote({{ $encoder->id }}, event)"
+                                                class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
+                                                <box-icon type='solid' name='user-plus' size="xs"></box-icon>
+                                            </button>
+                                        </form>
+                                        <button type="button"
+                                            class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
+                                            <box-icon type='solid' name='shield-alt-2' size="xs"></box-icon>
+                                        </button>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </main>
+@endsection
+
+@section('alerts')
+    <script>
+        function confirmPromote(id, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you really want to promote Encoder to Admin?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, promote!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('promote-encoder-' + id).submit();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Encoder has been promoted to Admin.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

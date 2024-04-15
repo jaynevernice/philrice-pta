@@ -31,10 +31,11 @@
 
         {{-- Hero --}}
         <div class="relative flex flex-col justify-center items-center w-full h-full">
-            <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop>
+            {{-- <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop>
                 <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
-            </video>
+            </video> --}}
+            <img src="{{ asset('assets/philrice-1.png') }}" alt="Background Image" class="absolute top-0 left-0 w-full h-full object-cover">
 
             {{-- Dim video using overlay --}}
             <div class="absolute inset-0 bg-black opacity-50"></div>
@@ -43,7 +44,7 @@
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
                 <div class="max-w-2xl mx-auto px-4">
                     <h1 class="text-4xl sm:text-5xl font-bold text-center mb-6">{{ config('app.name') }}</h1>
-                    <p class="text-lg text-center mb-6">PTA efficiently organizes and manages
+                    <p class="text-lg text-center mb-6">Efficiently organizes and manages
                         training-related information for the Philippine Rice Research Institute, enhancing the effectiveness
                         of their agricultural education initiatives.</p>
                 </div>

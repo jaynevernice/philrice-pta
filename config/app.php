@@ -173,7 +173,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
         // realrashid/sweet-alert
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        // RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         
     ])->toArray(),
 
@@ -195,7 +195,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
         // realrashid/sweet-alert
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        // 'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ])->toArray(),
 

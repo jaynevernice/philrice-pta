@@ -8,7 +8,8 @@
     <title>@yield('title')</title>
 
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
     {{-- ApexCharts CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -18,9 +19,9 @@
     {{-- FontAwesome --}}
     <script src="https://kit.fontawesome.com/bc66a62b0a.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> --}}
 
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" /> --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" /> --}}
 
     {{-- Datatable CDN --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.tailwindcss.css">
@@ -30,7 +31,7 @@
     {{-- csrf for ajax --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- Flowbite CDN --}}
+    {{-- Flowbite Datepicker --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
     {{-- jquery CDN --}}
@@ -53,16 +54,21 @@
     {{-- ApexCharts CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+    {{-- SweetAlert2 CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {{-- Charts --}}
     @yield('charts')
 
     {{-- Scripts --}}
     @yield('scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script> --}}
     
     {{-- realrashid/sweet-alert --}}
-    @include('sweetalert::alert')
+    {{-- @include('sweetalert::alert') --}}
+
+    @yield('alerts')
 </body>
 
 {{-- jquery CDN --}}
