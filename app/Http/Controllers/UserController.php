@@ -13,8 +13,6 @@ use Mail;
 use Str;
 use App\Mail\RegisterMail;
 
-use RealRashid\SweetAlert\Facades\Alert;
-
 class UserController extends Controller
 {
     /**
@@ -39,7 +37,7 @@ class UserController extends Controller
             } elseif (Auth::user()->user_type == 'encoder') {
                 return redirect('/encoder/overview');
             } elseif (Auth::user()->user_type == 'viewer') {
-                return redirect('/viewer/overview'); // Changed directory to overview, wala ng dashboard na term para di nakakalito
+                return redirect('/viewer/overview');
             }
         }
 
@@ -206,7 +204,6 @@ class UserController extends Controller
             $user->save();
         }
 
-        Alert::success('Success', 'Profile updated successfully.');
         return redirect()->back();
     }
 
@@ -215,7 +212,6 @@ class UserController extends Controller
         $user = Auth::user();
         $user->update($request->only(['sq1', 'sq2', 'sq3']));
 
-        Alert::success('Success', 'Security Questions updated successfully.');
         return redirect()->back();
     }
 
@@ -232,11 +228,47 @@ class UserController extends Controller
         if (password_verify($request->old_password, $hashedPassword)) {
             $user->update(['password' => bcrypt($request->password)]);
 
-            Alert::success('Success', 'Password updated successfully.');
             return redirect()->back();
         } else {
-            Alert::error('Error', 'The provided old password does not match our records.');
             return redirect()->back();
         }
+    }
+
+    public function adminGetEncoders()
+    {
+        // $encoders= User::where('user_type', 'admin')->get();
+        $encoders = User::whereIn('user_type', ['encoder', 'admin'])->get();
+
+        return view('admin.manage_encoders', compact('encoders'));
+    }
+    public function superadminGetEncoders()
+    {
+        $encoders = User::where('user_type', 'encoder')->get();
+
+        return view('super_admin.manage_encoders', compact('encoders'));
+    }
+
+    public function promoteEncoder($id)
+    {
+        $encoder = User::findOrFail($id);
+        $encoder->user_type = 'admin';
+        $encoder->save();
+
+        return redirect()->back()->with('success', 'User type updated successfully');
+    }
+
+    public function superadminGetAdmins()
+    {
+        $admins = User::where('user_type', 'admin')->get();
+
+        return view('super_admin.manage_admins', compact('admins'));
+    }
+    public function demoteAdmin($id)
+    {
+        $admin = User::findOrFail($id);
+        $admin->user_type = 'encoder';
+        $admin->save();
+
+        return redirect()->back()->with('success', 'User type updated successfully');
     }
 }

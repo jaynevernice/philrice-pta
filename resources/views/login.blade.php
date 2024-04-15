@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="h-screen text-gray-900 flex justify-center bg-gradient-to-r from-[#D1DCD8] to-[#CDD9D5]">
+    <div class="h-screen text-[#0B1215] flex justify-center bg-gradient-to-r from-[#D1DCD8] to-[#CDD9D5]">
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 drop-shadow-lg">
 
             {{-- Left Side --}}
@@ -13,17 +13,18 @@
                 {{-- <div class="m-12 xl:m-16 w-full overflow-hidden"> --}}
                 <div class="w-full overflow-hidden relative">
                     {{-- <video autoplay muted loop class="w-full"> --}}
-                    <video autoplay muted loop class="h-full object-cover w-full">
+                    {{-- <video autoplay muted loop class="h-full object-cover w-full">
                         <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video>
+                    </video> --}}
+                    <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full">
 
                     {{-- Dim Video using Overlay --}}
                     <div class="absolute inset-0 bg-black opacity-50"></div>
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-5xl font-bold pb-4">{{ config('app.name') }}</h1>
+                        <h1 class="text-8xl font-bold pb-4 text-balance">{{ config('app.name') }}</h1>
                     </div>
                 </div>
             </div>
@@ -113,7 +114,7 @@
 
                                     <div class="flex items-center justify-center h-full">
                                         {{-- Forgot Password --}}
-                                        {{-- <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right underline">Forgot Password?</a> --}}
+                                        {{-- <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-[#0B1215] text-right underline">Forgot Password?</a> --}}
                                         <a href="{{ url('/forgot') }}"
                                             class="block text-base text-[#1A73E8] mt-5 hover:text-blue-700 text-left">
                                             Forgot Password?
@@ -122,7 +123,7 @@
                                 </div>
 
 
-                                {{-- <p class="block text-sm text-gray-600 my-8 hover:text-gray-900 text-center">Don't have an account? <a href="{{ url('/register') }}" class="text-sm text-green-600 my-4 hover:text-green-900 text-center underline">Register Now</a></p> --}}
+                                {{-- <p class="block text-sm text-gray-600 my-8 hover:text-[#0B1215] text-center">Don't have an account? <a href="{{ url('/register') }}" class="text-sm text-green-600 my-4 hover:text-green-900 text-center underline">Register Now</a></p> --}}
                             </form>
 
 

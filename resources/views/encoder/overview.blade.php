@@ -14,7 +14,7 @@
                 {{-- Overview --}}
                 <li>
                     <a href="{{ route('encoder.overview') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg bg-green-100 dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg bg-green-100 dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon type='solid' name='pie-chart-alt-2'></box-icon>
                         <span class="ml-3">Overview</span>
                     </a>
@@ -22,7 +22,7 @@
 
                 {{-- CES --}}
                 <li>
-                    <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                    <a class="flex items-center p-2 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                         aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
@@ -31,21 +31,21 @@
                     <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                         <li>
                             <a href="{{ route('encoder.ces_view') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='line-chart'></box-icon>
                                 <span class="ml-3">View Data</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('encoder.ces_add') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='plus'></box-icon>
                                 <span class="ml-3">Add Data</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('encoder.ces_edit') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='edit-alt' type='solid'></box-icon>
                                 <span class="ml-3">Edit Data</span>
                             </a>
@@ -56,7 +56,7 @@
                 {{-- AGUSAN --}}
                 <li>
                     <a href="{{ route('encoder.agusan') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">AGUSAN</span>
                     </a>
@@ -65,7 +65,7 @@
                 {{-- BATAC --}}
                 <li>
                     <a href="{{ route('encoder.batac') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">BATAC</span>
                     </a>
@@ -74,7 +74,7 @@
                 {{-- BICOL --}}
                 <li>
                     <a href="{{ route('encoder.bicol') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">BICOL</span>
                     </a>
@@ -83,7 +83,7 @@
                 {{-- ISABELA --}}
                 <li>
                     <a href="{{ route('encoder.isabela') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">ISABELA</span>
                     </a>
@@ -92,7 +92,7 @@
                 {{-- LOS BAÑOS --}}
                 <li>
                     <a href="{{ route('encoder.losbaños') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">LOS BAÑOS</span>
                     </a>
@@ -101,7 +101,7 @@
                 {{-- MIDSAYAP --}}
                 <li>
                     <a href="{{ route('encoder.midsayap') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">MIDSAYAP</span>
                     </a>
@@ -110,7 +110,7 @@
                 {{-- NEGROS --}}
                 <li>
                     <a href="{{ route('encoder.negros') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-[#0B1215] rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">NEGROS</span>
                     </a>
@@ -131,10 +131,10 @@
             {{-- Year --}}
             <div class="mr-2">
                 <select name="year"
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    <option selected>Year</option>
-                    <option>2024</option>
+                    <option disabled>Year</option>
+                    <option selected>2024</option>
                     {{-- <option value="" selected>All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
@@ -147,9 +147,9 @@
             {{-- From --}}
             <div class="mx-2">
                 <select name="quarter"
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="quarterSelect">
-                    <option selected>From</option>
+                    <option selected disabled>From</option>
                     <option>January</option>
                     <option>February</option>
                     <option>March</option>
@@ -169,9 +169,9 @@
             {{-- To --}}
             <div class="mx-2">
                 <select name="quarter"
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="quarterSelect">
-                    <option selected>To</option>
+                    <option selected disabled>To</option>
                     <option>January</option>
                     <option>February</option>
                     <option>March</option>
@@ -190,10 +190,10 @@
             {{-- Form --}}
             <div class="mx-2">
                 <select
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    <option selected>Form Type</option>
-                    <option>Summary of Trainings Conducted</option>
+                    <option disabled>Form Type</option>
+                    <option selected>Summary of Trainings Conducted</option>
                     <option>Knowledge Sharing and Learning (KSL) Monitoring</option>
                     <option>Technical Dispatch Monitoring</option>
                     <option>Technology Demonstration Monitoring</option>
@@ -203,15 +203,60 @@
             {{-- Form --}}
             <div class="mx-2 mr-auto">
                 <select
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    <option selected>Training Title</option>
-                    <option>Summary of Trainings Conducted</option>
+                    <option disabled>Training Title</option>
+                    <option selected>Sample Title</option>
                 </select>
             </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
+
+        {{-- Chart Row 1 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Total Number of Participants --}}
+            <div
+                class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">1973</h1>
+                <p class="text-gray-500 dark:text-gray-400">Total Number of Participants</p>
+            </div>
+
+            {{-- Average Gain in Knowledge --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">69.69%</h1>
+                <p class="text-gray-500 dark:text-gray-400">Average Gain in Knowledge (GIK)</p>
+            </div>
+
+            {{-- Overall Training Evaluation Rating --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">4.93</h1>
+                <p class="font-bold text-gray-500 dark:text-gray-400">Excellent</p>
+                <p class="text-gray-500 dark:text-gray-400">Overall Training Evaluation Rating</p>
+            </div>
+        </div>
+
+        {{-- Chart Row 2 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Sex Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="sexChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Sex</p>
+            </div>
+            {{-- IP Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lgh-auto flex flex-col justify-center items-center">
+                <div id="ipChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Indigenous Identity</p>
+            </div>
+            {{-- PWD Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="pwdChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Ability Status</p>
+            </div>
+        </div>
+
+
+
+        {{-- <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
             <div
                 class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
                 <div id="chart1"></div>
@@ -220,110 +265,103 @@
                 class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
                 <div id="chart2"></div>
             </div>
+        </div> --}}
 
-        </div>
-
-        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-96 mb-4 p-4">
+        {{-- <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-96 mb-4 p-4">
             <div id="chart3"></div>
-        </div>
+        </div> --}}
 
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        {{-- <div class="grid grid-cols-2 gap-4 mb-4">
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
                 <div id="chart4"></div>
             </div>
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
                 <div id="chart5"></div>
             </div>
-        </div>
+        </div> --}}
     </main>
 @endsection
 
 @section('charts')
     <script>
-        var bar = {
-            series: [{
-                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-            }],
+        // Sex Distribution
+        var sex = {
+            series: [55, 45],
             chart: {
-                type: 'bar',
-                height: 290,
+                width: 380,
+                type: 'pie',
                 toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
+                    show: true,
                 }
             },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                    'United States', 'China', 'Germany'
-                ],
-            }
+            labels: ['Female', 'Male'],
+            colors: ['#f87171', '#06b6d4'],
+            // title: {
+            //     text: "Sex Distribution",
+            //     align: 'center',
+            //     margin: 0,
+            //     offsetX: 0,
+            //     offsetY: 0,
+            //     floating: false,
+            //     style: {
+            //         fontSize: '14px',
+            //         fontWeight: 'bold',
+            //         fontFamily: undefined,
+            //         color: '#263238'
+            //     },
+            // },
+            // responsive: [{
+            //     breakpoint: 480,
+            //     options: {
+            //         chart: {
+            //             width: 200,
+            //         },
+            //         legend: {
+            //             position: 'bottom'
+            //         }
+            //     }
+            // }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart1"), bar);
+        var chart = new ApexCharts(document.querySelector("#sexChart"), sex);
         chart.render();
-
-
-        var timeline = {
-            series: [{
-                data: [{
-                        x: 'Code',
-                        y: [
-                            new Date('2019-03-02').getTime(),
-                            new Date('2019-03-04').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Test',
-                        y: [
-                            new Date('2019-03-04').getTime(),
-                            new Date('2019-03-08').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Validation',
-                        y: [
-                            new Date('2019-03-08').getTime(),
-                            new Date('2019-03-12').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Deployment',
-                        y: [
-                            new Date('2019-03-12').getTime(),
-                            new Date('2019-03-18').getTime()
-                        ]
-                    }
-                ]
-            }],
+        
+        // IP Distribution
+        var ip = {
+            series: [23, 77],
             chart: {
-                height: 290,
-                type: 'rangeBar',
+                width: 380,
+                type: 'pie',
                 toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true
+                    show: true,
                 }
             },
-            xaxis: {
-                type: 'datetime'
-            }
+            labels: ['Indigenous', 'Non-IP'],
+            colors: ['#1a2e05', '#164e63']
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart2"), timeline);
+        var chart = new ApexCharts(document.querySelector("#ipChart"), ip);
+        chart.render();
+        
+        // PWD Distribution
+        var pwd = {
+            series: [40, 60],
+            chart: {
+                width: 380,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                }
+            },
+            labels: ['PWD', 'Non-PWD'],
+            colors: ['#6d28d9', '#164e63']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
         chart.render();
 
-        var options = {
+        // Regions
+        var region = {
             series: [{
                 data: [{
                         x: 'New Delhi',
@@ -416,6 +454,92 @@
         };
 
         var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        chart.render();
+
+
+
+        // Samples
+        var bar = {
+            series: [{
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            }],
+            chart: {
+                type: 'bar',
+                height: 290,
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+                    'United States', 'China', 'Germany'
+                ],
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart1"), bar);
+        chart.render();
+
+
+        var timeline = {
+            series: [{
+                data: [{
+                        x: 'Code',
+                        y: [
+                            new Date('2019-03-02').getTime(),
+                            new Date('2019-03-04').getTime()
+                        ]
+                    },
+                    {
+                        x: 'Test',
+                        y: [
+                            new Date('2019-03-04').getTime(),
+                            new Date('2019-03-08').getTime()
+                        ]
+                    },
+                    {
+                        x: 'Validation',
+                        y: [
+                            new Date('2019-03-08').getTime(),
+                            new Date('2019-03-12').getTime()
+                        ]
+                    },
+                    {
+                        x: 'Deployment',
+                        y: [
+                            new Date('2019-03-12').getTime(),
+                            new Date('2019-03-18').getTime()
+                        ]
+                    }
+                ]
+            }],
+            chart: {
+                height: 290,
+                type: 'rangeBar',
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            xaxis: {
+                type: 'datetime'
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart2"), timeline);
         chart.render();
 
         var options = {

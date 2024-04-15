@@ -10,7 +10,7 @@ use App\Mail\ForgotPasswordMail;
 use Mail;
 use Str;
 
-use RealRashid\SweetAlert\Facades\Alert;
+// use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {

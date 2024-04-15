@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="h-screen bg-gray-100 text-gray-900 flex justify-center bg-gradient-to-r from-[#D1DCD8] to-[#CDD9D5]">
+    <div class="h-screen bg-gray-100 text-[#0B1215] flex justify-center bg-gradient-to-r from-[#D1DCD8] to-[#CDD9D5]">
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 drop-shadow-lg">
 
             {{-- Left Side --}}
@@ -13,17 +13,18 @@
                 {{-- <div class="m-12 xl:m-16 w-full overflow-hidden"> --}}
                 <div class="w-full overflow-hidden relative">
                     {{-- <video autoplay muted loop class="w-full"> --}}
-                    <video autoplay muted loop class="h-full object-cover w-full">
+                    {{-- <video autoplay muted loop class="h-full object-cover w-full">
                         <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video>
+                    </video> --}}
+                    <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full">
 
                     {{-- Dim Video using Overlay --}}
                     <div class="absolute inset-0 bg-black opacity-50"></div>
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-5xl font-bold pb-4">{{ config('app.name') }}</h1>
+                        <h1 class="text-8xl font-bold pb-4 text-balance">{{ config('app.name') }}</h1>
                     </div>
                 </div>
             </div>
@@ -48,7 +49,7 @@
                         </div>
 
                         <h1 class="text-2xl xl:text-3xl font-extrabold text-left mb-2">REGISTER</h1>
-                        <p class="justify-right text-lg text-gray-700">Please provide all the information needed to create
+                        <p class="justify-right text-lg text-[#0B1215]">Please provide all the information needed to create
                             your account.</p>
 
 
@@ -89,7 +90,7 @@
                             </li>
                         </ol>
 
-                        {{-- <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">User Information</h3> --}}
+                        {{-- <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">User Information</h3> --}}
                         @include('_message')
                         @if ($errors->any())
                             <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -105,66 +106,62 @@
                             @csrf
                             {{-- Step 1 --}}
                             <div class="step">
-                                <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Personal
+                                <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">Personal
                                     Information</h3>
                                 <div class="my-4">
                                     <label for="first_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">First
                                         Name</label>
                                     <input required type="text" name="first_name" value="{{ old('first_name') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="First Name">
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-4">
                                     <label for="mi"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Middle
                                         Initial</label>
                                     <input required type="text" name="mi" value="{{ old('mi') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Middle Initial">
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-4">
                                     <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Last
                                         Name</label>
                                     <input required type="text" name="last_name" value="{{ old('last_name') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Last Name">
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                             </div>
 
                             {{-- Step 2 --}}
                             <div class="step">
                                 <div>
-                                    <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
+                                    <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">
                                         Professional Information</h3>
                                     {{-- Email --}}
                                     <div class="my-2">
                                         <label for="email"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                            class="block mb-1 text-sm font-medium text-[#0B1215] dark:text-white">Email</label>
                                         <input type="email" name="email" value="{{ old('email') }}" id="email"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="name@company.com">
+                                            class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     </div>
 
                                     {{-- PhilRice ID --}}
                                     <div class="my-2" id="idField">
                                         <label for="philrice_id"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
+                                            class="block mb-1 text-sm font-medium text-[#0B1215] dark:text-white">PhilRice
+                                            ID</label>
                                         <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
                                             id="philrice_id"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="XX-XXXX">
+                                            class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     </div>
 
                                     {{-- <form> --}}
-                                    <div class="grid grid-cols-3 my-2">
+                                    <div class="grid grid-cols-2 my-1">
                                         {{-- Station --}}
-                                        <div class="relative mr-1 my-2" id="stationField">
+                                        <div class="relative mr-1 my-1" id="stationField">
                                             <label for="station"
-                                                class="block text-sm font-medium text-gray-900 mb-1">Station</label>
+                                                class="block text-sm font-medium text-[#0B1215] mb-1">Station</label>
                                             <select name="station" id="station" {{ old('station') }} required
-                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                                 <option selected disabled>Station</option>
                                                 @foreach ($stations as $data)
                                                     <option value="{{ $data->id }}">{{ $data->station }}</option>
@@ -182,29 +179,29 @@
                                         </div>
 
                                         {{-- Division --}}
-                                        <div class="relative mr-1 my-2" id="divisionField">
+                                        <div class="relative mr-1 my-1" id="divisionField">
                                             <label for="division"
-                                                class="block text-sm font-medium text-gray-900 mb-1">Division</label>
+                                                class="block text-sm font-medium text-[#0B1215] mb-1">Division</label>
                                             <select name="division" id="division"
-                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                                 required>
-                                                {{-- <option value="" selected disabled>Division</option> --}}
+                                                <option value="" selected disabled>Division</option>
                                                 {{-- <option value="TMSD" >TMSD</option> --}}
-
                                             </select>
                                         </div>
 
-                                        {{-- Position --}}
-                                        <div class="relative my-2" id="positionField">
-                                            <label for="position"
-                                                class="block text-sm font-medium text-gray-900 mb-1">Position</label>
-                                            <select name="position" id="position"
-                                                class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                                                required>
-                                                {{-- <option value="" selected disabled>Position</option> --}}
-                                                {{-- <option value="Division Head">Division Head</option> --}}
-                                            </select>
-                                        </div>
+                                    </div>
+
+                                    {{-- Position --}}
+                                    <div class="relative my-2" id="positionField">
+                                        <label for="position"
+                                            class="block text-sm font-medium text-[#0B1215] mb-1">Position</label>
+                                        <select name="position" id="position"
+                                            class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                                            required>
+                                            <option value="" selected disabled>Position</option>
+                                            {{-- <option value="Division Head">Division Head</option> --}}
+                                        </select>
                                     </div>
                                     {{-- </form> --}}
                                 </div>
@@ -213,23 +210,23 @@
 
                             {{-- Step 3 --}}
                             <div class="step">
-                                <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Credentials
+                                <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">Credentials
                                 </h3>
                                 <div class="mb-2">
                                     <label for="password"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" onkeyup="validatePassword(this)" required
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="•••••••••">
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Password</label>
+                                    <input type="password" name="password" id="password"
+                                        onkeyup="validatePassword(this)" required
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <div id="password-error-message"></div>
                                 </div>
                                 <div class="mb-2">
                                     <label for="confirm_password"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Confirm
                                         password</label>
-                                    <input type="password" name="confirm_password" id="confirm_password" onkeyup="matchPassword(this)" required
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="•••••••••">
+                                    <input type="password" name="confirm_password" id="confirm_password"
+                                        onkeyup="matchPassword(this)" required
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <div id="password-match-message"></div>
                                 </div>
                                 {{-- Show Password --}}
@@ -237,40 +234,37 @@
                                     <input type="checkbox" id="showPasswordCheckbox"
                                         class="form-checkbox rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-blue-600 dark:focus:ring-blue-600 dark:focus:ring-opacity-50 dark:text-blue-500">
                                     <label for="showPasswordCheckbox"
-                                        class="text-sm font-medium text-gray-900 dark:text-white ml-2 cursor-pointer">Show
+                                        class="text-sm font-medium text-[#0B1215] dark:text-white ml-2 cursor-pointer">Show
                                         Password</label>
                                 </div>
                             </div>
 
                             {{-- Step 4 --}}
                             <div class="step">
-                                <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Security
+                                <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">Security
                                     Questions</h3>
                                 <p class="text-sm text-gray-600 mb-4 dark:text-gray-400">These will be used to verify your
                                     identity and reset your password in case you forget it.</p>
                                 <div class="my-2">
                                     <label for="sq1"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is your
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What is your
                                         favorite color?</label>
                                     <input type="text" id="sq1" name="sq1" value="{{ old('sq1') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Security Question 1">
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-2">
                                     <label for="sq2"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What
                                         province/city were you born in?</label>
                                     <input type="text" id="sq2" name="sq2" value="{{ old('sq2') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Security Question 2">
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-2">
                                     <label for="sq3"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is the
+                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What is the
                                         name of your elementary school?</label>
                                     <input type="text" id="sq3" name="sq3" value="{{ old('sq3') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Security Question 3">
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                             </div>
 
@@ -378,7 +372,7 @@
                 matchMessage.appendChild(errorElement);
             }
             // Update match message with green color 
-            else  {
+            else {
                 const errorElement = document.createElement("ul");
                 errorElement.style.color = "green"; // Set match message color to green
                 for (const error of errorList) {
@@ -616,7 +610,7 @@
             }
         }
     </script>
-    
+
     {{-- Changing Dropdown Choices in Registration --}}
     <script>
         $(document).ready(function() {

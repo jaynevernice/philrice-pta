@@ -669,8 +669,8 @@
                 </div>
             </div>
 
-            {{-- Section 6 --}}
-            <div class="section" data-section="6" style="display: none;">
+            {{-- Section 5 --}}
+            <div class="section" data-section="5" style="display: none;">
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Documentation</h6>
                 </div>

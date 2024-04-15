@@ -19,13 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// php artisan make:middleware AdminMiddleware
-// php artisan make:controller AuthController
-
 Route::get('/', function () {
     return view('landing');
 })->name('landing');
@@ -42,31 +35,14 @@ Route::get('/resetsq', function() {
 });
 Route::post('/resetsq', [AuthController::class, 'PostSecurityQuestions']);
 
-// Route::get('/register', function() {
-//     return view('register');})->name('register');
 Route::get('/register', [UserController::class, 'create'])->name('register');
 Route::post('register', [UserController::class, 'store'])->name('register.store');
 Route::get('verify/{token}', [UserController::class, 'verify'])->name('verify');
 Route::post('register/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('register.fetchDivisions');
 Route::post('register/fetch-positons', [UserController::class, 'fetchPositions'])->name('register.fetchPositions');
 
-// Route::get('/profile', function() {
-//     return view('profile');
-// })->name('profile');
-
-// Route::get('/overview', function() {
-//     return view('overview');
-// })->name('overview');
-
 Route::get('/reset/{token}', [AuthController::class, 'reset']);
 Route::post('/reset/{token}', [AuthController::class, 'PostReset']);
-// Route::get('/reset/{token}', function() {
-//     return view('reset');
-// })->name('reset');
-
-// Route::get('/login', function () {
-//     return view('login');
-// })->name('login');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'AuthLogin'])->name('auth_login');
@@ -118,10 +94,6 @@ Route::group(['middleware' => 'super_admin'], function () {
             return view('super_admin.overview');
         })->name('super_admin.overview');
 
-        // Route::get('/ces', function() {
-        //     return view('super_admin.ces');
-        // })->name('super_admin.ces');
-
         Route::get('/ces_view', function () {
             return view('super_admin.ces_view');
         })->name('super_admin.ces_view');
@@ -166,9 +138,11 @@ Route::group(['middleware' => 'super_admin'], function () {
             return view('super_admin.manage_encoders');
         })->name('super_admin.manage_encoders');
 
-        Route::get('/manage_admins', function () {
-            return view('super_admin.manage_admins');
-        })->name('super_admin.manage_admins');
+        Route::get('/manage_encoders', [UserController::class, 'superadminGetEncoders'])->name('super_admin.manage_encoders');
+        Route::put('/promote_encoder/{id}', [UserController::class,'promoteEncoder'])->name('super_admin.promote_encoder');
+        Route::get('/manage_admins', [UserController::class, 'superadminGetAdmins'])->name('super_admin.manage_admins');
+        Route::put('/demote_admin/{id}', [UserController::class,'demoteAdmin'])->name('super_admin.demote_admin');
+
     });
 });
 
@@ -178,10 +152,6 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/overview', function () {
             return view('admin.overview');
         })->name('admin.overview');
-
-        // Route::get('/ces', function() {
-        //     return view('admin.ces');
-        // })->name('admin.ces');
 
         Route::get('/ces_view', function () {
             return view('admin.ces_view');
@@ -223,9 +193,11 @@ Route::group(['middleware' => 'admin'], function () {
             return view('admin.negros');
         })->name('admin.negros');
 
-        Route::get('/manage_encoders', function () {
-            return view('admin.manage_encoders');
-        })->name('admin.manage_encoders');
+        // Route::get('/manage_encoders', function () {
+        //     return view('admin.manage_encoders');
+        // })->name('admin.manage_encoders');
+        Route::get('/manage_encoders', [UserController::class, 'adminGetEncoders'])->name('admin.manage_encoders');
+        Route::put('/promote_encoder/{id}', [UserController::class,'promoteEncoder'])->name('admin.promote_encoder');
     });
 });
 

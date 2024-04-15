@@ -29,7 +29,7 @@
 
         <div class="w-full max-w-4xl">
             @if ($errors->any())
-                <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50"
                     role="alert">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -39,12 +39,12 @@
                 </div>
             @endif
             {{-- Tabs --}}
-            <div class="border-b border-gray-200 dark:border-gray-700">
+            <div class="border-b border-gray-200">
                 <ul
-                    class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-t-lg">
+                    class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 bg-white rounded-t-lg">
                     <li class="me-2">
                         <a href="#"
-                            class="tab-link inline-flex items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group bg-gray-200"
+                            class="tab-link inline-flex items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active bg-gray-200"
                             aria-current="page" data-tab="profile">
                             <box-icon type='solid' name='user-account' color="#2563eb" class="mr-2"></box-icon>
                             Profile
@@ -52,7 +52,7 @@
                     </li>
                     <li class="me-2">
                         <a href="#"
-                            class="tab-link inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+                            class="tab-link inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 group"
                             data-tab="security">
                             <box-icon name='question-mark' color="#9ca3af" class="mr-2"></box-icon>
                             Security Questions
@@ -60,7 +60,7 @@
                     </li>
                     <li class="me-2">
                         <a href="#"
-                            class="tab-link inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+                            class="tab-link inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 group"
                             data-tab="update_pass">
                             <box-icon name='lock' type='solid' color="#9ca3af" class="mr-2"></box-icon>
                             Password
@@ -102,27 +102,27 @@
                         <div class="flex">
                             <div class="my-2 mx-1 flex-1">
                                 <label for="first_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
                                 <input type="text" name="first_name" disabled
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                                     placeholder="First Name" value="{{ old('first_name', Auth::user()->first_name) }}">
                                 {{-- @if (Auth::check()) value="{{ Auth::user()->first_name }}" @endif> --}}
                             </div>
                             <div class="my-2 mx-1 flex-1">
                                 <label for="mi"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle
+                                    class="block mb-2 text-sm font-medium text-gray-900">Middle
                                     Initial</label>
                                 <input type="text" name="mi" disabled
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                                     placeholder="Middle Initial" value="{{ old('mi', Auth::user()->mi) }}">
                                 {{-- @if (Auth::check()) value="{{ Auth::user()->mi }}" @endif> --}}
                             </div>
                             <div class="my-2 mx-1 flex-1">
                                 <label for="last_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                    class="block mb-2 text-sm font-medium text-gray-900">Last
                                     Name</label>
                                 <input type="text" name="last_name" disabled
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                                     placeholder="Last Name" value="{{ old('last_name', Auth::user()->last_name) }}">
                                 {{-- @if (Auth::check()) value="{{ Auth::user()->last_name }}" @endif> --}}
                             </div>
@@ -131,18 +131,18 @@
                         <div class="flex">
                             <div class="my-2 mx-1 flex-1">
                                 <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhilRice ID</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900">PhilRice ID</label>
                                 <input type="email" name="email"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                                     placeholder="PhilRice ID" disabled
                                     value="{{ old('philrice_id', Auth::user()->philrice_id) }}">
                                 {{-- @if (Auth::check()) value="{{ Auth::user()->philrice_id }}" @endif> --}}
                             </div>
                             <div class="my-2 mx-1 flex-1">
                                 <label for="philrice_id"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900">Email</label>
                                 <input type="text" name="philrice_id"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                                     placeholder="Email" disabled value="{{ old('email', Auth::user()->email) }}">
                                 {{-- @if (Auth::check()) value="{{ Auth::user()->email }}" @endif> --}}
                             </div>
@@ -196,7 +196,7 @@
                         <div class="flex">
                             <div class="mt-4 flex justify-end w-full">
                                 <button type="submit" id="saveProfileBtn"
-                                    class="text-white bg-gray-700  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Save</button>
+                                    class="text-white bg-gray-700  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save</button>
                             </div>
                         </div>
                     </div>
@@ -209,32 +209,31 @@
                 @method('PUT')
                 <div id="security" class="hidden tab-content drop-shadow-lg bg-white p-4 border w-full flex-wrap">
                     <div class="my-4">
-                        <label for="sq1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is
-                            the name of your favorite color?</label>
+                        <label for="sq1" class="block mb-2 text-sm font-medium text-gray-900">What is your favorite color?</label>
                         <input type="text" id="sq1" name="sq1" required
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 1" value="{{ old('sq1', Auth::user()->sq1) }}">
                         {{-- @if (Auth::check()) value="{{ Auth::user()->sq1 }}" @endif> --}}
                     </div>
                     <div class="my-4">
-                        <label for="sq2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What
+                        <label for="sq2" class="block mb-2 text-sm font-medium text-gray-900">What
                             province/city were you born in?</label>
                         <input type="text" id="sq2" name="sq2" required
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 2" value="{{ old('sq2', Auth::user()->sq2) }}">
                         {{-- @if (Auth::check()) value="{{ Auth::user()->sq2 }}" @endif> --}}
                     </div>
                     <div class="my-4">
-                        <label for="sq3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is
+                        <label for="sq3" class="block mb-2 text-sm font-medium text-gray-900">What is
                             the name of your elementary school?</label>
                         <input type="text" id="sq3" name="sq3" required
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 3" value="{{ old('sq3', Auth::user()->sq3) }}">
                         {{-- @if (Auth::check()) value="{{ Auth::user()->sq3 }}" @endif> --}}
                     </div>
                     <div class="mt-4 flex justify-end">
                         <button type="submit" id="saveSecurityBtn"
-                            class="text-white bg-gray-700  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Save</button>
+                            class="text-white bg-gray-700  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save</button>
                     </div>
                 </div>
             </form>
@@ -245,37 +244,40 @@
                 @method('PUT')
                 <div id="update_pass" class="hidden tab-content drop-shadow-lg bg-white p-4 border w-full flex-wrap">
                     <div class="my-2 w-full">
-                        <label for="old_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old
+                        <label for="old_password" class="block mb-2 text-sm font-medium text-gray-900">Old
                             Password</label>
                         <input type="password" name="old_password" id="old_password" autocomplete="off" required
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5">
                     </div>
                     <div class="my-2 w-full">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New
-                            Password</label>
-                        <input type="password" name="password" id="password" autocomplete="off" required onkeyup="validatePassword(this)"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <div id="password-error-message"></div>
+                        <div class="flex">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">New
+                                Password</label>
+                                <div id="password-error-message"></div>
+                            </div>
+                                <input type="password" name="password" id="password" autocomplete="off" required onkeyup="validatePassword(this)"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5">
+                        {{-- <div id="password-error-message"></div> --}}
                     </div>
                     <div class="my-2 w-full">
                         <label for="confirm_password"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                            class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
                         <input type="password" name="password_confirmation" id="confirm_password" autocomplete="off" required onkeyup="matchPassword(this)"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5">
                         <div id="password-match-message"></div>
                     </div>
                     {{-- Show Password --}}
                     <div class="flex items-center justify-end my-2 w-full">
                         <input type="checkbox" id="showPasswordCheckbox"
-                            class="form-checkbox rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-blue-600 dark:focus:ring-blue-600 dark:focus:ring-opacity-50 dark:text-blue-500">
+                            class="form-checkbox rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                         <label for="showPasswordCheckbox"
-                            class="text-sm font-medium text-gray-900 dark:text-white ml-2 cursor-pointer">Show
+                            class="text-sm font-medium text-gray-900 ml-2 cursor-pointer">Show
                             Password</label>
                     </div>
 
                     <div class="mt-4 flex justify-end w-full">
                         <button type="submit" id="savePasswordBtn"
-                            class="text-white bg-gray-700  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Save</button>
+                            class="text-white bg-gray-700  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save</button>
                     </div>
                 </div>
             </form>
