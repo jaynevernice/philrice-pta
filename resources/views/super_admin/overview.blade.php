@@ -217,121 +217,130 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-
-            <div
-                class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
-                <div id="chart1"></div>
-            </div>
-            <div
-                class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
-                <div id="chart2"></div>
+        {{-- Chart Row 1 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Total Number of Participants --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">1973</h1>
+                <p class="text-gray-500 dark:text-gray-400">Total Number of Participants</p>
             </div>
 
-        </div>
-
-        <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4 p-4">
-            <div id="chart3"></div>
-        </div>
-
-
-        <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-                <div id="chart4"></div>
+            {{-- Average Gain in Knowledge --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">69.69%</h1>
+                <p class="text-gray-500 dark:text-gray-400">Average Gain in Knowledge (GIK)</p>
             </div>
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-                <div id="chart5"></div>
+
+            {{-- Overall Training Evaluation Rating --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">4.93</h1>
+                <p class="font-bold text-gray-500 dark:text-gray-400">Excellent</p>
+                <p class="text-gray-500 dark:text-gray-400">Overall Training Evaluation Rating</p>
             </div>
         </div>
+
+        {{-- Chart Row 2 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Sex Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="sexChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Sex</p>
+            </div>
+            {{-- IP Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lgh-auto flex flex-col justify-center items-center">
+                <div id="ipChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Indigenous Identity</p>
+            </div>
+            {{-- PWD Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="pwdChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Ability Status</p>
+            </div>
+        </div>
+
     </main>
 @endsection
 
 @section('charts')
     <script>
-        var bar = {
-            series: [{
-                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-            }],
+        // Sex Distribution
+        var sex = {
+            series: [55, 45],
             chart: {
-                type: 'bar',
-                height: 290,
+                width: 380,
+                type: 'pie',
                 toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
+                    show: true,
                 }
             },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                    'United States', 'China', 'Germany'
-                ],
-            }
+            labels: ['Female', 'Male'],
+            colors: ['#f87171', '#06b6d4'],
+            // title: {
+            //     text: "Sex Distribution",
+            //     align: 'center',
+            //     margin: 0,
+            //     offsetX: 0,
+            //     offsetY: 0,
+            //     floating: false,
+            //     style: {
+            //         fontSize: '14px',
+            //         fontWeight: 'bold',
+            //         fontFamily: undefined,
+            //         color: '#263238'
+            //     },
+            // },
+            // responsive: [{
+            //     breakpoint: 480,
+            //     options: {
+            //         chart: {
+            //             width: 200,
+            //         },
+            //         legend: {
+            //             position: 'bottom'
+            //         }
+            //     }
+            // }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart1"), bar);
+        var chart = new ApexCharts(document.querySelector("#sexChart"), sex);
         chart.render();
 
-
-        var timeline = {
-            series: [{
-                data: [{
-                        x: 'Code',
-                        y: [
-                            new Date('2019-03-02').getTime(),
-                            new Date('2019-03-04').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Test',
-                        y: [
-                            new Date('2019-03-04').getTime(),
-                            new Date('2019-03-08').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Validation',
-                        y: [
-                            new Date('2019-03-08').getTime(),
-                            new Date('2019-03-12').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Deployment',
-                        y: [
-                            new Date('2019-03-12').getTime(),
-                            new Date('2019-03-18').getTime()
-                        ]
-                    }
-                ]
-            }],
+        // IP Distribution
+        var ip = {
+            series: [23, 77],
             chart: {
-                height: 290,
-                type: 'rangeBar',
+                width: 380,
+                type: 'pie',
                 toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true
+                    show: true,
                 }
             },
-            xaxis: {
-                type: 'datetime'
-            }
+            labels: ['Indigenous', 'Non-IP'],
+            colors: ['#1a2e05', '#164e63']
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart2"), timeline);
+        var chart = new ApexCharts(document.querySelector("#ipChart"), ip);
         chart.render();
 
-        var options = {
+        // PWD Distribution
+        var pwd = {
+            series: [40, 60],
+            chart: {
+                width: 380,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                }
+            },
+            labels: ['PWD', 'Non-PWD'],
+            colors: ['#6d28d9', '#164e63']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+        chart.render();
+
+        // Regions
+        var region = {
             series: [{
                 data: [{
                         x: 'New Delhi',
@@ -424,6 +433,92 @@
         };
 
         var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        chart.render();
+
+
+
+        // Samples
+        var bar = {
+            series: [{
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            }],
+            chart: {
+                type: 'bar',
+                height: 290,
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+                    'United States', 'China', 'Germany'
+                ],
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart1"), bar);
+        chart.render();
+
+
+        var timeline = {
+            series: [{
+                data: [{
+                        x: 'Code',
+                        y: [
+                            new Date('2019-03-02').getTime(),
+                            new Date('2019-03-04').getTime()
+                        ]
+                    },
+                    {
+                        x: 'Test',
+                        y: [
+                            new Date('2019-03-04').getTime(),
+                            new Date('2019-03-08').getTime()
+                        ]
+                    },
+                    {
+                        x: 'Validation',
+                        y: [
+                            new Date('2019-03-08').getTime(),
+                            new Date('2019-03-12').getTime()
+                        ]
+                    },
+                    {
+                        x: 'Deployment',
+                        y: [
+                            new Date('2019-03-12').getTime(),
+                            new Date('2019-03-18').getTime()
+                        ]
+                    }
+                ]
+            }],
+            chart: {
+                height: 290,
+                type: 'rangeBar',
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            xaxis: {
+                type: 'datetime'
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart2"), timeline);
         chart.render();
 
         var options = {

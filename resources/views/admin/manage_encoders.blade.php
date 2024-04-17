@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Manage Admin
+    Manage Encoders
 @endsection
 
 @section('sidebar')
@@ -222,21 +222,32 @@
                             {{-- Action Buttons --}}
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center">
-                                    @if ($encoder->user_type !== 'admin')
-                                        <form action="{{ route('admin.promote_encoder', $encoder->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit"
-                                                class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
-                                                <box-icon type='solid' name='user-plus' size="xs"></box-icon>
-                                            </button>
-                                        </form>
-                                        <button type="button"
-                                            class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
-                                            <box-icon type='solid' name='shield-alt-2' size="xs"></box-icon>
-                                        </button>
-                                    @else
-                                        <p class="text-red-900 font-bold whitespace-nowrap">Only Super Admin can Demote</p>
+                                    @if ($encoder->user_type === 'encoder')
+                                        {{-- If isBlocked = false --}}
+                                        @if ($encoder->isBlocked === 0)
+                                            <form id="block-{{ $encoder->id }}"
+                                                action="{{ route('admin.block', $encoder->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button" onclick="confirmBlock({{ $encoder->id }}, event)"
+                                                    class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
+                                                    <box-icon type='solid' name='shield-alt-2'
+                                                        size="xs"></box-icon>
+                                                </button>
+                                            </form>
+                                        {{-- If isBlocked = true --}}
+                                        @elseif ($encoder->isBlocked === 1)
+                                            <form id="unblock-{{ $encoder->id }}"
+                                                action="{{ route('admin.unblock', $encoder->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button"
+                                                    onclick="confirmUnblock({{ $encoder->id }}, event)"
+                                                    class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
+                                                    <box-icon name='block' size="xs"></box-icon>
+                                                </button>
+                                            </form>
+                                        @endif
                                     @endif
                                 </div>
                             </td>
@@ -246,4 +257,52 @@
             </table>
         </div>
     </main>
+@endsection
+
+@section('scripts')
+    <script>
+        function confirmBlock(id, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Confirm Block",
+                text: "Are you sure you want to block this user's access?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, block!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('block-' + id).submit();
+                    Swal.fire({
+                        title: "Blocked!",
+                        text: "User's access has been successfully blocked.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
+
+        function confirmUnblock(id, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Confirm Unblock",
+                text: "Are you sure you want to unblock this user's access?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, unblock!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('unblock-' + id).submit();
+                    Swal.fire({
+                        title: "Unblocked!",
+                        text: "User's access has been successfully unblocked.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

@@ -154,40 +154,40 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="start_MonthSelect">
                     <option value="" selected>From</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
-            
+
             {{-- To --}}
             <div class="mx-2">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="end_MonthSelect">
                     <option value="" selected>To</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
@@ -202,13 +202,13 @@
             </div>
 
             {{-- Export Button --}}
-            <div class="ml-auto">
+            {{-- <div class="ml-auto">
                 <button type="button" onclick="exportRecord()"
                     class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
                     <i class="fa-solid fa-file-excel"></i>
                     <span class="pl-2">Export</span>
                 </button>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -236,7 +236,7 @@
         {{-- Line --}}
         <div class="border-t-2 border-gray-300 mt-6 my-4"></div>
 
-        <div class="drop-shadow-md p-2 rounded-lg">
+        <div class="drop-shadow-md p-2 rounded-lg flex justify-between items-center">
             {{-- Search --}}
             <div class="mb-2 ">
                 <label for="table-search" class="sr-only">Search</label>
@@ -254,81 +254,91 @@
                 </div>
             </div>
 
-            {{-- Table --}}
-            <div class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Title of Event
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                <div class="flex items-center">
-                                    Offices and Divisions
-                                    {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a> --}}
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                <div class="flex items-center">
-                                    Date
-                                    {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a> --}}
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                <div class="flex items-center">
-                                    Venue
-                                    {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a> --}}
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-center">
-                                <span>Expand</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                        {{-- Records --}}
-
-                    </tbody>
-                </table>
+            {{-- Export Button --}}
+            <div class="ml-auto">
+                <button type="button" onclick="exportRecord()"
+                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span class="pl-2">Export</span>
+                </button>
             </div>
+        </div>
 
-            {{-- Previous and Next Buttons for Pagination --}}
-            <div class="flex justify-end">
-                <div>
-                    {{-- page button for no filter --}}
-                    <button id="prevButton" onclick="prevPage()"
-                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
-                        Previous
-                    </button>
-                    {{-- page button for filter --}}
-                    {{-- <button id="prevButton-filter" onclick="prevPageFilter()"
+        {{-- Table --}}
+        <div class="my-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Title of Event
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Offices and Divisions
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                          </svg></a> --}}
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Date
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                          </svg></a> --}}
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Venue
+                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                          </svg></a> --}}
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            <span>Expand</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    {{-- Records --}}
+
+                </tbody>
+            </table>
+        </div>
+
+        {{-- Previous and Next Buttons for Pagination --}}
+        <div class="flex justify-end">
+            <div>
+                {{-- page button for no filter --}}
+                <button id="prevButton" onclick="prevPage()"
+                    class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
+                    Previous
+                </button>
+                {{-- page button for filter --}}
+                {{-- <button id="prevButton-filter" onclick="prevPageFilter()"
                         class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
                         Previous
                     </button> --}}
-                </div>
-                <div class="ml-1">
-                    {{-- page button for no filter --}}
-                    <button id="nextButton" onclick="nextPage()"
-                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        Next
-                        <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
-                    </button>
-                    {{-- page button for filter --}}
-                    {{-- <button id="nextButton-filter" onclick="nextPageFilter()"
+            </div>
+            <div class="ml-1">
+                {{-- page button for no filter --}}
+                <button id="nextButton" onclick="nextPage()"
+                    class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Next
+                    <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
+                </button>
+                {{-- page button for filter --}}
+                {{-- <button id="nextButton-filter" onclick="nextPageFilter()"
                         class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         Next
                         <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
                     </button> --}}
-                </div>
             </div>
+        </div>
         </div>
     </main>
 
@@ -619,11 +629,11 @@
     <script type="text/javascript">
         let station = 'CES';
     </script>
-    <script type="text/javascript" >
+    <script type="text/javascript">
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             loadTrainings(currentPage);
         });
 
@@ -633,7 +643,7 @@
             var datas = result;
             var tableRow = ``;
 
-            datas.forEach(function (data) {
+            datas.forEach(function(data) {
                 tableRow +=
                     `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -666,22 +676,22 @@
 
             // Efficient template literal construction using map()
             // const trainingRows = result.map(data => `
-            // <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            //     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-            //     <td class="px-6 py-4">${data.division || '-'}</td>
-            //     <td class="px-6 py-4">${formatDate(data.start_date)} - ${formatDate(data.end_date)}</td>
-            //     <td class="px-6 py-4">${data.venue || '-'}</td>
-            //     <td class="px-6 py-4 text-center">
-            //         <button
-            //         data-modal-target="trainings-modal"
-            //         data-modal-toggle="trainings-modal"
-            //         type="button"
-            //         class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
-            //             <box-icon name='expand-alt' size="xs"></box-icon>
-            //         </button>
-            //     </td>
-            // </tr>
-            // `).join('');
+        // <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        //     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
+        //     <td class="px-6 py-4">${data.division || '-'}</td>
+        //     <td class="px-6 py-4">${formatDate(data.start_date)} - ${formatDate(data.end_date)}</td>
+        //     <td class="px-6 py-4">${data.venue || '-'}</td>
+        //     <td class="px-6 py-4 text-center">
+        //         <button
+        //         data-modal-target="trainings-modal"
+        //         data-modal-toggle="trainings-modal"
+        //         type="button"
+        //         class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
+        //             <box-icon name='expand-alt' size="xs"></box-icon>
+        //         </button>
+        //     </td>
+        // </tr>
+        // `).join('');
 
             // Single DOM manipulation for better performance
             // tableBody.html(trainingRows);
@@ -728,7 +738,7 @@
                     recordsPerPage: recordsPerPage,
                     station: station,
                 },
-                success: function (result) {
+                success: function(result) {
                     showTrainings(result["records"]);
                     currentPage = page; // Update current page
 
@@ -741,7 +751,7 @@
                         $("#prevButton").show();
                     }
                 },
-                error: function (error) {
+                error: function(error) {
                     alert("Oops something went wrong!");
                 },
             });
@@ -770,7 +780,7 @@
                     page: page,
                     recordsPerPage: recordsPerPage,
                 },
-                success: function (result) {
+                success: function(result) {
                     showTrainings(result["records"]);
                     currentPage = page; // Update current page
 
@@ -782,13 +792,13 @@
                         $("#prevButton").show();
                     }
                 },
-                error: function (error) {
+                error: function(error) {
                     alert("Oops something went wrong!");
                 },
             });
         }
 
-        $("#trainingsSearch").on("keyup input", function () {
+        $("#trainingsSearch").on("keyup input", function() {
             var searchInput = $("#trainingsSearch").val();
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
@@ -832,7 +842,7 @@
             }
         });
 
-        $("#yearSelect").on("change", function () {
+        $("#yearSelect").on("change", function() {
             var searchInput = $("#trainingsSearch").val();
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
@@ -873,7 +883,7 @@
             }
         });
 
-        $("#start_MonthSelect").on("change", function () {
+        $("#start_MonthSelect").on("change", function() {
             var searchInput = $("#trainingsSearch").val();
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
@@ -914,7 +924,7 @@
             }
         });
 
-        $("#end_MonthSelect").on("change", function () {
+        $("#end_MonthSelect").on("change", function() {
             var searchInput = $("#trainingsSearch").val();
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
@@ -1018,7 +1028,7 @@
                 xhrFields: {
                     responseType: "blob",
                 },
-                success: function (result) {
+                success: function(result) {
                     // var fileName = 'PhilRice Central Experimental Station (' . date('Y') . ') - Summary of Trainings';
                     var fileName =
                         "PhilRice CES (" +
@@ -1036,11 +1046,10 @@
 
                     alert("Thank you!");
                 },
-                error: function (error) {
+                error: function(error) {
                     alert("Oops something went wrong!");
                 },
             });
         }
-
     </script>
 @endsection
