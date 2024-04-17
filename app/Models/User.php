@@ -34,6 +34,7 @@ class User extends Authenticatable
         'sq3',
 
         'profile_picture',
+        'isBlocked',
     ];
 
     /**

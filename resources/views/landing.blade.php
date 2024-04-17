@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex flex-col h-screen">
         {{-- <header class="antialiased">
-            <nav class="bg-white border-b border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+            <nav class="bg-white border-b border-gray-200 px-4 lg:px-6 py-2.5">
                 <div class="flex flex-wrap justify-between items-center"> --}}
         {{-- Logo --}}
         {{-- <div class="flex justify-start items-center"> --}}
@@ -20,8 +20,8 @@
         {{-- <div class="flex items-center lg:order-2">
                         <div> --}}
         {{-- <a href="{{ route('login') }}"> --}}
-        {{-- <button type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button> --}}
-        {{-- <button type="button" class="text-white bg-gradient-to-br from-[#16A44B] to-[#14506A] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button> --}}
+        {{-- <button type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button> --}}
+        {{-- <button type="button" class="text-white bg-gradient-to-br from-[#16A44B] to-[#14506A] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button> --}}
         {{-- </a> --}}
         {{-- </div>
                     </div>
@@ -52,14 +52,14 @@
                 <div class="flex flex-col lg:flex-row">
                     <a href="{{ route('guest.overview') }}" class="mb-2 lg:mb-0">
                         <button type="button" onclick="showAlert"
-                            class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-white hover:bg-slate-100 border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-white hover:bg-slate-100 border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2">
                             <box-icon type='solid' name='user' class="mr-2"></box-icon>
                             View
                         </button>
                     </a>
                     <a href="{{ route('login') }}">
                         <button type="button"
-                            class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-green-300 hover:bg-green-400 border border-green-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-green-300 hover:bg-green-400 border border-green-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2">
                             <box-icon name='edit-alt' type='solid' class="mr-2"></box-icon>
                             Encode
                         </button>

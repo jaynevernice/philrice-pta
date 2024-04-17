@@ -42,12 +42,12 @@
                         <div class="flex flex-row items-center justify-center">
                             <a href="{{ url('/login') }}">
                                 <button type="button"
-                                    class="w-56 text-[#1A73E8] bg-white border-b-4 border-[#1A73E8] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">LOGIN</button>
+                                    class="w-56 text-[#1A73E8] bg-white border-b-4 border-[#1A73E8] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2.5 me-2 mb-2">LOGIN</button>
                             </a>
 
                             <a href="{{ url('/register') }}">
                                 <button type="button"
-                                    class="w-56 text-gray-600 bg-white border-b-4 border-gray-300 focus:outline-none hover:bg-gray-100 hover:border-[#1A73E8] hover:text-[#1A73E8] focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">REGISTER</button>
+                                    class="w-56 text-gray-600 bg-white border-b-4 border-gray-300 focus:outline-none hover:bg-gray-100 hover:border-[#1A73E8] hover:text-[#1A73E8] focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2.5 me-2 mb-2">REGISTER</button>
                             </a>
                         </div>
 
@@ -58,7 +58,7 @@
 
                         {{-- <div class="drop-shadow flex items-center justify-center my-4">
                             <a href="{{ route('guest.overview') }}">
-                                <button type="button" class="lg:w-[436px] flex items-center justify-center text-white bg-gray-700 border border-gray-300 focus:outline-none hover:bg-gray-900 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-900 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
+                                <button type="button" class="lg:w-[436px] flex items-center justify-center text-white bg-gray-700 border border-gray-300 focus:outline-none hover:bg-gray-900 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base px-5 py-3 me-2 mb-2">
                                     <box-icon name='user' color="#ffffff" class="mr-4" ></box-icon>
                                     Browse as Guest
                                 </button>

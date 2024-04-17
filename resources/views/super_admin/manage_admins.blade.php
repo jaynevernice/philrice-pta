@@ -231,8 +231,7 @@
                                 <div class="flex items-center justify-center">
                                     @if ($admin->user_type === 'admin')
                                         <form id="demote-admin-{{ $admin->id }}"
-                                            action="{{ route('super_admin.demote_admin', $admin->id) }}"
-                                            method="POST">
+                                            action="{{ route('super_admin.demote_admin', $admin->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" onclick="confirmDemote({{ $admin->id }}, event)"
@@ -240,10 +239,31 @@
                                                 <box-icon type='solid' name='user-minus' size="xs"></box-icon>
                                             </button>
                                         </form>
-                                        <button type="button"
-                                            class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
-                                            <box-icon type='solid' name='shield-alt-2' size="xs"></box-icon>
-                                        </button>
+                                        {{-- If isBlocked = false --}}
+                                        @if ($admin->isBlocked === 0)
+                                            <form id="block-{{ $admin->id }}"
+                                                action="{{ route('super_admin.block', $admin->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button" onclick="confirmBlock({{ $admin->id }}, event)"
+                                                    class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
+                                                    <box-icon type='solid' name='shield-alt-2'
+                                                        size="xs"></box-icon>
+                                                </button>
+                                            </form>
+                                            {{-- If isBlocked = true --}}
+                                        @elseif ($admin->isBlocked === 1)
+                                            <form id="unblock-{{ $admin->id }}"
+                                                action="{{ route('super_admin.unblock', $admin->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button"
+                                                    onclick="confirmUnblock({{ $admin->id }}, event)"
+                                                    class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
+                                                    <box-icon name='block' size="xs"></box-icon>
+                                                </button>
+                                            </form>
+                                        @endif
                                     @endif
                                 </div>
                             </td>
@@ -260,8 +280,8 @@
         function confirmDemote(id, event) {
             event.preventDefault();
             Swal.fire({
-                title: "Are you sure?",
-                text: "Do you really want to demote Admin to Encoder?",
+                title: "Confirm Demotion",
+                text: "Are you sure you want to demote this user from Admin to Encoder?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -272,7 +292,51 @@
                     document.getElementById('demote-admin-' + id).submit();
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Admin has been demoted to Encoder.",
+                        text: "User has been successfully demoted to Encoder.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
+
+        function confirmBlock(id, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Confirm Block",
+                text: "Are you sure you want to block this user's access?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, block!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('block-' + id).submit();
+                    Swal.fire({
+                        title: "Blocked!",
+                        text: "User's access has been successfully blocked.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
+
+        function confirmUnblock(id, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Confirm Unblock",
+                text: "Are you sure you want to unblock this user's access?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, unblock!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('unblock-' + id).submit();
+                    Swal.fire({
+                        title: "Unblocked!",
+                        text: "User's access has been successfully unblocked.",
                         icon: "success"
                     });
                 }

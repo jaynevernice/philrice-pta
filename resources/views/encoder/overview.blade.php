@@ -220,8 +220,7 @@
         {{-- Chart Row 1 --}}
         <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
             {{-- Total Number of Participants --}}
-            <div
-                class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
                 <h1 class="mb-2 text-6xl font-extrabold">1973</h1>
                 <p class="text-gray-500 dark:text-gray-400">Total Number of Participants</p>
             </div>
@@ -257,6 +256,138 @@
                 <div id="pwdChart"></div>
                 <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Ability Status</p>
             </div>
+        </div>
+
+        {{-- Chart Row 3 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-96 mb-4 p-4">
+            <div id="regionsChart"></div>
+
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Product name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Color
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Apple MacBook Pro 17"
+                            </th>
+                            <td class="px-6 py-4">
+                                Silver
+                            </td>
+                            <td class="px-6 py-4">
+                                Laptop
+                            </td>
+                            <td class="px-6 py-4">
+                                $2999
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Microsoft Surface Pro
+                            </th>
+                            <td class="px-6 py-4">
+                                White
+                            </td>
+                            <td class="px-6 py-4">
+                                Laptop PC
+                            </td>
+                            <td class="px-6 py-4">
+                                $1999
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Magic Mouse 2
+                            </th>
+                            <td class="px-6 py-4">
+                                Black
+                            </td>
+                            <td class="px-6 py-4">
+                                Accessories
+                            </td>
+                            <td class="px-6 py-4">
+                                $99
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Google Pixel Phone
+                            </th>
+                            <td class="px-6 py-4">
+                                Gray
+                            </td>
+                            <td class="px-6 py-4">
+                                Phone
+                            </td>
+                            <td class="px-6 py-4">
+                                $799
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Apple Watch 5
+                            </th>
+                            <td class="px-6 py-4">
+                                Red
+                            </td>
+                            <td class="px-6 py-4">
+                                Wearables
+                            </td>
+                            <td class="px-6 py-4">
+                                $999
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
 
@@ -330,7 +461,7 @@
 
         var chart = new ApexCharts(document.querySelector("#sexChart"), sex);
         chart.render();
-        
+
         // IP Distribution
         var ip = {
             series: [23, 77],
@@ -347,7 +478,7 @@
 
         var chart = new ApexCharts(document.querySelector("#ipChart"), ip);
         chart.render();
-        
+
         // PWD Distribution
         var pwd = {
             series: [40, 60],
@@ -366,59 +497,59 @@
         chart.render();
 
         // Regions
-        var region = {
+        var regions = {
             series: [{
                 data: [{
-                        x: 'New Delhi',
-                        y: 218
+                        x: 'Nueva Ecija',
+                        y: 14
                     },
                     {
-                        x: 'Kolkata',
-                        y: 149
+                        x: 'La Union',
+                        y: 1
                     },
                     {
-                        x: 'Mumbai',
-                        y: 184
+                        x: 'Metro Manila',
+                        y: 2
                     },
                     {
-                        x: 'Ahmedabad',
-                        y: 55
+                        x: 'Negros Occidental',
+                        y: 1
                     },
                     {
-                        x: 'Bangaluru',
-                        y: 84
+                        x: 'Laguna',
+                        y: 10
                     },
                     {
-                        x: 'Pune',
-                        y: 31
+                        x: 'Benguet',
+                        y: 2
                     },
                     {
-                        x: 'Chennai',
-                        y: 70
+                        x: 'Agusan Del Norte',
+                        y: 4
                     },
                     {
-                        x: 'Jaipur',
-                        y: 30
+                        x: 'Compostella Valley',
+                        y: 1
                     },
                     {
-                        x: 'Surat',
-                        y: 44
+                        x: 'Sorsogon',
+                        y: 2
                     },
                     {
-                        x: 'Hyderabad',
-                        y: 68
+                        x: 'Leyte',
+                        y: 5
                     },
                     {
-                        x: 'Lucknow',
-                        y: 28
+                        x: 'Camarines Sur',
+                        y: 4
                     },
                     {
-                        x: 'Indore',
-                        y: 19
+                        x: 'Camarines Norte',
+                        y: 1
                     },
                     {
-                        x: 'Kanpur',
-                        y: 29
+                        x: 'Albay',
+                        y: 3
                     }
                 ]
             }],
@@ -458,7 +589,7 @@
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        var chart = new ApexCharts(document.querySelector("#regionsChart"), regions);
         chart.render();
 
 

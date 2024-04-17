@@ -238,8 +238,9 @@ class UserController extends Controller
 
     public function adminGetEncoders()
     {
-        // $encoders= User::where('user_type', 'admin')->get();
-        $encoders = User::whereIn('user_type', ['encoder', 'admin'])->get();
+        // $encoders = User::whereIn('user_type', ['encoder', 'admin'])->get();
+        
+        $encoders= User::where('user_type', 'encoder')->get();
 
         return view('admin.manage_encoders', compact('encoders'));
     }
@@ -274,5 +275,20 @@ class UserController extends Controller
         $admin->save();
 
         return redirect()->back()->with('success', 'User type updated successfully');
+    }
+
+    public function block($id) {
+        $user = User::findOrFail($id);
+        $user->isBlocked = 1; 
+        $user->save();
+
+        return redirect()->back()->with('success', 'You have blocked access to this user');
+    }
+    public function unblock($id) {
+        $user = User::findOrFail($id);
+        $user->isBlocked = 0; 
+        $user->save();
+
+        return redirect()->back()->with('success', 'You have unblocked access to this user');
     }
 }

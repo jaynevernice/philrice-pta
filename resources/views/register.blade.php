@@ -255,7 +255,7 @@
                                 <div class="my-2">
                                     <label for="sq2"
                                         class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What
-                                        province/city were you born in?</label>
+                                        province were you born in?</label>
                                     <input type="text" id="sq2" name="sq2" value="{{ old('sq2') }}"
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>

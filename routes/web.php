@@ -139,6 +139,11 @@ Route::group(['middleware' => 'super_admin'], function () {
         Route::get('/manage_admins', [UserController::class, 'superadminGetAdmins'])->name('super_admin.manage_admins');
         Route::put('/demote_admin/{id}', [UserController::class, 'demoteAdmin'])->name('super_admin.demote_admin');
 
+        Route::put('/block/{id}', [UserController::class, 'block'])->name('super_admin.block');
+        Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('super_admin.unblock');
+
+        
+
         // Route::get('/profile', function () {
         //     return view('profile');
         // })->name('profile');
@@ -200,8 +205,10 @@ Route::group(['middleware' => 'admin'], function () {
         // Route::get('/manage_encoders', function () {
         //     return view('admin.manage_encoders');
         // })->name('admin.manage_encoders');
+        // Route::put('/promote_encoder/{id}', [UserController::class, 'promoteEncoder'])->name('admin.promote_encoder');
         Route::get('/manage_encoders', [UserController::class, 'adminGetEncoders'])->name('admin.manage_encoders');
-        Route::put('/promote_encoder/{id}', [UserController::class, 'promoteEncoder'])->name('admin.promote_encoder');
+        Route::put('/block/{id}', [UserController::class, 'block'])->name('admin.block');
+        Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('admin.unblock');
     });
 });
 
@@ -299,6 +306,6 @@ Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');
 
-Route::get('/profile', function () {
+Route::get('/profile/{user}', function () {
     return view('profile');
 })->name('profile');

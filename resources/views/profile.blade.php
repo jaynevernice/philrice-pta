@@ -217,7 +217,7 @@
                     </div>
                     <div class="my-4">
                         <label for="sq2" class="block mb-2 text-sm font-medium text-gray-900">What
-                            province/city were you born in?</label>
+                            province were you born in?</label>
                         <input type="text" id="sq2" name="sq2" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 2" value="{{ old('sq2', Auth::user()->sq2) }}">
