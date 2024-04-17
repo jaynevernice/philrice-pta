@@ -10,6 +10,8 @@ class Station extends Model
     use HasFactory;
 
     protected $fillable = [
-        'station'
+        'station',
+        'municipality',
+        'province',
     ];
 }

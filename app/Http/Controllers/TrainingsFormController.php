@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
 use File;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class TrainingsFormController extends Controller
@@ -30,7 +31,16 @@ class TrainingsFormController extends Controller
      */
     public function index()
     {
-        //
+        $titles = TrainingsTitle::select('*')->orderBy('training_title', 'asc')->get();
+        
+        return view('encoder.overview', compact('titles'));
+    }
+
+    public function cesView()
+    {
+        $titles = TrainingsTitle::select('*')->orderBy('training_title', 'asc')->get();
+        
+        return view('encoder.ces_view', compact('titles'));
     }
 
     public function cesEditView()
@@ -81,9 +91,10 @@ class TrainingsFormController extends Controller
 
             // Query to fetch records with pagination
             $records = DB::table('trainings_forms')
-                ->select('*')
-                ->where('station', '=', $request->station)
-                ->latest('id')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select('trainings_forms.*')
+                ->where('users.station', '=', $request->station)
+                ->latest('trainings_forms.id')
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
@@ -107,7 +118,8 @@ class TrainingsFormController extends Controller
             $end_MonthSelect = $request->end_MonthSelect ?? '';
 
             $records = DB::table('trainings_forms')
-                ->select('*')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select('trainings_forms.*')
                 ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
                     return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
                 })
@@ -115,24 +127,33 @@ class TrainingsFormController extends Controller
                     return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
                 })
                 ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('end_date', '=', $yearSelect);
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
                 })
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
-                    return $query->where('title', 'LIKE', "%$searchInput%")
-                                ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                                ->orWhere('venue', 'LIKE', "%$searchInput%")
+                    return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
                                 // ->orWhere('province', 'LIKE', "%$searchInput%")
                                 // ->orWhere('municipality', 'LIKE', "%$searchInput%")
                                 // ->orWhere('country', 'LIKE', "%$searchInput%")
                                 // ->orWhere('state', 'LIKE', "%$searchInput%")
-                                ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
                 })
                 // ->orderBy('title', 'ASC')
-                ->where('station', '=', $request->station)
-                ->latest('id')
+                ->where('users.station', '=', $request->station)
+                ->latest('trainings_forms.id')
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
+            
+            // $records = DB::table('trainings_forms')
+            //     ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+            //     ->select('trainings_forms.*')
+            //     ->where('users.station', '=', $request->station)
+            //     ->latest('trainings_forms.id')
+            //     ->skip($offset) // Skip records based on the offset
+            //     ->take($recordsPerPage) // Limit the number of records per page
+            //     ->get();
 
             return response()->json(['records' => $records]);
         }
@@ -250,195 +271,171 @@ class TrainingsFormController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // if( $request->venue_group == 'Local (but outside PhilRice station)' ) {
-        //     $request->validate([
-        //         'province'=>'required',
-        //         'city'=>'required',
-        //     ]);
+        // dd(gettype($request->average_gik));
+        // dd(gettype($request->withinPhilriceInput));
 
-        //     $province = $request->province;
-        //     $city = $request->city;
-        //     $country = '';
-        //     $state = '';
+        // query for user
+         if(!empty(Auth::check())) {
+            $encoder_id = Auth::user()->id;
+        } else {
+            abort(404);
+        }
 
-        // } elseif($request->venue_group == 'International') {
-        //     $request->validate([
-        //         'country'=>'required',
-        //         'state'=>'required',
-        //     ]);
+        $request->validate([
+            // Section 2
+            'training_title'=>'required',
+            'training_category'=>'required',
+            'training_type'=>'required',
+            'mod'=>'required',
+            'start'=>'required',
+            'end'=>'required',
+            // Section 3
+            'sponsor'=>'required',
+            'source_of_fund'=>'required',
+            'average_gik'=>'required',
+            'evaluationInput'=>'required',
+            // Section 4
+            'total_participants'=>'required|integer|min:1',
+            'num_of_farmers_and_growers'=>'required|min:0',
+            'num_of_extension_workers'=>'required|min:0',
+            'num_of_scientific'=>'required|min:0',
+            'num_of_other'=>'required|min:0',
+            'num_of_male'=>'required|min:0',
+            'num_of_female'=>'required|min:0',
+            'num_of_indigenous'=>'required|min:0',
+            'num_of_pwd'=>'required|min:0',
+            // Section 5
+            'photo_doc_event'=>'max:10',
+            'other_doc'=>'max:10',
+        ]);
 
-        //     $country = $request->country;
-        //     $state = $request->state;
-        //     $province = '';
-        //     $city = '';
-        // }
         
-        // // query for user
-        //  if(!empty(Auth::check())) {
-        //     $encoder_id = Auth::user()->id;
-        // }
 
-        // $request->validate([
-        //     // 'name'=>'required',
-        //     // 'email'=>'required|regex:/(.+)@(.+)\.(.+)/i|email|max:50',
-        //     'offices_and_division'=>'required',
-        //     'training_title'=>'required',
-        //     'training_type'=>'required',
-        //     'training_style_group'=>'required',
-        //     'start_date'=>'required',
-        //     'end_date'=>'required',
-        //     'venue_group'=>'required',
+        $title = $request->training_title;
+        if( $request->training_title == 'Other' ) {
+            $request->validate([
+                'otherTrainingInput'=>'required',
+            ]);
+            $title = $request->otherTrainingInput;
+        } 
 
-        //     'sponsor'=>'required',
-        //     'average_gik'=>'required|min:1',
-        //     'source_of_fund'=>'required',
-        //     'evaluation'=>'required',
-        //     'participants'=>'required',
-        //     'num_of_participants'=>'required|integer|min:1',
-        //     'num_of_farmers_and_growers'=>'required|integer|min:1',
-        //     'num_of_extension_workers'=>'required|integer|min:1',
-        //     'num_of_scientific_com'=>'required|integer|min:1',
-        //     'num_of_other_participants'=>'required|integer|min:1',
-        //     'num_of_male'=>'required|integer|min:1',
-        //     'num_of_female'=>'required|integer|min:1',
-        //     'num_of_indigenous'=>'required|integer|min:1',
-        //     'num_of_pwd'=>'required|integer|min:1',
+        $training_venue = '-';
+        $local_address = '-';
+        $municipality = '-';
+        $province = '-';
+        $outside_local_address = '-';
+        $international_address = '-';
+        if($request->training_type == 'Local') {
+            $request->validate([
+                'training_venue'=>'required',
+            ]);
+            $training_venue = $request->training_venue;
 
-        //     'photo_doc_event'=>'max:10',
-        //     'other_doc'=>'max:10',
-        // ]);
+            if($request->training_venue == 'Within PhilRice Station') {
+                $request->validate([
+                    'withinPhilriceInput'=>'required',
+                ]);
+                // query to get municipality and province based on station
+                $local_address = Station::select('*')->where("id", '=', $request->withinPhilriceInput)->first();
 
-        // if(!empty(Auth::check())) {
-        //     if(Auth::user()->station == 'CES' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Nueva Ecija';
-        //         $city = 'Science City of Muñoz';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Agusan' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Agusan del Norte';
-        //         $city = 'Basilisa, RTRomualdez';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Batac' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Ilocos Norte';
-        //         $city = 'Batac';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Bicol' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Albay';
-        //         $city = 'Ligao City';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'CMU' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Bukidnon';
-        //         $city = 'Maramag';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Isabela' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Isabela';
-        //         $city = 'San Mateo';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Los Baños' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Laguna';
-        //         $city = 'Los Baños';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Midsayap' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'North Cotabato';
-        //         $city = 'Midsayap';
-        //         $country = '';
-        //         $state = '';
-        //     } elseif(Auth::user()->station == 'Negros' && $request->venue_group == 'Within PhilRice station') {
-        //         $province = 'Negros Occidental';
-        //         $city = 'Murcia';
-        //         $country = '';
-        //         $state = '';
-        //     } else {
-        //         $province = 'N/A';
-        //         $city = 'N/A';
-        //         $country = '';
-        //         $state = '';
-        //     }
-        // }
-
-        // // Serialize the array of participants checkbox values
-        // $participants_cb = implode('|', $request->participants);
+            } else if($request->training_venue == 'Outside PhilRice Station') {
+                $request->validate([
+                    'outsidePhilriceInput'=>'required',
+                ]);
+                $outside_local_address = $request->outsidePhilriceInput;
+            }
+        } else if($request->training_type == 'International') {
+            $request->validate([
+                'internationalTrainingInput'=>'required',
+            ]);
+            $international_address = $request->internationalTrainingInput;
+        }
         
-        // $imageNames = array();
-        // $image_full_name = '';
-        // if ($images = $request->file('photo_doc_event')) {
-        //     foreach ($images as $image) {
-        //         // $imageName = md5(rand(1000,10000));
-        //         $imageName = strtolower($image->getClientOriginalName());
-        //         $imageName = str_replace(['.png', '.gif', '.jpg'], '', $imageName);
-        //         $ext = strtolower($image->getClientOriginalExtension());
-        //         $image_full_name = $imageName.'.'.$ext;
-        //         $upload_path = 'public/images/';
-        //         $image_url = $upload_path.$image_full_name;
-        //         $image->move($upload_path, $image_full_name);
-        //         // $imageNames[] = $image_url;
-        //         $imageNames[] = $image_full_name;
-        //     }
-        // }
+        if($local_address != '-') {
+            $municipality = $local_address->municipality;
+            $province = $local_address->province;
+        }
 
-        // $fileNames = array();
-        // $file_full_name = '';
-        // if ($files = $request->file('other_doc')) {
-        //     foreach ($files as $file) {
-        //         // $fileName = md5(rand(1000,10000));
-        //         $fileName = strtolower($file->getClientOriginalName());
-        //         $ext = strtolower($file->getClientOriginalExtension());
-        //         $fileName = str_replace(['.pdf', '.xlsx', '.docx', '.pptx', '.png', '.gif', '.jpg'], '', $fileName);
-        //         $file_full_name = $fileName.'.'.$ext;
-        //         $upload_path = 'public/files/';
-        //         $file_url = $upload_path.$file_full_name;
-        //         $file->move($upload_path, $file_full_name);
-        //         $fileNames[] = $file_full_name;
-        //     }
-        // }
+        if($outside_local_address != '-') {
+            $municipality = $outside_local_address;
+            $province = '-';
+        }
 
-        // TrainingsForm::create([
-        //     // 'encoder_name'=>$request->name,
-        //     // 'encoder_email'=>$request->email,
-        //     'encoder_id'=>$encoder_id,
-        //     'station'=>Auth::user()->station,
-        //     'division'=>$request->offices_and_division,
-        //     'title'=>$request->training_title,
-        //     'training_type'=>$request->training_type,
-        //     'training_style'=>$request->training_style_group,
-            
-        //     'start_date'=>Carbon::parse($request->start_date)->format('Y-m-d'),
-        //     'end_date'=>Carbon::parse($request->end_date)->format('Y-m-d'),
+        $average_gik = $request->average_gik;
+        if($average_gik == 'N/A') {
+            $average_gik = NULL;
+        } else {
+            // dd($request->average_gik);
+            $average_gik = (float) $request->average_gik;
+        }
 
-        //     'venue'=>$request->venue_group,
+        $imageNames = array();
+        $image_full_name = '';
+        if ($images = $request->file('photo_doc_event')) {
+            foreach ($images as $image) {
+                // $imageName = md5(rand(1000,10000));
+                $imageName = strtolower($image->getClientOriginalName());
+                $imageName = str_replace(['.png', '.gif', '.jpg'], '', $imageName);
+                $ext = strtolower($image->getClientOriginalExtension());
+                $image_full_name = $imageName.'.'.$ext;
+                $upload_path = 'public/images/';
+                $image_url = $upload_path.$image_full_name;
+                $image->move($upload_path, $image_full_name);
+                // $imageNames[] = $image_url;
+                $imageNames[] = $image_full_name;
+            }
+        }
 
-        //     'province'=>$province,
-        //     'municipality'=>$city,
-        //     'country'=>$country,
-        //     'state'=>$state,
+        $fileNames = array();
+        $file_full_name = '';
+        if ($files = $request->file('other_doc')) {
+            foreach ($files as $file) {
+                // $fileName = md5(rand(1000,10000));
+                $fileName = strtolower($file->getClientOriginalName());
+                $ext = strtolower($file->getClientOriginalExtension());
+                $fileName = str_replace(['.pdf', '.xlsx', '.docx', '.pptx', '.png', '.gif', '.jpg'], '', $fileName);
+                $file_full_name = $fileName.'.'.$ext;
+                $upload_path = 'public/files/';
+                $file_url = $upload_path.$file_full_name;
+                $file->move($upload_path, $file_full_name);
+                $fileNames[] = $file_full_name;
+            }
+        }
 
-        //     'sponsor'=>$request->sponsor,
-        //     'fund'=>$request->source_of_fund,
-        //     'average_gik'=>$request->average_gik,
-        //     'evaluation'=>$request->evaluation,
-
-        //     'participants'=>$participants_cb,
-
-        //     'num_of_participants'=>$request->num_of_participants,
-        //     'num_of_farmers'=>$request->num_of_farmers_and_growers,
-        //     'num_of_extworkers'=>$request->num_of_extension_workers,
-        //     'num_of_scientific'=>$request->num_of_scientific_com,
-        //     'num_of_other_sectors'=>$request->num_of_other_participants,
-        //     'num_of_male'=>$request->num_of_male,
-        //     'num_of_female'=>$request->num_of_female,
-        //     'num_of_indigenous'=>$request->num_of_indigenous,
-        //     'num_of_pwd'=>$request->num_of_pwd,
-
-        //     'image'=>implode('|', $imageNames),
-        //     'file'=>implode('|', $fileNames),
-        // ]);
+        TrainingsForm::create([
+            // Section 2
+            'encoder_id'=>$encoder_id,
+            'division'=>Auth::user()->division,
+            'title'=>$title,
+            'category'=>$request->training_category,
+            'type'=>$request->training_type,
+            'training_venue'=>$training_venue,
+            'station_id'=> (int) $request->withinPhilriceInput,
+            'municipality'=>$municipality,
+            'province'=>$province,
+            'international_address'=>$international_address,
+            'mod'=>$request->mod,
+            'start_date'=>Carbon::parse($request->start)->format('Y-m-d'),
+            'end_date'=>Carbon::parse($request->end)->format('Y-m-d'),
+            // Section 3
+            'sponsor'=>$request->sponsor,
+            'fund'=>$request->source_of_fund,
+            'average_gik'=>$average_gik,
+            'evaluation'=> (float) $request->evaluationInput,
+            // Section 4
+            'num_of_participants'=> (int) ltrim($request->total_participants, '0'),
+            'num_of_farmers'=> (int) ltrim($request->num_of_farmers_and_growers, '0'),
+            'num_of_extworkers'=> (int) ltrim($request->num_of_extension_workers, '0'),
+            'num_of_scientific'=> (int) ltrim($request->num_of_scientific, '0'),
+            'num_of_other'=> (int) ltrim($request->num_of_other, '0'),
+            'num_of_male'=> (int) ltrim($request->num_of_male, '0'),
+            'num_of_female'=> (int) ltrim($request->num_of_female, '0'),
+            'num_of_indigenous'=> (int) ltrim($request->num_of_indigenous, '0'),
+            'num_of_pwd'=> (int) ltrim($request->num_of_pwd, '0'),
+            // Section 5 
+            'image'=>implode('|', $imageNames),
+            'file'=>implode('|', $fileNames),
+        ]);
 
         return redirect()->back()->with('success', "You successfully added a data.");
     }

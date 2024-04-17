@@ -11,42 +11,42 @@ class TrainingsForm extends Model
     use HasFactory;
 
     protected $fillable = [
+        // Section 2
         'encoder_id',
-        // 'encoder_name',
-        // 'encoder_email',
-        'station',
         'division',
         'title',
-        'training_type',
-        'training_style',
+        'category',
+        'type',
+        'training_venue',
+        'station_id',
+        'municipality',
+        'province',
+        'international_address',
+        'mod',
         'start_date',
         'end_date',
-        'venue',
-        'province',
-        'municipality',
-        'country',
-        'state',
+        // Section 3
         'sponsor',
         'fund',
         'average_gik',
         'evaluation',
-        'participants',
+        // Section 4
         'num_of_participants',
         'num_of_farmers',
         'num_of_extworkers',
         'num_of_scientific',
-        'num_of_other_sectors',
+        'num_of_other',
         'num_of_male',
         'num_of_female',
         'num_of_indigenous',
         'num_of_pwd',
+        // Section 5 
         'image',
         'file',
     ];
 
     static public function exportFilteredRecords($searchInput = null, $yearSelect = null, $start_MonthSelect = null, $end_MonthSelect = null)
-    {
-               
+    {    
         $records = DB::table('trainings_forms')
                 ->select('*')
                 ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
@@ -60,8 +60,8 @@ class TrainingsForm extends Model
                 })
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
                     return $query->where('title', 'LIKE', "%$searchInput%")
-                                ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                                ->orWhere('venue', 'LIKE', "%$searchInput%");
+                                ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%");
                                 // ->orWhere('province', 'LIKE', "%$searchInput%")
                                 // ->orWhere('municipality', 'LIKE', "%$searchInput%")
                                 // ->orWhere('country', 'LIKE', "%$searchInput%")

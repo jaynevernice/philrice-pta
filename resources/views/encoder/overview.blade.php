@@ -133,14 +133,13 @@
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    <option disabled>Year</option>
-                    <option selected>2024</option>
-                    {{-- <option value="" selected>All Year</option>
+                    <option value="" disabled>Year</option>
+                    <option value="" >All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
+                        <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
                             {{ $year }}
                         </option>
-                    @endfor --}}
+                    @endfor
                 </select>
             </div>
 
@@ -148,20 +147,21 @@
             <div class="mx-2">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="quarterSelect">
-                    <option selected disabled>From</option>
-                    <option>January</option>
-                    <option>February</option>
-                    <option>March</option>
-                    <option>April</option>
-                    <option>May</option>
-                    <option>June</option>
-                    <option>July</option>
-                    <option>August</option>
-                    <option>September</option>
-                    <option>October</option>
-                    <option>November</option>
-                    <option>December</option>
+                    id="start_MonthSelect">
+                    <option value="" selected disabled>From</option>
+                    <option value="" >All Month</option>
+                    <option value="1" >January</option>
+                    <option value="2" >February</option>
+                    <option value="3" >March</option>
+                    <option value="4" >April</option>
+                    <option value="5" >May</option>
+                    <option value="6" >June</option>
+                    <option value="7" >July</option>
+                    <option value="8" >August</option>  
+                    <option value="9" >September</option>
+                    <option value="10" >October</option>
+                    <option value="11" >November</option>
+                    <option value="12" >December</option>
                 </select>
             </div>
 
@@ -170,20 +170,21 @@
             <div class="mx-2">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="quarterSelect">
-                    <option selected disabled>To</option>
-                    <option>January</option>
-                    <option>February</option>
-                    <option>March</option>
-                    <option>April</option>
-                    <option>May</option>
-                    <option>June</option>
-                    <option>July</option>
-                    <option>August</option>
-                    <option>September</option>
-                    <option>October</option>
-                    <option>November</option>
-                    <option>December</option>
+                    id="end_MonthSelect">
+                    <option value="" selected disabled>To</option>
+                    <option value="" >All Month</option>
+                    <option value="1" >January</option>
+                    <option value="2" >February</option>
+                    <option value="3" >March</option>
+                    <option value="4" >April</option>
+                    <option value="5" >May</option>
+                    <option value="6" >June</option>
+                    <option value="7" >July</option>
+                    <option value="8" >August</option>  
+                    <option value="9" >September</option>
+                    <option value="10" >October</option>
+                    <option value="11" >November</option>
+                    <option value="12" >December</option>
                 </select>
             </div>
 
@@ -193,20 +194,24 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
                     <option disabled>Form Type</option>
-                    <option selected>Summary of Trainings Conducted</option>
-                    <option>Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option>Technical Dispatch Monitoring</option>
-                    <option>Technology Demonstration Monitoring</option>
+                    <option value="1" selected>Summary of Trainings Conducted</option>
+                    <option value="2">Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="3">Technical Dispatch Monitoring</option>
+                    <option value="4">Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
-            {{-- Form --}}
+            {{-- Training Titles--}}
             <div class="mx-2 mr-auto">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
-                    id="form">
-                    <option disabled>Training Title</option>
-                    <option selected>Sample Title</option>
+                    id="training_title">
+                    <option value="" selected disabled>Training Title</option>
+                    <option value="" >All Training Title</option>
+                    @foreach ($titles as $title)
+                        <option value="{{ $title->id }}" >{{ $title->training_title }}</option>
+                    @endforeach
+                    <option value="Other" >Other</option>
                 </select>
             </div>
         </div>

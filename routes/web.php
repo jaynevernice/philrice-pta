@@ -216,13 +216,15 @@ Route::group(['middleware' => 'encoder'], function () {
         Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
         Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
 
-        Route::get('/overview', function () {
-            return view('encoder.overview');
-        })->name('encoder.overview');
+        // Route::get('/overview', function () {
+        //     return view('encoder.overview');
+        // })->name('encoder.overview');
+        Route::get('/overview', [TrainingsFormController::class, 'index'])->name('encoder.overview');
 
-        Route::get('/ces_view', function () {
-            return view('encoder.ces_view');
-        })->name('encoder.ces_view');
+        // Route::get('/ces_view', function () {
+        //     return view('encoder.ces_view');
+        // })->name('encoder.ces_view');
+        Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
 
         Route::get('/ces_add', function () {
             return view('encoder.ces_add');

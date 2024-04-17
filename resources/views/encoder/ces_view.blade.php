@@ -139,9 +139,10 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
                     {{-- <option selected>Year</option> --}}
-                    <option value="" selected>All Year</option>
+                    <option value="" disabled>Year</option>
+                    <option value="" >All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
+                        <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
                             {{ $year }}
                         </option>
                     @endfor
@@ -153,7 +154,8 @@
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="start_MonthSelect">
-                    <option value="" selected>From</option>
+                    <option value="" selected disabled>From</option>
+                    <option value="" >All Month</option>
                     <option value="1" >January</option>
                     <option value="2" >February</option>
                     <option value="3" >March</option>
@@ -175,7 +177,8 @@
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="end_MonthSelect">
-                    <option value="" selected>To</option>
+                    <option value="" selected disabled>To</option>
+                    <option value="" >All Month</option>
                     <option value="1" >January</option>
                     <option value="2" >February</option>
                     <option value="3" >March</option>
@@ -197,7 +200,24 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
                     <option selected>Form Type</option>
-                    <option>Summary of Trainings Conducted</option>
+                    <option value="1" selected>Summary of Trainings Conducted</option>
+                    <option value="2">Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="3">Technical Dispatch Monitoring</option>
+                    <option value="4">Technology Demonstration Monitoring</option>
+                </select>
+            </div>
+
+            {{-- Training Titles--}}
+            <div class="mx-2 mr-auto">
+                <select
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="training_title">
+                    <option value="" selected disabled>Training Title</option>
+                    <option value="" >All Training Title</option>
+                    @foreach ($titles as $title)
+                        <option value="{{ $title->id }}" >{{ $title->training_title }}</option>
+                    @endforeach
+                    <option value="Other" >Other</option>
                 </select>
             </div>
 
@@ -617,6 +637,7 @@
 
 @section('datatable')
     <script type="text/javascript">
+        // CES
         let station = 'CES';
     </script>
     <script type="text/javascript" >
@@ -649,7 +670,7 @@
                     formatDate(data["end_date"]) +
                     `</td>
                         <td class="px-6 py-4">` +
-                    data["venue"] +
+                    data["type"] +
                     `</td>
                         <td class="px-6 py-4 text-center">
                             <button

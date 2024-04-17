@@ -590,6 +590,7 @@
 
 @section('datatable')
     <script>
+        // CES
         let station = 'CES';
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference

@@ -133,6 +133,15 @@
 
         {{-- Success/Error Message from TrainingsFormController --}}
         @include('_message')
+        @if ($errors->any())
+            <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         {{-- Multi Page Form --}}
         <form id="trainingsForm" action="{{ route('trainingsform.store') }}" method="POST" enctype="multipart/form-data"
@@ -193,6 +202,20 @@
                 </div>
 
                 <div id="row2" class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                    {{-- Type of Training --}}
+                    <div>
+                        <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
+                            Training</label>
+                        <div class="relative">
+                            <select id="training_type" name="training_type" onchange="toggleType()" required
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Local">Local</option>
+                                <option value="International">International</option>
+                            </select>
+                        </div>
+                    </div>
+
                     {{-- Training Category --}}
                     <div>
                         <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
@@ -208,20 +231,6 @@
                         </div>
                     </div>
 
-                    {{-- Type of Training --}}
-                    <div>
-                        <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
-                            Training</label>
-                        <div class="relative">
-                            <select id="training_type" name="training_type" onchange="toggleType()" required
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                <option value="Local">Local</option>
-                                <option value="International">International</option>
-                            </select>
-                        </div>
-                    </div>
-
                     {{-- Mode of Delivery --}}
                     <div>
                         <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
@@ -230,8 +239,8 @@
                             <select id="mod" name="mod" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Face to Face">Face-to-Face</option>
                                 <option value="Online">Online</option>
+                                <option value="Face-to-Face">Face-to-Face</option>
                                 <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)</option>
                             </select>
                         </div>
@@ -241,7 +250,7 @@
                     <div id="training_venue_container" style="display: none;">
                         <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
                         <div class="relative">
-                            <select id="training_venue" name="training_venue" onchange="toggleVenue()" required
+                            <select id="training_venue" name="training_venue" onchange="toggleVenue()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
                                 <option value="Within PhilRice Station">Within PhilRice Station</option>
@@ -277,7 +286,7 @@
                         class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         <option selected disabled>Select</option>
                         @foreach ($stations as $station)
-                            <option value="{{ $station->id }}">{{ $station->station }}</option>
+                            <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -375,12 +384,12 @@
                         <label for="average_gik"
                             class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge
                             (GIK)</label>
-                        <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage. Write N/A if
+                        <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A if
                             there is no GIK to input.</p>
                         <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') }}"
                             min="0" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="40%" required />
+                            placeholder="40" required />
                     </div>
 
                     {{-- Overall Training Evaluation --}}
@@ -688,6 +697,7 @@
                             accept="image/png, image/gif, image/jpeg"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
+                        <div id="errorImage" style="color: red; display: none;"></div>
                     </div>
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other
@@ -698,6 +708,7 @@
                         <input id="other_doc" name="other_doc[]"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
+                        <div id="errorFile" style="color: red; display: none;"></div>
                     </div>
                 </div>
             </div>
@@ -1194,6 +1205,46 @@
                 }
                 // disable nextBtn if any of the input are blank (Section 3)
                 if(currentSection == 3) {
+                    // if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                    //     nextBtn.disabled = true;
+                    // } else {
+                    //     nextBtn.disabled = false;
+                    // }
+
+                    // Get the current value of the input field
+                    var inputValue = $("#average_gik").val();
+                    // Check if the input contains both "N/A" and numbers
+                    if (/N\/A/i.test(inputValue) && /[0-9]/.test(inputValue)) {
+                        // If both "N/A" and numbers are present, remove the numbers
+                        inputValue = inputValue.replace(/[0-9]/g, '');
+                    }
+                    // Remove any characters that are not numbers, periods, slashes, or "NA"
+                    var sanitizedValue = inputValue.replace(/[^0-9./NA]/gi, '');
+                    // Ensure only one period is present
+                    sanitizedValue = sanitizedValue.replace(/(\..*)\./, '$1');
+                    // Update the input field value with the sanitized value
+                    $("#average_gik").val(sanitizedValue);
+
+                    // console.log(parseFloat($("#average_gik").val()));
+                    if(isNaN(parseFloat($("#average_gik").val()))) {
+                        if($("#average_gik").val() == 'N/A') {
+                            nextBtn.disabled = false;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                        // console.log('nan');
+                    } else {
+                        if(parseFloat($("#average_gik").val()) > 100) {
+                            var average_gik = 100.00;
+                            $("#average_gik").val(average_gik);
+                            nextBtn.disabled = false;
+                        } if(parseFloat($("#average_gik").val()) < 1) {
+                            var average_gik = 1.00;
+                            $("#average_gik").val(average_gik);
+                            nextBtn.disabled = false;
+                        }
+                    }
+
                     if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
                         nextBtn.disabled = true;
                     } else {
@@ -1206,6 +1257,13 @@
                     if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
                         nextBtn.disabled = true;
                     } else {
+                        if($("#training_title").val() == 'Other') {
+                            if(!$("#otherTrainingInput").val()) {
+                                nextBtn.disabled = true;
+                            } else {
+                                nextBtn.disabled = false;
+                            }
+                        } 
                         if($("#training_type").val() == 'Local') {
                             // disable nextBtn if training_venue is blank and training_type == Local
                             if(!$("#training_venue").val()) {
@@ -1228,7 +1286,8 @@
                                     }
                                 }
                             }
-                        } else if($("#training_type").val() == 'International') {
+                        } 
+                        if($("#training_type").val() == 'International') {
                             // disable nextBtn if internationalTrainingInput is blank and training_type == International
                             if(!$("#internationalTrainingInput").val()) {
                                 nextBtn.disabled = true;
@@ -1238,30 +1297,11 @@
                         }
                     }
                 }
-                // disable nextBtn if any of the input for breakdown of participants and total_participants are blank (Section 5)
-                // if (currentSection == 5) {
-                //     if (!$("#num_of_female").val() || !$("#num_of_male").val() || !$("#num_of_indigenous")
-                //         .val() || !$("#num_of_pwd").val()) {
-                //         // console.log('empty');
-                //         nextBtn.disabled = true;
-                //     } else {
-                //         // enable nextBtn if all input for breakdown of participants in Section 5 is equal to total_participants
-                //         if (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female")
-                //                 .val()) + parseInt($("#num_of_male").val()) + parseInt($(
-                //                     "#num_of_indigenous")
-                //                 .val()) + parseInt($("#num_of_pwd").val()))) {
-                //             nextBtn.disabled = false;
-                //         } else {
-                //             nextBtn.disabled = true;
-                //         }
-                //     }
-                // }
-                // currentSection++;
-                // console.log(currentSection);
+
             });
 
             $('#otherTrainingInput, #internationalTrainingInput, #outsidePhilriceInput, #total_participants, #start_date, #end_date, #sponsor, #average_gik, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd, #evaluationInput')
-                .on('keyup input', function() {
+                .on('keyup input click', function() {
                     // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
                     if (currentSection == 4) {
                         if (!$("#total_participants").val()) {
@@ -1294,6 +1334,47 @@
 
                     // disable nextBtn if any of the input are blank (Section 3)
                     if(currentSection == 3) {
+
+                        // if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                        //     nextBtn.disabled = true;
+                        // } else {
+                        //     nextBtn.disabled = false;
+                        // }
+
+                        // Get the current value of the input field
+                        var inputValue = $("#average_gik").val();
+                        // Check if the input contains both "N/A" and numbers
+                        if (/N\/A/i.test(inputValue) && /[0-9]/.test(inputValue)) {
+                            // If both "N/A" and numbers are present, remove the numbers
+                            inputValue = inputValue.replace(/[0-9]/g, '');
+                        }
+                        // Remove any characters that are not numbers, periods, slashes, or "NA"
+                        var sanitizedValue = inputValue.replace(/[^0-9./NA]/gi, '');
+                        // Ensure only one period is present
+                        sanitizedValue = sanitizedValue.replace(/(\..*)\./, '$1');
+                        // Update the input field value with the sanitized value
+                        $("#average_gik").val(sanitizedValue);
+
+                        // console.log(parseFloat($("#average_gik").val()));
+                        if(isNaN(parseFloat($("#average_gik").val()))) {
+                            if($("#average_gik").val() == 'N/A') {
+                                nextBtn.disabled = false;
+                            } else {
+                                nextBtn.disabled = true;
+                            }
+                            // console.log('nan');
+                        } else {
+                            if(parseFloat($("#average_gik").val()) > 100) {
+                                var average_gik = 100.00;
+                                $("#average_gik").val(average_gik);
+                                nextBtn.disabled = false;
+                            } if(parseFloat($("#average_gik").val()) < 1) {
+                                var average_gik = 1.00;
+                                $("#average_gik").val(average_gik);
+                                nextBtn.disabled = false;
+                            }
+                        }
+
                         if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
                             nextBtn.disabled = true;
                         } else {
@@ -1303,9 +1384,17 @@
                     // disable nextBtn if any of the input are blank (Section 2)
                     if(currentSection == 2) {
                         // disable nextBtn if one of the input field is blank
-                        if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
+                        if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || (!$("#start_date").val() || !$("#end_date").val())) {
                             nextBtn.disabled = true;
                         } else {
+                            if($("#training_title").val() == 'Other') {
+                                if($("#otherTrainingInput").val() == '') {
+                                    nextBtn.disabled = true;
+                                } else {
+                                    nextBtn.disabled = false;
+                                }
+                                // console.log($("#otherTrainingInput").val());
+                            } 
                             if($("#training_type").val() == 'Local') {
                                 // disable nextBtn if training_venue is blank and training_type == Local
                                 if(!$("#training_venue").val()) {
@@ -1315,6 +1404,7 @@
                                         // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
                                         if(!$("#withinPhilriceInput").val()) {
                                             nextBtn.disabled = true;
+                                            console.log($("#start_date").val());
                                         } else {
                                             nextBtn.disabled = false;
                                         }
@@ -1328,14 +1418,15 @@
                                         }
                                     }
                                 }
-                            } else if($("#training_type").val() == 'International') {
+                            } 
+                            if($("#training_type").val() == 'International') {
                                 // disable nextBtn if internationalTrainingInput is blank and training_type == International
                                 if(!$("#internationalTrainingInput").val()) {
                                     nextBtn.disabled = true;
                                 } else {
                                     nextBtn.disabled = false;
                                 }
-                            }
+                            } 
                         }
                     }
                 });
@@ -1387,6 +1478,103 @@
                     }
                 });
 
+            $('#training_title, #training_category, #training_type, #mod, #training_venue, #withinPhilriceInput, #source_of_fund')
+                .on('change', function() {
+                    // disable nextBtn if any of the input are blank (Section 3)
+                    if(currentSection == 3) {
+                        if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                            nextBtn.disabled = true;
+                        } else {
+                            nextBtn.disabled = false;
+                        }
+                    }
+                    // disable nextBtn if any of the input are blank (Section 2)
+                    if(currentSection == 2) {
+                        // disable nextBtn if one of the input field is blank
+                        if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
+                            nextBtn.disabled = true;
+                        } else {
+                             if($("#training_title").val() == 'Other') {
+                                if(!$("#otherTrainingInput").val()) {
+                                    nextBtn.disabled = true;
+                                } else {
+                                    nextBtn.disabled = false;
+                                }
+                                // console.log($("#otherTrainingInput").val());
+                            } 
+                            if($("#training_type").val() == 'Local') {
+                                // disable nextBtn if training_venue is blank and training_type == Local
+                                if(!$("#training_venue").val()) {
+                                    nextBtn.disabled = true;
+                                } else {
+                                    if($("#training_venue").val() == 'Within PhilRice Station') {
+                                        // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
+                                        if(!$("#withinPhilriceInput").val()) {
+                                            nextBtn.disabled = true;
+                                        } else {
+                                            nextBtn.disabled = false;
+                                        }
+                                        
+                                    } else if($("#training_venue").val() == 'Outside PhilRice Station') {
+                                        // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
+                                        if(!$("#outsidePhilriceInput").val()) {
+                                            nextBtn.disabled = true;
+                                        } else {
+                                            nextBtn.disabled = false;
+                                        }
+                                    }
+                                }
+                            } 
+                            if($("#training_type").val() == 'International') {
+                                // disable nextBtn if internationalTrainingInput is blank and training_type == International
+                                if(!$("#internationalTrainingInput").val()) {
+                                    nextBtn.disabled = true;
+                                } else {
+                                    nextBtn.disabled = false;
+                                }
+                            } 
+                        }
+                    }
+                });
+            
+            // check image size
+            $('#photo_doc_event').on('change', function() {
+                var images = this.files;
+                var errorImage = $('#errorImage');
+
+                for (var i = 0; i < images.length; i++) {
+                    var image = images[i];
+                    var imageSize = image.size / 1024 / 1024; // Convert bytes to MB
+
+                    if (imageSize > 25) {
+                        errorImage.text('Image size exceeds 25MB. Please select a smaller image.');
+                        errorImage.show(); // Show the error message
+                        $(this).val(''); // Clear the file input
+                        return; // Stop further processing
+                    }
+                }
+                // Hide the error message if all images are within size limit
+                errorImage.hide();
+            });
+            // check file size
+            $('#other_doc').on('change', function() {
+                var files = this.files;
+                var errorFile = $('#errorFile');
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var fileSize = file.size / 1024 / 1024; // Convert bytes to MB
+
+                    if (fileSize > 25) {
+                        errorFile.text('File size exceeds 25MB. Please select a smaller file.');
+                        errorFile.show(); // Show the error message
+                        $(this).val(''); // Clear the file input
+                        return; // Stop further processing
+                    }
+                }
+                // Hide the error message if all images are within size limit
+                errorFile.hide();
+            });
         });
     </script>
 
