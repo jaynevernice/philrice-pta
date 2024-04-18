@@ -196,11 +196,11 @@
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    <option selected>Form Type</option>
-                    <option value="1" selected>Summary of Trainings Conducted</option>
-                    <option value="2">Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="3">Technical Dispatch Monitoring</option>
-                    <option value="4">Technology Demonstration Monitoring</option>
+                    <option disabled>Form Type</option>
+                    <option value="" selected>Summary of Trainings Conducted</option>
+                    <option value="0">Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0">Technical Dispatch Monitoring</option>
+                    <option value="0">Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
