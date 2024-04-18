@@ -134,7 +134,7 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2">
+            <div class="mr-2 w-24">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
@@ -150,7 +150,7 @@
             </div>
 
             {{-- From --}}
-            <div class="mx-2">
+            <div class="mx-1 w-24">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="start_MonthSelect">
@@ -171,7 +171,7 @@
             </div>
 
             {{-- To --}}
-            <div class="mx-2">
+            <div class="mx-1 w-24">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="end_MonthSelect">
@@ -192,20 +192,20 @@
             </div>
 
             {{-- Form --}}
-            <div class="mx-2 mr-auto">
+            <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    <option value="" selected disabled>Form Type</option>
-                    <option value="" selected>Summary of Trainings Conducted</option>
-                    <option value="0">Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="0">Technical Dispatch Monitoring</option>
-                    <option value="0">Technology Demonstration Monitoring</option>
+                    <option selected>Form Type</option>
+                    <option value="1" selected>Summary of Trainings Conducted</option>
+                    <option value="2">Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="3">Technical Dispatch Monitoring</option>
+                    <option value="4">Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
             {{-- Training Titles--}}
-            <div class="mx-2 mr-auto">
+            <div class="mx-1 w-56">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="training_title">
