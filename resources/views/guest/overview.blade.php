@@ -101,7 +101,7 @@
 
 @section('content')
     {{-- Main Content --}}
-    <main class="p-4 md:ml-64 h-screen pt-20">        
+    <main class="p-4 md:ml-64 h-screen pt-20">
 
         {{-- Filters and Export --}}
         <div class="flex my-4">
@@ -176,45 +176,46 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-            {{-- <div class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64">
-          <div id="chart1" class="items-center"></div>
-        </div> --}}
-            {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div> --}}
-
-            <div
-                class="bg-slate-100 shadow-lg border-2  rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
-                <div id="chart1"></div>
-            </div>
-            <div
-                class="bg-slate-100 shadow-lg border-2  rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
-                <div id="chart2"></div>
+        {{-- Chart Row 1 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Total Number of Participants --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">1973</h1>
+                <p class="text-gray-500 dark:text-gray-400">Total Number of Participants</p>
             </div>
 
+            {{-- Average Gain in Knowledge --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">69.69%</h1>
+                <p class="text-gray-500 dark:text-gray-400">Average Gain in Knowledge (GIK)</p>
+            </div>
+
+            {{-- Overall Training Evaluation Rating --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 class="mb-2 text-6xl font-extrabold">4.93</h1>
+                <p class="font-bold text-gray-500 dark:text-gray-400">Excellent</p>
+                <p class="text-gray-500 dark:text-gray-400">Overall Training Evaluation Rating</p>
+            </div>
         </div>
 
-        <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4 p-4">
-            <div id="chart3"></div>
-        </div>
-
-
-        <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-                <div id="chart4"></div>
+        {{-- Chart Row 2 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Sex Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="sexChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Sex</p>
             </div>
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-                <div id="chart5"></div>
+            {{-- IP Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lgh-auto flex flex-col justify-center items-center">
+                <div id="ipChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Indigenous Identity</p>
             </div>
-            {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div> --}}
-            {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div> --}}
+            {{-- PWD Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="pwdChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Breakdown of Participants by Ability Status</p>
+            </div>
         </div>
-        {{-- <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div> --}}
-        {{-- <div class="grid grid-cols-2 gap-4">
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-      </div> --}}
     </main>
 @endsection
 
@@ -222,6 +223,179 @@
 @section('charts')
     {{-- Charts --}}
     <script>
+
+        // Sex Distribution
+        var sex = {
+            series: [55, 45],
+            chart: {
+                width: 380,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                }
+            },
+            labels: ['Female', 'Male'],
+            colors: ['#f87171', '#06b6d4'],
+            // title: {
+            //     text: "Sex Distribution",
+            //     align: 'center',
+            //     margin: 0,
+            //     offsetX: 0,
+            //     offsetY: 0,
+            //     floating: false,
+            //     style: {
+            //         fontSize: '14px',
+            //         fontWeight: 'bold',
+            //         fontFamily: undefined,
+            //         color: '#263238'
+            //     },
+            // },
+            // responsive: [{
+            //     breakpoint: 480,
+            //     options: {
+            //         chart: {
+            //             width: 200,
+            //         },
+            //         legend: {
+            //             position: 'bottom'
+            //         }
+            //     }
+            // }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#sexChart"), sex);
+        chart.render();
+
+        // IP Distribution
+        var ip = {
+            series: [23, 77],
+            chart: {
+                width: 380,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                }
+            },
+            labels: ['Indigenous', 'Non-IP'],
+            colors: ['#1a2e05', '#164e63']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#ipChart"), ip);
+        chart.render();
+
+        // PWD Distribution
+        var pwd = {
+            series: [40, 60],
+            chart: {
+                width: 380,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                }
+            },
+            labels: ['PWD', 'Non-PWD'],
+            colors: ['#6d28d9', '#164e63']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+        chart.render();
+
+        // Regions
+        var region = {
+            series: [{
+                data: [{
+                        x: 'New Delhi',
+                        y: 218
+                    },
+                    {
+                        x: 'Kolkata',
+                        y: 149
+                    },
+                    {
+                        x: 'Mumbai',
+                        y: 184
+                    },
+                    {
+                        x: 'Ahmedabad',
+                        y: 55
+                    },
+                    {
+                        x: 'Bangaluru',
+                        y: 84
+                    },
+                    {
+                        x: 'Pune',
+                        y: 31
+                    },
+                    {
+                        x: 'Chennai',
+                        y: 70
+                    },
+                    {
+                        x: 'Jaipur',
+                        y: 30
+                    },
+                    {
+                        x: 'Surat',
+                        y: 44
+                    },
+                    {
+                        x: 'Hyderabad',
+                        y: 68
+                    },
+                    {
+                        x: 'Lucknow',
+                        y: 28
+                    },
+                    {
+                        x: 'Indore',
+                        y: 19
+                    },
+                    {
+                        x: 'Kanpur',
+                        y: 29
+                    }
+                ]
+            }],
+            legend: {
+                show: false
+            },
+            chart: {
+                height: 350,
+                type: 'treemap',
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                text: 'Distibuted Treemap (different color for each cell)',
+                align: 'center'
+            },
+            colors: [
+                '#3B93A5',
+                '#F7B844',
+                '#ADD8C7',
+                '#EC3C65',
+                '#CDD7B6',
+                '#C1F666',
+                '#D43F97',
+                '#1E5D8C',
+                '#421243',
+                '#7F94B0',
+                '#EF6537',
+                '#C0ADDB'
+            ],
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: false
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        chart.render();
+        
         var bar = {
             series: [{
                 data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
