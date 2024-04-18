@@ -165,7 +165,6 @@
                 </select>
             </div>
 
-
             {{-- To --}}
             <div class="mx-2">
                 <select name="quarter"
@@ -221,19 +220,19 @@
         <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
             {{-- Total Number of Participants --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
-                <h1 class="mb-2 text-6xl font-extrabold">1973</h1>
+                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">-</h1>
                 <p class="text-gray-500 dark:text-gray-400">Total Number of Participants</p>
             </div>
 
             {{-- Average Gain in Knowledge --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
-                <h1 class="mb-2 text-6xl font-extrabold">69.69%</h1>
+                <h1 id="average_gik_chart" class="mb-2 text-6xl font-extrabold">%</h1>
                 <p class="text-gray-500 dark:text-gray-400">Average Gain in Knowledge (GIK)</p>
             </div>
 
             {{-- Overall Training Evaluation Rating --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
-                <h1 class="mb-2 text-6xl font-extrabold">4.93</h1>
+                <h1 id="evaluation_chart" class="mb-2 text-6xl font-extrabold">-</h1>
                 <p class="font-bold text-gray-500 dark:text-gray-400">Excellent</p>
                 <p class="text-gray-500 dark:text-gray-400">Overall Training Evaluation Rating</p>
             </div>
@@ -805,5 +804,54 @@
 
         var chart = new ApexCharts(document.querySelector("#chart5"), options);
         chart.render();
+    </script>
+@endsection
+
+@section('datatable')
+    <script type="text/javascript">
+        let currentPage = 1;
+        const recordsPerPage = 5; // Change this number according to your preference
+
+        $(document).ready(function() {
+            loadTrainings(currentPage);
+        });
+
+        function loadTrainings(page) {
+            $.ajax({
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                data: {
+                    showOverview: true,
+                    page: page,
+                    recordsPerPage: recordsPerPage,
+                },
+                success: function(result) {
+                    // showTrainings(result["records"]);
+                    currentPage = page; // Update current page
+                    var total_participants = result['only_numbers'][0].total_participants;
+                    var average_gik = result['only_numbers'][0].average_gik;
+                    var evaluation = result['only_numbers'][0].evaluation;
+
+                    $("#total_participants_chart").text(total_participants);
+                    $("#average_gik_chart").text(average_gik + '%');
+                    $("#evaluation_chart").text(evaluation);
+                    // Check if there are more records beyond the current page
+                    // if (recordsPerPage != result["records"].length) {
+                    //     $("#nextButton").hide();
+                    //     $("#prevButton").show();
+                    // } else {
+                    //     $("#nextButton").show();
+                    //     $("#prevButton").show();
+                    // }
+                },
+                error: function(error) {
+                    alert("Oops something went wrong!");
+                },
+            });
+        }
     </script>
 @endsection

@@ -246,6 +246,35 @@ class TrainingsFormController extends Controller
             return response()->json(['records' => $records]);
         }
 
+        // For Overview
+        if ($request->boolean('showOverview')) {
+            // Get the current page number from the request, default to 1 if not provided
+            $page = $request->input('page', 1);
+
+            // Get the number of records to display per page from the request or use a default value
+            $recordsPerPage = $request->input('recordsPerPage', 5);
+
+            // Calculate the offset to skip records based on the current page number
+            $offset = ($page - 1) * $recordsPerPage;
+
+            // Query to fetch records with pagination
+            $records = DB::table('trainings_forms')
+                ->select('trainings_forms.*')
+                ->latest('trainings_forms.id')
+                ->skip($offset) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+
+            $only_numbers = DB::table('trainings_forms')
+                // ->select('SUM(num_of_participants) as total_participants')
+                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                ->get();
+                // ->total_participants;
+
+            return response()->json(['records' => $records, 'only_numbers' => $only_numbers]);
+        }
     }
 
     /**
