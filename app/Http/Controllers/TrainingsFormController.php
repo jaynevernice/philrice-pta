@@ -116,7 +116,19 @@ class TrainingsFormController extends Controller
             $yearSelect = $request->yearSelect ?? '';
             $start_MonthSelect = $request->start_MonthSelect ?? '';
             $end_MonthSelect = $request->end_MonthSelect ?? '';
+            $trainingTitle = $request->trainingTitle ?? '';
+            $formType = $request->formType ?? '';
 
+            // not existing form type
+            if($formType == 0) {
+                $records = DB::table('trainings_forms')
+                            ->select('*')
+                            ->where('id', '=', 0)
+                            ->get();
+                return response()->json(['records' => $records]);
+            }
+            // dd($trainingTitle);
+            
             $records = DB::table('trainings_forms')
                 ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
                 ->select('trainings_forms.*')
@@ -129,8 +141,18 @@ class TrainingsFormController extends Controller
                 ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
                     return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
                 })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
-                    return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
                                 // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
                                 // ->orWhere('venue', 'LIKE', "%$searchInput%")
                                 // ->orWhere('province', 'LIKE', "%$searchInput%")
@@ -145,15 +167,6 @@ class TrainingsFormController extends Controller
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
-            
-            // $records = DB::table('trainings_forms')
-            //     ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-            //     ->select('trainings_forms.*')
-            //     ->where('users.station', '=', $request->station)
-            //     ->latest('trainings_forms.id')
-            //     ->skip($offset) // Skip records based on the offset
-            //     ->take($recordsPerPage) // Limit the number of records per page
-            //     ->get();
 
             return response()->json(['records' => $records]);
         }
@@ -752,8 +765,11 @@ class TrainingsFormController extends Controller
             $yearSelect = $request->yearSelect ?? '';
             $start_MonthSelect = $request->start_MonthSelect ?? '';
             $end_MonthSelect = $request->end_MonthSelect ?? '';
+            $trainingTitle = $request->trainingTitle ?? '';
+            $formType = $request->formType ?? '';
+            $station = $request->station;
 
-            return Excel::download(new ExportRecords($searchInput, $yearSelect, $start_MonthSelect, $end_MonthSelect), 'test.xls');
+            return Excel::download(new ExportRecords($searchInput, $yearSelect, $start_MonthSelect, $end_MonthSelect, $trainingTitle, $formType, $station), 'test.xls');
         }
 
     }

@@ -170,7 +170,6 @@
                 </select>
             </div>
 
-
             {{-- To --}}
             <div class="mx-2">
                 <select name="quarter"
@@ -197,11 +196,11 @@
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    <option selected>Form Type</option>
-                    <option value="1" selected>Summary of Trainings Conducted</option>
-                    <option value="2">Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="3">Technical Dispatch Monitoring</option>
-                    <option value="4">Technology Demonstration Monitoring</option>
+                    <option value="" selected disabled>Form Type</option>
+                    <option value="" selected>Summary of Trainings Conducted</option>
+                    <option value="0">Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0">Technical Dispatch Monitoring</option>
+                    <option value="0">Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
@@ -213,7 +212,7 @@
                     <option value="" selected disabled>Training Title</option>
                     <option value="" >All Training Title</option>
                     @foreach ($titles as $title)
-                        <option value="{{ $title->id }}" >{{ $title->training_title }}</option>
+                        <option value="{{ $title->training_title }}" >{{ $title->training_title }}</option>
                     @endforeach
                     <option value="Other" >Other</option>
                 </select>
@@ -335,12 +334,6 @@
                     <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
                     Previous
                 </button>
-                {{-- page button for filter --}}
-                {{-- <button id="prevButton-filter" onclick="prevPageFilter()"
-                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
-                        Previous
-                    </button> --}}
             </div>
             <div class="ml-1">
                 {{-- page button for no filter --}}
@@ -349,14 +342,7 @@
                     Next
                     <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
                 </button>
-                {{-- page button for filter --}}
-                {{-- <button id="nextButton-filter" onclick="nextPageFilter()"
-                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        Next
-                        <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
-                    </button> --}}
             </div>
-        </div>
         </div>
     </main>
 
@@ -781,6 +767,8 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
@@ -795,6 +783,8 @@
                     yearSelect: yearSelect,
                     start_MonthSelect: start_MonthSelect,
                     end_MonthSelect: end_MonthSelect,
+                    trainingTitle: trainingTitle,
+                    formType: formType,
                     station: station,
                     page: page,
                     recordsPerPage: recordsPerPage,
@@ -822,12 +812,14 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == ""
             ) {
                 loadTrainings(1);
             } else {
@@ -866,12 +858,14 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == ""
             ) {
                 loadTrainings(1);
             } else {
@@ -907,12 +901,14 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == ""
             ) {
                 loadTrainings(1);
             } else {
@@ -948,12 +944,14 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == ""
             ) {
                 loadTrainings(1);
             } else {
@@ -984,17 +982,63 @@
             }
         });
 
+        $("#training_title").on("change", function() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            // console.log(trainingTitle);
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
+                loadTrainings(1);
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
+        $("#form").on("change", function() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
+            // console.log(formType);
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                formType == ""
+            ) {
+                loadTrainings(1);
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
         function nextPage() {
             var searchInput = $("#trainingsSearch").val();
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            // var formType = parseInt($("#form").val());
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == "" 
+                // formType == ""
             ) {
                 loadTrainings(currentPage + 1);
             } else {
@@ -1007,12 +1051,16 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            // var formType = parseInt($("#form").val());
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == "" 
+                // formType == ""
             ) {
                 if (currentPage > 1) {
                     loadTrainings(currentPage - 1);
@@ -1029,9 +1077,12 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
 
             $.ajax({
-                url: "/encoder/export/record",
+                // url: "/encoder/export/record",
+                url: "{{ route('export.record') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1042,6 +1093,9 @@
                     yearSelect: yearSelect,
                     start_MonthSelect: start_MonthSelect,
                     end_MonthSelect: end_MonthSelect,
+                    trainingTitle: trainingTitle,
+                    formType: formType,
+                    station: station,
                 },
                 cache: false,
                 xhrFields: {
@@ -1050,7 +1104,7 @@
                 success: function(result) {
                     // var fileName = 'PhilRice Central Experimental Station (' . date('Y') . ') - Summary of Trainings';
                     var fileName =
-                        "PhilRice CES (" +
+                        "PhilRice " + station + " (" +
                         new Date().getFullYear() +
                         ") - Summary of Trainings";
 
@@ -1063,7 +1117,7 @@
                     link.download = fileName + ".xls";
                     link.click();
 
-                    alert("Thank you!");
+                    alert("Thank you for downloading!");
                 },
                 error: function(error) {
                     alert("Oops something went wrong!");
