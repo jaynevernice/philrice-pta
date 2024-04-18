@@ -179,7 +179,7 @@
                     {{-- Training Title --}}
                     <div class="col-span-2">
                         <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Title of
-                            Training</label>
+                            Training <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative">
                             <select required id="training_title" name="training_title" onchange="toggleOtherTitle()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
@@ -196,7 +196,7 @@
                     <div id="otherTrainingTitle" style="display: none;" class="col-span-2">
                         <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
                             Training
-                            Title</label>
+                            Title <span class="text-red-600 font-extrabold">*</span></label>
                         <input type="text" id="otherTrainingInput" name="otherTrainingInput"
                             class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                     </div>
@@ -206,7 +206,7 @@
                     {{-- Type of Training --}}
                     <div>
                         <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
-                            Training</label>
+                            Training <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative">
                             <select id="training_type" name="training_type" onchange="toggleType()" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
@@ -220,7 +220,7 @@
                     {{-- Training Category --}}
                     <div>
                         <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
-                            Category</label>
+                            Category <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative">
                             <select id="training_category" name="training_category" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
@@ -235,7 +235,7 @@
                     {{-- Mode of Delivery --}}
                     <div>
                         <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
-                            Delivery</label>
+                            Delivery <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative">
                             <select id="mod" name="mod" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
@@ -249,7 +249,7 @@
 
                     {{-- Venue --}}
                     <div id="training_venue_container" style="display: none;">
-                        <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
+                        <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative">
                             <select id="training_venue" name="training_venue" onchange="toggleVenue()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
@@ -274,7 +274,7 @@
                 {{-- Additional Input Field for International Training Type --}}
                 <div id="internationalTraining" style="display: none;" class="col-span-2">
                     <label for="internationalTrainingInput"
-                        class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
+                        class="block my-2 text-sm font-medium text-gray-900">International Venue <span class="text-red-600 font-extrabold">*</span></label>
                     <input type="text" id="internationalTrainingInput" name="internationalTrainingInput"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
@@ -282,7 +282,7 @@
                 {{-- Additional Input Field for Within PhilRice Station --}}
                 <div id="withinPhilrice" style="display: none;" class="col-span-3">
                     <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within PhilRice
-                        Station</label>
+                        Station <span class="text-red-600 font-extrabold">*</span></label>
                     <select name="withinPhilriceInput" id="withinPhilriceInput"
                         class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         <option selected disabled>Select</option>
@@ -295,7 +295,7 @@
                 {{-- Additional Input Field for Outside PhilRice Station --}}
                 <div id="outsidePhilrice" style="display: none;" class="col-span-3">
                     <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
-                        PhilRice Station</label>
+                        PhilRice Station <span class="text-red-600 font-extrabold">*</span></label>
                     <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
@@ -304,7 +304,7 @@
                 {{-- Start Date and End Date --}}
                 <div date-rangepicker class="my-2 grid grid-cols-2 gap-x-4">
                     <div>
-                        <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start Date</label>
+                        <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start Date <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -319,7 +319,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
+                        <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date <span class="text-red-600 font-extrabold">*</span></label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -346,7 +346,7 @@
                 <div class="my-2 grid grid-cols-2 gap-x-4">
                     <div class="col-span-2">
                         <label for="sponsor" class="block my-2 text-sm font-medium text-gray-900">Name of Implementing
-                            Partner/s or Co-Organizer/s</label>
+                            Partner/s or Co-Organizer/s <span class="text-red-600 font-extrabold">*</span></label>
                         <p class="text-sm text-gray-500 mb-2">Specify name of partner, sponsor, or co-organizer. If more
                             than one, separate with comma. Please do not abbreviate the name(s). If no co-implementer write
                             N/A. </p>
@@ -360,7 +360,7 @@
                 <div class="my-2 grid grid-cols-2 gap-x-4">
                     <div class="col-span-2">
                         <label for="source_of_fund" class="block my-2 text-sm font-medium text-gray-900">Source of
-                            Fund</label>
+                            Fund <span class="text-red-600 font-extrabold">*</span></label>
                         <p class="text-sm text-gray-500 mb-2">Specify source of fund for conduct of training</p>
                         <div class="relative">
                             <select id="source_of_fund" name="source_of_fund" onchange="toggleFund()"
@@ -382,7 +382,7 @@
                 {{-- Additional Input Field for Source of Fund when Other is selected --}}
                 <div id="otherSourceFund" style="display: none;" class="col-span-2">
                     <label for="otherFundInput" class="block my-2 text-sm font-medium text-gray-900">Other
-                        Source of Fund </label>
+                        Source of Fund <span class="text-red-600 font-extrabold">*</span></label>
                     <input type="text" id="otherFundInput" name="otherFundInput"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
@@ -392,7 +392,7 @@
                     <div>
                         <label for="average_gik"
                             class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge
-                            (GIK)</label>
+                            (GIK) <span class="text-red-600 font-extrabold">*</span></label>
                         <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A
                             if
                             there is no GIK to input.</p>
@@ -405,7 +405,7 @@
                     {{-- Overall Training Evaluation --}}
                     <div>
                         <label for="evaluation" class="block my-2 text-sm font-medium text-gray-900">Overall Training
-                            Evaluation Rating</label>
+                            Evaluation Rating <span class="text-red-600 font-extrabold">*</span></label>
                         <p class="text-sm text-gray-500 mb-2">Write numerical score(average) and its corresponding
                             rating</p>
                         <div class="grid grid-cols-2 gap-x-1">
@@ -429,7 +429,7 @@
             {{-- Section 4 --}}
             <div class="section" data-section="4" style="display: none;">
                 <div class="flex">
-                    <h6 class="text-lg font-bold dark:text-white">Participant's Profile (Sector)</h6>
+                    <h6 class="text-lg font-bold dark:text-white">Participant's Profile (Sector) <span class="text-red-600 font-extrabold">*</span></h6>
                 </div>
                 {{-- Total Num of Participants --}}
                 <div class="my-2 grid grid-cols-2">
@@ -447,7 +447,7 @@
                 </div>
 
                 <hr class="my-4">
-                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number, <span class="text-red-600 font-extrabold"> *</span></label>
 
 
                 {{-- Breakdown of Participants  --}}
@@ -570,7 +570,7 @@
                 </div>
 
                 <hr class="my-4">
-                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number, <span class="text-red-600 font-extrabold"> *</span></label>
 
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
 
@@ -617,7 +617,7 @@
                                 placeholder="0" value="0" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-people-group"></i>
+                                <i class="fa-solid fa-person-dress"></i>
                             </div>
                             <button type="button" id="increment-button6" data-input-counter-increment="num_of_female"
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
@@ -650,7 +650,7 @@
                                 placeholder="0" value="0" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-                                <i class="fa-solid fa-person-dress"></i>
+                                <i class="fa-solid fa-people-group"></i>
                             </div>
                             <button type="button" id="increment-button7"
                                 data-input-counter-increment="num_of_indigenous"
@@ -699,7 +699,7 @@
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="photo_doc_event">Photo documentation of event/activity</label>
+                            for="photo_doc_event">Photo documentation of event/activity <span class="text-red-600 font-extrabold">*</span></label>
                         <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the training
                             conducted. Ensure that photo files have been named properly before uploading using the
                             Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
@@ -711,7 +711,7 @@
                     </div>
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other
-                            forms of documentation</label>
+                            forms of documentation <span class="text-gray-600 italic">(Optional)</span></label>
                         <p class="text-sm text-gray-500 mb-6">You may upload other forms of training documentation such as
                             attendance/registration sheet, copy of event program, short video or audio clip, and other
                             relevant documents, spreadsheet, or PDF file.</p>
@@ -916,23 +916,23 @@
                         "bg-green-600");
                     evaluationOutputClass.add("bg-gray-900");
                 } else if (evaluationInput <= 1.5) {
-                    evaluationOutput.value = 'Poor';
+                    evaluationOutput.value = '😨 Poor';
                     evaluationOutputClass.remove("bg-orange-500", "bg-yellow-300", "bg-lime-500", "bg-green-600");
                     evaluationOutputClass.add("bg-red-700");
                 } else if (evaluationInput <= 2.5) {
-                    evaluationOutput.value = 'Unsatisfactory';
+                    evaluationOutput.value = '😔 Unsatisfactory';
                     evaluationOutputClass.remove("bg-red-700", "bg-yellow-300", "bg-lime-500", "bg-green-600");
                     evaluationOutputClass.add("bg-orange-500");
                 } else if (evaluationInput <= 3.5) {
-                    evaluationOutput.value = 'Satisfactory';
+                    evaluationOutput.value = '😌 Satisfactory';
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-lime-500", "bg-green-600");
                     evaluationOutputClass.add("bg-yellow-300");
                 } else if (evaluationInput <= 4.5) {
-                    evaluationOutput.value = 'Very Satisfactory';
+                    evaluationOutput.value = '😄 Very Satisfactory';
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-green-600");
                     evaluationOutputClass.add("bg-lime-500");
                 } else if (evaluationInput <= 5) {
-                    evaluationOutput.value = 'Outstanding';
+                    evaluationOutput.value = '🤩 Outstanding';
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500");
                     evaluationOutputClass.add("bg-green-600");
                 } else {
