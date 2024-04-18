@@ -134,7 +134,8 @@
         {{-- Success/Error Message from TrainingsFormController --}}
         @include('_message')
         @if ($errors->any())
-            <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -362,14 +363,14 @@
                             Fund</label>
                         <p class="text-sm text-gray-500 mb-2">Specify source of fund for conduct of training</p>
                         <div class="relative">
-                            <select id="source_of_fund" name="source_of_fund"
+                            <select id="source_of_fund" name="source_of_fund" onchange="toggleFund()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                 required>
                                 <option selected disabled value="">Select</option>
                                 @foreach ($funds as $fund)
                                     <option value="{{ $fund->fund }}">{{ $fund->fund }}</option>
                                 @endforeach
-                                <option value="other">Other</option>
+                                <option value="Other">Other</option>
                             </select>
                             <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -378,13 +379,22 @@
                     </div>
                 </div>
 
+                {{-- Additional Input Field for Source of Fund when Other is selected --}}
+                <div id="otherSourceFund" style="display: none;" class="col-span-2">
+                    <label for="otherFundInput" class="block my-2 text-sm font-medium text-gray-900">Other
+                        Source of Fund </label>
+                    <input type="text" id="otherFundInput" name="otherFundInput"
+                        class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                </div>
+
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     {{-- Average GIK --}}
                     <div>
                         <label for="average_gik"
                             class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge
                             (GIK)</label>
-                        <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A if
+                        <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A
+                            if
                             there is no GIK to input.</p>
                         <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') }}"
                             min="0" aria-describedby="helper-text-explanation"
@@ -542,8 +552,8 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_other" name="num_of_other" data-input-counter value="0"
-                                data-input-counter-min="0" data-input-counter-max=""
+                            <input type="text" id="num_of_other" name="num_of_other" data-input-counter
+                                value="0" data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" required />
@@ -867,6 +877,17 @@
                 withinPhilrice.style.display = "none";
             }
         }
+
+        function toggleFund() {
+            var selectElement = document.getElementById("source_of_fund");
+            var otherSourceFund = document.getElementById("otherSourceFund");
+
+            if (selectElement.value === "Other") {
+                otherSourceFund.style.display = "block";
+            } else {
+                otherSourceFund.style.display = "none";
+            }
+        }
     </script>
 
 
@@ -1163,8 +1184,12 @@
                     if ((parseInt($("#total_participants").val()) == (parseInt($(
                             "#num_of_farmers_and_growers").val()) + parseInt($(
                             "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
-                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
+                            .val()) + parseInt($("#num_of_other").val()))) && (parseInt($(
+                            "#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                            parseInt($("#num_of_male").val()))) && (parseInt($("#num_of_indigenous")
+                            .val()) <= parseInt($("#total_participants").val())) && (parseInt($(
+                                "#num_of_pwd")
+                            .val()) <= parseInt($("#total_participants").val()))) {
                         nextBtn.disabled = false;
                     } else {
                         nextBtn.disabled = true;
@@ -1176,7 +1201,7 @@
 
             $('#nextBtn').on('click', function() {
                 saveFormData();
-                
+
                 // changes the type of nextBtn into submit
                 if (currentSection == 5) {
                     $("#submitBtn").removeAttr("hidden");
@@ -1192,10 +1217,14 @@
                     } else {
                         // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
                         if ((parseInt($("#total_participants").val()) == (parseInt($(
-                            "#num_of_farmers_and_growers").val()) + parseInt($(
-                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
-                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
+                                "#num_of_farmers_and_growers").val()) + parseInt($(
+                                "#num_of_extension_workers").val()) + parseInt($(
+                                    "#num_of_scientific")
+                                .val()) + parseInt($("#num_of_other").val()))) && (parseInt($(
+                                "#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                                parseInt($("#num_of_male").val()))) && (parseInt($("#num_of_indigenous")
+                                .val()) <= parseInt($("#total_participants").val())) && (parseInt($(
+                                "#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                             nextBtn.disabled = false;
                         } else {
                             nextBtn.disabled = true;
@@ -1204,7 +1233,7 @@
                     }
                 }
                 // disable nextBtn if any of the input are blank (Section 3)
-                if(currentSection == 3) {
+                if (currentSection == 3) {
                     // if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
                     //     nextBtn.disabled = true;
                     // } else {
@@ -1226,70 +1255,74 @@
                     $("#average_gik").val(sanitizedValue);
 
                     // console.log(parseFloat($("#average_gik").val()));
-                    if(isNaN(parseFloat($("#average_gik").val()))) {
-                        if($("#average_gik").val() == 'N/A') {
+                    if (isNaN(parseFloat($("#average_gik").val()))) {
+                        if ($("#average_gik").val() == 'N/A') {
                             nextBtn.disabled = false;
                         } else {
                             nextBtn.disabled = true;
                         }
                         // console.log('nan');
                     } else {
-                        if(parseFloat($("#average_gik").val()) > 100) {
+                        if (parseFloat($("#average_gik").val()) > 100) {
                             var average_gik = 100.00;
                             $("#average_gik").val(average_gik);
                             nextBtn.disabled = false;
-                        } if(parseFloat($("#average_gik").val()) < 1) {
+                        }
+                        if (parseFloat($("#average_gik").val()) < 1) {
                             var average_gik = 1.00;
                             $("#average_gik").val(average_gik);
                             nextBtn.disabled = false;
                         }
                     }
 
-                    if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                    if (!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !
+                        $("#evaluationInput").val()) {
                         nextBtn.disabled = true;
                     } else {
                         nextBtn.disabled = false;
                     }
                 }
                 // disable nextBtn if any of the input are blank (Section 2)
-                if(currentSection == 2) {
+                if (currentSection == 2) {
                     // disable nextBtn if one of the input field is blank
-                    if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
+                    if (!$("#training_title").val() || !$("#training_category").val() || !$(
+                            "#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$(
+                            "#end_date").val()) {
                         nextBtn.disabled = true;
                     } else {
-                        if($("#training_title").val() == 'Other') {
-                            if(!$("#otherTrainingInput").val()) {
+                        if ($("#training_title").val() == 'Other') {
+                            if (!$("#otherTrainingInput").val()) {
                                 nextBtn.disabled = true;
                             } else {
                                 nextBtn.disabled = false;
                             }
-                        } 
-                        if($("#training_type").val() == 'Local') {
+                        }
+                        if ($("#training_type").val() == 'Local') {
                             // disable nextBtn if training_venue is blank and training_type == Local
-                            if(!$("#training_venue").val()) {
+                            if (!$("#training_venue").val()) {
                                 nextBtn.disabled = true;
                             } else {
-                                if($("#training_venue").val() == 'Within PhilRice Station') {
+                                if ($("#training_venue").val() == 'Within PhilRice Station') {
                                     // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
-                                    if(!$("#withinPhilriceInput").val()) {
+                                    if (!$("#withinPhilriceInput").val()) {
                                         nextBtn.disabled = true;
                                     } else {
                                         nextBtn.disabled = false;
                                     }
-                                    
-                                } else if($("#training_venue").val() == 'Outside PhilRice Station') {
+
+                                } else if ($("#training_venue").val() == 'Outside PhilRice Station') {
                                     // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
-                                    if(!$("#outsidePhilriceInput").val()) {
+                                    if (!$("#outsidePhilriceInput").val()) {
                                         nextBtn.disabled = true;
                                     } else {
                                         nextBtn.disabled = false;
                                     }
                                 }
                             }
-                        } 
-                        if($("#training_type").val() == 'International') {
+                        }
+                        if ($("#training_type").val() == 'International') {
                             // disable nextBtn if internationalTrainingInput is blank and training_type == International
-                            if(!$("#internationalTrainingInput").val()) {
+                            if (!$("#internationalTrainingInput").val()) {
                                 nextBtn.disabled = true;
                             } else {
                                 nextBtn.disabled = false;
@@ -1310,10 +1343,14 @@
                         } else {
                             // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
                             if ((parseInt($("#total_participants").val()) == (parseInt($(
-                            "#num_of_farmers_and_growers").val()) + parseInt($(
-                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
-                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
+                                    "#num_of_farmers_and_growers").val()) + parseInt($(
+                                    "#num_of_extension_workers").val()) + parseInt($(
+                                        "#num_of_scientific")
+                                    .val()) + parseInt($("#num_of_other").val()))) && (parseInt($(
+                                    "#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                                    parseInt($("#num_of_male").val()))) && (parseInt($("#num_of_indigenous")
+                                    .val()) <= parseInt($("#total_participants").val())) && (parseInt($(
+                                    "#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
@@ -1322,18 +1359,18 @@
                         }
                     }
                     // Prevent input exceed more than 5 and less than 1
-                    if(parseFloat($("#evaluationInput").val()) > 5) {
+                    if (parseFloat($("#evaluationInput").val()) > 5) {
                         parseFloat($("#evaluationInput").val(5));
                         $("#evaluationOutput").val('Outstanding');
                         $("#evaluationOutput").addClass("bg-green-600");
-                    } else if(parseFloat($("#evaluationInput").val()) < 1) {
+                    } else if (parseFloat($("#evaluationInput").val()) < 1) {
                         parseFloat($("#evaluationInput").val(1));
                         $("#evaluationOutput").val('Poor');
                         $("#evaluationOutput").addClass("bg-red-700");
                     }
 
                     // disable nextBtn if any of the input are blank (Section 3)
-                    if(currentSection == 3) {
+                    if (currentSection == 3) {
 
                         // if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
                         //     nextBtn.disabled = true;
@@ -1356,77 +1393,81 @@
                         $("#average_gik").val(sanitizedValue);
 
                         // console.log(parseFloat($("#average_gik").val()));
-                        if(isNaN(parseFloat($("#average_gik").val()))) {
-                            if($("#average_gik").val() == 'N/A') {
+                        if (isNaN(parseFloat($("#average_gik").val()))) {
+                            if ($("#average_gik").val() == 'N/A') {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
                             }
                             // console.log('nan');
                         } else {
-                            if(parseFloat($("#average_gik").val()) > 100) {
+                            if (parseFloat($("#average_gik").val()) > 100) {
                                 var average_gik = 100.00;
                                 $("#average_gik").val(average_gik);
                                 nextBtn.disabled = false;
-                            } if(parseFloat($("#average_gik").val()) < 1) {
+                            }
+                            if (parseFloat($("#average_gik").val()) < 1) {
                                 var average_gik = 1.00;
                                 $("#average_gik").val(average_gik);
                                 nextBtn.disabled = false;
                             }
                         }
 
-                        if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                        if (!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !
+                            $("#evaluationInput").val()) {
                             nextBtn.disabled = true;
                         } else {
                             nextBtn.disabled = false;
                         }
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
-                    if(currentSection == 2) {
+                    if (currentSection == 2) {
                         // disable nextBtn if one of the input field is blank
-                        if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || (!$("#start_date").val() || !$("#end_date").val())) {
+                        if (!$("#training_title").val() || !$("#training_category").val() || !$(
+                                "#training_type").val() || !$("#mod").val() || (!$("#start_date").val() || !$(
+                                "#end_date").val())) {
                             nextBtn.disabled = true;
                         } else {
-                            if($("#training_title").val() == 'Other') {
-                                if($("#otherTrainingInput").val() == '') {
+                            if ($("#training_title").val() == 'Other') {
+                                if ($("#otherTrainingInput").val() == '') {
                                     nextBtn.disabled = true;
                                 } else {
                                     nextBtn.disabled = false;
                                 }
                                 // console.log($("#otherTrainingInput").val());
-                            } 
-                            if($("#training_type").val() == 'Local') {
+                            }
+                            if ($("#training_type").val() == 'Local') {
                                 // disable nextBtn if training_venue is blank and training_type == Local
-                                if(!$("#training_venue").val()) {
+                                if (!$("#training_venue").val()) {
                                     nextBtn.disabled = true;
                                 } else {
-                                    if($("#training_venue").val() == 'Within PhilRice Station') {
+                                    if ($("#training_venue").val() == 'Within PhilRice Station') {
                                         // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
-                                        if(!$("#withinPhilriceInput").val()) {
+                                        if (!$("#withinPhilriceInput").val()) {
                                             nextBtn.disabled = true;
                                             console.log($("#start_date").val());
                                         } else {
                                             nextBtn.disabled = false;
                                         }
-                                        
-                                    } else if($("#training_venue").val() == 'Outside PhilRice Station') {
+
+                                    } else if ($("#training_venue").val() == 'Outside PhilRice Station') {
                                         // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
-                                        if(!$("#outsidePhilriceInput").val()) {
+                                        if (!$("#outsidePhilriceInput").val()) {
                                             nextBtn.disabled = true;
                                         } else {
                                             nextBtn.disabled = false;
                                         }
                                     }
                                 }
-                            } 
-                            if($("#training_type").val() == 'International') {
+                            }
+                            if ($("#training_type").val() == 'International') {
                                 // disable nextBtn if internationalTrainingInput is blank and training_type == International
-                                if(!$("#internationalTrainingInput").val()) {
+                                if (!$("#internationalTrainingInput").val()) {
                                     nextBtn.disabled = true;
                                 } else {
                                     nextBtn.disabled = false;
                                 }
-                            } 
+                            }
                         }
                     }
                 });
@@ -1441,10 +1482,14 @@
                         } else {
                             // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
                             if ((parseInt($("#total_participants").val()) == (parseInt($(
-                            "#num_of_farmers_and_growers").val()) + parseInt($(
-                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
-                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
+                                    "#num_of_farmers_and_growers").val()) + parseInt($(
+                                    "#num_of_extension_workers").val()) + parseInt($(
+                                        "#num_of_scientific")
+                                    .val()) + parseInt($("#num_of_other").val()))) && (parseInt($(
+                                    "#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                                    parseInt($("#num_of_male").val()))) && (parseInt($("#num_of_indigenous")
+                                    .val()) <= parseInt($("#total_participants").val())) && (parseInt($(
+                                    "#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
@@ -1465,10 +1510,14 @@
                         } else {
                             // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
                             if ((parseInt($("#total_participants").val()) == (parseInt($(
-                            "#num_of_farmers_and_growers").val()) + parseInt($(
-                            "#num_of_extension_workers").val()) + parseInt($("#num_of_scientific")
-                            .val()) + parseInt($("#num_of_other").val()) )) && (parseInt($("#total_participants").val()) == (parseInt($("#num_of_female").val()) +
-                            parseInt($("#num_of_male").val()) )) && (parseInt($("#num_of_indigenous").val()) <= parseInt($("#total_participants").val())) && (parseInt($("#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
+                                    "#num_of_farmers_and_growers").val()) + parseInt($(
+                                    "#num_of_extension_workers").val()) + parseInt($(
+                                        "#num_of_scientific")
+                                    .val()) + parseInt($("#num_of_other").val()))) && (parseInt($(
+                                    "#total_participants").val()) == (parseInt($("#num_of_female").val()) +
+                                    parseInt($("#num_of_male").val()))) && (parseInt($("#num_of_indigenous")
+                                    .val()) <= parseInt($("#total_participants").val())) && (parseInt($(
+                                    "#num_of_pwd").val()) <= parseInt($("#total_participants").val()))) {
                                 nextBtn.disabled = false;
                             } else {
                                 nextBtn.disabled = true;
@@ -1481,62 +1530,65 @@
             $('#training_title, #training_category, #training_type, #mod, #training_venue, #withinPhilriceInput, #source_of_fund')
                 .on('change', function() {
                     // disable nextBtn if any of the input are blank (Section 3)
-                    if(currentSection == 3) {
-                        if(!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !$("#evaluationInput").val()) {
+                    if (currentSection == 3) {
+                        if (!$("#sponsor").val() || !$("#source_of_fund").val() || !$("#average_gik").val() || !
+                            $("#evaluationInput").val()) {
                             nextBtn.disabled = true;
                         } else {
                             nextBtn.disabled = false;
                         }
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
-                    if(currentSection == 2) {
+                    if (currentSection == 2) {
                         // disable nextBtn if one of the input field is blank
-                        if(!$("#training_title").val() || !$("#training_category").val() || !$("#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$("#end_date").val()) {
+                        if (!$("#training_title").val() || !$("#training_category").val() || !$(
+                                "#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$(
+                                "#end_date").val()) {
                             nextBtn.disabled = true;
                         } else {
-                             if($("#training_title").val() == 'Other') {
-                                if(!$("#otherTrainingInput").val()) {
+                            if ($("#training_title").val() == 'Other') {
+                                if (!$("#otherTrainingInput").val()) {
                                     nextBtn.disabled = true;
                                 } else {
                                     nextBtn.disabled = false;
                                 }
                                 // console.log($("#otherTrainingInput").val());
-                            } 
-                            if($("#training_type").val() == 'Local') {
+                            }
+                            if ($("#training_type").val() == 'Local') {
                                 // disable nextBtn if training_venue is blank and training_type == Local
-                                if(!$("#training_venue").val()) {
+                                if (!$("#training_venue").val()) {
                                     nextBtn.disabled = true;
                                 } else {
-                                    if($("#training_venue").val() == 'Within PhilRice Station') {
+                                    if ($("#training_venue").val() == 'Within PhilRice Station') {
                                         // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
-                                        if(!$("#withinPhilriceInput").val()) {
+                                        if (!$("#withinPhilriceInput").val()) {
                                             nextBtn.disabled = true;
                                         } else {
                                             nextBtn.disabled = false;
                                         }
-                                        
-                                    } else if($("#training_venue").val() == 'Outside PhilRice Station') {
+
+                                    } else if ($("#training_venue").val() == 'Outside PhilRice Station') {
                                         // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
-                                        if(!$("#outsidePhilriceInput").val()) {
+                                        if (!$("#outsidePhilriceInput").val()) {
                                             nextBtn.disabled = true;
                                         } else {
                                             nextBtn.disabled = false;
                                         }
                                     }
                                 }
-                            } 
-                            if($("#training_type").val() == 'International') {
+                            }
+                            if ($("#training_type").val() == 'International') {
                                 // disable nextBtn if internationalTrainingInput is blank and training_type == International
-                                if(!$("#internationalTrainingInput").val()) {
+                                if (!$("#internationalTrainingInput").val()) {
                                     nextBtn.disabled = true;
                                 } else {
                                     nextBtn.disabled = false;
                                 }
-                            } 
+                            }
                         }
                     }
                 });
-            
+
             // check image size
             $('#photo_doc_event').on('change', function() {
                 var images = this.files;
