@@ -129,12 +129,12 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2">
+            <div class="mr-2 w-24">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
                     <option value="" disabled>Year</option>
-                    <option value="" >All Year</option>
+                    <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
                             {{ $year }}
@@ -144,52 +144,52 @@
             </div>
 
             {{-- From --}}
-            <div class="mx-2">
+            <div class="mx-1 w-24">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="start_MonthSelect">
                     <option value="" selected disabled>From</option>
-                    <option value="" >All Month</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="">All Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
 
             {{-- To --}}
-            <div class="mx-2">
+            <div class="mx-1 w-24">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="end_MonthSelect">
                     <option value="" selected disabled>To</option>
-                    <option value="" >All Month</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="">All Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
             {{-- Form --}}
-            <div class="mx-2">
+            <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
@@ -201,17 +201,17 @@
                 </select>
             </div>
 
-            {{-- Training Titles--}}
-            <div class="mx-2 mr-auto">
+            {{-- Training Titles --}}
+            <div class="mx-1 w-56">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="training_title">
                     <option value="" selected disabled>Training Title</option>
-                    <option value="" >All Training Title</option>
+                    <option value="">All Training Title</option>
                     @foreach ($titles as $title)
-                        <option value="{{ $title->id }}" >{{ $title->training_title }}</option>
+                        <option value="{{ $title->id }}">{{ $title->training_title }}</option>
                     @endforeach
-                    <option value="Other" >Other</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
         </div>
@@ -259,28 +259,25 @@
         </div>
 
         {{-- Chart Row 3 --}}
-        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-96 mb-4 p-4">
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            <div id="sectorChart"></div>
+        </div>
+
+        {{-- Chart Row 4 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
             <div id="regionsChart"></div>
 
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+                {{-- Column 1 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Product name
+                                Number
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Color
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Category
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Price
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Action
+                                Region
                             </th>
                         </tr>
                     </thead>
@@ -289,132 +286,159 @@
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
+                                14
                             </th>
                             <td class="px-6 py-4">
-                                Silver
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop
-                            </td>
-                            <td class="px-6 py-4">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="px-6 py-4">
-                                White
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop PC
-                            </td>
-                            <td class="px-6 py-4">
-                                $1999
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Magic Mouse 2
-                            </th>
-                            <td class="px-6 py-4">
-                                Black
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4">
-                                $99
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Google Pixel Phone
-                            </th>
-                            <td class="px-6 py-4">
-                                Gray
-                            </td>
-                            <td class="px-6 py-4">
-                                Phone
-                            </td>
-                            <td class="px-6 py-4">
-                                $799
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple Watch 5
-                            </th>
-                            <td class="px-6 py-4">
-                                Red
-                            </td>
-                            <td class="px-6 py-4">
-                                Wearables
-                            </td>
-                            <td class="px-6 py-4">
-                                $999
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                Nueva Ecija
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                {{-- Column 2 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Region
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                14
+                            </th>
+                            <td class="px-6 py-4">
+                                Nueva Ecija
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {{-- Column 3 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Region
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                14
+                            </th>
+                            <td class="px-6 py-4">
+                                Nueva Ecija
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
 
         </div>
 
+        {{-- Chart Row 5 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            <div id="provincesChart"></div>
 
 
-        {{-- <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-4">
-            <div
-                class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
-                <div id="chart1"></div>
-            </div>
-            <div
-                class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64 flex justify-center items-center">
-                <div id="chart2"></div>
-            </div>
-        </div> --}}
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+                {{-- Column 1 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Province
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                14
+                            </th>
+                            <td class="px-6 py-4">
+                                Nueva Ecija
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        {{-- <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-96 mb-4 p-4">
-            <div id="chart3"></div>
-        </div> --}}
+                {{-- Column 2 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Province
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                14
+                            </th>
+                            <td class="px-6 py-4">
+                                Nueva Ecija
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        {{-- <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-                <div id="chart4"></div>
+                {{-- Column 3 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Province
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                14
+                            </th>
+                            <td class="px-6 py-4">
+                                Nueva Ecija
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-                <div id="chart5"></div>
-            </div>
-        </div> --}}
+
+        </div>
+
     </main>
 @endsection
 
@@ -496,6 +520,82 @@
         var chart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
         chart.render();
 
+        // Sector
+        var sector = {
+            series: [{
+                data: [400, 430, 448, 470]
+            }],
+            chart: {
+                type: 'bar',
+                height: 240
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: '100%',
+                    distributed: true,
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'bottom'
+                    },
+                }
+            },
+            colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa'],
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                style: {
+                    colors: ['#fff']
+                },
+                formatter: function(val, opt) {
+                    return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                },
+                offsetX: 0,
+                dropShadow: {
+                    enabled: true
+                }
+            },
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
+            xaxis: {
+                categories: ['Farmers and Seed Growers',
+                    'Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)',
+                    'Scientific Community (researchers, academe, etc)',
+                    'Other Sectors (rice industry players, media, policymakers, general rice consumers)'
+                ],
+            },
+            yaxis: {
+                labels: {
+                    show: false
+                }
+            },
+            title: {
+                text: 'Breakdown by Sector',
+                align: 'center',
+                floating: true
+            },
+            tooltip: {
+                theme: 'dark',
+                x: {
+                    show: false
+                },
+                y: {
+                    title: {
+                        formatter: function() {
+                            return ''
+                        }
+                    }
+                }
+            },
+            legend: {
+                show: false
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#sectorChart"), sector);
+        chart.render();
+
         // Regions
         var regions = {
             series: [{
@@ -564,7 +664,7 @@
                 },
             },
             title: {
-                text: 'Distibuted Treemap (different color for each cell)',
+                text: 'Regions',
                 align: 'center'
             },
             colors: [
@@ -592,218 +692,100 @@
         var chart = new ApexCharts(document.querySelector("#regionsChart"), regions);
         chart.render();
 
-
-
-        // Samples
-        var bar = {
-            series: [{
-                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-            }],
-            chart: {
-                type: 'bar',
-                height: 290,
-                toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                    'United States', 'China', 'Germany'
-                ],
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart1"), bar);
-        chart.render();
-
-
-        var timeline = {
+        // Provinces
+        var provinces = {
             series: [{
                 data: [{
-                        x: 'Code',
-                        y: [
-                            new Date('2019-03-02').getTime(),
-                            new Date('2019-03-04').getTime()
-                        ]
+                        x: 'Nueva Ecija',
+                        y: 14
                     },
                     {
-                        x: 'Test',
-                        y: [
-                            new Date('2019-03-04').getTime(),
-                            new Date('2019-03-08').getTime()
-                        ]
+                        x: 'La Union',
+                        y: 1
                     },
                     {
-                        x: 'Validation',
-                        y: [
-                            new Date('2019-03-08').getTime(),
-                            new Date('2019-03-12').getTime()
-                        ]
+                        x: 'Metro Manila',
+                        y: 2
                     },
                     {
-                        x: 'Deployment',
-                        y: [
-                            new Date('2019-03-12').getTime(),
-                            new Date('2019-03-18').getTime()
-                        ]
+                        x: 'Negros Occidental',
+                        y: 1
+                    },
+                    {
+                        x: 'Laguna',
+                        y: 10
+                    },
+                    {
+                        x: 'Benguet',
+                        y: 2
+                    },
+                    {
+                        x: 'Agusan Del Norte',
+                        y: 4
+                    },
+                    {
+                        x: 'Compostella Valley',
+                        y: 1
+                    },
+                    {
+                        x: 'Sorsogon',
+                        y: 2
+                    },
+                    {
+                        x: 'Leyte',
+                        y: 5
+                    },
+                    {
+                        x: 'Camarines Sur',
+                        y: 4
+                    },
+                    {
+                        x: 'Camarines Norte',
+                        y: 1
+                    },
+                    {
+                        x: 'Albay',
+                        y: 3
                     }
                 ]
             }],
-            chart: {
-                height: 290,
-                type: 'rangeBar',
-                toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true
-                }
-            },
-            xaxis: {
-                type: 'datetime'
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart2"), timeline);
-        chart.render();
-
-        var options = {
-            series: [{
-                    name: 'Q1 Budget',
-                    group: 'budget',
-                    data: [44000, 55000, 41000, 67000, 22000, 43000]
-                },
-                {
-                    name: 'Q1 Actual',
-                    group: 'actual',
-                    data: [48000, 50000, 40000, 65000, 25000, 40000]
-                },
-                {
-                    name: 'Q2 Budget',
-                    group: 'budget',
-                    data: [13000, 36000, 20000, 8000, 13000, 27000]
-                },
-                {
-                    name: 'Q2 Actual',
-                    group: 'actual',
-                    data: [20000, 40000, 25000, 10000, 12000, 28000]
-                }
-            ],
-            chart: {
-                type: 'bar',
-                height: 290,
-                stacked: true,
-                toolbar: {
-                    show: false,
-                },
-            },
-            stroke: {
-                width: 1,
-                colors: ['#fff']
-            },
-            dataLabels: {
-                formatter: (val) => {
-                    return val / 1000 + 'K'
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false
-                }
-            },
-            xaxis: {
-                labels: {
-                    show: false
-                }
-            },
-            fill: {
-                opacity: 1
-            },
-            colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-            yaxis: {
-                labels: {
-                    formatter: (val) => {
-                        return val / 1000 + 'K'
-                    }
-                }
-            },
             legend: {
                 show: false
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart4"), options);
-        chart.render();
-
-
-        var options = {
-            series: [{
-                name: 'Net Profit',
-                data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-            }, {
-                name: 'Revenue',
-                data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-            }, {
-                name: 'Free Cash Flow',
-                data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-            }],
+            },
             chart: {
-                type: 'bar',
-                height: 280,
+                height: 350,
+                type: 'treemap',
                 toolbar: {
                     show: false,
-                }
+                },
             },
+            title: {
+                text: 'Provinces',
+                align: 'center'
+            },
+            colors: [
+                '#3B93A5',
+                '#F7B844',
+                '#ADD8C7',
+                '#EC3C65',
+                '#CDD7B6',
+                '#C1F666',
+                '#D43F97',
+                '#1E5D8C',
+                '#421243',
+                '#7F94B0',
+                '#EF6537',
+                '#C0ADDB'
+            ],
             plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                    endingShape: 'rounded'
-                },
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                show: true,
-                width: 2,
-                colors: ['transparent']
-            },
-            xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                labels: {
-                    show: false
-                },
-            },
-            yaxis: {
-                title: {
-                    text: '$ (thousands)'
-                }
-            },
-            fill: {
-                opacity: 1
-            },
-            tooltip: {
-                y: {
-                    formatter: function(val) {
-                        return "$ " + val + " thousands"
-                    }
+                treemap: {
+                    distributed: true,
+                    enableShades: false
                 }
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart5"), options);
+        var chart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
         chart.render();
     </script>
 @endsection
