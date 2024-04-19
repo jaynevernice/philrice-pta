@@ -194,9 +194,9 @@
                     id="form">
                     <option disabled>Form Type</option>
                     <option value="1" selected>Summary of Trainings Conducted</option>
-                    <option value="2">Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="3">Technical Dispatch Monitoring</option>
-                    <option value="4">Technology Demonstration Monitoring</option>
+                    <option value="0" disabled >Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0" disabled >Technical Dispatch Monitoring</option>
+                    <option value="0" disabled >Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
@@ -208,7 +208,7 @@
                     <option value="" selected disabled>Training Title</option>
                     <option value="">All Training Title</option>
                     @foreach ($titles as $title)
-                        <option value="{{ $title->id }}">{{ $title->training_title }}</option>
+                        <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
                     @endforeach
                     <option value="Other">Other</option>
                 </select>
@@ -220,19 +220,19 @@
         <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
             {{-- Total Number of Participants --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
-                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">-</h1>
+                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
                 <p class="text-gray-500 dark:text-gray-400">Total Number of Participants</p>
             </div>
 
             {{-- Average Gain in Knowledge --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
-                <h1 id="average_gik_chart" class="mb-2 text-6xl font-extrabold">%</h1>
+                <h1 id="average_gik_chart" class="mb-2 text-6xl font-extrabold">0%</h1>
                 <p class="text-gray-500 dark:text-gray-400">Average Gain in Knowledge (GIK)</p>
             </div>
 
             {{-- Overall Training Evaluation Rating --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
-                <h1 id="evaluation_chart" class="mb-2 text-6xl font-extrabold">-</h1>
+                <h1 id="evaluation_chart" class="mb-2 text-6xl font-extrabold">0</h1>
                 <p class="font-bold text-gray-500 dark:text-gray-400">Excellent</p>
                 <p class="text-gray-500 dark:text-gray-400">Overall Training Evaluation Rating</p>
             </div>
@@ -280,17 +280,8 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                14
-                            </th>
-                            <td class="px-6 py-4">
-                                Nueva Ecija
-                            </td>
-                        </tr>
+                    <tbody id="region-column-1">
+                        {{-- data for column 1 of region --}}
                     </tbody>
                 </table>
 
@@ -444,8 +435,13 @@
 @section('charts')
     <script>
         // Sex Distribution
+        var sex_charts = @json($sex_charts);
+        var sex_labels = Object.keys(sex_charts);
+        var sex_values = Object.values(sex_charts);
+
         var sex = {
-            series: [55, 45],
+            // series: [55, 45],
+            series: sex_values,
             chart: {
                 width: 380,
                 type: 'pie',
@@ -453,7 +449,8 @@
                     show: true,
                 }
             },
-            labels: ['Female', 'Male'],
+            // labels: ['Female', 'Male'],
+            labels: sex_labels,
             colors: ['#f87171', '#06b6d4'],
             // title: {
             //     text: "Sex Distribution",
@@ -482,12 +479,17 @@
             // }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#sexChart"), sex);
-        chart.render();
+        var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
+        sexChart.render();
 
         // IP Distribution
+        var indigenous_charts = @json($indigenous_charts);
+        var indigenous_labels = Object.keys(indigenous_charts);
+        var indigenous_values = Object.values(indigenous_charts);
+
         var ip = {
-            series: [23, 77],
+            // series: [23, 77],
+            series: indigenous_values,
             chart: {
                 width: 380,
                 type: 'pie',
@@ -495,16 +497,22 @@
                     show: true,
                 }
             },
-            labels: ['Indigenous', 'Non-IP'],
+            // labels: ['Indigenous', 'Non-IP'],
+            labels: indigenous_labels,
             colors: ['#1a2e05', '#164e63']
         };
 
-        var chart = new ApexCharts(document.querySelector("#ipChart"), ip);
-        chart.render();
+        var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
+        indigenousChart.render();
 
         // PWD Distribution
+        var ability_charts = @json($ability_charts);
+        var ability_labels = Object.keys(ability_charts);
+        var ability_values = Object.values(ability_charts);
+
         var pwd = {
-            series: [40, 60],
+            // series: [40, 60],
+            series: ability_values,
             chart: {
                 width: 380,
                 type: 'pie',
@@ -512,17 +520,23 @@
                     show: true,
                 }
             },
-            labels: ['PWD', 'Non-PWD'],
+            // labels: ['PWD', 'Non-PWD'],
+            labels: ability_labels,
             colors: ['#6d28d9', '#164e63']
         };
 
-        var chart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
-        chart.render();
+        var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+        abilityChart.render();
 
-        // Sector
+        // Sector Bar Chart
+        var sector_charts = @json($sector_charts);
+        var sector_labels = Object.keys(sector_charts);
+        var sector_values = Object.values(sector_charts);
+
         var sector = {
             series: [{
-                data: [400, 430, 448, 470]
+                // data: [400, 430, 448, 470]
+                data: sector_values
             }],
             chart: {
                 type: 'bar',
@@ -558,11 +572,7 @@
                 colors: ['#fff']
             },
             xaxis: {
-                categories: ['Farmers and Seed Growers',
-                    'Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)',
-                    'Scientific Community (researchers, academe, etc)',
-                    'Other Sectors (rice industry players, media, policymakers, general rice consumers)'
-                ],
+                categories: sector_labels,
             },
             yaxis: {
                 labels: {
@@ -592,65 +602,73 @@
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#sectorChart"), sector);
-        chart.render();
+        var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
+        sectorChart.render();
 
         // Regions
+        var regions_charts = @json($sector_charts);
+        var regionsChartsData = Object.entries(regions_charts).map(([sector, count]) => ({
+            x: sector,
+            y: count
+        }));
+        // console.log(regions_charts);
+
         var regions = {
             series: [{
-                data: [{
-                        x: 'Nueva Ecija',
-                        y: 14
-                    },
-                    {
-                        x: 'La Union',
-                        y: 1
-                    },
-                    {
-                        x: 'Metro Manila',
-                        y: 2
-                    },
-                    {
-                        x: 'Negros Occidental',
-                        y: 1
-                    },
-                    {
-                        x: 'Laguna',
-                        y: 10
-                    },
-                    {
-                        x: 'Benguet',
-                        y: 2
-                    },
-                    {
-                        x: 'Agusan Del Norte',
-                        y: 4
-                    },
-                    {
-                        x: 'Compostella Valley',
-                        y: 1
-                    },
-                    {
-                        x: 'Sorsogon',
-                        y: 2
-                    },
-                    {
-                        x: 'Leyte',
-                        y: 5
-                    },
-                    {
-                        x: 'Camarines Sur',
-                        y: 4
-                    },
-                    {
-                        x: 'Camarines Norte',
-                        y: 1
-                    },
-                    {
-                        x: 'Albay',
-                        y: 3
-                    }
-                ]
+                // data: [{
+                //         x: 'Nueva Ecija',
+                //         y: 14
+                //     },
+                //     {
+                //         x: 'La Union',
+                //         y: 1
+                //     },
+                //     {
+                //         x: 'Metro Manila',
+                //         y: 2
+                //     },
+                //     {
+                //         x: 'Negros Occidental',
+                //         y: 1
+                //     },
+                //     {
+                //         x: 'Laguna',
+                //         y: 10
+                //     },
+                //     {
+                //         x: 'Benguet',
+                //         y: 2
+                //     },
+                //     {
+                //         x: 'Agusan Del Norte',
+                //         y: 4
+                //     },
+                //     {
+                //         x: 'Compostella Valley',
+                //         y: 1
+                //     },
+                //     {
+                //         x: 'Sorsogon',
+                //         y: 2
+                //     },
+                //     {
+                //         x: 'Leyte',
+                //         y: 5
+                //     },
+                //     {
+                //         x: 'Camarines Sur',
+                //         y: 4
+                //     },
+                //     {
+                //         x: 'Camarines Norte',
+                //         y: 1
+                //     },
+                //     {
+                //         x: 'Albay',
+                //         y: 3
+                //     }
+                // ]
+                data: regionsChartsData
             }],
             legend: {
                 show: false
@@ -688,8 +706,8 @@
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#regionsChart"), regions);
-        chart.render();
+        var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
+        regionsChart.render();
 
         // Provinces
         var provinces = {
@@ -784,8 +802,8 @@
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
-        chart.render();
+        var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
+        provincesChart.render();
     </script>
 @endsection
 
@@ -797,6 +815,22 @@
         $(document).ready(function() {
             loadTrainings(currentPage);
         });
+
+        function showRegions(result) {
+            var data = result[0];
+            var tableRow = ``;
+
+            Object.entries(data).forEach(function([sector, count]) {
+                // Append a table row for each sector
+                tableRow +=
+                    `<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${count}</th>
+                        <td class="px-6 py-4">${sector}</td>
+                    </tr>`;
+            });
+
+            $("#region-column-1").html(tableRow);
+        }   
 
         function loadTrainings(page) {
             $.ajax({
@@ -813,6 +847,9 @@
                 },
                 success: function(result) {
                     // showTrainings(result["records"]);
+                    // console.log(result["provinces"]);
+                    showRegions(result["provinces"]);
+                    
                     currentPage = page; // Update current page
                     var total_participants = result['only_numbers'][0].total_participants;
                     var average_gik = result['only_numbers'][0].average_gik;
@@ -835,5 +872,345 @@
                 },
             });
         }
+        // SEX CHART //
+        function loadSexPieChart() {
+            // Sex Distribution
+            var sex_charts = @json($sex_charts);
+            var sex_labels = Object.keys(sex_charts);
+            var sex_values = Object.values(sex_charts);
+
+            sex.series = sex_values;
+            sex.labels = sex_labels;
+
+            var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
+            sexChart.render();
+        }
+        // INDIGENOUS CHART //
+        function loadIndigenousPieChart() {
+            // IP Distribution
+            var indigenous_charts = @json($indigenous_charts);
+            var indigenous_labels = Object.keys(indigenous_charts);
+            var indigenous_values = Object.values(indigenous_charts);
+
+            ip.series = indigenous_values;
+            ip.labels = indigenous_labels;
+
+            var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
+            indigenousChart.render();
+        }
+        // ABILITY CHART //
+        function loadAbilityPieChart() {
+            // PWD Distribution
+            var ability_charts = @json($ability_charts);
+            var ability_labels = Object.keys(ability_charts);
+            var ability_values = Object.values(ability_charts);
+
+            pwd.series = ability_values;
+            pwd.labels = ability_labels;
+
+            var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+            abilityChart.render();
+        }
+        // SECTOR CHART //
+        function loadSectorBarChart() {
+            var sector_charts = @json($sector_charts);
+            var sector_labels = Object.keys(sector_charts);
+            var sector_values = Object.values(sector_charts);
+
+            sector.series[0].data = sector_values;
+            sector.xaxis.categories = sector_labels;
+
+            var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
+            sectorChart.render();
+        }
+
+        // RENDER FILTERED PIE CHART //
+        function renderFilteredPieChart(keys, values, chart) {
+            // fetch filtered data for pie chart
+            var labels = keys;
+            var values = values;
+            // handle null data
+            values = values.map(value => value === null ? 0 : value);
+            
+            if(chart == 'sex') {
+                // update sex chart  
+                sex.series = values;
+                sex.labels = labels;
+                // render sex chart
+                var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
+                sexChart.render();
+            }
+            if(chart == 'ip') {
+                // update indigenous chart  
+                ip.series = values;
+                ip.labels = labels;
+                // render indigenous chart
+                var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
+                indigenousChart.render();
+            }
+            if(chart == 'pwd') {
+                // update PWD chart  
+                pwd.series = values;
+                pwd.labels = labels;
+                // render PWD chart
+                var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+                abilityChart.render();
+            }
+
+        }
+
+        // RENDER FILTERED BAR CHART //
+        function renderFilteredBarChart(keys, values, chart) {
+            var labels = keys;
+            var values = values;
+            
+            if(chart == 'sector') {
+                sector.series[0].data = values;
+                sector.xaxis.categories = labels;
+
+                var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
+                sectorChart.render();
+            }
+        }
+
+        // Function to destroy a chart if it exists
+        function destroyChart(chart) {
+            if (chart) {
+                chart.destroy();
+            }
+        }
+
+        function loadFilterTrainings(page) {
+            // var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
+
+            $.ajax({
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                data: {
+                    filterShowOverview: true,
+                    // searchInput: searchInput,
+                    yearSelect: yearSelect,
+                    start_MonthSelect: start_MonthSelect,
+                    end_MonthSelect: end_MonthSelect,
+                    trainingTitle: trainingTitle,
+                    formType: formType,
+                    page: page,
+                    recordsPerPage: recordsPerPage,
+                },
+                success: function(result) {
+                    currentPage = page; // Update current page
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result['only_numbers'][0].total_participants : '0'; 
+                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0].average_gik : '0';
+                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0].evaluation : '0';
+
+                    $("#total_participants_chart").text(total_participants);
+                    $("#average_gik_chart").text(average_gik + '%');
+                    $("#evaluation_chart").text(evaluation);
+                    
+                    // --- SEX CHART --- //
+                    // Destroy existing charts
+                    destroyChart(sexChart);
+                    destroyChart(indigenousChart);
+                    destroyChart(abilityChart);
+                    destroyChart(sectorChart);
+                    
+                    // call function to render filtered pie chart
+                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
+                    renderFilteredPieChart(Object.keys(result['indigenous_charts']), Object.values(result['indigenous_charts']), 'ip');
+                    renderFilteredPieChart(Object.keys(result['ability_charts']), Object.values(result['ability_charts']), 'pwd');
+                    
+                    // call function to render filtered Bar chart
+                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+
+                    // if (recordsPerPage != result["records"].length) {
+                    //     $("#nextButton").hide();
+                    //     $("#prevButton").show();
+                    // } else {
+                    //     $("#nextButton").show();
+                    //     $("#prevButton").show();
+                    // }
+                },
+                error: function(error) {
+                    alert("Oops something went wrong!");
+                },
+            });
+        }
+
+        $("#yearSelect").on("change", function() {
+            // var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
+                loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadIndigenousPieChart();
+                loadAbilityPieChart();
+                loadSectorBarChart();
+
+            } else {
+                loadFilterTrainings(1);
+                
+            }
+        });
+
+         $("#start_MonthSelect").on("change", function() {
+            // var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
+                loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadIndigenousPieChart();
+                loadAbilityPieChart();
+                loadSectorBarChart();
+
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
+        $("#end_MonthSelect").on("change", function() {
+            // var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
+                loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadIndigenousPieChart();
+                loadAbilityPieChart();
+                loadSectorBarChart();
+
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
+        $("#training_title").on("change", function() {
+            // var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            // console.log(trainingTitle);
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
+                loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadIndigenousPieChart();
+                loadAbilityPieChart();
+                loadSectorBarChart();
+
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
+        $("#form").on("change", function() {
+            // var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
+            // console.log(formType);
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                formType == "1"
+            ) {
+                loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                // destroyChart(indigenousChart);
+                // destroyChart(abilityChart);
+                // destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                // loadIndigenousPieChart();
+                // loadAbilityPieChart();
+                // loadSectorBarChart();
+
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
     </script>
 @endsection

@@ -643,7 +643,6 @@
         });
 
         function showTrainings(result) {
-            // const tableBody = $('#table-body');
 
             var datas = result;
             var tableRow = ``;
@@ -679,27 +678,6 @@
                 `;
             });
 
-            // Efficient template literal construction using map()
-            // const trainingRows = result.map(data => `
-        // <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        //     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-        //     <td class="px-6 py-4">${data.division || '-'}</td>
-        //     <td class="px-6 py-4">${formatDate(data.start_date)} - ${formatDate(data.end_date)}</td>
-        //     <td class="px-6 py-4">${data.venue || '-'}</td>
-        //     <td class="px-6 py-4 text-center">
-        //         <button
-        //         data-modal-target="trainings-modal"
-        //         data-modal-toggle="trainings-modal"
-        //         type="button"
-        //         class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
-        //             <box-icon name='expand-alt' size="xs"></box-icon>
-        //         </button>
-        //     </td>
-        // </tr>
-        // `).join('');
-
-            // Single DOM manipulation for better performance
-            // tableBody.html(trainingRows);
             $("#table-body").html(tableRow);
         }
 
@@ -823,32 +801,6 @@
             ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     // url: "/encoder/trainings/filter",
-                //     url: "{{ route('filter_data') }}",
-                //     method: "POST",
-                //     headers: {
-                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                //     },
-                //     data: {
-                //         filterTrainingsView: true,
-                //         searchInput: searchInput,
-                //         yearSelect: yearSelect,
-                //         start_MonthSelect: start_MonthSelect,
-                //         end_MonthSelect: end_MonthSelect,
-                //         station: station,
-                //         page: page,
-                //         recordsPerPage: recordsPerPage,
-                //     },
-                //     success: function (result) {
-                //         showTrainings(result["records"]);
-                //         $("#nextButton").hide();
-                //         $("#prevButton").hide();
-                //     },
-                //     error: function (error) {
-                //         alert("Oops something went wrong!");
-                //     },
-                // });
                 loadFilterTrainings(1);
             }
         });
@@ -869,29 +821,6 @@
             ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     url: "/encoder/trainings/filter",
-                //     method: "POST",
-                //     headers: {
-                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                //     },
-                //     data: {
-                //         filterTrainingsView: true,
-                //         searchInput: searchInput,
-                //         yearSelect: yearSelect,
-                //         start_MonthSelect: start_MonthSelect,
-                //         end_MonthSelect: end_MonthSelect,
-                //         station: station,
-                //     },
-                //     success: function (result) {
-                //         showTrainings(result["records"]);
-                //         $("#nextButton").hide();
-                //         $("#prevButton").hide();
-                //     },
-                //     error: function (error) {
-                //         alert("Oops something went wrong!");
-                //     },
-                // });
                 loadFilterTrainings(1);
             }
         });
@@ -912,29 +841,6 @@
             ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     url: "/encoder/trainings/filter",
-                //     method: "POST",
-                //     headers: {
-                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                //     },
-                //     data: {
-                //         filterTrainingsView: true,
-                //         searchInput: searchInput,
-                //         yearSelect: yearSelect,
-                //         start_MonthSelect: start_MonthSelect,
-                //         end_MonthSelect: end_MonthSelect,
-                //         station: station,
-                //     },
-                //     success: function (result) {
-                //         showTrainings(result["records"]);
-                //         $("#nextButton").hide();
-                //         $("#prevButton").hide();
-                //     },
-                //     error: function (error) {
-                //         alert("Oops something went wrong!");
-                //     },
-                // });
                 loadFilterTrainings(1);
             }
         });
@@ -955,29 +861,6 @@
             ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     url: "/encoder/trainings/filter",
-                //     method: "POST",
-                //     headers: {
-                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                //     },
-                //     data: {
-                //         filterTrainingsView: true,
-                //         searchInput: searchInput,
-                //         yearSelect: yearSelect,
-                //         start_MonthSelect: start_MonthSelect,
-                //         end_MonthSelect: end_MonthSelect,
-                //         station: station,
-                //     },
-                //     success: function (result) {
-                //         showTrainings(result["records"]);
-                //         $("#nextButton").hide();
-                //         $("#prevButton").hide();
-                //     },
-                //     error: function (error) {
-                //         alert("Oops something went wrong!");
-                //     },
-                // });
                 loadFilterTrainings(1);
             }
         });
