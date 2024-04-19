@@ -140,7 +140,7 @@
                     id="yearSelect">
                     {{-- <option selected>Year</option> --}}
                     <option value="" disabled>Year</option>
-                    <option value="" >All Year</option>
+                    <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
                             {{ $year }}
@@ -155,18 +155,18 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="start_MonthSelect">
                     <option value="" selected>From</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
@@ -176,18 +176,18 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="end_MonthSelect">
                     <option value="" selected>To</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
@@ -204,17 +204,17 @@
                 </select>
             </div>
 
-            {{-- Training Titles--}}
+            {{-- Training Titles --}}
             <div class="mx-1 w-56">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="training_title">
                     <option value="" selected disabled>Training Title</option>
-                    <option value="" >All Training Title</option>
+                    <option value="">All Training Title</option>
                     @foreach ($titles as $title)
-                        <option value="{{ $title->training_title }}" >{{ $title->training_title }}</option>
+                        <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
                     @endforeach
-                    <option value="Other" >Other</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
 
@@ -287,30 +287,21 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Title of Event
+                            Title of Training
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
-                                Offices and Divisions
-                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a> --}}
+                                Type of Training
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
                                 Date
-                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a> --}}
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
                                 Venue
-                                {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                          </svg></a> --}}
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3 text-center">
@@ -348,64 +339,194 @@
 
     {{-- Modal for CES Summary of Trainings --}}
     <div id="trainings-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center">
+        <div class="fixed inset-0 bg-black opacity-50 h-full"></div>
+        <div class="relative p-4 w-full max-w-4xl">
             {{-- Modal Content --}}
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 {{-- Modal Header --}}
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Training Title
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="trainings-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 id="title" class="text-lg font-semibold text-gray-900"></h3>
+                    <button type="button" onclick="closeModal()"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                        <box-icon name='x'></box-icon>
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
                 {{-- Modal Body --}}
-                <form class="p-4 md:p-5">
-                    <div class="grid gap-4 mb-4 grid-cols-2">
-                        <div class="col-span-2">
-                            <label for="name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                            <input type="text" name="name" id="name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Type product name" required="">
+                <form class="p-5">
+                    {{-- Cards --}}
+                    <div class="grid gap-4 mb-4 grid-cols-4">
+                        <div>
+                            <a
+                                class="h-40 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                <h1 id="num_of_participants" class="mb-2 text-6xl font-extrabold">-</h1>
+                                <p class="font-normal text-gray-700">Total Number of Participants</p>
+                            </a>
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="price"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                            <input type="number" name="price" id="price"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="$2999" required="">
+                        <div>
+                            <a
+                                class="h-40 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                <div class="flex gap-3 my-2">
+                                    <h1 id="num_of_male" class="mb-2 text-4xl font-extrabold">-</h1>
+                                    <p class="font-normal text-gray-700">Total Number of Male</p>
+                                </div>
+                                <div class="flex gap-3 my-2">
+                                    <h1 id="num_of_female" class="mb-2 text-4xl font-extrabold">-</h1>
+                                    <p class="font-normal text-gray-700">Total Number of Female</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="category"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                            <select id="category"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected="">Select category</option>
-                                <option value="TV">TV/Monitors</option>
-                                <option value="PC">PC</option>
-                                <option value="GA">Gaming/Console</option>
-                                <option value="PH">Phones</option>
-                            </select>
+                        <div>
+                            <a
+                                class="h-40 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                <div class="flex gap-3 my-2">
+                                    <h1 id="num_of_indigenous" class="mb-2 text-4xl font-extrabold">-</h1>
+                                    <p class="font-normal text-gray-700">Total Number of PWD</p>
+                                </div>
+                                <div class="flex gap-3 my-2">
+                                    <h1 id="num_of_pwd" class="mb-2 text-4xl font-extrabold">-</h1>
+                                    <p class="font-normal text-gray-700">Total Number of IP</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="col-span-2">
-                            <label for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                                Description</label>
-                            <textarea id="description" rows="4"
-                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Write product description here"></textarea>
+                        <div>
+                            <a
+                                class="h-40 block max-w-sm p-2 pl-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                <div class="flex gap-3 items-center">
+                                    <h1 id="num_of_farmers" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Farmers and Seed Growers</p>
+                                </div>
+                                <div class="flex gap-3 items-center">
+                                    <h1 id="num_of_extworkers" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Ext. Workers & Intermediaries</p>
+                                </div>
+                                <div class="flex gap-3 items-center">
+                                    <h1 id="num_of_scientific" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Scientific Community</p>
+                                </div>
+                                <div class="flex gap-3 items-center">
+                                    <h1 id="num_of_other" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Other Sectors</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
+
+                    {{-- Start Date and End Date --}}
+                    <div date-rangepicker class="my-2 mb-2 grid grid-cols-2 gap-x-4">
+                        <div>
+                            <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start
+                                Date</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="start_date" name="start" value="{{ old('start') }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="end_date" name="end" value="{{ old('end') }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Training Details --}}
+                    <div class="grid gap-4 mb-4 grid-cols-3">
+                        <div>
+                            <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
+                                Training</label>
+                            <input disabled type="text" name="training_type" id="training_type"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
+                                Category</label>
+                            <input disabled type="text" name="training_category" id="training_category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
+                                Delivery</label>
+                            <input disabled type="text" name="mod" id="mod"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
+
+                    {{-- Location --}}
+                    {{-- Display Field for Venue if Training Type = International  --}}
+                    <div id="international_container" class="grid gap-4 mb-4 grid-cols-3" style="display: none;">
+                        <label for="international_address"
+                            class="block my-2 text-sm font-medium text-gray-900">International Address</label>
+                        <input disabled type="text" name="international_address" id="international_address"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                    </div>
+
+                    {{-- Display Field for Venue if Training Type = Local  --}}
+                    <div id="local_container" style="display: none;">
+                        <div>
+                            <label for="venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
+                            <input disabled type="text" name="venue" id="venue"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="local_address" class="block my-2 text-sm font-medium text-gray-900">Local
+                                Address</label>
+                            <input disabled type="text" name="local_address" id="local_address"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
+
+                    {{-- Partners and Sponsors --}}
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div>
+                            <label for="sponsor" class="block my-2 text-sm font-medium text-gray-900">Name of
+                                Implementing
+                                Partner/s or Co-Organizer/s</label>
+                            <input disabled type="text" name="sponsor" id="sponsor"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="source_of_fund" class="block my-2 text-sm font-medium text-gray-900">Source of
+                                Fund</label>
+                            <input disabled type="text" name="source_of_fund" id="source_of_fund"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
+
+                    {{-- GIK and Training Evaluation --}}
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div>
+                            <label for="average_gik" class="block my-2 text-sm font-medium text-gray-900">Average
+                                GIK</label>
+                            <input disabled type="text" name="average_gik" id="average_gik"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="evaluation" class="block my-2 text-sm font-medium text-gray-900">Overall Training
+                                Evaluation Rating</label>
+                            <input disabled type="text" name="evaluation" id="evaluation"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -512,8 +633,6 @@
             legend: {
                 show: false
             },
-
-
         };
 
         var chart = new ApexCharts(document.querySelector("#chart2"), polar);
@@ -629,6 +748,112 @@
     </script>
 @endsection
 
+@section('scripts')
+    <script>
+        function openModal(id, title, category, type, mod, sponsor, fund, gik, evaluation, start_date, end_date,
+            num_of_participants, num_of_male, num_of_female, num_of_indigenous, num_of_pwd, num_of_farmers,
+            num_of_extworkers, num_of_scientific, num_of_other, international_address, training_venue, province,
+            municipality, station) {
+
+            var modal = document.getElementById('trainings-modal');
+            modal.classList.add('flex');
+            modal.classList.remove('hidden');
+            document.querySelector('body').classList.add('overflow-hidden');
+            window.addEventListener('keydown', closeModalOnEsc);
+
+            document.getElementById('title').innerText = title;
+            document.getElementById('training_category').value = category;
+            document.getElementById('training_type').value = type;
+            document.getElementById('mod').value = mod;
+            document.getElementById('sponsor').value = sponsor;
+            document.getElementById('source_of_fund').value = fund;
+            document.getElementById('average_gik').value = gik;
+            document.getElementById('evaluation').value = evaluation;
+            document.getElementById('start_date').value = start_date;
+            document.getElementById('end_date').value = end_date;
+            document.getElementById('num_of_participants').innerText = num_of_participants;
+            document.getElementById('num_of_male').innerText = num_of_male;
+            document.getElementById('num_of_female').innerText = num_of_female;
+            document.getElementById('num_of_indigenous').innerText = num_of_indigenous;
+            document.getElementById('num_of_pwd').innerText = num_of_pwd;
+            document.getElementById('num_of_farmers').innerText = num_of_farmers;
+            document.getElementById('num_of_extworkers').innerText = num_of_extworkers;
+            document.getElementById('num_of_scientific').innerText = num_of_scientific;
+            document.getElementById('num_of_other').innerText = num_of_other;
+
+
+            var type = document.getElementById('training_type');
+            var internationalDiv = document.getElementById('international_container');
+            var internationalAddress = document.getElementById('international_address');
+            var localDiv = document.getElementById('local_container');
+            var venue = document.getElementById('venue');
+            var localAddress = document.getElementById('local_address');
+
+            if (type.value === "International") {
+                internationalDiv.style.display = 'block';
+                internationalAddress.value = international_address;
+                localDiv.style.display = 'none';
+            } else if (type.value === "Local") {
+                internationalDiv.style.display = 'none';
+                localDiv.style.display = 'block';
+                venue.value = training_venue;
+
+                if (venue.value === 'Within PhilRice Station') {
+                    if (parseInt(station) === 1) {
+                        console.log(station.value);
+                        localAddress.value = "PhilRice Central Experiment Station, Science City of Muñoz, 3119 Nueva Ecija"
+                    } else if (parseInt(station) === 2) {
+                        localAddress.value = "PhilRice Agusan, Basilisa, RTRomualdez, 8611 Agusan del Norte";
+                    } else if (parseInt(station) === 3) {
+                        localAddress.value = "PhilRice Batac, Batac City, 2906 Ilocos Norte";
+                    } else if (parseInt(station) === 4) {
+                        localAddress.value = "PhilRice Bicol, Ligao City, 4504 Albay";
+                    } else if (parseInt(station) === 5) {
+                        localAddress.value = "PhilRice CMU, Maramag, Bukidnon";
+                    } else if (parseInt(station) === 6) {
+                        localAddress.value = "PhilRice Isabela, San Mateo, 3318 Isabela";
+                    } else if (parseInt(station) === 7) {
+                        localAddress.value = "PhilRice Los Baños, Los Baños, 4031 Laguna";
+                    } else if (parseInt(station) === 8) {
+                        localAddress.value = "PhilRice Midsayap, Midsayap, 9410 North Cotabato";
+                    } else if (parseInt(station) === 9) {
+                        localAddress.value = "PhilRice Negros, Midsayap, 9410 North Cotabato";
+                    }
+                } else if (venue.value === 'Outside PhilRice Station') {
+                    localAddress.value = municipality + ', ' + province;
+                }
+
+            } else {
+                internationalDiv.style.display = 'none';
+                localDiv.style.display = 'none';
+            }
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('trainings-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.querySelector('body').classList.remove('overflow-hidden');
+            window.addEventListener('keydown', closeModalOnEsc);
+        }
+
+        function closeModalOnEsc(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        }
+
+        // Close modal when clicking outside the modal content area or on the overlay
+        window.onclick = function(event) {
+            var modal = document.getElementById('trainings-modal');
+            var overlay = document.querySelector('.bg-black');
+            if (event.target == modal || event.target == overlay) {
+                closeModal();
+            }
+        }
+    </script>
+@endsection
+
 @section('datatable')
     <script type="text/javascript">
         // CES
@@ -667,8 +892,7 @@
                     `</td>
                         <td class="px-6 py-4 text-center">
                             <button
-                            data-modal-target="trainings-modal" 
-                            data-modal-toggle="trainings-modal" 
+                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik']}', '${data['evaluation']}', '${data['start_date']}', '${data['end_date']}', '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['province']}', '${data['municipality']}', '${data['station']}')"
                             type="button" 
                             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
                                 <box-icon name='expand-alt' size="xs"></box-icon>
@@ -920,7 +1144,7 @@
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
                 yearSelect == "" &&
-                trainingTitle == "" 
+                trainingTitle == ""
                 // formType == ""
             ) {
                 loadTrainings(currentPage + 1);
@@ -942,7 +1166,7 @@
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
                 yearSelect == "" &&
-                trainingTitle == "" 
+                trainingTitle == ""
                 // formType == ""
             ) {
                 if (currentPage > 1) {

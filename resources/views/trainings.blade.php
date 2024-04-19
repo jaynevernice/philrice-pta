@@ -429,7 +429,7 @@
             {{-- Section 4 --}}
             <div class="section" data-section="4" style="display: none;">
                 <div class="flex">
-                    <h6 class="text-lg font-bold dark:text-white">Participant's Profile (Sector)</h6>
+                    <h6 class="text-lg font-bold dark:text-white">Participant's Profile</h6>
                 </div>
                 {{-- Total Num of Participants --}}
                 <div class="my-2 grid grid-cols-2">
@@ -711,7 +711,7 @@
                     </div>
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other
-                            forms of documentation <span class="text-gray-600 italic">(Optional)</span></label>
+                            forms of documentation <span class="text-gray-600 italic">(optional)</span></label>
                         <p class="text-sm text-gray-500 mb-6">You may upload other forms of training documentation such as
                             attendance/registration sheet, copy of event program, short video or audio clip, and other
                             relevant documents, spreadsheet, or PDF file.</p>
