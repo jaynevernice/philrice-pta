@@ -9,7 +9,7 @@
         <div class="max-w-lg w-full sm:m-10 bg-white shadow sm:rounded-lg flex flex-col justify-center">
 
             {{-- Redirect Back --}}
-            <a href="{{ route('login') }}">
+            <a href="{{ route('forgot') }}">
                 <div
                     class="absolute -left-16 top-1/2 transform -translate-y-1/2 w-60 h-60 bg-gray-400 hover:bg-gray-700 rounded-r-full flex items-center justify-center hover:-translate-x-8 transition-transform duration-300 ease-in-out">
                     <div class="text-white">
@@ -73,7 +73,7 @@
                     </button>
 
                     <div class="text-center my-8">
-                        <a href="{{ url('/forgot') }}"
+                        <a href="{{ route('reset_email') }}"
                             class="font-medium text-green-400 hover:text-green-500 hover:underline">Reset Using
                             Email</a>
                     </div>

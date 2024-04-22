@@ -232,20 +232,28 @@
         {{-- Charts --}}
         <div class="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
 
-            <div class="bg-slate-100 shadow-lg border-2 mx-auto rounded-lg dark:border-gray-600 h-32 md:h-64">
-                <div id="chart1"></div>
+            {{-- Total Number of Participants --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center">
+                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">-</h1>
+                <p class="text-gray-500">Total Number of Participants</p>
             </div>
 
-            <div class="bg-slate-100 shadow-lg border-2 mx-auto rounded-lg dark:border-gray-600 h-32 md:h-64">
-                <div id="chart2"></div>
+            {{-- Sex Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="sexChart"></div>
+                <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Sex</p>
             </div>
 
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64">
-                <div id="chart3"></div>
+            {{-- Diversity Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="diversityChart"></div>
+                <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Inclusive Communities</p>
             </div>
 
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600 h-32 md:h-64">
-                <div id="chart4"></div>
+            {{-- Sector --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+                <div id="sectorChart"></div>
+                <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Sector</p>
             </div>
 
         </div>
@@ -318,7 +326,7 @@
 
         {{-- Previous and Next Buttons for Pagination --}}
         <div class="flex justify-end">
-            <div>
+            <div class="mb-4">
                 {{-- page button for no filter --}}
                 <button id="prevButton" onclick="prevPage()"
                     class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
@@ -326,7 +334,7 @@
                     Previous
                 </button>
             </div>
-            <div class="ml-1">
+            <div class="ml-1 mb-4">
                 {{-- page button for no filter --}}
                 <button id="nextButton" onclick="nextPage()"
                     class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
@@ -343,10 +351,10 @@
         <div class="fixed inset-0 bg-black opacity-50 h-full"></div>
         <div class="relative p-4 w-full max-w-4xl">
             {{-- Modal Content --}}
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow">
                 {{-- Modal Header --}}
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 id="title" class="text-lg font-semibold text-gray-900"></h3>
+                    <h3 id="title" class="text-md font-semibold text-gray-900"></h3>
                     <button type="button" onclick="closeModal()"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                         <box-icon name='x'></box-icon>
@@ -426,9 +434,9 @@
                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                     </svg>
                                 </div>
-                                <input type="text" id="start_date" name="start" value="{{ old('start') }}"
+                                <input type="text" id="start_date" name="start"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                                    placeholder="MM/DD/YYYY">
                             </div>
                         </div>
                         <div>
@@ -441,9 +449,9 @@
                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                     </svg>
                                 </div>
-                                <input type="text" id="end_date" name="end" value="{{ old('end') }}"
+                                <input type="text" id="end_date" name="end"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                                    placeholder="MM/DD/YYYY">
                             </div>
                         </div>
                     </div>
@@ -535,216 +543,109 @@
 
 @section('charts')
     <script>
-        // Chart 1
-        var pie = {
-            series: [44, 55, 13, 43, 22],
+        var sexChart = {
+            series: [10, 90],
             chart: {
                 width: 300,
                 type: 'pie',
                 toolbar: {
                     show: true,
-                },
-            },
-
-            title: {
-                text: 'Chart Title',
-                align: 'center',
-                margin: 10,
-                offsetX: 0,
-                offsetY: 0,
-                floating: false,
-                style: {
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    fontFamily: undefined,
-                    color: '#263238'
-                },
-            },
-
-            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
                 }
-            }],
-
+            },
+            labels: ['Male', 'Female'],
+            colors: ['#008FFB', '#FF4560'],
             legend: {
-                show: false
+                position: 'bottom',
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart1"), pie);
-        chart.render();
+        var sexChart = new ApexCharts(document.querySelector("#sexChart"), sexChart);
+        sexChart.render();
 
-
-        //   Chart 2
-        var polar = {
-            series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
+        var diversityChart = {
+            series: [20, 80],
             chart: {
                 width: 300,
-                type: 'polarArea',
+                type: 'pie',
                 toolbar: {
                     show: true,
                 }
             },
-
-            title: {
-                text: 'Chart Title',
-                align: 'center',
-                margin: 10,
-                offsetX: 0,
-                offsetY: 0,
-                floating: false,
-                style: {
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    fontFamily: undefined,
-                    color: '#263238'
-                },
-            },
-
-            stroke: {
-                colors: ['#fff']
-            },
-
-            fill: {
-                opacity: 0.8
-            },
-
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }],
-
+            labels: ['PWD', 'IP'],
+            colors: ['#775DD0', '#8D5B4C'],
             legend: {
-                show: false
-            },
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart2"), polar);
-        chart.render();
-
-        //   Chart 3
-        var spline = {
-            series: [{
-                name: 'series1',
-                data: [31, 40, 28, 51, 42, 109, 100]
-            }, {
-                name: 'series2',
-                data: [11, 32, 45, 32, 34, 52, 41]
-            }],
-            chart: {
-                height: 240,
-                type: 'area',
-                toolbar: {
-                    show: true,
-                },
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            xaxis: {
-                type: 'datetime',
-                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z",
-                    "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z",
-                    "2018-09-19T06:30:00.000Z"
-                ]
-            },
-            tooltip: {
-                x: {
-                    format: 'dd/MM/yy HH:mm'
-                }
+                position: 'bottom',
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart3"), spline);
-        chart.render();
+        var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversityChart);
+        diversityChart.render();
 
-
-        //   Chart 4
-        var line = {
+        var sectorChart = {
             series: [{
-                    name: "High - 2013",
-                    data: [28, 29, 33, 36, 32, 32, 33]
-                },
-                {
-                    name: "Low - 2013",
-                    data: [12, 11, 14, 18, 17, 13, 13]
-                }
-            ],
+                data: [400, 430, 448, 470]
+            }],
             chart: {
-                height: 240,
-                type: 'line',
-                dropShadow: {
-                    enabled: true,
-                    color: '#000',
-                    top: 18,
-                    left: 7,
-                    blur: 10,
-                    opacity: 0.2
-                },
-                toolbar: {
-                    show: true,
+                type: 'bar',
+                height: 240
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: '100%',
+                    distributed: true,
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'bottom'
+                    },
                 }
             },
-            colors: ['#77B6EA', '#545454'],
+            colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa'],
             dataLabels: {
                 enabled: true,
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            grid: {
-                borderColor: '#e7e7e7',
-                row: {
-                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                    opacity: 0.5
+                textAnchor: 'start',
+                style: {
+                    colors: ['#fff']
                 },
-            },
-            markers: {
-                size: 1
-            },
-            xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-                title: {
-                    text: 'Month'
+                formatter: function(val, opt) {
+                    return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                },
+                offsetX: 0,
+                dropShadow: {
+                    enabled: true
                 }
             },
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
+            xaxis: {
+                categories: ['Farmers & Seed Growers', 'Ext. Workers & Intermediaries', ' Scientific Community', 'Others'],
+            },
             yaxis: {
-                title: {
-                    text: 'Temperature'
+                labels: {
+                    show: false
+                }
+            },
+            tooltip: {
+                theme: 'dark',
+                x: {
+                    show: false
                 },
-                min: 5,
-                max: 40
+                y: {
+                    title: {
+                        formatter: function() {
+                            return ''
+                        }
+                    }
+                }
             },
             legend: {
-                position: 'top',
-                horizontalAlign: 'right',
-                floating: true,
-                offsetY: -25,
-                offsetX: -5
+                show: false
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart4"), line);
-        chart.render();
+        var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sectorChart);
+        sectorChart.render();
     </script>
 @endsection
 
@@ -892,7 +793,7 @@
                     `</td>
                         <td class="px-6 py-4 text-center">
                             <button
-                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik']}', '${data['evaluation']}', '${data['start_date']}', '${data['end_date']}', '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['province']}', '${data['municipality']}', '${data['station']}')"
+                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik']}', '${data['evaluation']}', '${data['start_date']}', '${data['end_date']}', '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['province']}', '${data['municipality']}', '${data['station_id']}')"
                             type="button" 
                             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
                                 <box-icon name='expand-alt' size="xs"></box-icon>

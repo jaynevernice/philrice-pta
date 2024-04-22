@@ -17,6 +17,7 @@
         "apexcharts": "^3.46.0",
         "boxicons": "^2.1.4",
         "flowbite": "^2.3.0",
-        "sweetalert2": "^11.10.7"
+        "lightgallery": "^2.7.2",
+        "sweetalert2": "^11.6.13"
     }
 }

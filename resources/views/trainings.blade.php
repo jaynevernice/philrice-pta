@@ -696,6 +696,10 @@
                     <h6 class="text-lg font-bold dark:text-white">Documentation</h6>
                 </div>
 
+                <div id="lightgallery" class="my-2 grid grid-cols-5 gap-x-4 bg-red-200">
+                    {{-- Preview of Uploaded Images --}}
+                </div>
+
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -745,6 +749,111 @@
 @endsection
 
 @section('scripts')
+    {{-- lightGallery for Preview of Uploaded Images --}}
+    <script type="text/javascript">
+        document.getElementById('photo_doc_event').addEventListener('change', function() {
+            var gallery = document.getElementById('lightgallery');
+
+            var files = this.files;
+            if (files) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'object-cover w-full h-auto col-span-1'; // Adjust the classes as needed
+                        var a = document.createElement('a');
+                        a.href = e.target.result;
+                        // a.className = 'block w-1/4'; // Adjust the width of each image
+                        a.className = 'mb-2';
+                        a.appendChild(img);
+                        gallery.appendChild(a);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Reinitialize lightGallery
+            lightGallery(gallery, {
+                plugins: [lgZoom, lgThumbnail],
+                licenseKey: 'your_license_key',
+                speed: 500,
+                thumbmails: true,
+            });
+        });
+    </script>
+
+    {{-- <script type="text/javascript">
+        document.getElementById('photo_doc_event').addEventListener('change', function() {
+            var gallery = document.getElementById('lightgallery');
+
+            var files = this.files;
+            if (files) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'max-w-xs h-20'
+                        var a = document.createElement('a');
+                        a.href = e.target.result;
+                        a.appendChild(img);
+                        gallery.appendChild(a);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Reinitialize lightGallery
+            lightGallery(gallery, {
+                plugins: [lgZoom, lgThumbnail],
+                licenseKey: 'your_license_key',
+                speed: 500
+                // ... other settings
+            });
+        });
+    </script> --}}
+
+    {{-- <script type="text/javascript">
+        document.getElementById('photo_doc_event').addEventListener('change', function() {
+            var gallery = document.getElementById('lightgallery');
+            gallery.innerHTML = ''; // Clear previous content
+
+            var files = this.files;
+            if (files) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        var a = document.createElement('a');
+                        a.href = e.target.result;
+                        a.appendChild(img);
+                        gallery.appendChild(a);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Initialize lightGallery
+            lightGallery(gallery, {
+                plugins: [lgZoom, lgThumbnail],
+                licenseKey: 'your_license_key',
+                speed: 500
+                // ... other settings
+            });
+        });
+    </script> --}}
+
     {{-- Toggle for Optional Inputs --}}
     {{-- <script>
         function toggleOtherTitle() {
