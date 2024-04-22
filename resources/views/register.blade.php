@@ -164,7 +164,7 @@
                                                 class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                                 <option selected disabled>Station</option>
                                                 @foreach ($stations as $data)
-                                                    <option value="{{ $data->id }}">{{ $data->station }}</option>
+                                                    <option value="{{ $data->id }}">PhilRice {{ $data->station }}</option>
                                                 @endforeach
                                                 {{-- <option value="CES" >CES</option>
                                                         <option value="Agusan" >Agusan</option>
@@ -666,6 +666,43 @@
                         });
                     }
                 });
+            });
+
+            // PHILRICE ID FORMAT
+            $('#philrice_id').on('input', function() {
+                // OK NA SAKIN
+                var inputValue = $(this).val();
+                // Remove characters that are not numbers or dashes
+                var filteredValue = inputValue.replace(/[^\d-]/g, '');
+
+                // Limit only 2 numbers before the dash
+                var parts = filteredValue.split('-');
+                var beforeDash = parts[0].substring(0, 2);
+
+                // Get the current year
+                var currentYear = new Date().getFullYear() % 100; // Last two digits of the current year
+                if (parseInt(beforeDash) > parseInt(currentYear)) {
+                    beforeDash = currentYear.toString();
+                }
+
+                // Limit only 4 numbers after the dash
+                var afterDash = parts[1] || ''; // Handle case where there's no dash yet
+                afterDash = afterDash.substring(0, 4);
+
+                // Validate the third and fourth numbers (representing month) to be within 01 to 12
+                var month = parseInt(afterDash.substring(0, 2));
+                if (month < 1 || month > 12) {
+                    afterDash = '0'; 
+                }
+
+                // If there are more than 2 numbers before the dash, add dash after the second number
+                if (beforeDash.length >= 2 && !inputValue.endsWith('-')) {
+                    beforeDash = beforeDash.substring(0, 2) + '-';
+                }
+
+                // Update the input value with formatted value
+                $(this).val(beforeDash + afterDash);
+                
             });
         });
     </script>
