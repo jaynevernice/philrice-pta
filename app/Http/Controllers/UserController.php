@@ -212,6 +212,7 @@ class UserController extends Controller
     public function updateSecurityQuestions(Request $request)
     {
         $user = Auth::user();
+        
         $user->update($request->only(['sq1', 'sq2', 'sq3']));
 
         return redirect()->back();

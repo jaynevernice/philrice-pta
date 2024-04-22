@@ -20,7 +20,8 @@
                     <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full">
 
                     {{-- Dim Video using Overlay --}}
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
+                    {{-- <div class="absolute inset-0 bg-black opacity-50"></div> --}}
+                    <div class="absolute inset-0 bg-gradient-to-r to-emerald-600 from-sky-400 opacity-30"></div>
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">

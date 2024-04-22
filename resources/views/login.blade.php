@@ -20,7 +20,8 @@
                     <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full">
 
                     {{-- Dim Video using Overlay --}}
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
+                    {{-- <div class="absolute inset-0 bg-black opacity-50"></div> --}}
+                    <div class="absolute inset-0 bg-gradient-to-r to-emerald-600 from-sky-400 opacity-30"></div>
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
@@ -115,7 +116,7 @@
                                     <div class="flex items-center justify-center h-full">
                                         {{-- Forgot Password --}}
                                         {{-- <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-[#0B1215] text-right underline">Forgot Password?</a> --}}
-                                        <a href="{{ url('/forgot') }}"
+                                        <a href="{{ url('/forgot_password') }}"
                                             class="block text-base text-[#1A73E8] mt-5 hover:text-blue-700 text-left">
                                             Forgot Password?
                                         </a>

@@ -34,6 +34,10 @@
     {{-- Flowbite Datepicker --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
+    {{-- lightGallery --}}
+    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
+    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
+
     {{-- jquery CDN --}}
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
@@ -57,6 +61,9 @@
     {{-- SweetAlert2 CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="js/plugins/lg-thumbnail.umd.js"></script>
+    <script src="js/plugins/lg-zoom.umd.js"></script>
+
     {{-- Charts --}}
     @yield('charts')
 
@@ -64,6 +71,7 @@
     @yield('scripts')
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script> --}}
+    
     
     {{-- realrashid/sweet-alert --}}
     {{-- @include('sweetalert::alert') --}}

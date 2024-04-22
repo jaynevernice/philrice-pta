@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\DispatchFormController;
-use App\Http\Controllers\KSLAnalyticsController;
-use App\Http\Controllers\KSLFormController;
-use App\Http\Controllers\TrainingsFormController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KSLFormController;
+use App\Http\Controllers\DispatchFormController;
+use App\Http\Controllers\KSLAnalyticsController;
+use App\Http\Controllers\TrainingsFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,14 +26,18 @@ Route::get('/', function () {
 
 // php artisan make:mail ForgotPasswordMail
 // kapag inedit yung MAIL_USERNAME sa .env run this: php artisan config:cache
-Route::get('/forgot', function () {
-    return view('forgot');
+Route::get('/forgot_password', function () {
+    return view('forgot_password');
 })->name('forgot');
-Route::post('/forgot', [AuthController::class, 'PostForgot']);
 
-Route::get('/resetsq', function () {
-    return view('resetsq');
-});
+Route::get('/reset_using_email', function () {
+    return view('reset_email');
+})->name('reset_email');
+Route::post('/reset_email', [AuthController::class, 'PostForgot']);
+
+Route::get('/reset_using_security_questions', function () {
+    return view('reset_sq');
+})->name('reset_sq');
 Route::post('/resetsq', [AuthController::class, 'PostSecurityQuestions']);
 
 Route::get('/register', [UserController::class, 'create'])->name('register');
@@ -142,8 +147,6 @@ Route::group(['middleware' => 'super_admin'], function () {
         Route::put('/block/{id}', [UserController::class, 'block'])->name('super_admin.block');
         Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('super_admin.unblock');
 
-        
-
         // Route::get('/profile', function () {
         //     return view('profile');
         // })->name('profile');
@@ -151,7 +154,6 @@ Route::group(['middleware' => 'super_admin'], function () {
         // Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
         // Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
         // Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
-
     });
 });
 
@@ -219,9 +221,9 @@ Route::group(['middleware' => 'encoder'], function () {
         //     return view('profile');
         // })->name('profile');
 
-        Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
-        Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
-        Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
+        // Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
+        // Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
+        // Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
 
         // Route::get('/overview', function () {
         //     return view('encoder.overview');
@@ -306,6 +308,47 @@ Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');
 
-Route::get('/profile/{user}', function () {
-    return view('profile');
-})->name('profile');
+// Route::get('/profile/{user}', function () { return view('profile'); })->name('profile');
+// Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
+// Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
+// Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
+
+// Route::get('/profile/{id}', function ($id) {
+//     if (Auth::id() != $id) {
+//         abort(403, 'Unauthorized action.'); // Display a 403 Forbidden error
+//     }
+
+//     return view('profile');
+// })
+//     ->middleware('auth')
+//     ->name('profile');
+
+// Route::put('/updateProfile', [UserController::class, 'updateProfile'])
+//     ->middleware('auth')
+//     ->name('updateProfile');
+// Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])
+//     ->middleware('auth')
+//     ->name('updateSecurityQuestions');
+// Route::put('/updatePassword', [UserController::class, 'updatePassword'])
+//     ->middleware('auth')
+//     ->name('updatePassword');
+
+// Update Profile
+Route::middleware(['auth'])->group(function () {
+    // Profile routes
+    Route::get('/profile/{id}', function ($id) {
+        if (Auth::id() != $id) {
+            abort(403, 'Unauthorized action.');
+        }
+        return view('profile');
+    })->name('profile');
+
+    // Update profile routes
+    Route::put('/updateProfile', [UserController::class, 'updateProfile'])
+        ->name('updateProfile');
+    Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])
+        ->name('updateSecurityQuestions');
+    Route::put('/updatePassword', [UserController::class, 'updatePassword'])
+        ->name('updatePassword');
+});
+
