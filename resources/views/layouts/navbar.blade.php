@@ -28,7 +28,7 @@
 
             <a href="" onclick="location.reload();" class="flex items-center justify-between mr-4">
                 <img src="{{ asset('assets/logo.png') }}" class="mr-3 h-8" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PTA</span>
+                <span class="self-center text-3xl font-bold whitespace-nowrap">PTA</span>
             </a>
 
         </div>
@@ -84,8 +84,26 @@
                         @endif
                     </span>
                     <span class="block text-sm text-gray-900 truncate dark:text-white">
-                        @if (Auth::check())
+                        {{-- @if (Auth::check())
                             {{ Str::ucfirst(Auth::user()->user_type) }}
+                        @endif --}}
+                        @if (Auth::check())
+                            @switch(Auth::user()->user_type)
+                                @case('encoder')
+                                    Encoder
+                                @break
+
+                                @case('admin')
+                                    Admin
+                                @break
+
+                                @case('super_admin')
+                                    Super Admin
+                                @break
+
+                                @default
+                                    -
+                            @endswitch
                         @endif
                     </span>
                 </div>
@@ -102,7 +120,6 @@
                         @endauth
                     </li>
                 </ul>
-
 
                 {{-- Sign Out --}}
                 <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">

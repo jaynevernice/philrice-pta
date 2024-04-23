@@ -25,7 +25,7 @@
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-8xl font-bold pb-4 text-balance">{{ config('app.name') }}</h1>
+                        <h1 class="text-8xl font-bold pb-4 text-balance drop-shadow-lg">{{ config('app.name') }}</h1>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                             </a>
                         </div>
 
-                        <h1 class="text-2xl xl:text-3xl font-extrabold my-4">LOGIN</h1>
+                        <h1 class="text-2xl xl:text-3xl font-extrabold my-4">Hello!</h1>
                         <p class="justify-right text-lg text-gray-700 mb-8">Please login with your data that you entered
                             during registration</p>
 

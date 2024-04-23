@@ -308,31 +308,6 @@ Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');
 
-// Route::get('/profile/{user}', function () { return view('profile'); })->name('profile');
-// Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
-// Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
-// Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
-
-// Route::get('/profile/{id}', function ($id) {
-//     if (Auth::id() != $id) {
-//         abort(403, 'Unauthorized action.'); // Display a 403 Forbidden error
-//     }
-
-//     return view('profile');
-// })
-//     ->middleware('auth')
-//     ->name('profile');
-
-// Route::put('/updateProfile', [UserController::class, 'updateProfile'])
-//     ->middleware('auth')
-//     ->name('updateProfile');
-// Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])
-//     ->middleware('auth')
-//     ->name('updateSecurityQuestions');
-// Route::put('/updatePassword', [UserController::class, 'updatePassword'])
-//     ->middleware('auth')
-//     ->name('updatePassword');
-
 // Update Profile
 Route::middleware(['auth'])->group(function () {
     // Profile routes
@@ -343,12 +318,6 @@ Route::middleware(['auth'])->group(function () {
         return view('profile');
     })->name('profile');
 
-    // Update profile routes
     Route::put('/updateProfile', [UserController::class, 'updateProfile'])
         ->name('updateProfile');
-    Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])
-        ->name('updateSecurityQuestions');
-    Route::put('/updatePassword', [UserController::class, 'updatePassword'])
-        ->name('updatePassword');
 });
-

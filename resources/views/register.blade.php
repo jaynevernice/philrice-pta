@@ -25,7 +25,7 @@
 
                     {{-- Text Overlay --}}
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-                        <h1 class="text-8xl font-bold pb-4 text-balance">{{ config('app.name') }}</h1>
+                        <h1 class="text-8xl font-bold pb-4 text-balance drop-shadow-lg">{{ config('app.name') }}</h1>
                     </div>
                 </div>
             </div>
@@ -165,7 +165,8 @@
                                                 class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                                 <option selected disabled>Station</option>
                                                 @foreach ($stations as $data)
-                                                    <option value="{{ $data->id }}">PhilRice {{ $data->station }}</option>
+                                                    <option value="{{ $data->id }}">PhilRice {{ $data->station }}
+                                                    </option>
                                                 @endforeach
                                                 {{-- <option value="CES" >CES</option>
                                                         <option value="Agusan" >Agusan</option>
@@ -211,7 +212,8 @@
 
                             {{-- Step 3 --}}
                             <div class="step">
-                                <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">Credentials
+                                <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">
+                                    Credentials
                                 </h3>
                                 <div class="mb-2">
                                     <label for="password"
@@ -293,6 +295,7 @@
             const password = inputField.value;
             const errorMessage = document.getElementById("password-error-message");
             errorMessage.textContent = ""; // Clear previous error message
+            errorMessage.style.color = "red";
 
             // Define password requirements
             const minLength = 8;
@@ -304,44 +307,89 @@
             let isValid = true;
 
             // Check each requirement and update error message
-            const errorList = [];
             if (password.length < minLength) {
                 isValid = false;
-                errorList.push("Password must be at least " + minLength + " characters long.");
+                errorMessage.textContent = "Password must be at least " + minLength + " characters long.";
+                return; // Exit the function early
             }
             if (!hasLowerCase) {
                 isValid = false;
-                errorList.push("Password must contain at least one lowercase letter (a-z).");
+                errorMessage.textContent = "Password must contain at least one lowercase letter (a-z).";
+                return; // Exit the function early
             }
             if (!hasUpperCase) {
                 isValid = false;
-                errorList.push("Password must contain at least one uppercase letter (A-Z).");
+                errorMessage.textContent = "Password must contain at least one uppercase letter (A-Z).";
+                return; // Exit the function early
             }
             if (!hasNumber) {
                 isValid = false;
-                errorList.push("Password must contain at least one number (0-9).");
+                errorMessage.textContent = "Password must contain at least one number (0-9).";
+                return; // Exit the function early
             }
             if (!hasSpecialChar) {
                 isValid = false;
-                errorList.push("Password must contain at least one special character (!@#$%^&*()).");
+                errorMessage.textContent = "Password must contain at least one special character (!@#$%^&*()).";
+                return; // Exit the function early
             }
 
-            // Update error message with list and red color
-            errorMessage.innerHTML = ""; // Clear previous content (optional)
-            if (!isValid) {
-                const errorElement = document.createElement("ul");
-                errorElement.style.color = "red"; // Set error message color to red
-                for (const error of errorList) {
-                    const listItem = document.createElement("li");
-                    listItem.textContent = error;
-                    errorElement.appendChild(listItem);
-                }
-                errorMessage.appendChild(errorElement);
-            }
-
-            // You can use "isValid" for further actions like enabling/disabling submit button
-            // based on password validity
+            // If all requirements are met, clear the error message
+            errorMessage.textContent = "";
         }
+
+        // function validatePassword(inputField) {
+        //     const password = inputField.value;
+        //     const errorMessage = document.getElementById("password-error-message");
+        //     errorMessage.textContent = ""; // Clear previous error message
+
+        //     // Define password requirements
+        //     const minLength = 8;
+        //     const hasLowerCase = /[a-z]/.test(password);
+        //     const hasUpperCase = /[A-Z]/.test(password);
+        //     const hasNumber = /\d/.test(password);
+        //     const hasSpecialChar = /[!@#$%^&*()]/.test(password);
+
+        //     let isValid = true;
+
+        //     // Check each requirement and update error message
+        //     const errorList = [];
+        //     if (password.length < minLength) {
+        //         isValid = false;
+        //         errorList.push("Password must be at least " + minLength + " characters long.");
+        //     }
+        //     if (!hasLowerCase) {
+        //         isValid = false;
+        //         errorList.push("Password must contain at least one lowercase letter (a-z).");
+        //     }
+        //     if (!hasUpperCase) {
+        //         isValid = false;
+        //         errorList.push("Password must contain at least one uppercase letter (A-Z).");
+        //     }
+        //     if (!hasNumber) {
+        //         isValid = false;
+        //         errorList.push("Password must contain at least one number (0-9).");
+        //     }
+        //     if (!hasSpecialChar) {
+        //         isValid = false;
+        //         errorList.push("Password must contain at least one special character (!@#$%^&*()).");
+        //     }
+
+        //     // Update error message with list and red color
+        //     errorMessage.innerHTML = ""; // Clear previous content (optional)
+        //     if (!isValid) {
+        //         const errorElement = document.createElement("ul");
+        //         errorElement.style.color = "red"; // Set error message color to red
+        //         for (const error of errorList) {
+        //             const listItem = document.createElement("li");
+        //             listItem.textContent = error;
+        //             errorElement.appendChild(listItem);
+        //         }
+        //         errorMessage.appendChild(errorElement);
+        //     }
+
+        //     // You can use "isValid" for further actions like enabling/disabling submit button
+        //     // based on password validity
+        // }
 
         function matchPassword(inputField) {
             const password = $('#password').val();
@@ -354,10 +402,10 @@
             const errorList = [];
             if (password != confirm_password) {
                 isMatch = false;
-                errorList.push("Password and Confirm Password did not match.");
+                errorList.push("Passwords do not match.");
             } else {
                 isMatch = true;
-                errorList.push("Password and Confirm Password are match.");
+                errorList.push("Passwords match.");
             }
 
             // Update error message with list and red color
@@ -693,7 +741,7 @@
                 // Validate the third and fourth numbers (representing month) to be within 01 to 12
                 var month = parseInt(afterDash.substring(0, 2));
                 if (month < 1 || month > 12) {
-                    afterDash = '0'; 
+                    afterDash = '0';
                 }
 
                 // If there are more than 2 numbers before the dash, add dash after the second number
@@ -703,7 +751,7 @@
 
                 // Update the input value with formatted value
                 $(this).val(beforeDash + afterDash);
-                
+
             });
         });
     </script>

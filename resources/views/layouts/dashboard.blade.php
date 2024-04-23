@@ -9,7 +9,7 @@
 
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     {{-- @vite('resources/css/app.css') --}}
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- ApexCharts CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -34,16 +34,23 @@
     {{-- Flowbite Datepicker --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
-    {{-- lightGallery --}}
-    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
-    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
-
     {{-- jquery CDN --}}
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    {{-- GLightBox --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
+<style>
+    /* CSS to fit the image in the modal */
+    .glightbox img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+</style>
 
 <body>
-    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+    <div class="antialiased bg-gray-50">
 
         @include('layouts.navbar')
 
@@ -61,18 +68,16 @@
     {{-- SweetAlert2 CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="js/plugins/lg-thumbnail.umd.js"></script>
-    <script src="js/plugins/lg-zoom.umd.js"></script>
-
     {{-- Charts --}}
     @yield('charts')
+
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
     {{-- Scripts --}}
     @yield('scripts')
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script> --}}
-    
-    
+
     {{-- realrashid/sweet-alert --}}
     {{-- @include('sweetalert::alert') --}}
 
@@ -83,8 +88,7 @@
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 {{-- Remove all data in localStorage when log out is clicked --}}
 <script>
-    function resetLocalStorage()
-    {
+    function resetLocalStorage() {
         localStorage.clear();
     }
 </script>

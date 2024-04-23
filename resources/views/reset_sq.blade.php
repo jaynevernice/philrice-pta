@@ -8,16 +8,6 @@
     <div class="min-h-screen p-12 bg-gray-100 text-[#0B1215] flex justify-center items-center">
         <div class="max-w-lg w-full sm:m-10 bg-white shadow sm:rounded-lg flex flex-col justify-center">
 
-            {{-- Redirect Back --}}
-            <a href="{{ route('forgot') }}">
-                <div
-                    class="absolute -left-16 top-1/2 transform -translate-y-1/2 w-60 h-60 bg-gray-400 hover:bg-gray-700 rounded-r-full flex items-center justify-center hover:-translate-x-8 transition-transform duration-300 ease-in-out">
-                    <div class="text-white">
-                        <box-icon name='arrow-back' color="white" type='solid' class="w-16 h-16 ml-10"></box-icon>
-                    </div>
-                </div>
-            </a>
-
             <div class="px-20 py-16 ">
                 <h1 class="text-2xl xl:text-3xl font-extrabold text-center mb-4">Forgot Password?</h1>
 
@@ -73,9 +63,8 @@
                     </button>
 
                     <div class="text-center my-8">
-                        <a href="{{ route('reset_email') }}"
-                            class="font-medium text-green-400 hover:text-green-500 hover:underline">Reset Using
-                            Email</a>
+                        <a href="{{ route('forgot') }}"
+                            class="font-medium text-green-400 hover:text-green-500 hover:underline">Go Back</a>
                     </div>
                 </form>
             </div>
