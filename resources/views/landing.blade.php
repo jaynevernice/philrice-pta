@@ -43,7 +43,7 @@
             {{-- Text Overlay --}}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
                 <div class="max-w-2xl mx-auto px-4">
-                    <h1 class="text-4xl sm:text-5xl font-bold text-center mb-6">{{ config('app.name') }}</h1>
+                    <h1 class="text-5xl font-bold text-center mb-6">{{ config('app.name') }}</h1>
                     <p class="text-lg text-center mb-6">Efficiently organizes and manages
                         training-related information for the Philippine Rice Research Institute, enhancing the effectiveness
                         of their agricultural education initiatives.</p>
@@ -51,7 +51,7 @@
 
                 <div class="flex flex-col lg:flex-row">
                     <a href="{{ route('guest.overview') }}" class="mb-2 lg:mb-0">
-                        <button type="button" onclick="showAlert"
+                        <button type="button"
                             class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-white hover:bg-slate-100 border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2">
                             <box-icon type='solid' name='user' class="mr-2"></box-icon>
                             View

@@ -190,7 +190,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         // Update profile information
-        $user->update($request->except('profile_picture'));
+        $user->update($request->except(['profile_picture', 'old_password', 'password', 'password_confirmation', 'sq1', 'sq2', 'sq3']));
 
         // Update profile picture if a new one is provided
         if ($request->hasFile('profile_picture')) {
@@ -203,45 +203,91 @@ class UserController extends Controller
             $image->move(public_path('profile_picture'), $imageName);
 
             $user->profile_picture = '/profile_picture/' . $imageName;
-            $user->save();
         }
 
-        return redirect()->back();
-    }
-
-    public function updateSecurityQuestions(Request $request)
-    {
-        $user = Auth::user();
-        
+        // Update security questions
         $user->update($request->only(['sq1', 'sq2', 'sq3']));
 
+        // Update password if provided
+        if ($request->filled('old_password') && $request->filled('password')) {
+            $request->validate([
+                'old_password' => 'required',
+                'password' => 'required|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()\-^\/])/|min:8|confirmed',
+            ]);
+
+            $hashedPassword = $user->password;
+
+            if (password_verify($request->old_password, $hashedPassword)) {
+                $user->update(['password' => bcrypt($request->password)]);
+            } else {
+                return redirect()
+                    ->back()
+                    ->withErrors(['old_password' => 'The provided old password does not match']);
+            }
+        }
+
+        $user->save();
+
         return redirect()->back();
     }
 
-    public function updatePassword(Request $request)
-    {
-        $request->validate([
-            'old_password' => 'required',
-            'password' => 'required|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()\-^\/])/|min:8|confirmed',
-        ]);
+    // public function updateProfile(Request $request)
+    // {
+    //     $user = Auth::user();
 
-        $user = Auth::user();
-        $hashedPassword = $user->password;
+    //     // Update profile information
+    //     $user->update($request->except('profile_picture'));
 
-        if (password_verify($request->old_password, $hashedPassword)) {
-            $user->update(['password' => bcrypt($request->password)]);
+    //     // Update profile picture if a new one is provided
+    //     if ($request->hasFile('profile_picture')) {
+    //         $request->validate([
+    //             'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    //         ]);
 
-            return redirect()->back();
-        } else {
-            return redirect()->back();
-        }
-    }
+    //         $image = $request->file('profile_picture');
+    //         $imageName = time() . '.' . $image->extension();
+    //         $image->move(public_path('profile_picture'), $imageName);
+
+    //         $user->profile_picture = '/profile_picture/' . $imageName;
+    //         $user->save();
+    //     }
+
+    //     return redirect()->back();
+    // }
+
+    // public function updateSecurityQuestions(Request $request)
+    // {
+    //     $user = Auth::user();
+
+    //     $user->update($request->only(['sq1', 'sq2', 'sq3']));
+
+    //     return redirect()->back();
+    // }
+
+    // public function updatePassword(Request $request)
+    // {
+    //     $request->validate([
+    //         'old_password' => 'required',
+    //         'password' => 'required|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()\-^\/])/|min:8|confirmed',
+    //     ]);
+
+    //     $user = Auth::user();
+    //     $hashedPassword = $user->password;
+
+    //     if (password_verify($request->old_password, $hashedPassword)) {
+    //         $user->update(['password' => bcrypt($request->password)]);
+
+    //         return redirect()->back();
+    //     } else {
+    //         return redirect()->back();
+    //     }
+    // }
 
     public function adminGetEncoders()
     {
         // $encoders = User::whereIn('user_type', ['encoder', 'admin'])->get();
-        
-        $encoders= User::where('user_type', 'encoder')->get();
+
+        $encoders = User::where('user_type', 'encoder')->get();
 
         return view('admin.manage_encoders', compact('encoders'));
     }
@@ -278,16 +324,18 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User type updated successfully');
     }
 
-    public function block($id) {
+    public function block($id)
+    {
         $user = User::findOrFail($id);
-        $user->isBlocked = 1; 
+        $user->isBlocked = 1;
         $user->save();
 
         return redirect()->back()->with('success', 'You have blocked access to this user');
     }
-    public function unblock($id) {
+    public function unblock($id)
+    {
         $user = User::findOrFail($id);
-        $user->isBlocked = 0; 
+        $user->isBlocked = 0;
         $user->save();
 
         return redirect()->back()->with('success', 'You have unblocked access to this user');

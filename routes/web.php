@@ -8,6 +8,7 @@ use App\Http\Controllers\KSLFormController;
 use App\Http\Controllers\DispatchFormController;
 use App\Http\Controllers\KSLAnalyticsController;
 use App\Http\Controllers\TrainingsFormController;
+use App\Http\Controllers\WebAnalyticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,8 @@ Route::group(['prefix' => 'guest'], function () {
     Route::get('/negros', function () {
         return view('guest.negros');
     })->name('guest.negros');
+
+    Route::post('/overview-visitor-evaluation', [WebAnalyticsController::class, 'store'])->name('evaluation.store');
 });
 
 // Super Admin
@@ -147,14 +150,6 @@ Route::group(['middleware' => 'super_admin'], function () {
 
         Route::put('/block/{id}', [UserController::class, 'block'])->name('super_admin.block');
         Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('super_admin.unblock');
-
-        // Route::get('/profile', function () {
-        //     return view('profile');
-        // })->name('profile');
-
-        // Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
-        // Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
-        // Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
     });
 });
 
@@ -205,10 +200,6 @@ Route::group(['middleware' => 'admin'], function () {
             return view('admin.negros');
         })->name('admin.negros');
 
-        // Route::get('/manage_encoders', function () {
-        //     return view('admin.manage_encoders');
-        // })->name('admin.manage_encoders');
-        // Route::put('/promote_encoder/{id}', [UserController::class, 'promoteEncoder'])->name('admin.promote_encoder');
         Route::get('/manage_encoders', [UserController::class, 'adminGetEncoders'])->name('admin.manage_encoders');
         Route::put('/block/{id}', [UserController::class, 'block'])->name('admin.block');
         Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('admin.unblock');
@@ -309,31 +300,6 @@ Route::get('/technodemo', function () {
     return view('technodemo');
 })->name('technodemo');
 
-// Route::get('/profile/{user}', function () { return view('profile'); })->name('profile');
-// Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
-// Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
-// Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
-
-// Route::get('/profile/{id}', function ($id) {
-//     if (Auth::id() != $id) {
-//         abort(403, 'Unauthorized action.'); // Display a 403 Forbidden error
-//     }
-
-//     return view('profile');
-// })
-//     ->middleware('auth')
-//     ->name('profile');
-
-// Route::put('/updateProfile', [UserController::class, 'updateProfile'])
-//     ->middleware('auth')
-//     ->name('updateProfile');
-// Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])
-//     ->middleware('auth')
-//     ->name('updateSecurityQuestions');
-// Route::put('/updatePassword', [UserController::class, 'updatePassword'])
-//     ->middleware('auth')
-//     ->name('updatePassword');
-
 // Update Profile
 Route::middleware(['auth'])->group(function () {
     // Profile routes
@@ -344,12 +310,6 @@ Route::middleware(['auth'])->group(function () {
         return view('profile');
     })->name('profile');
 
-    // Update profile routes
     Route::put('/updateProfile', [UserController::class, 'updateProfile'])
         ->name('updateProfile');
-    Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])
-        ->name('updateSecurityQuestions');
-    Route::put('/updatePassword', [UserController::class, 'updatePassword'])
-        ->name('updatePassword');
 });
-
