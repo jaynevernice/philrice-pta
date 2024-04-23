@@ -41,9 +41,8 @@
                 </form>
 
                 <div class="text-center mt-8">
-                    <a href="{{ route('reset_sq') }}"
-                        class="text-green-400 hover:text-green-500 hover:underline font-medium">Reset Using Security
-                        Questions</a>
+                    <a href="{{ route('forgot') }}"
+                        class="text-green-400 hover:text-green-500 hover:underline font-medium">Go Back</a>
                 </div>
             </div>
         </div>
