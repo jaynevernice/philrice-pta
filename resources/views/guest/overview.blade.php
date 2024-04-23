@@ -4,6 +4,35 @@
     Overview
 @endsection
 
+<style>
+    /* Add this CSS animation */
+    @keyframes shake {
+        0% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-5px);
+        }
+
+        50% {
+            transform: translateX(5px);
+        }
+
+        75% {
+            transform: translateX(-5px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .shake {
+        animation: shake 0.5s;
+    }
+</style>
+
 @section('sidebar')
     {{-- Sidebar --}}
     <aside
@@ -219,70 +248,74 @@
     </main>
 
     <!-- Main modal -->
-    <div id="crud-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div id="evaluation-modal" tabindex="-1" aria-hidden="true"
+        class="hidden fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black bg-opacity-50">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 class="text-lg font-semibold text-gray-900">
-                        Create New Product
+                    <h3 class="text-lg font-semibold text-[#0B1215]">
+                        Visitor Evaluation Form
                     </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5">
-                    <div class="grid gap-4 mb-4 grid-cols-2">
-                        <div class="col-span-2">
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                            <input type="text" name="name" id="name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="Type product name" required="">
+                <form id="evaluationForm" class="p-4 md:p-5" action="{{ route('evaluation.store') }}" method="POST">
+                    @csrf
+                    <div class="mb-4">
+
+                        {{-- Name --}}
+                        <div class="mb-4">
+                            <label for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input type="text" name="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="What is your name?" required="">
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
-                            <input type="number" name="price" id="price"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="$2999" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
-                            <select id="category"
+
+                        {{-- Sex --}}
+                        {{-- <div class="mb-4">
+                            <label for="sex" class="block mb-2 text-sm font-medium text-gray-900">Sex</label>
+                            <select name="sex"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                                <option selected="">Select category</option>
-                                <option value="TV">TV/Monitors</option>
-                                <option value="PC">PC</option>
-                                <option value="GA">Gaming/Console</option>
-                                <option value="PH">Phones</option>
+                                <option selected>Select your sex</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div> --}}
+
+                        {{-- Sector --}}
+                        <div class="mb-4">
+                            <label for="sector" class="block mb-2 text-sm font-medium text-gray-900">Sector</label>
+                            <select name="sector"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option selected>Select your sector</option>
+                                <option value="Farmers and Seed Growers">Farmers and Seed Growers</option>
+                                <option value="Extension Workers and Intermediaries">Extension Workers and
+                                    Intermediaries
+                                </option>
+                                <option value="Scientific Community">Scientific Community</option>
+                                <option value="Other">Other (rice industry players, media, policymakers, general rice
+                                    consumers)</option>
                             </select>
                         </div>
-                        <div class="col-span-2">
-                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Product
-                                Description</label>
-                            <textarea id="description" rows="4"
+
+                        <div class="mb-4">
+                            <label for="purpose" class="block mb-2 text-sm font-medium text-gray-900">Purpose
+                                <span class="text-gray-600 italic">(optional)</span></label>
+                            <textarea name="purpose" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Write product description here"></textarea>
+                                placeholder="What brings you here on our website today?"></textarea>
                         </div>
                     </div>
-                    <button type="submit"
-                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Add new product
-                    </button>
+
+                    <div class="flex justify-end">
+                        <button type="submit" id="submitBtn"
+                            class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Submit
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -291,527 +324,85 @@
 
 
 @section('charts')
-    {{-- Charts --}}
-    <script>
-        // Sex Distribution
-        var sex = {
-            series: [55, 45],
-            chart: {
-                width: 380,
-                type: 'pie',
-                toolbar: {
-                    show: true,
-                }
-            },
-            labels: ['Female', 'Male'],
-            colors: ['#f87171', '#06b6d4'],
-            // title: {
-            //     text: "Sex Distribution",
-            //     align: 'center',
-            //     margin: 0,
-            //     offsetX: 0,
-            //     offsetY: 0,
-            //     floating: false,
-            //     style: {
-            //         fontSize: '14px',
-            //         fontWeight: 'bold',
-            //         fontFamily: undefined,
-            //         color: '#263238'
-            //     },
-            // },
-            // responsive: [{
-            //     breakpoint: 480,
-            //     options: {
-            //         chart: {
-            //             width: 200,
-            //         },
-            //         legend: {
-            //             position: 'bottom'
-            //         }
-            //     }
-            // }]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#sexChart"), sex);
-        chart.render();
-
-        // IP Distribution
-        var ip = {
-            series: [23, 77],
-            chart: {
-                width: 380,
-                type: 'pie',
-                toolbar: {
-                    show: true,
-                }
-            },
-            labels: ['Indigenous', 'Non-IP'],
-            colors: ['#1a2e05', '#164e63']
-        };
-
-        var chart = new ApexCharts(document.querySelector("#ipChart"), ip);
-        chart.render();
-
-        // PWD Distribution
-        var pwd = {
-            series: [40, 60],
-            chart: {
-                width: 380,
-                type: 'pie',
-                toolbar: {
-                    show: true,
-                }
-            },
-            labels: ['PWD', 'Non-PWD'],
-            colors: ['#6d28d9', '#164e63']
-        };
-
-        var chart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
-        chart.render();
-
-        // Regions
-        var region = {
-            series: [{
-                data: [{
-                        x: 'New Delhi',
-                        y: 218
-                    },
-                    {
-                        x: 'Kolkata',
-                        y: 149
-                    },
-                    {
-                        x: 'Mumbai',
-                        y: 184
-                    },
-                    {
-                        x: 'Ahmedabad',
-                        y: 55
-                    },
-                    {
-                        x: 'Bangaluru',
-                        y: 84
-                    },
-                    {
-                        x: 'Pune',
-                        y: 31
-                    },
-                    {
-                        x: 'Chennai',
-                        y: 70
-                    },
-                    {
-                        x: 'Jaipur',
-                        y: 30
-                    },
-                    {
-                        x: 'Surat',
-                        y: 44
-                    },
-                    {
-                        x: 'Hyderabad',
-                        y: 68
-                    },
-                    {
-                        x: 'Lucknow',
-                        y: 28
-                    },
-                    {
-                        x: 'Indore',
-                        y: 19
-                    },
-                    {
-                        x: 'Kanpur',
-                        y: 29
-                    }
-                ]
-            }],
-            legend: {
-                show: false
-            },
-            chart: {
-                height: 350,
-                type: 'treemap',
-                toolbar: {
-                    show: false,
-                },
-            },
-            title: {
-                text: 'Distibuted Treemap (different color for each cell)',
-                align: 'center'
-            },
-            colors: [
-                '#3B93A5',
-                '#F7B844',
-                '#ADD8C7',
-                '#EC3C65',
-                '#CDD7B6',
-                '#C1F666',
-                '#D43F97',
-                '#1E5D8C',
-                '#421243',
-                '#7F94B0',
-                '#EF6537',
-                '#C0ADDB'
-            ],
-            plotOptions: {
-                treemap: {
-                    distributed: true,
-                    enableShades: false
-                }
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
-
-        var bar = {
-            series: [{
-                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-            }],
-            chart: {
-                type: 'bar',
-                height: 290,
-                toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: true,
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                    'United States', 'China', 'Germany'
-                ],
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart1"), bar);
-        chart.render();
-
-
-        var timeline = {
-            series: [{
-                data: [{
-                        x: 'Code',
-                        y: [
-                            new Date('2019-03-02').getTime(),
-                            new Date('2019-03-04').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Test',
-                        y: [
-                            new Date('2019-03-04').getTime(),
-                            new Date('2019-03-08').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Validation',
-                        y: [
-                            new Date('2019-03-08').getTime(),
-                            new Date('2019-03-12').getTime()
-                        ]
-                    },
-                    {
-                        x: 'Deployment',
-                        y: [
-                            new Date('2019-03-12').getTime(),
-                            new Date('2019-03-18').getTime()
-                        ]
-                    }
-                ]
-            }],
-            chart: {
-                height: 290,
-                type: 'rangeBar',
-                toolbar: {
-                    show: false,
-                },
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true
-                }
-            },
-            xaxis: {
-                type: 'datetime'
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart2"), timeline);
-        chart.render();
-
-        var options = {
-            series: [{
-                data: [{
-                        x: 'New Delhi',
-                        y: 218
-                    },
-                    {
-                        x: 'Kolkata',
-                        y: 149
-                    },
-                    {
-                        x: 'Mumbai',
-                        y: 184
-                    },
-                    {
-                        x: 'Ahmedabad',
-                        y: 55
-                    },
-                    {
-                        x: 'Bangaluru',
-                        y: 84
-                    },
-                    {
-                        x: 'Pune',
-                        y: 31
-                    },
-                    {
-                        x: 'Chennai',
-                        y: 70
-                    },
-                    {
-                        x: 'Jaipur',
-                        y: 30
-                    },
-                    {
-                        x: 'Surat',
-                        y: 44
-                    },
-                    {
-                        x: 'Hyderabad',
-                        y: 68
-                    },
-                    {
-                        x: 'Lucknow',
-                        y: 28
-                    },
-                    {
-                        x: 'Indore',
-                        y: 19
-                    },
-                    {
-                        x: 'Kanpur',
-                        y: 29
-                    }
-                ]
-            }],
-            legend: {
-                show: false
-            },
-            chart: {
-                height: 350,
-                type: 'treemap',
-                toolbar: {
-                    show: false,
-                },
-            },
-            title: {
-                text: 'Distibuted Treemap (different color for each cell)',
-                align: 'center'
-            },
-            colors: [
-                '#3B93A5',
-                '#F7B844',
-                '#ADD8C7',
-                '#EC3C65',
-                '#CDD7B6',
-                '#C1F666',
-                '#D43F97',
-                '#1E5D8C',
-                '#421243',
-                '#7F94B0',
-                '#EF6537',
-                '#C0ADDB'
-            ],
-            plotOptions: {
-                treemap: {
-                    distributed: true,
-                    enableShades: false
-                }
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
-
-        var options = {
-            series: [{
-                    name: 'Q1 Budget',
-                    group: 'budget',
-                    data: [44000, 55000, 41000, 67000, 22000, 43000]
-                },
-                {
-                    name: 'Q1 Actual',
-                    group: 'actual',
-                    data: [48000, 50000, 40000, 65000, 25000, 40000]
-                },
-                {
-                    name: 'Q2 Budget',
-                    group: 'budget',
-                    data: [13000, 36000, 20000, 8000, 13000, 27000]
-                },
-                {
-                    name: 'Q2 Actual',
-                    group: 'actual',
-                    data: [20000, 40000, 25000, 10000, 12000, 28000]
-                }
-            ],
-            chart: {
-                type: 'bar',
-                height: 290,
-                stacked: true,
-                toolbar: {
-                    show: false,
-                },
-            },
-            stroke: {
-                width: 1,
-                colors: ['#fff']
-            },
-            dataLabels: {
-                formatter: (val) => {
-                    return val / 1000 + 'K'
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false
-                }
-            },
-            xaxis: {
-                labels: {
-                    show: false
-                }
-            },
-            fill: {
-                opacity: 1
-            },
-            colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-            yaxis: {
-                labels: {
-                    formatter: (val) => {
-                        return val / 1000 + 'K'
-                    }
-                }
-            },
-            legend: {
-                show: false
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart4"), options);
-        chart.render();
-
-
-        var options = {
-            series: [{
-                name: 'Net Profit',
-                data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-            }, {
-                name: 'Revenue',
-                data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-            }, {
-                name: 'Free Cash Flow',
-                data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-            }],
-            chart: {
-                type: 'bar',
-                height: 280,
-                toolbar: {
-                    show: false,
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                    endingShape: 'rounded'
-                },
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                show: true,
-                width: 2,
-                colors: ['transparent']
-            },
-            xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                labels: {
-                    show: false
-                },
-            },
-            yaxis: {
-                title: {
-                    text: '$ (thousands)'
-                }
-            },
-            fill: {
-                opacity: 1
-            },
-            tooltip: {
-                y: {
-                    formatter: function(val) {
-                        return "$ " + val + " thousands"
-                    }
-                }
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart5"), options);
-        chart.render();
-    </script>
 @endsection
 
 @section('scripts')
     <script>
-        // Select the modal and the form
-        const modal = document.getElementById('crud-modal');
-        const form = document.querySelector('#crud-modal form');
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     // Get the modal element
+        //     var modal = document.getElementById("evaluation-modal");
 
-        // Function to open the modal
-        function openModal(event) {
-            // Prevent the default behavior of the event
-            event.preventDefault();
-            // Show the modal
-            modal.classList.remove('hidden');
-            // Add event listener to the close button
-            const closeButton = modal.querySelector('button[type="button"]');
-            closeButton.addEventListener('click', closeModal);
-        }
+        //     // Display the modal
+        //     modal.classList.remove("hidden");
 
-        // Function to close the modal
-        function closeModal() {
-            modal.classList.add('hidden');
-        }
+        //     window.onclick = function(event) {
+        //         if (event.target == modal) {
+        //             modal.classList.add('shake');
+        //             setTimeout(function() {
+        //                 modal.classList.remove('shake');
+        //             }, 500); // Adjust the duration to match the animation duration
+        //         }
+        //     }
+        // });
 
-        // Function to handle form submission
-        function handleSubmit(event) {
-            // Prevent the form from submitting normally
-            event.preventDefault();
-            // Add your form submission logic here, for example:
-            // You can submit the form using AJAX or fetch
-            // When the submission is successful, you can close the modal
-            // For demonstration purposes, let's just log a message
-            console.log('Form submitted!');
-            // Close the modal
-            closeModal();
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if the modal has been shown before
+            var modalShown = localStorage.getItem("modalShown");
 
-        // Event listener for unload event
-        window.addEventListener('unload', openModal);
+            if (!modalShown) {
+                // Get the modal element
+                var modal = document.getElementById("evaluation-modal");
 
-        // Event listener for form submission
-        form.addEventListener('submit', handleSubmit);
+                // Display the modal
+                modal.classList.remove("hidden");
+
+                // Set a flag in localStorage indicating that the modal has been shown
+                localStorage.setItem("modalShown", "true");
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.classList.add('shake');
+                        setTimeout(function() {
+                            modal.classList.remove('shake');
+                        }, 500); // Adjust the duration to match the animation duration
+                    }
+                }
+            }
+        });
+    </script>
+@endsection
+
+@section('alerts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener to the save button
+            document.getElementById('submitBtn').addEventListener('click', function(event) {
+                event.preventDefault();
+
+                Swal.fire({
+                    title: 'Confirm Submission',
+                    text: 'Are you sure you want to save your evaluation?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, submit it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Submit Successful!",
+                            text: "Your evaluation has been submitted successfully.",
+                            icon: "success",
+                            confirmButtonText: 'Nice!'
+                        }).then(() => {
+                            document.getElementById('evaluationForm').submit();
+
+                            var modal = document.getElementById("evaluation-modal");
+                            modal.classList.add('hidden');
+                        })
+                    }
+                });
+            });
+        });
     </script>
 @endsection

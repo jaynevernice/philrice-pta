@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-// use RealRashid\SweetAlert\Facades\Alert;
-
 class AuthController extends Controller
 {
     public function login()
@@ -57,13 +55,10 @@ class AuthController extends Controller
 
                 if (!empty(Auth::check())) {
                     if (Auth::user()->user_type == 'super_admin') {
-                        // Alert::success('Login Successful', 'Welcome Super Admin');
                         return redirect('/super_admin/overview');
                     } elseif (Auth::user()->user_type == 'admin') {
-                        // Alert::success('Login Successful', 'Welcome Admin');
                         return redirect('/admin/overview');
                     } elseif (Auth::user()->user_type == 'encoder') {
-                        // Alert::success('Login Successful', 'Welcome Encoder')->autoClose(2000);
                         return redirect('/encoder/overview');
                     } elseif (Auth::user()->user_type == 'viewer') {
                         return redirect('/viewer/overview');

@@ -285,14 +285,14 @@
             input.type = input.type === 'password' ? 'text' : 'password';
         }
     </script>
+@endsection
 
+@section('charts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add event listener to the save button
             document.getElementById('saveProfileBtn').addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default form submission behavior
+                event.preventDefault();s
 
-                // Show SweetAlert2 confirmation dialog
                 Swal.fire({
                     title: 'Confirm Changes',
                     text: 'Are you sure you want to save the changes?',
