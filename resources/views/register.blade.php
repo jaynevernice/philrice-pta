@@ -94,14 +94,30 @@
                         {{-- <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">User Information</h3> --}}
                         @include('_message')
                         @if ($errors->any())
-                            <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                            {{-- <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                 role="alert">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
-                            </div>
+                            </div> --}}
+                            <script>
+                                // Prepare error message HTML
+                                let errorMessage = "<ul>";
+                                @foreach ($errors->all() as $error)
+                                    errorMessage += "<li>{{ $error }}</li>";
+                                @endforeach
+                                errorMessage += "</ul>";
+
+                                // Display SweetAlert2 popup with the error message
+                                Swal.fire({
+                                    title: 'Oops!',
+                                    html: errorMessage,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            </script>
                         @endif
                         <form action="{{ route('register.store') }}" method="POST" id="registrationForm">
                             @csrf
@@ -671,7 +687,7 @@
 
             // PHILRICE ID FORMAT
             $('#philrice_id').on('input', function() {
-                // OK NA SAKIN
+
                 var inputValue = $(this).val();
                 // Remove characters that are not numbers or dashes
                 var filteredValue = inputValue.replace(/[^\d-]/g, '');

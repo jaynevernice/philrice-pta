@@ -197,10 +197,10 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
                     <option disabled>Form Type</option>
-                    <option value="" selected>Summary of Trainings Conducted</option>
-                    <option value="0">Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="0">Technical Dispatch Monitoring</option>
-                    <option value="0">Technology Demonstration Monitoring</option>
+                    <option value="1" selected>Summary of Trainings Conducted</option>
+                    <option value="0" disabled >Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0" disabled >Technical Dispatch Monitoring</option>
+                    <option value="0" disabled >Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
@@ -234,7 +234,7 @@
 
             {{-- Total Number of Participants --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center">
-                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">-</h1>
+                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
                 <p class="text-gray-500">Total Number of Participants</p>
             </div>
 
@@ -543,8 +543,14 @@
 
 @section('charts')
     <script>
-        var sexChart = {
-            series: [10, 90],
+        // Sex Distribution
+        var sex_charts = @json($sex_charts);
+        var sex_labels = Object.keys(sex_charts);
+        var sex_values = Object.values(sex_charts);
+
+        var sex = {
+            // series: [10, 90],
+            series: sex_values,
             chart: {
                 width: 300,
                 type: 'pie',
@@ -552,18 +558,25 @@
                     show: true,
                 }
             },
-            labels: ['Male', 'Female'],
+            // labels: ['Male', 'Female'],
+            labels: sex_labels,
             colors: ['#008FFB', '#FF4560'],
             legend: {
                 position: 'bottom',
             }
         };
 
-        var sexChart = new ApexCharts(document.querySelector("#sexChart"), sexChart);
+        var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
         sexChart.render();
 
-        var diversityChart = {
-            series: [20, 80],
+        // PWD and IP Distribution
+        var indigenous_pwd = @json($indigenous_pwd);
+        var diversity_labels = Object.keys(indigenous_pwd);
+        var diversity_values = Object.values(indigenous_pwd);
+
+        var diversity = {
+            // series: [20, 80],
+            series: diversity_values,
             chart: {
                 width: 300,
                 type: 'pie',
@@ -571,19 +584,26 @@
                     show: true,
                 }
             },
-            labels: ['PWD', 'IP'],
+            // labels: ['PWD', 'IP'],
+            labels: diversity_labels,
             colors: ['#775DD0', '#8D5B4C'],
             legend: {
                 position: 'bottom',
             }
         };
 
-        var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversityChart);
+        var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversity);
         diversityChart.render();
 
-        var sectorChart = {
+        // Sector Bar Chart
+        var sector_charts = @json($sector_charts);
+        var sector_labels = Object.keys(sector_charts);
+        var sector_values = Object.values(sector_charts);
+
+        var sector = {
             series: [{
-                data: [400, 430, 448, 470]
+                // data: [400, 430, 448, 470]
+                data: sector_values
             }],
             chart: {
                 type: 'bar',
@@ -619,7 +639,8 @@
                 colors: ['#fff']
             },
             xaxis: {
-                categories: ['Farmers & Seed Growers', 'Ext. Workers & Intermediaries', ' Scientific Community', 'Others'],
+                // categories: ['Farmers & Seed Growers', 'Ext. Workers & Intermediaries', ' Scientific Community', 'Others'],
+                categories: sector_labels,
             },
             yaxis: {
                 labels: {
@@ -644,7 +665,7 @@
             }
         };
 
-        var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sectorChart);
+        var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
         sectorChart.render();
     </script>
 @endsection
@@ -793,7 +814,7 @@
                     `</td>
                         <td class="px-6 py-4 text-center">
                             <button
-                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik']}', '${data['evaluation']}', '${data['start_date']}', '${data['end_date']}', '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['province']}', '${data['municipality']}', '${data['station_id']}')"
+                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik']}%', '${data['evaluation']}', '${data['start_date']}', '${data['end_date']}', '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['province']}', '${data['municipality']}', '${data['station_id']}')"
                             type="button" 
                             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
                                 <box-icon name='expand-alt' size="xs"></box-icon>
@@ -850,6 +871,9 @@
                     showTrainings(result["records"]);
                     currentPage = page; // Update current page
 
+                    var total_participants = result['only_numbers'][0].total_participants;
+                    $("#total_participants_chart").text(total_participants);
+
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
@@ -863,6 +887,92 @@
                     alert("Oops something went wrong!");
                 },
             });
+        }
+
+        // SEX CHART //
+        function loadSexPieChart() {
+            // Sex Distribution
+            var sex_charts = @json($sex_charts);
+            var sex_labels = Object.keys(sex_charts);
+            var sex_values = Object.values(sex_charts);
+
+            sex.series = sex_values;
+            sex.labels = sex_labels;
+
+            var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
+            sexChart.render();
+        }
+        // PWD and INDIGENOUS CHART //
+        function loadPwdIndiPieChart() {
+            var indigenous_pwd = @json($indigenous_pwd);
+            var diversity_labels = Object.keys(indigenous_pwd);
+            var diversity_values = Object.values(indigenous_pwd);
+
+            diversity.series = diversity_values;
+            diversity.labels = diversity_labels;
+
+            var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversity);
+            diversityChart.render();
+        }
+        // SECTOR CHART //
+        function loadSectorBarChart() {
+            var sector_charts = @json($sector_charts);
+            var sector_labels = Object.keys(sector_charts);
+            var sector_values = Object.values(sector_charts);
+
+            sector.series[0].data = sector_values;
+            sector.xaxis.categories = sector_labels;
+
+            var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
+            sectorChart.render();
+        }
+
+        // RENDER FILTERED PIE CHART //
+        function renderFilteredPieChart(keys, values, chart) {
+            // fetch filtered data for pie chart
+            var labels = keys;
+            var values = values;
+            // handle null data
+            values = values.map(value => value === null ? 0 : value);
+            
+            if(chart == 'sex') {
+                // update sex chart  
+                sex.series = values;
+                sex.labels = labels;
+                // render sex chart
+                var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
+                sexChart.render();
+            }
+            if(chart == 'pwd-ip') {
+                // update pwd and indigenous chart  
+                diversity.series = values;
+                diversity.labels = labels;
+                // render pwd and indigenous chart
+                var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversity);
+                diversityChart.render();
+            }
+
+        }
+
+        // RENDER FILTERED BAR CHART //
+        function renderFilteredBarChart(keys, values, chart) {
+            var labels = keys;
+            var values = values;
+            
+            if(chart == 'sector') {
+                sector.series[0].data = values;
+                sector.xaxis.categories = labels;
+
+                var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
+                sectorChart.render();
+            }
+        }
+
+        // Function to destroy a chart if it exists
+        function destroyChart(chart) {
+            if (chart) {
+                chart.destroy();
+            }
         }
 
         function loadFilterTrainings(page) {
@@ -896,6 +1006,21 @@
                     showTrainings(result["records"]);
                     currentPage = page; // Update current page
 
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result['only_numbers'][0].total_participants : '0'; 
+                    $("#total_participants_chart").text(total_participants);
+
+                    // Destroy existing charts
+                    destroyChart(sexChart);
+                    destroyChart(diversityChart);
+                    destroyChart(sectorChart);
+
+                    // call function to render filtered pie chart
+                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
+                    renderFilteredPieChart(Object.keys(result['indigenous_pwd']), Object.values(result['indigenous_pwd']), 'pwd-ip');
+                    
+                    // call function to render filtered Bar chart
+                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
                         $("#prevButton").show();
@@ -925,6 +1050,17 @@
                 trainingTitle == ""
             ) {
                 loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(diversityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadPwdIndiPieChart();
+                loadSectorBarChart();
+
             } else {
                 loadFilterTrainings(1);
             }
@@ -945,6 +1081,16 @@
                 trainingTitle == ""
             ) {
                 loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(diversityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadPwdIndiPieChart();
+                loadSectorBarChart();
             } else {
                 loadFilterTrainings(1);
             }
@@ -965,6 +1111,16 @@
                 trainingTitle == ""
             ) {
                 loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(diversityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadPwdIndiPieChart();
+                loadSectorBarChart();
             } else {
                 loadFilterTrainings(1);
             }
@@ -985,6 +1141,16 @@
                 trainingTitle == ""
             ) {
                 loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(diversityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadPwdIndiPieChart();
+                loadSectorBarChart();
             } else {
                 loadFilterTrainings(1);
             }
@@ -1005,6 +1171,16 @@
                 trainingTitle == ""
             ) {
                 loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(diversityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadPwdIndiPieChart();
+                loadSectorBarChart();
             } else {
                 loadFilterTrainings(1);
             }
@@ -1027,6 +1203,16 @@
                 formType == ""
             ) {
                 loadTrainings(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(diversityChart);
+                destroyChart(sectorChart);
+
+                // Render new charts
+                loadSexPieChart();
+                loadPwdIndiPieChart();
+                loadSectorBarChart();
             } else {
                 loadFilterTrainings(1);
             }

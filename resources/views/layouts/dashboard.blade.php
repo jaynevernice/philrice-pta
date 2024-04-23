@@ -40,9 +40,13 @@
 
     {{-- jquery CDN --}}
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 </head>
 
 <body>
+    {{-- SweetAlert2 CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
         @include('layouts.navbar')
@@ -57,9 +61,6 @@
 
     {{-- ApexCharts CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-    {{-- SweetAlert2 CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="js/plugins/lg-thumbnail.umd.js"></script>
     <script src="js/plugins/lg-zoom.umd.js"></script>

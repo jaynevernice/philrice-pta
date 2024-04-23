@@ -58,12 +58,20 @@
                         </button>
                     </a>
                     <a href="{{ route('login') }}">
-                        <button type="button"
+                            <button type="button"
+                                class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-green-300 hover:bg-green-400 border border-green-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2">
+                                <box-icon name='edit-alt' type='solid' class="mr-2"></box-icon>
+                                Encode
+                            </button>
+                        </a>
+                    {{-- <form action="{{ route('login-page') }}" method="POST">
+                        @csrf
+                        <button type="submit"
                             class="w-full lg:w-60 flex items-center justify-center text-gray-900 bg-green-300 hover:bg-green-400 border border-green-300 focus:outline-none focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-base text-center px-5 py-3 me-2 mb-2">
                             <box-icon name='edit-alt' type='solid' class="mr-2"></box-icon>
                             Encode
                         </button>
-                    </a>
+                    </form> --}}
                 </div>
             </div>
         </div>

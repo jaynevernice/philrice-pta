@@ -429,6 +429,7 @@
 
         </div>
 
+        @include('_message')
     </main>
 @endsection
 
@@ -1016,7 +1017,6 @@
                     $("#average_gik_chart").text(average_gik + '%');
                     $("#evaluation_chart").text(evaluation);
                     
-                    // --- SEX CHART --- //
                     // Destroy existing charts
                     destroyChart(sexChart);
                     destroyChart(indigenousChart);

@@ -9,14 +9,14 @@
         <div class="max-w-lg w-full sm:m-10 bg-white shadow sm:rounded-lg flex flex-col justify-center">
 
             {{-- Redirect Back --}}
-            <a href="{{ route('forgot') }}">
+            {{-- <a href="{{ route('forgot') }}">
                 <div
                     class="absolute -left-16 top-1/2 transform -translate-y-1/2 w-60 h-60 bg-gray-400 hover:bg-gray-700 rounded-r-full flex items-center justify-center hover:-translate-x-8 transition-transform duration-300 ease-in-out">
                     <div class="text-white">
                         <box-icon name='arrow-back' color="white" type='solid' class="w-16 h-16 ml-10"></box-icon>
                     </div>
                 </div>
-            </a>
+            </a> --}}
 
             <div class="px-20 py-16 ">
                 <h1 class="text-2xl xl:text-3xl font-extrabold text-center mb-4">Forgot Password?</h1>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <form action="{{ url('/resetsq') }}" method="POST">
+                <form action="{{ route('post-reset-sq') }}" method="POST">
                     @include('_message')
                     @csrf
                     {{-- <input
@@ -50,7 +50,7 @@
                             <option value="" disabled selected>Choose security question</option>
                             <option value="sq1">What is your favorite color?</option>
                             <option value="sq2">What province were you born in?</option>
-                            <option value="sq3">What is the name of your elementary school?
+                            <option value="sq3">What's the name of your elementary school?
                             </option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -73,9 +73,9 @@
                     </button>
 
                     <div class="text-center my-8">
-                        <a href="{{ route('reset_email') }}"
-                            class="font-medium text-green-400 hover:text-green-500 hover:underline">Reset Using
-                            Email</a>
+                        <a href="{{ route('forgot') }}"
+                            class="font-medium text-green-400 hover:text-green-500 hover:underline">Go Back
+                        </a>
                     </div>
                 </form>
             </div>
@@ -84,6 +84,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         document.getElementById('security_question').addEventListener('change', function() {
             var selectedOption = this.value;
@@ -97,6 +98,46 @@
                 additionalField.style.display = 'none';
                 answerInput.removeAttribute('required');
             }
+        });
+
+        
+        $(document).ready(function() {
+            // PHILRICE ID FORMAT
+            $('#philrice_id').on('input', function() {
+
+                var inputValue = $(this).val();
+                // Remove characters that are not numbers or dashes
+                var filteredValue = inputValue.replace(/[^\d-]/g, '');
+
+                // Limit only 2 numbers before the dash
+                var parts = filteredValue.split('-');
+                var beforeDash = parts[0].substring(0, 2);
+
+                // Get the current year
+                var currentYear = new Date().getFullYear() % 100; // Last two digits of the current year
+                if (parseInt(beforeDash) > parseInt(currentYear)) {
+                    beforeDash = currentYear.toString();
+                }
+
+                // Limit only 4 numbers after the dash
+                var afterDash = parts[1] || ''; // Handle case where there's no dash yet
+                afterDash = afterDash.substring(0, 4);
+
+                // Validate the third and fourth numbers (representing month) to be within 01 to 12
+                var month = parseInt(afterDash.substring(0, 2));
+                if (month < 1 || month > 12) {
+                    afterDash = '0'; 
+                }
+
+                // If there are more than 2 numbers before the dash, add dash after the second number
+                if (beforeDash.length >= 2 && !inputValue.endsWith('-')) {
+                    beforeDash = beforeDash.substring(0, 2) + '-';
+                }
+
+                // Update the input value with formatted value
+                $(this).val(beforeDash + afterDash);
+                
+            });
         });
     </script>
 @endsection

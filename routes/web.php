@@ -29,6 +29,7 @@ Route::get('/', function () {
 Route::get('/forgot_password', function () {
     return view('forgot_password');
 })->name('forgot');
+Route::post('/forgot', [AuthController::class, 'PostForgot'])->name('post-forgot');
 
 Route::get('/reset_using_email', function () {
     return view('reset_email');
@@ -38,7 +39,7 @@ Route::post('/reset_email', [AuthController::class, 'PostForgot']);
 Route::get('/reset_using_security_questions', function () {
     return view('reset_sq');
 })->name('reset_sq');
-Route::post('/resetsq', [AuthController::class, 'PostSecurityQuestions']);
+Route::post('/resetsq', [AuthController::class, 'PostSecurityQuestions'])->name('post-reset-sq');
 
 Route::get('/register', [UserController::class, 'create'])->name('register');
 Route::post('register', [UserController::class, 'store'])->name('register.store');

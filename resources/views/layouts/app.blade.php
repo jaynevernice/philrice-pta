@@ -19,6 +19,8 @@
     {{-- Include compiled css to start using Tailwind Utility Classes --}}
     @vite('resources/css/app.css')
 
+    {{-- csrf for ajax --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>

@@ -372,9 +372,9 @@
                                 @endforeach
                                 <option value="Other">Other</option>
                             </select>
-                            <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
+                            {{-- <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                style="display: none;">
+                                style="display: none;"> --}}
                         </div>
                     </div>
                 </div>
@@ -1708,7 +1708,7 @@
                     var imageSize = image.size / 1024 / 1024; // Convert bytes to MB
 
                     if (imageSize > 25) {
-                        errorImage.text('Image size exceeds 25MB. Please select a smaller image.');
+                        errorImage.text('Image size exceeds 25MB. Please upload a smaller image.');
                         errorImage.show(); // Show the error message
                         $(this).val(''); // Clear the file input
                         return; // Stop further processing
@@ -1727,7 +1727,7 @@
                     var fileSize = file.size / 1024 / 1024; // Convert bytes to MB
 
                     if (fileSize > 25) {
-                        errorFile.text('File size exceeds 25MB. Please select a smaller file.');
+                        errorFile.text('File size exceeds 25MB. Please upload a smaller file.');
                         errorFile.show(); // Show the error message
                         $(this).val(''); // Clear the file input
                         return; // Stop further processing

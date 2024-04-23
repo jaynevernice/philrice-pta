@@ -79,17 +79,20 @@
 
                         <div class="w-full flex-1 mt-8">
                             {{-- <div class="mx-auto max-w-xs"> --}}
-                            <form action="{{ route('auth_login') }}" method="POST">
+                            <form action="{{ route('auth_login') }}" method="POST" id="submit-login">
                                 @include('_message')
                                 @csrf
-                                <input
+                                {{-- <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]"
-                                    type="email" name="email" placeholder="Email" />
+                                    type="email" name="email" id="email" placeholder="Email" required/> --}}
+                                <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
+                                    id="philrice_id" placeholder="PhilRice ID" required @if(Auth::check()) disabled @endif
+                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]">
 
                                 <div class="relative mt-5">
-                                    <input id="password"
+                                    <input id="password" @if(Auth::check()) disabled @endif
                                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]"
-                                        type="password" name="password" placeholder="Password" />
+                                        type="password" name="password" id="password" placeholder="Password" required/>
 
 
                                     {{-- Toggle password visbility --}}
@@ -105,7 +108,7 @@
 
                                 <div class="grid grid-cols-2">
                                     <div>
-                                        <button type="submit"
+                                        <button type="submit" id="submit" @if(Auth::check()) disabled @endif
                                             class="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                             <span class="ml-3 text-base">
                                                 LOG IN
@@ -116,7 +119,7 @@
                                     <div class="flex items-center justify-center h-full">
                                         {{-- Forgot Password --}}
                                         {{-- <a href="{{ url('/forgot') }}" class="block text-sm text-gray-600 my-4 hover:text-[#0B1215] text-right underline">Forgot Password?</a> --}}
-                                        <a href="{{ url('/forgot_password') }}"
+                                        <a @if(Auth::check()) href="#" @else href="{{ url('/forgot_password') }}" @endif
                                             class="block text-base text-[#1A73E8] mt-5 hover:text-blue-700 text-left">
                                             Forgot Password?
                                         </a>
@@ -126,8 +129,6 @@
 
                                 {{-- <p class="block text-sm text-gray-600 my-8 hover:text-[#0B1215] text-center">Don't have an account? <a href="{{ url('/register') }}" class="text-sm text-green-600 my-4 hover:text-green-900 text-center underline">Register Now</a></p> --}}
                             </form>
-
-
 
                             {{-- Terms and Conditions --}}
                             {{-- <p class="mt-6 text-xs text-gray-600 text-center">
@@ -148,6 +149,9 @@
 
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
         function togglePasswordVisibility() {
             var passwordInput = document.getElementById('password');
@@ -165,5 +169,45 @@
                     '<path d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"/>';
             }
         }
+
+        // PHILRICE ID FORMAT
+        $(document).ready(function() {
+            $('#philrice_id').on('input', function() {
+
+                var inputValue = $(this).val();
+                // Remove characters that are not numbers or dashes
+                var filteredValue = inputValue.replace(/[^\d-]/g, '');
+
+                // Limit only 2 numbers before the dash
+                var parts = filteredValue.split('-');
+                var beforeDash = parts[0].substring(0, 2);
+
+                // Get the current year
+                var currentYear = new Date().getFullYear() % 100; // Last two digits of the current year
+                if (parseInt(beforeDash) > parseInt(currentYear)) {
+                    beforeDash = currentYear.toString();
+                }
+
+                // Limit only 4 numbers after the dash
+                var afterDash = parts[1] || ''; // Handle case where there's no dash yet
+                afterDash = afterDash.substring(0, 4);
+
+                // Validate the third and fourth numbers (representing month) to be within 01 to 12
+                var month = parseInt(afterDash.substring(0, 2));
+                if (month < 1 || month > 12) {
+                    afterDash = '0'; 
+                }
+
+                // If there are more than 2 numbers before the dash, add dash after the second number
+                if (beforeDash.length >= 2 && !inputValue.endsWith('-')) {
+                    beforeDash = beforeDash.substring(0, 2) + '-';
+                }
+
+                // Update the input value with formatted value
+                $(this).val(beforeDash + afterDash);
+                
+            });
+        });
     </script>
+
 @endsection

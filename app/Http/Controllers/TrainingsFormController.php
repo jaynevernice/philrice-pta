@@ -73,33 +73,65 @@ class TrainingsFormController extends Controller
     public function cesView()
     {
         $titles = TrainingsTitle::select('*')->orderBy('training_title', 'asc')->get();
+
+        // sex chart data
+        $sex_charts = DB::table('trainings_forms')
+            ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+            ->select(DB::raw('CAST(SUM(num_of_male) AS UNSIGNED) as Male'),
+                    DB::raw('CAST(SUM(num_of_female) AS UNSIGNED) as Female'))
+            ->where('users.station', '=', 'CES')
+            ->first();
+        // convert $sex_charts into associative aray
+        $sex_charts = (array) $sex_charts;
+
+        // indigenous and pwd chart data
+        $indigenous_pwd = DB::table('trainings_forms')
+            ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+            ->select(DB::raw('CAST(SUM(num_of_indigenous) AS UNSIGNED) as Indigeous'),
+                    DB::raw('CAST(SUM(num_of_pwd) AS UNSIGNED) as PWD'))
+            ->where('users.station', '=', 'CES')
+            ->first();
+        // convert $indigenous_pwd into associative aray
+        $indigenous_pwd = (array) $indigenous_pwd;
+
+        // sector chart data
+        $sector_charts = DB::table('trainings_forms')
+            ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+            ->select(DB::raw('CAST(SUM(num_of_farmers) AS UNSIGNED) as "Farmers and Seed Growers"'),
+                    DB::raw('CAST(SUM(num_of_extworkers) AS UNSIGNED) as "Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)"'),
+                    DB::raw('CAST(SUM(num_of_scientific) AS UNSIGNED) as "Scientific Community (researchers, academe, etc)"'),
+                    DB::raw('CAST(SUM(num_of_other) AS UNSIGNED) as "Other Sectors (rice industry players, media, policymakers, general rice consumers)"'),)
+            ->where('users.station', '=', 'CES')
+            ->first();
+        // convert $ability_charts into associative aray
+        $sector_charts = (array) $sector_charts;
         
-        return view('encoder.ces_view', compact('titles'));
+        return view('encoder.ces_view', compact('titles', 'sex_charts', 'indigenous_pwd', 'sector_charts'));
     }
 
     public function cesEditView()
-    {
-        // if(!empty(Auth::check())) {
-        //     $encoder_id = Auth::user()->id;
-        // }
-
-        // $records = DB::table('trainings_forms')
-        // ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-        // ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
-        // // remove the line below to show all records
-        // ->where("encoder_id", '=', $encoder_id)
-        // ->latest('trainings_forms.created_at')
-        // // ->simplePaginate(5);
-        // // ->paginate(5);
-        // ->get();
-
+    {   
         if(empty(Auth::check())) {
             abort(404);
         }
+        
+        $encoder_id = Auth::user()->id;
+
+        $titles = TrainingsTitle::select('*')->orderBy('training_title', 'asc')->get();
+
+        $records = DB::table('trainings_forms')
+        ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+        ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
+        // remove the line below to show all records
+        ->where("encoder_id", '=', $encoder_id)
+        ->latest('trainings_forms.created_at')
+        // ->simplePaginate(5);
+        // ->paginate(5);
+        ->get();
 
         // dd($records->all());
-        // return view('encoder.ces_edit', compact('records'));
-        return view('encoder.ces_edit');
+        return view('encoder.ces_edit', compact('records', 'titles'));
+        // return view('encoder.ces_edit');
     }
 
     /**
@@ -132,8 +164,16 @@ class TrainingsFormController extends Controller
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
+            
+            $only_numbers = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                ->where('users.station', '=', $request->station)
+                ->get();
 
-            return response()->json(['records' => $records]);
+            return response()->json(['records' => $records, 'only_numbers' => $only_numbers]);
         }
 
         if ($request->boolean('filterTrainingsView')) {
@@ -159,7 +199,17 @@ class TrainingsFormController extends Controller
                             ->select('*')
                             ->where('id', '=', 0)
                             ->get();
-                return response()->json(['records' => $records]);
+                
+                $only_numbers = $provinces = DB::table('trainings_forms')
+                    ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                            DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                            DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                    ->where('id', '=', 0)
+                    ->get();
+                
+                $sex_charts = [];
+                
+                return response()->json(['records' => $records, 'only_numbers' => $only_numbers, 'provinces' => $provinces, 'sex_charts' => $sex_charts]);
             }
             // dd($trainingTitle);
             
@@ -202,7 +252,159 @@ class TrainingsFormController extends Controller
                 ->take($recordsPerPage) // Limit the number of records per page
                 ->get();
 
-            return response()->json(['records' => $records]);
+            $only_numbers = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
+                                // ->orWhere('province', 'LIKE', "%$searchInput%")
+                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                // ->orWhere('country', 'LIKE', "%$searchInput%")
+                                // ->orWhere('state', 'LIKE', "%$searchInput%")
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                })
+                ->where('users.station', '=', $request->station)
+                ->get();
+            // sex chart data
+            $sex_charts = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select(DB::raw('CAST(SUM(num_of_male) AS UNSIGNED) as Male'),
+                        DB::raw('CAST(SUM(num_of_female) AS UNSIGNED) as Female'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
+                                // ->orWhere('province', 'LIKE', "%$searchInput%")
+                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                // ->orWhere('country', 'LIKE', "%$searchInput%")
+                                // ->orWhere('state', 'LIKE', "%$searchInput%")
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                })
+                ->where('users.station', '=', $request->station)
+                ->first();
+            // convert $sex_charts into associative aray
+            $sex_charts = (array) $sex_charts;
+            // pwd and indigenous chart data
+            $indigenous_pwd = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select(DB::raw('CAST(SUM(num_of_indigenous) AS UNSIGNED) as Indigeous'),
+                        DB::raw('CAST(SUM(num_of_pwd) AS UNSIGNED) as PWD'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
+                                // ->orWhere('province', 'LIKE', "%$searchInput%")
+                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                // ->orWhere('country', 'LIKE', "%$searchInput%")
+                                // ->orWhere('state', 'LIKE', "%$searchInput%")
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                })
+                ->where('users.station', '=', $request->station)
+                ->first();
+            
+            // sector chart data
+            $sector_charts = DB::table('trainings_forms')
+                ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                ->select(DB::raw('CAST(SUM(num_of_farmers) AS UNSIGNED) as "Farmers and Seed Growers"'),
+                        DB::raw('CAST(SUM(num_of_extworkers) AS UNSIGNED) as "Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)"'),
+                        DB::raw('CAST(SUM(num_of_scientific) AS UNSIGNED) as "Scientific Community (researchers, academe, etc)"'),
+                        DB::raw('CAST(SUM(num_of_other) AS UNSIGNED) as "Other Sectors (rice industry players, media, policymakers, general rice consumers)"'),)
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
+                                // ->orWhere('province', 'LIKE', "%$searchInput%")
+                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                // ->orWhere('country', 'LIKE', "%$searchInput%")
+                                // ->orWhere('state', 'LIKE', "%$searchInput%")
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                })
+                ->where('users.station', '=', $request->station)
+                ->first();
+            // convert $ability_charts into associative aray
+            $sector_charts = (array) $sector_charts;
+
+            return response()->json(['records' => $records, 'only_numbers' => $only_numbers, 'sex_charts' => $sex_charts, 'indigenous_pwd' => $indigenous_pwd, 'sector_charts' => $sector_charts]);
         }
 
         // For Edit DataTable
@@ -219,9 +421,10 @@ class TrainingsFormController extends Controller
             // Query to fetch records with pagination
             $records = DB::table('trainings_forms')
                 ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-                ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
-                ->where('encoder_id', '=', $encoder_id)
-                ->where('trainings_forms.station', '=', $request->station)
+                ->select('trainings_forms.*')
+                ->where('trainings_forms.encoder_id', '=', $encoder_id)
+                ->where('users.station', '=', $request->station)
+                ->where('trainings_forms.division', '=', Auth::user()->division)
                 ->latest('trainings_forms.id')
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
@@ -244,11 +447,22 @@ class TrainingsFormController extends Controller
             $yearSelect = $request->yearSelect ?? '';
             $start_MonthSelect = $request->start_MonthSelect ?? '';
             $end_MonthSelect = $request->end_MonthSelect ?? '';
+            $trainingTitle = $request->trainingTitle ?? '';
+            $formType = $request->formType ?? '';
+
+            // not existing form type
+            if($formType == 0) {
+                $records = DB::table('trainings_forms')
+                            ->select('*')
+                            ->where('id', '=', 0)
+                            ->get();
+                
+                return response()->json(['records' => $records]);
+            }
 
             $records = DB::table('trainings_forms')
                 ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-                ->select('trainings_forms.*', 'users.name as encoder_name', 'users.email as encoder_email')
-                ->where('encoder_id', '=', $encoder_id)
+                ->select('trainings_forms.*')
                 ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
                     return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
                 })
@@ -258,20 +472,29 @@ class TrainingsFormController extends Controller
                 ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
                     return $query->whereYear('start_date', '=', $yearSelect);
                 })
-                ->when(!empty($searchInput), function ($query) use ($searchInput) {
-                    $query->where(function ($subquery) use ($searchInput) {
-                        $subquery->where('title', 'LIKE', "%$searchInput%")
-                            ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                            ->orWhere('venue', 'LIKE', "%$searchInput%")
-                            ->orWhere('province', 'LIKE', "%$searchInput%")
-                            ->orWhere('municipality', 'LIKE', "%$searchInput%")
-                            ->orWhere('country', 'LIKE', "%$searchInput%")
-                            ->orWhere('state', 'LIKE', "%$searchInput%")
-                            ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
-                    });
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
                 })
-                // ->orderBy('title', 'ASC')
-                ->where('trainings_forms.station', '=', $request->station)
+                ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
+                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
+                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
+                                // ->orWhere('province', 'LIKE', "%$searchInput%")
+                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
+                                // ->orWhere('country', 'LIKE', "%$searchInput%")
+                                // ->orWhere('state', 'LIKE', "%$searchInput%")
+                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                })
+                ->where('trainings_forms.encoder_id', '=', $encoder_id)
+                ->where('users.station', '=', $request->station)
+                ->where('trainings_forms.division', '=', Auth::user()->division)
                 ->latest('trainings_forms.id')
                 ->skip($offset) // Skip records based on the offset
                 ->take($recordsPerPage) // Limit the number of records per page
@@ -614,7 +837,7 @@ class TrainingsFormController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(gettype($request->average_gik));
+        // dd($request->all());
         // dd(gettype($request->withinPhilriceInput));
 
         // query for user
@@ -652,22 +875,28 @@ class TrainingsFormController extends Controller
             'other_doc'=>'max:10',
         ]);
 
-        
-
         $title = $request->training_title;
         if( $request->training_title == 'Other' ) {
             $request->validate([
                 'otherTrainingInput'=>'required',
             ]);
             $title = $request->otherTrainingInput;
-        } 
+        }
+        
+        $source_of_fund = $request->source_of_fund;
+        if( $request->source_of_fund == 'Other' ) {
+            $request->validate([
+                'otherFundInput'=>'required',
+            ]);
+            $source_of_fund = $request->otherFundInput;
+        }
 
-        $training_venue = '-';
-        $local_address = '-';
-        $municipality = '-';
-        $province = '-';
-        $outside_local_address = '-';
-        $international_address = '-';
+        $training_venue = '';
+        $local_address = '';
+        $municipality = '';
+        $province = '';
+        $outside_local_address = '';
+        $international_address = '';
         if($request->training_type == 'Local') {
             $request->validate([
                 'training_venue'=>'required',
@@ -692,18 +921,18 @@ class TrainingsFormController extends Controller
                 'internationalTrainingInput'=>'required',
             ]);
             $international_address = $request->internationalTrainingInput;
-            $municipality = '-';
-            $province = '-';
+            $municipality = '';
+            $province = '';
         }
         
-        if($local_address != '-') {
+        if($local_address != '') {
             $municipality = $local_address->municipality;
             $province = $local_address->province;
         }
 
-        if($outside_local_address != '-') {
+        if($outside_local_address != '') {
             $municipality = $outside_local_address;
-            $province = '-';
+            $province = '';
         }
 
         $average_gik = $request->average_gik;
@@ -764,7 +993,7 @@ class TrainingsFormController extends Controller
             'end_date'=>Carbon::parse($request->end)->format('Y-m-d'),
             // Section 3
             'sponsor'=>$request->sponsor,
-            'fund'=>$request->source_of_fund,
+            'fund'=>$source_of_fund,
             'average_gik'=>$average_gik,
             'evaluation'=> (float) $request->evaluationInput,
             // Section 4
@@ -782,7 +1011,7 @@ class TrainingsFormController extends Controller
             'file'=>implode('|', $fileNames),
         ]);
 
-        return redirect()->back()->with('success', "You successfully added a data.");
+        return redirect()->back()->with(['success' => 'Great!', 'message' => 'You have successfully added a data']);
     }
 
     /**
@@ -1086,7 +1315,7 @@ class TrainingsFormController extends Controller
             $record->delete();
     
             // return redirect()->back()->with('warning', "You successfully deleted a data.");
-            return response()->json(['message' => 'Record deleted successfully']);
+            return response()->json(['message' => 'Data deleted successfully']);
         }
     }
 

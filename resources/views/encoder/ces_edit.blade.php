@@ -137,15 +137,15 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2">
+            <div class="mr-2 w-24">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    {{-- <option selected>Year</option>
-                    <option>2024</option> --}}
-                    <option value="" selected>All Year</option>
+                    {{-- <option selected>Year</option> --}}
+                    <option value="" disabled>Year</option>
+                    <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
+                        <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
                             {{ $year }}
                         </option>
                     @endfor
@@ -153,55 +153,71 @@
             </div>
 
             {{-- From --}}
-            <div class="mx-2">
+            <div class="mx-1 w-24">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="start_MonthSelect">
                     <option value="" selected>From</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
-
             {{-- To --}}
-            <div class="mx-2">
+            <div class="mx-1 w-24">
                 <select name="quarter"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="end_MonthSelect">
                     <option value="" selected>To</option>
-                    <option value="1" >January</option>
-                    <option value="2" >February</option>
-                    <option value="3" >March</option>
-                    <option value="4" >April</option>
-                    <option value="5" >May</option>
-                    <option value="6" >June</option>
-                    <option value="7" >July</option>
-                    <option value="8" >August</option>  
-                    <option value="9" >September</option>
-                    <option value="10" >October</option>
-                    <option value="11" >November</option>
-                    <option value="12" >December</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
             {{-- Form --}}
-            <div class="mx-2 mr-auto">
+            <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
-                    <option selected>Form Type</option>
-                    <option>Summary of Trainings Conducted</option>
+                    <option disabled>Form Type</option>
+                    <option value="1" selected>Summary of Trainings Conducted</option>
+                    <option value="0" disabled >Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0" disabled >Technical Dispatch Monitoring</option>
+                    <option value="0" disabled >Technology Demonstration Monitoring</option>
+                </select>
+            </div>
+
+            {{-- Training Titles --}}
+            <div class="mx-1 w-56">
+                <select
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="training_title">
+                    <option value="" selected disabled>Training Title</option>
+                    <option value="">All Training Title</option>
+                    @foreach ($titles as $title)
+                        <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
+                    @endforeach
+                    <option value="Other">Other</option>
                 </select>
             </div>
 
@@ -613,8 +629,8 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">` + data["title"] + `</th>
                         <td class="px-6 py-4">` + data["division"] + `</td>
                         <td class="px-6 py-4">` + formatDate(data["start_date"]) + ` - ` + formatDate(data["end_date"]) + `</td>
-                        <td class="px-6 py-4">` + data["venue"] + `</td>
-                        <td class="px-6 py-4">` + (data["municipality"] || data["state"]) + `, ` + (data["province"] || data["country"]) + `</td>
+                        <td class="px-6 py-4">` + data["type"] + `</td>
+                        <td class="px-6 py-4">` + (data["international_address"] || data["municipality"] + `, `) + (data["province"] || '') + `</td>
                         <td class="px-6 py-4">` + data["num_of_participants"] + `</td>
                         <td class="px-6 py-4">` + data["created_at"] + `</td>
                         <td class="px-6 py-4 text-center">
@@ -641,39 +657,6 @@
                     </tr>
                     `;
             });
-
-            // Efficient template literal construction using map()
-            // const trainingRows = result.map(data => `
-            // <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            //     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">${data.title}</th>
-            //     <td class="px-6 py-4">${data.division || '-'}</td>  
-            //     <td class="px-6 py-4">${data.start_date || '-'} - ${data.end_date || '-'}</td>  
-            //     <td class="px-6 py-4">${data.venue || '-'}</td>  
-            //     <td class="px-6 py-4">${data.province || data.state}, ${data.municipality || data.country}</td>  
-            //     <td class="px-6 py-4">${data.num_of_participants || '-'}</td>  
-            //     <td class="px-6 py-4">${data.created_at || '-'}</td>  
-            //     <td class="px-6 py-4 text-center">
-            //         <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal"
-            //             type="button"
-            //             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-            //             type="button">
-            //             <box-icon name='expand-alt' size="xs"></box-icon>
-            //         </button>
-            //         <button onclick="showRecord(${data.id || '-'})"
-            //             type="button"
-            //             class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-            //             type="button">
-            //             <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
-            //         </button>
-            //         <button onclick="deleteRecord(${data.id || '-'})"
-            //             type="button"
-            //             class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]"
-            //             type="button">
-            //             <box-icon name='trash' type='solid' size="xs"></box-icon>
-            //         </button>
-            //     </td>
-            // </tr>
-            // `).join('');
 
             // Single DOM manipulation for better performance
             // tableBody.html(trainingRows);
@@ -715,10 +698,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
                 data: {
-                    'showTraining': true,
-                    'page': page,
-                    'recordsPerPage': recordsPerPage,
-                    'station': station,
+                    showTraining: true,
+                    page: page,
+                    recordsPerPage: recordsPerPage,
+                    station: station,
                 },
                 success: function(result) {
                     showTrainings(result['records']);
@@ -740,10 +723,12 @@
         }
 
         function loadFilterTrainings(page) {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
@@ -753,14 +738,16 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
                 data: {
-                    'filterTrainings': true,
-                    'searchInput': searchInput,
-                    'yearSelect': yearSelect,
-                    'start_MonthSelect': start_MonthSelect,
-                    'end_MonthSelect': end_MonthSelect,
-                    'station': station,
-                    'page': page,
-                    'recordsPerPage': recordsPerPage,
+                    filterTrainings: true,
+                    searchInput: searchInput,
+                    yearSelect: yearSelect,
+                    start_MonthSelect: start_MonthSelect,
+                    end_MonthSelect: end_MonthSelect,
+                    trainingTitle: trainingTitle,
+                    formType: formType,
+                    station: station,
+                    page: page,
+                    recordsPerPage: recordsPerPage,
                 },
                 success: function(result) {
                     showTrainings(result['records']);
@@ -782,163 +769,225 @@
 
         $('#trainingsSearch').on('keyup input', function() {
             var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     // url: "/encoder/trainings/filter",
-                //     url: "{{ route('filter_data') }}",
-                //     method: "POST",
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                //     },
-                //     data: {
-                //         'filterTrainings': true,
-                //         'searchInput': searchInput,
-                //         'yearSelect': yearSelect,
-                //         'start_MonthSelect': start_MonthSelect,
-                //         'end_MonthSelect': end_MonthSelect,
-                //         'station': station,
-                //     },
-                //     success: function(result) {
-                //         showTrainings(result['records']);
-                //         $('#nextButton').hide();
-                //         $('#prevButton').hide();
-                //     },
-                //     error: function(error) {
-                //         alert("Oops something went wrong!");
-                //     }
-                // })
                 loadFilterTrainings(1);
             }
         });
 
         $('#yearSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     // url: "/encoder/trainings/filter",
-                //     url: "{{ route('filter_data') }}",
-                //     method: "POST",
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                //     },
-                //     data: {
-                //         'filterTrainings': true,
-                //         'searchInput': searchInput,
-                //         'yearSelect': yearSelect,
-                //         'start_MonthSelect': start_MonthSelect,
-                //         'end_MonthSelect': end_MonthSelect,
-                //         'station': station,
-                //     },
-                //     success: function(result) {
-                //         showTrainings(result['records']);
-                //         $('#nextButton').hide();
-                //         $('#prevButton').hide();
-                //     },
-                //     error: function(error) {
-                //         alert("Oops something went wrong!");
-                //     }
-                // })
                 loadFilterTrainings(1);
             }
         })
 
         $('#start_MonthSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     // url: "/encoder/trainings/filter",
-                //     url: "{{ route('filter_data') }}",
-                //     method: "POST",
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                //     },
-                //     data: {
-                //         'filterTrainings': true,
-                //         'searchInput': searchInput,
-                //         'yearSelect': yearSelect,
-                //         'start_MonthSelect': start_MonthSelect,
-                //         'end_MonthSelect': end_MonthSelect,
-                //         'station': station,
-                //     },
-                //     success: function(result) {
-                //         showTrainings(result['records']);
-                //         $('#nextButton').hide();
-                //         $('#prevButton').hide();
-                //     },
-                //     error: function(error) {
-                //         alert("Oops something went wrong!");
-                //     }
-                // })
                 loadFilterTrainings(1);
             }
         })
 
         $('#end_MonthSelect').on('change', function() {
             var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $('#yearSelect').val();
-            var start_MonthSelect = $('#start_MonthSelect').val();
-            var end_MonthSelect = $('#end_MonthSelect').val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
-            if (searchInput == '' && start_MonthSelect == '' && end_MonthSelect == '' && yearSelect == '') {
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
                 loadTrainings(1);
             } else {
-                // $.ajax({
-                //     // url: "/encoder/trainings/filter",
-                //     url: "{{ route('filter_data') }}",
-                //     method: "POST",
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                //     },
-                //     data: {
-                //         'filterTrainings': true,
-                //         'searchInput': searchInput,
-                //         'yearSelect': yearSelect,
-                //         'start_MonthSelect': start_MonthSelect,
-                //         'end_MonthSelect': end_MonthSelect,
-                //         'station': station,
-                //     },
-                //     success: function(result) {
-                //         showTrainings(result['records']);
-                //         $('#nextButton').hide();
-                //         $('#prevButton').hide();
-                //     },
-                //     error: function(error) {
-                //         alert("Oops something went wrong!");
-                //     }
-                // })
                 loadFilterTrainings(1);
             }
         })
+
+        $("#training_title").on("change", function() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == ""
+            ) {
+                loadTrainings(1);
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
+        $("#form").on("change", function() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").val();
+            var start_MonthSelect = $("#start_MonthSelect").val();
+            var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
+            var formType = parseInt($("#form").val());
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                formType == ""
+            ) {
+                loadTrainings(1);
+            } else {
+                loadFilterTrainings(1);
+            }
+        });
+
+        function showRecord(id) {
+            window.location.href = "{{ route('trainingsform.edit', ':id') }}".replace(':id', id);
+        }
+
+        function deleteRecord(id) {
+            // if (confirm('Are you sure you want to delete this record?')) {
+            //     // Use AJAX to send a DELETE request to the appropriate route
+            //     $.ajax({
+            //         url: '/encoder/trainings/form-delete/' +
+            //             id, // Replace with the correct route for deleting training
+            //         method: 'DELETE',
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            //         },
+            //         data: {
+            //             'deleteRecord': true,
+            //         },
+            //         success: function(response) {
+            //             if (response.message === 'Record deleted successfully') {
+            //                 $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
+            //                 alert('Successfully deleted');
+            //             } else {
+            //                 console.error('Error deleting training:', response
+            //                     .error); // Handle potential errors
+            //             }
+            //             loadTrainings(currentPage); // Reload current page's trainings
+            //         },
+            //         error: function(error) {
+            //             // Handle any errors during deletion
+            //             console.error('Error deleting record:', error);
+            //         }
+            //     });
+            // }
+            Swal.fire({
+                title: 'Are you sure you want to delete this data?',
+                text: "This action can't be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                // Use AJAX to send a DELETE request to the appropriate route
+                $.ajax({
+                    url: '/encoder/trainings/form-delete/' + id, // Replace with the correct route for deleting training
+                    method: 'DELETE',
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                    'deleteRecord': true
+                    },
+                    success: function(response) {
+                    if (response.message === 'Data deleted successfully') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: 'The data has been deleted successfully.',
+                            showConfirmButton: false,
+                            timer: 1500 // Auto-close after 1.5 seconds
+                        });
+                        $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
+                        loadTrainings(currentPage); // Reload current page's trainings
+                    } else {
+                        console.error('Error deleting training:', response.error); // Handle potential errors
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'An error occurred while deleting the data.'
+                        });
+                    }
+                    },
+                    error: function(error) {
+                    console.error('Error deleting data:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'There was an error during deletion.'
+                    });
+                    }
+                });
+                }
+            });
+        }
 
         function nextPage() {
             var searchInput = $("#trainingsSearch").val();
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == ""
             ) {
                 loadTrainings(currentPage + 1);
             } else {
@@ -951,12 +1000,14 @@
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
+            var trainingTitle = $("#training_title").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
-                yearSelect == ""
+                yearSelect == "" &&
+                trainingTitle == ""
             ) {
                 if (currentPage > 1) {
                     loadTrainings(currentPage - 1);
@@ -965,41 +1016,6 @@
                 if (currentPage > 1) {
                     loadFilterTrainings(currentPage - 1);
                 }
-            }
-        }
-
-        function showRecord(id) {
-            window.location.href = "{{ route('trainingsform.edit', ':id') }}".replace(':id', id);
-        }
-
-        function deleteRecord(id) {
-            if (confirm('Are you sure you want to delete this record?')) {
-                // Use AJAX to send a DELETE request to the appropriate route
-                $.ajax({
-                    url: '/encoder/trainings/form-delete/' +
-                        id, // Replace with the correct route for deleting training
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: {
-                        'deleteRecord': true,
-                    },
-                    success: function(response) {
-                        if (response.message === 'Record deleted successfully') {
-                            $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
-                            alert('Successfully deleted');
-                        } else {
-                            console.error('Error deleting training:', response
-                                .error); // Handle potential errors
-                        }
-                        loadTrainings(currentPage); // Reload current page's trainings
-                    },
-                    error: function(error) {
-                        // Handle any errors during deletion
-                        console.error('Error deleting record:', error);
-                    }
-                });
             }
         }
     </script>
