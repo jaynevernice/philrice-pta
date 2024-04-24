@@ -149,7 +149,8 @@
                 </a>
 
                 {{-- Card 2 --}}
-                <a href="{{ route('kslanalytics.index') }}" target="_blank">
+                {{-- <a href="{{ route('kslanalytics.index') }}" target="_blank"> --}}
+                <a href="#" target="_blank">
                     <div
                         class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
                         <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -163,7 +164,8 @@
                 </a>
 
                 {{-- Card 3 --}}
-                <a href="{{ route('dispatchform.index') }}" target="_blank">
+                {{-- <a href="{{ route('dispatchform.index') }}" target="_blank"> --}}
+                <a href="#" target="_blank">
                     <div
                         class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
                         <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -178,7 +180,8 @@
                 </a>
 
                 {{-- Card 4 --}}
-                <a href="{{ route('technodemo') }}" target="_blank">
+                {{-- <a href="{{ route('technodemo') }}" target="_blank"> --}}
+                <a href="#" target="_blank">
                     <div
                         class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
                         <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
