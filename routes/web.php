@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VisitorEvaluationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -61,6 +62,12 @@ Route::group(['prefix' => 'guest'], function () {
         return view('guest.overview');
     })->name('guest.overview');
 
+    Route::get('/view', [WebAnalyticsController::class, 'incrementSiteView'])->name('guest.view');
+    
+    Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteView'])->name('guest.fetch_view');
+   
+    Route::post('/overview-visitor-evaluation', [VisitorEvaluationController::class, 'store'])->name('evaluation.store');
+
     Route::get('/ces', function () {
         return view('guest.ces');
     })->name('guest.ces');
@@ -92,8 +99,6 @@ Route::group(['prefix' => 'guest'], function () {
     Route::get('/negros', function () {
         return view('guest.negros');
     })->name('guest.negros');
-
-    Route::post('/overview-visitor-evaluation', [WebAnalyticsController::class, 'store'])->name('evaluation.store');
 });
 
 // Super Admin
@@ -150,6 +155,10 @@ Route::group(['middleware' => 'super_admin'], function () {
 
         Route::put('/block/{id}', [UserController::class, 'block'])->name('super_admin.block');
         Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('super_admin.unblock');
+
+        Route::get('/web-analytics', function () {
+            return view('super_admin.web_analytics');
+        })->name('super_admin.web_analytics');
     });
 });
 
@@ -209,22 +218,8 @@ Route::group(['middleware' => 'admin'], function () {
 // Encoder
 Route::group(['middleware' => 'encoder'], function () {
     Route::group(['prefix' => 'encoder'], function () {
-        // Route::get('/profile', function () {
-        //     return view('profile');
-        // })->name('profile');
-
-        // Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
-        // Route::put('/updateSecurityQuestions', [UserController::class, 'updateSecurityQuestions'])->name('updateSecurityQuestions');
-        // Route::put('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
-
-        // Route::get('/overview', function () {
-        //     return view('encoder.overview');
-        // })->name('encoder.overview');
         Route::get('/overview', [TrainingsFormController::class, 'index'])->name('encoder.overview');
 
-        // Route::get('/ces_view', function () {
-        //     return view('encoder.ces_view');
-        // })->name('encoder.ces_view');
         Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
 
         Route::get('/ces_add', function () {
@@ -279,27 +274,6 @@ Route::group(['middleware' => 'encoder'], function () {
     });
 });
 
-// KSL Monitoring
-Route::group(['prefix' => 'ksl'], function () {
-    Route::get('/form', [KSLFormController::class, 'index'])->name('kslform.index');
-    Route::get('/analytics', [KSLAnalyticsController::class, 'index'])->name('kslanalytics.index');
-});
-
-// Summary of Trainings
-Route::group(['prefix' => 'trainings'], function () {
-    Route::get('/form', [TrainingsFormController::class, 'index'])->name('trainingsform.index');
-});
-
-// Technical Dispatch
-Route::group(['prefix' => 'dispatch'], function () {
-    Route::get('/form', [DispatchFormController::class, 'index'])->name('dispatchform.index');
-});
-
-// Techno Demo
-Route::get('/technodemo', function () {
-    return view('technodemo');
-})->name('technodemo');
-
 // Update Profile
 Route::middleware(['auth'])->group(function () {
     // Profile routes
@@ -310,6 +284,5 @@ Route::middleware(['auth'])->group(function () {
         return view('profile');
     })->name('profile');
 
-    Route::put('/updateProfile', [UserController::class, 'updateProfile'])
-        ->name('updateProfile');
+    Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
 });
