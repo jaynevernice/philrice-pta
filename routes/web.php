@@ -47,6 +47,7 @@ Route::post('register', [UserController::class, 'store'])->name('register.store'
 Route::get('verify/{token}', [UserController::class, 'verify'])->name('verify');
 Route::post('register/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('register.fetchDivisions');
 Route::post('register/fetch-positons', [UserController::class, 'fetchPositions'])->name('register.fetchPositions');
+Route::post('check-philrice-id', [UserController::class, 'checkIfExists'])->name('check-if-exists');
 
 Route::get('/reset/{token}', [AuthController::class, 'reset']);
 Route::post('/reset/{token}', [AuthController::class, 'PostReset']);

@@ -80,11 +80,11 @@ class UserController extends Controller
     {
         // dd($request->all());
 
-        if ($request->password != $request->confirm_password) {
-            return redirect()->back()->with('error', 'Your password and confirm password did not match');
-        }
+        // if (password($request->password, $request->confirm_password)) {
+        //     return redirect()->back()->with('error', 'Your password and confirm password did not match');
+        // }
 
-        // need muna icheck sa database kung valid yung PhilRice ID
+        // need muna icheck sa database kung valid yung PhilRice ID //
 
         $request->validate([
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:50',
@@ -95,7 +95,7 @@ class UserController extends Controller
             'station' => 'required',
             'division' => 'required',
             'position' => 'required',
-            'password' => 'required|min:8|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()\-^\/])/',
+            'password' => 'required|confirmed|min:8|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()\-^\/])/',
             'sq1' => 'required',
             'sq2' => 'required',
             'sq3' => 'required',
@@ -116,7 +116,7 @@ class UserController extends Controller
             'mi' => trim($request->mi),
             'last_name' => trim($request->last_name),
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password),
             'user_type' => 'encoder',
             'station' => $station->station,
             'division' => $division->division,
@@ -124,6 +124,7 @@ class UserController extends Controller
             'sq1' => strtolower($request->sq1),
             'sq2' => strtolower($request->sq2),
             'sq3' => strtolower($request->sq3),
+            'isBlocked' => 0
         ]);
 
         $new_user = User::getEmailSingle($request->email);
@@ -133,7 +134,7 @@ class UserController extends Controller
         // function to send verification button in email
         Mail::to($new_user->email)->send(new RegisterMail($new_user));
 
-        return redirect()->route('login')->with('success', 'Please check your email to verify your account.');
+        return redirect()->route('login')->with(['warning' => 'Account Verification!', 'message' => 'Please check your email to verify your account.']);
     }
 
     public function verify($remember_token)
@@ -339,5 +340,29 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'You have unblocked access to this user');
+    }
+
+    public function checkIfExists(Request $request)
+    {
+        // dd($request->all());
+        if($request->boolean('checkPhilriceId')) {
+            $user = User::getPhilriceIdSingle($request->philriceID);
+
+            if(!empty($user)) {
+                return response()->json(['exists' => true]);
+            } else {
+                return response()->json(['exists' => false]);
+            }   
+        }
+        
+        if($request->boolean('checkEmail')) {
+            $user = User::getEmailSingle($request->email);
+
+            if(!empty($user)) {
+                return response()->json(['exists' => true]);
+            } else {
+                return response()->json(['exists' => false]);
+            }   
+        }
     }
 }

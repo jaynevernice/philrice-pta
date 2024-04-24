@@ -21,9 +21,14 @@
 
     {{-- csrf for ajax --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- jquery CDN --}}
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 
 <body>
+    {{-- jquery CDN --}}
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
     @yield('content')
 

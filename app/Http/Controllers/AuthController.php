@@ -115,7 +115,8 @@ class AuthController extends Controller
 
                 return redirect()
                     ->back()
-                    ->with(['success-security-question' => 'Reset Password!', 'message' => 'You can now enter your New Password']);
+                    // ->with(['success' => 'Reset Password!', 'message' => 'You can now enter your New Password']);
+                    ->with(['success' => 'Reset Password!', 'message' => 'Please check your email (' . $auth_user->email . ') and reset your password.']);
             } else {
                 return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Your PhilRice ID or your answer is incorrect']);
             }

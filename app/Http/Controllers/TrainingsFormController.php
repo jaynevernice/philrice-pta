@@ -1192,7 +1192,7 @@ class TrainingsFormController extends Controller
         if ($images = $request->file('photo_doc_event')) {
             // count elements in old_images and images in update form
             if(count($old_images) + count($images) > 10) {
-                return redirect()->back()->with('error', "Uploaded images/files can't exceed to 10.");
+                return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Uploaded images should not exceed to 10.']);
             }
             foreach ($images as $image) {
                 // $imageName = md5(rand(1000,10000));
@@ -1222,7 +1222,7 @@ class TrainingsFormController extends Controller
         if ($files = $request->file('other_doc')) {
             // count elements in old_files and files in update form
             if(count($old_files) + count($files) > 10) {
-                return redirect()->back()->with('error', "Uploaded images/files can't exceed to 10.");
+                return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Uploaded files should not exceed to 10.']);
             }
             foreach ($files as $file) {
                 // $fileName = md5(rand(1000,10000));

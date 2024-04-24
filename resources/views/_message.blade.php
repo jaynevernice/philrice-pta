@@ -34,10 +34,6 @@
     </script>
 @endif
 
-@if (!@empty(session('success-security-question')))
-
-@endif
-
 @if (!@empty(session('success-login')))
     <script>
         Swal.fire({

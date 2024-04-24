@@ -894,34 +894,6 @@
         }
 
         function deleteRecord(id) {
-            // if (confirm('Are you sure you want to delete this record?')) {
-            //     // Use AJAX to send a DELETE request to the appropriate route
-            //     $.ajax({
-            //         url: '/encoder/trainings/form-delete/' +
-            //             id, // Replace with the correct route for deleting training
-            //         method: 'DELETE',
-            //         headers: {
-            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            //         },
-            //         data: {
-            //             'deleteRecord': true,
-            //         },
-            //         success: function(response) {
-            //             if (response.message === 'Record deleted successfully') {
-            //                 $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
-            //                 alert('Successfully deleted');
-            //             } else {
-            //                 console.error('Error deleting training:', response
-            //                     .error); // Handle potential errors
-            //             }
-            //             loadTrainings(currentPage); // Reload current page's trainings
-            //         },
-            //         error: function(error) {
-            //             // Handle any errors during deletion
-            //             console.error('Error deleting record:', error);
-            //         }
-            //     });
-            // }
             Swal.fire({
                 title: 'Are you sure you want to delete this data?',
                 text: "This action can't be undone.",
@@ -934,7 +906,7 @@
                 if (result.isConfirmed) {
                 // Use AJAX to send a DELETE request to the appropriate route
                 $.ajax({
-                    url: '/encoder/trainings/form-delete/' + id, // Replace with the correct route for deleting training
+                    url: '{{ route("trainingsform.delete", ["id" => ":id"]) }}'.replace(':id', id),
                     method: 'DELETE',
                     headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -949,7 +921,6 @@
                             title: 'Deleted!',
                             text: 'The data has been deleted successfully.',
                             showConfirmButton: false,
-                            timer: 1500 // Auto-close after 1.5 seconds
                         });
                         $(`[data-id="${id}"]`).remove(); // Remove the deleted training row
                         loadTrainings(currentPage); // Reload current page's trainings
