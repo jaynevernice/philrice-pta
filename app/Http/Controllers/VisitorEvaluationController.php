@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VisitorEvaluation;
 use App\Models\WebAnalytics;
 use Illuminate\Http\Request;
 
-class WebAnalyticsController extends Controller
+class VisitorEvaluationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +29,16 @@ class WebAnalyticsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'sex' => 'required',
+            'name' => 'required',
+            'sector' => 'required',
+            'purpose' => 'nullable|string',
+        ]);
+
+        VisitorEvaluation::create($validatedData);
+
+        return redirect()->back()->with('success', 'Form submitted successfully!');
     }
 
     /**
@@ -61,28 +71,5 @@ class WebAnalyticsController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function incrementSiteView()
-    {
-        // Find the record in the web_analytics table
-        $analytics = WebAnalytics::first();
-
-        if ($analytics) {
-            // Increment the site_view column
-            $analytics->increment('site_views', 1);
-        } else {
-            // Create a new record if it doesn't exist
-            WebAnalytics::create(['site_views' => 1]);
-        }
-
-        // Redirect back or to any other page
-        return redirect()->route('guest.overview');
-        
-    }
-
-    public function fetchSiteView() {
-        $siteViews = WebAnalytics::value('site_views');
-        return response()->json(['siteViews' => $siteViews]);
     }
 }

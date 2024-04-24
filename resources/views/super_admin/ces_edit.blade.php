@@ -136,6 +136,17 @@
                     </a>
                 </li>
 
+                <hr>
+
+                {{-- Web Analytics --}}
+                <li>
+                    <a href="{{ route('super_admin.web_analytics') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg group">
+                        <box-icon name='desktop'></box-icon>
+                        <span class="ml-3">Web Analytics</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </aside>

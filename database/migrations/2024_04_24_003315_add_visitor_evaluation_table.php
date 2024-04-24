@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('web_analytics', function (Blueprint $table) {
-            $table->id();
-            // $table->string('visitor_view_count');
+        Schema::table('visitor_evaluations', function (Blueprint $table) {
             $table->string('name');
             $table->string('sector');
             $table->string('purpose')->nullable();
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('web_analytics');   
+        Schema::dropIfExists('visitor_evaluations');   
     }
 };

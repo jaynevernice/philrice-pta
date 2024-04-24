@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    PhilRice CES | Add Data
+    Web Analytics
 @endsection
 
 @section('sidebar')
@@ -22,13 +22,13 @@
 
                 {{-- CES --}}
                 <li>
-                    <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                    <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                         aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
                         <box-icon name='chevron-down'></box-icon>
                     </a>
-                    <ul id="dropdown-sales" class="py-2 space-y-2">
+                    <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                         <li>
                             <a href="{{ route('super_admin.ces_view') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -38,7 +38,7 @@
                         </li>
                         <li>
                             <a href="{{ route('super_admin.ces_add') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='plus'></box-icon>
                                 <span class="ml-3">Add Data</span>
                             </a>
@@ -53,21 +53,21 @@
                     </ul>
                 </li>
 
-                {{-- AGUSAN --}}
-                <li>
-                    <a href="{{ route('super_admin.agusan') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">AGUSAN</span>
-                    </a>
-                </li>
-
                 {{-- BATAC --}}
                 <li>
                     <a href="{{ route('super_admin.batac') }}"
                         class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon name='building' type='solid'></box-icon>
                         <span class="ml-3">BATAC</span>
+                    </a>
+                </li>
+
+                {{-- AGUSAN --}}
+                <li>
+                    <a href="{{ route('super_admin.agusan') }}"
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        <box-icon name='building' type='solid'></box-icon>
+                        <span class="ml-3">AGUSAN</span>
                     </a>
                 </li>
 
@@ -115,12 +115,13 @@
                         <span class="ml-3">NEGROS</span>
                     </a>
                 </li>
+
                 <hr>
 
                 {{-- Manage Encoders --}}
                 <li>
                     <a href="{{ route('super_admin.manage_encoders') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-green-100group">
                         <box-icon type='solid' name='user-account'></box-icon>
                         <span class="ml-3">Manage Encoders</span>
                     </a>
@@ -129,7 +130,7 @@
                 {{-- Manage Admins --}}
                 <li>
                     <a href="{{ route('super_admin.manage_admins') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg group">
                         <box-icon type='solid' name='user-account'></box-icon>
                         <span class="ml-3">Manage Admins</span>
                     </a>
@@ -140,7 +141,7 @@
                 {{-- Web Analytics --}}
                 <li>
                     <a href="{{ route('super_admin.web_analytics') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg group">
+                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg bg-green-100 group">
                         <box-icon name='desktop'></box-icon>
                         <span class="ml-3">Web Analytics</span>
                     </a>
@@ -148,79 +149,45 @@
 
             </ul>
         </div>
+
+        </div>
     </aside>
 @endsection
 
 @section('content')
     <main class="p-4 md:ml-64 h-screen pt-20">
-
-        <div class="flex">
-            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
-                    class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span>
-                Central Experimental Station</h1>
-        </div>
-
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
-            <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-
-                {{-- Card 1 --}}
-                <a href="{{ route('trainingsform.index') }}" target="_blank">
-                    <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 hover:drop-shadow-lg hover:animate-pulse">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Summary of Trainings
-                            </h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bonnie drives the technical
-                                strategy of the flowbite platform and brand.</p>
-                        </div>
-                    </div>
-                </a>
-
-                {{-- Card 2 --}}
-                <a href="{{ route('kslanalytics.index') }}" target="_blank">
-                    <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">KSL</h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Jese drives the technical
-                                strategy of the flowbite platform and brand.</p>
-                        </div>
-                    </div>
-                </a>
-
-                {{-- Card 3 --}}
-                <a href="{{ route('dispatchform.index') }}" target="_blank">
-                    <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Dispatch Trainings
-                            </h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Michael drives the technical
-                                strategy of the flowbite platform and brand.</p>
-                        </div>
-                    </div>
-                </a>
-
-                {{-- Card 4 --}}
-                <a href="{{ route('technodemo') }}" target="_blank">
-                    <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Technology
-                                Demonstration</h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Lana drives the technical
-                                strategy of the flowbite platform and brand.</p>
-                        </div>
-                    </div>
-            </div>
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+            <h1 id="siteViews" class="mb-2 text-6xl font-extrabold">-</h1>
+            <p class="text-gray-500 dark:text-gray-400">Total Site Visits</p>
         </div>
     </main>
+@endsection
+
+@section('alerts')
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            // Function to fetch site views via AJAX
+            function getSiteViews() {
+                $.ajax({
+                    url: "{{ route('guest.fetch_view') }}",
+                    type: 'GET',
+                    success: function(response) {
+                        $('#siteViews').text(response.siteViews);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            // Call the function initially when the page loads
+            getSiteViews();
+
+            // Refresh site views every 5 seconds (for example)
+            setInterval(getSiteViews, 5000); // Adjust interval as needed
+        });
+    </script>
 @endsection
