@@ -36,6 +36,9 @@
 
     {{-- jquery CDN --}}
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    {{-- glightbox CSS CDN --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 <style>
     /* CSS to fit the image in the modal */
@@ -69,7 +72,7 @@
     <script src="js/plugins/lg-zoom.umd.js"></script> --}}
 
     {{-- Charts --}}
-    @yield('charts')s
+    @yield('charts')
 
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
