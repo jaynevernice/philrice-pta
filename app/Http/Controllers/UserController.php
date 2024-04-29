@@ -124,7 +124,7 @@ class UserController extends Controller
             'sq1' => strtolower($request->sq1),
             'sq2' => strtolower($request->sq2),
             'sq3' => strtolower($request->sq3),
-            'isBlocked' => 0
+            'isBlocked' => 0,
         ]);
 
         $new_user = User::getEmailSingle($request->email);
@@ -134,7 +134,9 @@ class UserController extends Controller
         // function to send verification button in email
         Mail::to($new_user->email)->send(new RegisterMail($new_user));
 
-        return redirect()->route('login')->with(['warning' => 'Account Verification!', 'message' => 'Please check your email to verify your account.']);
+        return redirect()
+            ->route('login')
+            ->with(['warning' => 'Account Verification!', 'message' => 'Please check your email to verify your account.']);
     }
 
     public function verify($remember_token)
@@ -186,22 +188,73 @@ class UserController extends Controller
         //
     }
 
+    public function showProfile($id)
+    {
+        if (Auth::id() != $id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Here you can also fetch user information if needed
+        $user = Auth::user();
+
+        // Fetch stations
+        $stations = Station::all();
+
+        // Fetch positions
+        $positions = Position::all();
+
+        // Fetch divisions
+        $divisions = Division::all();
+
+        return view('profile', ['user' => $user, 'stations' => $stations, 'positions' => $positions, 'divisions' => $divisions]);
+    }
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
 
         // Update profile information
-        $user->update($request->except(['profile_picture', 'old_password', 'password', 'password_confirmation', 'sq1', 'sq2', 'sq3']));
+        $user->update($request->except(['profile_picture', 'old_password', 'password', 'password_confirmation', 'sq1', 'sq2', 'sq3', 'station', 'division', 'position', 'station_id', 'division_id', 'position_id']));
+
+        // Update select fields. Saves IDs as values
+        $user->station = $request->input('station');
+        $user->division = $request->input('division');
+        $user->position = $request->input('position');
+        
+        // Update select fields. Saves names as values
+        // if ($request->filled('station')) {
+        //     $station = Station::findOrFail($request->station);
+        //     $user->station = $station->station;
+        // }
+
+        // if ($request->filled('division')) {
+        //     $division = Division::findOrFail($request->division);
+        //     $user->division = $division->division;
+        // }
+
+        // if ($request->filled('position')) {
+        //     $position = Position::findOrFail($request->position);
+        //     $user->position = $position->position;
+        // }
 
         // Update profile picture if a new one is provided
         if ($request->hasFile('profile_picture')) {
             $request->validate([
-                'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                // 'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif',
             ]);
 
             $image = $request->file('profile_picture');
             $imageName = time() . '.' . $image->extension();
             $image->move(public_path('profile_picture'), $imageName);
+
+            // Delete old profile picture if exists
+            if ($user->profile_picture) {
+                $oldImagePath = public_path() . $user->profile_picture;
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
 
             $user->profile_picture = '/profile_picture/' . $imageName;
         }
@@ -345,24 +398,24 @@ class UserController extends Controller
     public function checkIfExists(Request $request)
     {
         // dd($request->all());
-        if($request->boolean('checkPhilriceId')) {
+        if ($request->boolean('checkPhilriceId')) {
             $user = User::getPhilriceIdSingle($request->philriceID);
 
-            if(!empty($user)) {
+            if (!empty($user)) {
                 return response()->json(['exists' => true]);
             } else {
                 return response()->json(['exists' => false]);
-            }   
+            }
         }
-        
-        if($request->boolean('checkEmail')) {
+
+        if ($request->boolean('checkEmail')) {
             $user = User::getEmailSingle($request->email);
 
-            if(!empty($user)) {
+            if (!empty($user)) {
                 return response()->json(['exists' => true]);
             } else {
                 return response()->json(['exists' => false]);
-            }   
+            }
         }
     }
 }

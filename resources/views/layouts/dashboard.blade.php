@@ -40,15 +40,14 @@
     {{-- glightbox CSS CDN --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
-<style>
+{{-- <style>
     /* CSS to fit the image in the modal */
     .glightbox img {
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
     }
-</style>
-
+</style> --}}
 <body>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
@@ -61,30 +60,17 @@
         @yield('content')
 
     </div>
-
-    {{-- ApexCharts CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-    {{-- SweetAlert2 CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    {{-- <script src="js/plugins/lg-thumbnail.umd.js"></script>
-    <script src="js/plugins/lg-zoom.umd.js"></script> --}}
-
-    {{-- Charts --}}
+    
     @yield('charts')
-
-    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
-
-    {{-- Scripts --}}
+    
     @yield('scripts')
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script> --}}
-
-    {{-- realrashid/sweet-alert --}}
-    {{-- @include('sweetalert::alert') --}}
-
+    
     @yield('alerts')
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 </body>
 
 {{-- jquery CDN --}}

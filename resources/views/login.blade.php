@@ -53,8 +53,7 @@
                         </div>
 
                         <h1 class="text-2xl xl:text-3xl font-extrabold my-4">Hello!</h1>
-                        <p class="justify-right text-lg text-gray-700 mb-8">Please login with your data that you entered
-                            during registration</p>
+                        <p class="justify-right text-lg text-gray-700 mb-8">Sign in to your account.</p>
 
 
                         {{-- <div class="drop-shadow flex items-center justify-center my-4">

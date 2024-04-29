@@ -198,9 +198,9 @@
                     id="form">
                     <option disabled>Form Type</option>
                     <option value="1" selected>Summary of Trainings Conducted</option>
-                    <option value="0" disabled >Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="0" disabled >Technical Dispatch Monitoring</option>
-                    <option value="0" disabled >Technology Demonstration Monitoring</option>
+                    <option value="0" disabled>Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0" disabled>Technical Dispatch Monitoring</option>
+                    <option value="0" disabled>Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
@@ -347,7 +347,7 @@
 
     {{-- Modal for CES Summary of Trainings --}}
     <div id="trainings-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-36">
         <div class="fixed inset-0 bg-black opacity-50 h-full"></div>
         <div class="relative p-4 w-full max-w-4xl">
             {{-- Modal Content --}}
@@ -372,49 +372,64 @@
                                 <p class="font-normal text-gray-700">Total Number of Participants</p>
                             </a>
                         </div>
-                        <div>
+                        <div class="grid grid-rows-2">
                             <a
-                                class="h-40 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-                                <div class="flex gap-3 my-2">
+                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
+                                <div class="flex gap-3">
                                     <h1 id="num_of_male" class="mb-2 text-4xl font-extrabold">-</h1>
                                     <p class="font-normal text-gray-700">Total Number of Male</p>
                                 </div>
-                                <div class="flex gap-3 my-2">
+                            </a>
+                            <a
+                                class="h-[72px] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
+                                <div class="flex gap-3">
                                     <h1 id="num_of_female" class="mb-2 text-4xl font-extrabold">-</h1>
                                     <p class="font-normal text-gray-700">Total Number of Female</p>
                                 </div>
                             </a>
                         </div>
-                        <div>
+                        <div class="grid grid-rows-2">
                             <a
-                                class="h-40 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 my-2">
                                     <h1 id="num_of_indigenous" class="mb-2 text-4xl font-extrabold">-</h1>
                                     <p class="font-normal text-gray-700">Total Number of PWD</p>
                                 </div>
+                            </a>
+                            <a
+                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 my-2">
                                     <h1 id="num_of_pwd" class="mb-2 text-4xl font-extrabold">-</h1>
                                     <p class="font-normal text-gray-700">Total Number of IP</p>
                                 </div>
                             </a>
                         </div>
-                        <div>
+                        <div class="grid grid-rows-4">
                             <a
-                                class="h-40 block max-w-sm p-2 pl-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_farmers" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <h1 id="num_of_farmers" class="mb-0 text-lg font-extrabold self-center">-</h1>
                                     <p class="text-xs text-gray-700">Farmers and Seed Growers</p>
                                 </div>
+                            </a>
+                            <a
+                                class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_extworkers" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <h1 id="num_of_extworkers" class="mb-0 text-lg font-extrabold self-center">-</h1>
                                     <p class="text-xs text-gray-700">Ext. Workers & Intermediaries</p>
                                 </div>
+                            </a>
+                            <a
+                                class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_scientific" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <h1 id="num_of_scientific" class="mb-0 text-lg font-extrabold self-center">-</h1>
                                     <p class="text-xs text-gray-700">Scientific Community</p>
                                 </div>
+                            </a>
+                            <a
+                                class="h-1 max-w-sm p-3 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_other" class="mb-2 text-lg font-extrabold">-</h1>
+                                    <h1 id="num_of_other" class="mb-0 text-lg font-extrabold self-center">-</h1>
                                     <p class="text-xs text-gray-700">Other Sectors</p>
                                 </div>
                             </a>
@@ -934,8 +949,8 @@
             var values = values;
             // handle null data
             values = values.map(value => value === null ? 0 : value);
-            
-            if(chart == 'sex') {
+
+            if (chart == 'sex') {
                 // update sex chart  
                 sex.series = values;
                 sex.labels = labels;
@@ -943,7 +958,7 @@
                 var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
                 sexChart.render();
             }
-            if(chart == 'pwd-ip') {
+            if (chart == 'pwd-ip') {
                 // update pwd and indigenous chart  
                 diversity.series = values;
                 diversity.labels = labels;
@@ -958,8 +973,8 @@
         function renderFilteredBarChart(keys, values, chart) {
             var labels = keys;
             var values = values;
-            
-            if(chart == 'sector') {
+
+            if (chart == 'sector') {
                 sector.series[0].data = values;
                 sector.xaxis.categories = labels;
 
@@ -1006,7 +1021,8 @@
                     showTrainings(result["records"]);
                     currentPage = page; // Update current page
 
-                    var total_participants = result['only_numbers'][0].total_participants != null ? result['only_numbers'][0].total_participants : '0'; 
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result[
+                        'only_numbers'][0].total_participants : '0';
                     $("#total_participants_chart").text(total_participants);
 
                     // Destroy existing charts
@@ -1015,11 +1031,14 @@
                     destroyChart(sectorChart);
 
                     // call function to render filtered pie chart
-                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
-                    renderFilteredPieChart(Object.keys(result['indigenous_pwd']), Object.values(result['indigenous_pwd']), 'pwd-ip');
-                    
+                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result[
+                        'sex_charts']), 'sex');
+                    renderFilteredPieChart(Object.keys(result['indigenous_pwd']), Object.values(result[
+                        'indigenous_pwd']), 'pwd-ip');
+
                     // call function to render filtered Bar chart
-                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result[
+                        'sector_charts']), 'sector');
 
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();

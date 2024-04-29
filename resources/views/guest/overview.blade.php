@@ -5,7 +5,7 @@
 @endsection
 
 <style>
-    /* Add this CSS animation */
+    /* Animation for the modal */
     @keyframes shake {
         0% {
             transform: translateX(0);
@@ -30,6 +30,39 @@
 
     .shake {
         animation: shake 0.5s;
+    }
+
+    /* Animation for the emojis */
+    .emoji-carousel {
+        overflow: hidden;
+    }
+
+    .emoji-item {
+        transition: transform 0.5s;
+    }
+
+    .animate {
+        animation: none !important;
+        transform: translateX(-100%);
+        animation: carousel 10s linear infinite;
+        /* Adjust the timing as needed */
+    }
+
+    .center-emoji {
+        transform: scale(1.5);
+        /* Increase size of center emoji */
+        z-index: 1;
+        /* Ensure center emoji is on top */
+    }
+
+    @keyframes carousel {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
     }
 </style>
 
@@ -249,18 +282,71 @@
 
     <!-- Main modal -->
     <div id="evaluation-modal" tabindex="-1" aria-hidden="true"
-        class="hidden fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black bg-opacity-50">
-        <div class="relative p-4 w-full max-w-md max-h-full">
+        class=" fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black bg-opacity-50">
+        <div class="relative p-4 w-full max-w-lg max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
                 <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 class="text-lg font-semibold text-[#0B1215]">
-                        Visitor Evaluation Form
+                <div class="flex items-center p-4 md:p-5 border-b rounded-t">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3 class="text-lg font-semibold text-[#0B1215] ml-2">
+                        Feedback
                     </h3>
                 </div>
+
+                <div class="items-center justify-center mx-2 mt-2 px-4 pt-4">
+                    <h3
+                        class="mb-2 text-3xl font-extrabold leading-none tracking-tight text-center text-gray-900 dark:text-white">
+                        Thanks for visiting us!</h3>
+                    <p class="text-xs font-normal text-gray-500 dark:text-gray-400 text-balance text-center">We appreciate
+                        your time. Please take just 2 minutes to complete our evaluation form.</p>
+
+
+                    {{-- Group of Emojis --}}
+                    <div class="flex items-center justify-center mt-4 emoji-carousel" id="emojiCarousel">
+                        <div class="relative emoji-item">
+                            <div class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
+                                <span id="emojiSpan" class="text-4xl flex items-center justify-center mb-1">😨</span>
+                                <div id="emojiDim" class="absolute bg-gray-200 opacity-50 rounded-full w-12 h-12"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative emoji-item">
+                            <div class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
+                                <span id="emojiSpan" class="text-4xl flex items-center justify-center mb-1">😔</span>
+                                <div id="emojiDim" class="absolute bg-gray-200 opacity-50 rounded-full w-12 h-12"></div>
+                            </div>
+                        </div>
+
+                        {{-- Center --}}
+                        <div class="relative emoji-item">
+                            <div id="emojiContainer" class="flex items-center justify-center bg-gray-300 rounded-full w-20 h-20 mx-2">
+                                <span id="emojiSpan" class="text-6xl flex items-center justify-center mb-2">😌</span>
+                                <div id="emojiDim" class=""></div>
+                                {{-- <i class="fa-regular fa-face-laugh-beam"></i>1 --}}
+                            </div>
+                        </div>
+                        
+
+                        <div class="relative emoji-item">
+                            <div id="emojiContainer" class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
+                                <span id="emojiSpan" class="text-4xl flex items-center justify-center mb-1">😄</span>
+                                <div id="emojiDim" class="absolute bg-gray-200 opacity-50 rounded-full w-12 h-12"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative emoji-item">
+                            <div id="emojiContainer" class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
+                                <span id="emojiSpan" class="text-4xl flex items-center justify-center mb-1">🤩</span>
+                                <div id="emojiDim" class="absolute bg-gray-200 opacity-50 rounded-full w-12 h-12"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 <!-- Modal body -->
-                <form id="evaluationForm" class="p-4 md:p-5" action="{{ route('evaluation.store') }}" method="POST">
+                <form id="evaluationForm" class="px-4 pb-4" action="{{ route('evaluation.store') }}" method="POST">
                     @csrf
                     <div class="mb-4">
 
@@ -270,7 +356,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                             <input type="text" name="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="What is your name?" required="">
+                                required>
                         </div>
 
                         {{-- Sex --}}
@@ -311,7 +397,7 @@
 
                     <div class="flex justify-end">
                         <button type="submit" id="submitBtn"
-                            class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            class="text-white inline-flex items-center bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Submit
                         </button>
                     </div>
@@ -327,6 +413,55 @@
 @endsection
 
 @section('scripts')
+    {{-- Emoji Carousel --}}
+    <script>
+    // Function to rotate the carousel
+    function rotateCarousel() {
+        const carousel = document.getElementById('emojiCarousel');
+        const emojiItems = carousel.getElementsByClassName('emoji-item');
+        const emojiContainer = document.getElementById('emojiContainer');
+        const emojiSpan = document.getElementById('emojiSpan');
+        const emojiDim = document.getElementById('emojiDim');
+
+        // Get the first item and move it to the end
+        const firstItem = emojiItems[0];
+        carousel.appendChild(firstItem);
+
+        // Reset animation by removing and adding class
+        firstItem.classList.remove('animate');
+        void firstItem.offsetWidth; // Trigger reflow
+        firstItem.classList.add('animate');
+
+        // Check if the first item is now the center item
+        const centerIndex = Math.floor(emojiItems.length / 2);
+        for (let i = 0; i < emojiItems.length; i++) {
+            if (i === centerIndex) {
+                // emojiItems[i].classList.add('emoji-item');
+                // emojiItems[i].classList.remove('relative');
+                // emojiContainer.classList.remove('w-12 h-12');
+                // emojiContainer.classList.add('w-20 h-20');
+                // emojiSpan.classList.remove('text-4xl');
+                // emojiSpan.classList.add('text-6xl');
+                // emojiDim.classList.add('hidden');
+                emojiDim.classList.remove('absolute bg-gray-200 opacity-50 rounded-full w-20 h-20');
+            } else {
+                // emojiItems[i].classList.add('relative');
+                // emojiItems[i].classList.remove('emoji-item');
+                emojiContainer.classList.remove('w-20 h-20');
+                emojiContainer.classList.add('w-12 h-12');
+                emojiSpan.classList.remove('text-6xl');
+                emojiSpan.classList.add('text-4xl');
+                emojiDim.classList.add('absolute bg-gray-200 opacity-50 rounded-full w-20 h-20');
+            }
+        }
+    }
+
+    // Rotate the carousel every 2.5 seconds (adjust as needed)
+    setInterval(rotateCarousel, 2500);
+</script>
+
+
+
     <script>
         // document.addEventListener("DOMContentLoaded", function() {
         //     // Get the modal element

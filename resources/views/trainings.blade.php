@@ -448,7 +448,8 @@
 
                 <hr class="my-4">
                 {{-- <label class="block text-sm font-medium text-gray-900">Of the total number,</label> --}}
-                <label class="block text-sm font-medium text-gray-900">Of the total number ( <span id="left_to_distribute_sector" class="text-red-500"></span> ) </label>
+                <label class="block text-sm font-medium text-gray-900">Of the total number ( <span
+                        id="left_to_distribute_sector" class="text-red-500"></span> ) </label>
 
                 {{-- Breakdown of Participants  --}}
                 <div class="my-1 grid grid-cols-4 gap-x-4 max-[760px]:grid-cols-1">
@@ -700,9 +701,9 @@
                 </div>
 
                 {{-- Preview of Uploaded Images --}}
-                <div id="photoContainer"
+                {{-- <div id="photoContainer"
                     class="my-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
-                </div>
+                </div> --}}
 
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     <div class="mb-6 col-span-2">
@@ -717,6 +718,26 @@
                             type="file" multiple>
                         <div id="errorImage" style="color: red; display: none;"></div>
                     </div>
+
+                    {{-- Uploaded Image Preview --}}
+                    {{-- <div class="mb-6 col-span-2">
+                        <div id="photoContainer"
+                            class="my-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
+                            <label class="block my-2 text-sm font-medium text-gray-900 dark:text-white"
+                            for="preview">Preview: </label>
+                        </div>
+                    </div> --}}
+                    <div class="mb-6 col-span-2">
+                        <div id="photoContainer"
+                            class="my-2 p-2 grid grid-cols-5 max-w-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
+                            {{-- <label class="block my-2 ml-4 text-sm font-medium text-gray-700 dark:text-white"
+                                for="preview">Preview:</label> --}}
+                            {{-- <img class="col-span-5 md:col-span-3 h-auto w-full" src="https://via.placeholder.com/300x200"
+                                alt="Preview Image"> --}}
+                        </div>
+                    </div>
+
+
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other
                             forms of documentation <span class="text-gray-600 italic">(optional)</span></label>
@@ -754,6 +775,58 @@
 
 @section('scripts')
     <script>
+        // Function to display uploaded images in the photoContainer using Colorbox
+        function displayImages() {
+            // Get the uploaded files
+            var files = document.getElementById("photo_doc_event").files;
+
+            // Loop through each uploaded file
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                displayImage(file); // Display the newly uploaded image
+            }
+        }
+
+        // Function to display a single image using Colorbox
+        function displayImage(file) {
+            // Create an <a> element with Colorbox attributes
+            var a = $('<a>').attr({
+                'href': URL.createObjectURL(file),
+                'class': 'colorbox-link',
+                'title': file.name
+            });
+
+            // Create an <img> element
+            var img = $('<img>').attr({
+                'src': URL.createObjectURL(file),
+                'alt': file.name
+            });
+
+            // Append the <img> element to the <a> element
+            a.append(img);
+
+            // Get the photoContainer and append the <a> element
+            $('#photoContainer').append(a);
+        }
+
+        // Call the function when files are selected
+        $(document).ready(function() {
+            document.getElementById("photo_doc_event").addEventListener("change", displayImages);
+
+            // Initialize Colorbox on dynamically added elements
+            $(document).on('click', '.colorbox-link', function() {
+                $(this).colorbox({
+                    maxWidth: '80%',
+                    maxHeight: '80%',
+                    opacity: 0.8,
+                    transition: 'elastic'
+                });
+            });
+        });
+    </script>
+    
+    {{-- <script>
+
         // Function to display uploaded images in the photoContainer using glightbox
         function displayImages() {
             // Get the photoContainer
@@ -784,6 +857,7 @@
                 touchNavigation: true,
                 closeOnOutsideClick: true, // Close the lightbox when clicking outside the image
                 slideEffect: 'zoom',
+                zoomable: true
             });
         }
 
@@ -793,14 +867,15 @@
             var a = document.createElement("a");
             a.href = URL.createObjectURL(file);
             a.className = "glightbox mb-2";
-            a.setAttribute("glightbox", "title: " + file.name);
+            // a.setAttribute("glightbox", "title: " + file.name);
+            a.setAttribute("data-sizes", "(max-width: 600px) 480px, 800px");
 
 
             // Create an <img> element
             var img = document.createElement("img");
             img.src = URL.createObjectURL(file);
             img.alt = file.name;
-            img.className = "object-contain";
+            // img.className = "object-fit";
             // Append the <img> element to the <a> element
             a.appendChild(img);
 
@@ -813,9 +888,9 @@
 
         // Call the function when files are selected
         document.getElementById("photo_doc_event").addEventListener("change", displayImages);
-    </script>
+    </script> --}}
 
-    <script>
+    {{-- <script>
         // Function to update the amount left to distribute in each category
         function updateDistribution() {
             // Get the total number of participants
@@ -832,9 +907,10 @@
             var pwdParticipants = parseInt(document.getElementById('num_of_pwd').value);
 
             // Calculate the amount left to distribute
-            var leftToDistributeSector = totalParticipants - (farmersAndGrowers + extensionWorkers + scientificCommunity + otherParticipants );
+            var leftToDistributeSector = totalParticipants - (farmersAndGrowers + extensionWorkers + scientificCommunity +
+                otherParticipants);
 
-                // + maleParticipants + femaleParticipants + indigenousParticipants + pwdParticipants
+            // + maleParticipants + femaleParticipants + indigenousParticipants + pwdParticipants
 
             // Update the display for each category
             document.getElementById('left_to_distribute_sector').textContent = leftToDistributeSector;
@@ -860,7 +936,7 @@
 
         // Call the function initially to update the display
         updateDistribution();
-    </script>
+    </script> --}}
 
     {{-- Toggle for Optional Inputs --}}
     <script>

@@ -64,9 +64,9 @@ Route::group(['prefix' => 'guest'], function () {
     })->name('guest.overview');
 
     Route::get('/view', [WebAnalyticsController::class, 'incrementSiteView'])->name('guest.view');
-    
+
     Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteView'])->name('guest.fetch_view');
-   
+
     Route::post('/overview-visitor-evaluation', [VisitorEvaluationController::class, 'store'])->name('evaluation.store');
 
     Route::get('/ces', function () {
@@ -278,12 +278,17 @@ Route::group(['middleware' => 'encoder'], function () {
 // Update Profile
 Route::middleware(['auth'])->group(function () {
     // Profile routes
-    Route::get('/profile/{id}', function ($id) {
-        if (Auth::id() != $id) {
-            abort(403, 'Unauthorized action.');
-        }
-        return view('profile');
-    })->name('profile');
+    // Route::get('/profile/{id}', function ($id) {
+    //     if (Auth::id() != $id) {
+    //         abort(403, 'Unauthorized action.');
+    //     }
+    //     return view('profile');
+    // })->name('profile');
+
+    Route::get('/profile/{id}', [UserController::class, 'showProfile'])->name('profile');
 
     Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
+
+    // Route::post('profile/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('profile.fetchDivisions');
+    // Route::post('profile/fetch-positons', [UserController::class, 'fetchPositions'])->name('profile.fetchPositions');
 });

@@ -5,7 +5,7 @@
 
             <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
                 aria-controls="drawer-navigation"
-                class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-[#0B1215] hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -49,7 +49,40 @@
                     </button>
                 </a>
             @else
-                <button type="button"
+                <div class="border-2 border-gray-300 rounded-lg p-2 mr-3 flex items-center focus:ring-4 hover:bg-gray-300 cursor-pointer"
+                    {{-- data-tooltip-target="user-menu-tooltip" data-dropdown-toggle="dropdown" aria-expanded="false"> --}} data-dropdown-toggle="dropdown" aria-expanded="false">
+                    <button type="button"
+                        class="flex mx-2 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        {{-- <img class="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" src="{{ asset('assets/icon.jpg') }}" --}}
+                        {{-- alt="user photo" /> --}}
+                        <img class="w-8 h-8 rounded-full"
+                            @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}" 
+                    @else 
+                    src="{{ asset('assets/icon.jpg') }}" @endif
+                            alt="Profile Picture" />
+                    </button>
+                    <span class="mx-2 block text-sm font-semibold text-[#0B1215] dark:text-white ">
+                        @if (Auth::check())
+                            {{-- {{ Auth::user()->first_name }} --}}
+                            {{ Str::upper(Auth::user()->first_name) }}
+                            @if (Auth::user()->mi)
+                                {{-- {{ mb_substr(Auth::user()->mi, 0, 1) }}. --}}
+                                {{ Str::upper(mb_substr(Auth::user()->mi, 0, 1)) }}.
+                            @endif
+                            {{-- {{ Auth::user()->last_name }} --}}
+                            {{ Str::upper(Auth::user()->last_name) }}
+                        @endif
+                    </span>
+
+                    {{-- <div id="user-menu-tooltip" role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        User Menu
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div> --}}
+                </div>
+
+
+                {{-- <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown"
                     data-tooltip-target="user-menu-tooltip">
@@ -58,23 +91,21 @@
                         User Menu
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
-                    {{-- <img class="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" src="{{ asset('assets/icon.jpg') }}" --}}
-                    {{-- alt="user photo" /> --}}
                     <img class="w-8 h-8 rounded-full"
                         @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}" 
                     @else 
                     src="{{ asset('assets/icon.jpg') }}" @endif
                         alt="Profile Picture" />
-                </button>
+                </button> --}}
             @endif
 
             <!-- Dropdown menu -->
-            <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+            <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="dropdown">
                 {{-- User Name and Email --}}
                 <div class="py-3 px-4">
-                    {{-- <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span> --}}
-                    <span class="block text-sm font-semibold text-gray-900 dark:text-white">
+                    {{-- <span class="block text-sm font-semibold text-[#0B1215] dark:text-white">Neil Sims</span> --}}
+                    {{-- <span class="block text-sm font-semibold text-[#0B1215] dark:text-white">
                         @if (Auth::check())
                             {{ Auth::user()->first_name }}
                             @if (Auth::user()->mi)
@@ -82,8 +113,8 @@
                             @endif
                             {{ Auth::user()->last_name }}
                         @endif
-                    </span>
-                    <span class="block text-sm text-gray-900 truncate dark:text-white">
+                    </span> --}}
+                    <span class="block text-sm text-[#0B1215] truncate dark:text-white">
                         {{-- @if (Auth::check())
                             {{ Str::ucfirst(Auth::user()->user_type) }}
                         @endif --}}
@@ -114,18 +145,23 @@
                         @auth
                             {{-- User is authenticated --}}
                             <a href="{{ route('profile', Auth::user()->id) }}"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
-                                Manage profile
+                                class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
+                                <box-icon name='user' class="mr-2"></box-icon>
+                                <!-- Add margin-right to space icon from text -->
+                                <span>Manage profile</span>
                             </a>
                         @endauth
                     </li>
                 </ul>
 
+
                 {{-- Sign Out --}}
                 <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                     <li>
                         <a href="{{ route('logout') }}" onclick="resetLocalStorage()"
-                            class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            {{-- <box-icon name='log-out' class="mr-2"></box-icon> --}}
+                            <box-icon name='log-out' class="mr-2"></box-icon>
                             Sign out
                         </a>
                     </li>
