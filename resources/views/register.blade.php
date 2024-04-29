@@ -642,8 +642,6 @@
                     dataType: 'json',
 
                     success: function(result) {
-                        console.log(result);
-
                         $('#division').html(
                             '<option selected disabled value="">Division</option>');
                         $.each(result.divisions, function(key, value) {
@@ -670,8 +668,6 @@
                     dataType: 'json',
 
                     success: function(res) {
-                        console.log(res);
-
                         $('#position').html(
                             '<option selected disabled value="">Position</option>');
                         $.each(res.positions, function(key, value) {

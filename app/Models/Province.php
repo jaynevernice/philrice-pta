@@ -10,6 +10,9 @@ class Province extends Model
     use HasFactory;
 
     protected $fillable = [
-        'province_name',
+        'provDesc',
+        'regCode',
+        'provCode',
+        'is_direct_seeded',
     ];
 }

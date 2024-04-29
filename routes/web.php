@@ -10,6 +10,7 @@ use App\Http\Controllers\DispatchFormController;
 use App\Http\Controllers\KSLAnalyticsController;
 use App\Http\Controllers\TrainingsFormController;
 use App\Http\Controllers\WebAnalyticsController;
+use App\Http\Controllers\MunicipalityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -236,9 +237,10 @@ Route::group(['middleware' => 'encoder'], function () {
             Route::get('/form', [TrainingsFormController::class, 'create'])->name('trainingsform.create');
             Route::post('form-store', [TrainingsFormController::class, 'store'])->name('trainingsform.store');
             // Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
-            Route::post('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
+            Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
             Route::post('/form-update/{id}', [TrainingsFormController::class, 'update'])->name('trainingsform.update');
             Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
+            Route::post('/fetch-municipalities', [MunicipalityController::class, 'index'])->name('trainings.fetchMunicipalities');
         });
 
         // Export Data into excel

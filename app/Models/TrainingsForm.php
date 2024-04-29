@@ -21,6 +21,7 @@ class TrainingsForm extends Model
         'station_id',
         'municipality',
         'province',
+        'region',
         'international_address',
         'mod',
         'start_date',

@@ -12,6 +12,7 @@ use App\Models\Position;
 use App\Mail\RegisterMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -85,13 +86,22 @@ class UserController extends Controller
         // }
 
         // need muna icheck sa database kung valid yung PhilRice ID //
+        $token = Http::post('https://isd.philrice.gov.ph/api_center/api/login',[
+            "username" => 'hrisapi-ojt',
+            "password" => 'P@ssw0rd'
+        ]);
+        $bearer_token = json_decode($token);
+        $response = Http::withToken('Bearer ' .$bearer_token->token)->get('https://isd.philrice.gov.ph/api_center/api/hris/employees');
+        // collection of philrice id
+        $philriceIDs = collect($response['employees'])->pluck('emp_idno');
 
         $request->validate([
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:50',
             'mi' => 'required|max:50',
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:50',
             'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|email|max:50|unique:users',
-            'philrice_id' => 'required|max:50|unique:users',
+            // 'philrice_id' => 'required|max:50|unique:users',
+            'philrice_id' => 'required|max:50',
             'station' => 'required',
             'division' => 'required',
             'position' => 'required',
@@ -100,6 +110,10 @@ class UserController extends Controller
             'sq2' => 'required',
             'sq3' => 'required',
         ]);
+
+        if ($philriceIDs->contains($request->philrice_id)) {
+            return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Your PhilRice ID is already taken!']);
+        }
 
         // User::where('email', '=', $email)->first();
         $station = Station::where('id', '=', $request->station)->first();
