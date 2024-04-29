@@ -38,14 +38,14 @@
                         </li>
                         <li>
                             <a href="{{ route('encoder.ces_add') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='plus'></box-icon>
                                 <span class="ml-3">Add Data</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('encoder.ces_edit') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='edit-alt' type='solid'></box-icon>
                                 <span class="ml-3">Edit Data</span>
                             </a>
@@ -161,7 +161,7 @@
         @endif
 
         {{-- Multi Page Form --}}
-        <form id="trainingsForm" action="{{ route('trainingsform.store') }}" method="POST" enctype="multipart/form-data"
+        <form id="trainingsForm" action="{{ route('trainingsform.update', $record->id) }}" method="POST" enctype="multipart/form-data"
             class="px-10 py-8 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100">
             @csrf
             {{-- Section 1 --}}
@@ -201,9 +201,9 @@
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
                                 @foreach ($titles as $title)
-                                    <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
+                                    <option value="{{ $title->training_title }}" @if($record->title == $title->training_title) selected @endif >{{ $title->training_title }}</option>
                                 @endforeach
-                                <option value="Other">Other</option>
+                                <option id="otherTitle" value="Other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
                             Training
                             Title</label>
-                        <input type="text" id="otherTrainingInput" name="otherTrainingInput" value="{{ old('otherTrainingInput') }}"
+                        <input type="text" id="otherTrainingInput" name="otherTrainingInput" value="{{ old('otherTrainingInput') ?? $record->title }}"
                             class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                     </div>
                 </div>
@@ -227,8 +227,8 @@
                             <select id="training_type" name="training_type" onchange="toggleType()" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Local">Local</option>
-                                <option value="International">International</option>
+                                <option value="Local" @if($record->type == 'Local') selected @endif >Local</option>
+                                <option value="International" @if($record->type == 'International') selected @endif >International</option>
                             </select>
                         </div>
                     </div>
@@ -241,9 +241,9 @@
                             <select id="training_category" name="training_category" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Beginner Course">Beginner Course</option>
-                                <option value="Intermediate Course">Intermediate Course</option>
-                                <option value="Advanced Course">Advanced Course</option>
+                                <option value="Beginner Course" @if($record->category == 'Beginner Course') selected @endif >Beginner Course</option>
+                                <option value="Intermediate Course" @if($record->category == 'Intermediate Course') selected @endif >Intermediate Course</option>
+                                <option value="Advanced Course" @if($record->category == 'Advanced Course') selected @endif >Advanced Course</option>
                             </select>
                         </div>
                     </div>
@@ -256,9 +256,9 @@
                             <select id="mod" name="mod" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Online">Online</option>
-                                <option value="Face-to-Face">Face-to-Face</option>
-                                <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)</option>
+                                <option value="Online" @if($record->mod == 'Online') selected @endif >Online</option>
+                                <option value="Face-to-Face" @if($record->mod == 'Face-to-Face') selected @endif >Face-to-Face</option>
+                                <option value="Blended (Online + Face to Face)" @if($record->mod == 'Blended (Online + Face to Face)') selected @endif >Blended (Online + Face-to-Face)</option>
                             </select>
                         </div>
                     </div>
@@ -270,8 +270,8 @@
                             <select id="training_venue" name="training_venue" onchange="toggleVenue()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Within PhilRice Station">Within PhilRice Station</option>
-                                <option value="Outside PhilRice Station">Outside PhilRice Station</option>
+                                <option value="Within PhilRice Station" @if($record->training_venue == 'Within PhilRice Station') selected @endif >Within PhilRice Station</option>
+                                <option value="Outside PhilRice Station" @if($record->training_venue == 'Outside PhilRice Station') selected @endif >Outside PhilRice Station</option>
                             </select>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                 <div id="internationalTraining" style="display: none;" class="col-span-2">
                     <label for="internationalTrainingInput"
                         class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
-                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput" value="{{ old('internationalTrainingInput') }}"
+                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput" value="{{ old('internationalTrainingInput') ?? $record->international_address }}"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
 
@@ -303,7 +303,7 @@
                         class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         <option selected disabled>Select</option>
                         @foreach ($stations as $station)
-                            <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
+                            <option value="{{ $station->id }}" @if($record->station_id == $station->id) selected @endif >PhilRice {{ $station->station }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -319,7 +319,7 @@
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                             <option selected disabled value="">Select</option>
                             @foreach ($provinces as $province)
-                                <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
+                                <option value="{{ $province->provCode }}" @if($record->province == $province->provCode) selected @endif >{{ $province->provDesc }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -335,7 +335,7 @@
                                 <option value="{{ $municipality->citymunCode }}">{{ $municipality->citymunDesc }}</option>
                             @endforeach --}}
                         </select>
-                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') }}" hidden>
+                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') ?? $record->municipality }}" hidden>
                     </div>
                 </div>
 
@@ -351,7 +351,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="start_date" name="start" value="{{ old('start') }}"
+                            <input type="text" id="start_date" name="start" value="{{ old('start') ?? $start_date }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                 placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
@@ -366,7 +366,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="end_date" name="end" value="{{ old('end') }}"
+                            <input type="text" id="end_date" name="end" value="{{ old('end') ?? $end_date }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                 placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
@@ -389,7 +389,7 @@
                         <p class="text-sm text-gray-500 mb-2">Specify name of partner, sponsor, or co-organizer. If more
                             than one, separate with comma. Please do not abbreviate the name(s). If no co-implementer write
                             N/A. </p>
-                        <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}"
+                        <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') ?? $record->sponsor }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
                     </div>
@@ -407,9 +407,9 @@
                                 required>
                                 <option selected disabled value="">Select</option>
                                 @foreach ($funds as $fund)
-                                    <option value="{{ $fund->fund }}">{{ $fund->fund }}</option>
+                                    <option value="{{ $fund->fund }}" @if($record->fund == $fund->fund) selected @endif >{{ $fund->fund }}</option>
                                 @endforeach
-                                <option value="Other">Other</option>
+                                <option value="Other" id="otherFund">Other</option>
                             </select>
                             {{-- <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -422,7 +422,7 @@
                 <div id="otherSourceFund" style="display: none;" class="col-span-2">
                     <label for="otherFundInput" class="block my-2 text-sm font-medium text-gray-900">Other
                         Source of Fund</label>
-                    <input type="text" id="otherFundInput" name="otherFundInput" value="{{ old('otherFundInput') }}"
+                    <input type="text" id="otherFundInput" name="otherFundInput" value="{{ old('otherFundInput') ?? $record->fund }}"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
 
@@ -435,7 +435,7 @@
                         <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A
                             if
                             there is no GIK to input.</p>
-                        <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') }}"
+                        <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') ?? $record->average_gik }}"
                             min="0" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="40" required />
@@ -450,7 +450,7 @@
                         <div class="grid grid-cols-2 gap-x-1">
                             <div>
                                 <input type="number" id="evaluationInput" name="evaluationInput"
-                                    value="{{ old('evaluationInput') }}" min="1" max="5" step="0.01"
+                                    value="{{ old('evaluationInput') ?? $record->evaluation }}" min="1" max="5" step="0.01"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="4.8" required>
                             </div>
@@ -478,7 +478,7 @@
                             Participants</label>
                         <p class="text-sm text-gray-500 mb-2">If exact number is unknown, make rough estimate</p>
                         <input type="number" id="total_participants" name="total_participants"
-                            value="{{ old('total_participants') }}" min="0"
+                            value="{{ old('total_participants') ?? $record->num_of_participants }}" min="0"
                             aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="100" required />
@@ -511,7 +511,7 @@
                                 data-input-counter data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_farmers_and_growers') ?? $record->num_of_farmers }}" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-seedling"></i>
@@ -541,7 +541,7 @@
                                 data-input-counter data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_extension_workers') ?? $record->num_of_extworkers }}" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-user-tie"></i>
@@ -570,7 +570,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_scientific') ?? $record->num_of_scientific }}" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-book-open-reader"></i>
@@ -595,7 +595,7 @@
                                 <i class="fa-solid fa-minus"></i>
                             </button>
                             <input type="text" id="num_of_other" name="num_of_other" data-input-counter
-                                value="0" data-input-counter-min="0" data-input-counter-max=""
+                                value="{{ old('num_of_other') ?? $record->num_of_other }}" data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" required />
@@ -626,7 +626,7 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter value="0"
+                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter value="{{ old('num_of_male') ?? $record->num_of_male }}"
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
@@ -656,7 +656,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_female') ?? $record->num_of_female }}" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person-dress"></i>
@@ -689,7 +689,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_indigenous') ?? $record->num_of_indigenous }}" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-people-group"></i>
@@ -718,7 +718,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_pwd') ?? $record->num_of_pwd }}" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-wheelchair"></i>
@@ -750,7 +750,7 @@
                         <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the training
                             conducted. Ensure that photo files have been named properly before uploading using the
                             Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
-                        <input required id="photo_doc_event" name="photo_doc_event[]"
+                        <input id="photo_doc_event" name="photo_doc_event[]"
                             accept="image/png, image/gif, image/jpeg"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
@@ -782,7 +782,7 @@
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next</button>
                     <button type="submit" id="submitBtn" hidden
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        Submit
+                        Save
                     </button>
                 </div>
             </div>
@@ -1120,81 +1120,81 @@
         });
 
         // Function to save form data to localStorage
-        function saveFormData() {
-            let formData = {
-                // Section 2
-                "training_title": $("#training_title").val(),
-                "otherTrainingInput": $("#otherTrainingInput").val(),
-                "training_category": $("#training_category").val(),
-                "training_type": $("#training_type").val(),
-                "mod": $("#mod").val(),
-                "training_venue": $("#training_venue").val(),
-                "internationalTrainingInput": $("#internationalTrainingInput").val(),
-                "withinPhilriceInput": $("#withinPhilriceInput").val(),
-                // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
-                "province": $("#province").val(),
-                "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
-                "start_date": $("#start_date").val(),
-                "end_date": $("#end_date").val(),
-                // Section 3
-                "sponsor": $("#sponsor").val(),
-                "source_of_fund": $("#source_of_fund").val(),
-                "otherFundInput": $("#otherFundInput").val(),
-                "average_gik": $("#average_gik").val(),
-                "evaluationInput": $("#evaluationInput").val(),
-                // Section 4 
-                "total_participants": $("#total_participants").val(),
-                "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
-                "num_of_extension_workers": $("#num_of_extension_workers").val(),
-                "num_of_scientific": $("#num_of_scientific").val(),
-                "num_of_other": $("#num_of_other").val(),
-                "num_of_female": $("#num_of_female").val(),
-                "num_of_male": $("#num_of_male").val(),
-                "num_of_indigenous": $("#num_of_indigenous").val(),
-                "num_of_pwd": $("#num_of_pwd").val(),
-            };
+        // function saveFormData() {
+        //     let formData = {
+        //         // Section 2
+        //         "training_title": $("#training_title").val(),
+        //         "otherTrainingInput": $("#otherTrainingInput").val(),
+        //         "training_category": $("#training_category").val(),
+        //         "training_type": $("#training_type").val(),
+        //         "mod": $("#mod").val(),
+        //         "training_venue": $("#training_venue").val(),
+        //         "internationalTrainingInput": $("#internationalTrainingInput").val(),
+        //         "withinPhilriceInput": $("#withinPhilriceInput").val(),
+        //         // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
+        //         "province": $("#province").val(),
+        //         "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
+        //         "start_date": $("#start_date").val(),
+        //         "end_date": $("#end_date").val(),
+        //         // Section 3
+        //         "sponsor": $("#sponsor").val(),
+        //         "source_of_fund": $("#source_of_fund").val(),
+        //         "otherFundInput": $("#otherFundInput").val(),
+        //         "average_gik": $("#average_gik").val(),
+        //         "evaluationInput": $("#evaluationInput").val(),
+        //         // Section 4 
+        //         "total_participants": $("#total_participants").val(),
+        //         "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
+        //         "num_of_extension_workers": $("#num_of_extension_workers").val(),
+        //         "num_of_scientific": $("#num_of_scientific").val(),
+        //         "num_of_other": $("#num_of_other").val(),
+        //         "num_of_female": $("#num_of_female").val(),
+        //         "num_of_male": $("#num_of_male").val(),
+        //         "num_of_indigenous": $("#num_of_indigenous").val(),
+        //         "num_of_pwd": $("#num_of_pwd").val(),
+        //     };
 
-            localStorage.setItem('formTrainings', JSON.stringify(formData));
-        }
+        //     localStorage.setItem('formTrainings', JSON.stringify(formData));
+        // }
         // Function to load form data from localStorage
-        function loadFormData() {
-            var storedData = localStorage.getItem('formTrainings');
+        // function loadFormData() {
+        //     var storedData = localStorage.getItem('formTrainings');
 
-            if (storedData) {
-                var formData = JSON.parse(storedData);
-                // Section 2
-                $("#training_title").val(formData.training_title);
-                $("#otherTrainingInput").val(formData.otherTrainingInput);
-                $("#training_category").val(formData.training_category);
-                $("#training_type").val(formData.training_type);
-                $("#mod").val(formData.mod);
-                $("#training_venue").val(formData.training_venue);
-                $("#internationalTrainingInput").val(formData.internationalTrainingInput);
-                $("#withinPhilriceInput").val(formData.withinPhilriceInput);
-                // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
-                $("#province").val(formData.province);
-                $("#municipality").val(formData.municipality);
-                $("#start_date").val(formData.start_date);
-                $("#end_date").val(formData.end_date);
-                // Section 3
-                $("#sponsor").val(formData.sponsor);
-                $("#source_of_fund").val(formData.source_of_fund);
-                $("#otherFundInput").val(formData.otherFundInput);
-                $("#average_gik").val(formData.average_gik);
-                $("#evaluationInput").val(formData.evaluationInput);
-                // Section 4 
-                $("#total_participants").val(formData.total_participants);
-                $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
-                $("#num_of_extension_workers").val(formData.num_of_extension_workers);
-                $("#num_of_scientific").val(formData.num_of_scientific);
-                $("#num_of_other").val(formData.num_of_other);
-                $("#num_of_female").val(formData.num_of_female);
-                $("#num_of_male").val(formData.num_of_male);
-                $("#num_of_indigenous").val(formData.num_of_indigenous);
-                $("#num_of_pwd").val(formData.num_of_pwd);
-            }
+        //     if (storedData) {
+        //         var formData = JSON.parse(storedData);
+        //         // Section 2
+        //         $("#training_title").val(formData.training_title);
+        //         $("#otherTrainingInput").val(formData.otherTrainingInput);
+        //         $("#training_category").val(formData.training_category);
+        //         $("#training_type").val(formData.training_type);
+        //         $("#mod").val(formData.mod);
+        //         $("#training_venue").val(formData.training_venue);
+        //         $("#internationalTrainingInput").val(formData.internationalTrainingInput);
+        //         $("#withinPhilriceInput").val(formData.withinPhilriceInput);
+        //         // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
+        //         $("#province").val(formData.province);
+        //         $("#municipality").val(formData.municipality);
+        //         $("#start_date").val(formData.start_date);
+        //         $("#end_date").val(formData.end_date);
+        //         // Section 3
+        //         $("#sponsor").val(formData.sponsor);
+        //         $("#source_of_fund").val(formData.source_of_fund);
+        //         $("#otherFundInput").val(formData.otherFundInput);
+        //         $("#average_gik").val(formData.average_gik);
+        //         $("#evaluationInput").val(formData.evaluationInput);
+        //         // Section 4 
+        //         $("#total_participants").val(formData.total_participants);
+        //         $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
+        //         $("#num_of_extension_workers").val(formData.num_of_extension_workers);
+        //         $("#num_of_scientific").val(formData.num_of_scientific);
+        //         $("#num_of_other").val(formData.num_of_other);
+        //         $("#num_of_female").val(formData.num_of_female);
+        //         $("#num_of_male").val(formData.num_of_male);
+        //         $("#num_of_indigenous").val(formData.num_of_indigenous);
+        //         $("#num_of_pwd").val(formData.num_of_pwd);
+        //     }
 
-        }
+        // }
 
         function showSection(sectionNumber) {
             sections.forEach(section => {
@@ -1366,7 +1366,36 @@
         }
 
         $(document).ready(function() {
-            loadFormData(); // Load form data when document is ready
+            // loadFormData(); // Load form data when document is ready
+            var row2 = $("#row2");
+            if(!$("#training_title").val()) {
+                $('#otherTitle').prop('selected', true);
+                $("#otherTrainingTitle").css("display", "block");
+            }
+            if($("#training_title").val() == $("#otherTrainingInput").val()) { 
+                $("#otherTrainingInput").val('');
+            }
+            if($("#training_type").val()) {
+                if($("#training_type").val() == 'International') {
+                    $("#internationalTraining").css("display", "block");
+                } else if($("#training_type").val() == 'Local') {
+                    $("#training_venue_container").css("display", "block");
+                    row2.removeClass("grid-cols-3");
+                    row2.addClass("grid-cols-4");
+                    if($("#training_venue").val() == 'Outside PhilRice Station') {
+                        $("#outsidePhilrice").css("display", "block");
+                    } else if($("#training_venue").val() == 'Within PhilRice Station') {
+                        $("#withinPhilrice").css("display", "block");
+                    }
+                }
+            }
+            if(!$("#source_of_fund").val()) {
+                $('#otherFund').prop('selected', true);
+                $("#otherSourceFund").css("display", "block");
+            }
+            if($("#source_of_fund").val() == $("#otherFundInput").val()) { 
+                $("#otherFundInput").val('');
+            }
 
             // Show the initial section
             showSection(currentSection);
@@ -1403,8 +1432,8 @@
             }
 
             $('#prevBtn').on('click', function() {
-                saveFormData();
-                loadFormData();
+                // saveFormData();
+                // loadFormData();
                 $("#nextBtn").removeAttr("hidden");
                 $("#submitBtn").attr("hidden", true);
                 nextBtn.disabled = false;
@@ -1434,8 +1463,8 @@
             });
 
             $('#nextBtn').on('click', function() {
-                saveFormData();
-                loadFormData();
+                // saveFormData();
+                // loadFormData();
                 
                 // changes the type of nextBtn into submit
                 if (currentSection == 5) {

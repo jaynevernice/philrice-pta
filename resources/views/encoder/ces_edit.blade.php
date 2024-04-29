@@ -607,7 +607,8 @@
 @section('datatable')
     <script>
         // CES
-        let station = 'CES';
+        // let station = 'CES';
+        const station = @if (Auth::check()) '{{ Auth::user()->station }}' @else '' @endif;
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference
 
@@ -630,9 +631,9 @@
                         <td class="px-6 py-4">` + data["division"] + `</td>
                         <td class="px-6 py-4">` + formatDate(data["start_date"]) + ` - ` + formatDate(data["end_date"]) + `</td>
                         <td class="px-6 py-4">` + data["type"] + `</td>
-                        <td class="px-6 py-4">` + (data["international_address"] || data["municipality"] + `, `) + (data["province"] || '') + `</td>
+                        <td class="px-6 py-4">` + (data["international_address"] || (data["citymunDesc"] || data["municipality"]) + `, `) + (data["provDesc"] || data["province"] || '') + `</td>
                         <td class="px-6 py-4">` + data["num_of_participants"] + `</td>
-                        <td class="px-6 py-4">` + data["created_at"] + `</td>
+                        <td class="px-6 py-4">` + formatDate(data["created_at"]) + `</td>
                         <td class="px-6 py-4 text-center">
                             <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal" 
                             type="button" 
@@ -640,12 +641,11 @@
                                 <box-icon name='expand-alt' size="xs"></box-icon>
                             </button>`;
                 tableRow += `
-                            <form action="{{ route('trainingsform.edit', ':id') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]">
+                            <a href="{{ route('trainingsform.edit', ':id') }}" target="_blank" >
+                                <button type="button" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]">
                                     <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
                                 </button>
-                            </form>
+                            <a>
                             `.replace(':id', data["id"]);
                 tableRow +=
                             `

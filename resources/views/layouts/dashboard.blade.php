@@ -39,6 +39,11 @@
 
     {{-- glightbox CSS CDN --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+    {{-- SweetAlert2 CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <style>
     /* CSS to fit the image in the modal */
@@ -65,9 +70,6 @@
     {{-- ApexCharts CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-    {{-- SweetAlert2 CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     {{-- <script src="js/plugins/lg-thumbnail.umd.js"></script>
     <script src="js/plugins/lg-zoom.umd.js"></script> --}}
 
@@ -85,6 +87,9 @@
     {{-- @include('sweetalert::alert') --}}
 
     @yield('alerts')
+
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="../path/to/flowbite/dist/datepicker.js"></script>
 </body>
 
 {{-- jquery CDN --}}

@@ -17,6 +17,7 @@
         "apexcharts": "^3.46.0",
         "boxicons": "^2.1.4",
         "flowbite": "^2.3.0",
+        "flowbite-datepicker": "^1.2.6",
         "glightbox": "^3.3.0",
         "sweetalert2": "^11.6.13"
     }
