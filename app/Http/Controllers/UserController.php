@@ -100,8 +100,8 @@ class UserController extends Controller
             'mi' => 'required|max:50',
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:50',
             'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|email|max:50|unique:users',
-            // 'philrice_id' => 'required|max:50|unique:users',
-            'philrice_id' => 'required|max:50',
+            'philrice_id' => 'required|max:50|unique:users',
+            // 'philrice_id' => 'required|max:50',
             'station' => 'required',
             'division' => 'required',
             'position' => 'required',
@@ -116,9 +116,9 @@ class UserController extends Controller
         }
 
         // User::where('email', '=', $email)->first();
-        $station = Station::where('id', '=', $request->station)->first();
-        $division = Division::where('id', '=', $request->division)->first();
-        $position = Position::where('id', '=', $request->position)->first();
+        // $station = Station::where('id', '=', $request->station)->first();
+        // $division = Division::where('id', '=', $request->division)->first();
+        // $position = Position::where('id', '=', $request->position)->first();
         // dd($division->all());
 
         $full_name = trim($request->first_name) . ' ' . trim($request->mi) . ' ' . trim($request->last_name);
@@ -132,9 +132,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'user_type' => 'encoder',
-            'station' => $station->station,
-            'division' => $division->division,
-            'position' => $position->position,
+            'station' => $request->station,
+            'division' => $request->division,
+            'position' => $request->position,
             'sq1' => strtolower($request->sq1),
             'sq2' => strtolower($request->sq2),
             'sq3' => strtolower($request->sq3),

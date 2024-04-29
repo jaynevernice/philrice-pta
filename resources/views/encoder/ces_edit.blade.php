@@ -606,9 +606,10 @@
 
 @section('datatable')
     <script>
-        // CES
-        // let station = 'CES';
+        // 1 is for CES
+        // let station = '1';
         const station = @if (Auth::check()) '{{ Auth::user()->station }}' @else '' @endif;
+        
         let currentPage = 1;
         const recordsPerPage = 5; // Change this number according to your preference
 
