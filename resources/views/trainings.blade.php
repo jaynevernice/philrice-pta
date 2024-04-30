@@ -120,7 +120,33 @@
         </div>
     </aside>
 @endsection
+<style>
+    /* CSS to fit the image in the modal */
+    /* .glightbox a {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    } */
 
+    /* iframe #document body img {
+        width: 100vw;
+        height: 100vh;
+    } */
+
+    /* html.glightbox-open body.gscrollbar-fixer.glightbox-open div#glightbox-body.glightbox-container.glightbox-clean div.gcontainer div#glightbox-slider.gslider div.gslide.loaded.current div.gslide-inner-content div.ginner-container div.gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready html body img {
+        width: 100vw !important;
+        height: 100vh !important;
+    } */
+
+    /* html.glightbox-open body.gscrollbar-fixer.glightbox-open div#glightbox-body.glightbox-container.glightbox-clean div.gcontainer div#glightbox-slider.gslider div.gslide.loaded.current div.gslide-inner-content div.ginner-container div.gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready html body img {
+        width: 100vw !important;
+        height: 100vh !important;
+    } */
+
+    .glightbox-open .gcontainer .gslider .gslide.loaded.current .gslide-inner-content .ginner-container .gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready #document body img {
+        height: 100vh !important;
+    }
+</style>
 @section('content')
     <main class="p-8 md:ml-64 pt-20 h-screen">
 
@@ -213,7 +239,8 @@
                         <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
                             Training
                             Title</label>
-                        <input type="text" id="otherTrainingInput" name="otherTrainingInput" value="{{ old('otherTrainingInput') }}"
+                        <input type="text" id="otherTrainingInput" name="otherTrainingInput"
+                            value="{{ old('otherTrainingInput') }}"
                             class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                     </div>
                 </div>
@@ -288,15 +315,16 @@
                 </div>
 
                 {{-- Additional Input Field for International Training Type --}}
-                <div id="internationalTraining" style="display: none;" class="col-span-2">
+                <div id="internationalTraining" style="display: none;">
                     <label for="internationalTrainingInput"
                         class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
-                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput" value="{{ old('internationalTrainingInput') }}"
+                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput"
+                        value="{{ old('internationalTrainingInput') }}"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                 </div>
 
                 {{-- Additional Input Field for Within PhilRice Station --}}
-                <div id="withinPhilrice" style="display: none;" class="col-span-3">
+                <div id="withinPhilrice" style="display: none;">
                     <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within PhilRice
                         Station</label>
                     <select name="withinPhilriceInput" id="withinPhilriceInput"
@@ -309,12 +337,12 @@
                 </div>
 
                 {{-- Additional Input Field for Outside PhilRice Station --}}
-                <div id="outsidePhilrice" style="display: none;" class="col-span-3">
+                <div id="outsidePhilrice" style="display: none;">
                     {{-- Province --}}
-                    <label for="province" class="block my-2 text-sm font-medium text-gray-900">
-                        Province
-                    </label>
-                    <div class="relative">
+                    <div class="relative mr-2">
+                        <label for="province" class="block my-2 text-sm font-medium text-gray-900">
+                            Province
+                        </label>
                         <select name="province" id="province"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                             <option selected disabled value="">Select</option>
@@ -324,10 +352,10 @@
                         </select>
                     </div>
                     {{-- Municipality --}}
-                    <label for="municipality" class="block my-2 text-sm font-medium text-gray-900">
-                        Municipality
-                    </label>
-                    <div class="relative">
+                    <div class="relative ml-2">
+                        <label for="municipality" class="block my-2 text-sm font-medium text-gray-900">
+                            Municipality
+                        </label>
                         <select name="municipalitySelect" id="municipalitySelect"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                             {{-- <option selected disabled>Select</option> --}}
@@ -335,7 +363,8 @@
                                 <option value="{{ $municipality->citymunCode }}">{{ $municipality->citymunDesc }}</option>
                             @endforeach --}}
                         </select>
-                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') }}" hidden>
+                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') }}"
+                            hidden>
                     </div>
                 </div>
 
@@ -491,7 +520,7 @@
                         id="left_to_distribute_sector" class="text-red-500"></span> ) </label>
 
                 {{-- Breakdown of Participants  --}}
-                <div class="my-1 grid grid-cols-4 gap-x-4 max-[760px]:grid-cols-1">
+                <div class="my-1 grid grid-cols-4 gap-x-4 max-[900px]:grid-cols-1">
 
                     {{-- Total Num of Farmers and Seed Growers --}}
                     <div class="grid grid-rows-2">
@@ -753,7 +782,7 @@
                             Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
                         <input required id="photo_doc_event" name="photo_doc_event[]"
                             accept="image/png, image/gif, image/jpeg"
-                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="flex w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
                         <div id="errorImage" style="color: red; display: none;"></div>
                     </div>
@@ -766,16 +795,15 @@
                             for="preview">Preview: </label>
                         </div>
                     </div> --}}
-                    <div class="mb-6 col-span-2">
+                    {{-- <div class="mb-6 col-span-2">
                         <div id="photoContainer"
                             class="my-2 p-2 grid grid-cols-5 max-w-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
-                            {{-- <label class="block my-2 ml-4 text-sm font-medium text-gray-700 dark:text-white"
-                                for="preview">Preview:</label> --}}
-                            {{-- <img class="col-span-5 md:col-span-3 h-auto w-full" src="https://via.placeholder.com/300x200"
-                                alt="Preview Image"> --}}
+                            <label class="block my-2 ml-4 text-sm font-medium text-gray-700 dark:text-white"
+                                for="preview">Preview:</label>
+                            <img class="col-span-5 md:col-span-3 h-auto w-full" src="https://via.placeholder.com/300x200"
+                                alt="Preview Image">
                         </div>
-                    </div>
-
+                    </div> --}}
 
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other
@@ -784,10 +812,15 @@
                             attendance/registration sheet, copy of event program, short video or audio clip, and other
                             relevant documents, spreadsheet, or PDF file.</p>
                         <input id="other_doc" name="other_doc[]"
-                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="flex text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
+                        {{-- <input id="other_doc" name="other_doc[]"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            type="file" multiple> --}}
+
                         <div id="errorFile" style="color: red; display: none;"></div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -813,57 +846,221 @@
 @endsection
 
 @section('scripts')
+    <!-- Turn all file input elements into ponds -->
+    {{-- <script>
+        FilePond.parse(document.body);
+    </script> --}}
+
     <script>
-        // Function to display uploaded images in the photoContainer using Colorbox
+        // Register the plugins 
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+        FilePond.registerPlugin(FilePondPluginFileValidateSize);
+
+        // Wait for the DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize FilePond
+            FilePond.create(document.getElementById('other_doc'), {
+                allowMultiple: true, // Allow multiple files to be uploaded
+                allowFileTypeValidation: true, // Enable file type validation
+                allowFileSizeValidation: true, // Enable file size validation
+                maxFileSize: '25MB', // Maximum file size allowed
+                acceptedFileTypes: ['image/*', 'video/*', 'audio/*',
+                'application/pdf'], // Accepted file types
+                labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
+                // Configure other FilePond options as needed
+            });
+
+            FilePond.create(document.getElementById('photo_doc_event'), {
+                allowMultiple: true, // Allow multiple files to be uploaded
+                allowFileTypeValidation: true, // Enable file type validation
+                allowFileSizeValidation: true, // Enable file size validation
+                maxFileSize: '25MB', // Maximum file size allowed
+                acceptedFileTypes: ['image/*'], // Accepted file types
+                labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
+                // Configure other FilePond options as needed
+            });
+        });
+    </script>
+
+
+    {{-- <script>
+        // Function to display images
         function displayImages() {
+            var photoContainer = document.getElementById("photoContainer");
+            var existingImages = photoContainer.querySelectorAll("img");
+            var files = document.getElementById("photo_doc_event").files;
+
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var alreadyDisplayed = Array.from(existingImages).some(function(img) {
+                    return img.alt === file.name;
+                });
+                if (!alreadyDisplayed) {
+                    displayImage(file);
+                }
+            }
+
+            const lightbox = GLightbox({
+                selector: '.glightbox',
+                loop: true,
+                touchNavigation: true,
+                closeOnOutsideClick: true,
+                slideEffect: 'zoom',
+                zoomable: true,
+                // Add an event listener for the opening event
+                // onOpen: function() {
+                //     // Apply styles to images inside the glightbox
+                //     var images = document.querySelectorAll('.glightbox-open img');
+                //     images.forEach(function(img) {
+                //         img.style.width = '100vw';
+                //         img.style.height = '100vh';
+                //     });
+                // }
+
+            });
+
+            // Wait for the document to be fully loaded
+            // document.addEventListener("DOMContentLoaded", function() {
+            //     // Add event listener for 'open' event on lightbox
+            //     lightbox.on('open', () => {
+            //         // Get the image element
+            //         const image = document.querySelector(
+            //             '.glightbox-open .gcontainer .gslider .gslide.loaded.current .gslide-inner-content .ginner-container .gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready #document body img'
+            //             );
+
+            //         // Check if the image exists
+            //         if (image) {
+            //             // Set the height of the image to 100vh
+            //             image.style.height = '100vh';
+            //         }
+            //     });
+            // });
+
+
+            // Wait for the document to be fully loaded
+            // document.addEventListener("DOMContentLoaded", function() {
+            //     // Add event listener for 'open' event on lightbox
+            //     lightbox.on('open', () => {
+            //         // Do something
+            //         const image = document.querySelector('.glightbox-open .glightbox-container .goverlay .gcontainer');
+            //         if (image) {
+            //             // Set the height of the image to 100vh
+            //             image.style.height = '100vh !important';
+            //         }
+            //     });
+            // });
+
+
+            // lightbox.on('open', (instance) => {
+            //     // Do something
+            //     const image = instance.elements.content.querySelector('img');
+            //     if (image) {
+            //         // Set the height of the image to 100vh
+            //         image.style.height = '100vh';
+            //     }
+            // });
+
+            // lightbox.on('open', () => {
+            //     // Do something
+            //     const image = instance.elements.content.querySelector('img');
+            //     if (image) {
+            //         // Set the height of the image to 100vh
+            //         image.style.height = '100vh';
+            //     }
+            // });
+
+        }
+
+        // Function to display a single image
+        function displayImage(file) {
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(file);
+            a.className = "glightbox mb-2";
+            a.setAttribute("data-sizes", "(max-width: 600px) 480px, 800px");
+
+            var img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.alt = file.name;
+
+            a.appendChild(img);
+
+            var photoContainer = document.getElementById("photoContainer");
+            photoContainer.appendChild(a);
+        }
+
+        document.getElementById("photo_doc_event").addEventListener("change", displayImages);
+    </script> --}}
+
+    {{-- <script>
+        // Function to display uploaded images in the photoContainer using glightbox
+        function displayImages() {
+            // Get the photoContainer
+            var photoContainer = document.getElementById("photoContainer");
+
+            // Get the existing images in the photoContainer
+            var existingImages = photoContainer.querySelectorAll("img");
+
             // Get the uploaded files
             var files = document.getElementById("photo_doc_event").files;
 
             // Loop through each uploaded file
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                displayImage(file); // Display the newly uploaded image
+                // Check if the file is already displayed
+                var alreadyDisplayed = Array.from(existingImages).some(function(img) {
+                    return img.alt === file.name;
+                });
+                if (!alreadyDisplayed) {
+                    displayImage(file); // Display the newly uploaded image
+                }
             }
+
+            // Initialize glightbox
+            const lightbox = GLightbox({
+                selector: '.glightbox',
+                loop: true,
+                touchNavigation: true,
+                closeOnOutsideClick: true, // Close the lightbox when clicking outside the image
+                slideEffect: 'zoom',
+                zoomable: true
+            });
         }
 
-        // Function to display a single image using Colorbox
+        // Function to display a single image
         function displayImage(file) {
-            // Create an <a> element with Colorbox attributes
-            var a = $('<a>').attr({
-                'href': URL.createObjectURL(file),
-                'class': 'colorbox-link',
-                'title': file.name
-            });
+            // Create a new <a> element
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(file);
+            a.className = "glightbox mb-2";
+            // a.setAttribute("glightbox", "title: " + file.name);
+            a.setAttribute("data-sizes", "(max-width: 600px) 480px, 800px");
+
 
             // Create an <img> element
-            var img = $('<img>').attr({
-                'src': URL.createObjectURL(file),
-                'alt': file.name
-            });
+            var img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.alt = file.name;
+            
+            // Set max-width and max-height for the image
+            // img.style.maxWidth = "100";
+            // img.style.maxHeight = "200px"; // Adjust this value as needed
 
             // Append the <img> element to the <a> element
-            a.append(img);
+            a.appendChild(img);
 
-            // Get the photoContainer and append the <a> element
-            $('#photoContainer').append(a);
+            // Get the photoContainer
+            var photoContainer = document.getElementById("photoContainer");
+
+            // Append the <a> element to the photoContainer
+            photoContainer.appendChild(a);
         }
 
         // Call the function when files are selected
-        $(document).ready(function() {
-            document.getElementById("photo_doc_event").addEventListener("change", displayImages);
+        document.getElementById("photo_doc_event").addEventListener("change", displayImages);
+    </script> --}}
 
-            // Initialize Colorbox on dynamically added elements
-            $(document).on('click', '.colorbox-link', function() {
-                $(this).colorbox({
-                    maxWidth: '80%',
-                    maxHeight: '80%',
-                    opacity: 0.8,
-                    transition: 'elastic'
-                });
-            });
-        });
-    </script>
-    
+
     {{-- <script>
 
         // Function to display uploaded images in the photoContainer using glightbox
@@ -1001,7 +1198,8 @@
             var withinPhilrice = document.getElementById("withinPhilrice");
 
             if (selectElement.value === "Outside PhilRice Station") {
-                outsidePhilrice.style.display = "block";
+                outsidePhilrice.style.display = "grid";
+                outsidePhilrice.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
                 withinPhilrice.style.display = "none"; // Ensure this is hidden when the other is shown
             } else if (selectElement.value === "Within PhilRice Station") {
                 withinPhilrice.style.display = "block";
@@ -1334,11 +1532,10 @@
                 nextBtn.disabled = true;
             } else {
                 // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                if ((totalParticipants == (farmersAndGrowers + extensionWorkers + numScientific + numOther)) && 
-                    (totalParticipants == (numFemale + numMale)) && 
-                    (numIndigenous <= totalParticipants) && 
-                    (numPwd <= totalParticipants)) 
-                {
+                if ((totalParticipants == (farmersAndGrowers + extensionWorkers + numScientific + numOther)) &&
+                    (totalParticipants == (numFemale + numMale)) &&
+                    (numIndigenous <= totalParticipants) &&
+                    (numPwd <= totalParticipants)) {
                     nextBtn.disabled = false;
                 } else {
                     nextBtn.disabled = true;
@@ -1390,7 +1587,7 @@
                 nextBtn.disabled = true;
             } else {
                 nextBtn.disabled = false;
-                if(source_of_fund === 'Other' && !$("#otherFundInput").val()) {
+                if (source_of_fund === 'Other' && !$("#otherFundInput").val()) {
                     nextBtn.disabled = true;
                 }
             }
@@ -1398,7 +1595,7 @@
             const $startDate = $("#start_date");
             const $endDate = $("#end_date");
             $("#date-error-message").css("color", "red");
-            if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+            if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
                 $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
                 nextBtn.disabled = true;
             } else {
@@ -1433,7 +1630,8 @@
                 ($trainingTitle.val() === 'Other' && !$otherTrainingInput.val()) ||
                 (isLocalTraining && (!$trainingVenue.val() ||
                     ($trainingVenue.val() === 'Within PhilRice Station' && !$withinPhilriceInput.val()) ||
-                    ($trainingVenue.val() === 'Outside PhilRice Station' && (!$province.val() || (!$municipalitySelect.val() && !$municipality.val())))
+                    ($trainingVenue.val() === 'Outside PhilRice Station' && (!$province.val() || (!
+                        $municipalitySelect.val() && !$municipality.val())))
                 )) ||
                 (isInternationalTraining && !$internationalTrainingInput.val()) ||
                 ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday)
@@ -1449,7 +1647,7 @@
             updateButtons();
 
             // retain the old value in municipality when document is ready
-            if($("#province").val()) {
+            if ($("#province").val()) {
                 var provCode = $("#province").val();
                 var citymunCode = $("#municipality").val();
                 $.ajax({
@@ -1464,13 +1662,16 @@
                         $('#municipalitySelect').html(
                             '<option selected disabled value="">Select</option>');
                         $.each(result, function(key, value) {
-                            var isSelected = value.citymunCode === citymunCode; // More explicit comparison
-                            $("#municipalitySelect").append('<option' + (isSelected ? ' selected' : '') +
-                                ' value="' + value.citymunCode + '">' + value.citymunDesc + '</option>');
-                            // $("#municipalitySelect").append('<option @if(' + citymunCode + ' == ' + value.citymunCode + ') selected @endif value="' + value.citymunCode + '">' +
+                            var isSelected = value.citymunCode ===
+                                citymunCode; // More explicit comparison
+                            $("#municipalitySelect").append('<option' + (isSelected ?
+                                    ' selected' : '') +
+                                ' value="' + value.citymunCode + '">' + value.citymunDesc +
+                                '</option>');
+                            // $("#municipalitySelect").append('<option @if (' + citymunCode + ' == ' + value.citymunCode + ') selected @endif value="' + value.citymunCode + '">' +
                             //     value.citymunDesc + '</option>');
                         });
-                        
+
                     },
                     error: function(error) {
                         alert('Something went wrong!');
@@ -1497,11 +1698,11 @@
                     var numIndigenous = parseInt($("#num_of_indigenous").val());
                     var numPwd = parseInt($("#num_of_pwd").val());
                     // enable nextBtn if all input for breakdown of participants in Section 4 is equal to total_participants
-                    if ((totalParticipants == (farmersAndGrowers + extensionWorkers + numScientific + numOther)) && 
-                        (totalParticipants == (numFemale + numMale)) && 
-                        (numIndigenous <= totalParticipants) && 
-                        (numPwd <= totalParticipants))  
-                    {
+                    if ((totalParticipants == (farmersAndGrowers + extensionWorkers + numScientific +
+                            numOther)) &&
+                        (totalParticipants == (numFemale + numMale)) &&
+                        (numIndigenous <= totalParticipants) &&
+                        (numPwd <= totalParticipants)) {
                         nextBtn.disabled = false;
                     } else {
                         nextBtn.disabled = true;
@@ -1512,7 +1713,7 @@
             $('#nextBtn').on('click', function() {
                 saveFormData();
                 loadFormData();
-                
+
                 // changes the type of nextBtn into submit
                 if (currentSection == 5) {
                     $("#submitBtn").removeAttr("hidden");
@@ -1538,7 +1739,7 @@
                 //             "#end_date").val()) {
                 //         nextBtn.disabled = true;
                 //     } else {
-                        
+
                 //         if ($("#training_title").val() == 'Other') {
                 //             if (!$("#otherTrainingInput").val()) {
                 //                 nextBtn.disabled = true;
@@ -1699,8 +1900,7 @@
                         var average_gik = $("#average_gik").val();
                         var evaluationInput = $("#evaluationInput").val();
 
-                        if (!sponsor || !source_of_fund || !average_gik || !evaluationInput) 
-                        {
+                        if (!sponsor || !source_of_fund || !average_gik || !evaluationInput) {
                             nextBtn.disabled = true;
                         } else {
                             nextBtn.disabled = false;
@@ -1708,7 +1908,7 @@
 
                         const $startDate = $("#start_date");
                         const $endDate = $("#end_date");
-                        if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
                             $("#date-error-message").text("Start Date or End Date is Invalid");
                             nextBtn.disabled = true;
                         } else {
@@ -1776,10 +1976,11 @@
                         $('#municipalitySelect').html(
                             '<option selected disabled value="">Select</option>');
                         $.each(result, function(key, value) {
-                            $("#municipalitySelect").append('<option value="' + value.citymunCode + '">' +
+                            $("#municipalitySelect").append('<option value="' + value
+                                .citymunCode + '">' +
                                 value.citymunDesc + '</option>');
                         });
-                        
+
                     },
                     error: function(error) {
                         alert('Something went wrong!');

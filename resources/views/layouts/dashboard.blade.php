@@ -40,47 +40,44 @@
     {{-- glightbox CSS CDN --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
-    {{-- SweetAlert2 CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Filepond -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
 
-    <script src="{{ asset('js/app.js') }}"></script>
 </head>
-{{-- <style>
-    /* CSS to fit the image in the modal */
-    .glightbox img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-</style> --}}
+
 <body>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
         @include('layouts.navbar')
 
-        {{-- Navbar and Sidebar --}}
         @yield('sidebar')
 
-        {{-- Main Content --}}
         @yield('content')
 
     </div>
 
-    {{-- ApexCharts CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-    {{-- SweetAlert2 CDN --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    {{-- <script src="js/plugins/lg-thumbnail.umd.js"></script>
-    <script src="js/plugins/lg-zoom.umd.js"></script> --}}
-
-    {{-- Charts --}}
     @yield('charts')
-    
-    @yield('scripts')
-    
+
+
     @yield('alerts')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- Load FilePond library -->
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+
+    @yield('scripts')
+
 </body>
 
 {{-- jquery CDN --}}
