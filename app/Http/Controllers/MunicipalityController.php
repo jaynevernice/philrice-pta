@@ -11,9 +11,15 @@ class MunicipalityController extends Controller
     public function index(Request $request)
     {
         // $data['municipalities'] = Municipality::where('provCode', $request->provCode)
-        $data = Municipality::where('provCode', $request->provCode)
-            ->orderBy('citymunDesc', 'asc')
-            ->get(['citymunDesc', 'citymunCode']);
+        if(empty($request->provCode)) {
+            $data = Municipality::select('*')
+                ->orderBy('citymunDesc', 'asc')
+                ->get(['citymunDesc', 'citymunCode']);
+        } else {
+            $data = Municipality::where('provCode', $request->provCode)
+                ->orderBy('citymunDesc', 'asc')
+                ->get(['citymunDesc', 'citymunCode']);
+        }
         
         return response()->json($data);
     }

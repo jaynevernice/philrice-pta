@@ -435,7 +435,7 @@
                         <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A
                             if
                             there is no GIK to input.</p>
-                        <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') ?? $record->average_gik }}"
+                        <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') ?? $record->average_gik ?? 'N/A' }}"
                             min="0" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="40" required />

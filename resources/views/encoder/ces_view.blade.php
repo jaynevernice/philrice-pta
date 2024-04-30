@@ -754,7 +754,7 @@
                     } else if (parseInt(station) === 8) {
                         localAddress.value = "PhilRice Midsayap, Midsayap, 9410 North Cotabato";
                     } else if (parseInt(station) === 9) {
-                        localAddress.value = "PhilRice Negros, Midsayap, 9410 North Cotabato";
+                        localAddress.value = "PhilRice Negros, Cansilayan, Murcia, 6129 Negros Occidental";
                     }
                 } else if (venue.value === 'Outside PhilRice Station') {
                     localAddress.value = municipality + ', ' + province;

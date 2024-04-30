@@ -31,9 +31,12 @@ class TrainingsFormController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // THIS IS FOR ALL CHARTS (ONLY) OF OVERVIEW
     {
         $titles = TrainingsTitle::select('*')->orderBy('training_title', 'asc')->get();
+        $regions = Region::select('*')->orderBy('id', 'asc')->get();
+        $provinces = Province::select('*')->orderBy('provDesc', 'asc')->get();
+        $municipalities = Municipality::select('*')->orderBy('citymunDesc', 'asc')->get();
 
         // sex chart data
         $sex_charts = DB::table('trainings_forms')
@@ -66,16 +69,15 @@ class TrainingsFormController extends Controller
         // convert $ability_charts into associative aray
         $sector_charts = (array) $sector_charts;
 
-        $region_charts = DB::table('trainings_forms')
-            ->select(DB::raw('CAST(SUM(num_of_farmers) AS UNSIGNED) as "Farmers and Seed Growers"'),
-                    DB::raw('CAST(SUM(num_of_extworkers) AS UNSIGNED) as "Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)"'),
-                    DB::raw('CAST(SUM(num_of_scientific) AS UNSIGNED) as "Scientific Community (researchers, academe, etc)"'),
-                    DB::raw('CAST(SUM(num_of_other) AS UNSIGNED) as "Other Sectors (rice industry players, media, policymakers, general rice consumers)"'),)
-            ->first();
+        $region_charts = DB::table('regions')
+            ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
+            ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
+            ->groupBy('regions.regDesc')
+            ->get();
         // convert $region_charts into associative aray
-        $region_charts = (array) $region_charts ;
+        // $region_charts = (array) $region_charts ;
         
-        return view('encoder.overview', compact('titles', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts'));
+        return view('encoder.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts'));
     }
 
     public function cesView()
@@ -556,16 +558,13 @@ class TrainingsFormController extends Controller
                 ->get();
                 // ->total_participants;
 
-            $provinces = DB::table('trainings_forms')
-                ->select(
-                    DB::raw('SUM(num_of_farmers) as Farmers_and_Seed_Growers'),
-                    DB::raw('SUM(num_of_extworkers) as Extension_Workers_and_Intermediaries'),
-                    DB::raw('SUM(num_of_scientific) as Scientific_Community'),
-                    DB::raw('SUM(num_of_other) as Other_Sectors')
-                )
+            $regions = DB::table('regions')
+                ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
+                ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
+                ->groupBy('regions.regDesc')
                 ->get();
 
-            return response()->json(['records' => $records, 'only_numbers' => $only_numbers, 'provinces' => $provinces]);
+            return response()->json(['records' => $records, 'only_numbers' => $only_numbers, 'regions' => $regions]);
         }
 
         if ($request->boolean('filterShowOverview')) {
@@ -1042,10 +1041,12 @@ class TrainingsFormController extends Controller
             }
         }
 
+        $division = Division::where('id', '=', Auth::user()->division)->first();
+
         TrainingsForm::create([
             // Section 2
             'encoder_id'=>$encoder_id,
-            'division'=>Auth::user()->division,
+            'division'=>$division->division,
             'title'=>$title,
             'category'=>$request->training_category,
             'type'=>$request->training_type,
@@ -1335,7 +1336,7 @@ class TrainingsFormController extends Controller
 
         TrainingsForm::where('id',$id)->update([
             // Section 2
-            'division'=>Auth::user()->division,
+            // 'division'=>Auth::user()->division,
             'title'=>$title,
             'category'=>$request->training_category,
             'type'=>$request->training_type,

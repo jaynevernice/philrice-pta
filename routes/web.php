@@ -11,6 +11,7 @@ use App\Http\Controllers\KSLAnalyticsController;
 use App\Http\Controllers\TrainingsFormController;
 use App\Http\Controllers\WebAnalyticsController;
 use App\Http\Controllers\MunicipalityController;
+use App\Http\Controllers\ProvinceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -241,6 +242,7 @@ Route::group(['middleware' => 'encoder'], function () {
             Route::post('/form-update/{id}', [TrainingsFormController::class, 'update'])->name('trainingsform.update');
             Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
             Route::post('/fetch-municipalities', [MunicipalityController::class, 'index'])->name('trainings.fetchMunicipalities');
+            Route::post('/fetch-provinces', [ProvinceController::class, 'index'])->name('trainings.fetchProvinces');
         });
 
         // Export Data into excel
