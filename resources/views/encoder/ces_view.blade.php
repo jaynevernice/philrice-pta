@@ -142,7 +142,7 @@
                     <option value="" disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
+                        <option value="{{ $year }}" @if ($year == date('Y')) @endif>
                             {{ $year }}
                         </option>
                     @endfor

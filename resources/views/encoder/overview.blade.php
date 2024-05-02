@@ -129,14 +129,15 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2 w-24">
+            <div class="mr-2 w-26">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
                     <option value="" disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
+                        {{-- <option value="{{ $year }}" @if ($year == date('Y')) selected @endif> --}}
+                        <option value="{{ $year }}" @if ($year == date('Y')) @endif>
                             {{ $year }}
                         </option>
                     @endfor

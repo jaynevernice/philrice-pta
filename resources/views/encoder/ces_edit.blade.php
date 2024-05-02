@@ -145,7 +145,7 @@
                     <option value="" disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y')) selected @endif>
+                        <option value="{{ $year }}" @if ($year == date('Y')) @endif>
                             {{ $year }}
                         </option>
                     @endfor
@@ -636,14 +636,15 @@
                         <td class="px-6 py-4">` + data["num_of_participants"] + `</td>
                         <td class="px-6 py-4">` + formatDate(data["created_at"]) + `</td>
                         <td class="px-6 py-4 text-center">
+                            <div class="flex items-center justify-center">
                             <button data-modal-target="trainings-modal" data-modal-toggle="trainings-modal" 
                             type="button" 
-                            class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
+                            class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 mx-1">
                                 <box-icon name='expand-alt' size="xs"></box-icon>
                             </button>`;
                 tableRow += `
                             <a href="{{ route('trainingsform.edit', ':id') }}" target="_blank" >
-                                <button type="button" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]">
+                                <button type="button" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
                                     <box-icon type='solid' name='edit-alt' size="xs"></box-icon>
                                 </button>
                             <a>
@@ -651,9 +652,10 @@
                 tableRow +=
                             `
                             <button onclick="deleteRecord(` + data["id"] + `)" type="button"
-                                class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px]">
+                                class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
                                 <box-icon name='trash' type='solid' size="xs"></box-icon>
                             </button>
+                        </div>
                         </td>
                     </tr>
                     `;
