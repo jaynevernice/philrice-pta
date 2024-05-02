@@ -1113,11 +1113,11 @@
         const nextBtn = document.getElementById('nextBtn');
         const sectionNumberElement = document.getElementById('sectionNumber'); // Added
         const today = new Date(); // getting date today and formatting into (MM/DD/YYYY)
-        const formattedDateToday = today.toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric'
-        });
+        // const formattedDateToday = today.toLocaleDateString('en-US', {
+        //     month: '2-digit',
+        //     day: '2-digit',
+        //     year: 'numeric'
+        // });
 
         // Function to save form data to localStorage
         // function saveFormData() {
@@ -1322,7 +1322,8 @@
             const $startDate = $("#start_date");
             const $endDate = $("#end_date");
             $("#date-error-message").css("color", "red");
-            if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+            // if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+            if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
                 $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
                 nextBtn.disabled = true;
             } else {
@@ -1360,7 +1361,8 @@
                     ($trainingVenue.val() === 'Outside PhilRice Station' && (!$province.val() || (!$municipalitySelect.val() && !$municipality.val())))
                 )) ||
                 (isInternationalTraining && !$internationalTrainingInput.val()) ||
-                ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday)
+                // ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday)
+                (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
             );
             nextBtn.disabled = isNextBtnDisabled;
         }
@@ -1661,7 +1663,8 @@
 
                         const $startDate = $("#start_date");
                         const $endDate = $("#end_date");
-                        if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        // if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
                             $("#date-error-message").text("Start Date or End Date is Invalid");
                             nextBtn.disabled = true;
                         } else {
