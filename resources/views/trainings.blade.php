@@ -515,21 +515,18 @@
                 </div>
 
                 <hr class="my-4">
-                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number,</label> --}}
-                <label class="block text-sm font-medium text-gray-900">Of the total number ( <span
-                        id="left_to_distribute_sector" class="text-red-500"></span> ) </label>
+                <label class="block text-sm font-medium text-gray-900">Of the total number,</label>
+                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number ( <span
+                        id="left_to_distribute_sector" class="text-red-500"></span> ) </label> --}}
 
                 {{-- Breakdown of Participants  --}}
                 <div class="my-1 grid grid-cols-4 gap-x-4 max-[900px]:grid-cols-1">
 
                     {{-- Total Num of Farmers and Seed Growers --}}
                     <div class="grid grid-rows-2">
-                        {{-- <div>
+                        <div>
                             <p class="text-sm text-gray-500 mb-2">How
                                 many are farmers and seed growers?</p>
-                        </div> --}}
-                        <div>
-                            <p class="text-sm text-gray-500 mb-2">Farmers and Seed Growers</p>
                         </div>
                         <div class="relative flex items-center">
                             <button type="button" id="decrement-button1"
@@ -642,7 +639,7 @@
                 </div>
 
                 <hr class="my-4">
-                {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label> --}}
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
 
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
 
@@ -705,8 +702,8 @@
                     {{-- Total Num of Indigenous People --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label> --}}
+                            <label class="block text-sm font-medium text-gray-900">Of the total
+                                number,</label>
                             <p class="text-sm text-gray-500 mb-2">How many are indigenous individuals?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -735,8 +732,8 @@
                     {{-- Total Num of PWD --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label> --}}
+                            <label class="block text-sm font-medium text-gray-900">Of the total
+                                number,</label>
                             <p class="text-sm text-gray-500 mb-2">How many are differently abled individuals (PWD)?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -812,7 +809,7 @@
                             attendance/registration sheet, copy of event program, short video or audio clip, and other
                             relevant documents, spreadsheet, or PDF file.</p>
                         <input id="other_doc" name="other_doc[]"
-                            class="flex text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="flex w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
                         {{-- <input id="other_doc" name="other_doc[]"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -851,7 +848,7 @@
         FilePond.parse(document.body);
     </script> --}}
 
-    <script>
+    {{-- <script>
         // Register the plugins 
         FilePond.registerPlugin(FilePondPluginImagePreview);
         FilePond.registerPlugin(FilePondPluginFileValidateType);
@@ -881,8 +878,7 @@
                 // Configure other FilePond options as needed
             });
         });
-    </script>
-
+    </script> --}}
 
     {{-- <script>
         // Function to display images
