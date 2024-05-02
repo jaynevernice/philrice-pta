@@ -282,7 +282,7 @@
 
     <!-- Main modal -->
     <div id="evaluation-modal" tabindex="-1" aria-hidden="true"
-        class=" fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black bg-opacity-50">
+        class="hidden fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black bg-opacity-50">
         <div class="relative p-4 w-full max-w-lg max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
