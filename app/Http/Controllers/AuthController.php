@@ -95,7 +95,7 @@ class AuthController extends Controller
 
             return redirect()->back()->with(['warning' => 'Reset Password!', 'message' => 'Please check your email and reset your password.']);
         } else {
-            return redirect()->back()->with(['errorFooter' => 'Something went wrong!', 'message' => 'Your account has been blocked', 'footer' => 'Kindly contact philrice.tmsd@gmail.com for assistance']);
+            return redirect()->back()->with(['errorFooter' => 'Something went wrong!', 'message' => 'The email you provided does not exist', 'footer' => 'Kindly contact philrice.tmsd@gmail.com for assistance']);
         }
     }
 
