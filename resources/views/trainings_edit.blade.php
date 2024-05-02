@@ -486,8 +486,8 @@
                 </div>
 
                 <hr class="my-4">
-                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number,</label> --}}
-                <label class="block text-sm font-medium text-gray-900">Of the total number ( <span id="left_to_distribute_sector" class="text-red-500"></span> ) </label>
+                <label class="block text-sm font-medium text-gray-900">Of the total number,</label>
+                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number ( <span id="left_to_distribute_sector" class="text-red-500"></span> ) </label> --}}
 
                 {{-- Breakdown of Participants  --}}
                 <div class="my-1 grid grid-cols-4 gap-x-4 max-[760px]:grid-cols-1">
@@ -525,6 +525,7 @@
                         </div>
                     </div>
 
+                    
                     {{-- Total Num of Extension Workers  --}}
                     <div class="grid grid-rows-2">
                         <div>
@@ -612,7 +613,7 @@
                 </div>
 
                 <hr class="my-4">
-                {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label> --}}
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
 
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
 
@@ -675,8 +676,8 @@
                     {{-- Total Num of Indigenous People --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label> --}}
+                            <label class="block text-sm font-medium text-gray-900">Of the total
+                                number,</label>
                             <p class="text-sm text-gray-500 mb-2">How many are indigenous individuals?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -705,8 +706,8 @@
                     {{-- Total Num of PWD --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label> --}}
+                            <label class="block text-sm font-medium text-gray-900">Of the total
+                                number,</label>
                             <p class="text-sm text-gray-500 mb-2">How many are differently abled individuals (PWD)?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -739,9 +740,9 @@
                 </div>
 
                 {{-- Preview of Uploaded Images --}}
-                <div id="photoContainer"
+                {{-- <div id="photoContainer"
                     class="my-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
-                </div>
+                </div> --}}
 
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     <div class="mb-6 col-span-2">
