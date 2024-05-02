@@ -49,9 +49,10 @@
                             </a>
                         </div>
 
-                        <h1 class="text-2xl xl:text-3xl font-extrabold text-left mb-2">REGISTER</h1>
-                        <p class="justify-right text-lg text-[#0B1215]">Please provide all the information needed to create
-                            your account.</p>
+                        <h1 class="text-2xl xl:text-3xl font-extrabold text-left mb-2">Get Started!</h1>
+                        {{-- <p class="justify-right text-lg text-[#0B1215]">Please provide all the information needed to create
+                            your account.</p> --}}
+                        <p class="justify-right text-lg text-[#0B1215]">Enter your details to register.</p>
 
 
                         <ol id="stepper" class="flex items-stretch w-full my-4 sm:mb-5 mx-auto">

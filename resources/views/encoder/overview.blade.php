@@ -215,7 +215,7 @@
             </div>
             
             {{-- Regions --}}
-            <div class="mx-1 w-36">
+            {{-- <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="regionSelect">
@@ -225,10 +225,10 @@
                         <option value="{{ $region->regCode }}">{{ $region->regDesc }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             {{-- Provinces --}}
-            <div class="mx-1 w-36">
+            {{-- <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="provinceSelect">
@@ -238,10 +238,10 @@
                         <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             {{-- Municipalities --}}
-            <div class="mx-1 w-36">
+            {{-- <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="municipalitySelect">
@@ -251,7 +251,7 @@
                         <option value="{{ $municipality->citymunCode }}">{{ $municipality->citymunDesc }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
         </div>
 
 
