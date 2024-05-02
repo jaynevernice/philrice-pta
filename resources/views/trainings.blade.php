@@ -1383,11 +1383,13 @@
         const nextBtn = document.getElementById('nextBtn');
         const sectionNumberElement = document.getElementById('sectionNumber'); // Added
         const today = new Date(); // getting date today and formatting into (MM/DD/YYYY)
-        const formattedDateToday = today.toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric'
-        });
+        // const formattedDateToday = today.toLocaleDateString('en-US', {
+        //     month: '2-digit',
+        //     day: '2-digit',
+        //     year: 'numeric'
+        // });
+        // const [month, day, year] = formattedDateToday.split('/');
+        // const dateObject = new Date(`${month}/${day}/${year}`);
 
         // Function to save form data to localStorage
         function saveFormData() {
@@ -1591,7 +1593,8 @@
             const $startDate = $("#start_date");
             const $endDate = $("#end_date");
             $("#date-error-message").css("color", "red");
-            if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+            // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+            if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
                 $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
                 nextBtn.disabled = true;
             } else {
@@ -1629,8 +1632,9 @@
                     ($trainingVenue.val() === 'Outside PhilRice Station' && (!$province.val() || (!
                         $municipalitySelect.val() && !$municipality.val())))
                 )) ||
+                // (isInternationalTraining && !$internationalTrainingInput.val())
                 (isInternationalTraining && !$internationalTrainingInput.val()) ||
-                ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday)
+                (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
             );
             nextBtn.disabled = isNextBtnDisabled;
         }
@@ -1725,9 +1729,9 @@
                     checkSection3();
                 }
                 // disable nextBtn if any of the input are blank (Section 2)
-                if (currentSection === 2) {
-                    checkSection2();
-                }
+                // if (currentSection === 2) {
+                //     checkSection2();
+                // }
                 // if (currentSection == 2) {
                 //     // disable nextBtn if one of the input field is blank
                 //     if (!$("#training_title").val() || !$("#training_category").val() || !$(
@@ -1788,6 +1792,9 @@
 
             $('#otherTrainingInput, #internationalTrainingInput, #outsidePhilriceInput, #total_participants, #start_date, #end_date, #sponsor, #average_gik, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd, #evaluationInput')
                 .on('keyup input click', function() {
+                    // console.log(today);
+                    // console.log($("#start_date").val());
+                    // console.log($("#end_date").val());
                     // $("#municipality").val($("#municipalitySelect").val());
                     // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
                     if (currentSection == 4) {
@@ -1809,9 +1816,9 @@
                         checkSection3();
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
-                    if (currentSection === 2) {
-                        checkSection2();
-                    }
+                    // if (currentSection === 2) {
+                    //     checkSection2();
+                    // }
                     // if (currentSection == 2) {
                     //     // disable nextBtn if one of the input field is blank
                     //     if (!$("#training_title").val() || !$("#training_category").val() || !$(
@@ -1904,7 +1911,8 @@
 
                         const $startDate = $("#start_date");
                         const $endDate = $("#end_date");
-                        if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
                             $("#date-error-message").text("Start Date or End Date is Invalid");
                             nextBtn.disabled = true;
                         } else {
@@ -1912,9 +1920,9 @@
                         }
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
-                    if (currentSection === 2) {
-                        checkSection2();
-                    }
+                    // if (currentSection === 2) {
+                    //     checkSection2();
+                    // }
                 });
 
             // check image size
