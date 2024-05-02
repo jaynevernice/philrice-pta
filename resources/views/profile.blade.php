@@ -116,6 +116,49 @@
                     </a>
                 </li>
 
+                @if (Auth::user()->user_type === 'admin')
+                    <hr>
+                    {{-- Manage Encoder --}}
+                    <li>
+                        <a href="{{ route('admin.manage_encoders') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon type='solid' name='user-account'></box-icon>
+                            <span class="ml-3">Manage Encoders</span>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->user_type === 'super_admin')
+                    <hr>
+
+                    {{-- Manage Encoders --}}
+                    <li>
+                        <a href="{{ route('super_admin.manage_encoders') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon type='solid' name='user-account'></box-icon>
+                            <span class="ml-3">Manage Encoders</span>
+                        </a>
+                    </li>
+
+                    {{-- Manage Admins --}}
+                    <li>
+                        <a href="{{ route('super_admin.manage_admins') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon type='solid' name='user-account'></box-icon>
+                            <span class="ml-3">Manage Admins</span>
+                        </a>
+                    </li>
+
+                    <hr>
+
+                    {{-- Web Analytics --}}
+                    <li>
+                        <a href="{{ route('super_admin.web_analytics') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg group">
+                            <box-icon name='desktop'></box-icon>
+                            <span class="ml-3">Web Analytics</span>
+                        </a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </aside>

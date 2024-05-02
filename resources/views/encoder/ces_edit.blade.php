@@ -137,7 +137,7 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2 w-24">
+            <div class="mr-1 w-26">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
@@ -195,7 +195,7 @@
             </div>
 
             {{-- Form --}}
-            <div class="mx-1 w-36">
+            <div class="mx-1 w-48">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
@@ -208,7 +208,7 @@
             </div>
 
             {{-- Training Titles --}}
-            <div class="mx-1 w-56">
+            <div class="mx-1 w-40">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="training_title">

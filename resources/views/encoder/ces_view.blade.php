@@ -134,7 +134,7 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2 w-24">
+            <div class="mr-1 w-26">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
@@ -192,7 +192,7 @@
             </div>
 
             {{-- Form --}}
-            <div class="mx-1 w-36">
+            <div class="mx-1 w-48">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
@@ -205,7 +205,7 @@
             </div>
 
             {{-- Training Titles --}}
-            <div class="mx-1 w-56">
+            <div class="mx-1 w-40">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="training_title">
@@ -230,13 +230,19 @@
         </div>
 
         {{-- Charts --}}
+
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center mb-4 p-2">
+            <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
+            <p class="text-gray-500">Total Number of Participants</p>
+        </div>
+
         <div class="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
 
             {{-- Total Number of Participants --}}
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center">
+            {{-- <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center">
                 <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
                 <p class="text-gray-500">Total Number of Participants</p>
-            </div>
+            </div> --}}
 
             {{-- Sex Distribution --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
@@ -251,7 +257,7 @@
             </div>
 
             {{-- Sector --}}
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
+            <div class="col-span-2 bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
                 <div id="sectorChart"></div>
                 <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Sector</p>
             </div>
@@ -575,7 +581,7 @@
             },
             // labels: ['Male', 'Female'],
             labels: sex_labels,
-            colors: ['#008FFB', '#FF4560'],
+            colors: ['#CA6B54', '#3E6D81'],
             legend: {
                 position: 'bottom',
             }
@@ -601,7 +607,7 @@
             },
             // labels: ['PWD', 'IP'],
             labels: diversity_labels,
-            colors: ['#775DD0', '#8D5B4C'],
+            colors: ['#D78A3D', '#15A648'],
             legend: {
                 position: 'bottom',
             }
@@ -622,7 +628,8 @@
             }],
             chart: {
                 type: 'bar',
-                height: 240
+                height: 240,
+                width: 550,
             },
             plotOptions: {
                 bar: {
@@ -634,7 +641,7 @@
                     },
                 }
             },
-            colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa'],
+            colors: ['#3D6A7F', '#C56D51', '#FDCB6D', '#12A64B'],
             dataLabels: {
                 enabled: true,
                 textAnchor: 'start',

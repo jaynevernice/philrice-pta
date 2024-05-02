@@ -129,7 +129,7 @@
         <div class="flex my-4">
 
             {{-- Year --}}
-            <div class="mr-2 w-26">
+            <div class="mr-1 w-26">
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
@@ -189,7 +189,7 @@
             </div>
 
             {{-- Form --}}
-            <div class="mx-1 w-36">
+            <div class="mx-1 w-48">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="form">
@@ -202,7 +202,7 @@
             </div>
 
             {{-- Training Titles --}}
-            <div class="mx-1 w-56">
+            <div class="mx-1 w-40">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="training_title">
@@ -473,7 +473,7 @@
             },
             // labels: ['Female', 'Male'],
             labels: sex_labels,
-            colors: ['#f87171', '#06b6d4'],
+            colors: ['#CA6B54', '#3E6D81'],
             // title: {
             //     text: "Sex Distribution",
             //     align: 'center',
@@ -521,7 +521,7 @@
             },
             // labels: ['Indigenous', 'Non-IP'],
             labels: indigenous_labels,
-            colors: ['#1a2e05', '#164e63']
+            colors: ['#FCCB71', '#D78A3D']
         };
 
         var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
@@ -544,7 +544,7 @@
             },
             // labels: ['PWD', 'Non-PWD'],
             labels: ability_labels,
-            colors: ['#6d28d9', '#164e63']
+            colors: ['#6d28d9', '#15A648']
         };
 
         var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
@@ -574,7 +574,7 @@
                     },
                 }
             },
-            colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa'],
+            colors: ['#3D6A7F', '#C56D51', '#FDCB6D', '#12A64B'],
             dataLabels: {
                 enabled: true,
                 textAnchor: 'start',

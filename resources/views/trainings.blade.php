@@ -1296,7 +1296,7 @@
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-green-600");
                     evaluationOutputClass.add("bg-lime-500");
                 } else if (evaluationInput <= 5) {
-                    evaluationOutput.value = '🤩 Outstanding';
+                    evaluationOutput.value = '🤩 Excellent';
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500");
                     evaluationOutputClass.add("bg-green-600");
                 } else {

@@ -320,23 +320,26 @@
 
                         {{-- Center --}}
                         <div class="relative emoji-item">
-                            <div id="emojiContainer" class="flex items-center justify-center bg-gray-300 rounded-full w-20 h-20 mx-2">
+                            <div id="emojiContainer"
+                                class="flex items-center justify-center bg-gray-300 rounded-full w-20 h-20 mx-2">
                                 <span id="emojiSpan" class="text-6xl flex items-center justify-center mb-2">😌</span>
                                 <div id="emojiDim" class=""></div>
                                 {{-- <i class="fa-regular fa-face-laugh-beam"></i>1 --}}
                             </div>
                         </div>
-                        
+
 
                         <div class="relative emoji-item">
-                            <div id="emojiContainer" class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
+                            <div id="emojiContainer"
+                                class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
                                 <span id="emojiSpan" class="text-4xl flex items-center justify-center mb-1">😄</span>
                                 <div id="emojiDim" class="absolute bg-gray-200 opacity-50 rounded-full w-12 h-12"></div>
                             </div>
                         </div>
 
                         <div class="relative emoji-item">
-                            <div id="emojiContainer" class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
+                            <div id="emojiContainer"
+                                class="flex items-center justify-center bg-gray-300 rounded-full w-12 h-12 mx-2">
                                 <span id="emojiSpan" class="text-4xl flex items-center justify-center mb-1">🤩</span>
                                 <div id="emojiDim" class="absolute bg-gray-200 opacity-50 rounded-full w-12 h-12"></div>
                             </div>
@@ -414,53 +417,51 @@
 
 @section('scripts')
     {{-- Emoji Carousel --}}
-    <script>
-    // Function to rotate the carousel
-    function rotateCarousel() {
-        const carousel = document.getElementById('emojiCarousel');
-        const emojiItems = carousel.getElementsByClassName('emoji-item');
-        const emojiContainer = document.getElementById('emojiContainer');
-        const emojiSpan = document.getElementById('emojiSpan');
-        const emojiDim = document.getElementById('emojiDim');
+    {{-- <script>
+        // Function to rotate the carousel
+        function rotateCarousel() {
+            const carousel = document.getElementById('emojiCarousel');
+            const emojiItems = carousel.getElementsByClassName('emoji-item');
+            const emojiContainer = document.getElementById('emojiContainer');
+            const emojiSpan = document.getElementById('emojiSpan');
+            const emojiDim = document.getElementById('emojiDim');
 
-        // Get the first item and move it to the end
-        const firstItem = emojiItems[0];
-        carousel.appendChild(firstItem);
+            // Get the first item and move it to the end
+            const firstItem = emojiItems[0];
+            carousel.appendChild(firstItem);
 
-        // Reset animation by removing and adding class
-        firstItem.classList.remove('animate');
-        void firstItem.offsetWidth; // Trigger reflow
-        firstItem.classList.add('animate');
+            // Reset animation by removing and adding class
+            firstItem.classList.remove('animate');
+            void firstItem.offsetWidth; // Trigger reflow
+            firstItem.classList.add('animate');
 
-        // Check if the first item is now the center item
-        const centerIndex = Math.floor(emojiItems.length / 2);
-        for (let i = 0; i < emojiItems.length; i++) {
-            if (i === centerIndex) {
-                // emojiItems[i].classList.add('emoji-item');
-                // emojiItems[i].classList.remove('relative');
-                // emojiContainer.classList.remove('w-12 h-12');
-                // emojiContainer.classList.add('w-20 h-20');
-                // emojiSpan.classList.remove('text-4xl');
-                // emojiSpan.classList.add('text-6xl');
-                // emojiDim.classList.add('hidden');
-                emojiDim.classList.remove('absolute bg-gray-200 opacity-50 rounded-full w-20 h-20');
-            } else {
-                // emojiItems[i].classList.add('relative');
-                // emojiItems[i].classList.remove('emoji-item');
-                emojiContainer.classList.remove('w-20 h-20');
-                emojiContainer.classList.add('w-12 h-12');
-                emojiSpan.classList.remove('text-6xl');
-                emojiSpan.classList.add('text-4xl');
-                emojiDim.classList.add('absolute bg-gray-200 opacity-50 rounded-full w-20 h-20');
+            // Check if the first item is now the center item
+            const centerIndex = Math.floor(emojiItems.length / 2);
+            for (let i = 0; i < emojiItems.length; i++) {
+                if (i === centerIndex) {
+                    // emojiItems[i].classList.add('emoji-item');
+                    // emojiItems[i].classList.remove('relative');
+                    // emojiContainer.classList.remove('w-12 h-12');
+                    // emojiContainer.classList.add('w-20 h-20');
+                    // emojiSpan.classList.remove('text-4xl');
+                    // emojiSpan.classList.add('text-6xl');
+                    // emojiDim.classList.add('hidden');
+                    emojiDim.classList.remove('absolute bg-gray-200 opacity-50 rounded-full w-20 h-20');
+                } else {
+                    // emojiItems[i].classList.add('relative');
+                    // emojiItems[i].classList.remove('emoji-item');
+                    emojiContainer.classList.remove('w-20 h-20');
+                    emojiContainer.classList.add('w-12 h-12');
+                    emojiSpan.classList.remove('text-6xl');
+                    emojiSpan.classList.add('text-4xl');
+                    emojiDim.classList.add('absolute bg-gray-200 opacity-50 rounded-full w-20 h-20');
+                }
             }
         }
-    }
 
-    // Rotate the carousel every 2.5 seconds (adjust as needed)
-    setInterval(rotateCarousel, 2500);
-</script>
-
-
+        // Rotate the carousel every 2.5 seconds (adjust as needed)
+        setInterval(rotateCarousel, 2500);
+    </script> --}}
 
     <script>
         // document.addEventListener("DOMContentLoaded", function() {

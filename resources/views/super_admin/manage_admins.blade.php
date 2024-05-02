@@ -300,11 +300,12 @@
                 confirmButtonText: "Yes, demote!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('demote-admin-' + id).submit();
                     Swal.fire({
                         title: "Deleted!",
                         text: "User has been successfully demoted to Encoder.",
                         icon: "success"
+                    }).then(()=> {
+                        document.getElementById('demote-admin-' + id).submit();
                     });
                 }
             });
@@ -322,11 +323,12 @@
                 confirmButtonText: "Yes, block!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('block-' + id).submit();
                     Swal.fire({
                         title: "Blocked!",
                         text: "User's access has been successfully blocked.",
                         icon: "success"
+                    }).then(()=> {
+                        document.getElementById('block-' + id).submit();
                     });
                 }
             });
@@ -344,11 +346,12 @@
                 confirmButtonText: "Yes, unblock!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('unblock-' + id).submit();
                     Swal.fire({
                         title: "Unblocked!",
                         text: "User's access has been successfully unblocked.",
                         icon: "success"
+                    }).then(()=> {
+                        document.getElementById('unblock-' + id).submit();
                     });
                 }
             });

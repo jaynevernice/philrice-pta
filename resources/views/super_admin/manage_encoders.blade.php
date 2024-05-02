@@ -269,7 +269,8 @@
                                                 action="{{ route('super_admin.unblock', $encoder->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="button" onclick="confirmUnblock({{ $encoder->id }}, event)"
+                                                <button type="button"
+                                                    onclick="confirmUnblock({{ $encoder->id }}, event)"
                                                     class="text-white bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
                                                     <box-icon name='block' size="xs"></box-icon>
                                                 </button>
@@ -300,11 +301,12 @@
                 confirmButtonText: "Yes, promote!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('promote-encoder-' + id).submit();
                     Swal.fire({
                         title: "Deleted!",
                         text: "User has been successfully promoted to Encoder.",
                         icon: "success"
+                    }).then(() => {
+                        document.getElementById('promote-encoder-' + id).submit();
                     });
                 }
             });
@@ -322,11 +324,13 @@
                 confirmButtonText: "Yes, block!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('block-' + id).submit();
+
                     Swal.fire({
                         title: "Blocked!",
                         text: "User's access has been successfully blocked.",
                         icon: "success"
+                    }).then(() => {
+                        document.getElementById('block-' + id).submit();
                     });
                 }
             });
@@ -344,11 +348,12 @@
                 confirmButtonText: "Yes, unblock!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('unblock-' + id).submit();
                     Swal.fire({
                         title: "Unblocked!",
                         text: "User's access has been successfully unblocked.",
                         icon: "success"
+                    }).then(() => {
+                        document.getElementById('unblock-' + id).submit();
                     });
                 }
             });
