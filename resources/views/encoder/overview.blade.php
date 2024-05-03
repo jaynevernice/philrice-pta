@@ -424,11 +424,11 @@
                 <select name="year"
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    <option value="" disabled>Year</option>
+                    <option value="" selected disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
                         {{-- <option value="{{ $year }}" @if ($year == date('Y')) selected @endif> --}}
-                        <option value="{{ $year }}" @if ($year == date('Y')) @endif>
+                        <option value="{{ $year }}">
                             {{ $year }}
                         </option>
                     @endfor
@@ -520,7 +520,7 @@
             </div> --}}
 
             {{-- Provinces --}}
-            {{-- <div class="mx-1 w-36">
+            <div class="mx-1 w-36">
                 <select
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="provinceSelect">
@@ -530,7 +530,7 @@
                         <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
                     @endforeach
                 </select>
-            </div> --}}
+            </div>
 
             {{-- Municipalities --}}
             {{-- <div class="mx-1 w-36">
@@ -657,7 +657,6 @@
         <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
             <div id="provincesChart"></div>
 
-
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
                 {{-- Column 1 --}}
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -671,17 +670,8 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                14
-                            </th>
-                            <td class="px-6 py-4">
-                                Nueva Ecija
-                            </td>
-                        </tr>
+                    <tbody id="province-column-1">
+                        {{-- data for column 1 of province --}}
                     </tbody>
                 </table>
 
@@ -697,17 +687,8 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                14
-                            </th>
-                            <td class="px-6 py-4">
-                                Nueva Ecija
-                            </td>
-                        </tr>
+                    <tbody id="province-column-2">
+                        {{-- data for column 2 of province --}}
                     </tbody>
                 </table>
 
@@ -723,22 +704,72 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                14
-                            </th>
-                            <td class="px-6 py-4">
-                                Nueva Ecija
-                            </td>
-                        </tr>
+                    <tbody id="province-column-3">
+                        {{-- data for column 3 of province --}}
                     </tbody>
                 </table>
 
             </div>
 
+        </div>
+
+        {{-- Chart Row 6 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            <div id="municipalitiesChart"></div>
+
+            {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+                
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Municipality
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipality-column-1">
+                        
+                    </tbody>
+                </table>
+
+               
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Municipality
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipality-column-2">
+                        
+                    </tbody>
+                </table>
+
+                
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Municipality
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipality-column-3">
+                        
+                    </tbody>
+                </table>
+
+            </div> --}}
         </div>
 
         @include('_message')
@@ -920,70 +951,8 @@
 
         // Regions
         var regions_charts = @json($region_charts);
-        // console.log(regions_charts);
-        // var regionsChartsData = Object.entries(regions_charts).map(([region_name, region_count]) => ({
-        //     x: region_name,
-        //     y: region_count
-        // }));
-        // console.log(regions_charts);
 
         var regions = {
-            // series: [{
-            //     data: regionsChartsData
-            //     data: [{
-            //             x: 'Nueva Ecija',
-            //             y: 14
-            //         },
-            //         {
-            //             x: 'La Union',
-            //             y: 1
-            //         },
-            //         {
-            //             x: 'Metro Manila',
-            //             y: 2
-            //         },
-            //         {
-            //             x: 'Negros Occidental',
-            //             y: 1
-            //         },
-            //         {
-            //             x: 'Laguna',
-            //             y: 10
-            //         },
-            //         {
-            //             x: 'Benguet',
-            //             y: 2
-            //         },
-            //         {
-            //             x: 'Agusan Del Norte',
-            //             y: 4
-            //         },
-            //         {
-            //             x: 'Compostella Valley',
-            //             y: 1
-            //         },
-            //         {
-            //             x: 'Sorsogon',
-            //             y: 2
-            //         },
-            //         {
-            //             x: 'Leyte',
-            //             y: 5
-            //         },
-            //         {
-            //             x: 'Camarines Sur',
-            //             y: 4
-            //         },
-            //         {
-            //             x: 'Camarines Norte',
-            //             y: 1
-            //         },
-            //         {
-            //             x: 'Albay',
-            //             y: 3
-            //         }
-            //     ]
-            // }],
             series: [{
                 data: regions_charts.map(function(item) {
                     return {
@@ -1032,61 +1001,16 @@
         regionsChart.render();
 
         // Provinces
+        var province_charts = @json($province_charts);
+
         var provinces = {
             series: [{
-                data: [{
-                        x: 'Nueva Ecija',
-                        y: 14
-                    },
-                    {
-                        x: 'La Union',
-                        y: 1
-                    },
-                    {
-                        x: 'Metro Manila',
-                        y: 2
-                    },
-                    {
-                        x: 'Negros Occidental',
-                        y: 1
-                    },
-                    {
-                        x: 'Laguna',
-                        y: 10
-                    },
-                    {
-                        x: 'Benguet',
-                        y: 2
-                    },
-                    {
-                        x: 'Agusan Del Norte',
-                        y: 4
-                    },
-                    {
-                        x: 'Compostella Valley',
-                        y: 1
-                    },
-                    {
-                        x: 'Sorsogon',
-                        y: 2
-                    },
-                    {
-                        x: 'Leyte',
-                        y: 5
-                    },
-                    {
-                        x: 'Camarines Sur',
-                        y: 4
-                    },
-                    {
-                        x: 'Camarines Norte',
-                        y: 1
-                    },
-                    {
-                        x: 'Albay',
-                        y: 3
-                    }
-                ]
+                data: province_charts.map(function(item) {
+                    return {
+                        x: item.province_name,
+                        y: parseInt(item.province_count)
+                    };
+                })
             }],
             legend: {
                 show: false
@@ -1126,6 +1050,57 @@
 
         var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
         provincesChart.render();
+
+        // Municipalities
+        var municipality_charts = @json($municipality_charts);
+
+        var municipalities = {
+            series: [{
+                data: municipality_charts.map(function(item) {
+                    return {
+                        x: item.city_name,
+                        y: parseInt(item.city_count)
+                    };
+                })
+            }],
+            legend: {
+                show: false
+            },
+            chart: {
+                height: 350,
+                type: 'treemap',
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                text: 'Municipalities',
+                align: 'center'
+            },
+            colors: [
+                '#3B93A5',
+                '#F7B844',
+                '#ADD8C7',
+                '#EC3C65',
+                '#CDD7B6',
+                '#C1F666',
+                '#D43F97',
+                '#1E5D8C',
+                '#421243',
+                '#7F94B0',
+                '#EF6537',
+                '#C0ADDB'
+            ],
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: false
+                }
+            }
+        };
+
+        var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
+        municipalitiesChart.render();
     </script>
 @endsection
 
@@ -1139,7 +1114,6 @@
         });
 
         function showRegions(result) {
-
             var data_first_column = result.slice(0, 6);
             var tableRow = ``;
             data_first_column.forEach(function(data) {
@@ -1178,7 +1152,63 @@
                 </tr>`;
             });
             $("#region-column-3").html(tableRow);
-        }   
+        }
+        
+        function showProvinces(result) {
+            var data_first_column = result.slice(0, 30);
+            var tableRow = ``;
+            data_first_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["province_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["province_name"] + `</td>
+                </tr>`;
+            });
+            $("#province-column-1").html(tableRow);
+
+            var data_second_column = result.slice(30, 60);
+            var tableRow = ``;
+            data_second_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["province_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["province_name"] + `</td>
+                </tr>`;
+            });
+            $("#province-column-2").html(tableRow);
+
+            var data_third_column = result.slice(60, 90);
+            var tableRow = ``;
+            data_third_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["province_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["province_name"] + `</td>
+                </tr>`;
+            });
+            $("#province-column-3").html(tableRow);
+        }
+
+        function showMunicipalities(result) {
+            var data_first_column = result.slice(0, 549);
+            var tableRow = ``;
+            data_first_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["city_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["city_name"] + `</td>
+                </tr>`;
+            });
+            $("#municipality-column-1").html(tableRow);
+        }
 
         function loadTrainings(page) {
             $.ajax({
@@ -1195,6 +1225,8 @@
                 },
                 success: function(result) {
                     showRegions(result["regions"]);
+                    showProvinces(result["provinces"]);
+                    // showMunicipalities(result["municipalities"]);
                     
                     currentPage = page; // Update current page
                     var total_participants = result['only_numbers'][0].total_participants;
@@ -1218,8 +1250,8 @@
                 },
             });
         }
-        // SEX CHART //
-        function loadSexPieChart() {
+        // LOAD ALL PIE CHART //
+        function loadPieChart() {
             // Sex Distribution
             var sex_charts = @json($sex_charts);
             var sex_labels = Object.keys(sex_charts);
@@ -1230,9 +1262,7 @@
 
             var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
             sexChart.render();
-        }
-        // INDIGENOUS CHART //
-        function loadIndigenousPieChart() {
+
             // IP Distribution
             var indigenous_charts = @json($indigenous_charts);
             var indigenous_labels = Object.keys(indigenous_charts);
@@ -1243,9 +1273,7 @@
 
             var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
             indigenousChart.render();
-        }
-        // ABILITY CHART //
-        function loadAbilityPieChart() {
+
             // PWD Distribution
             var ability_charts = @json($ability_charts);
             var ability_labels = Object.keys(ability_charts);
@@ -1257,8 +1285,9 @@
             var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
             abilityChart.render();
         }
-        // SECTOR CHART //
-        function loadSectorBarChart() {
+        // LOAD ALL BAR CHART // 
+        function loadBarChart() {
+            // SECTOR CHART //
             var sector_charts = @json($sector_charts);
             var sector_labels = Object.keys(sector_charts);
             var sector_values = Object.values(sector_charts);
@@ -1269,7 +1298,47 @@
             var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
             sectorChart.render();
         }
+        // LOAD ALL TREE MAP CHART // 
+        function loadTreeMapChart() {
+            // REGION CHART //
+            var regions_charts = @json($region_charts);
 
+            regions.series[0].data = regions_charts.map(function(item) {
+                                        return {
+                                            x: item.region_name,
+                                            y: parseInt(item.region_count)
+                                        };
+                                    });
+
+            var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
+            regionsChart.render();
+
+            // PROVINCE CHART //
+            var province_charts = @json($province_charts);
+
+            provinces.series[0].data = province_charts.map(function(item) {
+                                        return {
+                                            x: item.province_name,
+                                            y: parseInt(item.province_count)
+                                        };
+                                    });
+
+            var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
+            provincesChart.render();
+            
+            // MUNICIPALITY CHART //
+            var municipality_charts = @json($municipality_charts);
+
+            municipalities.series[0].data = municipality_charts.map(function(item) {
+                                        return {
+                                            x: item.city_name,
+                                            y: parseInt(item.city_count)
+                                        };
+                                    });
+
+            var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
+            municipalitiesChart.render();
+        }
         // RENDER FILTERED PIE CHART //
         function renderFilteredPieChart(keys, values, chart) {
             // fetch filtered data for pie chart
@@ -1304,7 +1373,6 @@
             }
 
         }
-
         // RENDER FILTERED BAR CHART //
         function renderFilteredBarChart(keys, values, chart) {
             var labels = keys;
@@ -1316,6 +1384,42 @@
 
                 var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
                 sectorChart.render();
+            }
+        }
+        // RENDER TREE MAP CHART //
+        function renderFilteredTreeMapChart(data, chart) {
+            if(chart == 'regions') {
+                regions.series[0].data = data.map(function(item) {
+                                        return {
+                                            x: item.region_name,
+                                            y: parseInt(item.region_count)
+                                        };
+                                    });
+                
+                var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
+                regionsChart.render();
+            }
+            if(chart == 'provinces') {
+                provinces.series[0].data = data.map(function(item) {
+                                        return {
+                                            x: item.province_name,
+                                            y: parseInt(item.province_count)
+                                        };
+                                    });
+                
+                var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
+                provincesChart.render();
+            }
+            if(chart == 'municipalities') {
+                municipalities.series[0].data = data.map(function(item) {
+                                        return {
+                                            x: item.city_name,
+                                            y: parseInt(item.city_count)
+                                        };
+                                    });
+                
+                var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
+                municipalitiesChart.render();
             }
         }
 
@@ -1332,6 +1436,7 @@
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
             var trainingTitle = $("#training_title").val();
+            var provinceSelect = $("#provinceSelect").val();
             var formType = parseInt($("#form").val());
 
             $.ajax({
@@ -1348,6 +1453,7 @@
                     start_MonthSelect: start_MonthSelect,
                     end_MonthSelect: end_MonthSelect,
                     trainingTitle: trainingTitle,
+                    provinceSelect: provinceSelect,
                     formType: formType,
                     page: page,
                     recordsPerPage: recordsPerPage,
@@ -1367,6 +1473,9 @@
                     destroyChart(indigenousChart);
                     destroyChart(abilityChart);
                     destroyChart(sectorChart);
+                    destroyChart(regionsChart);
+                    destroyChart(provincesChart);
+                    destroyChart(municipalitiesChart);
                     
                     // call function to render filtered pie chart
                     renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
@@ -1375,6 +1484,11 @@
                     
                     // call function to render filtered Bar chart
                     renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+
+                    // call function to render filtered tree map chart
+                    renderFilteredTreeMapChart(result['regions'], 'regions');
+                    renderFilteredTreeMapChart(result['provinces'], 'provinces');
+                    renderFilteredTreeMapChart(result['municipalities'], 'municipalities');
 
                     // if (recordsPerPage != result["records"].length) {
                     //     $("#nextButton").hide();
@@ -1390,226 +1504,269 @@
             });
         }
 
-        $("#yearSelect").on("change", function() {
-            // var searchInput = $("#trainingsSearch").val();
+        $("#yearSelect, #start_MonthSelect, #end_MonthSelect, #training_title, #provinceSelect").on("change", function() {
             var yearSelect = $("#yearSelect").val();
             var start_MonthSelect = $("#start_MonthSelect").val();
             var end_MonthSelect = $("#end_MonthSelect").val();
             var trainingTitle = $("#training_title").val();
+            var provinceSelect = $("#provinceSelect").val();
 
-            if (
-                // searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(indigenousChart);
-                destroyChart(abilityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadIndigenousPieChart();
-                loadAbilityPieChart();
-                loadSectorBarChart();
-
-            } else {
-                loadFilterTrainings(1);
-                
-            }
-        });
-
-         $("#start_MonthSelect").on("change", function() {
-            // var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-
-            if (
-                // searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(indigenousChart);
-                destroyChart(abilityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadIndigenousPieChart();
-                loadAbilityPieChart();
-                loadSectorBarChart();
-
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#end_MonthSelect").on("change", function() {
-            // var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-
-            if (
-                // searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(indigenousChart);
-                destroyChart(abilityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadIndigenousPieChart();
-                loadAbilityPieChart();
-                loadSectorBarChart();
-
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#training_title").on("change", function() {
-            // var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            // console.log(trainingTitle);
-            if (
-                // searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(indigenousChart);
-                destroyChart(abilityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadIndigenousPieChart();
-                loadAbilityPieChart();
-                loadSectorBarChart();
-
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#form").on("change", function() {
-            // var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var formType = parseInt($("#form").val());
-            // console.log(formType);
             if (
                 // searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
                 yearSelect == "" &&
                 trainingTitle == "" &&
-                formType == "1"
+                provinceSelect == ""
             ) {
                 loadTrainings(1);
 
                 // Destroy existing charts
                 destroyChart(sexChart);
-                // destroyChart(indigenousChart);
-                // destroyChart(abilityChart);
-                // destroyChart(sectorChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+                destroyChart(regionsChart);
+                destroyChart(provincesChart);
+                destroyChart(municipalitiesChart);
 
                 // Render new charts
-                loadSexPieChart();
-                // loadIndigenousPieChart();
-                // loadAbilityPieChart();
-                // loadSectorBarChart();
-
+                loadPieChart();
+                loadBarChart();
+                loadTreeMapChart();
             } else {
                 loadFilterTrainings(1);
             }
         });
 
-        // regions, provinces, and municipalities dropdown change event
-        $('#regionSelect').on('change', function() {
-            var regCode = $("#regionSelect").val();
-            $("#provinceSelect").html('');
-            $.ajax({
-                url: "{{ route('trainings.fetchProvinces') }}",
-                type: "POST",
-                data: {
-                    regCode: regCode,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    $('#provinceSelect').html(
-                        '<option value="" selected disabled>Province</option><option value="">All Provinces</option>'
-                    );
-                    $.each(result, function(key, value) {
-                        $("#provinceSelect").append('<option value="' + value.provCode + '">' +
-                            value.provDesc + '</option>');
-                    });
-                    
-                },
-                error: function(error) {
-                    alert('Something went wrong!');
-                },
-            });
-        });
+        // $("#yearSelect").on("change", function() {
+        //     // var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
 
-        $('#provinceSelect').on('change', function() {
-            var provCode = $("#provinceSelect").val();
-            $("#municipalitySelect").html('');
-            $.ajax({
-                url: "{{ route('trainings.fetchMunicipalities') }}",
-                type: "POST",
-                data: {
-                    provCode: provCode,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    $('#municipalitySelect').html(
-                        '<option value="" selected disabled>Municipality</option><option value="">All Municipalities</option>');
-                    $.each(result, function(key, value) {
-                        $("#municipalitySelect").append('<option value="' + value.citymunCode + '">' +
-                            value.citymunDesc + '</option>');
-                    });
+        //     if (
+        //         // searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(indigenousChart);
+        //         destroyChart(abilityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         loadIndigenousPieChart();
+        //         loadAbilityPieChart();
+        //         loadBarChart();
+
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        //  $("#start_MonthSelect").on("change", function() {
+        //     // var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+
+        //     if (
+        //         // searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(indigenousChart);
+        //         destroyChart(abilityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         loadIndigenousPieChart();
+        //         loadAbilityPieChart();
+        //         loadBarChart();
+
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#end_MonthSelect").on("change", function() {
+        //     // var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+
+        //     if (
+        //         // searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(indigenousChart);
+        //         destroyChart(abilityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         loadIndigenousPieChart();
+        //         loadAbilityPieChart();
+        //         loadBarChart();
+
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#training_title").on("change", function() {
+        //     // var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+        //     // console.log(trainingTitle);
+        //     if (
+        //         // searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(indigenousChart);
+        //         destroyChart(abilityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         loadIndigenousPieChart();
+        //         loadAbilityPieChart();
+        //         loadBarChart();
+
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#form").on("change", function() {
+        //     // var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+        //     var formType = parseInt($("#form").val());
+        //     // console.log(formType);
+        //     if (
+        //         // searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == "" &&
+        //         formType == "1"
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         // destroyChart(indigenousChart);
+        //         // destroyChart(abilityChart);
+        //         // destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         // loadIndigenousPieChart();
+        //         // loadAbilityPieChart();
+        //         // loadBarChart();
+
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // regions, provinces, and municipalities dropdown change event
+        // $('#regionSelect').on('change', function() {
+        //     var regCode = $("#regionSelect").val();
+        //     $("#provinceSelect").html('');
+        //     $.ajax({
+        //         url: "{{ route('trainings.fetchProvinces') }}",
+        //         type: "POST",
+        //         data: {
+        //             regCode: regCode,
+        //             _token: '{{ csrf_token() }}'
+        //         },
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             $('#provinceSelect').html(
+        //                 '<option value="" selected disabled>Province</option><option value="">All Provinces</option>'
+        //             );
+        //             $.each(result, function(key, value) {
+        //                 $("#provinceSelect").append('<option value="' + value.provCode + '">' +
+        //                     value.provDesc + '</option>');
+        //             });
                     
-                },
-                error: function(error) {
-                    alert('Something went wrong!');
-                },
-            });
-        });
+        //         },
+        //         error: function(error) {
+        //             alert('Something went wrong!');
+        //         },
+        //     });
+        // });
+
+        // $('#provinceSelect').on('change', function() {
+        //     var provCode = $("#provinceSelect").val();
+        //     $("#municipalitySelect").html('');
+        //     $.ajax({
+        //         url: "{{ route('trainings.fetchMunicipalities') }}",
+        //         type: "POST",
+        //         data: {
+        //             provCode: provCode,
+        //             _token: '{{ csrf_token() }}'
+        //         },
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             $('#municipalitySelect').html(
+        //                 '<option value="" selected disabled>Municipality</option><option value="">All Municipalities</option>');
+        //             $.each(result, function(key, value) {
+        //                 $("#municipalitySelect").append('<option value="' + value.citymunCode + '">' +
+        //                     value.citymunDesc + '</option>');
+        //             });
+                    
+        //         },
+        //         error: function(error) {
+        //             alert('Something went wrong!');
+        //         },
+        //     });
+        // });
+        // $('#provinceSelect').on('change', function() {
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+        //     var province = $("#provinceSelect").val();
+
+            
+        // });
     </script>
 @endsection
