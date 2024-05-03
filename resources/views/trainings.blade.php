@@ -1590,16 +1590,16 @@
                 }
             }
 
-            const $startDate = $("#start_date");
-            const $endDate = $("#end_date");
-            $("#date-error-message").css("color", "red");
-            // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
-            if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
-                $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
-                nextBtn.disabled = true;
-            } else {
-                $("#date-error-message").text("");
-            }
+            // const $startDate = $("#start_date");
+            // const $endDate = $("#end_date");
+            // $("#date-error-message").css("color", "red");
+            // // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+            // if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
+            //     $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
+            //     nextBtn.disabled = true;
+            // } else {
+            //     $("#date-error-message").text("");
+            // }
         }
 
         function checkSection2() {
@@ -1632,9 +1632,9 @@
                     ($trainingVenue.val() === 'Outside PhilRice Station' && (!$province.val() || (!
                         $municipalitySelect.val() && !$municipality.val())))
                 )) ||
-                // (isInternationalTraining && !$internationalTrainingInput.val())
-                (isInternationalTraining && !$internationalTrainingInput.val()) ||
-                (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
+                (isInternationalTraining && !$internationalTrainingInput.val())
+                // (isInternationalTraining && !$internationalTrainingInput.val()) ||
+                // (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
             );
             nextBtn.disabled = isNextBtnDisabled;
         }
@@ -1729,9 +1729,9 @@
                     checkSection3();
                 }
                 // disable nextBtn if any of the input are blank (Section 2)
-                // if (currentSection === 2) {
-                //     checkSection2();
-                // }
+                if (currentSection === 2) {
+                    checkSection2();
+                }
                 // if (currentSection == 2) {
                 //     // disable nextBtn if one of the input field is blank
                 //     if (!$("#training_title").val() || !$("#training_category").val() || !$(
@@ -1816,9 +1816,9 @@
                         checkSection3();
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
-                    // if (currentSection === 2) {
-                    //     checkSection2();
-                    // }
+                    if (currentSection === 2) {
+                        checkSection2();
+                    }
                     // if (currentSection == 2) {
                     //     // disable nextBtn if one of the input field is blank
                     //     if (!$("#training_title").val() || !$("#training_category").val() || !$(
@@ -1909,20 +1909,20 @@
                             nextBtn.disabled = false;
                         }
 
-                        const $startDate = $("#start_date");
-                        const $endDate = $("#end_date");
-                        // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
-                        if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
-                            $("#date-error-message").text("Start Date or End Date is Invalid");
-                            nextBtn.disabled = true;
-                        } else {
-                            $("#date-error-message").text("");
-                        }
+                        // const $startDate = $("#start_date");
+                        // const $endDate = $("#end_date");
+                        // // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        // if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
+                        //     $("#date-error-message").text("Start Date or End Date is Invalid");
+                        //     nextBtn.disabled = true;
+                        // } else {
+                        //     $("#date-error-message").text("");
+                        // }
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
-                    // if (currentSection === 2) {
-                    //     checkSection2();
-                    // }
+                    if (currentSection === 2) {
+                        checkSection2();
+                    }
                 });
 
             // check image size

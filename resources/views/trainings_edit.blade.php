@@ -877,7 +877,7 @@
                 // + maleParticipants + femaleParticipants + indigenousParticipants + pwdParticipants
 
             // Update the display for each category
-            document.getElementById('left_to_distribute_sector').textContent = leftToDistributeSector;
+            // document.getElementById('left_to_distribute_sector').textContent = leftToDistributeSector;
             // document.getElementById('left_to_distribute_extension_workers').textContent = leftToDistribute;
             // document.getElementById('left_to_distribute_scientific').textContent = leftToDistribute;
             // document.getElementById('left_to_distribute_other').textContent = leftToDistribute;
@@ -1121,81 +1121,81 @@
         // });
 
         // Function to save form data to localStorage
-        // function saveFormData() {
-        //     let formData = {
-        //         // Section 2
-        //         "training_title": $("#training_title").val(),
-        //         "otherTrainingInput": $("#otherTrainingInput").val(),
-        //         "training_category": $("#training_category").val(),
-        //         "training_type": $("#training_type").val(),
-        //         "mod": $("#mod").val(),
-        //         "training_venue": $("#training_venue").val(),
-        //         "internationalTrainingInput": $("#internationalTrainingInput").val(),
-        //         "withinPhilriceInput": $("#withinPhilriceInput").val(),
-        //         // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
-        //         "province": $("#province").val(),
-        //         "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
-        //         "start_date": $("#start_date").val(),
-        //         "end_date": $("#end_date").val(),
-        //         // Section 3
-        //         "sponsor": $("#sponsor").val(),
-        //         "source_of_fund": $("#source_of_fund").val(),
-        //         "otherFundInput": $("#otherFundInput").val(),
-        //         "average_gik": $("#average_gik").val(),
-        //         "evaluationInput": $("#evaluationInput").val(),
-        //         // Section 4 
-        //         "total_participants": $("#total_participants").val(),
-        //         "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
-        //         "num_of_extension_workers": $("#num_of_extension_workers").val(),
-        //         "num_of_scientific": $("#num_of_scientific").val(),
-        //         "num_of_other": $("#num_of_other").val(),
-        //         "num_of_female": $("#num_of_female").val(),
-        //         "num_of_male": $("#num_of_male").val(),
-        //         "num_of_indigenous": $("#num_of_indigenous").val(),
-        //         "num_of_pwd": $("#num_of_pwd").val(),
-        //     };
+        function saveFormData() {
+            let formData = {
+                // Section 2
+                "training_title": $("#training_title").val(),
+                "otherTrainingInput": $("#otherTrainingInput").val(),
+                "training_category": $("#training_category").val(),
+                "training_type": $("#training_type").val(),
+                "mod": $("#mod").val(),
+                "training_venue": $("#training_venue").val(),
+                "internationalTrainingInput": $("#internationalTrainingInput").val(),
+                "withinPhilriceInput": $("#withinPhilriceInput").val(),
+                // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
+                "province": $("#province").val(),
+                "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
+                "start_date": $("#start_date").val(),
+                "end_date": $("#end_date").val(),
+                // Section 3
+                "sponsor": $("#sponsor").val(),
+                "source_of_fund": $("#source_of_fund").val(),
+                "otherFundInput": $("#otherFundInput").val(),
+                "average_gik": $("#average_gik").val(),
+                "evaluationInput": $("#evaluationInput").val(),
+                // Section 4 
+                "total_participants": $("#total_participants").val(),
+                "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
+                "num_of_extension_workers": $("#num_of_extension_workers").val(),
+                "num_of_scientific": $("#num_of_scientific").val(),
+                "num_of_other": $("#num_of_other").val(),
+                "num_of_female": $("#num_of_female").val(),
+                "num_of_male": $("#num_of_male").val(),
+                "num_of_indigenous": $("#num_of_indigenous").val(),
+                "num_of_pwd": $("#num_of_pwd").val(),
+            };
 
-        //     localStorage.setItem('formTrainings', JSON.stringify(formData));
-        // }
+            localStorage.setItem('formTrainings', JSON.stringify(formData));
+        }
         // Function to load form data from localStorage
-        // function loadFormData() {
-        //     var storedData = localStorage.getItem('formTrainings');
+        function loadFormData() {
+            var storedData = localStorage.getItem('formTrainings');
 
-        //     if (storedData) {
-        //         var formData = JSON.parse(storedData);
-        //         // Section 2
-        //         $("#training_title").val(formData.training_title);
-        //         $("#otherTrainingInput").val(formData.otherTrainingInput);
-        //         $("#training_category").val(formData.training_category);
-        //         $("#training_type").val(formData.training_type);
-        //         $("#mod").val(formData.mod);
-        //         $("#training_venue").val(formData.training_venue);
-        //         $("#internationalTrainingInput").val(formData.internationalTrainingInput);
-        //         $("#withinPhilriceInput").val(formData.withinPhilriceInput);
-        //         // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
-        //         $("#province").val(formData.province);
-        //         $("#municipality").val(formData.municipality);
-        //         $("#start_date").val(formData.start_date);
-        //         $("#end_date").val(formData.end_date);
-        //         // Section 3
-        //         $("#sponsor").val(formData.sponsor);
-        //         $("#source_of_fund").val(formData.source_of_fund);
-        //         $("#otherFundInput").val(formData.otherFundInput);
-        //         $("#average_gik").val(formData.average_gik);
-        //         $("#evaluationInput").val(formData.evaluationInput);
-        //         // Section 4 
-        //         $("#total_participants").val(formData.total_participants);
-        //         $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
-        //         $("#num_of_extension_workers").val(formData.num_of_extension_workers);
-        //         $("#num_of_scientific").val(formData.num_of_scientific);
-        //         $("#num_of_other").val(formData.num_of_other);
-        //         $("#num_of_female").val(formData.num_of_female);
-        //         $("#num_of_male").val(formData.num_of_male);
-        //         $("#num_of_indigenous").val(formData.num_of_indigenous);
-        //         $("#num_of_pwd").val(formData.num_of_pwd);
-        //     }
+            if (storedData) {
+                var formData = JSON.parse(storedData);
+                // Section 2
+                $("#training_title").val(formData.training_title);
+                $("#otherTrainingInput").val(formData.otherTrainingInput);
+                $("#training_category").val(formData.training_category);
+                $("#training_type").val(formData.training_type);
+                $("#mod").val(formData.mod);
+                $("#training_venue").val(formData.training_venue);
+                $("#internationalTrainingInput").val(formData.internationalTrainingInput);
+                $("#withinPhilriceInput").val(formData.withinPhilriceInput);
+                // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
+                $("#province").val(formData.province);
+                $("#municipality").val(formData.municipality);
+                $("#start_date").val(formData.start_date);
+                $("#end_date").val(formData.end_date);
+                // Section 3
+                $("#sponsor").val(formData.sponsor);
+                $("#source_of_fund").val(formData.source_of_fund);
+                $("#otherFundInput").val(formData.otherFundInput);
+                $("#average_gik").val(formData.average_gik);
+                $("#evaluationInput").val(formData.evaluationInput);
+                // Section 4 
+                $("#total_participants").val(formData.total_participants);
+                $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
+                $("#num_of_extension_workers").val(formData.num_of_extension_workers);
+                $("#num_of_scientific").val(formData.num_of_scientific);
+                $("#num_of_other").val(formData.num_of_other);
+                $("#num_of_female").val(formData.num_of_female);
+                $("#num_of_male").val(formData.num_of_male);
+                $("#num_of_indigenous").val(formData.num_of_indigenous);
+                $("#num_of_pwd").val(formData.num_of_pwd);
+            }
 
-        // }
+        }
 
         function showSection(sectionNumber) {
             sections.forEach(section => {
@@ -1320,16 +1320,16 @@
                 }
             }
 
-            const $startDate = $("#start_date");
-            const $endDate = $("#end_date");
-            $("#date-error-message").css("color", "red");
+            // const $startDate = $("#start_date");
+            // const $endDate = $("#end_date");
+            // $("#date-error-message").css("color", "red");
             // if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
-            if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
-                $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
-                nextBtn.disabled = true;
-            } else {
-                $("#date-error-message").text("");
-            }
+            // if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
+            //     $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
+            //     nextBtn.disabled = true;
+            // } else {
+            //     $("#date-error-message").text("");
+            // }
         }
 
         function checkSection2() {
@@ -1361,9 +1361,10 @@
                     ($trainingVenue.val() === 'Within PhilRice Station' && !$withinPhilriceInput.val()) ||
                     ($trainingVenue.val() === 'Outside PhilRice Station' && (!$province.val() || (!$municipalitySelect.val() && !$municipality.val())))
                 )) ||
-                (isInternationalTraining && !$internationalTrainingInput.val()) ||
+                (isInternationalTraining && !$internationalTrainingInput.val())
+                // (isInternationalTraining && !$internationalTrainingInput.val()) ||
                 // ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday)
-                (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
+                // (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
             );
             nextBtn.disabled = isNextBtnDisabled;
         }
@@ -1435,8 +1436,8 @@
             }
 
             $('#prevBtn').on('click', function() {
-                // saveFormData();
-                // loadFormData();
+                saveFormData();
+                loadFormData();
                 $("#nextBtn").removeAttr("hidden");
                 $("#submitBtn").attr("hidden", true);
                 nextBtn.disabled = false;
@@ -1466,8 +1467,8 @@
             });
 
             $('#nextBtn').on('click', function() {
-                // saveFormData();
-                // loadFormData();
+                saveFormData();
+                loadFormData();
                 
                 // changes the type of nextBtn into submit
                 if (currentSection == 5) {
@@ -1662,15 +1663,15 @@
                             nextBtn.disabled = false;
                         }
 
-                        const $startDate = $("#start_date");
-                        const $endDate = $("#end_date");
-                        // if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
-                        if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
-                            $("#date-error-message").text("Start Date or End Date is Invalid");
-                            nextBtn.disabled = true;
-                        } else {
-                            $("#date-error-message").text("");
-                        }
+                        // const $startDate = $("#start_date");
+                        // const $endDate = $("#end_date");
+                        // // if($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
+                        // if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
+                        //     $("#date-error-message").text("Start Date or End Date is Invalid");
+                        //     nextBtn.disabled = true;
+                        // } else {
+                        //     $("#date-error-message").text("");
+                        // }
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
                     if (currentSection === 2) {

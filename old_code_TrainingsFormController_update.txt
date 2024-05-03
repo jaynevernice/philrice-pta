@@ -1,0 +1,234 @@
+public function update(Request $request, string $id)
+{
+    $record = TrainingsForm::findOrFail($id);
+
+    if(empty($record) || empty(Auth::check())) {
+        abort(404);
+    }
+    if(Auth::user()->id != $record->encoder_id) {
+        Auth::logout();
+        return redirect('/login');
+    }
+
+    $request->validate([
+        // Section 2
+        'training_title'=>'required',
+        'training_category'=>'required',
+        'training_type'=>'required',
+        'mod'=>'required',
+        'start'=>'required',
+        'end'=>'required',
+        // Section 3
+        'sponsor'=>'required',
+        'source_of_fund'=>'required',
+        'average_gik'=>'required',
+        'evaluationInput'=>'required',
+        // Section 4
+        'total_participants'=>'required|integer|min:1',
+        'num_of_farmers_and_growers'=>'required|min:0',
+        'num_of_extension_workers'=>'required|min:0',
+        'num_of_scientific'=>'required|min:0',
+        'num_of_other'=>'required|min:0',
+        'num_of_male'=>'required|min:0',
+        'num_of_female'=>'required|min:0',
+        'num_of_indigenous'=>'required|min:0',
+        'num_of_pwd'=>'required|min:0',
+        // Section 5
+        'photo_doc_event'=>'max:10',
+        'other_doc'=>'max:10',
+    ]);
+
+    $title = $request->training_title;
+    if( $request->training_title == 'Other' ) {
+        $request->validate([
+            'otherTrainingInput'=>'required',
+        ]);
+        $title = $request->otherTrainingInput;
+    }
+
+    $source_of_fund = $request->source_of_fund;
+    if( $request->source_of_fund == 'Other' ) {
+        $request->validate([
+            'otherFundInput'=>'required',
+        ]);
+        $source_of_fund = $request->otherFundInput;
+    }
+
+    $training_venue = '';
+    $local_address = '';
+    $municipality = '';
+    $province = '';
+    $station_id = (int) $request->withinPhilriceInput;
+    $international_address = '';
+    if($request->training_type == 'Local') {
+        $request->validate([
+            'training_venue'=>'required',
+        ]);
+        $training_venue = $request->training_venue;
+
+        if($request->training_venue == 'Within PhilRice Station') {
+            $request->validate([
+                'withinPhilriceInput'=>'required',
+            ]);
+            // query to get municipality and province based on station
+            $local_address = Station::select('*')->where("id", '=', $request->withinPhilriceInput)->first();
+
+        } else if($request->training_venue == 'Outside PhilRice Station') {
+            $request->validate([
+                'municipalitySelect'=>'required',
+                'province'=>'required',
+            ]);
+
+            // $municipality = Municipality::where('provCode', $request->provCode)
+            //                 ->orderBy('citymunDesc', 'asc')
+            //                 ->get(['citymunDesc', 'citymunCode']);
+            $municipality = $request->municipalitySelect;
+            $province = $request->province;
+            $station_id = 0;
+        }
+    } else if($request->training_type == 'International') {
+        $request->validate([
+            'internationalTrainingInput'=>'required',
+        ]);
+        $international_address = $request->internationalTrainingInput;
+        $municipality = '';
+        $province = '';
+        $station_id = 0;
+    }
+
+    if($local_address != '') {
+        $municipality = $local_address->municipality;
+        $province = $local_address->province;
+    }
+
+    $average_gik = $request->average_gik;
+    if($average_gik == 'N/A') {
+        $average_gik = NULL;
+    } else {
+        // dd($request->average_gik);
+        $average_gik = (float) $request->average_gik;
+    }
+
+    if(($request->total_participants 
+            != 
+        ($request->num_of_farmers_and_growers + $request->num_of_extension_workers + $request->num_of_scientific + $request->num_of_other))
+            ||
+        ($request->total_participants
+            !=
+        ($request->num_of_male + $request->num_of_female))
+            ||
+        ($request->num_of_indigenous > $request->total_participants)
+            ||
+        ($request->num_of_pwd > $request->total_participants)
+        ) {
+        return redirect()->route('trainingsform.create')->with(['error' => 'Oops...', 'message' => 'Total Number of Participants is incorrect']);
+    }
+
+    // collecting old images from the database
+    $old_images = $record->image;
+    $old_images = explode('|', $old_images);
+
+    $imageNames = array();
+    $image_full_name = '';
+    if ($images = $request->file('photo_doc_event')) {
+        // count elements in old_images and images in update form
+        if(count($old_images) + count($images) > 10) {
+            return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Uploaded images should not exceed to 10.']);
+        }
+        foreach ($images as $image) {
+            // $imageName = md5(rand(1000,10000));
+            $imageName = strtolower($image->getClientOriginalName());
+            $imageName = str_replace(['.png', '.gif', '.jpg'], '', $imageName);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $image_full_name = $imageName.'.'.$ext;
+            $upload_path = 'public/images/';
+            $image_url = $upload_path.$image_full_name;
+            $image->move($upload_path, $image_full_name);
+            // $imageNames[] = $image_url;
+            $imageNames[] = $image_full_name;
+        }
+    }
+
+    if(!empty($request->file('photo_doc_event'))) {
+        $new_images = array_merge($old_images, $imageNames);
+    } else {
+        $new_images = $old_images;
+    }
+
+    // collecting old files from the database
+    $old_files = $record->file;
+    if(!$old_files) {
+        $old_files = array();
+    } else {
+        $old_files = explode('|', $old_files);
+    }
+    $count_of_old_files = count($old_files);
+    $upcoming_files = $request->file('other_doc') ?? array();
+    $count_of_new_files = count($upcoming_files);
+
+    $fileNames = array();
+    $file_full_name = '';
+    if ($files = $request->file('other_doc')) {
+        // count elements in old_files and files in update form
+        if($count_of_old_files + $count_of_new_files > 10) {
+            return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Uploaded files should not exceed to 10.']);
+        }
+        foreach ($files as $file) {
+            // $fileName = md5(rand(1000,10000));
+            $fileName = strtolower($file->getClientOriginalName());
+            $ext = strtolower($file->getClientOriginalExtension());
+            $fileName = str_replace(['.pdf', '.xlsx', '.docx', '.pptx', '.png', '.gif', '.jpg'], '', $fileName);
+            $file_full_name = $fileName.'.'.$ext;
+            $upload_path = 'public/files/';
+            $file_url = $upload_path.$file_full_name;
+            $file->move($upload_path, $file_full_name);
+            $fileNames[] = $file_full_name;
+        }
+    }
+
+    if(!empty($request->file('other_doc'))) {
+        $new_files = array_merge($old_files, $fileNames);
+    } else {
+        $new_files = $old_files;
+    }
+
+    TrainingsForm::where('id',$id)->update([
+        // Section 2
+        // 'division'=>Auth::user()->division,
+        'title'=>$title,
+        'category'=>$request->training_category,
+        'type'=>$request->training_type,
+        'training_venue'=>$training_venue,
+        'station_id'=> $station_id,
+        'municipality'=>$municipality,
+        'province'=>$province,
+        'international_address'=>$international_address,
+        'mod'=>$request->mod,
+        'start_date'=>Carbon::parse($request->start)->format('Y-m-d'),
+        'end_date'=>Carbon::parse($request->end)->format('Y-m-d'),
+        // Section 3
+        'sponsor'=>$request->sponsor,
+        'fund'=>$source_of_fund,
+        'average_gik'=>$average_gik,
+        'evaluation'=> (float) $request->evaluationInput,
+        // Section 4
+        'num_of_participants'=> (int) ltrim($request->total_participants, '0'),
+        'num_of_farmers'=> (int) ltrim($request->num_of_farmers_and_growers, '0'),
+        'num_of_extworkers'=> (int) ltrim($request->num_of_extension_workers, '0'),
+        'num_of_scientific'=> (int) ltrim($request->num_of_scientific, '0'),
+        'num_of_other'=> (int) ltrim($request->num_of_other, '0'),
+        'num_of_male'=> (int) ltrim($request->num_of_male, '0'),
+        'num_of_female'=> (int) ltrim($request->num_of_female, '0'),
+        'num_of_indigenous'=> (int) ltrim($request->num_of_indigenous, '0'),
+        'num_of_pwd'=> (int) ltrim($request->num_of_pwd, '0'),
+        // Section 5 
+        'image'=>implode('|', $new_images),
+    ]);
+    if(!is_null($new_files)) {
+        TrainingsForm::where('id',$id)->update([
+            'file'=>implode('|', $new_files),
+        ]);
+    } 
+
+    return redirect()->route('encoder.ces_edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
+}
