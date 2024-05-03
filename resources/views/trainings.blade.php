@@ -220,8 +220,7 @@
 
                     {{-- Training Title --}}
                     <div class="col-span-2">
-                        <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Title of
-                            Training</label>
+                        <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training Title</label>
                         <div class="relative">
                             <select required id="training_title" name="training_title" onchange="toggleOtherTitle()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">

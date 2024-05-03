@@ -20,101 +20,393 @@
                     </a>
                 </li>
 
-                {{-- CES --}}
-                <li>
-                    <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
-                        aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
-                        <box-icon name='chevron-down'></box-icon>
-                    </a>
-                    <ul id="dropdown-sales" class="py-2 space-y-2">
-                        <li>
-                            <a href=""
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-                                <box-icon name='line-chart'></box-icon>
-                                <span class="ml-3">View Data</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('encoder.ces_add') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-                                <box-icon name='plus'></box-icon>
-                                <span class="ml-3">Add Data</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('encoder.ces_edit') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-                                <box-icon name='edit-alt' type='solid'></box-icon>
-                                <span class="ml-3">Edit Data</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                {{-- If Encoder is from CES --}}
+                @if (Auth::user()->station === '1')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lgtransition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.view') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white bg-green-100 hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">CES</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- AGUSAN --}}
-                <li>
-                    <a href="{{ route('encoder.agusan') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">AGUSAN</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '2')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">AGUSAN</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.agusan') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">AGUSAN</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- BATAC --}}
-                <li>
-                    <a href="{{ route('encoder.batac') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">BATAC</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '3')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">BATAC</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.batac') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">BATAC</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- BICOL --}}
-                <li>
-                    <a href="{{ route('encoder.bicol') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">BICOL</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '4')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">BICOL</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.bicol') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">BICOL</span>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- Central Mindanao University --}}
+                @if (Auth::user()->station === '5')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">CMU</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.cmu') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">CMU</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- ISABELA --}}
-                <li>
-                    <a href="{{ route('encoder.isabela') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">ISABELA</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '6')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">ISABELA</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.isabela') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">ISABELA</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- LOS BAÑOS --}}
-                <li>
-                    <a href="{{ route('encoder.losbaños') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">LOS BAÑOS</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '7')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">LOS BAÑOS</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.losbaños') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">LOS BAÑOS</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- MIDSAYAP --}}
-                <li>
-                    <a href="{{ route('encoder.midsayap') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">MIDSAYAP</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '8')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">MIDSAYAP</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.midsayap') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">MIDSAYAP</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- NEGROS --}}
-                <li>
-                    <a href="{{ route('encoder.negros') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">NEGROS</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '9')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">NEGROS</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.negros') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">NEGROS</span>
+                        </a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </aside>
@@ -142,7 +434,7 @@
                     <option value="" disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y')) @endif>
+                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
                             {{ $year }}
                         </option>
                     @endfor
@@ -229,39 +521,50 @@
 
         </div>
 
-        {{-- Charts --}}
+        {{-- Chart Row 1 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
+            {{-- Total Number of Participants --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
+                <p class="text-gray-500 dark:text-gray-400">Participants</p>
+            </div>
 
-        <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center mb-4 p-2">
-            <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
-            <p class="text-gray-500">Total Number of Participants</p>
+            {{-- Average Gain in Knowledge --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 id="average_gik_chart" class="mb-2 text-6xl font-extrabold">0%</h1>
+                <p class="text-gray-500 dark:text-gray-400">Average Gain in Knowledge (GIK)</p>
+            </div>
+
+            {{-- Overall Training Evaluation Rating --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+                <h1 id="evaluation_chart" class="mb-2 text-6xl font-extrabold">0</h1>
+                <p class="font-bold text-gray-500 dark:text-gray-400">Excellent</p>
+                <p class="text-gray-500 dark:text-gray-400">Overall Training Evaluation Rating</p>
+            </div>
         </div>
 
-        <div class="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-
-            {{-- Total Number of Participants --}}
-            {{-- <div class="bg-slate-100 shadow-lg border-2 rounded-lg flex flex-col justify-center items-center">
-                <h1 id="total_participants_chart" class="mb-2 text-6xl font-extrabold">0</h1>
-                <p class="text-gray-500">Total Number of Participants</p>
-            </div> --}}
-
+        {{-- Chart Row 2 --}}
+        <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
             {{-- Sex Distribution --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
                 <div id="sexChart"></div>
-                <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Sex</p>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Sex</p>
             </div>
-
-            {{-- Diversity Distribution --}}
+            {{-- IP Distribution --}}
+            <div class="bg-slate-100 shadow-lg border-2 rounded-lgh-auto flex flex-col justify-center items-center">
+                <div id="ipChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">Indigenous People</p>
+            </div>
+            {{-- PWD Distribution --}}
             <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
-                <div id="diversityChart"></div>
-                <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Inclusive Communities</p>
+                <div id="pwdChart"></div>
+                <p class="text-gray-500 dark:text-gray-400 mb-8">People with Disabilities</p>
             </div>
+        </div>
 
-            {{-- Sector --}}
-            <div class="col-span-2 bg-slate-100 shadow-lg border-2 rounded-lg h-auto flex flex-col justify-center items-center">
-                <div id="sectorChart"></div>
-                <p class="text-gray-500 mb-8 mt-4 flex text-center">Breakdown of Participants by Sector</p>
-            </div>
-
+        {{-- Chart Row 3 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            <div id="sectorChart"></div>
         </div>
 
         {{-- Line --}}
@@ -301,12 +604,7 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Title of Training
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            <div class="flex items-center">
-                                Type of Training
-                            </div>
+                            Training Title
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
@@ -315,7 +613,22 @@
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
-                                Venue
+                                Conducting Division
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Total Participants
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Average GIK
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Evaluation Rating
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3 text-center">
@@ -353,7 +666,7 @@
 
     {{-- Modal for CES Summary of Trainings --}}
     <div id="trainings-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-36">
+        class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-36">
         <div class="fixed inset-0 bg-black opacity-50 h-full"></div>
         <div class="relative p-4 w-full max-w-4xl">
             {{-- Modal Content --}}
@@ -373,24 +686,27 @@
                     <div class="grid gap-4 mb-4 grid-cols-4">
                         <div>
                             <a
-                                class="h-40 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-                                <h1 id="num_of_participants" class="mb-2 text-6xl font-extrabold">-</h1>
-                                <p class="font-normal text-gray-700">Total Number of Participants</p>
+                                class="h-40 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
+                                <div class="flex gap-1 my-2">
+                                    <h1 id="num_of_participants" class="mb-2 text-6xl font-extrabold flex items-center">-
+                                    </h1>
+                                    <p class="font-normal text-gray-700 flex items-center">Participants</p>
+                                </div>
                             </a>
                         </div>
                         <div class="grid grid-rows-2">
-                            <a
-                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3">
-                                    <h1 id="num_of_male" class="mb-2 text-4xl font-extrabold">-</h1>
-                                    <p class="font-normal text-gray-700">Total Number of Male</p>
-                                </div>
-                            </a>
                             <a
                                 class="h-[72px] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3">
-                                    <h1 id="num_of_female" class="mb-2 text-4xl font-extrabold">-</h1>
-                                    <p class="font-normal text-gray-700">Total Number of Female</p>
+                                <div class="flex gap-3 my-2">
+                                    <h1 id="num_of_female" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
+                                    <p class="font-normal text-gray-700 flex items-center">Women</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
+                                <div class="flex gap-3 my-2">
+                                    <h1 id="num_of_male" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
+                                    <p class="font-normal text-gray-700 flex items-center">Men</p>
                                 </div>
                             </a>
                         </div>
@@ -398,15 +714,16 @@
                             <a
                                 class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 my-2">
-                                    <h1 id="num_of_indigenous" class="mb-2 text-4xl font-extrabold">-</h1>
-                                    <p class="font-normal text-gray-700">Total Number of PWD</p>
+                                    <h1 id="num_of_pwd" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
+                                    <p class="font-normal text-gray-700 flex items-center">Indigenous People</p>
                                 </div>
                             </a>
                             <a
                                 class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
                                 <div class="flex gap-3 my-2">
-                                    <h1 id="num_of_pwd" class="mb-2 text-4xl font-extrabold">-</h1>
-                                    <p class="font-normal text-gray-700">Total Number of IP</p>
+                                    <h1 id="num_of_indigenous" class="mb-2 text-4xl font-extrabold flex items-center">-
+                                    </h1>
+                                    <p class="font-normal text-gray-700flex items-center">People with Disabilities</p>
                                 </div>
                             </a>
                         </div>
@@ -711,7 +1028,8 @@
             document.getElementById('mod').value = mod;
             document.getElementById('sponsor').value = sponsor;
             document.getElementById('source_of_fund').value = fund;
-            document.getElementById('average_gik').value = gik;
+            // document.getElementById('average_gik').value = gik;
+            document.getElementById('average_gik').value = gik === '%' ? 'N/A' : gik;
             document.getElementById('evaluation').value = evaluation;
             document.getElementById('start_date').value = start_date;
             document.getElementById('end_date').value = end_date;
@@ -764,13 +1082,20 @@
                         localAddress.value = "PhilRice Negros, Cansilayan, Murcia, 6129 Negros Occidental";
                     }
                 } else if (venue.value === 'Outside PhilRice Station') {
-                    localAddress.value = municipality + ', ' + province;
+                    // localAddress.value = municipality + ', ' + province;
+                    localAddress.value = capitalizeFirstLetter(municipality) + ', ' + capitalizeFirstLetter(province);
                 }
 
             } else {
                 internationalDiv.style.display = 'none';
                 localDiv.style.display = 'none';
             }
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.toLowerCase().replace(/^\w|\s\w/g, function(letter) {
+                return letter.toUpperCase();
+            });
         }
 
         function closeModal() {
@@ -816,6 +1141,8 @@
             var datas = result;
             var tableRow = ``;
 
+            // <td class="px-6 py-4">` + data["average_gik"] + `</td>
+
             datas.forEach(function(data) {
                 tableRow +=
                     `
@@ -823,17 +1150,13 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">` +
                     data["title"] +
                     `</th>
-                        <td class="px-6 py-4">` +
-                    data["division"] +
-                    `</td>
-                        <td class="px-6 py-4">` +
-                    formatDate(data["start_date"]) +
-                    ` - ` +
-                    formatDate(data["end_date"]) +
-                    `</td>
-                        <td class="px-6 py-4">` +
-                    data["type"] +
-                    `</td>
+                        <td class="px-6 py-4"> ` + formatDate(data["start_date"]) + ` - ` + formatDate(data[
+                        "end_date"]) + ` </td>
+                        <td class="px-6 py-4">` + data["division"] + `</td>
+                        <td class="px-6 py-4">` + data["num_of_participants"] + `</td>
+                        <td class="px-6 py-4">` + (data["average_gik"] ? data["average_gik"] : 'N/A') + `</td>
+                        <td class="px-6 py-4">` + data["evaluation"] + `</td>
+
                         <td class="px-6 py-4 text-center">
                             <button
                             onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik'] || ''}%', '${data['evaluation']}', formatDate('${data['start_date']}'), formatDate('${data['end_date']}'), '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['provDesc']}', '${data['citymunDesc']}', '${data['station_id']}')"

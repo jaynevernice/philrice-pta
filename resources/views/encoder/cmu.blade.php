@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    PhilRice Negros
+    PhilRice Central Mindanao University
 @endsection
 
 @section('sidebar')
@@ -195,7 +195,7 @@
                 {{-- Central Mindanao University --}}
                 @if (Auth::user()->station === '5')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">CMU</span>
@@ -228,7 +228,7 @@
                 @else
                     <li>
                         <a href="{{ route('encoder.cmu') }}"
-                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white bg-green-100 hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">CMU</span>
                         </a>
@@ -238,7 +238,7 @@
                 {{-- ISABELA --}}
                 @if (Auth::user()->station === '6')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">ISABELA</span>
@@ -281,7 +281,7 @@
                 {{-- LOS BAÑOS --}}
                 @if (Auth::user()->station === '7')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">LOS BAÑOS</span>
@@ -324,7 +324,7 @@
                 {{-- MIDSAYAP --}}
                 @if (Auth::user()->station === '8')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group  hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">MIDSAYAP</span>
@@ -347,7 +347,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -400,7 +400,7 @@
                 @else
                     <li>
                         <a href="{{ route('encoder.negros') }}"
-                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white bg-green-100 hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">NEGROS</span>
                         </a>
@@ -418,8 +418,8 @@
         {{-- Station --}}
         <div class="flex">
             <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
-                    class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span>
-                Negros</h1>
+                    class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span> Central Mindanao University
+            </h1>
         </div>
 
         {{-- Filters and Export --}}
@@ -615,6 +615,7 @@
                                 </button>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -744,9 +745,6 @@
             chart: {
                 width: 300,
                 type: 'polarArea',
-                toolbar: {
-                    show: true,
-                }
             },
 
             title: {
@@ -807,7 +805,7 @@
                 height: 240,
                 type: 'area',
                 toolbar: {
-                    show: true,
+                    show: false,
                 },
             },
             dataLabels: {
@@ -857,7 +855,7 @@
                     opacity: 0.2
                 },
                 toolbar: {
-                    show: true,
+                    show: false
                 }
             },
             colors: ['#77B6EA', '#545454'],

@@ -31,9 +31,9 @@ class VisitorEvaluationController extends Controller
     {
         $validatedData = $request->validate([
             // 'sex' => 'required',
-            'name' => 'required',
+            'name' => 'nullable|string',
             'sector' => 'required',
-            'purpose' => 'nullable|string',
+            'purpose' => 'required|string',
         ]);
 
         VisitorEvaluation::create($validatedData);

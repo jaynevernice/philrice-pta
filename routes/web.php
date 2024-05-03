@@ -61,9 +61,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Guest
 Route::group(['prefix' => 'guest'], function () {
-    Route::get('/overview', function () {
-        return view('guest.overview');
-    })->name('guest.overview');
+    // Route::get('/overview', function () { return view('guest.overview'); })->name('guest.overview');
+    Route::get('/overview', [TrainingsFormController::class, 'index'])->name('guest.overview');
 
     Route::get('/view', [WebAnalyticsController::class, 'incrementSiteView'])->name('guest.view');
 
@@ -223,14 +222,16 @@ Route::group(['middleware' => 'encoder'], function () {
     Route::group(['prefix' => 'encoder'], function () {
         Route::get('/overview', [TrainingsFormController::class, 'index'])->name('encoder.overview');
 
-        Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
+        Route::get('/ces', function () {
+            return view('encoder.ces');
+        })->name('encoder.ces');
 
-        Route::get('/ces_add', function () {
-            return view('encoder.ces_add');
-        })->name('encoder.ces_add');
 
-        // live search and filter
-        Route::get('/ces_edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.ces_edit');
+        // Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
+        Route::get('/view', [TrainingsFormController::class, 'cesView'])->name('encoder.view');
+        Route::get('/add', function () { return view('encoder.add'); })->name('encoder.add');
+        Route::get('/edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.edit');
+
         Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax'])->name('filter_data');
 
         // Summary of Trainings Form
@@ -260,6 +261,10 @@ Route::group(['middleware' => 'encoder'], function () {
         Route::get('/bicol', function () {
             return view('encoder.bicol');
         })->name('encoder.bicol');
+
+        Route::get('/cmu', function () {
+            return view('encoder.cmu');
+        })->name('encoder.cmu');
 
         Route::get('/isabela', function () {
             return view('encoder.isabela');
