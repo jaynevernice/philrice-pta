@@ -1122,11 +1122,11 @@
 
         function loadFilterTrainings(page) {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var formType = parseInt($("#form").val());
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var formType = parseInt($("#form").find(":selected").val());
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
@@ -1166,11 +1166,11 @@
         }
 
         $('#trainingsSearch').on('keyup input', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
 
             if (
                 searchInput == "" &&
@@ -1185,101 +1185,121 @@
             }
         });
 
-        $('#yearSelect').on('change', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+        // $('#yearSelect').on('change', function() {
+        //     var searchInput = $('#trainingsSearch').val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
 
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-            } else {
-                loadFilterTrainings(1);
-            }
-        })
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // })
 
-        $('#start_MonthSelect').on('change', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+        // $('#start_MonthSelect').on('change', function() {
+        //     var searchInput = $('#trainingsSearch').val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
 
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-            } else {
-                loadFilterTrainings(1);
-            }
-        })
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // })
 
-        $('#end_MonthSelect').on('change', function() {
-            var searchInput = $('#trainingsSearch').val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+        // $('#end_MonthSelect').on('change', function() {
+        //     var searchInput = $('#trainingsSearch').val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
 
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-            } else {
-                loadFilterTrainings(1);
-            }
-        })
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // })
 
-        $("#training_title").on("change", function() {
+        // $("#training_title").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#form").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+        //     var formType = parseInt($("#form").val());
+
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == "" &&
+        //         formType == ""
+        //     ) {
+        //         loadTrainings(1);
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        $("#yearSelect, #start_MonthSelect, #end_MonthSelect, #training_title").on("change", function() {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
 
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
                 yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#form").on("change", function() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var formType = parseInt($("#form").val());
-
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == "" &&
-                formType == ""
+                trainingTitle == "" 
             ) {
                 loadTrainings(1);
             } else {
@@ -1347,10 +1367,10 @@
 
         function nextPage() {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
 
             if (
                 searchInput == "" &&
@@ -1367,10 +1387,10 @@
 
         function prevPage() {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
 
             if (
                 searchInput == "" &&

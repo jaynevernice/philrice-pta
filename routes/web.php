@@ -228,7 +228,7 @@ Route::group(['middleware' => 'encoder'], function () {
 
 
         // Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
-        Route::get('/view', [TrainingsFormController::class, 'cesView'])->name('encoder.view');
+        Route::get('/view', [TrainingsFormController::class, 'encoderView'])->name('encoder.view');
         Route::get('/add', function () { return view('encoder.add'); })->name('encoder.add');
         Route::get('/edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.edit');
 
