@@ -431,13 +431,13 @@
             {{-- Year --}}
             <div class="mr-1 w-26">
                 <select name="year"
-                    class="block appearance-none w-full h-12 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="yearSelect">
-                    {{-- <option selected>Year</option> --}}
-                    <option value="" disabled>Year</option>
+                    <option value="" selected disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        <option value="{{ $year }}" @if ($year == date('Y'))  @endif>
+                        {{-- <option value="{{ $year }}" @if ($year == date('Y')) selected @endif> --}}
+                        <option value="{{ $year }}">
                             {{ $year }}
                         </option>
                     @endfor
@@ -513,6 +513,19 @@
                 </select>
             </div>
 
+            {{-- Provinces --}}
+            <div class="mx-1 w-36">
+                <select
+                    class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
+                    id="provinceSelect">
+                    <option value="" selected disabled>Province</option>
+                    <option value="All">All Provinces</option>
+                    @foreach ($provinces as $province)
+                        <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             {{-- Export Button --}}
             {{-- <div class="ml-auto">
                 <button type="button" onclick="exportRecord()"
@@ -568,6 +581,203 @@
         {{-- Chart Row 3 --}}
         <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
             <div id="sectorChart"></div>
+        </div>
+
+        {{-- Chart Row 4 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            <div id="regionsChart"></div>
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+                {{-- Column 1 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Region
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="region-column-1">
+                        {{-- data for column 1 of region --}}
+                    </tbody>
+                </table>
+
+                {{-- Column 2 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Region
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="region-column-2">
+                        {{-- data for column 2 of region --}}
+                    </tbody>
+                </table>
+
+                {{-- Column 3 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Region
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="region-column-3">
+                        {{-- data for column 3 of region --}}
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        {{-- Chart Row 5 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            <div id="provincesChart"></div>
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+                {{-- Column 1 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Province
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="province-column-1">
+                        {{-- data for column 1 of province --}}
+                    </tbody>
+                </table>
+
+                {{-- Column 2 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Province
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="province-column-2">
+                        {{-- data for column 2 of province --}}
+                    </tbody>
+                </table>
+
+                {{-- Column 3 --}}
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Province
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="province-column-3">
+                        {{-- data for column 3 of province --}}
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        {{-- Chart Row 6 --}}
+        <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
+            {{-- <div id="municipalitiesChart"></div> --}}
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+                
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Municipality
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipality-column-1">
+                        
+                    </tbody>
+                </table>
+               
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Municipality
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipality-column-2">
+                        
+                    </tbody>
+                </table>
+
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Municipality
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipality-column-3">
+                        
+                    </tbody>
+                </table>
+
+            </div>
+
+            {{-- Previous and Next Buttons for Pagination --}}
+            <div class="flex justify-end">
+                <div class="mb-4">
+                    {{-- page button for no filter --}}
+                    <button id="prevButtonMunicipality" onclick="prevPageMunicipality()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
+                        Previous
+                    </button>
+                </div>
+                <div class="ml-1 mb-4">
+                    {{-- page button for no filter --}}
+                    <button id="nextButtonMunicipality" onclick="nextPageMunicipality()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Next
+                        <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
+                    </button>
+                </div>
+            </div>
         </div>
 
         {{-- Line --}}
@@ -890,51 +1100,93 @@
         var sex_values = Object.values(sex_charts);
 
         var sex = {
-            // series: [10, 90],
+            // series: [55, 45],
             series: sex_values,
             chart: {
-                width: 300,
+                width: 380,
                 type: 'pie',
                 toolbar: {
                     show: true,
                 }
             },
-            // labels: ['Male', 'Female'],
+            // labels: ['Female', 'Male'],
             labels: sex_labels,
             colors: ['#CA6B54', '#3E6D81'],
-            legend: {
-                position: 'bottom',
-            }
+            // title: {
+            //     text: "Sex Distribution",
+            //     align: 'center',
+            //     margin: 0,
+            //     offsetX: 0,
+            //     offsetY: 0,
+            //     floating: false,
+            //     style: {
+            //         fontSize: '14px',
+            //         fontWeight: 'bold',
+            //         fontFamily: undefined,
+            //         color: '#263238'
+            //     },
+            // },
+            // responsive: [{
+            //     breakpoint: 480,
+            //     options: {
+            //         chart: {
+            //             width: 200,
+            //         },
+            //         legend: {
+            //             position: 'bottom'
+            //         }
+            //     }
+            // }]
         };
 
         var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
         sexChart.render();
 
-        // PWD and IP Distribution
-        var indigenous_pwd = @json($indigenous_pwd);
-        var diversity_labels = Object.keys(indigenous_pwd);
-        var diversity_values = Object.values(indigenous_pwd);
+        // IP Distribution
+        var indigenous_charts = @json($indigenous_charts);
+        var indigenous_labels = Object.keys(indigenous_charts);
+        var indigenous_values = Object.values(indigenous_charts);
 
-        var diversity = {
-            // series: [20, 80],
-            series: diversity_values,
+        var ip = {
+            // series: [23, 77],
+            series: indigenous_values,
             chart: {
-                width: 300,
+                width: 380,
                 type: 'pie',
                 toolbar: {
                     show: true,
                 }
             },
-            // labels: ['PWD', 'IP'],
-            labels: diversity_labels,
-            colors: ['#D78A3D', '#15A648'],
-            legend: {
-                position: 'bottom',
-            }
+            // labels: ['Indigenous', 'Non-IP'],
+            labels: indigenous_labels,
+            colors: ['#FCCB71', '#D78A3D']
         };
 
-        var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversity);
-        diversityChart.render();
+        var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
+        indigenousChart.render();
+
+        // PWD Distribution
+        var ability_charts = @json($ability_charts);
+        var ability_labels = Object.keys(ability_charts);
+        var ability_values = Object.values(ability_charts);
+
+        var pwd = {
+            // series: [40, 60],
+            series: ability_values,
+            chart: {
+                width: 380,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                }
+            },
+            // labels: ['PWD', 'Non-PWD'],
+            labels: ability_labels,
+            colors: ['#6d28d9', '#15A648']
+        };
+
+        var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+        abilityChart.render();
 
         // Sector Bar Chart
         var sector_charts = @json($sector_charts);
@@ -948,8 +1200,7 @@
             }],
             chart: {
                 type: 'bar',
-                height: 240,
-                width: 550,
+                height: 240
             },
             plotOptions: {
                 bar: {
@@ -981,13 +1232,17 @@
                 colors: ['#fff']
             },
             xaxis: {
-                // categories: ['Farmers & Seed Growers', 'Ext. Workers & Intermediaries', ' Scientific Community', 'Others'],
                 categories: sector_labels,
             },
             yaxis: {
                 labels: {
                     show: false
                 }
+            },
+            title: {
+                text: 'Breakdown by Sector',
+                align: 'center',
+                floating: true
             },
             tooltip: {
                 theme: 'dark',
@@ -1009,6 +1264,108 @@
 
         var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
         sectorChart.render();
+
+        // Regions
+        var regions_charts = @json($region_charts);
+
+        var regions = {
+            series: [{
+                data: regions_charts.map(function(item) {
+                    return {
+                        x: item.region_name,
+                        y: parseInt(item.region_count)
+                    };
+                })
+            }],
+            legend: {
+                show: false
+            },
+            chart: {
+                height: 350,
+                type: 'treemap',
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                text: 'Regions',
+                align: 'center'
+            },
+            colors: [
+                '#3B93A5',
+                '#F7B844',
+                '#ADD8C7',
+                '#EC3C65',
+                '#CDD7B6',
+                '#C1F666',
+                '#D43F97',
+                '#1E5D8C',
+                '#421243',
+                '#7F94B0',
+                '#EF6537',
+                '#C0ADDB'
+            ],
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: false
+                }
+            }
+        };
+
+        var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
+        regionsChart.render();
+
+        // Provinces
+        var province_charts = @json($province_charts);
+
+        var provinces = {
+            series: [{
+                data: province_charts.map(function(item) {
+                    return {
+                        x: item.province_name,
+                        y: parseInt(item.province_count)
+                    };
+                })
+            }],
+            legend: {
+                show: false
+            },
+            chart: {
+                height: 350,
+                type: 'treemap',
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                text: 'Provinces',
+                align: 'center'
+            },
+            colors: [
+                '#3B93A5',
+                '#F7B844',
+                '#ADD8C7',
+                '#EC3C65',
+                '#CDD7B6',
+                '#C1F666',
+                '#D43F97',
+                '#1E5D8C',
+                '#421243',
+                '#7F94B0',
+                '#EF6537',
+                '#C0ADDB'
+            ],
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: false
+                }
+            }
+        };
+
+        var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
+        provincesChart.render();
     </script>
 @endsection
 
@@ -1128,15 +1485,17 @@
 
 @section('datatable')
     <script type="text/javascript">
-        // 1 is for CES 
-        let station = 1;
-    </script>
-    <script type="text/javascript">
+        // const station = 1;
+        const station = {{ Auth::user()->station }};
+        const region = '03';
         let currentPage = 1;
+        let currentPageMunicipality = 1;
         const recordsPerPage = 5; // Change this number according to your preference
+        const recordsPerPageMunicipality = 5;
 
         $(document).ready(function() {
             loadTrainings(currentPage);
+            loadMunicipalities(currentPageMunicipality);
         });
 
         function showTrainings(result) {
@@ -1173,6 +1532,133 @@
             });
 
             $("#table-body").html(tableRow);
+        }
+
+        function showRegions(result) {
+            var data_first_column = result.slice(0, 6);
+            var tableRow = ``;
+            data_first_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["region_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["region_name"] + `</td>
+                </tr>`;
+            });
+            $("#region-column-1").html(tableRow);
+
+            var data_second_column = result.slice(6, 12);
+            var tableRow = ``;
+            data_second_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["region_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["region_name"] + `</td>
+                </tr>`;
+            });
+            $("#region-column-2").html(tableRow);
+
+            var data_third_column = result.slice(12, 18);
+            var tableRow = ``;
+            data_third_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["region_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["region_name"] + `</td>
+                </tr>`;
+            });
+            $("#region-column-3").html(tableRow);
+        }
+
+        function showProvinces(result) {
+            var data_first_column = result.slice(0, 30);
+            var tableRow = ``;
+            data_first_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["province_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["province_name"] + `</td>
+                </tr>`;
+            });
+            $("#province-column-1").html(tableRow);
+
+            var data_second_column = result.slice(30, 60);
+            var tableRow = ``;
+            data_second_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["province_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["province_name"] + `</td>
+                </tr>`;
+            });
+            $("#province-column-2").html(tableRow);
+
+            var data_third_column = result.slice(60, 90);
+            var tableRow = ``;
+            data_third_column.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["province_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["province_name"] + `</td>
+                </tr>`;
+            });
+            $("#province-column-3").html(tableRow);
+        }
+
+        function showMunicipalitiesCol1(result) {
+            // var municipality_data = result.slice(0, 549);
+            var tableRow = ``;
+            result.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["city_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["city_name"] + `</td>
+                </tr>`;
+            });
+            $("#municipality-column-1").html(tableRow);
+        }
+
+        function showMunicipalitiesCol2(result) {
+            // var municipality_data = result.slice(0, 549);
+            var tableRow = ``;
+            result.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["city_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["city_name"] + `</td>
+                </tr>`;
+            });
+            $("#municipality-column-2").html(tableRow);
+        }
+
+        function showMunicipalitiesCol3(result) {
+            // var municipality_data = result.slice(0, 549);
+            var tableRow = ``;
+            result.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["city_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["city_name"] + `</td>
+                </tr>`;
+            });
+            $("#municipality-column-3").html(tableRow);
         }
 
         function formatDate(dateString) {
@@ -1214,13 +1700,25 @@
                     page: page,
                     recordsPerPage: recordsPerPage,
                     station: station,
+                    region: region,
                 },
                 success: function(result) {
                     showTrainings(result["records"]);
+                    showRegions(result["regions"]);
+                    showProvinces(result["provinces"]);
+                    // showMunicipalitiesCol1(result["municipalities_col1"]);
+                    // showMunicipalitiesCol2(result["municipalities_col2"]);
+                    // showMunicipalitiesCol3(result["municipalities_col3"]);
+
                     currentPage = page; // Update current page
 
                     var total_participants = result['only_numbers'][0].total_participants;
+                    var average_gik = result['only_numbers'][0].average_gik;
+                    var evaluation = result['only_numbers'][0].evaluation;
+
                     $("#total_participants_chart").text(total_participants);
+                    $("#average_gik_chart").text(average_gik + '%');
+                    $("#evaluation_chart").text(evaluation);
 
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result["records"].length) {
@@ -1237,8 +1735,115 @@
             });
         }
 
-        // SEX CHART //
-        function loadSexPieChart() {
+        function loadMunicipalities(page) {
+            $.ajax({
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                data: {
+                    showMunicipalityView: true,
+                    page: page,
+                    recordsPerPageMunicipality: recordsPerPageMunicipality,
+                    station: station,
+                    region: region,
+                },
+                success: function(result) {
+                    showMunicipalitiesCol1(result["municipalities_col1"]);
+                    showMunicipalitiesCol2(result["municipalities_col2"]);
+                    showMunicipalitiesCol3(result["municipalities_col3"]);
+
+                    currentPageMunicipality = page; // Update current page
+
+                    if (recordsPerPageMunicipality != result["municipalities_col3"].length) {
+                        $("#nextButtonMunicipality").hide();
+                        // $("#prevButton").show();
+                        if(currentPageMunicipality == 1) {
+                            $("#prevButtonMunicipality").hide();
+                        } else {
+                            $("#prevButtonMunicipality").show();
+                        }
+                    } else {
+                        $("#nextButtonMunicipality").show();
+                        if(currentPageMunicipality == 1) {
+                            $("#prevButtonMunicipality").hide();
+                        } else {
+                            $("#prevButtonMunicipality").show();
+                        }
+                        // $("#prevButton").show();
+                    }
+                },
+                error: function(error) {
+                    alert("Oops something went wrong!");
+                },
+            });
+        }
+
+        function loadFilterMunicipalities(page) {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+            var formType = parseInt($("#form").find(":selected").val());
+
+            $.ajax({
+                // url: "/encoder/trainings/filter",
+                url: "{{ route('filter_data') }}",
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                data: {
+                    showFilterMunicipalityView: true,
+                    searchInput: searchInput,
+                    yearSelect: yearSelect,
+                    start_MonthSelect: start_MonthSelect,
+                    end_MonthSelect: end_MonthSelect,
+                    trainingTitle: trainingTitle,
+                    provinceSelect: provinceSelect,
+                    formType: formType,
+                    page: page,
+                    recordsPerPageMunicipality: recordsPerPageMunicipality,
+                    station: station,
+                    region: region,
+                },
+                success: function(result) {
+                    showMunicipalitiesCol1(result["municipalities_col1"]);
+                    showMunicipalitiesCol2(result["municipalities_col2"]);
+                    showMunicipalitiesCol3(result["municipalities_col3"]);
+
+                    currentPageMunicipality = page; // Update current page
+
+                    if (recordsPerPageMunicipality != result["municipalities_col3"].length) {
+                        $("#nextButtonMunicipality").hide();
+                        // $("#prevButton").show();
+                        if(currentPageMunicipality == 1) {
+                            $("#prevButtonMunicipality").hide();
+                        } else {
+                            $("#prevButtonMunicipality").show();
+                        }
+                    } else {
+                        $("#nextButtonMunicipality").show();
+                        if(currentPageMunicipality == 1) {
+                            $("#prevButtonMunicipality").hide();
+                        } else {
+                            $("#prevButtonMunicipality").show();
+                        }
+                        // $("#prevButton").show();
+                    }
+                },
+                error: function(error) {
+                    alert("Oops something went wrong!");
+                },
+            });
+        }
+
+        // LOAD ALL PIE CHART //
+        function loadPieChart() {
             // Sex Distribution
             var sex_charts = @json($sex_charts);
             var sex_labels = Object.keys(sex_charts);
@@ -1249,21 +1854,32 @@
 
             var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
             sexChart.render();
-        }
-        // PWD and INDIGENOUS CHART //
-        function loadPwdIndiPieChart() {
-            var indigenous_pwd = @json($indigenous_pwd);
-            var diversity_labels = Object.keys(indigenous_pwd);
-            var diversity_values = Object.values(indigenous_pwd);
 
-            diversity.series = diversity_values;
-            diversity.labels = diversity_labels;
+            // IP Distribution
+            var indigenous_charts = @json($indigenous_charts);
+            var indigenous_labels = Object.keys(indigenous_charts);
+            var indigenous_values = Object.values(indigenous_charts);
 
-            var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversity);
-            diversityChart.render();
+            ip.series = indigenous_values;
+            ip.labels = indigenous_labels;
+
+            var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
+            indigenousChart.render();
+
+            // PWD Distribution
+            var ability_charts = @json($ability_charts);
+            var ability_labels = Object.keys(ability_charts);
+            var ability_values = Object.values(ability_charts);
+
+            pwd.series = ability_values;
+            pwd.labels = ability_labels;
+
+            var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+            abilityChart.render();
         }
-        // SECTOR CHART //
-        function loadSectorBarChart() {
+        // LOAD ALL BAR CHART // 
+        function loadBarChart() {
+            // SECTOR CHART //
             var sector_charts = @json($sector_charts);
             var sector_labels = Object.keys(sector_charts);
             var sector_values = Object.values(sector_charts);
@@ -1274,6 +1890,36 @@
             var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
             sectorChart.render();
         }
+        // LOAD ALL TREE MAP CHART // 
+        function loadTreeMapChart() {
+            // REGION CHART //
+            var regions_charts = @json($region_charts);
+
+            regions.series[0].data = regions_charts.map(function(item) {
+                                        return {
+                                            x: item.region_name,
+                                            y: parseInt(item.region_count)
+                                        };
+                                    });
+
+            var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
+            regionsChart.render();
+
+            // PROVINCE CHART //
+            var province_charts = @json($province_charts);
+
+            provinces.series[0].data = province_charts.map(function(item) {
+                                        return {
+                                            x: item.province_name,
+                                            y: parseInt(item.province_count)
+                                        };
+                                    });
+
+            var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
+            provincesChart.render();
+            
+            
+        }
 
         // RENDER FILTERED PIE CHART //
         function renderFilteredPieChart(keys, values, chart) {
@@ -1282,8 +1928,8 @@
             var values = values;
             // handle null data
             values = values.map(value => value === null ? 0 : value);
-
-            if (chart == 'sex') {
+            
+            if(chart == 'sex') {
                 // update sex chart  
                 sex.series = values;
                 sex.labels = labels;
@@ -1291,29 +1937,72 @@
                 var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
                 sexChart.render();
             }
-            if (chart == 'pwd-ip') {
-                // update pwd and indigenous chart  
-                diversity.series = values;
-                diversity.labels = labels;
-                // render pwd and indigenous chart
-                var diversityChart = new ApexCharts(document.querySelector("#diversityChart"), diversity);
-                diversityChart.render();
+            if(chart == 'ip') {
+                // update indigenous chart  
+                ip.series = values;
+                ip.labels = labels;
+                // render indigenous chart
+                var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
+                indigenousChart.render();
+            }
+            if(chart == 'pwd') {
+                // update PWD chart  
+                pwd.series = values;
+                pwd.labels = labels;
+                // render PWD chart
+                var abilityChart = new ApexCharts(document.querySelector("#pwdChart"), pwd);
+                abilityChart.render();
             }
 
         }
-
         // RENDER FILTERED BAR CHART //
         function renderFilteredBarChart(keys, values, chart) {
             var labels = keys;
             var values = values;
-
-            if (chart == 'sector') {
+            
+            if(chart == 'sector') {
                 sector.series[0].data = values;
                 sector.xaxis.categories = labels;
 
                 var sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sector);
                 sectorChart.render();
             }
+        }
+        // RENDER TREE MAP CHART //
+        function renderFilteredTreeMapChart(data, chart) {
+            if(chart == 'regions') {
+                regions.series[0].data = data.map(function(item) {
+                                        return {
+                                            x: item.region_name,
+                                            y: parseInt(item.region_count)
+                                        };
+                                    });
+                
+                var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
+                regionsChart.render();
+            }
+            if(chart == 'provinces') {
+                provinces.series[0].data = data.map(function(item) {
+                                        return {
+                                            x: item.province_name,
+                                            y: parseInt(item.province_count)
+                                        };
+                                    });
+                
+                var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
+                provincesChart.render();
+            }
+            // if(chart == 'municipalities') {
+            //     municipalities.series[0].data = data.map(function(item) {
+            //                             return {
+            //                                 x: item.city_name,
+            //                                 y: parseInt(item.city_count)
+            //                             };
+            //                         });
+                
+            //     var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
+            //     municipalitiesChart.render();
+            // }
         }
 
         // Function to destroy a chart if it exists
@@ -1325,11 +2014,12 @@
 
         function loadFilterTrainings(page) {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var formType = parseInt($("#form").val());
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+            var formType = parseInt($("#form").find(":selected").val());
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
@@ -1345,33 +2035,45 @@
                     start_MonthSelect: start_MonthSelect,
                     end_MonthSelect: end_MonthSelect,
                     trainingTitle: trainingTitle,
+                    provinceSelect: provinceSelect,
                     formType: formType,
                     station: station,
                     page: page,
                     recordsPerPage: recordsPerPage,
+                    region: region,
                 },
                 success: function(result) {
                     showTrainings(result["records"]);
+
                     currentPage = page; // Update current page
 
-                    var total_participants = result['only_numbers'][0].total_participants != null ? result[
-                        'only_numbers'][0].total_participants : '0';
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result['only_numbers'][0].total_participants : '0'; 
+                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0].average_gik : '0';
+                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0].evaluation : '0';
+
                     $("#total_participants_chart").text(total_participants);
+                    $("#average_gik_chart").text(average_gik + '%');
+                    $("#evaluation_chart").text(evaluation);
 
                     // Destroy existing charts
                     destroyChart(sexChart);
-                    destroyChart(diversityChart);
+                    destroyChart(indigenousChart);
+                    destroyChart(abilityChart);
                     destroyChart(sectorChart);
+                    destroyChart(regionsChart);
+                    destroyChart(provincesChart);
 
                     // call function to render filtered pie chart
-                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result[
-                        'sex_charts']), 'sex');
-                    renderFilteredPieChart(Object.keys(result['indigenous_pwd']), Object.values(result[
-                        'indigenous_pwd']), 'pwd-ip');
+                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
+                    renderFilteredPieChart(Object.keys(result['indigenous_charts']), Object.values(result['indigenous_charts']), 'ip');
+                    renderFilteredPieChart(Object.keys(result['ability_charts']), Object.values(result['ability_charts']), 'pwd');
 
                     // call function to render filtered Bar chart
-                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result[
-                        'sector_charts']), 'sector');
+                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+
+                    // call function to render filtered tree map chart
+                    renderFilteredTreeMapChart(result['regions'], 'regions');
+                    renderFilteredTreeMapChart(result['provinces'], 'provinces');
 
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
@@ -1387,204 +2089,21 @@
             });
         }
 
-        $("#trainingsSearch").on("keyup input", function() {
+        function nextPage() {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
 
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(diversityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadPwdIndiPieChart();
-                loadSectorBarChart();
-
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#yearSelect").on("change", function() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(diversityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadPwdIndiPieChart();
-                loadSectorBarChart();
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#start_MonthSelect").on("change", function() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(diversityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadPwdIndiPieChart();
-                loadSectorBarChart();
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#end_MonthSelect").on("change", function() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(diversityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadPwdIndiPieChart();
-                loadSectorBarChart();
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#training_title").on("change", function() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            // console.log(trainingTitle);
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(diversityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadPwdIndiPieChart();
-                loadSectorBarChart();
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        $("#form").on("change", function() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var formType = parseInt($("#form").val());
-            // console.log(formType);
             if (
                 searchInput == "" &&
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
                 yearSelect == "" &&
                 trainingTitle == "" &&
-                formType == ""
-            ) {
-                loadTrainings(1);
-
-                // Destroy existing charts
-                destroyChart(sexChart);
-                destroyChart(diversityChart);
-                destroyChart(sectorChart);
-
-                // Render new charts
-                loadSexPieChart();
-                loadPwdIndiPieChart();
-                loadSectorBarChart();
-            } else {
-                loadFilterTrainings(1);
-            }
-        });
-
-        function nextPage() {
-            var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            // var formType = parseInt($("#form").val());
-
-            if (
-                searchInput == "" &&
-                start_MonthSelect == "" &&
-                end_MonthSelect == "" &&
-                yearSelect == "" &&
-                trainingTitle == ""
-                // formType == ""
+                provinceSelect == ""
             ) {
                 loadTrainings(currentPage + 1);
             } else {
@@ -1594,10 +2113,33 @@
 
         function prevPage() {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                provinceSelect == ""
+            ) {
+                loadTrainings(currentPage - 1);
+            } else {
+                loadFilterTrainings(currentPage - 1);
+            }
+        }
+
+        function nextPageMunicipality() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
             // var formType = parseInt($("#form").val());
 
             if (
@@ -1605,18 +2147,273 @@
                 start_MonthSelect == "" &&
                 end_MonthSelect == "" &&
                 yearSelect == "" &&
-                trainingTitle == ""
+                trainingTitle == "" &&
+                provinceSelect == ""
                 // formType == ""
             ) {
-                if (currentPage > 1) {
-                    loadTrainings(currentPage - 1);
+                loadMunicipalities(currentPageMunicipality + 1);
+            } else {
+                // loadFilterTrainings(currentPage + 1);
+                loadFilterMunicipalities(currentPageMunicipality + 1);
+            }
+        }
+
+        function prevPageMunicipality() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+            // var formType = parseInt($("#form").val());
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                provinceSelect == ""
+                // formType == ""
+            ) {
+                if (currentPageMunicipality > 1) {
+                    loadMunicipalities(currentPageMunicipality - 1);
                 }
             } else {
-                if (currentPage > 1) {
-                    loadFilterTrainings(currentPage - 1);
+                if (currentPageMunicipality > 1) {
+                    // loadFilterTrainings(currentPage - 1);
+                    loadFilterMunicipalities(currentPageMunicipality - 1);
                 }
             }
         }
+
+        $("#trainingsSearch").on("keyup input", function() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                provinceSelect == ""
+            ) {
+                loadTrainings(1);
+                loadMunicipalities(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+                destroyChart(regionsChart);
+                destroyChart(provincesChart);
+
+                // Render new charts
+                loadPieChart();
+                loadBarChart();
+                loadTreeMapChart();
+
+            } else {
+                loadFilterTrainings(1);
+                loadFilterMunicipalities(1);
+            }
+        });
+
+        $("#yearSelect, #start_MonthSelect, #end_MonthSelect, #training_title, #provinceSelect").on("change", function() {
+            var searchInput = $("#trainingsSearch").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+
+            if (
+                searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                provinceSelect == ""
+            ) {
+                loadTrainings(1);
+                loadMunicipalities(1);
+
+                // Destroy existing charts
+                destroyChart(sexChart);
+                destroyChart(indigenousChart);
+                destroyChart(abilityChart);
+                destroyChart(sectorChart);
+                destroyChart(regionsChart);
+                destroyChart(provincesChart);
+                // destroyChart(municipalitiesChart);
+
+                // Render new charts
+                loadPieChart();
+                loadBarChart();
+                loadTreeMapChart();
+            } else {
+                loadFilterTrainings(1);
+                loadFilterMunicipalities(1);
+            }
+        });
+
+        // $("#yearSelect").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(diversityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         // loadPwdIndiPieChart();
+        //         loadSectorBarChart();
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#start_MonthSelect").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(diversityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         // loadPwdIndiPieChart();
+        //         loadSectorBarChart();
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#end_MonthSelect").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(diversityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         // loadPwdIndiPieChart();
+        //         loadSectorBarChart();
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#training_title").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+        //     // console.log(trainingTitle);
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(diversityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         // loadPwdIndiPieChart();
+        //         loadSectorBarChart();
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
+
+        // $("#form").on("change", function() {
+        //     var searchInput = $("#trainingsSearch").val();
+        //     var yearSelect = $("#yearSelect").val();
+        //     var start_MonthSelect = $("#start_MonthSelect").val();
+        //     var end_MonthSelect = $("#end_MonthSelect").val();
+        //     var trainingTitle = $("#training_title").val();
+        //     var formType = parseInt($("#form").val());
+        //     // console.log(formType);
+        //     if (
+        //         searchInput == "" &&
+        //         start_MonthSelect == "" &&
+        //         end_MonthSelect == "" &&
+        //         yearSelect == "" &&
+        //         trainingTitle == "" &&
+        //         formType == ""
+        //     ) {
+        //         loadTrainings(1);
+
+        //         // Destroy existing charts
+        //         destroyChart(sexChart);
+        //         destroyChart(diversityChart);
+        //         destroyChart(sectorChart);
+
+        //         // Render new charts
+        //         loadSexPieChart();
+        //         // loadPwdIndiPieChart();
+        //         loadSectorBarChart();
+        //     } else {
+        //         loadFilterTrainings(1);
+        //     }
+        // });
 
         function exportRecord() {
             var searchInput = $("#trainingsSearch").val();

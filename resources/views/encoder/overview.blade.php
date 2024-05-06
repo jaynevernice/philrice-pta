@@ -525,7 +525,7 @@
                     class="block appearance-none w-full h-12 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                     id="provinceSelect">
                     <option value="" selected disabled>Province</option>
-                    <option value="">All Provinces</option>
+                    <option value="All">All Provinces</option>
                     @foreach ($provinces as $province)
                         <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
                     @endforeach
@@ -715,9 +715,9 @@
 
         {{-- Chart Row 6 --}}
         <div class="bg-slate-100 shadow-lg border-2 rounded-lg dark:border-gray-600  mb-4 p-4">
-            <div id="municipalitiesChart"></div>
+            {{-- <div id="municipalitiesChart"></div> --}}
 
-            {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
                 
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -734,7 +734,6 @@
                         
                     </tbody>
                 </table>
-
                
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -752,7 +751,6 @@
                     </tbody>
                 </table>
 
-                
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -769,7 +767,27 @@
                     </tbody>
                 </table>
 
-            </div> --}}
+            </div>
+
+            {{-- Previous and Next Buttons for Pagination --}}
+            <div class="flex justify-end">
+                <div class="mb-4">
+                    {{-- page button for no filter --}}
+                    <button id="prevButton" onclick="prevPage()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        <box-icon name='chevrons-left' type='solid' color="#ffffff" class="mr-2"></box-icon>
+                        Previous
+                    </button>
+                </div>
+                <div class="ml-1 mb-4">
+                    {{-- page button for no filter --}}
+                    <button id="nextButton" onclick="nextPage()"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Next
+                        <box-icon name='chevrons-right' color="#ffffff" class="ml-2"></box-icon>
+                    </button>
+                </div>
+            </div>
         </div>
 
         @include('_message')
@@ -1050,64 +1068,13 @@
 
         var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
         provincesChart.render();
-
-        // Municipalities
-        var municipality_charts = @json($municipality_charts);
-
-        var municipalities = {
-            series: [{
-                data: municipality_charts.map(function(item) {
-                    return {
-                        x: item.city_name,
-                        y: parseInt(item.city_count)
-                    };
-                })
-            }],
-            legend: {
-                show: false
-            },
-            chart: {
-                height: 350,
-                type: 'treemap',
-                toolbar: {
-                    show: false,
-                },
-            },
-            title: {
-                text: 'Municipalities',
-                align: 'center'
-            },
-            colors: [
-                '#3B93A5',
-                '#F7B844',
-                '#ADD8C7',
-                '#EC3C65',
-                '#CDD7B6',
-                '#C1F666',
-                '#D43F97',
-                '#1E5D8C',
-                '#421243',
-                '#7F94B0',
-                '#EF6537',
-                '#C0ADDB'
-            ],
-            plotOptions: {
-                treemap: {
-                    distributed: true,
-                    enableShades: false
-                }
-            }
-        };
-
-        var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
-        municipalitiesChart.render();
     </script>
 @endsection
 
 @section('datatable')
     <script type="text/javascript">
         let currentPage = 1;
-        const recordsPerPage = 5; // Change this number according to your preference
+        const recordsPerPage = 15; // Change this number according to your preference
 
         $(document).ready(function() {
             loadTrainings(currentPage);
@@ -1195,10 +1162,10 @@
             $("#province-column-3").html(tableRow);
         }
 
-        function showMunicipalities(result) {
-            var data_first_column = result.slice(0, 549);
+        function showMunicipalitiesCol1(result) {
+            // var municipality_data = result.slice(0, 549);
             var tableRow = ``;
-            data_first_column.forEach(function(data) {
+            result.forEach(function(data) {
                 tableRow +=
                     `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
@@ -1208,6 +1175,36 @@
                 </tr>`;
             });
             $("#municipality-column-1").html(tableRow);
+        }
+
+        function showMunicipalitiesCol2(result) {
+            // var municipality_data = result.slice(0, 549);
+            var tableRow = ``;
+            result.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["city_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["city_name"] + `</td>
+                </tr>`;
+            });
+            $("#municipality-column-2").html(tableRow);
+        }
+
+        function showMunicipalitiesCol3(result) {
+            // var municipality_data = result.slice(0, 549);
+            var tableRow = ``;
+            result.forEach(function(data) {
+                tableRow +=
+                `<tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
+                    data["city_count"] +
+                    `</th>
+                    <td class="px-6 py-4">` + data["city_name"] + `</td>
+                </tr>`;
+            });
+            $("#municipality-column-3").html(tableRow);
         }
 
         function loadTrainings(page) {
@@ -1229,6 +1226,7 @@
                     // showMunicipalities(result["municipalities"]);
 
                     currentPage = page; // Update current page
+
                     var total_participants = result['only_numbers'][0].total_participants;
                     var average_gik = result['only_numbers'][0].average_gik;
                     var evaluation = result['only_numbers'][0].evaluation;
@@ -1236,14 +1234,25 @@
                     $("#total_participants_chart").text(total_participants);
                     $("#average_gik_chart").text(average_gik + '%');
                     $("#evaluation_chart").text(evaluation);
+                    
                     // Check if there are more records beyond the current page
-                    // if (recordsPerPage != result["records"].length) {
-                    //     $("#nextButton").hide();
-                    //     $("#prevButton").show();
-                    // } else {
-                    //     $("#nextButton").show();
-                    //     $("#prevButton").show();
-                    // }
+                    if (recordsPerPage != result["municipalities_col3"].length) {
+                        $("#nextButton").hide();
+                        // $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
+                    } else {
+                        $("#nextButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
+                        // $("#prevButton").show();
+                    }
                 },
                 error: function(error) {
                     alert("Oops something went wrong!");
@@ -1432,12 +1441,12 @@
 
         function loadFilterTrainings(page) {
             // var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var provinceSelect = $("#provinceSelect").val();
-            var formType = parseInt($("#form").val());
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+            var formType = parseInt($("#form").find(":selected").val());
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
@@ -1495,15 +1504,33 @@
                     // call function to render filtered tree map chart
                     renderFilteredTreeMapChart(result['regions'], 'regions');
                     renderFilteredTreeMapChart(result['provinces'], 'provinces');
-                    renderFilteredTreeMapChart(result['municipalities'], 'municipalities');
+                    // renderFilteredTreeMapChart(result['municipalities'], 'municipalities');
 
-                    // if (recordsPerPage != result["records"].length) {
-                    //     $("#nextButton").hide();
-                    //     $("#prevButton").show();
-                    // } else {
-                    //     $("#nextButton").show();
-                    //     $("#prevButton").show();
-                    // }
+                    showMunicipalitiesCol1(result["municipalities_col1"]);
+                    showMunicipalitiesCol2(result["municipalities_col2"]);
+                    showMunicipalitiesCol3(result["municipalities_col3"]);
+
+                    var recordsPerPage = 15;
+                    if (provinceSelect) {
+                        var recordsPerPage = 5;
+                    }
+                    if (recordsPerPage != result["municipalities_col3"].length) {
+                        $("#nextButton").hide();
+                        // $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
+                    } else {
+                        $("#nextButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
+                        // $("#prevButton").show();
+                    }
                 },
                 error: function(error) {
                     alert("Oops something went wrong!");
@@ -1512,11 +1539,11 @@
         }
 
         $("#yearSelect, #start_MonthSelect, #end_MonthSelect, #training_title, #provinceSelect").on("change", function() {
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var provinceSelect = $("#provinceSelect").val();
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
 
             if (
                 // searchInput == "" &&
@@ -1535,7 +1562,7 @@
                 destroyChart(sectorChart);
                 destroyChart(regionsChart);
                 destroyChart(provincesChart);
-                destroyChart(municipalitiesChart);
+                // destroyChart(municipalitiesChart);
 
                 // Render new charts
                 loadPieChart();
@@ -1545,6 +1572,48 @@
                 loadFilterTrainings(1);
             }
         });
+
+        function nextPage() {
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                provinceSelect == ""
+            ) {
+                loadTrainings(currentPage + 1);
+            } else {
+                loadFilterTrainings(currentPage + 1);
+            }
+        }
+
+        function prevPage() {
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+
+            if (
+                // searchInput == "" &&
+                start_MonthSelect == "" &&
+                end_MonthSelect == "" &&
+                yearSelect == "" &&
+                trainingTitle == "" &&
+                provinceSelect == ""
+            ) {
+                loadTrainings(currentPage - 1);
+            } else {
+                loadFilterTrainings(currentPage - 1);
+            }
+        }
 
         // $("#yearSelect").on("change", function() {
         //     // var searchInput = $("#trainingsSearch").val();
