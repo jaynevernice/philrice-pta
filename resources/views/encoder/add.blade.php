@@ -6,7 +6,7 @@
 
 @section('sidebar')
     <aside
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 left-0 z-40 w-64 h-full pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidenav" id="drawer-navigation">
         <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
             <ul class="space-y-2">
@@ -55,7 +55,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.view') }}"
+                        <a href="{{ route('encoder.ces') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">CES</span>
@@ -82,14 +82,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -125,14 +125,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -168,14 +168,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -211,14 +211,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -254,14 +254,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg  transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -297,14 +297,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -340,14 +340,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -383,14 +383,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.add') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -413,75 +413,92 @@
 @endsection
 
 @section('content')
-    <main class="p-4 md:ml-64 h-screen pt-20">
+    <main class="p-4 min-[768px]:ml-64 h-full pt-20">
 
         <div class="flex">
             <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span>
-                Central Experimental Station</h1>
+                {{-- Finds equivalent station name nung id sa station model --}}
+                {{ \App\Models\Station::find(Auth::user()->station)->station }}
         </div>
 
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
-            <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+        <div class="pb-16 px-4 mx-auto pt-7">
+            <div class="grid grid-cols-2 gap-x-8 gap-y-4 mb-16 max-[1440px]:grid-cols-1">
 
                 {{-- Card 1 --}}
                 <a href="{{ route('trainingsform.create') }}" target="_blank">
                     <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 hover:drop-shadow-lg hover:animate-pulse">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
+                        class="flex max-[510px]:flex-col rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 hover:drop-shadow-lg hover:scale-105">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Summary of Trainings
+                                Conducted
                             </h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bonnie drives the technical
-                                strategy of the flowbite platform and brand.</p>
+                            <p
+                                class="h-36 overflow-hidden mt-3 mb-4 font-light text-justify text-gray-500 dark:text-gray-400">
+                                Training refers to activities
+                                aimed at developing or improving the knowledge and skills of rice stakeholders wherein gain
+                                in knowledge is measured. These may be initiated or implemented by PhilRice (including RCEF
+                                and other extra core and external projects), or in partnership with other agencies and
+                                sponsors.
+                            </p>
                         </div>
                     </div>
                 </a>
 
                 {{-- Card 2 --}}
-                {{-- <a href="{{ route('kslanalytics.index') }}" target="_blank"> --}}
-                <a href="#" target="_blank">
+                <a href="#" onclick="underConstructionAlert()">
                     <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
+                        class="flex max-[510px]:flex-col bg-gray-50 rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
                         <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">KSL</h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Jese drives the technical
-                                strategy of the flowbite platform and brand.</p>
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Knowledge Sharing
+                                and Learning Monitoring</h3>
+                            <p
+                                class="h-36 overflow-hidden mt-3 mb-4 font-light text-justify text-gray-500 dark:text-gray-400">
+                                Knowledge sharing and learning activities refer to simple information sharing or
+                                awareness-raising on a particular topic
+                                (e.g. products, outputs, ideas, services, ideas, advocacies etc) during briefings, visits,
+                                workshops, dialogues, fora, symposia, conferences, seminars/webinars, info caravans and
+                                campaigns where you shared PhilRice/rice information. These are other activities not
+                                considered as training, technical dispatch, and techno demo that are initiated or
+                                implemented by PhilRice (including RCEF and other extra core and external projects), or in
+                                partnership with other agencies and sponsors.
+                            </p>
                         </div>
                     </div>
                 </a>
 
                 {{-- Card 3 --}}
-                {{-- <a href="{{ route('dispatchform.index') }}" target="_blank"> --}}
-                <a href="#" target="_blank">
+                <a href="#" onclick="underConstructionAlert()">
                     <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
+                        class="flex max-[510px]:flex-col bg-gray-50 rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
                         <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Dispatch Trainings
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Technical Dispatch
+                                Monitoring
                             </h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Michael drives the technical
-                                strategy of the flowbite platform and brand.</p>
+                            <p class="h-36 overflow-hidden mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Technical
+                                dispatch refers to
+                                opportunities to improve the competence of our partners and other rice stakeholders
+                                (non-PhilRice staff) by serving as their resource person/expert on a topic related to rice
+                                or work at PhilRice.</p>
                         </div>
                     </div>
                 </a>
 
                 {{-- Card 4 --}}
-                {{-- <a href="{{ route('technodemo') }}" target="_blank"> --}}
-                <a href="#" target="_blank">
+                <a href="#" onclick="underConstructionAlert()">
                     <div
-                        class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="w-full lg:w-[296px] lg:h-[214px] rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('assets/rice.jpg') }}">
+                        class="flex max-[510px]:flex-col bg-gray-50 rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Technology
-                                Demonstration</h3>
-                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Lana drives the technical
-                                strategy of the flowbite platform and brand.</p>
+                                Demonstration Monitoring</h3>
+                            <p class="h-36 overflow-hidden mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Techno
+                                demo refers to
+                                on-station and off-station technology demonstrations established to highlight our technology
+                                recommendations.</p>
                         </div>
                     </div>
             </div>
@@ -489,5 +506,29 @@
     </main>
 @endsection
 
-@section('charts')
+@section('alerts')
+    <script>
+        function underConstructionAlert() {
+            Swal.fire({
+                title: "Form Under Construction",
+                html: "This form is still under construction.<br>We appreciate your patience!",
+                imageUrl: "{{ asset('assets/under-construction.gif') }}",
+                imageWidth: 400,
+                imageHeight: 300,
+                imageAlt: "Form Under Construction",
+                // timer: 2000,
+                // timerProgressBar: true,
+                // didOpen: () => {
+                //     Swal.showLoading();
+                //     const timer = Swal.getPopup().querySelector("b");
+                //     timerInterval = setInterval(() => {
+                //         timer.textContent = `${Swal.getTimerLeft()}`;
+                //     }, 100);
+                // },
+                // willClose: () => {
+                //     clearInterval(timerInterval);
+                // }
+            });
+        }   
+    </script>
 @endsection

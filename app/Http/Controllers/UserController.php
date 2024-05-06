@@ -357,13 +357,21 @@ class UserController extends Controller
 
         $encoders = User::where('user_type', 'encoder')->get();
 
-        return view('admin.manage_encoders', compact('encoders'));
+        $stations = Station::all();
+        $positions = Position::all();
+        $divisions = Division::all();
+
+        return view('admin.manage_encoders', compact('encoders', 'stations', 'divisions', 'positions'));
     }
     public function superadminGetEncoders()
     {
         $encoders = User::where('user_type', 'encoder')->get();
 
-        return view('super_admin.manage_encoders', compact('encoders'));
+        $stations = Station::all();
+        $positions = Position::all();
+        $divisions = Division::all();
+
+        return view('super_admin.manage_encoders', compact('encoders', 'stations', 'positions', 'divisions'));
     }
 
     public function promoteEncoder($id)
@@ -378,10 +386,19 @@ class UserController extends Controller
 
     public function superadminGetAdmins()
     {
+        // $admins = User::where('user_type', 'admin')->get();
+
+        // return view('super_admin.manage_admins', compact('admins'));
+
         $admins = User::where('user_type', 'admin')->get();
 
-        return view('super_admin.manage_admins', compact('admins'));
+        $stations = Station::all();
+        $positions = Position::all();
+        $divisions = Division::all();
+
+        return view('super_admin.manage_admins', compact('admins', 'stations', 'positions', 'divisions'));
     }
+
     public function demoteAdmin($id)
     {
         // dd($id);

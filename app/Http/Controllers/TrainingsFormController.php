@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use File;
 
+use Session;
+use Carbon\Carbon;
 use App\Models\Region;
-use App\Models\Province;
-use App\Models\Municipality;
 use App\Models\Station;
 use App\Models\Division;
-use App\Models\TrainingType;
-use App\Models\TrainingsTitle;
-use App\Models\Participant;
+use App\Models\Province;
 use App\Models\SourceFund;
+use App\Models\Participant;
+use Illuminate\Support\Str;
+use App\Models\Municipality;
+
+use App\Models\TrainingType;
+use Illuminate\Http\Request;
+
 use App\Models\TrainingsForm;
 
 use App\Exports\ExportRecords;
-use Maatwebsite\Excel\Facades\Excel;
-
+use App\Models\TrainingsTitle;
 use Illuminate\Support\Facades\DB;
-
-use Auth;
-use Session;
-use File;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TrainingsFormController extends Controller
 {
@@ -87,7 +87,14 @@ class TrainingsFormController extends Controller
             ->groupBy('municipalities.citymunDesc')
             ->get();
         
-        return view('encoder.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts', 'municipality_charts'));
+        // Else user is unauthenticated gaya ni guest
+        if (Auth::check() && Auth::user()->user_type === 'encoder') {
+            return view('encoder.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts', 'municipality_charts'));
+        } elseif (Auth::check() && Auth::user()->user_type === 'super_admin') {
+            return view('super_admin.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts', 'municipality_charts'));
+        } else {
+            return view('guest.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts', 'municipality_charts'));
+        }
     }
 
     public function cesView()
@@ -126,7 +133,7 @@ class TrainingsFormController extends Controller
         // convert $ability_charts into associative aray
         $sector_charts = (array) $sector_charts;
 
-        return view('encoder.ces_view', compact('titles', 'sex_charts', 'indigenous_pwd', 'sector_charts'));
+        return view('encoder.view', compact('titles', 'sex_charts', 'indigenous_pwd', 'sector_charts'));
     }
 
     public function cesEditView()
@@ -150,7 +157,7 @@ class TrainingsFormController extends Controller
             ->get();
 
         // dd($records->all());
-        return view('encoder.ces_edit', compact('records', 'titles'));
+        return view('encoder.edit', compact('records', 'titles'));
         // return view('encoder.ces_edit');
     }
 
@@ -1431,7 +1438,7 @@ class TrainingsFormController extends Controller
 
         TrainingsForm::where('id', $id)->update($updateData);
 
-        return redirect()->route('encoder.ces_edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
+        return redirect()->route('encoder.edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
     }
 
     /**

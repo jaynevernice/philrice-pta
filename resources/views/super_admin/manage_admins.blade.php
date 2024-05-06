@@ -226,13 +226,16 @@
                                 {{ $admin->email }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $admin->station }}
+                                {{-- {{ $admin->station }} --}}
+                                {{ $stations->firstWhere('id', $admin->station)->station }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $admin->division }}
+                                {{-- {{ $admin->division }} --}}
+                                {{ $divisions->firstWhere('id', $admin->division)->division }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $admin->position }}
+                                {{-- {{ $admin->position }} --}}
+                                {{ $positions->firstWhere('id', $admin->position)->position }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ ucwords($admin->user_type) }}
@@ -301,7 +304,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: "Deleted!",
+                        title: "Demoted!",
                         text: "User has been successfully demoted to Encoder.",
                         icon: "success"
                     }).then(()=> {

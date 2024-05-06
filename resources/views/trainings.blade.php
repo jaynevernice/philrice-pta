@@ -30,21 +30,21 @@
                     </a>
                     <ul id="dropdown-sales" class="py-2 space-y-2">
                         <li>
-                            <a href="{{ route('encoder.ces_view') }}"
+                            <a href="{{ route('encoder.view') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='line-chart'></box-icon>
                                 <span class="ml-3">View Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('encoder.ces_add') }}"
+                            <a href="{{ route('encoder.add') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='plus'></box-icon>
                                 <span class="ml-3">Add Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('encoder.ces_edit') }}"
+                            <a href="{{ route('encoder.edit') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='edit-alt' type='solid'></box-icon>
                                 <span class="ml-3">Edit Data</span>
@@ -153,9 +153,12 @@
         {{-- Form Title --}}
         <div class="flex mb-4">
             <h1 class="text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
-                    class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice CES</span>
+                    {{-- class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice CES</span> --}}
+                    class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span>
                 Summary of Trainings Conducted</h1>
         </div>
+
+
 
         {{-- Success/Error Message from TrainingsFormController --}}
         @include('_message')
@@ -210,197 +213,274 @@
                 </div>
             </div>
 
-            {{-- Section 2 --}}
-            <div class="section" data-section="2" style="display: none;">
-                <div class="flex">
-                    <h6 class="text-lg font-bold dark:text-white">Training Details</h6>
-                </div>
+            {{-- @if (
+                $errors->hasAny([
+                    'training_title',
+                    'batch',
+                    'otherTrainingInput',
+                    'training_type',
+                    'training_category',
+                    'mod',
+                    'internationalTrainingInput',
+                    'withinPhilriceInput',
+                    'province',
+                    'municipalitySelect',
+                    'start',
+                    'end',
+                ])) --}}
+                {{-- Section 2 --}}
+                <div class="section" data-section="2" style="display: none;">
+                    <div class="flex">
+                        <h6 class="text-lg font-bold dark:text-white">Training Details</h6>
+                    </div>
 
-                <div class="my-2 grid grid-cols-2 gap-x-4">
+                    <div class="my-2 grid grid-cols-5 gap-x-4">
 
-                    {{-- Training Title --}}
-                    <div class="col-span-2">
-                        <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training Title</label>
-                        <div class="relative">
-                            <select required id="training_title" name="training_title" onchange="toggleOtherTitle()"
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                @foreach ($titles as $title)
-                                    <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
-                                @endforeach
-                                <option value="Other">Other</option>
-                            </select>
+                        {{-- Training Title --}}
+                        {{-- <div class="col-span-2"> --}}
+                        <div class="col-span-4">
+                            <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training
+                                Title</label>
+                            <div class="relative">
+                                <select wire:model.live="training_title" required id="training_title" name="training_title"
+                                    onchange="toggleOtherTitle()"
+                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                    <option selected disabled value="">Select</option>
+                                    @foreach ($titles as $title)
+                                        <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
+                                    @endforeach
+                                    <option value="Other">Other</option>
+                                </select>
+                                @error('training_title')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Batch Number --}}
+                        <div class="col-span-1">
+                            <label for="batch" class="block my-2 text-sm font-medium text-gray-900">Batch No.</label>
+                            <input wire:model.live="batch" type="number" id="batch" name="batch"
+                                value="{{ old('batch') }}" min="1" step="1"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                required>
+                            @error('batch')
+                                <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Additional Input Field for Training Title when Other is selected --}}
+                        <div id="otherTrainingTitle" style="display: none;" class="col-span-5">
+                            <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
+                                Training
+                                Title</label>
+                            <input wire:model.live="otherTrainingInput" type="text" id="otherTrainingInput"
+                                name="otherTrainingInput" value="{{ old('otherTrainingInput') }}"
+                                class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                            @error('otherTrainingInput')
+                                <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
-                    {{-- Additional Input Field for Training Title when Other is selected --}}
-                    <div id="otherTrainingTitle" style="display: none;" class="col-span-2">
-                        <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
-                            Training
-                            Title</label>
-                        <input type="text" id="otherTrainingInput" name="otherTrainingInput"
-                            value="{{ old('otherTrainingInput') }}"
-                            class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                    </div>
-                </div>
-
-                <div id="row2" class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
-                    {{-- Type of Training --}}
-                    <div>
-                        <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
-                            Training</label>
-                        <div class="relative">
-                            <select id="training_type" name="training_type" onchange="toggleType()" required
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                <option value="Local">Local</option>
-                                <option value="International">International</option>
-                            </select>
+                    <div id="row2" class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                        {{-- Type of Training --}}
+                        <div>
+                            <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
+                                Training</label>
+                            <div class="relative">
+                                <select wire:model.live="training_type" id="training_type" name="training_type"
+                                    onchange="toggleType()" required
+                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                    <option selected disabled value="">Select</option>
+                                    <option value="Local">Local</option>
+                                    <option value="International">International</option>
+                                </select>
+                                @error('training_type')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    {{-- Training Category --}}
-                    <div>
-                        <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
-                            Category</label>
-                        <div class="relative">
-                            <select id="training_category" name="training_category" required
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                <option value="Beginner Course">Beginner Course</option>
-                                <option value="Intermediate Course">Intermediate Course</option>
-                                <option value="Advanced Course">Advanced Course</option>
-                            </select>
+                        {{-- Training Category --}}
+                        <div>
+                            <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
+                                Category</label>
+                            <div class="relative">
+                                <select wire:model.live="training_category" id="training_category"
+                                    name="training_category" required
+                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                    <option selected disabled value="">Select</option>
+                                    <option value="Beginner Course">Beginner Course</option>
+                                    <option value="Intermediate Course">Intermediate Course</option>
+                                    <option value="Advanced Course">Advanced Course</option>
+                                </select>
+                                @error('training_category')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    {{-- Mode of Delivery --}}
-                    <div>
-                        <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
-                            Delivery</label>
-                        <div class="relative">
-                            <select id="mod" name="mod" required
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                <option value="Online">Online</option>
-                                <option value="Face-to-Face">Face-to-Face</option>
-                                <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)</option>
-                            </select>
+                        {{-- Mode of Delivery --}}
+                        <div>
+                            <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
+                                Delivery</label>
+                            <div class="relative">
+                                <select wire:model.live="mod" id="mod" name="mod" required
+                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                    <option selected disabled value="">Select</option>
+                                    <option value="Online">Online</option>
+                                    <option value="Face-to-Face">Face-to-Face</option>
+                                    <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)
+                                    </option>
+                                </select>
+                                @error('mod')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    {{-- Venue --}}
-                    <div id="training_venue_container" style="display: none;">
-                        <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
-                        <div class="relative">
-                            <select id="training_venue" name="training_venue" onchange="toggleVenue()"
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                <option value="Within PhilRice Station">Within PhilRice Station</option>
-                                <option value="Outside PhilRice Station">Outside PhilRice Station</option>
-                            </select>
+                        {{-- Venue --}}
+                        <div id="training_venue_container" style="display: none;">
+                            <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
+                            <div class="relative">
+                                <select wire:model.live="training_venue" id="training_venue" name="training_venue"
+                                    onchange="toggleVenue()"
+                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                    <option selected disabled value="">Select</option>
+                                    <option value="Within PhilRice Station">Within PhilRice Station</option>
+                                    <option value="Outside PhilRice Station">Outside PhilRice Station</option>
+                                </select>
+                                @error('training_venue')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    {{-- Additional Input Field for Outside PhilRice Station --}}
-                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
-                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
+                        {{-- Additional Input Field for Outside PhilRice Station --}}
+                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
+                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
                             <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
                                 PhilRice Station</label>
                             <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                                 class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         </div> --}}
 
-                </div>
+                    </div>
 
-                {{-- Additional Input Field for International Training Type --}}
-                <div id="internationalTraining" style="display: none;">
-                    <label for="internationalTrainingInput"
-                        class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
-                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput"
-                        value="{{ old('internationalTrainingInput') }}"
-                        class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                </div>
+                    {{-- Additional Input Field for International Training Type --}}
+                    <div id="internationalTraining" style="display: none;">
+                        <label for="internationalTrainingInput"
+                            class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
+                        <input wire:model.live="internationalTrainingInput" type="text"
+                            id="internationalTrainingInput" name="internationalTrainingInput"
+                            value="{{ old('internationalTrainingInput') }}"
+                            class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                        @error('internationalTrainingInput')
+                            <span class="text-sm text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                {{-- Additional Input Field for Within PhilRice Station --}}
-                <div id="withinPhilrice" style="display: none;">
-                    <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within PhilRice
-                        Station</label>
-                    <select name="withinPhilriceInput" id="withinPhilriceInput"
-                        class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                        <option selected disabled>Select</option>
-                        @foreach ($stations as $station)
-                            <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                {{-- Additional Input Field for Outside PhilRice Station --}}
-                <div id="outsidePhilrice" style="display: none;">
-                    {{-- Province --}}
-                    <div class="relative mr-2">
-                        <label for="province" class="block my-2 text-sm font-medium text-gray-900">
-                            Province
-                        </label>
-                        <select name="province" id="province"
+                    {{-- Additional Input Field for Within PhilRice Station --}}
+                    <div id="withinPhilrice" style="display: none;">
+                        <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within
+                            PhilRice
+                            Station</label>
+                        <select wire:model.live="withinPhilriceInput" name="withinPhilriceInput" id="withinPhilriceInput"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                            <option selected disabled value="">Select</option>
-                            @foreach ($provinces as $province)
-                                <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
+                            <option selected disabled>Select</option>
+                            @foreach ($stations as $station)
+                                <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
                             @endforeach
                         </select>
+                        @error('withinPhilriceInput')
+                            <span class="text-sm text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
-                    {{-- Municipality --}}
-                    <div class="relative ml-2">
-                        <label for="municipality" class="block my-2 text-sm font-medium text-gray-900">
-                            Municipality
-                        </label>
-                        <select name="municipalitySelect" id="municipalitySelect"
-                            class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                            {{-- <option selected disabled>Select</option> --}}
-                            {{-- @foreach ($municipalities as $municipality)
+
+                    {{-- Additional Input Field for Outside PhilRice Station --}}
+                    <div id="outsidePhilrice" style="display: none;">
+                        {{-- Province --}}
+                        <div class="relative mr-2">
+                            <label for="province" class="block my-2 text-sm font-medium text-gray-900">
+                                Province
+                            </label>
+                            <select wire:model.live="province" name="province" id="province"
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
+                                @endforeach
+                            </select>
+                            @error('province')
+                                <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        {{-- Municipality --}}
+                        <div class="relative ml-2">
+                            <label for="municipality" class="block my-2 text-sm font-medium text-gray-900">
+                                Municipality
+                            </label>
+                            <select wire:model.live="municipalitySelect" name="municipalitySelect"
+                                id="municipalitySelect"
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                {{-- <option selected disabled>Select</option> --}}
+                                {{-- @foreach ($municipalities as $municipality)
                                 <option value="{{ $municipality->citymunCode }}">{{ $municipality->citymunDesc }}</option>
                             @endforeach --}}
-                        </select>
-                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') }}"
-                            hidden>
+                            </select>
+                            @error('municipalitySelect')
+                                <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
+                            <input type="text" name="municipality" id="municipality"
+                                value="{{ old('municipality') }}" hidden>
+                        </div>
                     </div>
-                </div>
 
-                {{-- Start Date and End Date --}}
-                <div date-rangepicker id="date_range" class="my-2 grid grid-cols-2 gap-x-4">
-                    <div>
-                        <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start Date</label>
-                        <div class="relative w-full">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                </svg>
+                    {{-- Start Date and End Date --}}
+                    <div date-rangepicker id="date_range" class="my-2 grid grid-cols-2 gap-x-4">
+                        <div>
+                            <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start
+                                Date</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input wire:model.live="start" type="text" id="start_date" name="start"
+                                    value="{{ old('start') }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                                @error('start')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <input type="text" id="start_date" name="start" value="{{ old('start') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
-                    </div>
-                    <div>
-                        <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
-                        <div class="relative w-full">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                </svg>
+                        <div>
+                            <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input wire:model.live="end" type="text" id="end_date" name="end"
+                                    value="{{ old('end') }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                                @error('end')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <input type="text" id="end_date" name="end" value="{{ old('end') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                         </div>
                     </div>
                 </div>
-            </div>
+            {{-- @endif --}}
 
             {{-- Section 3 --}}
             <div class="section" data-section="3" style="display: none;">
@@ -816,7 +896,7 @@
 
                         <div id="errorFile" style="color: red; display: none;"></div>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -1174,6 +1254,9 @@
         updateDistribution();
     </script> --}}
 
+    {{-- Live Validation --}}
+
+
     {{-- Toggle for Optional Inputs --}}
     <script>
         function toggleOtherTitle() {
@@ -1283,15 +1366,15 @@
                     evaluationOutputClass.remove("bg-orange-500", "bg-yellow-300", "bg-lime-500", "bg-green-600");
                     evaluationOutputClass.add("bg-red-700");
                 } else if (evaluationInput <= 2.5) {
-                    evaluationOutput.value = '😔 Unsatisfactory';
+                    evaluationOutput.value = '😔 Fair';
                     evaluationOutputClass.remove("bg-red-700", "bg-yellow-300", "bg-lime-500", "bg-green-600");
                     evaluationOutputClass.add("bg-orange-500");
                 } else if (evaluationInput <= 3.5) {
-                    evaluationOutput.value = '😌 Satisfactory';
+                    evaluationOutput.value = '😌 Good';
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-lime-500", "bg-green-600");
                     evaluationOutputClass.add("bg-yellow-300");
                 } else if (evaluationInput <= 4.5) {
-                    evaluationOutput.value = '😄 Very Satisfactory';
+                    evaluationOutput.value = '😄 Very Good';
                     evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-green-600");
                     evaluationOutputClass.add("bg-lime-500");
                 } else if (evaluationInput <= 5) {
@@ -1307,72 +1390,6 @@
             }
         });
     </script>
-
-    {{-- <script>
-        document.getElementById('evaluationInput').addEventListener('input', function() {
-            var evaluationInput = parseFloat(this.value);
-            var evaluationOutput = document.getElementById('evaluationOutput');
-
-            if (evaluationInput === 0) {
-                evaluationOutput.value = 'Minimum rate is 1';
-            } else if (evaluationInput > 5) {
-                evaluationOutput.value = "Maximum rate is 5"
-            } else {
-                switch (evaluationInput) {
-                    case 1:
-                        evaluationOutput.value = 'Poor';
-                        break;
-                    case 2:
-                        evaluationOutput.value = 'Unsatisfactory';
-                        break;
-                    case 3:
-                        evaluationOutput.value = 'Satisfactory';
-                        break;
-                    case 4:
-                        evaluationOutput.value = 'Very Satisfactory';
-                        break;
-                    case 5:
-                        evaluationOutput.value = 'Outstanding';
-                        break;
-                    default:
-                        evaluationOutput.value = '';
-                }
-            }
-        });
-    </script> --}}
-
-    {{-- <script>
-        document.getElementById('evaluationInput').addEventListener('input', function() {
-            var evaluationInput = parseInt(this.value);
-            var evaluationOutput = document.getElementById('evaluationOutput');
-
-            if (evaluationInput === 0) {
-                evaluationOutput.value = 'Minimum rate is 1';
-            } else if (evaluationInput > 5) {
-                evaluationOutput.value = "Maximum rate is 5"
-            } else {
-                switch (evaluationInput) {
-                    case 1:
-                        evaluationOutput.value = 'Poor';
-                        break;
-                    case 2:
-                        evaluationOutput.value = 'Unsatisfactory';
-                        break;
-                    case 3:
-                        evaluationOutput.value = 'Satisfactory';
-                        break;
-                    case 4:
-                        evaluationOutput.value = 'Very Satisfactory';
-                        break;
-                    case 5:
-                        evaluationOutput.value = 'Outstanding';
-                        break;
-                    default:
-                        evaluationOutput.value = '';
-                }
-            }
-        });
-    </script> --}}
 
     {{-- Paginate Trainings Form --}}
     <script>

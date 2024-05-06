@@ -11,5 +11,6 @@ class WebAnalytics extends Model
 
     protected $fillable = [
         'site_views',
+        'month'
     ];
 }

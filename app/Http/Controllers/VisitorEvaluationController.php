@@ -72,4 +72,11 @@ class VisitorEvaluationController extends Controller
     {
         //
     }
+
+    public function getEvaluations()
+    {
+        // $evaluations = VisitorEvaluation::all();
+        $evaluations = VisitorEvaluation::paginate(5);
+        return response()->json(['evaluations' => $evaluations]);
+    }
 }

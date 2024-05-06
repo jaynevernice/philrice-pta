@@ -250,9 +250,9 @@
                     id="training_title">
                     <option value="" selected disabled>Training Title</option>
                     <option value="">All Training Title</option>
-                    @foreach ($titles as $title)
+                    {{-- @foreach ($titles as $title)
                         <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
-                    @endforeach
+                    @endforeach --}}
                     <option value="Other">Other</option>
                 </select>
             </div>
@@ -492,12 +492,13 @@
 
         </div>
 
-        @include('_message')
+        {{-- Nagbabug since natitrigger pati yung alert message na di naman para sa modal --}}
+        {{-- @include('_message') --}}
     </main>
 
     <!-- Main modal -->
     <div id="evaluation-modal" tabindex="-1" aria-hidden="true"
-        class="hidden fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg">
+        class="hidden flex fixed inset-0 z-50 overflow-hidden items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg">
         <div class="relative p-4 w-full max-w-lg max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
@@ -538,10 +539,15 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                 <option selected>Select sector</option>
                                 <option value="Farmers and Seed Growers">Farmers and Seed Growers</option>
+                                <option value="Government Agencies">Government Agencies</option>
                                 <option value="Extension Workers and Intermediaries">Extension Workers and
                                     Intermediaries
                                 </option>
+                                <option value="Non-Governmental Organizations (NGOs)">Non-Governmental Organizations (NGOs)
+                                </option>
+                                <option value="Private Sector">Private Sector</option>
                                 <option value="Scientific Community">Scientific Community</option>
+                                <option value="Students">Students</option>
                                 <option value="Other">Other (rice industry players, media, policymakers, general rice
                                     consumers)</option>
                             </select>

@@ -226,13 +226,13 @@
                                 {{ $encoder->email }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $encoder->station }}
+                                {{ $stations->firstWhere('id', $encoder->station)->station }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $encoder->division }}
+                                {{ $divisions->firstWhere('id', $encoder->division)->division }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $encoder->position }}
+                                {{ $positions->firstWhere('id', $encoder->position)->position }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ ucwords($encoder->user_type) }}
@@ -302,7 +302,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: "Deleted!",
+                        title: "Promoted!",
                         text: "User has been successfully promoted to Encoder.",
                         icon: "success"
                     }).then(() => {

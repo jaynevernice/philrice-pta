@@ -6,7 +6,7 @@
 
 @section('sidebar')
     <aside
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 left-0 z-40 w-64 h-full pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidenav" id="drawer-navigation">
         <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
             <ul class="space-y-2">
@@ -109,13 +109,13 @@
                 {{-- BATAC --}}
                 @if (Auth::user()->station === '3')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">BATAC</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -132,7 +132,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -158,7 +158,7 @@
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">BICOL</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -175,7 +175,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -195,13 +195,13 @@
                 {{-- Central Mindanao University --}}
                 @if (Auth::user()->station === '5')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">CMU</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -244,7 +244,7 @@
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">ISABELA</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -281,13 +281,13 @@
                 {{-- LOS BAÑOS --}}
                 @if (Auth::user()->station === '7')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">LOS BAÑOS</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -304,7 +304,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -324,13 +324,13 @@
                 {{-- MIDSAYAP --}}
                 @if (Auth::user()->station === '8')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">MIDSAYAP</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -347,7 +347,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -367,13 +367,13 @@
                 {{-- NEGROS --}}
                 @if (Auth::user()->station === '9')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">NEGROS</span>
                             <box-icon name='chevron-down'></box-icon>
                         </a>
-                        <ul id="dropdown-sales" class="py-2 space-y-2">
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
@@ -390,7 +390,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -486,9 +486,9 @@
                     id="form">
                     <option disabled>Form Type</option>
                     <option value="1" selected>Summary of Trainings Conducted</option>
-                    <option value="0" disabled >Knowledge Sharing and Learning (KSL) Monitoring</option>
-                    <option value="0" disabled >Technical Dispatch Monitoring</option>
-                    <option value="0" disabled >Technology Demonstration Monitoring</option>
+                    <option value="0" disabled>Knowledge Sharing and Learning (KSL) Monitoring</option>
+                    <option value="0" disabled>Technical Dispatch Monitoring</option>
+                    <option value="0" disabled>Technology Demonstration Monitoring</option>
                 </select>
             </div>
 
@@ -505,7 +505,7 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
-            
+
             {{-- Regions --}}
             {{-- <div class="mx-1 w-36">
                 <select
@@ -1118,7 +1118,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1131,7 +1131,7 @@
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1144,7 +1144,7 @@
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1153,13 +1153,13 @@
             });
             $("#region-column-3").html(tableRow);
         }
-        
+
         function showProvinces(result) {
             var data_first_column = result.slice(0, 30);
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["province_count"] +
                     `</th>
@@ -1172,7 +1172,7 @@
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["province_count"] +
                     `</th>
@@ -1185,7 +1185,7 @@
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["province_count"] +
                     `</th>
@@ -1200,7 +1200,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1227,7 +1227,7 @@
                     showRegions(result["regions"]);
                     showProvinces(result["provinces"]);
                     // showMunicipalities(result["municipalities"]);
-                    
+
                     currentPage = page; // Update current page
                     var total_participants = result['only_numbers'][0].total_participants;
                     var average_gik = result['only_numbers'][0].average_gik;
@@ -1304,11 +1304,11 @@
             var regions_charts = @json($region_charts);
 
             regions.series[0].data = regions_charts.map(function(item) {
-                                        return {
-                                            x: item.region_name,
-                                            y: parseInt(item.region_count)
-                                        };
-                                    });
+                return {
+                    x: item.region_name,
+                    y: parseInt(item.region_count)
+                };
+            });
 
             var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
             regionsChart.render();
@@ -1317,24 +1317,24 @@
             var province_charts = @json($province_charts);
 
             provinces.series[0].data = province_charts.map(function(item) {
-                                        return {
-                                            x: item.province_name,
-                                            y: parseInt(item.province_count)
-                                        };
-                                    });
+                return {
+                    x: item.province_name,
+                    y: parseInt(item.province_count)
+                };
+            });
 
             var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
             provincesChart.render();
-            
+
             // MUNICIPALITY CHART //
             var municipality_charts = @json($municipality_charts);
 
             municipalities.series[0].data = municipality_charts.map(function(item) {
-                                        return {
-                                            x: item.city_name,
-                                            y: parseInt(item.city_count)
-                                        };
-                                    });
+                return {
+                    x: item.city_name,
+                    y: parseInt(item.city_count)
+                };
+            });
 
             var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
             municipalitiesChart.render();
@@ -1346,8 +1346,8 @@
             var values = values;
             // handle null data
             values = values.map(value => value === null ? 0 : value);
-            
-            if(chart == 'sex') {
+
+            if (chart == 'sex') {
                 // update sex chart  
                 sex.series = values;
                 sex.labels = labels;
@@ -1355,7 +1355,7 @@
                 var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
                 sexChart.render();
             }
-            if(chart == 'ip') {
+            if (chart == 'ip') {
                 // update indigenous chart  
                 ip.series = values;
                 ip.labels = labels;
@@ -1363,7 +1363,7 @@
                 var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
                 indigenousChart.render();
             }
-            if(chart == 'pwd') {
+            if (chart == 'pwd') {
                 // update PWD chart  
                 pwd.series = values;
                 pwd.labels = labels;
@@ -1377,8 +1377,8 @@
         function renderFilteredBarChart(keys, values, chart) {
             var labels = keys;
             var values = values;
-            
-            if(chart == 'sector') {
+
+            if (chart == 'sector') {
                 sector.series[0].data = values;
                 sector.xaxis.categories = labels;
 
@@ -1388,36 +1388,36 @@
         }
         // RENDER TREE MAP CHART //
         function renderFilteredTreeMapChart(data, chart) {
-            if(chart == 'regions') {
+            if (chart == 'regions') {
                 regions.series[0].data = data.map(function(item) {
-                                        return {
-                                            x: item.region_name,
-                                            y: parseInt(item.region_count)
-                                        };
-                                    });
-                
+                    return {
+                        x: item.region_name,
+                        y: parseInt(item.region_count)
+                    };
+                });
+
                 var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
                 regionsChart.render();
             }
-            if(chart == 'provinces') {
+            if (chart == 'provinces') {
                 provinces.series[0].data = data.map(function(item) {
-                                        return {
-                                            x: item.province_name,
-                                            y: parseInt(item.province_count)
-                                        };
-                                    });
-                
+                    return {
+                        x: item.province_name,
+                        y: parseInt(item.province_count)
+                    };
+                });
+
                 var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
                 provincesChart.render();
             }
-            if(chart == 'municipalities') {
+            if (chart == 'municipalities') {
                 municipalities.series[0].data = data.map(function(item) {
-                                        return {
-                                            x: item.city_name,
-                                            y: parseInt(item.city_count)
-                                        };
-                                    });
-                
+                    return {
+                        x: item.city_name,
+                        y: parseInt(item.city_count)
+                    };
+                });
+
                 var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
                 municipalitiesChart.render();
             }
@@ -1460,14 +1460,17 @@
                 },
                 success: function(result) {
                     currentPage = page; // Update current page
-                    var total_participants = result['only_numbers'][0].total_participants != null ? result['only_numbers'][0].total_participants : '0'; 
-                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0].average_gik : '0';
-                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0].evaluation : '0';
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result[
+                        'only_numbers'][0].total_participants : '0';
+                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0]
+                        .average_gik : '0';
+                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0]
+                        .evaluation : '0';
 
                     $("#total_participants_chart").text(total_participants);
                     $("#average_gik_chart").text(average_gik + '%');
                     $("#evaluation_chart").text(evaluation);
-                    
+
                     // Destroy existing charts
                     destroyChart(sexChart);
                     destroyChart(indigenousChart);
@@ -1476,14 +1479,18 @@
                     destroyChart(regionsChart);
                     destroyChart(provincesChart);
                     destroyChart(municipalitiesChart);
-                    
+
                     // call function to render filtered pie chart
-                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
-                    renderFilteredPieChart(Object.keys(result['indigenous_charts']), Object.values(result['indigenous_charts']), 'ip');
-                    renderFilteredPieChart(Object.keys(result['ability_charts']), Object.values(result['ability_charts']), 'pwd');
-                    
+                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result[
+                        'sex_charts']), 'sex');
+                    renderFilteredPieChart(Object.keys(result['indigenous_charts']), Object.values(result[
+                        'indigenous_charts']), 'ip');
+                    renderFilteredPieChart(Object.keys(result['ability_charts']), Object.values(result[
+                        'ability_charts']), 'pwd');
+
                     // call function to render filtered Bar chart
-                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result[
+                        'sector_charts']), 'sector');
 
                     // call function to render filtered tree map chart
                     renderFilteredTreeMapChart(result['regions'], 'regions');
@@ -1726,7 +1733,7 @@
         //                 $("#provinceSelect").append('<option value="' + value.provCode + '">' +
         //                     value.provDesc + '</option>');
         //             });
-                    
+
         //         },
         //         error: function(error) {
         //             alert('Something went wrong!');
@@ -1752,7 +1759,7 @@
         //                 $("#municipalitySelect").append('<option value="' + value.citymunCode + '">' +
         //                     value.citymunDesc + '</option>');
         //             });
-                    
+
         //         },
         //         error: function(error) {
         //             alert('Something went wrong!');
@@ -1766,7 +1773,7 @@
         //     var trainingTitle = $("#training_title").val();
         //     var province = $("#provinceSelect").val();
 
-            
+
         // });
     </script>
 @endsection

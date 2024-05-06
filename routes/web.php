@@ -66,8 +66,6 @@ Route::group(['prefix' => 'guest'], function () {
 
     Route::get('/view', [WebAnalyticsController::class, 'incrementSiteView'])->name('guest.view');
 
-    Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteView'])->name('guest.fetch_view');
-
     Route::post('/overview-visitor-evaluation', [VisitorEvaluationController::class, 'store'])->name('evaluation.store');
 
     Route::get('/ces', function () {
@@ -106,9 +104,8 @@ Route::group(['prefix' => 'guest'], function () {
 // Super Admin
 Route::group(['middleware' => 'super_admin'], function () {
     Route::group(['prefix' => 'super_admin'], function () {
-        Route::get('/overview', function () {
-            return view('super_admin.overview');
-        })->name('super_admin.overview');
+        // Route::get('/overview', function () { return view('super_admin.overview'); })->name('super_admin.overview');
+        Route::get('/overview', [TrainingsFormController::class, 'index'])->name('super_admin.overview');
 
         Route::get('/ces_view', function () {
             return view('super_admin.ces_view');
@@ -161,6 +158,12 @@ Route::group(['middleware' => 'super_admin'], function () {
         Route::get('/web-analytics', function () {
             return view('super_admin.web_analytics');
         })->name('super_admin.web_analytics');
+
+        // Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteView'])->name('fetch_view');
+        // Route::get('/get-monthly-site-views', [WebAnalyticsController::class, 'fetchMonthlySiteViews'])->name('fetch_monthly_view');
+        Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteViews'])->name('fetch_site_views');
+        
+        Route::get('/get-survey-records', [VisitorEvaluationController::class, 'getEvaluations'])->name('fetch_survey_records');
     });
 });
 

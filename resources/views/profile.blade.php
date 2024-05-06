@@ -20,101 +20,392 @@
                     </a>
                 </li>
 
-                {{-- CES --}}
-                <li>
-                    <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
-                        aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
-                        <box-icon name='chevron-down'></box-icon>
-                    </a>
-                    <ul id="dropdown-sales" class="hidden py-2 space-y-2">
-                        <li>
-                            <a href="{{ route('encoder.ces_view') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-                                <box-icon name='line-chart'></box-icon>
-                                <span class="ml-3">View Data</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('encoder.ces_add') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-                                <box-icon name='plus'></box-icon>
-                                <span class="ml-3">Add Data</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('encoder.ces_edit') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-[#0B1215] rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
-                                <box-icon name='edit-alt' type='solid'></box-icon>
-                                <span class="ml-3">Edit Data</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                {{-- If Encoder is from CES --}}
+                @if (Auth::user()->station === '1')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.ces') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">CES</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- AGUSAN --}}
-                <li>
-                    <a href="{{ route('encoder.agusan') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">AGUSAN</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '2')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">AGUSAN</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.agusan') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">AGUSAN</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- BATAC --}}
-                <li>
-                    <a href="{{ route('encoder.batac') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">BATAC</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '3')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">BATAC</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.batac') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">BATAC</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- BICOL --}}
-                <li>
-                    <a href="{{ route('encoder.bicol') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">BICOL</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '4')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">BICOL</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.bicol') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">BICOL</span>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- Central Mindanao University --}}
+                @if (Auth::user()->station === '5')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">CMU</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.cmu') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">CMU</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- ISABELA --}}
-                <li>
-                    <a href="{{ route('encoder.isabela') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">ISABELA</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '6')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">ISABELA</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lgtransition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.isabela') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">ISABELA</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- LOS BAÑOS --}}
-                <li>
-                    <a href="{{ route('encoder.losbaños') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">LOS BAÑOS</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '7')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">LOS BAÑOS</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.losbaños') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">LOS BAÑOS</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- MIDSAYAP --}}
-                <li>
-                    <a href="{{ route('encoder.midsayap') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">MIDSAYAP</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '8')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">MIDSAYAP</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.midsayap') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">MIDSAYAP</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- NEGROS --}}
-                <li>
-                    <a href="{{ route('encoder.negros') }}"
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
-                        <box-icon name='building' type='solid'></box-icon>
-                        <span class="ml-3">NEGROS</span>
-                    </a>
-                </li>
+                @if (Auth::user()->station === '9')
+                    <li>
+                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                            aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">NEGROS</span>
+                            <box-icon name='chevron-down'></box-icon>
+                        </a>
+                        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="{{ route('encoder.view') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='line-chart'></box-icon>
+                                    <span class="ml-3">View Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.add') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='plus'></box-icon>
+                                    <span class="ml-3">Add Data</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('encoder.edit') }}"
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    <box-icon name='edit-alt' type='solid'></box-icon>
+                                    <span class="ml-3">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('encoder.negros') }}"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
+                            <box-icon name='building' type='solid'></box-icon>
+                            <span class="ml-3">NEGROS</span>
+                        </a>
+                    </li>
+                @endif
 
                 @if (Auth::user()->user_type === 'admin')
                     <hr>
@@ -171,7 +462,8 @@
         {{-- <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full"> --}}
         <img src="{{ asset('assets/profile-bg-1.jpg') }}" class="absolute inset-0 h-3/4 w-full object-cover">
 
-        <div class="relative px-20 py-2 mb-10 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100">
+        <div
+            class="relative px-20 py-2 mb-10 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100">
 
             <form id="profileForm" action="{{ route('updateProfile') }}" method="POST" enctype="multipart/form-data">
                 @csrf

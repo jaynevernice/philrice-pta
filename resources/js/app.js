@@ -1,4 +1,4 @@
-import "./bootstrap";
+// import "./bootstrap";
 import "flowbite";
 import Datepicker from "flowbite-datepicker/Datepicker";
 import DateRangePicker from "flowbite-datepicker/DateRangePicker";
