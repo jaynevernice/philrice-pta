@@ -213,273 +213,250 @@
                 </div>
             </div>
 
-            {{-- @if (
-                $errors->hasAny([
-                    'training_title',
-                    'batch',
-                    'otherTrainingInput',
-                    'training_type',
-                    'training_category',
-                    'mod',
-                    'internationalTrainingInput',
-                    'withinPhilriceInput',
-                    'province',
-                    'municipalitySelect',
-                    'start',
-                    'end',
-                ])) --}}
-                {{-- Section 2 --}}
-                <div class="section" data-section="2" style="display: none;">
-                    <div class="flex">
-                        <h6 class="text-lg font-bold dark:text-white">Training Details</h6>
-                    </div>
+            {{-- @if ($errors->hasAny(['training_title', 'batch', 'otherTrainingInput', 'training_type', 'training_category', 'mod', 'internationalTrainingInput', 'withinPhilriceInput', 'province', 'municipalitySelect', 'start', 'end'])) --}}
+            {{-- Section 2 --}}
+            <div class="section" data-section="2" style="display: none;">
+                <div class="flex">
+                    <h6 class="text-lg font-bold dark:text-white">Training Details</h6>
+                </div>
 
-                    <div class="my-2 grid grid-cols-5 gap-x-4">
+                <div class="my-2 grid grid-cols-5 gap-x-4">
 
-                        {{-- Training Title --}}
-                        {{-- <div class="col-span-2"> --}}
-                        <div class="col-span-4">
-                            <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training
-                                Title</label>
-                            <div class="relative">
-                                <select wire:model.live="training_title" required id="training_title" name="training_title"
-                                    onchange="toggleOtherTitle()"
-                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled value="">Select</option>
-                                    @foreach ($titles as $title)
-                                        <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
-                                    @endforeach
-                                    <option value="Other">Other</option>
-                                </select>
-                                @error('training_title')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{-- Batch Number --}}
-                        <div class="col-span-1">
-                            <label for="batch" class="block my-2 text-sm font-medium text-gray-900">Batch No.</label>
-                            <input type="number" id="batch" name="batch"
-                                value="{{ old('batch') }}" min="1" step="1"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required>
-                            @error('batch')
-                                <span class="text-sm text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        {{-- Additional Input Field for Training Title when Other is selected --}}
-                        <div id="otherTrainingTitle" style="display: none;" class="col-span-5">
-                            <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
-                                Training
-                                Title</label>
-                            <input wire:model.live="otherTrainingInput" type="text" id="otherTrainingInput"
-                                name="otherTrainingInput" value="{{ old('otherTrainingInput') }}"
-                                class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                            @error('otherTrainingInput')
-                                <span class="text-sm text-red-500">{{ $message }}</span>
-                            @enderror
+                    {{-- Training Title --}}
+                    {{-- <div class="col-span-2"> --}}
+                    <div class="col-span-4">
+                        <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training
+                            Title</label>
+                        <div class="relative">
+                            <select required id="training_title" name="training_title" onchange="toggleOtherTitle()"
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                @foreach ($titles as $title)
+                                    <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
+                                @endforeach
+                                <option value="Other">Other</option>
+                            </select>
+                            <p id="training_title_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                    class="font-medium">Oops!</span> Select Training Title.</p>
                         </div>
                     </div>
 
-                    <div id="row2" class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
-                        {{-- Type of Training --}}
-                        <div>
-                            <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
-                                Training</label>
-                            <div class="relative">
-                                <select wire:model.live="training_type" id="training_type" name="training_type"
-                                    onchange="toggleType()" required
-                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled value="">Select</option>
-                                    <option value="Local">Local</option>
-                                    <option value="International">International</option>
-                                </select>
-                                @error('training_type')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
+                    {{-- Batch Number --}}
+                    <div class="col-span-1">
+                        <label for="batch" class="block my-2 text-sm font-medium text-gray-900">Batch No.</label>
+                        <input type="number" id="batch" name="batch" value="{{ old('batch') }}" min="1"
+                            step="1"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            required>
+                        <p id="batch_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> Input Batch Number.</p>
+                    </div>
 
-                        {{-- Training Category --}}
-                        <div>
-                            <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
-                                Category</label>
-                            <div class="relative">
-                                <select wire:model.live="training_category" id="training_category"
-                                    name="training_category" required
-                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled value="">Select</option>
-                                    <option value="Beginner Course">Beginner Course</option>
-                                    <option value="Intermediate Course">Intermediate Course</option>
-                                    <option value="Advanced Course">Advanced Course</option>
-                                </select>
-                                @error('training_category')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
+                    {{-- Additional Input Field for Training Title when Other is selected --}}
+                    <div id="otherTrainingTitle" style="display: none;" class="col-span-5">
+                        <label for="otherTrainingInput" class="block my-2 text-sm font-medium text-gray-900">Other
+                            Training
+                            Title</label>
+                        <input type="text" id="otherTrainingInput" name="otherTrainingInput"
+                            value="{{ old('otherTrainingInput') }}"
+                            class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                        <p id="other_training_title_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> Training Title is Required.</p>
+                    </div>
+                </div>
 
-                        {{-- Mode of Delivery --}}
-                        <div>
-                            <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
-                                Delivery</label>
-                            <div class="relative">
-                                <select wire:model.live="mod" id="mod" name="mod" required
-                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled value="">Select</option>
-                                    <option value="Online">Online</option>
-                                    <option value="Face-to-Face">Face-to-Face</option>
-                                    <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)
-                                    </option>
-                                </select>
-                                @error('mod')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
+                <div id="row2" class="my-2 grid grid-cols-3 gap-x-4 max-[760px]:grid-cols-1">
+                    {{-- Type of Training --}}
+                    <div>
+                        <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
+                            Training</label>
+                        <div class="relative">
+                            <select id="training_type" name="training_type" onchange="toggleType()" required
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Local">Local</option>
+                                <option value="International">International</option>
+                            </select>
+                            <p id="training_type_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                    class="font-medium">Oops!</span> Select Training Type.</p>
                         </div>
+                    </div>
 
-                        {{-- Venue --}}
-                        <div id="training_venue_container" style="display: none;">
-                            <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
-                            <div class="relative">
-                                <select wire:model.live="training_venue" id="training_venue" name="training_venue"
-                                    onchange="toggleVenue()"
-                                    class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                    <option selected disabled value="">Select</option>
-                                    <option value="Within PhilRice Station">Within PhilRice Station</option>
-                                    <option value="Outside PhilRice Station">Outside PhilRice Station</option>
-                                </select>
-                                @error('training_venue')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
+                    {{-- Training Category --}}
+                    <div>
+                        <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
+                            Category</label>
+                        <div class="relative">
+                            <select id="training_category" name="training_category" required
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Beginner Course">Beginner Course</option>
+                                <option value="Intermediate Course">Intermediate Course</option>
+                                <option value="Advanced Course">Advanced Course</option>
+                            </select>
+                            <p id="training_category_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                    class="font-medium">Oops!</span> Select Training Category.</p>
                         </div>
+                    </div>
 
-                        {{-- Additional Input Field for Outside PhilRice Station --}}
-                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
-                        {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
+                    {{-- Mode of Delivery --}}
+                    <div>
+                        <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
+                            Delivery</label>
+                        <div class="relative">
+                            <select id="mod" name="mod" required
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Online">Online</option>
+                                <option value="Face-to-Face">Face-to-Face</option>
+                                <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)
+                                </option>
+                            </select>
+                            <p id="mod_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                                <span class="font-medium">Oops!</span> Select Training Category.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Venue --}}
+                    <div id="training_venue_container" style="display: none;">
+                        <label for="training_venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
+                        <div class="relative">
+                            <select id="training_venue" name="training_venue" onchange="toggleVenue()"
+                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                                <option selected disabled value="">Select</option>
+                                <option value="Within PhilRice Station">Within PhilRice Station</option>
+                                <option value="Outside PhilRice Station">Outside PhilRice Station</option>
+                            </select>
+                            <p id="training_venue_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                    class="font-medium">Oops!</span> Select Training Category.</p>
+                        </div>
+                    </div>
+
+                    {{-- Additional Input Field for Outside PhilRice Station --}}
+                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
+                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
                             <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
                                 PhilRice Station</label>
                             <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
                                 class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         </div> --}}
 
-                    </div>
+                </div>
 
-                    {{-- Additional Input Field for International Training Type --}}
-                    <div id="internationalTraining" style="display: none;">
-                        <label for="internationalTrainingInput"
-                            class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
-                        <input wire:model.live="internationalTrainingInput" type="text"
-                            id="internationalTrainingInput" name="internationalTrainingInput"
-                            value="{{ old('internationalTrainingInput') }}"
-                            class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                        @error('internationalTrainingInput')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div>
+                {{-- Additional Input Field for International Training Type --}}
+                <div id="internationalTraining" style="display: none;">
+                    <label for="internationalTrainingInput"
+                        class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
+                    <input type="text" id="internationalTrainingInput" name="internationalTrainingInput"
+                        value="{{ old('internationalTrainingInput') }}"
+                        class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                    <p id="international_training_error"
+                        class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                            class="font-medium">Oops!</span> Address for International Venue is Required.</p>
+                </div>
 
-                    {{-- Additional Input Field for Within PhilRice Station --}}
-                    <div id="withinPhilrice" style="display: none;">
-                        <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within
-                            PhilRice
-                            Station</label>
-                        <select wire:model.live="withinPhilriceInput" name="withinPhilriceInput" id="withinPhilriceInput"
+                {{-- Additional Input Field for Within PhilRice Station --}}
+                <div id="withinPhilrice" style="display: none;">
+                    <label for="withinPhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Within
+                        PhilRice
+                        Station</label>
+                    <select name="withinPhilriceInput" id="withinPhilriceInput"
+                        class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                        <option selected disabled value="">Select</option>
+                        @foreach ($stations as $station)
+                            <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
+                        @endforeach
+                    </select>
+                    <p id="within_philrice_error"
+                        class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                            class="font-medium">Oops!</span> Select a Station.</p>
+                </div>
+
+                {{-- Additional Input Field for Outside PhilRice Station --}}
+                <div id="outsidePhilrice" style="display: none;">
+                    {{-- Province --}}
+                    <div class="relative mr-2">
+                        <label for="province" class="block my-2 text-sm font-medium text-gray-900">
+                            Province
+                        </label>
+                        <select name="province" id="province"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                            <option selected disabled>Select</option>
-                            @foreach ($stations as $station)
-                                <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
+                            <option selected disabled value="">Select</option>
+                            @foreach ($provinces as $province)
+                                <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
                             @endforeach
                         </select>
-                        @error('withinPhilriceInput')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
-                        @enderror
+                        <p id="province_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Select a Province.</p>
                     </div>
-
-                    {{-- Additional Input Field for Outside PhilRice Station --}}
-                    <div id="outsidePhilrice" style="display: none;">
-                        {{-- Province --}}
-                        <div class="relative mr-2">
-                            <label for="province" class="block my-2 text-sm font-medium text-gray-900">
-                                Province
-                            </label>
-                            <select wire:model.live="province" name="province" id="province"
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                <option selected disabled value="">Select</option>
-                                @foreach ($provinces as $province)
-                                    <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
-                                @endforeach
-                            </select>
-                            @error('province')
-                                <span class="text-sm text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        {{-- Municipality --}}
-                        <div class="relative ml-2">
-                            <label for="municipality" class="block my-2 text-sm font-medium text-gray-900">
-                                Municipality
-                            </label>
-                            <select wire:model.live="municipalitySelect" name="municipalitySelect"
-                                id="municipalitySelect"
-                                class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                                {{-- <option selected disabled>Select</option> --}}
-                                {{-- @foreach ($municipalities as $municipality)
+                    {{-- Municipality --}}
+                    <div class="relative ml-2">
+                        <label for="municipality" class="block my-2 text-sm font-medium text-gray-900">
+                            Municipality
+                        </label>
+                        <select name="municipalitySelect" id="municipalitySelect"
+                            class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                            {{-- <option selected disabled>Select</option> --}}
+                            {{-- @foreach ($municipalities as $municipality)
                                 <option value="{{ $municipality->citymunCode }}">{{ $municipality->citymunDesc }}</option>
                             @endforeach --}}
-                            </select>
-                            @error('municipalitySelect')
-                                <span class="text-sm text-red-500">{{ $message }}</span>
-                            @enderror
-                            <input type="text" name="municipality" id="municipality"
-                                value="{{ old('municipality') }}" hidden>
+                        </select>
+                        <p id="municipality_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> Select a Municipality.</p>
+                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') }}"
+                            hidden>
+                    </div>
+                </div>
+
+                {{-- Start Date and End Date --}}
+                <div date-rangepicker id="date_range" class="my-2 grid grid-cols-2 gap-x-4">
+                    <div>
+                        <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start
+                            Date</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                            </div>
+                            <input type="text" id="start_date" name="start" value="{{ old('start') }}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+
+                            <p id="start_date_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                    class="font-medium">Oops!</span> Input Start Date.</p>
                         </div>
                     </div>
-
-                    {{-- Start Date and End Date --}}
-                    <div date-rangepicker id="date_range" class="my-2 grid grid-cols-2 gap-x-4">
-                        <div>
-                            <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start
-                                Date</label>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                    </svg>
-                                </div>
-                                <input wire:model.live="start" type="text" id="start_date" name="start"
-                                    value="{{ old('start') }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
-                                @error('start')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
+                    <div>
+                        <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
                             </div>
-                        </div>
-                        <div>
-                            <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                    </svg>
-                                </div>
-                                <input wire:model.live="end" type="text" id="end_date" name="end"
-                                    value="{{ old('end') }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                    placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
-                                @error('end')
-                                    <span class="text-sm text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <input type="text" id="end_date" name="end" value="{{ old('end') }}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
+                            <p id="end_date_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                    class="font-medium">Oops!</span> Input End Date.</p>
                         </div>
                     </div>
                 </div>
+            </div>
             {{-- @endif --}}
 
             {{-- Section 3 --}}
@@ -1480,6 +1457,54 @@
                 $("#num_of_male").val(formData.num_of_male);
                 $("#num_of_indigenous").val(formData.num_of_indigenous);
                 $("#num_of_pwd").val(formData.num_of_pwd);
+
+                // Styling
+                if (formData.training_title) {
+                    $("#training_title").removeClass('border-gray-300 text-gray-900').addClass(
+                    'border-green-600 text-green-600');
+                }
+
+                if (formData.training_type) {
+                    $("#training_type").removeClass('border-gray-300 text-gray-900').addClass(
+                    'border-green-600 text-green-600');
+                }
+                
+                if (formData.training_category) {
+                    $("#training_category").removeClass('border-gray-300 text-gray-900').addClass(
+                    'border-green-600 text-green-600');
+                }
+
+                if (formData.mod) {
+                    $("#mod").removeClass('border-gray-300 text-gray-900').addClass(
+                    'border-green-600 text-green-600');
+                }
+
+                if (formData.start_date) {
+                    $("#start_date").removeClass('border-gray-300 text-gray-900').addClass(
+                    'border-green-600 text-green-600');
+                }
+
+                if (formData.end_date) {
+                    $("#end_date").removeClass('border-gray-300 text-gray-900').addClass(
+                    'border-green-600 text-green-600');
+                }
+
+                if (formData.training_title === "Other") {
+                    var otherTrainingTitleDiv = document.getElementById('otherTrainingTitle');
+
+                    otherTrainingTitleDiv.style.display = 'block';
+                    $("#otherTrainingInput").removeClass('border-gray-300 text-gray-900').addClass('border-green-600 text-green-600');
+                }
+
+                if (formData.training_type === "International") {
+                    var internationalTrainingDiv = document.getElementById('internationalTraining');
+                    internationalTrainingDiv.style.display = 'block';
+                    $("#internationalTrainingInput").removeClass('border-gray-300 text-gray-900').addClass('border-green-600 text-green-600');
+                } 
+                // else if (formData.training_type === "Local") {
+                    
+                // }
+
             }
 
         }
@@ -1605,17 +1630,6 @@
                     nextBtn.disabled = true;
                 }
             }
-
-            // const $startDate = $("#start_date");
-            // const $endDate = $("#end_date");
-            // $("#date-error-message").css("color", "red");
-            // // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
-            // if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
-            //     $("#date-error-message").text("Start Date or End Date is Invalid. Please go back to Section 1");
-            //     nextBtn.disabled = true;
-            // } else {
-            //     $("#date-error-message").text("");
-            // }
         }
 
         function checkSection2() {
@@ -1649,9 +1663,10 @@
                         $municipalitySelect.val() && !$municipality.val())))
                 )) ||
                 (isInternationalTraining && !$internationalTrainingInput.val())
-                // (isInternationalTraining && !$internationalTrainingInput.val()) ||
-                // (new Date($startDate.val()) > today || new Date($endDate.val()) > today)
             );
+
+
+
             nextBtn.disabled = isNextBtnDisabled;
         }
 
@@ -1684,8 +1699,6 @@
                                     ' selected' : '') +
                                 ' value="' + value.citymunCode + '">' + value.citymunDesc +
                                 '</option>');
-                            // $("#municipalitySelect").append('<option @if (' + citymunCode + ' == ' + value.citymunCode + ') selected @endif value="' + value.citymunCode + '">' +
-                            //     value.citymunDesc + '</option>');
                         });
 
                     },
@@ -1748,70 +1761,10 @@
                 if (currentSection === 2) {
                     checkSection2();
                 }
-                // if (currentSection == 2) {
-                //     // disable nextBtn if one of the input field is blank
-                //     if (!$("#training_title").val() || !$("#training_category").val() || !$(
-                //             "#training_type").val() || !$("#mod").val() || !$("#start_date").val() || !$(
-                //             "#end_date").val()) {
-                //         nextBtn.disabled = true;
-                //     } else {
-
-                //         if ($("#training_title").val() == 'Other') {
-                //             if (!$("#otherTrainingInput").val()) {
-                //                 nextBtn.disabled = true;
-                //             } else {
-                //                 nextBtn.disabled = false;
-                //             }
-                //         }
-                //         if ($("#training_type").val() == 'Local') {
-                //             // disable nextBtn if training_venue is blank and training_type == Local
-                //             if (!$("#training_venue").val()) {
-                //                 nextBtn.disabled = true;
-                //             } else {
-                //                 if ($("#training_venue").val() == 'Within PhilRice Station') {
-                //                     // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
-                //                     if (!$("#withinPhilriceInput").val()) {
-                //                         nextBtn.disabled = true;
-                //                     } else {
-                //                         nextBtn.disabled = false;
-                //                     }
-
-                //                 } else if ($("#training_venue").val() == 'Outside PhilRice Station') {
-                //                     // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
-                //                     if (!$("#province").val() || !$("#municipality").val()) {
-                //                         nextBtn.disabled = true;
-                //                     } else {
-                //                         nextBtn.disabled = false;
-                //                     }
-                //                 }
-                //             }
-                //         }
-                //         if ($("#training_type").val() == 'International') {
-                //             // disable nextBtn if internationalTrainingInput is blank and training_type == International
-                //             if (!$("#internationalTrainingInput").val()) {
-                //                 nextBtn.disabled = true;
-                //             } else {
-                //                 nextBtn.disabled = false;
-                //             }
-                //         }
-
-                //         // disable nextBtn if start_date or end_date exceeded today's date
-                //         if (($("#start_date").val() > formattedDateToday) || ($("#end_date").val() > formattedDateToday)) {
-                //             nextBtn.disabled = true;
-                //         } else {
-                //             nextBtn.disabled = false;
-                //         }
-                //     }
-                // }
-
             });
 
             $('#otherTrainingInput, #internationalTrainingInput, #outsidePhilriceInput, #total_participants, #start_date, #end_date, #sponsor, #average_gik, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other, #num_of_female, #num_of_male, #num_of_indigenous, #num_of_pwd, #evaluationInput')
                 .on('keyup input click', function() {
-                    // console.log(today);
-                    // console.log($("#start_date").val());
-                    // console.log($("#end_date").val());
-                    // $("#municipality").val($("#municipalitySelect").val());
                     // disable nextBtn if any of the input for breakdown of participants and total_participants are blank
                     if (currentSection == 4) {
                         checkSection4();
@@ -1835,62 +1788,6 @@
                     if (currentSection === 2) {
                         checkSection2();
                     }
-                    // if (currentSection == 2) {
-                    //     // disable nextBtn if one of the input field is blank
-                    //     if (!$("#training_title").val() || !$("#training_category").val() || !$(
-                    //             "#training_type").val() || !$("#mod").val() || (!$("#start_date").val() || !$(
-                    //             "#end_date").val())) {
-                    //         nextBtn.disabled = true;
-                    //     } else {
-                    //         if ($("#training_title").val() == 'Other') {
-                    //             if ($("#otherTrainingInput").val() == '') {
-                    //                 nextBtn.disabled = true;
-                    //             } else {
-                    //                 nextBtn.disabled = false;
-                    //             }
-                    //             // console.log($("#otherTrainingInput").val());
-                    //         }
-                    //         if ($("#training_type").val() == 'Local') {
-                    //             // disable nextBtn if training_venue is blank and training_type == Local
-                    //             if (!$("#training_venue").val()) {
-                    //                 nextBtn.disabled = true;
-                    //             } else {
-                    //                 if ($("#training_venue").val() == 'Within PhilRice Station') {
-                    //                     // disable nextBtn if withinPhilriceInput is blank and training_venue == Within PhilRice Station
-                    //                     if (!$("#withinPhilriceInput").val()) {
-                    //                         nextBtn.disabled = true;
-                    //                         console.log($("#start_date").val());
-                    //                     } else {
-                    //                         nextBtn.disabled = false;
-                    //                     }
-
-                    //                 } else if ($("#training_venue").val() == 'Outside PhilRice Station') {
-                    //                     // disable nextBtn if outsidePhilriceInput is blank and training_venue == Outside PhilRice Station
-                    //                     if (!$("#province").val() || !$("#municipality").val()) {
-                    //                         nextBtn.disabled = true;
-                    //                     } else {
-                    //                         nextBtn.disabled = false;
-                    //                     }
-                    //                 }
-                    //             }
-                    //         }
-                    //         if ($("#training_type").val() == 'International') {
-                    //             // disable nextBtn if internationalTrainingInput is blank and training_type == International
-                    //             if (!$("#internationalTrainingInput").val()) {
-                    //                 nextBtn.disabled = true;
-                    //             } else {
-                    //                 nextBtn.disabled = false;
-                    //             }
-                    //         }
-
-                    //         // disable nextBtn if start_date or end_date exceeded today's date
-                    //         if (($("#start_date").val() > formattedDateToday) || ($("#end_date").val() > formattedDateToday)) {
-                    //             nextBtn.disabled = true;
-                    //         } else {
-                    //             nextBtn.disabled = false;
-                    //         }
-                    //     }
-                    // }
                 });
 
             $('#decrement-button1, #decrement-button2, #decrement-button3, #decrement-button4, #decrement-button5, #decrement-button6, #decrement-button7, #decrement-button8')
@@ -1924,16 +1821,6 @@
                         } else {
                             nextBtn.disabled = false;
                         }
-
-                        // const $startDate = $("#start_date");
-                        // const $endDate = $("#end_date");
-                        // // if ($startDate.val() > formattedDateToday || $endDate.val() > formattedDateToday) {
-                        // if (new Date($startDate.val()) > today || new Date($endDate.val()) > today) {
-                        //     $("#date-error-message").text("Start Date or End Date is Invalid");
-                        //     nextBtn.disabled = true;
-                        // } else {
-                        //     $("#date-error-message").text("");
-                        // }
                     }
                     // disable nextBtn if any of the input are blank (Section 2)
                     if (currentSection === 2) {
@@ -2020,5 +1907,452 @@
             }
             return true;
         }
+    </script>
+
+    {{-- Mano manong validation lets go --}}
+    {{-- Section 1 --}}
+    <script>
+        $(document).ready(function() {
+            // Error messages. Hidden by default.
+            $('#batch_error').addClass('hidden');
+            $('#training_title_error').addClass('hidden');
+            $('#other_training_title_error').addClass('hidden');
+            $('#training_type_error').addClass('hidden');
+            $('#training_category_error').addClass('hidden');
+            $('#mod_error').addClass('hidden');
+            $('#training_venue_error').addClass('hidden');
+            $('#international_training_error').addClass('hidden');
+            $('#within_philrice_error').addClass('hidden');
+            $('#start_date_error').addClass('hidden');
+            $('#end_date_error').addClass('hidden');
+
+            $('#training_title').change(function() {
+                var trainingTitle = $(this).val();
+
+                if (trainingTitle !== "") {
+                    // If a value is selected, change the border and text color to green
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#training_title_error').addClass('hidden');
+                }
+                // else {
+                //     // If no value is selected, revert to default border and text color
+                //     $(this).removeClass('border-green-600 text-green-600')
+                //         .addClass('border-gray-300 text-gray-900');
+                // }
+
+                var batch = $('#batch').val();
+                var trainingType = $('#training_type').val();
+                var trainingCategory = $('#training_category').val();
+                var mod = $('#mod').val();
+                var trainingVenue = $('#training_venue').val();
+                var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+                var endDate = $('#end_date').val();
+
+                if (!batch) {
+                    $('#batch').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                if (!trainingType) {
+                    $('#training_type').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_type_error').removeClass('hidden');
+                }
+
+                if (!trainingCategory) {
+                    $('#training_category').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_category_error').removeClass('hidden');
+                }
+
+                if (!mod) {
+                    $('#mod').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#mod_error').removeClass('hidden');
+                }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
+
+                if (!endDate) {
+                    $('#end_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
+                }
+            });
+
+            $('#batch').on('input', function() {
+                var batch = $(this).val();
+
+                if (batch && !isNaN(batch)) {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#batch_error').addClass('hidden');
+                } else {
+                    $(this).removeClass('border-green-600 text-green-600 border-gray-300 text-gray-900')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+            });
+
+            // If user is trying to input non number 
+            $('#batch').on('keypress', function(event) {
+                var charCode = event.which ? event.which : event.keyCode;
+
+                if (charCode < 48 || charCode > 57) {
+                    event.preventDefault();
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                var trainingTitle = $('#training_title').val();
+                var trainingType = $('#training_type').val();
+                var trainingCategory = $('#training_category').val();
+                var mod = $('#mod').val();
+                var trainingVenue = $('#training_venue').val();
+                var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+                var endDate = $('#end_date').val();
+
+                if (!trainingTitle) {
+                    $('#training_title').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!trainingType) {
+                    $('#training_type').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_type_error').removeClass('hidden');
+                }
+
+                if (!trainingCategory) {
+                    $('#training_category').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_category_error').removeClass('hidden');
+                }
+
+                if (!mod) {
+                    $('#mod').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#mod_error').removeClass('hidden');
+                }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
+
+                if (!endDate) {
+                    $('#end_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
+                }
+            });
+
+            $('#otherTrainingInput').on('input', function() {
+                var otherTitle = $(this).val().trim();
+
+                if (otherTitle === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#other_training_title_error').addClass('hidden');
+                }
+            });
+
+            $('#training_type').change(function() {
+                var trainingType = $(this).val();
+
+                if (trainingType !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#training_type_error').addClass('hidden');
+                }
+
+                var trainingTitle = $('#training_title').val();
+                var batch = $('#batch').val();
+                var trainingCategory = $('#training_category').val();
+                var mod = $('#mod').val();
+                var trainingVenue = $('#training_venue').val();
+
+                if (!trainingTitle) {
+                    $('#training_title').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!batch) {
+                    $('#batch').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                if (!trainingCategory) {
+                    $('#training_category').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_category_error').removeClass('hidden');
+                }
+
+                if (!mod) {
+                    $('#mod').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#mod_error').removeClass('hidden');
+                }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+            });
+
+            $('#training_category').change(function() {
+                var trainingCategory = $(this).val();
+                if (trainingCategory !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#training_category_error').addClass('hidden');
+                }
+
+                var trainingTitle = $('#training_title').val();
+                var batch = $('#batch').val();
+                var trainingType = $('#training_type').val();
+                var mod = $('#mod').val();
+
+                if (!trainingTitle) {
+                    $('#training_title').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!batch) {
+                    $('#batch').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                if (!trainingType) {
+                    $('#training_type').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_type_error').removeClass('hidden');
+                }
+
+                if (!mod) {
+                    $('#mod').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#mod_error').removeClass('hidden');
+                }
+            });
+
+            $('#mod').change(function() {
+                var mod = $(this).val();
+                if (mod !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#mod_error').addClass('hidden');
+                }
+
+                var trainingTitle = $('#training_title').val();
+                var batch = $('#batch').val();
+                var trainingType = $('#training_type').val();
+                var trainingCategory = $('#training_category').val();
+
+                if (!trainingTitle) {
+                    $('#training_title').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!batch) {
+                    $('#batch').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                if (!trainingType) {
+                    $('#training_type').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_type_error').removeClass('hidden');
+                }
+
+                if (!trainingCategory) {
+                    $('#training_category').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_category_error').removeClass('hidden');
+                }
+            });
+
+            $('#training_venue').change(function() {
+                var trainingVenue = $(this).val();
+                if (trainingVenue !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#training_venue_error').addClass('hidden');
+                }
+
+                var trainingTitle = $('#training_title').val();
+                var batch = $('#batch').val();
+                var trainingType = $('#training_type').val();
+                var trainingCategory = $('#training_category').val();
+                var mod = $('#mod').val();
+
+                if (!trainingTitle) {
+                    $('#training_title').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!batch) {
+                    $('#batch').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                if (!trainingType) {
+                    $('#training_type').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_type_error').removeClass('hidden');
+                }
+
+                if (!trainingCategory) {
+                    $('#training_category').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_category_error').removeClass('hidden');
+                }
+
+                if (!mod) {
+                    $('#mod').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#mod_error').removeClass('hidden');
+                }
+            });
+
+            $('#internationalTrainingInput').on('input', function() {
+                var internationalTraining = $(this).val().trim();
+
+                if (internationalTraining === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#international_training_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#international_training_error').addClass('hidden');
+                }
+
+            });
+
+            $('#withinPhilriceInput').change(function() {
+                var withinPhilrice = $(this).val();
+                if (withinPhilrice !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#training_venue_error').addClass('hidden');
+                }
+            });
+
+            $('#province').change(function() {
+                var province = $(this).val();
+                if (province !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#training_venue_error').addClass('hidden');
+                }
+            });
+
+            $('#municipalitySelect').change(function() {
+                var municipality = $(this).val();
+                if (municipality !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#municipality_error').addClass('hidden');
+                }
+            });
+
+            $('#start_date').on('changeDate', function() {
+                var startDate = $(this).val().trim();
+
+                if (startDate === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#start_date_error').addClass('hidden');
+                }
+            });
+
+            $('#end_date').on('changeDate', function() {
+                var endDate = $(this).val().trim();
+
+                if (endDate === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#end_date_error').addClass('hidden');
+                }
+            });
+        });
     </script>
 @endsection
