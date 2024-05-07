@@ -23,7 +23,7 @@
                 {{-- If Encoder is from CES --}}
                 @if (Auth::user()->station === '1')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">CES</span>
