@@ -41,7 +41,10 @@ class ExportRecords implements FromCollection, WithMapping, WithHeadings
             "TRAINING TITLE",
             "DATE",
             "CONDUCTING DIVISION",
+            "AVERAGE GIK",
+            "EVALUATION RATING",
             "TOTAL PARTICIPANTS",
+            
         ];
     }
 
