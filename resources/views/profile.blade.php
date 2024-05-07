@@ -66,7 +66,7 @@
                 {{-- AGUSAN --}}
                 @if (Auth::user()->station === '2')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">AGUSAN</span>
@@ -109,7 +109,7 @@
                 {{-- BATAC --}}
                 @if (Auth::user()->station === '3')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">BATAC</span>
@@ -152,7 +152,7 @@
                 {{-- BICOL --}}
                 @if (Auth::user()->station === '4')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">BICOL</span>
@@ -195,7 +195,7 @@
                 {{-- Central Mindanao University --}}
                 @if (Auth::user()->station === '5')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">CMU</span>
@@ -238,7 +238,7 @@
                 {{-- ISABELA --}}
                 @if (Auth::user()->station === '6')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">ISABELA</span>
@@ -281,7 +281,7 @@
                 {{-- LOS BAÑOS --}}
                 @if (Auth::user()->station === '7')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">LOS BAÑOS</span>
@@ -324,7 +324,7 @@
                 {{-- MIDSAYAP --}}
                 @if (Auth::user()->station === '8')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">MIDSAYAP</span>
@@ -367,7 +367,7 @@
                 {{-- NEGROS --}}
                 @if (Auth::user()->station === '9')
                     <li>
-                        <a class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
+                        <a class="exclude-from-confirm flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700"
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">NEGROS</span>
