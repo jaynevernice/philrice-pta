@@ -1486,8 +1486,8 @@
 @section('datatable')
     <script type="text/javascript">
         // const station = 1;
-        const station = {{ Auth::user()->station }};
-        const region = '03';
+        const station = parseInt({{ Auth::user()->station }});
+        // const region = '03';
         let currentPage = 1;
         let currentPageMunicipality = 1;
         const recordsPerPage = 5; // Change this number according to your preference
@@ -1700,15 +1700,15 @@
                     page: page,
                     recordsPerPage: recordsPerPage,
                     station: station,
-                    region: region,
+                    // region: region,
                 },
                 success: function(result) {
                     showTrainings(result["records"]);
                     showRegions(result["regions"]);
                     showProvinces(result["provinces"]);
-                    // showMunicipalitiesCol1(result["municipalities_col1"]);
-                    // showMunicipalitiesCol2(result["municipalities_col2"]);
-                    // showMunicipalitiesCol3(result["municipalities_col3"]);
+                    // // showMunicipalitiesCol1(result["municipalities_col1"]);
+                    // // showMunicipalitiesCol2(result["municipalities_col2"]);
+                    // // showMunicipalitiesCol3(result["municipalities_col3"]);
 
                     currentPage = page; // Update current page
 
@@ -1748,7 +1748,7 @@
                     page: page,
                     recordsPerPageMunicipality: recordsPerPageMunicipality,
                     station: station,
-                    region: region,
+                    // region: region,
                 },
                 success: function(result) {
                     showMunicipalitiesCol1(result["municipalities_col1"]);
@@ -1809,7 +1809,7 @@
                     page: page,
                     recordsPerPageMunicipality: recordsPerPageMunicipality,
                     station: station,
-                    region: region,
+                    // region: region,
                 },
                 success: function(result) {
                     showMunicipalitiesCol1(result["municipalities_col1"]);
@@ -2040,7 +2040,7 @@
                     station: station,
                     page: page,
                     recordsPerPage: recordsPerPage,
-                    region: region,
+                    // region: region,
                 },
                 success: function(result) {
                     showTrainings(result["records"]);
@@ -2417,11 +2417,12 @@
 
         function exportRecord() {
             var searchInput = $("#trainingsSearch").val();
-            var yearSelect = $("#yearSelect").val();
-            var start_MonthSelect = $("#start_MonthSelect").val();
-            var end_MonthSelect = $("#end_MonthSelect").val();
-            var trainingTitle = $("#training_title").val();
-            var formType = parseInt($("#form").val());
+            var yearSelect = $("#yearSelect").find(":selected").val();
+            var start_MonthSelect = $("#start_MonthSelect").find(":selected").val();
+            var end_MonthSelect = $("#end_MonthSelect").find(":selected").val();
+            var trainingTitle = $("#training_title").find(":selected").val();
+            var provinceSelect = $("#provinceSelect").find(":selected").val();
+            var formType = parseInt($("#form").find(":selected").val());
 
             $.ajax({
                 // url: "/encoder/export/record",
@@ -2437,6 +2438,7 @@
                     start_MonthSelect: start_MonthSelect,
                     end_MonthSelect: end_MonthSelect,
                     trainingTitle: trainingTitle,
+                    provinceSelect: provinceSelect,
                     formType: formType,
                     station: station,
                 },
@@ -2446,8 +2448,28 @@
                 },
                 success: function(result) {
                     // var fileName = 'PhilRice Central Experimental Station (' . date('Y') . ') - Summary of Trainings';
+                    var station_name = '';
+                    if(station == 1) {
+                        station_name = 'CES';
+                    } else if(station == 2) {
+                        station_name = 'Agusan';
+                    } else if(station == 3) {
+                        station_name = 'Batac';
+                    } else if(station == 4) {
+                        station_name = 'Bicol';
+                    } else if(station == 5) {
+                        station_name = 'CMU';
+                    } else if(station == 6) {
+                        station_name = 'Isabela';
+                    } else if(station == 7) {
+                        station_name = 'Los Baños';
+                    } else if(station == 8) {
+                        station_name = 'Midsayap';
+                    } else if(station == 9) {
+                        station_name = 'Negros';
+                    }
                     var fileName =
-                        "PhilRice " + station + " (" +
+                        "PhilRice " + station_name + " (" +
                         new Date().getFullYear() +
                         ") - Summary of Trainings";
 

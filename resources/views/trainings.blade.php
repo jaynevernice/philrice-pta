@@ -260,7 +260,7 @@
                         {{-- Batch Number --}}
                         <div class="col-span-1">
                             <label for="batch" class="block my-2 text-sm font-medium text-gray-900">Batch No.</label>
-                            <input wire:model.live="batch" type="number" id="batch" name="batch"
+                            <input type="number" id="batch" name="batch"
                                 value="{{ old('batch') }}" min="1" step="1"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required>

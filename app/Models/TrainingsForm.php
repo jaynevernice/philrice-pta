@@ -13,8 +13,10 @@ class TrainingsForm extends Model
     protected $fillable = [
         // Section 2
         'encoder_id',
+        'station_encoded',
         'division',
         'title',
+        'batch',
         'category',
         'type',
         'training_venue',
@@ -46,36 +48,13 @@ class TrainingsForm extends Model
         'file',
     ];
 
-    static public function exportFilteredRecords($searchInput = null, $yearSelect = null, $start_MonthSelect = null, $end_MonthSelect = null, $trainingTitle = null, $formType = null, $station = null)
+    static public function exportFilteredRecords($searchInput = null, $yearSelect = null, $start_MonthSelect = null, $end_MonthSelect = null, $trainingTitle = null, $provinceSelect = null, $formType = null, $station = null)
     {    
-        // $records = DB::table('trainings_forms')
-        //         ->select('*')
-        //         ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-        //             return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-        //         })
-        //         ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-        //             return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-        //         })
-        //         ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-        //             return $query->whereYear('end_date', '=', $yearSelect);
-        //         })
-        //         ->when(!empty($searchInput), function ($query) use ($searchInput) {
-        //             return $query->where('title', 'LIKE', "%$searchInput%")
-        //                         ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%");
-        //                         // ->orWhere('venue', 'LIKE', "%$searchInput%");
-        //                         // ->orWhere('province', 'LIKE', "%$searchInput%")
-        //                         // ->orWhere('municipality', 'LIKE', "%$searchInput%")
-        //                         // ->orWhere('country', 'LIKE', "%$searchInput%")
-        //                         // ->orWhere('state', 'LIKE', "%$searchInput%")
-        //                         // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
-        //         })
-        //         // ->orderBy('title', 'ASC')
-        //         ->latest('id')
-        //         ->get();
-        
         $records = DB::table('trainings_forms')
                 ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-                ->select('trainings_forms.*')
+                ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
                 ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
                     return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
                 })
@@ -94,20 +73,49 @@ class TrainingsForm extends Model
                         return $query->where('trainings_forms.title', '=', $trainingTitle);
                     }
                 })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                        if($station == 1) { // CES station
+                            return $query->where('trainings_forms.region', '=', '03');
+                        } elseif ($station == 2) { // Agusan station
+                            return $query->where('trainings_forms.region', '=', '10')
+                                        ->orWhere('trainings_forms.region', '=', '11') 
+                                        ->orWhere('trainings_forms.region', '=', '16'); 
+                        } elseif ($station == 3) { // Batac station
+                            return $query->where('trainings_forms.region', '=', '01');
+                        } elseif ($station == 4) { // Bicol station
+                            return $query->where('trainings_forms.region', '=', '05')
+                                        ->orWhere('trainings_forms.region', '=', '08');
+                        } elseif ($station == 5) { // CMU station
+                            return $query->where('trainings_forms.region', '=', '10')
+                                        ->orWhere('trainings_forms.region', '=', '11') 
+                                        ->orWhere('trainings_forms.region', '=', '16'); 
+                        } elseif ($station == 6) { // ISABELA station
+                            return $query->where('trainings_forms.region', '=', '02')
+                                        ->orWhere('trainings_forms.region', '=', '14');
+                        } elseif ($station == 7) { // LOS BAÑOS station
+                            return $query->where('trainings_forms.region', '=', '04')
+                                        ->orWhere('trainings_forms.region', '=', '17');
+                        } elseif ($station == 8) { // Midsayap station
+                            return $query->where('trainings_forms.region', '=', '09')
+                                        ->orWhere('trainings_forms.region', '=', '12') 
+                                        ->orWhere('trainings_forms.region', '=', '15'); 
+                        } elseif ($station == 9) { // Negros station
+                            return $query->where('trainings_forms.region', '=', '06')
+                                        ->orWhere('trainings_forms.region', '=', '07');
+                        }
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
                 ->when(!empty($searchInput), function ($query) use ($searchInput) {
-                    return $query->where('trainings_forms.division', 'LIKE', "%$searchInput%");
-                                // where('trainings_forms.title', 'LIKE', "%$searchInput%");
-                                // ->orWhere('trainings_forms.division', 'LIKE', "%$searchInput%")
-                                // ->orWhere('venue', 'LIKE', "%$searchInput%")
-                                // ->orWhere('province', 'LIKE', "%$searchInput%")
-                                // ->orWhere('municipality', 'LIKE', "%$searchInput%")
-                                // ->orWhere('country', 'LIKE', "%$searchInput%")
-                                // ->orWhere('state', 'LIKE', "%$searchInput%")
-                                // ->orWhere('num_of_participants', 'LIKE', "%$searchInput%");
+                    return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
                 })
                 // ->orderBy('title', 'ASC')
                 ->where('users.station', '=', $station)
-                ->latest('trainings_forms.id')
+                // ->latest('trainings_forms.id')
+                ->orderBy('trainings_forms.end_date', 'DESC')
                 ->get();
 
         return $records;

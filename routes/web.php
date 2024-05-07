@@ -229,7 +229,6 @@ Route::group(['middleware' => 'encoder'], function () {
             return view('encoder.ces');
         })->name('encoder.ces');
 
-
         // Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
         Route::get('/view', [TrainingsFormController::class, 'encoderView'])->name('encoder.view');
         Route::get('/add', function () { return view('encoder.add'); })->name('encoder.add');
