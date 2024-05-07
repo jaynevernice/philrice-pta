@@ -38,10 +38,10 @@ class ExportRecords implements FromCollection, WithMapping, WithHeadings
     {
         return [
             // headers in excel
-            "TITLE OF EVENT",
-            "OFFICES AND DIVISIONS",
+            "TRAINING TITLE",
             "DATE",
-            "VENUE",
+            "CONDUCTING DIVISION",
+            "TOTAL PARTICIPANTS",
         ];
     }
 

@@ -814,31 +814,6 @@
             // labels: ['Female', 'Male'],
             labels: sex_labels,
             colors: ['#CA6B54', '#3E6D81'],
-            // title: {
-            //     text: "Sex Distribution",
-            //     align: 'center',
-            //     margin: 0,
-            //     offsetX: 0,
-            //     offsetY: 0,
-            //     floating: false,
-            //     style: {
-            //         fontSize: '14px',
-            //         fontWeight: 'bold',
-            //         fontFamily: undefined,
-            //         color: '#263238'
-            //     },
-            // },
-            // responsive: [{
-            //     breakpoint: 480,
-            //     options: {
-            //         chart: {
-            //             width: 200,
-            //         },
-            //         legend: {
-            //             position: 'bottom'
-            //         }
-            //     }
-            // }]
         };
 
         var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
@@ -1085,7 +1060,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                    `<tr>
+                `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1093,12 +1068,11 @@
                 </tr>`;
             });
             $("#region-column-1").html(tableRow);
-
             var data_second_column = result.slice(6, 12);
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                    `<tr>
+                `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1106,12 +1080,11 @@
                 </tr>`;
             });
             $("#region-column-2").html(tableRow);
-
             var data_third_column = result.slice(12, 18);
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                    `<tr>
+                `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1223,7 +1196,9 @@
                 success: function(result) {
                     showRegions(result["regions"]);
                     showProvinces(result["provinces"]);
-                    // showMunicipalities(result["municipalities"]);
+                    showMunicipalitiesCol1(result["municipalities_col1"]);
+                    showMunicipalitiesCol2(result["municipalities_col2"]);
+                    showMunicipalitiesCol3(result["municipalities_col3"]);
 
                     currentPage = page; // Update current page
 
@@ -1334,19 +1309,6 @@
 
             var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
             provincesChart.render();
-
-            // MUNICIPALITY CHART //
-            var municipality_charts = @json($municipality_charts);
-
-            municipalities.series[0].data = municipality_charts.map(function(item) {
-                return {
-                    x: item.city_name,
-                    y: parseInt(item.city_count)
-                };
-            });
-
-            var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
-            municipalitiesChart.render();
         }
         // RENDER FILTERED PIE CHART //
         function renderFilteredPieChart(keys, values, chart) {
@@ -1487,7 +1449,7 @@
                     destroyChart(sectorChart);
                     destroyChart(regionsChart);
                     destroyChart(provincesChart);
-                    destroyChart(municipalitiesChart);
+                    // destroyChart(municipalitiesChart);
 
                     // call function to render filtered pie chart
                     renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result[
