@@ -961,7 +961,7 @@
                 height: 350,
                 type: 'treemap',
                 toolbar: {
-                    show: false,
+                    show: true,
                 },
             },
             title: {
@@ -1012,7 +1012,7 @@
                 height: 350,
                 type: 'treemap',
                 toolbar: {
-                    show: false,
+                    show: true,
                 },
             },
             title: {
