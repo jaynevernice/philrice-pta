@@ -629,7 +629,8 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <p id="farmers_counter_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <p id="farmers_counter_error"
+                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
                                 <span class="font-medium">Oops!</span> Invalid Input for Farmers and Seed Growers
                             </p>
                         </div>
@@ -3024,7 +3025,8 @@
             $('#evaluationInput').on('keypress', function(event) {
                 var charCode = event.which ? event.which : event.keyCode;
 
-                if (charCode < 48 || charCode > 57) {
+                // if (charCode < 48 || charCode > 57) {
+                if ((charCode < 48 || charCode > 57) && charCode !== 46) {
                     event.preventDefault();
                     $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
@@ -3050,7 +3052,7 @@
                 }
 
                 var farmersCounter = $('#num_of_farmers_and_growers').val();
-                
+
                 if (!farmersCounter) {
                     $('#num_of_farmers_and_growers').removeClass(
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
@@ -3197,16 +3199,17 @@
                 console.log("Other: " + otherParticipants);
 
                 var sciParticipants = parseInt(scientific.value);
-                console.log("Sci: " +  sciParticipants);
+                console.log("Sci: " + sciParticipants);
 
                 var extParticipants = parseInt(extension.value);
-                console.log("Ext: " +  extParticipants);
+                console.log("Ext: " + extParticipants);
 
                 var farmerParticipants = parseInt(farmers.value);
-                console.log("Farmers: " +  farmerParticipants);
+                console.log("Farmers: " + farmerParticipants);
 
                 var totalParticipants = parseInt(totalParticipantsInput.value);
-                var distributedParticipants1 = farmerParticipants + extParticipants + sciParticipants + otherParticipants;
+                var distributedParticipants1 = farmerParticipants + extParticipants + sciParticipants +
+                    otherParticipants;
 
                 const remainingParticipants1 = totalParticipants - distributedParticipants1;
                 remainingNumberLabel1.textContent = remainingParticipants1;
