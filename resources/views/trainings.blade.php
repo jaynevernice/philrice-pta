@@ -393,7 +393,8 @@
                             @endforeach
                         </select>
                         <p id="province_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
-                            <span class="font-medium">Oops!</span> Select a Province.</p>
+                            <span class="font-medium">Oops!</span> Select a Province.
+                        </p>
                     </div>
                     {{-- Municipality --}}
                     <div class="relative ml-2">
@@ -464,7 +465,7 @@
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Conduct of Training</h6>
                 </div>
-                <div id="date-error-message" class="text-red-500"></div>
+                {{-- <div id="date-error-message" class="text-red-500"></div> --}}
 
                 {{-- Name of Implementing Partner/s or Co-Organizer/s --}}
                 <div class="my-2 grid grid-cols-2 gap-x-4">
@@ -477,6 +478,10 @@
                         <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
+                        <p id="sponsor_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Name of Implementing Partner/s or Co-Organizer/s
+                            required.
+                        </p>
                     </div>
                 </div>
 
@@ -499,6 +504,9 @@
                             {{-- <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 style="display: none;"> --}}
+                            <p id="sof_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                                <span class="font-medium">Oops!</span> Select Source of Fund.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -509,6 +517,9 @@
                         Source of Fund</label>
                     <input type="text" id="otherFundInput" name="otherFundInput" value="{{ old('otherFundInput') }}"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                    <p id="other_fund_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                        <span class="font-medium">Oops!</span> Input Other Source of Fund.
+                    </p>
                 </div>
 
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
@@ -524,6 +535,9 @@
                             min="0" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="40" required />
+                        <p id="gik_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Input Average Gain in Knowledge
+                        </p>
                     </div>
 
                     {{-- Overall Training Evaluation --}}
@@ -538,6 +552,10 @@
                                     value="{{ old('evaluationInput') }}" min="1" max="5" step="0.01"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="4.8" required>
+                                <p id="evaluation_error"
+                                    class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                                    <span class="font-medium">Oops!</span> Input Overall Evaluation Rating.
+                                </p>
                             </div>
                             <div>
                                 <input disabled type="text" id="evaluationOutput" name="evaluationOutput"
@@ -567,11 +585,17 @@
                             aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="100" required />
+                        <p id="total_participants_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Input Total Number of Participants.
+                        </p>
                     </div>
                 </div>
 
                 <hr class="my-4">
-                <label class="block text-sm font-medium text-gray-900">Of the total number,</label>
+                <label class="block text-sm font-medium text-gray-900">Out of the <span class="text-red-600"
+                        id="remaining_label_1">-</span> participants,</label>
+                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number,</label> --}}
                 {{-- <label class="block text-sm font-medium text-gray-900">Of the total number ( <span
                         id="left_to_distribute_sector" class="text-red-500"></span> ) </label> --}}
 
@@ -605,6 +629,9 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
+                            <p id="farmers_counter_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                                <span class="font-medium">Oops!</span> Invalid Input for Farmers and Seed Growers
+                            </p>
                         </div>
                     </div>
 
@@ -695,7 +722,9 @@
                 </div>
 
                 <hr class="my-4">
-                <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label>
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Out of the <span
+                        class="text-red-600" id="remaining_label_2">-</span> participants,</label>
+                {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label> --}}
 
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
 
@@ -758,8 +787,10 @@
                     {{-- Total Num of Indigenous People --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Out of the <span
+                                    class="text-red-600" id="remaining_label_3">-</span> participants,</label>
+                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
+                                number,</label> --}}
                             <p class="text-sm text-gray-500 mb-2">How many are indigenous individuals?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -788,8 +819,10 @@
                     {{-- Total Num of PWD --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label>
+                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
+                                number,</label> --}}
+                            <label class="block text-sm font-medium text-gray-900">Out of the <span class="text-red-600"
+                                    id="remaining_label_4">-</span> participants,</label>
                             <p class="text-sm text-gray-500 mb-2">How many are differently abled individuals (PWD)?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -1389,6 +1422,7 @@
             let formData = {
                 // Section 2
                 "training_title": $("#training_title").val(),
+                "batch": $("#batch").val(),
                 "otherTrainingInput": $("#otherTrainingInput").val(),
                 "training_category": $("#training_category").val(),
                 "training_type": $("#training_type").val(),
@@ -1429,6 +1463,7 @@
                 var formData = JSON.parse(storedData);
                 // Section 2
                 $("#training_title").val(formData.training_title);
+                $("#batch").val(formData.batch);
                 $("#otherTrainingInput").val(formData.otherTrainingInput);
                 $("#training_category").val(formData.training_category);
                 $("#training_type").val(formData.training_type);
@@ -1459,51 +1494,177 @@
                 $("#num_of_pwd").val(formData.num_of_pwd);
 
                 // Styling
+                // Section 2
                 if (formData.training_title) {
                     $("#training_title").removeClass('border-gray-300 text-gray-900').addClass(
-                    'border-green-600 text-green-600');
+                        'border-green-600 text-green-600');
+                }
+
+                if (formData.batch) {
+                    $("#batch").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
                 }
 
                 if (formData.training_type) {
                     $("#training_type").removeClass('border-gray-300 text-gray-900').addClass(
-                    'border-green-600 text-green-600');
+                        'border-green-600 text-green-600');
                 }
-                
+
                 if (formData.training_category) {
                     $("#training_category").removeClass('border-gray-300 text-gray-900').addClass(
-                    'border-green-600 text-green-600');
+                        'border-green-600 text-green-600');
                 }
 
                 if (formData.mod) {
                     $("#mod").removeClass('border-gray-300 text-gray-900').addClass(
-                    'border-green-600 text-green-600');
+                        'border-green-600 text-green-600');
                 }
 
                 if (formData.start_date) {
                     $("#start_date").removeClass('border-gray-300 text-gray-900').addClass(
-                    'border-green-600 text-green-600');
+                        'border-green-600 text-green-600');
                 }
 
                 if (formData.end_date) {
                     $("#end_date").removeClass('border-gray-300 text-gray-900').addClass(
-                    'border-green-600 text-green-600');
+                        'border-green-600 text-green-600');
                 }
 
                 if (formData.training_title === "Other") {
                     var otherTrainingTitleDiv = document.getElementById('otherTrainingTitle');
 
                     otherTrainingTitleDiv.style.display = 'block';
-                    $("#otherTrainingInput").removeClass('border-gray-300 text-gray-900').addClass('border-green-600 text-green-600');
+                    $("#otherTrainingInput").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
                 }
 
+                var row2 = document.getElementById("row2");
+                var row2Classes = row2.classList;
+
                 if (formData.training_type === "International") {
+                    // Adjust grid columns
+                    row2Classes.remove("grid-cols-4");
+                    row2Classes.add("grid-cols-3");
+
                     var internationalTrainingDiv = document.getElementById('internationalTraining');
                     internationalTrainingDiv.style.display = 'block';
-                    $("#internationalTrainingInput").removeClass('border-gray-300 text-gray-900').addClass('border-green-600 text-green-600');
-                } 
-                // else if (formData.training_type === "Local") {
-                    
-                // }
+                    $("#internationalTrainingInput").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                } else if (formData.training_type === "Local") {
+                    // Adjust grid columns
+                    row2Classes.remove("grid-cols-3");
+                    row2Classes.add("grid-cols-4");
+
+                    if (formData.training_venue) {
+                        var trainingVenueDiv = document.getElementById('training_venue_container');
+                        trainingVenueDiv.style.display = 'block';
+                        $("#training_venue").removeClass('border-gray-300 text-gray-900').addClass(
+                            'border-green-600 text-green-600');
+
+                        if (formData.training_venue === "Within PhilRice Station") {
+                            var withinPhilriceDiv = document.getElementById('withinPhilriceInput');
+                            withinPhilriceDiv.style.display = 'block';
+
+                            if (formData.withinPhilriceInput) {
+                                $("#withinPhilriceInput").removeClass('border-gray-300 text-gray-900').addClass(
+                                    'border-green-600 text-green-600');
+                            }
+
+
+                        } else if (formData.training_venue === "Outside PhilRice Station") {
+                            var outsidePhilriceDiv = document.getElementById('outsidePhilrice');
+                            outsidePhilriceDiv.style.display = 'grid';
+
+                            outsidePhilriceDiv.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
+
+                            if (formData.province) {
+                                $("#province").removeClass('border-gray-300 text-gray-900').addClass(
+                                    'border-green-600 text-green-600');
+                            }
+
+                            if (formData.municipality) {
+                                $("#municipalitySelect").removeClass('border-gray-300 text-gray-900').addClass(
+                                    'border-green-600 text-green-600');
+                            }
+                        }
+                    }
+                }
+
+                // Section 3
+                if (formData.sponsor) {
+                    $("#sponsor").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                }
+
+                if (formData.source_of_fund) {
+                    $("#source_of_fund").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+
+                    if (formData.source_of_fund === "Other") {
+                        var otherSourceFundDiv = document.getElementById('otherSourceFund');
+                        otherSourceFundDiv.style.display = 'block';
+
+                        if (formData.otherFundInput) {
+                            $("#otherFundInput").removeClass('border-gray-300 text-gray-900').addClass(
+                                'border-green-600 text-green-600');
+                        }
+                    }
+
+                }
+
+                if (formData.average_gik) {
+                    $("#average_gik").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                }
+
+                if (formData.evaluationInput) {
+                    $("#evaluationInput").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+
+                    $("#evaluationOutput").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+
+                    var evaluationInput = formData.evaluationInput;
+                    var evaluationOutput = document.getElementById('evaluationOutput');
+                    var evaluationOutputClass = evaluationOutput.classList;
+
+                    if (evaluationInput % 1 >= 0.5) {
+                        evaluationInput = Math.ceil(evaluationInput);
+                    }
+
+                    if (evaluationInput < 1) {
+                        evaluationOutput.value = 'Minimum rate is 1';
+                        evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500",
+                            "bg-green-600");
+                        evaluationOutputClass.add("bg-gray-900");
+                    } else if (evaluationInput <= 1.5) {
+                        evaluationOutput.value = '😨 Poor';
+                        evaluationOutputClass.remove("bg-orange-500", "bg-yellow-300", "bg-lime-500", "bg-green-600");
+                        evaluationOutputClass.add("bg-red-700");
+                    } else if (evaluationInput <= 2.5) {
+                        evaluationOutput.value = '😔 Fair';
+                        evaluationOutputClass.remove("bg-red-700", "bg-yellow-300", "bg-lime-500", "bg-green-600");
+                        evaluationOutputClass.add("bg-orange-500");
+                    } else if (evaluationInput <= 3.5) {
+                        evaluationOutput.value = '😌 Good';
+                        evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-lime-500", "bg-green-600");
+                        evaluationOutputClass.add("bg-yellow-300");
+                    } else if (evaluationInput <= 4.5) {
+                        evaluationOutput.value = '😄 Very Good';
+                        evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-green-600");
+                        evaluationOutputClass.add("bg-lime-500");
+                    } else if (evaluationInput <= 5) {
+                        evaluationOutput.value = '🤩 Excellent';
+                        evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500");
+                        evaluationOutputClass.add("bg-green-600");
+                    } else {
+                        evaluationOutput.value = 'Maximum rate is 5';
+                        evaluationOutputClass.remove("bg-red-700", "bg-orange-500", "bg-yellow-300", "bg-lime-500",
+                            "bg-green-600");
+                        evaluationOutputClass.add("bg-gray-900");
+                    }
+                }
+
 
             }
 
@@ -1910,7 +2071,6 @@
     </script>
 
     {{-- Mano manong validation lets go --}}
-    {{-- Section 1 --}}
     <script>
         $(document).ready(function() {
             // Error messages. Hidden by default.
@@ -1926,6 +2086,7 @@
             $('#start_date_error').addClass('hidden');
             $('#end_date_error').addClass('hidden');
 
+            // Section 2
             $('#training_title').change(function() {
                 var trainingTitle = $(this).val();
 
@@ -1941,14 +2102,22 @@
                 //         .addClass('border-gray-300 text-gray-900');
                 // }
 
+                var otherTitle = $('#otherTrainingInput').val();
                 var batch = $('#batch').val();
                 var trainingType = $('#training_type').val();
                 var trainingCategory = $('#training_category').val();
                 var mod = $('#mod').val();
                 var trainingVenue = $('#training_venue').val();
-                var trainingVenue = $('#training_venue').val();
                 var startDate = $('#start_date').val();
                 var endDate = $('#end_date').val();
+
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
+                }
 
                 if (!batch) {
                     $('#batch').removeClass(
@@ -2026,10 +2195,10 @@
                 }
 
                 var trainingTitle = $('#training_title').val();
+                var otherTitle = $('#otherTrainingInput').val();
                 var trainingType = $('#training_type').val();
                 var trainingCategory = $('#training_category').val();
                 var mod = $('#mod').val();
-                var trainingVenue = $('#training_venue').val();
                 var trainingVenue = $('#training_venue').val();
                 var startDate = $('#start_date').val();
                 var endDate = $('#end_date').val();
@@ -2039,6 +2208,13 @@
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
                 }
 
                 if (!trainingType) {
@@ -2112,12 +2288,24 @@
                 var trainingCategory = $('#training_category').val();
                 var mod = $('#mod').val();
                 var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+                var endDate = $('#end_date').val();
+                var otherTitle = $('#otherTrainingInput').val();
+
+                var international = $('#internationalTrainingInput').val();
 
                 if (!trainingTitle) {
                     $('#training_title').removeClass(
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
                 }
 
                 if (!batch) {
@@ -2148,6 +2336,27 @@
                     $('#training_venue_error').removeClass('hidden');
                 }
 
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
+
+                if (!endDate) {
+                    $('#end_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
+                }
+
+                if (!international) {
+                    $('#internationalTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#international_training_error').removeClass('hidden');
+                }
+
             });
 
             $('#training_category').change(function() {
@@ -2159,15 +2368,26 @@
                 }
 
                 var trainingTitle = $('#training_title').val();
+                var otherTitle = $('#otherTrainingInput').val();
                 var batch = $('#batch').val();
                 var trainingType = $('#training_type').val();
                 var mod = $('#mod').val();
+                var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+                var endDate = $('#end_date').val();
 
                 if (!trainingTitle) {
                     $('#training_title').removeClass(
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
                 }
 
                 if (!batch) {
@@ -2189,6 +2409,27 @@
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#mod_error').removeClass('hidden');
+                }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
+
+                if (!endDate) {
+                    $('#end_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
                 }
             });
 
@@ -2201,15 +2442,26 @@
                 }
 
                 var trainingTitle = $('#training_title').val();
+                var otherTitle = $('#otherTrainingInput').val();
                 var batch = $('#batch').val();
                 var trainingType = $('#training_type').val();
                 var trainingCategory = $('#training_category').val();
+                var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+                var endDate = $('#end_date').val();
 
                 if (!trainingTitle) {
                     $('#training_title').removeClass(
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
                 }
 
                 if (!batch) {
@@ -2232,6 +2484,27 @@
                         .addClass('border-red-600 text-red-600');
                     $('#training_category_error').removeClass('hidden');
                 }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
+
+                if (!endDate) {
+                    $('#end_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
+                }
             });
 
             $('#training_venue').change(function() {
@@ -2243,16 +2516,31 @@
                 }
 
                 var trainingTitle = $('#training_title').val();
+                var otherTitle = $('#otherTrainingInput').val();
                 var batch = $('#batch').val();
                 var trainingType = $('#training_type').val();
                 var trainingCategory = $('#training_category').val();
                 var mod = $('#mod').val();
+                var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+                var endDate = $('#end_date').val();
+
+                var withinPhilrice = $('#withinPhilriceInput').val();
+                var province = $('#province').val();
+                var municipality = $('#municipalitySelect').val();
 
                 if (!trainingTitle) {
                     $('#training_title').removeClass(
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
                 }
 
                 if (!batch) {
@@ -2281,6 +2569,48 @@
                             'border-gray-300 text-gray-900 border-green-600 text-green-600')
                         .addClass('border-red-600 text-red-600');
                     $('#mod_error').removeClass('hidden');
+                }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
+
+                if (!endDate) {
+                    $('#end_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#end_date_error').removeClass('hidden');
+                }
+
+                if (!withinPhilrice) {
+                    $('#withinPhilriceInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#within_philrice_error').removeClass('hidden');
+                }
+
+                if (!province) {
+                    $('#province').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#province_error').removeClass('hidden');
+                }
+
+                if (!municipality) {
+                    $('#municipalitySelect').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#municipality_error').removeClass('hidden');
                 }
             });
 
@@ -2304,7 +2634,7 @@
                 if (withinPhilrice !== "") {
                     $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                         .addClass('border-green-600 text-green-600');
-                    $('#training_venue_error').addClass('hidden');
+                    $('#within_philrice_error').addClass('hidden');
                 }
             });
 
@@ -2313,7 +2643,7 @@
                 if (province !== "") {
                     $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                         .addClass('border-green-600 text-green-600');
-                    $('#training_venue_error').addClass('hidden');
+                    $('#province_error').addClass('hidden');
                 }
             });
 
@@ -2352,7 +2682,655 @@
                         .addClass('border-green-600 text-green-600');
                     $('#end_date_error').addClass('hidden');
                 }
+
+                var trainingTitle = $('#training_title').val();
+                var otherTitle = $('#otherTrainingInput').val();
+                var batch = $('#batch').val();
+                var trainingType = $('#training_type').val();
+                var trainingCategory = $('#training_category').val();
+                var mod = $('#mod').val();
+                var trainingVenue = $('#training_venue').val();
+                var startDate = $('#start_date').val();
+
+                if (!trainingTitle) {
+                    $('#training_title').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_title_error').removeClass('hidden');
+                }
+
+                if (!otherTitle) {
+                    $('#otherTrainingInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_training_title_error').removeClass('hidden');
+                }
+
+                if (!batch) {
+                    $('#batch').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#batch_error').removeClass('hidden');
+                }
+
+                if (!trainingType) {
+                    $('#training_type').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_type_error').removeClass('hidden');
+                }
+
+                if (!trainingCategory) {
+                    $('#training_category').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_category_error').removeClass('hidden');
+                }
+
+                if (!mod) {
+                    $('#mod').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#mod_error').removeClass('hidden');
+                }
+
+                if (!trainingVenue) {
+                    $('#training_venue').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#training_venue_error').removeClass('hidden');
+                }
+
+                if (!startDate) {
+                    $('#start_date').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#start_date_error').removeClass('hidden');
+                }
             });
+
+            // Section 3
+            $('#sponsor_error').addClass('hidden');
+            $('#sof_error').addClass('hidden');
+            $('#gik_error').addClass('hidden');
+            $('#evaluation_error').addClass('hidden');
+            $('#other_fund_error').addClass('hidden');
+
+            $('#sponsor').on('input', function() {
+                var sponsor = $(this).val().trim();
+
+                if (sponsor === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sponsor_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#sponsor_error').addClass('hidden');
+                }
+
+                var sof = $('#source_of_fund').val();
+                var otherFund = $('#otherFundInput').val();
+                var gik = $('#average_gik').val();
+                var evaluationInput = $('#evaluationInput').val();
+
+                if (!sof) {
+                    $('#source_of_fund').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sof_error').removeClass('hidden');
+                }
+
+                if (!otherFund) {
+                    $('#otherFundInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_fun_error').removeClass('hidden');
+                }
+
+                if (!gik) {
+                    $('#average_gik').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#gik_error').removeClass('hidden');
+                }
+
+                if (!evaluationInput) {
+                    $('#evaluationInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    $('#evaluationOutput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluation_error').removeClass('hidden');
+                }
+
+
+            });
+
+            $('#source_of_fund').change(function() {
+                var sof = $(this).val();
+                if (sof !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#sof_error').addClass('hidden');
+                }
+
+                var otherFund = $('#otherFundInput').val();
+                var sponsor = $('#sponsor').val();
+                var gik = $('#average_gik').val();
+                var evaluationInput = $('#evaluationInput').val();
+
+                if (!otherFund) {
+                    $('#otherFundInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_fund_error').removeClass('hidden');
+                }
+
+                if (!sponsor) {
+                    $('#sponsor').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sponsor_error').removeClass('hidden');
+                }
+
+                if (!gik) {
+                    $('#average_gik').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#gik_error').removeClass('hidden');
+                }
+
+                if (!evaluationInput) {
+                    $('#evaluationInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    $('#evaluationOutput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluation_error').removeClass('hidden');
+                }
+            });
+
+            $('#otherFundInput').on('input', function() {
+                var otherFund = $(this).val().trim();
+
+                if (otherFund === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_fund_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#other_fund_error').addClass('hidden');
+                }
+
+                var sponsor = $('#sponsor').val();
+                var sof = $('#source_of_fund').val();
+                var gik = $('#average_gik').val();
+                var evaluationInput = $('#evaluationInput').val();
+
+                if (!sponsor) {
+                    $('#sponsor').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sponsor_error').removeClass('hidden');
+                }
+
+                if (!sof) {
+                    $('#source_of_fund').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sof_error').removeClass('hidden');
+                }
+
+                if (!gik) {
+                    $('#average_gik').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#gik_error').removeClass('hidden');
+                }
+
+                if (!evaluationInput) {
+                    $('#evaluationInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    $('#evaluationOutput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluation_error').removeClass('hidden');
+                }
+            });
+
+            $('#average_gik').on('input', function() {
+                var gik = $(this).val().trim();
+
+                if (gik === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#gik_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#gik_error').addClass('hidden');
+                }
+
+                var sponsor = $('#sponsor').val();
+                var sof = $('#source_of_fund').val();
+                var otherFund = $('#otherFundInput').val();
+                var evaluationInput = $('#evaluationInput').val();
+
+                if (!sponsor) {
+                    $('#sponsor').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sponsor_error').removeClass('hidden');
+                }
+
+                if (!sof) {
+                    $('#source_of_fund').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sof_error').removeClass('hidden');
+                }
+
+                if (!otherFund) {
+                    $('#otherFundInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_fund_error').removeClass('hidden');
+                }
+
+                if (!evaluationInput) {
+                    $('#evaluationInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    $('#evaluationOutput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluation_error').removeClass('hidden');
+                }
+            });
+
+            $('#average_gik').on('keypress', function(event) {
+                var charCode = event.which ? event.which : event.keyCode;
+
+                if (charCode < 48 || charCode > 57) {
+                    event.preventDefault();
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#gik_error').removeClass('hidden');
+                }
+            });
+
+            $('#evaluationInput').on('input', function() {
+                var evaluationInput = $(this).val().trim();
+
+                if (evaluationInput === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluationOutput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluation_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#evaluationOutput').removeClass(
+                            'border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#evaluation_error').addClass('hidden');
+                }
+
+                var sponsor = $('#sponsor').val();
+                var sof = $('#source_of_fund').val();
+                var otherFund = $('#otherFundInput').val();
+                var gik = $('#average_gik').val();
+
+                if (!sponsor) {
+                    $('#sponsor').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sponsor_error').removeClass('hidden');
+                }
+
+                if (!sof) {
+                    $('#source_of_fund').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#sof_error').removeClass('hidden');
+                }
+
+                if (!otherFund) {
+                    $('#otherFundInput').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#other_fund_error').removeClass('hidden');
+                }
+
+                if (!gik) {
+                    $('#average_gik').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#gik_error').removeClass('hidden');
+                }
+            });
+
+            $('#evaluationInput').on('keypress', function(event) {
+                var charCode = event.which ? event.which : event.keyCode;
+
+                if (charCode < 48 || charCode > 57) {
+                    event.preventDefault();
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#evaluation_error').removeClass('hidden');
+                }
+            });
+
+            // Section 4
+            $('#total_participants_error').addClass('hidden');
+            $('#farmers_counter_error').addClass('hidden');
+
+            $('#total_participants').on('input', function() {
+                var totalParticipants = $(this).val().trim();
+
+                if (totalParticipants === '') {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#total_participants_error').removeClass('hidden');
+                } else {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#total_participants_error').addClass('hidden');
+                }
+
+                var farmersCounter = $('#num_of_farmers_and_growers').val();
+                
+                if (!farmersCounter) {
+                    $('#num_of_farmers_and_growers').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#decrement-button1').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#increment-button1').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#farmers_counter_error').removeClass('hidden');
+                }
+
+            });
+
+            $('#total_participants').on('keypress', function(event) {
+                var charCode = event.which ? event.which : event.keyCode;
+
+                if (charCode < 48 || charCode > 57) {
+                    event.preventDefault();
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#total_participants_error').removeClass('hidden');
+                }
+            });
+
+        });
+    </script>
+
+    {{-- Refactored Counter Semi-Working / Button Click Listener Polished --}}
+    {{-- <script>
+        $(document).ready(function() {
+            var totalParticipantsInput = document.getElementById('total_participants');
+            var remainingNumberLabels = {
+                'remaining_label_1': ['num_of_farmers_and_growers', 'num_of_extension_workers',
+                    'num_of_scientific', 'num_of_other'
+                ],
+                'remaining_label_2': ['num_of_male', 'num_of_female'],
+                'remaining_label_3': ['num_of_indigenous'],
+                'remaining_label_4': ['num_of_pwd']
+            };
+
+            totalParticipantsInput.addEventListener('input', function() {
+                updateRemainingParticipants();
+            });
+
+            for (var label in remainingNumberLabels) {
+                var inputFields = remainingNumberLabels[label].map(function(id) {
+                    return document.getElementById(id);
+                });
+
+                inputFields.forEach(function(inputField) {
+                    inputField.addEventListener('input', function() {
+                        updateRemainingParticipants();
+                    });
+                });
+            }
+
+            function updateRemainingParticipants() {
+                for (var label in remainingNumberLabels) {
+                    var remainingNumberLabel = document.getElementById(label);
+                    var inputFields = remainingNumberLabels[label];
+                    var totalParticipants = parseInt(totalParticipantsInput.value);
+                    var distributedParticipants = 0;
+
+                    inputFields.forEach(function(id) {
+                        distributedParticipants += parseInt(document.getElementById(id).value);
+                    });
+
+                    var remainingParticipants = totalParticipants - distributedParticipants;
+                    remainingNumberLabel.textContent = remainingParticipants;
+                }
+            }
+        });
+    </script> --}}
+
+    {{-- Complete Working Counter --}}
+    <script>
+        $(document).ready(function() {
+            var totalParticipantsInput = document.getElementById('total_participants');
+            var remainingNumberLabel1 = document.getElementById('remaining_label_1');
+            var farmers = document.getElementById('num_of_farmers_and_growers');
+            var extension = document.getElementById('num_of_extension_workers');
+            var scientific = document.getElementById('num_of_scientific');
+            var other = document.getElementById('num_of_other');
+
+            totalParticipantsInput.addEventListener('input', function() {
+                updateRemainingParticipants1();
+                updateRemainingParticipants2();
+                updateRemainingParticipants3();
+                updateRemainingParticipants4();
+            });
+
+            farmers.addEventListener('input', function() {
+                updateRemainingParticipants1();
+            });
+
+            $('#increment-button1').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button1').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            extension.addEventListener('input', function() {
+                updateRemainingParticipants1();
+            });
+
+            $('#increment-button2').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button2').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            scientific.addEventListener('input', function() {
+                updateRemainingParticipants1();
+            });
+
+            $('#increment-button3').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button3').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            other.addEventListener('input', function() {
+                updateRemainingParticipants1();
+            });
+
+            $('#increment-button4').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button4').click(function() {
+                updateRemainingParticipants1(); // Update remaining participants after incrementing
+            });
+
+            function updateRemainingParticipants1() {
+                var otherParticipants = parseInt(other.value);
+                console.log("Other: " + otherParticipants);
+
+                var sciParticipants = parseInt(scientific.value);
+                console.log("Sci: " +  sciParticipants);
+
+                var extParticipants = parseInt(extension.value);
+                console.log("Ext: " +  extParticipants);
+
+                var farmerParticipants = parseInt(farmers.value);
+                console.log("Farmers: " +  farmerParticipants);
+
+                var totalParticipants = parseInt(totalParticipantsInput.value);
+                var distributedParticipants1 = farmerParticipants + extParticipants + sciParticipants + otherParticipants;
+
+                const remainingParticipants1 = totalParticipants - distributedParticipants1;
+                remainingNumberLabel1.textContent = remainingParticipants1;
+            }
+
+            var remainingNumberLabel2 = document.getElementById('remaining_label_2');
+            var male = document.getElementById('num_of_male');
+            var female = document.getElementById('num_of_female');
+
+            male.addEventListener('input', function() {
+                updateRemainingParticipants2();
+            });
+
+            $('#increment-button5').click(function() {
+                updateRemainingParticipants2(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button5').click(function() {
+                updateRemainingParticipants2(); // Update remaining participants after incrementing
+            });
+
+            female.addEventListener('input', function() {
+                updateRemainingParticipants2();
+            });
+
+            $('#increment-button6').click(function() {
+                updateRemainingParticipants2(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button6').click(function() {
+                updateRemainingParticipants2(); // Update remaining participants after incrementing
+            });
+
+            function updateRemainingParticipants2() {
+                var femParticipants = parseInt(female.value);
+                console.log(femParticipants);
+
+                var maleParticipants = parseInt(male.value);
+                console.log(maleParticipants);
+
+                var totalParticipants = parseInt(totalParticipantsInput.value);
+                // const distributedParticipants2 = parseInt(male.value) + parseInt(female.value);
+                const distributedParticipants2 = maleParticipants + femParticipants;
+
+                const remainingParticipants2 = totalParticipants - distributedParticipants2;
+                remainingNumberLabel2.textContent = remainingParticipants2;
+            }
+
+            var remainingNumberLabel3 = document.getElementById('remaining_label_3');
+            var ip = document.getElementById('num_of_indigenous');
+
+            ip.addEventListener('input', function() {
+                updateRemainingParticipants3();
+            });
+
+            $('#increment-button7').click(function() {
+                updateRemainingParticipants3(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button7').click(function() {
+                updateRemainingParticipants3(); // Update remaining participants after incrementing
+            });
+
+            function updateRemainingParticipants3() {
+                var ipParticipants = parseInt(ip.value);
+                console.log(ipParticipants);
+                var totalParticipants = parseInt(totalParticipantsInput.value);
+                const remainingParticipants3 = totalParticipants;
+                remainingNumberLabel3.textContent = remainingParticipants3;
+            }
+
+            var remainingNumberLabel4 = document.getElementById('remaining_label_4');
+            var pwd = document.getElementById('num_of_pwd');
+            // pwd.value = 0;
+
+            pwd.addEventListener('input', function() {
+                updateRemainingParticipants4();
+            });
+
+            $('#increment-button8').click(function() {
+                updateRemainingParticipants4(); // Update remaining participants after incrementing
+            });
+
+            $('#decrement-button8').click(function() {
+                updateRemainingParticipants4(); // Update remaining participants after incrementing
+            });
+
+            function updateRemainingParticipants4() {
+                var pwdParticipants = parseInt(pwd.value);
+                console.log(pwdParticipants);
+                var totalParticipants = parseInt(totalParticipantsInput.value);
+                var remainingParticipants4 = totalParticipants;
+                remainingNumberLabel4.textContent = remainingParticipants4;
+            }
+
+            // $('#increment-button8').click(function() {
+            //     var num_of_pwd_value = parseInt(pwd.value) + 1;
+            //     pwd.value = num_of_pwd_value;
+            //     updateRemainingParticipants4(); // Update remaining participants after incrementing
+            // });
+
+            // $('#decrement-button8').click(function() {
+            //     var num_of_pwd_value = parseInt(pwd.value) - 1;
+            //     if (num_of_pwd_value >= 0) {
+            //         pwd.value = num_of_pwd_value;
+            //         updateRemainingParticipants4(); // Update remaining participants after decrementing
+            //     }
+            // });
+
+            // function updateRemainingParticipants4() {
+            //     var totalParticipants = parseInt(totalParticipantsInput.value);
+            //     var distributedParticipants4 = parseInt(pwd.value);
+
+            //     distributedParticipants4 += 1;
+
+            //     // console.log(pwd.value);
+            //     console.log(distributedParticipants4);
+
+
+            //     var remainingParticipants4 = totalParticipants - distributedParticipants4;
+            //     // remainingParticipants4 -= 1;
+            //     remainingNumberLabel4.textContent = remainingParticipants4;
+            // }
+
         });
     </script>
 @endsection

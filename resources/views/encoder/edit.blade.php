@@ -34,7 +34,7 @@
                         <ul id="dropdown-sales" class="py-2 space-y-2">
                             <li>
                                 <a href="{{ route('encoder.view') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 grou hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
@@ -91,7 +91,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -134,7 +134,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -177,7 +177,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -220,7 +220,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -263,7 +263,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg  transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -306,7 +306,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -349,7 +349,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
@@ -392,7 +392,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('encoder.edit') }}"
-                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
+                                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group bg-green-100 hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
                                 </a>
