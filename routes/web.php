@@ -225,14 +225,9 @@ Route::group(['middleware' => 'encoder'], function () {
     Route::group(['prefix' => 'encoder'], function () {
         Route::get('/overview', [TrainingsFormController::class, 'index'])->name('encoder.overview');
 
-        Route::get('/ces', function () {
-            return view('encoder.ces');
-        })->name('encoder.ces');
-
-        // Route::get('/ces_view', [TrainingsFormController::class, 'cesView'])->name('encoder.ces_view');
         Route::get('/view', [TrainingsFormController::class, 'encoderView'])->name('encoder.view');
         Route::get('/add', function () { return view('encoder.add'); })->name('encoder.add');
-        Route::get('/edit', [TrainingsFormController::class, 'cesEditView'])->name('encoder.edit');
+        Route::get('/edit', [TrainingsFormController::class, 'encoderEditView'])->name('encoder.edit');
 
         Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax'])->name('filter_data');
 
@@ -252,37 +247,17 @@ Route::group(['middleware' => 'encoder'], function () {
         // composer require maatwebsite/excel
         Route::post('/export/record', [TrainingsFormController::class, 'export'])->name('export.record');
 
-        Route::get('/agusan', function () {
-            return view('encoder.agusan');
-        })->name('encoder.agusan');
+        Route::post('/trainings/filter/station', [TrainingsFormController::class, 'filterAjaxStationOnly'])->name('filter_station');
+        Route::get('/ces', [TrainingsFormController::class, 'cesView'])->name('encoder.ces');
+        Route::get('/agusan', [TrainingsFormController::class, 'agusanView'])->name('encoder.agusan');
+        Route::get('/batac', [TrainingsFormController::class, 'batacView'])->name('encoder.batac');
+        Route::get('/bicol', [TrainingsFormController::class, 'bicolView'])->name('encoder.bicol');
+        Route::get('/cmu', [TrainingsFormController::class, 'cmuView'])->name('encoder.cmu');
+        Route::get('/isabela', [TrainingsFormController::class, 'isabelaView'])->name('encoder.isabela');
+        Route::get('/losbaños', [TrainingsFormController::class, 'losbañosView'])->name('encoder.losbaños');
+        Route::get('/midsayap', [TrainingsFormController::class, 'midsayapView'])->name('encoder.midsayap');
+        Route::get('/negros', [TrainingsFormController::class, 'negrosView'])->name('encoder.negros');
 
-        Route::get('/batac', function () {
-            return view('encoder.batac');
-        })->name('encoder.batac');
-
-        Route::get('/bicol', function () {
-            return view('encoder.bicol');
-        })->name('encoder.bicol');
-
-        Route::get('/cmu', function () {
-            return view('encoder.cmu');
-        })->name('encoder.cmu');
-
-        Route::get('/isabela', function () {
-            return view('encoder.isabela');
-        })->name('encoder.isabela');
-
-        Route::get('/losbaños', function () {
-            return view('encoder.losbaños');
-        })->name('encoder.losbaños');
-
-        Route::get('/midsayap', function () {
-            return view('encoder.midsayap');
-        })->name('encoder.midsayap');
-
-        Route::get('/negros', function () {
-            return view('encoder.negros');
-        })->name('encoder.negros');
     });
 });
 

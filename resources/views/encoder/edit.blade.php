@@ -1108,11 +1108,20 @@
 
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result['records'].length) {
-                        $('#nextButton').hide();
-                        $('#prevButton').show();
+                        $("#nextButton").hide();
+                        // $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     } else {
-                        $('#nextButton').show();
-                        $('#prevButton').show();
+                        $("#nextButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     }
                 },
                 error: function(error) {
@@ -1152,12 +1161,21 @@
                     showTrainings(result['records']);
                     currentPage = page; // Update current page
 
-                    if (recordsPerPage != result["records"].length) {
+                    if (recordsPerPage != result['records'].length) {
                         $("#nextButton").hide();
-                        $("#prevButton").show();
+                        // $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     } else {
                         $("#nextButton").show();
-                        $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     }
                 },
                 error: function(error) {

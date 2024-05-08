@@ -1202,9 +1202,12 @@
 
                     currentPage = page; // Update current page
 
-                    var total_participants = result['only_numbers'][0].total_participants;
-                    var average_gik = result['only_numbers'][0].average_gik;
-                    var evaluation = result['only_numbers'][0].evaluation;
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result[
+                        'only_numbers'][0].total_participants : '0';
+                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0]
+                        .average_gik : '0';
+                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0]
+                        .evaluation : '0';
 
                     $("#total_participants_chart").text(total_participants);
                     $("#average_gik_chart").text(average_gik + '%');

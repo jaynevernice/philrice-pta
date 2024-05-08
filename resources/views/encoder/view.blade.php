@@ -1716,17 +1716,25 @@
                     var average_gik = result['only_numbers'][0].average_gik;
                     var evaluation = result['only_numbers'][0].evaluation;
 
-                    $("#total_participants_chart").text(total_participants);
-                    $("#average_gik_chart").text(average_gik + '%');
-                    $("#evaluation_chart").text(evaluation);
+                    $("#total_participants_chart").text(total_participants || '0');
+                    $("#average_gik_chart").text((average_gik || '0') + '%');
+                    $("#evaluation_chart").text(evaluation || '0');
 
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
-                        $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     } else {
                         $("#nextButton").show();
-                        $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     }
                 },
                 error: function(error) {
@@ -2077,10 +2085,18 @@
 
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
-                        $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     } else {
                         $("#nextButton").show();
-                        $("#prevButton").show();
+                        if(currentPage == 1) {
+                            $("#prevButton").hide();
+                        } else {
+                            $("#prevButton").show();
+                        }
                     }
                 },
                 error: function(error) {
