@@ -921,37 +921,28 @@
                         <p id="photo_doc_error" class=" mt-2 text-xs text-center text-red-600 dark:text-red-400">
                             Photo Documentation of Event/Activity is <span class="font-medium">Required</span>
                         </p>
+                        <p id="photo_doc_error_more_than_10"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> You can only upload up to 10 photos
+                        </p>
+                        <p id="photo_doc_error_more_than_25mb"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> You can only upload photos up to 25MB in total size
+                        </p>
                     </div>
-
-                    {{-- <a href="{{ asset('assets/icon.jpg') }}" target="_blank">
-                        <img src="{{ asset('assets/icon.jpg') }}" alt="">
-                    </a> --}}
 
                     {{-- Photo Documentation Previews --}}
                     <div id="photoDocContainer" class="mb-6 col-span-2" style="display: none;">
                         <div id="photoDocPreviews"
                             class="my-1 p-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
                         </div>
+                        <div class="flex justify-end">
+                            <button id="clearPhotoDocs" type="button"
+                                class="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:bg-red-600">Clear
+                                All Photos
+                            </button>
+                        </div>
                     </div>
-
-
-                    {{-- Uploaded Image Preview --}}
-                    {{-- <div class="mb-6 col-span-2">
-                        <div id="photoContainer"
-                            class="my-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
-                            <label class="block my-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="preview">Preview: </label>
-                        </div>
-                    </div> --}}
-                    {{-- <div class="mb-6 col-span-2">
-                        <div id="photoContainer"
-                            class="my-2 p-2 grid grid-cols-5 max-w-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
-                            <label class="block my-2 ml-4 text-sm font-medium text-gray-700 dark:text-white"
-                                for="preview">Preview:</label>
-                            <img class="col-span-5 md:col-span-3 h-auto w-full" src="https://via.placeholder.com/300x200"
-                                alt="Preview Image">
-                        </div>
-                    </div> --}}
 
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="other_doc">Other
@@ -967,11 +958,25 @@
                         <p id="other_doc_error" class=" mt-2 text-xs text-center text-green-600 dark:text-green-400">
                             Other Documentation of Event/Activity is <span class="font-medium">Optional</span>
                         </p>
+                        <p id="other_doc_error_more_than_10"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> You can only upload up to 10 files
+                        </p>
+                        <p id="other_doc_error_more_than_25mb"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
+                                class="font-medium">Oops!</span> You can only upload files up to 25MB in total size
+                        </p>
                     </div>
 
                     <div id="otherDocContainer" class="mb-6 col-span-2" style="display: none;">
                         <div id="otherDocPreviews"
                             class="my-1 p-2 grid grid-cols-4 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
+                        </div>
+                        <div class="flex justify-end">
+                            <button id="clearOtherDocs" type="button"
+                                class="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:bg-red-600">Clear
+                                All Files
+                            </button>
                         </div>
                     </div>
 
@@ -1002,11 +1007,29 @@
 @section('scripts')
     {{-- Photo Documentation Previews --}}
     <script>
+        // Function to clear all images
+        function clearImages() {
+            var photoDocContainer = document.getElementById("photoDocPreviews");
+            photoDocContainer.innerHTML = "";
+            var container = document.getElementById('photoDocContainer');
+            container.style.display = 'none';
+            document.getElementById("photo_doc_event").value = "";
+        }
+
         // Function to display images
         function displayImages() {
             var photoDocContainer = document.getElementById("photoDocPreviews");
             var existingImages = photoDocContainer.querySelectorAll("img");
             var files = document.getElementById("photo_doc_event").files;
+            photoDocContainer.innerHTML = ""; // Clears previous upload
+
+            // Check if the number of uploaded images exceeds 10
+            if (files.length > 10) {
+                document.getElementById("photo_doc_error_more_than_10").classList.remove("hidden");
+                return; // Exit the function if more than 10 images are uploaded
+            } else {
+                document.getElementById("photo_doc_error_more_than_10").classList.add("hidden");
+            }
 
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -1039,31 +1062,72 @@
         }
 
         document.getElementById("photo_doc_event").addEventListener("change", displayImages);
+        document.getElementById("clearPhotoDocs").addEventListener("click", clearImages);
     </script>
 
+    {{-- Other Documentation Previews --}}
     <script>
-        // JavaScript code to handle file input change event
         document.getElementById('other_doc').addEventListener('change', function() {
             const files = this.files;
+            const maxSize = 25 * 1024 * 1024; // Define the maximum file size in bytes (25MB)
             const previewContainer = document.getElementById('otherDocPreviews');
-            // previewContainer.innerHTML = ''; // Clear previous previews
+            previewContainer.innerHTML = ""; // Clears previous upload
 
-            // Loop through each file and display file name with Tailwind CSS classes
+            // Function to clear all files
+            function clearFiles() {
+                previewContainer.innerHTML = "";
+                var container = document.getElementById('otherDocContainer');
+                container.style.display = 'none';
+                document.getElementById("other_doc").value = "";
+            }
+
+            // Loop through each file and display file name and size with Tailwind CSS classes
             for (const file of files) {
                 const fileNameElement = document.createElement('p');
+                const fileSizeFormatted = formatFileSize(file.size);
+                const fileSizeElement = document.createElement('span');
+                fileSizeElement.textContent = ` (${fileSizeFormatted})`;
+                fileSizeElement.classList.add('text-blue-600'); // Add the blue text color class
                 fileNameElement.textContent = file.name;
-                fileNameElement.classList.add('text-sm', 'bg-gray-300', 'rounded-lg', 'py-1', 'px-2', 'mb-2', 'overflow-hidden', 'text-wrap');
+                fileNameElement.appendChild(fileSizeElement); // Append size element to file name element
+                fileNameElement.classList.add('text-sm', 'bg-gray-300', 'rounded-lg', 'py-1', 'px-2', 'mb-2',
+                    'overflow-hidden', 'text-wrap');
+
+                // Check if the file size exceeds the maximum limit
+                if (file.size > maxSize) {
+                    // Add error styling and show error message
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600').addClass(
+                        'border-red-600 text-red-600');
+                    $('#other_doc_error_more_than_25mb').removeClass('hidden');
+                    return; // Exit the function
+                } else {
+                    // Hide error message if the file size is within the limit
+                    $('#other_doc_error_more_than_25mb').addClass('hidden');
+                }
+
                 previewContainer.appendChild(fileNameElement);
             }
 
             // Show the container if there are uploaded files
             if (files.length > 0) {
                 document.getElementById('otherDocContainer').style.display = 'block';
+                document.getElementById("clearOtherDocs").addEventListener("click", clearFiles);
             } else {
                 document.getElementById('otherDocContainer').style.display = 'none';
             }
         });
+
+        // Function to format file size in a human-readable format
+        function formatFileSize(size) {
+            if (size === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(size) / Math.log(k));
+            return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
     </script>
+
+
 
     {{-- Toggle for Optional Inputs --}}
     <script>
@@ -3092,35 +3156,95 @@
 
             // Section 5
             $('#photo_doc_event').change(function() {
-                var photos = this.files[0];
-                var photoType = photos.type;
+                var photos = this.files;
+                var totalSize = 0; // Variable to store the total size of uploaded photos
+                var photoType;
+                var maxPhotos = 10; // Define the maximum number of allowed photos
+                var maxSize = 25 * 1024 * 1024; // Define the maximum total size in bytes (25MB)
 
-                if (photos) {
+                // Calculate the total size of uploaded photos
+                for (var i = 0; i < photos.length; i++) {
+                    totalSize += photos[i].size;
+                }
+
+                // Check if the total size exceeds the maximum limit
+                if (totalSize > maxSize) {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    // Display error message
+                    $('#photo_doc_error').addClass('hidden');
+                    $('#photo_doc_error_more_than_10').addClass('hidden');
+                    $('#photo_doc_error_more_than_25mb').removeClass('hidden');
+                    return; // Exit the function
+                } else {
+                    // Hide error message if the total size is within the limit
+                    $('#photo_doc_error').addClass('hidden');
+                    $('#photo_doc_error_more_than_25mb').addClass('hidden');
+                    $('#photo_doc_error_more_than_10').addClass('hidden');
+                }
+
+                // Check if the number of uploaded photos exceeds the maximum limit
+                if (photos.length > maxPhotos) {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    // Display error message
+                    $('#photo_doc_error').addClass('hidden');
+                    $('#photo_doc_error_more_than_25mb').addClass('hidden');
+                    $('#photo_doc_error_more_than_10').removeClass('hidden');
+                    return; // Exit the function
+                } else {
+                    // Hide error message if the number of uploaded photos is within the limit
+                    $('#photo_doc_error').addClass('hidden');
+                    $('#photo_doc_error_more_than_25mb').addClass('hidden');
+                    $('#photo_doc_error_more_than_10').addClass('hidden');
+                }
+
+                // Loop through each uploaded photo
+                for (var i = 0; i < photos.length; i++) {
+                    var photo = photos[i];
+                    photoType = photo.type;
+
                     // Check if the file type indicates it's an image
                     if (photoType.startsWith('image/')) {
                         $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                             .addClass('border-green-600 text-green-600');
                         $('#photo_doc_error').addClass('hidden');
                     } else {
-                        // If the selected file is not an image, you may want to handle this case differently
-                        // For example, displaying an error message
-                        console.log('Please select an image file.');
+                        $('#photo_doc_error').addClass('hidden');
+                        $('#photo_doc_error_more_than_25mb').addClass('hidden');
+                        $('#photo_doc_error_more_than_10').addClass('hidden');
                     }
                 }
             });
 
             $('#other_doc').change(function() {
-                var otherDoc = this.files[0];
+                var files = this.files;
+                var maxSize = 25 * 1024 * 1024;
+                var totalSize = 0;
 
-                if (otherDoc) {
+                for (var i = 0; i < files.length; i++) {
+                    totalSize += files[i].size;
+                }
+
+                if (totalSize > maxSize) {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+
+                    $('#other_doc_error').addClass('hidden');
+                    $('#other_doc_error_more_than_25mb').removeClass('hidden');
+                } else {
                     $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                         .addClass('border-green-600 text-green-600');
+
                     $('#other_doc_error').addClass('hidden');
+                    $('#other_doc_error_more_than_25mb').addClass('hidden');
                 }
             });
-
         });
     </script>
+
     {{-- Complete Working Section 4 Counter Validation --}}
     <script>
         $(document).ready(function() {
@@ -3143,11 +3267,11 @@
             });
 
             $('#increment-button1').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             $('#decrement-button1').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             extension.addEventListener('input', function() {
@@ -3155,11 +3279,11 @@
             });
 
             $('#increment-button2').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             $('#decrement-button2').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             scientific.addEventListener('input', function() {
@@ -3167,11 +3291,11 @@
             });
 
             $('#increment-button3').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             $('#decrement-button3').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             other.addEventListener('input', function() {
@@ -3179,11 +3303,11 @@
             });
 
             $('#increment-button4').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             $('#decrement-button4').click(function() {
-                updateRemainingParticipants1(); // Update remaining participants after incrementing
+                updateRemainingParticipants1();
             });
 
             function updateRemainingParticipants1() {
@@ -3216,11 +3340,11 @@
             });
 
             $('#increment-button5').click(function() {
-                updateRemainingParticipants2(); // Update remaining participants after incrementing
+                updateRemainingParticipants2();
             });
 
             $('#decrement-button5').click(function() {
-                updateRemainingParticipants2(); // Update remaining participants after incrementing
+                updateRemainingParticipants2();
             });
 
             female.addEventListener('input', function() {
@@ -3228,11 +3352,11 @@
             });
 
             $('#increment-button6').click(function() {
-                updateRemainingParticipants2(); // Update remaining participants after incrementing
+                updateRemainingParticipants2();
             });
 
             $('#decrement-button6').click(function() {
-                updateRemainingParticipants2(); // Update remaining participants after incrementing
+                updateRemainingParticipants2();
             });
 
             function updateRemainingParticipants2() {
@@ -3243,7 +3367,6 @@
                 console.log(maleParticipants);
 
                 var totalParticipants = parseInt(totalParticipantsInput.value);
-                // const distributedParticipants2 = parseInt(male.value) + parseInt(female.value);
                 const distributedParticipants2 = maleParticipants + femParticipants;
 
                 const remainingParticipants2 = totalParticipants - distributedParticipants2;
@@ -3258,11 +3381,11 @@
             });
 
             $('#increment-button7').click(function() {
-                updateRemainingParticipants3(); // Update remaining participants after incrementing
+                updateRemainingParticipants3();
             });
 
             $('#decrement-button7').click(function() {
-                updateRemainingParticipants3(); // Update remaining participants after incrementing
+                updateRemainingParticipants3();
             });
 
             function updateRemainingParticipants3() {
@@ -3275,18 +3398,17 @@
 
             var remainingNumberLabel4 = document.getElementById('remaining_label_4');
             var pwd = document.getElementById('num_of_pwd');
-            // pwd.value = 0;
 
             pwd.addEventListener('input', function() {
                 updateRemainingParticipants4();
             });
 
             $('#increment-button8').click(function() {
-                updateRemainingParticipants4(); // Update remaining participants after incrementing
+                updateRemainingParticipants4();
             });
 
             $('#decrement-button8').click(function() {
-                updateRemainingParticipants4(); // Update remaining participants after incrementing
+                updateRemainingParticipants4();
             });
 
             function updateRemainingParticipants4() {
@@ -3296,36 +3418,6 @@
                 var remainingParticipants4 = totalParticipants;
                 remainingNumberLabel4.textContent = remainingParticipants4;
             }
-
-            // $('#increment-button8').click(function() {
-            //     var num_of_pwd_value = parseInt(pwd.value) + 1;
-            //     pwd.value = num_of_pwd_value;
-            //     updateRemainingParticipants4(); // Update remaining participants after incrementing
-            // });
-
-            // $('#decrement-button8').click(function() {
-            //     var num_of_pwd_value = parseInt(pwd.value) - 1;
-            //     if (num_of_pwd_value >= 0) {
-            //         pwd.value = num_of_pwd_value;
-            //         updateRemainingParticipants4(); // Update remaining participants after decrementing
-            //     }
-            // });
-
-            // function updateRemainingParticipants4() {
-            //     var totalParticipants = parseInt(totalParticipantsInput.value);
-            //     var distributedParticipants4 = parseInt(pwd.value);
-
-            //     distributedParticipants4 += 1;
-
-            //     // console.log(pwd.value);
-            //     console.log(distributedParticipants4);
-
-
-            //     var remainingParticipants4 = totalParticipants - distributedParticipants4;
-            //     // remainingParticipants4 -= 1;
-            //     remainingNumberLabel4.textContent = remainingParticipants4;
-            // }
-
         });
     </script>
 @endsection
