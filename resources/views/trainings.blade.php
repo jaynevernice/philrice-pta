@@ -524,7 +524,7 @@
 
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     {{-- Average GIK --}}
-                    <div>
+                    <div class="grid grid-rows-2">
                         <label for="average_gik"
                             class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Average Gain in Knowledge
                             (GIK)</label>
@@ -541,7 +541,7 @@
                     </div>
 
                     {{-- Overall Training Evaluation --}}
-                    <div>
+                    <div class="grid grid-rows-2">
                         <label for="evaluation" class="block my-2 text-sm font-medium text-gray-900">Overall Training
                             Evaluation Rating</label>
                         <p class="text-sm text-gray-500 mb-2">Write numerical score(average) and its corresponding
@@ -564,7 +564,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -593,8 +592,12 @@
                 </div>
 
                 <hr class="my-4">
-                <label class="block text-sm font-medium text-gray-900">Out of the <span class="text-red-600"
-                        id="remaining_label_1">-</span> participants,</label>
+                <label class="block text-sm font-medium text-gray-900">Remaining Participants to Distribute: <span
+                        class="text-red-600" id="remaining_label_1">-</span></label>
+                {{-- <label class="block text-sm font-medium text-gray-900">Participants Remaining: <span class="text-red-600"
+                        id="remaining_label_1">-</span></label> --}}
+                {{-- <label class="block text-sm font-medium text-gray-900">Out of the <span class="text-red-600"
+                        id="remaining_label_1">-</span> participants,</label> --}}
                 {{-- <label class="block text-sm font-medium text-gray-900">Of the total number,</label> --}}
                 {{-- <label class="block text-sm font-medium text-gray-900">Of the total number ( <span
                         id="left_to_distribute_sector" class="text-red-500"></span> ) </label> --}}
@@ -629,11 +632,11 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-12 focus:ring-gray-100 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <p id="farmers_counter_error"
-                                class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
-                                <span class="font-medium">Oops!</span> Invalid Input for Farmers and Seed Growers
-                            </p>
                         </div>
+                        <p id="farmers_counter_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Input Total Number of Farmers and Seed Growers
+                        </p>
                     </div>
 
                     {{-- Total Num of Extension Workers  --}}
@@ -663,6 +666,11 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
+                        <p id="ext_counter_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Input Total Number of Extension Workers and
+                            Intermediaries
+                        </p>
                     </div>
 
                     {{-- Total Num of Scientific Community --}}
@@ -692,6 +700,10 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
+                        <p id="sci_counter_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Input Total Number of Scientific Community Members
+                        </p>
                     </div>
 
                     {{-- Total Num of Other Participants --}}
@@ -719,12 +731,24 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
+                        <p id="other_counter_error"
+                            class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops!</span> Input Total Number of Other Sector
+                        </p>
                     </div>
                 </div>
 
+                <p id="group_1_error"
+                    class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400">
+                    <span class="font-medium">Oops!</span> Please ensure that your distribution of sectors equals to the
+                    total number of participants
+                </p>
+
                 <hr class="my-4">
-                <label class="block text-sm font-medium text-gray-900 dark:text-white">Out of the <span
-                        class="text-red-600" id="remaining_label_2">-</span> participants,</label>
+                <label class="block text-sm font-medium text-gray-900 dark:text-white">Remaining Participants to
+                    Distribute: <span class="text-red-600" id="remaining_label_2">-</span></label>
+                {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Out of the <span
+                        class="text-red-600" id="remaining_label_2">-</span> participants,</label> --}}
                 {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label> --}}
 
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
@@ -782,6 +806,12 @@
                     </div>
                 </div>
 
+                <p id="group_2_error"
+                    class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400">
+                    <span class="font-medium">Oops!</span> Please ensure that your distribution of sexes equals to the
+                    total number of participants
+                </p>
+
                 <hr class="my-4">
 
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
@@ -815,6 +845,16 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
+                        <p id="ip_info"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-green-600 dark:text-green-400">
+                            <span class="font-medium">Note: </span> You may leave this field as 0 if there were no
+                            Indigenous People (IP)
+                        </p>
+                        <p id="ip_info_exceed"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops! </span> It appears your input exceeds the total number of
+                            participants.
+                        </p>
                     </div>
 
                     {{-- Total Num of PWD --}}
@@ -845,6 +885,16 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
+                        <p id="pwd_info"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-green-600 dark:text-green-400">
+                            <span class="font-medium">Note: </span> You may leave this field as 0 if there were no People
+                            with Disability (PWD)
+                        </p>
+                        <p id="pwd_info_exceed"
+                            class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400">
+                            <span class="font-medium">Oops! </span> It appears your input exceeds the total number of
+                            participants.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -855,11 +905,6 @@
                     <h6 class="text-lg font-bold dark:text-white">Documentation</h6>
                 </div>
 
-                {{-- Preview of Uploaded Images --}}
-                {{-- <div id="photoContainer"
-                    class="my-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
-                </div> --}}
-
                 <div class="my-2 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
                     <div class="mb-6 col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -869,10 +914,26 @@
                             Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
                         <input required id="photo_doc_event" name="photo_doc_event[]"
                             accept="image/png, image/gif, image/jpeg"
-                            class="flex w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="flex w-full text-sm text-red-600 border border-red-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
-                        <div id="errorImage" style="color: red; display: none;"></div>
+                        {{--  onchange="displayPhotoDocPreviews(this)" --}}
+                        {{-- <div id="errorImage" style="color: red; display: none;"></div> --}}
+                        <p id="photo_doc_error" class=" mt-2 text-xs text-center text-red-600 dark:text-red-400">
+                            Photo Documentation of Event/Activity is <span class="font-medium">Required</span>
+                        </p>
                     </div>
+
+                    {{-- <a href="{{ asset('assets/icon.jpg') }}" target="_blank">
+                        <img src="{{ asset('assets/icon.jpg') }}" alt="">
+                    </a> --}}
+
+                    {{-- Photo Documentation Previews --}}
+                    <div id="photoDocContainer" class="mb-6 col-span-2" style="display: none;">
+                        <div id="photoDocPreviews"
+                            class="my-1 p-2 grid grid-cols-5 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
+                        </div>
+                    </div>
+
 
                     {{-- Uploaded Image Preview --}}
                     {{-- <div class="mb-6 col-span-2">
@@ -899,13 +960,19 @@
                             attendance/registration sheet, copy of event program, short video or audio clip, and other
                             relevant documents, spreadsheet, or PDF file.</p>
                         <input id="other_doc" name="other_doc[]"
-                            class="flex w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="flex w-full text-sm text-green-600 border border-green-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
-                        {{-- <input id="other_doc" name="other_doc[]"
-                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            type="file" multiple> --}}
 
-                        <div id="errorFile" style="color: red; display: none;"></div>
+                        {{-- <div id="errorFile" style="color: red; display: none;"></div> --}}
+                        <p id="other_doc_error" class=" mt-2 text-xs text-center text-green-600 dark:text-green-400">
+                            Other Documentation of Event/Activity is <span class="font-medium">Optional</span>
+                        </p>
+                    </div>
+
+                    <div id="otherDocContainer" class="mb-6 col-span-2" style="display: none;">
+                        <div id="otherDocPreviews"
+                            class="my-1 p-2 grid grid-cols-4 max-[760px]:grid-cols-1 gap-4 bg-gray-200 rounded-lg drop-shadow-lg">
+                        </div>
                     </div>
 
                 </div>
@@ -933,48 +1000,12 @@
 @endsection
 
 @section('scripts')
-    <!-- Turn all file input elements into ponds -->
-    {{-- <script>
-        FilePond.parse(document.body);
-    </script> --}}
-
-    {{-- <script>
-        // Register the plugins 
-        FilePond.registerPlugin(FilePondPluginImagePreview);
-        FilePond.registerPlugin(FilePondPluginFileValidateType);
-        FilePond.registerPlugin(FilePondPluginFileValidateSize);
-
-        // Wait for the DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize FilePond
-            FilePond.create(document.getElementById('other_doc'), {
-                allowMultiple: true, // Allow multiple files to be uploaded
-                allowFileTypeValidation: true, // Enable file type validation
-                allowFileSizeValidation: true, // Enable file size validation
-                maxFileSize: '25MB', // Maximum file size allowed
-                acceptedFileTypes: ['image/*', 'video/*', 'audio/*',
-                'application/pdf'], // Accepted file types
-                labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
-                // Configure other FilePond options as needed
-            });
-
-            FilePond.create(document.getElementById('photo_doc_event'), {
-                allowMultiple: true, // Allow multiple files to be uploaded
-                allowFileTypeValidation: true, // Enable file type validation
-                allowFileSizeValidation: true, // Enable file size validation
-                maxFileSize: '25MB', // Maximum file size allowed
-                acceptedFileTypes: ['image/*'], // Accepted file types
-                labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
-                // Configure other FilePond options as needed
-            });
-        });
-    </script> --}}
-
-    {{-- <script>
+    {{-- Photo Documentation Previews --}}
+    <script>
         // Function to display images
         function displayImages() {
-            var photoContainer = document.getElementById("photoContainer");
-            var existingImages = photoContainer.querySelectorAll("img");
+            var photoDocContainer = document.getElementById("photoDocPreviews");
+            var existingImages = photoDocContainer.querySelectorAll("img");
             var files = document.getElementById("photo_doc_event").files;
 
             for (var i = 0; i < files.length; i++) {
@@ -986,84 +1017,13 @@
                     displayImage(file);
                 }
             }
-
-            const lightbox = GLightbox({
-                selector: '.glightbox',
-                loop: true,
-                touchNavigation: true,
-                closeOnOutsideClick: true,
-                slideEffect: 'zoom',
-                zoomable: true,
-                // Add an event listener for the opening event
-                // onOpen: function() {
-                //     // Apply styles to images inside the glightbox
-                //     var images = document.querySelectorAll('.glightbox-open img');
-                //     images.forEach(function(img) {
-                //         img.style.width = '100vw';
-                //         img.style.height = '100vh';
-                //     });
-                // }
-
-            });
-
-            // Wait for the document to be fully loaded
-            // document.addEventListener("DOMContentLoaded", function() {
-            //     // Add event listener for 'open' event on lightbox
-            //     lightbox.on('open', () => {
-            //         // Get the image element
-            //         const image = document.querySelector(
-            //             '.glightbox-open .gcontainer .gslider .gslide.loaded.current .gslide-inner-content .ginner-container .gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready #document body img'
-            //             );
-
-            //         // Check if the image exists
-            //         if (image) {
-            //             // Set the height of the image to 100vh
-            //             image.style.height = '100vh';
-            //         }
-            //     });
-            // });
-
-
-            // Wait for the document to be fully loaded
-            // document.addEventListener("DOMContentLoaded", function() {
-            //     // Add event listener for 'open' event on lightbox
-            //     lightbox.on('open', () => {
-            //         // Do something
-            //         const image = document.querySelector('.glightbox-open .glightbox-container .goverlay .gcontainer');
-            //         if (image) {
-            //             // Set the height of the image to 100vh
-            //             image.style.height = '100vh !important';
-            //         }
-            //     });
-            // });
-
-
-            // lightbox.on('open', (instance) => {
-            //     // Do something
-            //     const image = instance.elements.content.querySelector('img');
-            //     if (image) {
-            //         // Set the height of the image to 100vh
-            //         image.style.height = '100vh';
-            //     }
-            // });
-
-            // lightbox.on('open', () => {
-            //     // Do something
-            //     const image = instance.elements.content.querySelector('img');
-            //     if (image) {
-            //         // Set the height of the image to 100vh
-            //         image.style.height = '100vh';
-            //     }
-            // });
-
         }
 
         // Function to display a single image
         function displayImage(file) {
             var a = document.createElement("a");
             a.href = URL.createObjectURL(file);
-            a.className = "glightbox mb-2";
-            a.setAttribute("data-sizes", "(max-width: 600px) 480px, 800px");
+            a.setAttribute("target", "_blank");
 
             var img = document.createElement("img");
             img.src = URL.createObjectURL(file);
@@ -1071,202 +1031,39 @@
 
             a.appendChild(img);
 
-            var photoContainer = document.getElementById("photoContainer");
-            photoContainer.appendChild(a);
+            var photoDocContainer = document.getElementById("photoDocPreviews");
+            photoDocContainer.appendChild(a);
+
+            var container = document.getElementById('photoDocContainer');
+            container.style.display = 'block';
         }
 
         document.getElementById("photo_doc_event").addEventListener("change", displayImages);
-    </script> --}}
+    </script>
 
-    {{-- <script>
-        // Function to display uploaded images in the photoContainer using glightbox
-        function displayImages() {
-            // Get the photoContainer
-            var photoContainer = document.getElementById("photoContainer");
+    <script>
+        // JavaScript code to handle file input change event
+        document.getElementById('other_doc').addEventListener('change', function() {
+            const files = this.files;
+            const previewContainer = document.getElementById('otherDocPreviews');
+            // previewContainer.innerHTML = ''; // Clear previous previews
 
-            // Get the existing images in the photoContainer
-            var existingImages = photoContainer.querySelectorAll("img");
-
-            // Get the uploaded files
-            var files = document.getElementById("photo_doc_event").files;
-
-            // Loop through each uploaded file
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                // Check if the file is already displayed
-                var alreadyDisplayed = Array.from(existingImages).some(function(img) {
-                    return img.alt === file.name;
-                });
-                if (!alreadyDisplayed) {
-                    displayImage(file); // Display the newly uploaded image
-                }
+            // Loop through each file and display file name with Tailwind CSS classes
+            for (const file of files) {
+                const fileNameElement = document.createElement('p');
+                fileNameElement.textContent = file.name;
+                fileNameElement.classList.add('text-sm', 'bg-gray-300', 'rounded-lg', 'py-1', 'px-2', 'mb-2', 'overflow-hidden', 'text-wrap');
+                previewContainer.appendChild(fileNameElement);
             }
 
-            // Initialize glightbox
-            const lightbox = GLightbox({
-                selector: '.glightbox',
-                loop: true,
-                touchNavigation: true,
-                closeOnOutsideClick: true, // Close the lightbox when clicking outside the image
-                slideEffect: 'zoom',
-                zoomable: true
-            });
-        }
-
-        // Function to display a single image
-        function displayImage(file) {
-            // Create a new <a> element
-            var a = document.createElement("a");
-            a.href = URL.createObjectURL(file);
-            a.className = "glightbox mb-2";
-            // a.setAttribute("glightbox", "title: " + file.name);
-            a.setAttribute("data-sizes", "(max-width: 600px) 480px, 800px");
-
-
-            // Create an <img> element
-            var img = document.createElement("img");
-            img.src = URL.createObjectURL(file);
-            img.alt = file.name;
-            
-            // Set max-width and max-height for the image
-            // img.style.maxWidth = "100";
-            // img.style.maxHeight = "200px"; // Adjust this value as needed
-
-            // Append the <img> element to the <a> element
-            a.appendChild(img);
-
-            // Get the photoContainer
-            var photoContainer = document.getElementById("photoContainer");
-
-            // Append the <a> element to the photoContainer
-            photoContainer.appendChild(a);
-        }
-
-        // Call the function when files are selected
-        document.getElementById("photo_doc_event").addEventListener("change", displayImages);
-    </script> --}}
-
-
-    {{-- <script>
-
-        // Function to display uploaded images in the photoContainer using glightbox
-        function displayImages() {
-            // Get the photoContainer
-            var photoContainer = document.getElementById("photoContainer");
-
-            // Get the existing images in the photoContainer
-            var existingImages = photoContainer.querySelectorAll("img");
-
-            // Get the uploaded files
-            var files = document.getElementById("photo_doc_event").files;
-
-            // Loop through each uploaded file
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                // Check if the file is already displayed
-                var alreadyDisplayed = Array.from(existingImages).some(function(img) {
-                    return img.alt === file.name;
-                });
-                if (!alreadyDisplayed) {
-                    displayImage(file); // Display the newly uploaded image
-                }
+            // Show the container if there are uploaded files
+            if (files.length > 0) {
+                document.getElementById('otherDocContainer').style.display = 'block';
+            } else {
+                document.getElementById('otherDocContainer').style.display = 'none';
             }
-
-            // Initialize glightbox
-            const lightbox = GLightbox({
-                selector: '.glightbox',
-                loop: true,
-                touchNavigation: true,
-                closeOnOutsideClick: true, // Close the lightbox when clicking outside the image
-                slideEffect: 'zoom',
-                zoomable: true
-            });
-        }
-
-        // Function to display a single image
-        function displayImage(file) {
-            // Create a new <a> element
-            var a = document.createElement("a");
-            a.href = URL.createObjectURL(file);
-            a.className = "glightbox mb-2";
-            // a.setAttribute("glightbox", "title: " + file.name);
-            a.setAttribute("data-sizes", "(max-width: 600px) 480px, 800px");
-
-
-            // Create an <img> element
-            var img = document.createElement("img");
-            img.src = URL.createObjectURL(file);
-            img.alt = file.name;
-            // img.className = "object-fit";
-            // Append the <img> element to the <a> element
-            a.appendChild(img);
-
-            // Get the photoContainer
-            var photoContainer = document.getElementById("photoContainer");
-
-            // Append the <a> element to the photoContainer
-            photoContainer.appendChild(a);
-        }
-
-        // Call the function when files are selected
-        document.getElementById("photo_doc_event").addEventListener("change", displayImages);
-    </script> --}}
-
-    {{-- <script>
-        // Function to update the amount left to distribute in each category
-        function updateDistribution() {
-            // Get the total number of participants
-            var totalParticipants = parseInt(document.getElementById('total_participants').value);
-
-            // Get the number of participants in each category
-            var farmersAndGrowers = parseInt(document.getElementById('num_of_farmers_and_growers').value);
-            var extensionWorkers = parseInt(document.getElementById('num_of_extension_workers').value);
-            var scientificCommunity = parseInt(document.getElementById('num_of_scientific').value);
-            var otherParticipants = parseInt(document.getElementById('num_of_other').value);
-            var maleParticipants = parseInt(document.getElementById('num_of_male').value);
-            var femaleParticipants = parseInt(document.getElementById('num_of_female').value);
-            var indigenousParticipants = parseInt(document.getElementById('num_of_indigenous').value);
-            var pwdParticipants = parseInt(document.getElementById('num_of_pwd').value);
-
-            // Calculate the amount left to distribute
-            var leftToDistributeSector = totalParticipants - (farmersAndGrowers + extensionWorkers + scientificCommunity +
-                otherParticipants);
-
-            // + maleParticipants + femaleParticipants + indigenousParticipants + pwdParticipants
-
-            // Update the display for each category
-            document.getElementById('left_to_distribute_sector').textContent = leftToDistributeSector;
-            // document.getElementById('left_to_distribute_extension_workers').textContent = leftToDistribute;
-            // document.getElementById('left_to_distribute_scientific').textContent = leftToDistribute;
-            // document.getElementById('left_to_distribute_other').textContent = leftToDistribute;
-            // document.getElementById('left_to_distribute_male').textContent = leftToDistribute;
-            // document.getElementById('left_to_distribute_female').textContent = leftToDistribute;
-            // document.getElementById('left_to_distribute_indigenous').textContent = leftToDistribute;
-            // document.getElementById('left_to_distribute_pwd').textContent = leftToDistribute;
-            
-            if(isNaN(totalParticipants)) {
-                $('#left_to_distribute_sector').text('');
-            }
-            $('#left_to_distribute_sector').text($('#total_participants').val());
-        }
-
-        // Attach event listeners to the input fields
-        document.getElementById('total_participants').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_farmers_and_growers').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_extension_workers').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_scientific').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_other').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_male').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_female').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_indigenous').addEventListener('input', updateDistribution);
-        document.getElementById('num_of_pwd').addEventListener('input', updateDistribution);
-
-        // Call the function initially to update the display
-        updateDistribution();
-    </script> --}}
-
-    {{-- Live Validation --}}
-
+        });
+    </script>
 
     {{-- Toggle for Optional Inputs --}}
     <script>
@@ -1666,7 +1463,24 @@
                     }
                 }
 
+                if (formData.total_participants) {
+                    $("#total_participants").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                }
 
+                if (formData.num_of_indigenous === "0") {
+                    $("#num_of_indigenous").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                    $("#decrement-button7, #increment-button7").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                }
+
+                if (formData.num_of_pwd === "0") {
+                    $("#num_of_pwd").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                    $("#decrement-button8, #increment-button8").removeClass('border-gray-300 text-gray-900').addClass(
+                        'border-green-600 text-green-600');
+                }
             }
 
         }
@@ -2071,37 +1885,23 @@
         }
     </script>
 
-    {{-- Mano manong validation lets go --}}
+    {{-- Mano manong validation lets go lol --}}
     <script>
         $(document).ready(function() {
             // Error messages. Hidden by default.
-            $('#batch_error').addClass('hidden');
-            $('#training_title_error').addClass('hidden');
-            $('#other_training_title_error').addClass('hidden');
-            $('#training_type_error').addClass('hidden');
-            $('#training_category_error').addClass('hidden');
-            $('#mod_error').addClass('hidden');
-            $('#training_venue_error').addClass('hidden');
-            $('#international_training_error').addClass('hidden');
-            $('#within_philrice_error').addClass('hidden');
-            $('#start_date_error').addClass('hidden');
-            $('#end_date_error').addClass('hidden');
+            $('#batch_error, #training_title_error, #other_training_title_error, #training_type_error, #training_category_error, #mod_error, #training_venue_error, #international_training_error, #within_philrice_error, #start_date_error, #end_date_error')
+                .addClass('hidden');
 
             // Section 2
             $('#training_title').change(function() {
                 var trainingTitle = $(this).val();
 
+                // If a value is selected (bukod sa default which is selected value=""), change the border and text color to green
                 if (trainingTitle !== "") {
-                    // If a value is selected, change the border and text color to green
                     $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                         .addClass('border-green-600 text-green-600');
                     $('#training_title_error').addClass('hidden');
                 }
-                // else {
-                //     // If no value is selected, revert to default border and text color
-                //     $(this).removeClass('border-green-600 text-green-600')
-                //         .addClass('border-gray-300 text-gray-900');
-                // }
 
                 var otherTitle = $('#otherTrainingInput').val();
                 var batch = $('#batch').val();
@@ -2751,11 +2551,7 @@
             });
 
             // Section 3
-            $('#sponsor_error').addClass('hidden');
-            $('#sof_error').addClass('hidden');
-            $('#gik_error').addClass('hidden');
-            $('#evaluation_error').addClass('hidden');
-            $('#other_fund_error').addClass('hidden');
+            $('#sponsor_error, #sof_error, #gik_error, #evaluation_error, #other_fund_error').addClass('hidden');
 
             $('#sponsor').on('input', function() {
                 var sponsor = $(this).val().trim();
@@ -2806,8 +2602,6 @@
                         .addClass('border-red-600 text-red-600');
                     $('#evaluation_error').removeClass('hidden');
                 }
-
-
             });
 
             $('#source_of_fund').change(function() {
@@ -3025,7 +2819,7 @@
             $('#evaluationInput').on('keypress', function(event) {
                 var charCode = event.which ? event.which : event.keyCode;
 
-                // if (charCode < 48 || charCode > 57) {
+                // if (charCode < 48 || charCode > 57) { -- nasasama yung decimal point since character yon
                 if ((charCode < 48 || charCode > 57) && charCode !== 46) {
                     event.preventDefault();
                     $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
@@ -3035,8 +2829,8 @@
             });
 
             // Section 4
-            $('#total_participants_error').addClass('hidden');
-            $('#farmers_counter_error').addClass('hidden');
+            $('#total_participants_error, #group_1_error, #group_2_error, #ip_info, #ip_info_exceeds, #pwd_info, #pwd_info_exceeds')
+                .addClass('hidden');
 
             $('#total_participants').on('input', function() {
                 var totalParticipants = $(this).val().trim();
@@ -3050,22 +2844,6 @@
                         .addClass('border-green-600 text-green-600');
                     $('#total_participants_error').addClass('hidden');
                 }
-
-                var farmersCounter = $('#num_of_farmers_and_growers').val();
-
-                if (!farmersCounter) {
-                    $('#num_of_farmers_and_growers').removeClass(
-                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
-                        .addClass('border-red-600 text-red-600');
-                    $('#decrement-button1').removeClass(
-                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
-                        .addClass('border-red-600 text-red-600');
-                    $('#increment-button1').removeClass(
-                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
-                        .addClass('border-red-600 text-red-600');
-                    $('#farmers_counter_error').removeClass('hidden');
-                }
-
             });
 
             $('#total_participants').on('keypress', function(event) {
@@ -3077,59 +2855,273 @@
                         .addClass('border-red-600 text-red-600');
                     $('#total_participants_error').removeClass('hidden');
                 }
+
+                var farmersCounter = $('#num_of_farmers_and_growers').val();
+                console.log("farmers counter value on keypress: " + farmersCounter);
+
+                // typeof farmersCounter is string
+                if (farmersCounter === '0') {
+                    $('#num_of_farmers_and_growers, #decrement-button1, #increment-button1').removeClass(
+                            'bg-gray-50 border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_1_error').removeClass('hidden').addClass('text-center');
+                }
+
+                var extCounter = $('#num_of_extension_workers').val();
+                if (farmersCounter === '0') {
+                    $('#num_of_extension_workers, #decrement-button2, #increment-button2').removeClass(
+                            'bg-gray-50 border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_1_error').removeClass('hidden').addClass('text-center');
+                }
+
+                var sciCounter = $('#num_of_scientific').val();
+                if (sciCounter === '0') {
+                    $('#num_of_scientific, #decrement-button3, #increment-button3').removeClass(
+                            'bg-gray-50 border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_1_error').removeClass('hidden').addClass('text-center');
+                }
+
+                var otherCounter = $('#num_of_other').val();
+                if (otherCounter === '0') {
+                    $('#num_of_other, #decrement-button4, #increment-button4').removeClass(
+                            'bg-gray-50 border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_1_error').removeClass('hidden').addClass('text-center');
+                }
+
+                var maleCounter = $('#num_of_male').val();
+                if (maleCounter === '0') {
+                    $('#num_of_male, #decrement-button5, #increment-button5').removeClass(
+                            'bg-gray-50 border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_2_error').removeClass('hidden').addClass('text-center');
+                }
+
+                var femCounter = $('#num_of_male').val();
+                if (femCounter === '0') {
+                    $('#num_of_female, #decrement-button6, #increment-button6').removeClass(
+                            'bg-gray-50 border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_2_error').removeClass('hidden').addClass('text-center');
+                }
+
+                var ipCounter = $('#num_of_indigenous').val();
+                if (ipCounter === '0') {
+                    $('#num_of_indigenous, #decrement-button7, #increment-button7').removeClass(
+                        'bg-gray-50 border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600'
+                    ).addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#ip_info').removeClass('hidden').addClass('text-center');
+                }
+
+                var pwdCounter = $('#num_of_pwd').val();
+                if (pwdCounter === '0') {
+                    $('#num_of_pwd, #decrement-button8, #increment-button8').removeClass(
+                        'bg-gray-50 border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600'
+                    ).addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#pwd_info').removeClass('hidden').addClass('text-center');
+                }
+            });
+
+            calculateGroup1();
+
+            $('#total_participants, #num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other')
+                .on('input', function(event) {
+                    calculateGroup1();
+                });
+
+            $('#decrement-button1, #increment-button1, #decrement-button2, #increment-button2, #decrement-button3, #increment-button3, #decrement-button4, #increment-button4')
+                .on('click', function(event) {
+                    calculateGroup1();
+                });
+
+            function calculateGroup1() {
+                var totalParticipants = parseInt($('#total_participants').val());
+                var farmersInt = parseInt($('#num_of_farmers_and_growers').val());
+                var extInt = parseInt($('#num_of_extension_workers').val());
+                var sciInt = parseInt($('#num_of_scientific').val());
+                var otherInt = parseInt($('#num_of_other').val());
+
+                var group1Total = farmersInt + extInt + sciInt + otherInt;
+
+                console.log("total participants: " + totalParticipants);
+                console.log("total of group 1: " + group1Total);
+
+                if (group1Total === totalParticipants) {
+                    $('#num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#decrement-button1, #increment-button1, #decrement-button2, #increment-button2, #decrement-button3, #increment-button3, #decrement-button4, #increment-button4')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#group_1_error')
+                        .addClass('hidden');
+                } else if (group1Total > totalParticipants) {
+                    $('#num_of_farmers_and_growers, #num_of_extension_workers, #num_of_scientific, #num_of_other')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#decrement-button1, #increment-button1, #decrement-button2, #increment-button2, #decrement-button3, #increment-button3, #decrement-button4, #increment-button4')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_1_error')
+                        .removeClass('hidden');
+                }
+            }
+
+            calculateGroup2();
+
+            $('#total_participants, #num_of_male, #num_of_female')
+                .on('input', function(event) {
+                    calculateGroup2();
+                });
+
+            $('#decrement-button5, #increment-button5, #decrement-button6, #increment-button6')
+                .on('click', function(event) {
+                    calculateGroup2();
+                });
+
+            function calculateGroup2() {
+                var totalParticipants = parseInt($('#total_participants').val());
+                var maleInt = parseInt($('#num_of_male').val());
+                var femInt = parseInt($('#num_of_female').val());
+
+                var group2Total = maleInt + femInt;
+
+                console.log("total participants: " + totalParticipants);
+                console.log("total of group 2: " + group2Total);
+
+                if (group2Total === totalParticipants) {
+                    $('#num_of_male, #num_of_female')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#decrement-button5, #increment-button5, #decrement-button6, #increment-button6')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#group_2_error')
+                        .addClass('hidden');
+                } else if (group2Total > totalParticipants) {
+                    $('#num_of_male, #num_of_female')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#decrement-button5, #increment-button5, #decrement-button6, #increment-button6')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#group_2_error')
+                        .removeClass('hidden');
+                }
+            }
+
+            checkIpCount();
+
+            $('#total_participants, #num_of_indigenous').on('input', function(event) {
+                checkIpCount();
+            });
+
+            $('#decrement-button7, #increment-button7').on('click', function(event) {
+                checkIpCount();
+            });
+
+            function checkIpCount() {
+                var totalParticipants = parseInt($('#total_participants').val());
+                var ipInt = parseInt($('#num_of_indigenous').val());
+
+                if (ipInt > totalParticipants) {
+                    $('#num_of_indigenous')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#decrement-button7, #increment-button7')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#ip_info')
+                        .addClass('hidden');
+                    $('#ip_info_exceed')
+                        .removeClass('hidden');
+                } else if (ipInt <= totalParticipants && ipInt !== 0) {
+                    $('#num_of_indigenous')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#decrement-button7, #increment-button7')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#ip_info')
+                        .removeClass('hidden');
+                    $('#ip_info_exceed')
+                        .addClass('hidden');
+                }
+            }
+
+            checkPwdCount();
+
+            $('#total_participants, #num_of_pwd').on('input', function(event) {
+                checkPwdCount();
+            });
+
+            $('#decrement-button8, #increment-button8').on('click', function(event) {
+                checkPwdCount();
+            });
+
+            function checkPwdCount() {
+                var totalParticipants = parseInt($('#total_participants').val());
+                var pwdInt = parseInt($('#num_of_pwd').val());
+
+                if (pwdInt > totalParticipants) {
+                    $('#num_of_pwd')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#decrement-button8, #increment-button8')
+                        .removeClass('border-gray-300 text-gray-900 bg-green-50 border-green-600 text-green-600')
+                        .addClass('bg-red-50 border-red-600 text-red-600');
+                    $('#pwd_info')
+                        .addClass('hidden');
+                    $('#pwd_info_exceed')
+                        .removeClass('hidden');
+                } else if (pwdInt <= totalParticipants && pwdInt !== 0) {
+                    $('#num_of_pwd')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#decrement-button8, #increment-button8')
+                        .removeClass('border-gray-300 text-gray-900 bg-red-50 border-red-600 text-red-600')
+                        .addClass('bg-green-50 border-green-600 text-green-600');
+                    $('#pwd_info')
+                        .removeClass('hidden');
+                    $('#pwd_info_exceed')
+                        .addClass('hidden');
+                }
+            }
+
+            // Section 5
+            $('#photo_doc_event').change(function() {
+                var photos = this.files[0];
+                var photoType = photos.type;
+
+                if (photos) {
+                    // Check if the file type indicates it's an image
+                    if (photoType.startsWith('image/')) {
+                        $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                            .addClass('border-green-600 text-green-600');
+                        $('#photo_doc_error').addClass('hidden');
+                    } else {
+                        // If the selected file is not an image, you may want to handle this case differently
+                        // For example, displaying an error message
+                        console.log('Please select an image file.');
+                    }
+                }
+            });
+
+            $('#other_doc').change(function() {
+                var otherDoc = this.files[0];
+
+                if (otherDoc) {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#other_doc_error').addClass('hidden');
+                }
             });
 
         });
     </script>
-
-    {{-- Refactored Counter Semi-Working / Button Click Listener Polished --}}
-    {{-- <script>
-        $(document).ready(function() {
-            var totalParticipantsInput = document.getElementById('total_participants');
-            var remainingNumberLabels = {
-                'remaining_label_1': ['num_of_farmers_and_growers', 'num_of_extension_workers',
-                    'num_of_scientific', 'num_of_other'
-                ],
-                'remaining_label_2': ['num_of_male', 'num_of_female'],
-                'remaining_label_3': ['num_of_indigenous'],
-                'remaining_label_4': ['num_of_pwd']
-            };
-
-            totalParticipantsInput.addEventListener('input', function() {
-                updateRemainingParticipants();
-            });
-
-            for (var label in remainingNumberLabels) {
-                var inputFields = remainingNumberLabels[label].map(function(id) {
-                    return document.getElementById(id);
-                });
-
-                inputFields.forEach(function(inputField) {
-                    inputField.addEventListener('input', function() {
-                        updateRemainingParticipants();
-                    });
-                });
-            }
-
-            function updateRemainingParticipants() {
-                for (var label in remainingNumberLabels) {
-                    var remainingNumberLabel = document.getElementById(label);
-                    var inputFields = remainingNumberLabels[label];
-                    var totalParticipants = parseInt(totalParticipantsInput.value);
-                    var distributedParticipants = 0;
-
-                    inputFields.forEach(function(id) {
-                        distributedParticipants += parseInt(document.getElementById(id).value);
-                    });
-
-                    var remainingParticipants = totalParticipants - distributedParticipants;
-                    remainingNumberLabel.textContent = remainingParticipants;
-                }
-            }
-        });
-    </script> --}}
-
-    {{-- Complete Working Counter --}}
+    {{-- Complete Working Section 4 Counter Validation --}}
     <script>
         $(document).ready(function() {
             var totalParticipantsInput = document.getElementById('total_participants');
