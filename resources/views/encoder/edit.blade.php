@@ -422,7 +422,9 @@
             <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span>
                 {{-- Finds equivalent station name nung id sa station model --}}
-                {{ \App\Models\Station::find(Auth::user()->station)->station }}
+                @if(Auth::user()->station == 1) Central Experimental Station 
+                @elseif (Auth::user()->station == 5) Central Mindanao University
+                @else {{ \App\Models\Station::find(Auth::user()->station)->station }} @endif
         </div>
 
         {{-- Filters and Export --}}

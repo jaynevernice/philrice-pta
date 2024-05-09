@@ -63,42 +63,24 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'guest'], function () {
     // Route::get('/overview', function () { return view('guest.overview'); })->name('guest.overview');
     Route::get('/overview', [TrainingsFormController::class, 'index'])->name('guest.overview');
+    Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax'])->name('filter_data_guest');
 
     Route::get('/view', [WebAnalyticsController::class, 'incrementSiteView'])->name('guest.view');
 
     Route::post('/overview-visitor-evaluation', [VisitorEvaluationController::class, 'store'])->name('evaluation.store');
 
-    Route::get('/ces', function () {
-        return view('guest.ces');
-    })->name('guest.ces');
+    Route::post('/trainings/filter/station', [TrainingsFormController::class, 'filterAjaxStationOnly'])->name('filter_station_guest');
 
-    Route::get('/batac', function () {
-        return view('guest.batac');
-    })->name('guest.batac');
+    Route::get('/ces', [TrainingsFormController::class, 'cesView'])->name('guest.ces');
+    Route::get('/agusan', [TrainingsFormController::class, 'agusanView'])->name('guest.agusan');
+    Route::get('/batac', [TrainingsFormController::class, 'batacView'])->name('guest.batac');
+    Route::get('/bicol', [TrainingsFormController::class, 'bicolView'])->name('guest.bicol');
+    Route::get('/cmu', [TrainingsFormController::class, 'cmuView'])->name('guest.cmu');
+    Route::get('/isabela', [TrainingsFormController::class, 'isabelaView'])->name('guest.isabela');
+    Route::get('/losbaños', [TrainingsFormController::class, 'losbañosView'])->name('guest.losbaños');
+    Route::get('/midsayap', [TrainingsFormController::class, 'midsayapView'])->name('guest.midsayap');
+    Route::get('/negros', [TrainingsFormController::class, 'negrosView'])->name('guest.negros');
 
-    Route::get('/agusan', function () {
-        return view('guest.agusan');
-    })->name('guest.agusan');
-
-    Route::get('/bicol', function () {
-        return view('guest.bicol');
-    })->name('guest.bicol');
-
-    Route::get('/isabela', function () {
-        return view('guest.isabela');
-    })->name('guest.isabela');
-
-    Route::get('/losbaños', function () {
-        return view('guest.losbaños');
-    })->name('guest.losbaños');
-
-    Route::get('/midsayap', function () {
-        return view('guest.midsayap');
-    })->name('guest.midsayap');
-
-    Route::get('/negros', function () {
-        return view('guest.negros');
-    })->name('guest.negros');
 });
 
 // Super Admin

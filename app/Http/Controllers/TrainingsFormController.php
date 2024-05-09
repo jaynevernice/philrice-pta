@@ -329,7 +329,11 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        if (Auth::check()) {
+            return view('encoder.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function agusanView() 
@@ -429,7 +433,11 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        if (Auth::check()) {
+            return view('encoder.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function batacView()
@@ -529,7 +537,11 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        if (Auth::check()) {
+            return view('encoder.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function bicolView()
@@ -629,7 +641,11 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        if (Auth::check()) {
+            return view('encoder.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function cmuView()
@@ -729,7 +745,11 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        if (Auth::check()) {
+            return view('encoder.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function isabelaView()
@@ -829,7 +849,11 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        if (Auth::check()) {
+            return view('encoder.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function losbañosView()
@@ -929,7 +953,12 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        
+        if (Auth::check()) {
+            return view('encoder.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function midsayapView()
@@ -1029,7 +1058,12 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        
+        if (Auth::check()) {
+            return view('encoder.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
 
     public function negrosView()
@@ -1129,7 +1163,12 @@ class TrainingsFormController extends Controller
             ->get();
 
         // return view('encoder.ces', compact('titles', 'provinces'));
-        return view('encoder.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+    
+        if (Auth::check()) {
+            return view('encoder.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        } else {
+            return view('guest.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        }
     }
     // LIVE SEARCH AND FILTER IN EACH STATION //
     public function filterAjaxStationOnly(Request $request)
@@ -2112,11 +2151,490 @@ class TrainingsFormController extends Controller
      */
     public function filterAjax(Request $request)
     {
+        // For Overview
+        if ($request->boolean('showOverview')) {
+            // Get the current page number from the request, default to 1 if not provided
+            $page = $request->input('page', 1);
+
+            // Get the number of records to display per page from the request or use a default value
+            $recordsPerPage = $request->input('recordsPerPage', 15);
+
+            // Calculate the offset to skip records based on the current page number
+            $offset_col1 = ($page - 1) * 45;
+            $offset_col2 = 15 + (($page - 1) * 45);
+            $offset_col3 = 30 + (($page - 1) * 45);
+
+            // Query to fetch records with pagination
+            // $records = DB::table('trainings_forms')
+            //     ->select('trainings_forms.*')
+            //     ->latest('trainings_forms.id')
+            //     ->skip($offset) // Skip records based on the offset
+            //     ->take($recordsPerPage) // Limit the number of records per page
+            //     ->get();
+
+            $only_numbers = DB::table('trainings_forms')
+                // ->select('SUM(num_of_participants) as total_participants')
+                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                ->get();
+                // ->total_participants;
+
+            $regions = DB::table('regions')
+                ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
+                ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
+                ->groupBy('regions.regDesc')
+                ->get();
+            
+            $provinces = DB::table('provinces')
+                ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
+                ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
+                ->groupBy('provinces.provDesc')
+                ->get();
+            
+            $municipalities_col1 = DB::table('municipalities')
+                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
+                ->leftJoin('trainings_forms', 'municipalities.citymunCode', '=', 'trainings_forms.municipality')
+                ->groupBy('municipalities.citymunDesc')
+                ->skip($offset_col1) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+            
+            $municipalities_col2 = DB::table('municipalities')
+                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
+                ->leftJoin('trainings_forms', 'municipalities.citymunCode', '=', 'trainings_forms.municipality')
+                ->groupBy('municipalities.citymunDesc')
+                ->skip($offset_col2) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+
+            $municipalities_col3 = DB::table('municipalities')
+                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
+                ->leftJoin('trainings_forms', 'municipalities.citymunCode', '=', 'trainings_forms.municipality')
+                ->groupBy('municipalities.citymunDesc')
+                ->skip($offset_col3) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+
+            return response()->json(['only_numbers' => $only_numbers, 'regions' => $regions, 'provinces' => $provinces, 'municipalities_col1' => $municipalities_col1, 'municipalities_col2' => $municipalities_col2, 'municipalities_col3' => $municipalities_col3]);
+            // return response()->json(['only_numbers' => $only_numbers, 'regions' => $regions, 'provinces' => $provinces, 'municipalities_col' => $municipalities_col]);
+        }
+
+        if ($request->boolean('filterShowOverview')) {
+            // Get the current page number from the request, default to 1 if not provided
+            $page = $request->input('page', 1);
+
+            // Get the number of records to display per page from the request or use a default value
+            $recordsPerPage = $request->input('recordsPerPage', 15);
+
+            // Calculate the offset to skip records based on the current page number
+            $offset_col1 = ($page - 1) * 45;
+            $offset_col2 = 15 + (($page - 1) * 45);
+            $offset_col3 = 30 + (($page - 1) * 45);
+
+            // $searchInput = $request->searchInput ?? '';
+            $yearSelect = $request->yearSelect ?? '';
+            $start_MonthSelect = $request->start_MonthSelect ?? '';
+            $end_MonthSelect = $request->end_MonthSelect ?? '';
+            $trainingTitle = $request->trainingTitle ?? '';
+            $provinceSelect = $request->provinceSelect ?? '';
+            $formType = $request->formType ?? '';
+
+            if(!empty($provinceSelect)) {
+                $offset_col1 = ($page - 1) * 15;
+                $offset_col2 = 5 + (($page - 1) * 15);
+                $offset_col3 = 10 + (($page - 1) * 15);
+                $recordsPerPage = 5;
+            }
+
+            // not existing form type
+            if($formType == 0) {
+                $records = DB::table('trainings_forms')
+                            ->select('*')
+                            ->where('id', '=', 0)
+                            ->get();
+                
+                $only_numbers = $provinces = DB::table('trainings_forms')
+                    ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                            DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                            DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                    ->where('id', '=', 0)
+                    ->get();
+                
+                $sex_charts = [];
+                
+                return response()->json(['records' => $records, 'only_numbers' => $only_numbers, 'provinces' => $provinces, 'sex_charts' => $sex_charts]);
+            }
+
+            // Query to fetch records with pagination
+
+            $only_numbers = DB::table('trainings_forms')
+                // ->select('SUM(num_of_participants) as total_participants')
+                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
+                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
+                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                        return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->get();
+                // ->total_participants;
+
+            // sex chart data
+            $sex_charts = DB::table('trainings_forms')
+                ->select(DB::raw('CAST(SUM(num_of_female) AS UNSIGNED) as Women'),
+                        DB::raw('CAST(SUM(num_of_male) AS UNSIGNED) as Men'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                         return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->first();
+            // convert $sex_charts into associative aray
+            $sex_charts = (array) $sex_charts;
+
+            // indigenous chart data
+            $indigenous_charts = DB::table('trainings_forms')
+                ->select(DB::raw('CAST(SUM(num_of_indigenous) AS UNSIGNED) as Indigeous'),
+                        DB::raw('CAST(SUM(num_of_participants) - SUM(num_of_indigenous) AS UNSIGNED) as "Non-IP"'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                         return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->first();
+            // convert $indigenous_charts into associative aray
+            $indigenous_charts = (array) $indigenous_charts;
+
+            // ability chart data
+            $ability_charts = DB::table('trainings_forms')
+                ->select(DB::raw('CAST(SUM(num_of_pwd) AS UNSIGNED) as PWD'),
+                        DB::raw('CAST(SUM(num_of_participants) - SUM(num_of_pwd) AS UNSIGNED) as "Non-PWD"'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                         return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->first();
+            // convert $ability_charts into associative aray
+            $ability_charts = (array) $ability_charts;
+
+            // sector chart data
+            $sector_charts = DB::table('trainings_forms')
+                ->select(DB::raw('CAST(SUM(num_of_farmers) AS UNSIGNED) as "Farmers and Seed Growers"'),
+                        DB::raw('CAST(SUM(num_of_extworkers) AS UNSIGNED) as "Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)"'),
+                        DB::raw('CAST(SUM(num_of_scientific) AS UNSIGNED) as "Scientific Community (researchers, academe, etc)"'),
+                        DB::raw('CAST(SUM(num_of_other) AS UNSIGNED) as "Other Sectors (rice industry players, media, policymakers, general rice consumers)"'))
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                         return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->first();
+            // convert $ability_charts into associative aray
+            $sector_charts = (array) $sector_charts;
+
+            // regions chart data
+            $regions = DB::table('regions')
+                ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
+                ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                         return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->groupBy('regions.regDesc')
+                ->get();
+            
+            // provinces chart data
+            $provinces = DB::table('provinces')
+                ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
+                ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
+                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                })
+                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                })
+                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                })
+                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                    if($trainingTitle == 'Other') {
+                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                        });
+                    } else {
+                        return $query->where('trainings_forms.title', '=', $trainingTitle);
+                    }
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                         return $query->where('trainings_forms.type', '=', 'Local');
+                        // return;
+                    } else {
+                        return $query->where('trainings_forms.province', '=', $provinceSelect);
+                    }
+                })
+                ->groupBy('provinces.provDesc')
+                ->get();
+            
+            $municipalities_col1 = DB::table('municipalities')
+                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
+                ->leftJoin('trainings_forms', function ($join) use ($start_MonthSelect, $end_MonthSelect, $yearSelect, $trainingTitle) {
+                    $join->on('municipalities.citymunCode', '=', 'trainings_forms.municipality')
+                        ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                            return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                        })
+                        ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                            return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                        })
+                        ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                            return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                        })
+                        ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                            if($trainingTitle == 'Other') {
+                                return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                                    $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                                });
+                            } else {
+                                return $query->where('trainings_forms.title', '=', $trainingTitle);
+                            }
+                        });
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('municipalities.provCode', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                        //  return $query->where('trainings_forms.type', '=', 'Local');
+                        return;
+                    } else {
+                        // return $query->where('trainings_forms.province', '=', $provinceSelect);
+                        return $query->where('municipalities.provCode', '=', $provinceSelect);
+                    }
+                })
+                ->groupBy('municipalities.citymunDesc')
+                ->skip($offset_col1) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+
+
+            $municipalities_col2 = DB::table('municipalities')
+                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
+                ->leftJoin('trainings_forms', function ($join) use ($start_MonthSelect, $end_MonthSelect, $yearSelect, $trainingTitle) {
+                    $join->on('municipalities.citymunCode', '=', 'trainings_forms.municipality')
+                        ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                            return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                        })
+                        ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                            return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                        })
+                        ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                            return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                        })
+                        ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                            if($trainingTitle == 'Other') {
+                                return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                                    $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                                });
+                            } else {
+                                return $query->where('trainings_forms.title', '=', $trainingTitle);
+                            }
+                        });
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('municipalities.provCode', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                        //  return $query->where('trainings_forms.type', '=', 'Local');
+                        return;
+                    } else {
+                        return $query->where('municipalities.provCode', '=', $provinceSelect);
+                    }
+                })
+                ->groupBy('municipalities.citymunDesc')
+                ->skip($offset_col2) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+            
+            $municipalities_col3 = DB::table('municipalities')
+                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
+                ->leftJoin('trainings_forms', function ($join) use ($start_MonthSelect, $end_MonthSelect, $yearSelect, $trainingTitle) {
+                    $join->on('municipalities.citymunCode', '=', 'trainings_forms.municipality')
+                        ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                            return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                        })
+                        ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                            return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                        })
+                        ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                            return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
+                        })
+                        ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                            if($trainingTitle == 'Other') {
+                                return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                                    $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                                });
+                            } else {
+                                return $query->where('trainings_forms.title', '=', $trainingTitle);
+                            }
+                        });
+                })
+                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
+                    // return $query->where('municipalities.provCode', '=', $provinceSelect);
+                    if($provinceSelect === "All") {
+                        //  return $query->where('trainings_forms.type', '=', 'Local');
+                        return;
+                    } else {
+                        return $query->where('municipalities.provCode', '=', $provinceSelect);
+                    }
+                })
+                ->groupBy('municipalities.citymunDesc')
+                ->skip($offset_col3) // Skip records based on the offset
+                ->take($recordsPerPage) // Limit the number of records per page
+                ->get();
+
+            return response()->json(['only_numbers' => $only_numbers, 'sex_charts' => $sex_charts, 'indigenous_charts' => $indigenous_charts, 'ability_charts' => $ability_charts, 'sector_charts' => $sector_charts, 'regions' => $regions, 'provinces' =>  $provinces, 'municipalities_col1' => $municipalities_col1, 'municipalities_col2' => $municipalities_col2, 'municipalities_col3' => $municipalities_col3]);
+        }
+
         if (!empty(Auth::check())) {
             $encoder_id = Auth::user()->id;
         } else {
             abort(404);
         }
+
         // For View DataTable
         if ($request->boolean('showTrainingView')) {
             $station_id = Auth::user()->station;
@@ -2152,156 +2670,6 @@ class TrainingsFormController extends Controller
                 // ->where('users.station', '=', $request->station)
                 ->where('trainings_forms.station_encoded', '=', $station_id)
                 ->get();
-            
-            // $regions = '';
-            // $provinces = '';
-            // if($request->station == 1) { // CES station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "03") 
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "03") 
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 2) { // Agusan station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "10")
-            //         ->orWhere('regions.regCode', '=', "11") 
-            //         ->orWhere('regions.regCode', '=', "16")  
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "10") 
-            //         ->orWhere('provinces.regCode', '=', "11") 
-            //         ->orWhere('provinces.regCode', '=', "16") 
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 3) { // Batac station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "01")  
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "01")  
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 4) { // Bicol station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "05")  
-            //         ->orWhere('regions.regCode', '=', "08")  
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "05")  
-            //         ->orWhere('provinces.regCode', '=', "08")  
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 5) { // CMU station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "10")
-            //         ->orWhere('regions.regCode', '=', "11") 
-            //         ->orWhere('regions.regCode', '=', "16")  
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "10") 
-            //         ->orWhere('provinces.regCode', '=', "11") 
-            //         ->orWhere('provinces.regCode', '=', "16") 
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 6) { // ISABELA station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "02")
-            //         ->orWhere('regions.regCode', '=', "14")   
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "02") 
-            //         ->orWhere('provinces.regCode', '=', "14")  
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 7) { // LOS BAÑOS station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "04")
-            //         ->orWhere('regions.regCode', '=', "17")   
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "04") 
-            //         ->orWhere('provinces.regCode', '=', "17")  
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 8) { // Midsayap station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "09")
-            //         ->orWhere('regions.regCode', '=', "12")   
-            //         ->orWhere('regions.regCode', '=', "15")   
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "09") 
-            //         ->orWhere('provinces.regCode', '=', "12")  
-            //         ->orWhere('provinces.regCode', '=', "15")  
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // } elseif ($request->station == 9) { // Negros station
-            //     $regions = DB::table('regions')
-            //         ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-            //         ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-            //         ->where('regions.regCode', '=', "06")
-            //         ->orWhere('regions.regCode', '=', "07")      
-            //         ->groupBy('regions.regDesc')
-            //         ->get();
-                
-            //     $provinces = DB::table('provinces')
-            //         ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-            //         ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-            //         ->where('provinces.regCode', '=', "06") 
-            //         ->orWhere('provinces.regCode', '=', "07")    
-            //         ->groupBy('provinces.provDesc')
-            //         ->get();
-            // }
 
             $regionsQuery = DB::table('regions')
                 ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
@@ -3629,483 +3997,6 @@ class TrainingsFormController extends Controller
             return response()->json(['records' => $records]);
         }
 
-        // For Overview
-        if ($request->boolean('showOverview')) {
-            // Get the current page number from the request, default to 1 if not provided
-            $page = $request->input('page', 1);
-
-            // Get the number of records to display per page from the request or use a default value
-            $recordsPerPage = $request->input('recordsPerPage', 15);
-
-            // Calculate the offset to skip records based on the current page number
-            $offset_col1 = ($page - 1) * 45;
-            $offset_col2 = 15 + (($page - 1) * 45);
-            $offset_col3 = 30 + (($page - 1) * 45);
-
-            // Query to fetch records with pagination
-            // $records = DB::table('trainings_forms')
-            //     ->select('trainings_forms.*')
-            //     ->latest('trainings_forms.id')
-            //     ->skip($offset) // Skip records based on the offset
-            //     ->take($recordsPerPage) // Limit the number of records per page
-            //     ->get();
-
-            $only_numbers = DB::table('trainings_forms')
-                // ->select('SUM(num_of_participants) as total_participants')
-                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
-                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
-                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
-                ->get();
-                // ->total_participants;
-
-            $regions = DB::table('regions')
-                ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-                ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-                ->groupBy('regions.regDesc')
-                ->get();
-            
-            $provinces = DB::table('provinces')
-                ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-                ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-                ->groupBy('provinces.provDesc')
-                ->get();
-            
-            $municipalities_col1 = DB::table('municipalities')
-                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
-                ->leftJoin('trainings_forms', 'municipalities.citymunCode', '=', 'trainings_forms.municipality')
-                ->groupBy('municipalities.citymunDesc')
-                ->skip($offset_col1) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-            
-            $municipalities_col2 = DB::table('municipalities')
-                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
-                ->leftJoin('trainings_forms', 'municipalities.citymunCode', '=', 'trainings_forms.municipality')
-                ->groupBy('municipalities.citymunDesc')
-                ->skip($offset_col2) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-
-            $municipalities_col3 = DB::table('municipalities')
-                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
-                ->leftJoin('trainings_forms', 'municipalities.citymunCode', '=', 'trainings_forms.municipality')
-                ->groupBy('municipalities.citymunDesc')
-                ->skip($offset_col3) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-
-            return response()->json(['only_numbers' => $only_numbers, 'regions' => $regions, 'provinces' => $provinces, 'municipalities_col1' => $municipalities_col1, 'municipalities_col2' => $municipalities_col2, 'municipalities_col3' => $municipalities_col3]);
-            // return response()->json(['only_numbers' => $only_numbers, 'regions' => $regions, 'provinces' => $provinces, 'municipalities_col' => $municipalities_col]);
-        }
-
-        if ($request->boolean('filterShowOverview')) {
-            // Get the current page number from the request, default to 1 if not provided
-            $page = $request->input('page', 1);
-
-            // Get the number of records to display per page from the request or use a default value
-            $recordsPerPage = $request->input('recordsPerPage', 15);
-
-            // Calculate the offset to skip records based on the current page number
-            $offset_col1 = ($page - 1) * 45;
-            $offset_col2 = 15 + (($page - 1) * 45);
-            $offset_col3 = 30 + (($page - 1) * 45);
-
-            // $searchInput = $request->searchInput ?? '';
-            $yearSelect = $request->yearSelect ?? '';
-            $start_MonthSelect = $request->start_MonthSelect ?? '';
-            $end_MonthSelect = $request->end_MonthSelect ?? '';
-            $trainingTitle = $request->trainingTitle ?? '';
-            $provinceSelect = $request->provinceSelect ?? '';
-            $formType = $request->formType ?? '';
-
-            if(!empty($provinceSelect)) {
-                $offset_col1 = ($page - 1) * 15;
-                $offset_col2 = 5 + (($page - 1) * 15);
-                $offset_col3 = 10 + (($page - 1) * 15);
-                $recordsPerPage = 5;
-            }
-
-            // not existing form type
-            if($formType == 0) {
-                $records = DB::table('trainings_forms')
-                            ->select('*')
-                            ->where('id', '=', 0)
-                            ->get();
-                
-                $only_numbers = $provinces = DB::table('trainings_forms')
-                    ->select(DB::raw('SUM(num_of_participants) as total_participants'),
-                            DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
-                            DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
-                    ->where('id', '=', 0)
-                    ->get();
-                
-                $sex_charts = [];
-                
-                return response()->json(['records' => $records, 'only_numbers' => $only_numbers, 'provinces' => $provinces, 'sex_charts' => $sex_charts]);
-            }
-
-            // Query to fetch records with pagination
-
-            $only_numbers = DB::table('trainings_forms')
-                // ->select('SUM(num_of_participants) as total_participants')
-                ->select(DB::raw('SUM(num_of_participants) as total_participants'),
-                        DB::raw('ROUND(AVG(average_gik), 2) as average_gik'),
-                        DB::raw('ROUND(AVG(evaluation), 2) as evaluation'))
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                        return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->get();
-                // ->total_participants;
-
-            // sex chart data
-            $sex_charts = DB::table('trainings_forms')
-                ->select(DB::raw('CAST(SUM(num_of_female) AS UNSIGNED) as Women'),
-                        DB::raw('CAST(SUM(num_of_male) AS UNSIGNED) as Men'))
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                         return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->first();
-            // convert $sex_charts into associative aray
-            $sex_charts = (array) $sex_charts;
-
-            // indigenous chart data
-            $indigenous_charts = DB::table('trainings_forms')
-                ->select(DB::raw('CAST(SUM(num_of_indigenous) AS UNSIGNED) as Indigeous'),
-                        DB::raw('CAST(SUM(num_of_participants) - SUM(num_of_indigenous) AS UNSIGNED) as "Non-IP"'))
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                         return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->first();
-            // convert $indigenous_charts into associative aray
-            $indigenous_charts = (array) $indigenous_charts;
-
-            // ability chart data
-            $ability_charts = DB::table('trainings_forms')
-                ->select(DB::raw('CAST(SUM(num_of_pwd) AS UNSIGNED) as PWD'),
-                        DB::raw('CAST(SUM(num_of_participants) - SUM(num_of_pwd) AS UNSIGNED) as "Non-PWD"'))
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                         return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->first();
-            // convert $ability_charts into associative aray
-            $ability_charts = (array) $ability_charts;
-
-            // sector chart data
-            $sector_charts = DB::table('trainings_forms')
-                ->select(DB::raw('CAST(SUM(num_of_farmers) AS UNSIGNED) as "Farmers and Seed Growers"'),
-                        DB::raw('CAST(SUM(num_of_extworkers) AS UNSIGNED) as "Extension Workers and Intermediaries (ATs/AEWs, AgRiDOCs, etc.)"'),
-                        DB::raw('CAST(SUM(num_of_scientific) AS UNSIGNED) as "Scientific Community (researchers, academe, etc)"'),
-                        DB::raw('CAST(SUM(num_of_other) AS UNSIGNED) as "Other Sectors (rice industry players, media, policymakers, general rice consumers)"'))
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                         return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->first();
-            // convert $ability_charts into associative aray
-            $sector_charts = (array) $sector_charts;
-
-            // regions chart data
-            $regions = DB::table('regions')
-                ->select('regions.regDesc AS region_name', DB::raw('COUNT(trainings_forms.region) AS region_count'))
-                ->leftJoin('trainings_forms', 'regions.regCode', '=', 'trainings_forms.region')
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                         return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->groupBy('regions.regDesc')
-                ->get();
-            
-            // provinces chart data
-            $provinces = DB::table('provinces')
-                ->select('provinces.provDesc AS province_name', DB::raw('COUNT(trainings_forms.province) AS province_count'))
-                ->leftJoin('trainings_forms', 'provinces.provCode', '=', 'trainings_forms.province')
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                         return $query->where('trainings_forms.type', '=', 'Local');
-                        // return;
-                    } else {
-                        return $query->where('trainings_forms.province', '=', $provinceSelect);
-                    }
-                })
-                ->groupBy('provinces.provDesc')
-                ->get();
-            
-            $municipalities_col1 = DB::table('municipalities')
-                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
-                ->leftJoin('trainings_forms', function ($join) use ($start_MonthSelect, $end_MonthSelect, $yearSelect, $trainingTitle) {
-                    $join->on('municipalities.citymunCode', '=', 'trainings_forms.municipality')
-                        ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                            return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                        })
-                        ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                            return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                        })
-                        ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                            return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                        })
-                        ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                            if($trainingTitle == 'Other') {
-                                return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                                    $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                                });
-                            } else {
-                                return $query->where('trainings_forms.title', '=', $trainingTitle);
-                            }
-                        });
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('municipalities.provCode', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                        //  return $query->where('trainings_forms.type', '=', 'Local');
-                        return;
-                    } else {
-                        // return $query->where('trainings_forms.province', '=', $provinceSelect);
-                        return $query->where('municipalities.provCode', '=', $provinceSelect);
-                    }
-                })
-                ->groupBy('municipalities.citymunDesc')
-                ->skip($offset_col1) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-
-
-            $municipalities_col2 = DB::table('municipalities')
-                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
-                ->leftJoin('trainings_forms', function ($join) use ($start_MonthSelect, $end_MonthSelect, $yearSelect, $trainingTitle) {
-                    $join->on('municipalities.citymunCode', '=', 'trainings_forms.municipality')
-                        ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                            return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                        })
-                        ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                            return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                        })
-                        ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                            return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                        })
-                        ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                            if($trainingTitle == 'Other') {
-                                return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                                    $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                                });
-                            } else {
-                                return $query->where('trainings_forms.title', '=', $trainingTitle);
-                            }
-                        });
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('municipalities.provCode', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                        //  return $query->where('trainings_forms.type', '=', 'Local');
-                        return;
-                    } else {
-                        return $query->where('municipalities.provCode', '=', $provinceSelect);
-                    }
-                })
-                ->groupBy('municipalities.citymunDesc')
-                ->skip($offset_col2) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-            
-            $municipalities_col3 = DB::table('municipalities')
-                ->select('municipalities.citymunDesc AS city_name', DB::raw('COUNT(trainings_forms.municipality) AS city_count'))
-                ->leftJoin('trainings_forms', function ($join) use ($start_MonthSelect, $end_MonthSelect, $yearSelect, $trainingTitle) {
-                    $join->on('municipalities.citymunCode', '=', 'trainings_forms.municipality')
-                        ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                            return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                        })
-                        ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                            return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                        })
-                        ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                            return $query->whereYear('trainings_forms.end_date', '=', $yearSelect);
-                        })
-                        ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                            if($trainingTitle == 'Other') {
-                                return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                                    $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                                });
-                            } else {
-                                return $query->where('trainings_forms.title', '=', $trainingTitle);
-                            }
-                        });
-                })
-                ->when(!empty($provinceSelect), function ($query) use ($provinceSelect, $request) {
-                    // return $query->where('municipalities.provCode', '=', $provinceSelect);
-                    if($provinceSelect === "All") {
-                        //  return $query->where('trainings_forms.type', '=', 'Local');
-                        return;
-                    } else {
-                        return $query->where('municipalities.provCode', '=', $provinceSelect);
-                    }
-                })
-                ->groupBy('municipalities.citymunDesc')
-                ->skip($offset_col3) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-
-            return response()->json(['only_numbers' => $only_numbers, 'sex_charts' => $sex_charts, 'indigenous_charts' => $indigenous_charts, 'ability_charts' => $ability_charts, 'sector_charts' => $sector_charts, 'regions' => $regions, 'provinces' =>  $provinces, 'municipalities_col1' => $municipalities_col1, 'municipalities_col2' => $municipalities_col2, 'municipalities_col3' => $municipalities_col3]);
-        }
     }
 
     /**

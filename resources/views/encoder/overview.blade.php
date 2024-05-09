@@ -546,7 +546,6 @@
             </div> --}}
         </div>
 
-
         {{-- Chart Row 1 --}}
         <div class="grid grid-cols-3 gap-4 mb-4 max-[1024px]:grid-cols-1">
             {{-- Total Number of Participants --}}

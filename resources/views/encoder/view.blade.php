@@ -422,7 +422,9 @@
                 {{-- Central Experimental Station</h1> --}}
                 {{-- {{ Auth::user()->station }}</h1> --}}
                 {{-- Finds equivalent station name nung id sa station model --}}
-                {{ \App\Models\Station::find(Auth::user()->station)->station }}
+                @if(Auth::user()->station == 1) Central Experimental Station 
+                @elseif (Auth::user()->station == 5) Central Mindanao University
+                @else {{ \App\Models\Station::find(Auth::user()->station)->station }} @endif
         </div>
 
         {{-- Filters and Export --}}
