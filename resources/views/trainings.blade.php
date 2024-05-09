@@ -411,33 +411,7 @@
         </div>
     </aside>
 @endsection
-<style>
-    /* CSS to fit the image in the modal */
-    /* .glightbox a {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    } */
 
-    /* iframe #document body img {
-        width: 100vw;
-        height: 100vh;
-    } */
-
-    /* html.glightbox-open body.gscrollbar-fixer.glightbox-open div#glightbox-body.glightbox-container.glightbox-clean div.gcontainer div#glightbox-slider.gslider div.gslide.loaded.current div.gslide-inner-content div.ginner-container div.gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready html body img {
-        width: 100vw !important;
-        height: 100vh !important;
-    } */
-
-    /* html.glightbox-open body.gscrollbar-fixer.glightbox-open div#glightbox-body.glightbox-container.glightbox-clean div.gcontainer div#glightbox-slider.gslider div.gslide.loaded.current div.gslide-inner-content div.ginner-container div.gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready html body img {
-        width: 100vw !important;
-        height: 100vh !important;
-    } */
-
-    .glightbox-open .gcontainer .gslider .gslide.loaded.current .gslide-inner-content .ginner-container .gslide-media.gslide-external iframe.vimeo-video.gvideo.node-ready #document body img {
-        height: 100vh !important;
-    }
-</style>
 @section('content')
     <main class="p-8 md:ml-64 pt-20 h-screen">
 
@@ -504,8 +478,6 @@
                 </div>
             </div>
 
-            {{-- @if ($errors->hasAny(['training_title', 'batch', 'otherTrainingInput', 'training_type', 'training_category', 'mod', 'internationalTrainingInput', 'withinPhilriceInput', 'province', 'municipalitySelect', 'start', 'end'])) --}}
-            {{-- Section 2 --}}
             <div class="section" data-section="2" style="display: none;">
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Training Details</h6>
