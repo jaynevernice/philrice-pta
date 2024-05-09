@@ -423,8 +423,6 @@
                 Summary of Trainings Conducted</h1>
         </div>
 
-
-
         {{-- Success/Error Message from TrainingsFormController --}}
         @include('_message')
         @if ($errors->any())
@@ -455,7 +453,7 @@
         @endif
 
         {{-- Multi Page Form --}}
-        <form id="trainingsForm" action="{{ route('trainingsform.store') }}" method="POST" enctype="multipart/form-data"
+        <form id="trainingsForm" action="{{route('trainingsform.update', $record->id) }}" method="POST" enctype="multipart/form-data"
             class="px-10 py-8 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100">
             @csrf
             {{-- Section 1 --}}
@@ -477,7 +475,8 @@
                     </blockquote>
                 </div>
             </div>
-
+            
+            {{-- Section 2 --}}
             <div class="section" data-section="2" style="display: none;">
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Training Details</h6>
@@ -495,10 +494,11 @@
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
                                 @foreach ($titles as $title)
-                                    <option value="{{ $title->training_title }}">{{ $title->training_title }}</option>
+                                    <option value="{{ $title->training_title }}" @if($record->title == $title->training_title) selected @endif >{{ $title->training_title }}</option>
                                 @endforeach
-                                <option value="Other">Other</option>
+                                <option id="otherTitle" value="Other">Other</option>
                             </select>
+
                             <p id="training_title_error"
                                 class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
                                     class="font-medium">Oops!</span> Select Training Title.</p>
@@ -508,7 +508,7 @@
                     {{-- Batch Number --}}
                     <div class="col-span-1">
                         <label for="batch" class="block my-2 text-sm font-medium text-gray-900">Batch No.</label>
-                        <input type="number" id="batch" name="batch" value="{{ old('batch') }}" min="1"
+                        <input type="number" id="batch" name="batch" value="{{ $record->batch || old('batch') }}" min="1"
                             step="1"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             required>
@@ -522,7 +522,7 @@
                             Training
                             Title</label>
                         <input type="text" id="otherTrainingInput" name="otherTrainingInput"
-                            value="{{ old('otherTrainingInput') }}"
+                            value="{{ old('otherTrainingInput') ?? $record->title }}"
                             class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         <p id="other_training_title_error"
                             class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
@@ -539,8 +539,8 @@
                             <select id="training_type" name="training_type" onchange="toggleType()" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Local">Local</option>
-                                <option value="International">International</option>
+                                <option value="Local" @if($record->type == 'Local') selected @endif >Local</option>
+                                <option value="International" @if($record->type == 'International') selected @endif >International</option>
                             </select>
                             <p id="training_type_error"
                                 class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
@@ -556,9 +556,9 @@
                             <select id="training_category" name="training_category" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Beginner Course">Beginner Course</option>
-                                <option value="Intermediate Course">Intermediate Course</option>
-                                <option value="Advanced Course">Advanced Course</option>
+                                <option value="Beginner Course" @if($record->category == 'Beginner Course') selected @endif >Beginner Course</option>
+                                <option value="Intermediate Course" @if($record->category == 'Intermediate Course') selected @endif >Intermediate Course</option>
+                                <option value="Advanced Course" @if($record->category == 'Advanced Course') selected @endif >Advanced Course</option>
                             </select>
                             <p id="training_category_error"
                                 class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
@@ -574,9 +574,9 @@
                             <select id="mod" name="mod" required
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Online">Online</option>
-                                <option value="Face-to-Face">Face-to-Face</option>
-                                <option value="Blended (Online + Face to Face)">Blended (Online + Face-to-Face)
+                                <option value="Online" @if($record->mod == 'Online') selected @endif >Online</option>
+                                <option value="Face-to-Face" @if($record->mod == 'Face-to-Face') selected @endif >Face-to-Face</option>
+                                <option value="Blended (Online + Face to Face)" @if($record->mod == 'Blended (Online + Face to Face)') selected @endif >Blended (Online + Face-to-Face)</option>
                                 </option>
                             </select>
                             <p id="mod_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
@@ -592,8 +592,8 @@
                             <select id="training_venue" name="training_venue" onchange="toggleVenue()"
                                 class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                 <option selected disabled value="">Select</option>
-                                <option value="Within PhilRice Station">Within PhilRice Station</option>
-                                <option value="Outside PhilRice Station">Outside PhilRice Station</option>
+                                <option value="Within PhilRice Station" @if($record->training_venue == 'Within PhilRice Station') selected @endif >Within PhilRice Station</option>
+                                <option value="Outside PhilRice Station" @if($record->training_venue == 'Outside PhilRice Station') selected @endif >Outside PhilRice Station</option>
                             </select>
                             <p id="training_venue_error"
                                 class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
@@ -617,7 +617,7 @@
                     <label for="internationalTrainingInput"
                         class="block my-2 text-sm font-medium text-gray-900">International Venue</label>
                     <input type="text" id="internationalTrainingInput" name="internationalTrainingInput"
-                        value="{{ old('internationalTrainingInput') }}"
+                        value="{{ old('internationalTrainingInput') ?? $record->international_address }}"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                     <p id="international_training_error"
                         class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
@@ -633,7 +633,7 @@
                         class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                         <option selected disabled value="">Select</option>
                         @foreach ($stations as $station)
-                            <option value="{{ $station->id }}">PhilRice {{ $station->station }}</option>
+                            <option value="{{ $station->id }}" @if($record->station_id == $station->id) selected @endif >PhilRice {{ $station->station }}</option>
                         @endforeach
                     </select>
                     <p id="within_philrice_error"
@@ -650,9 +650,9 @@
                         </label>
                         <select name="province" id="province"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                            <option selected disabled value="">Select</option>
+                            {{-- <option disabled value="">Select</option> --}}
                             @foreach ($provinces as $province)
-                                <option value="{{ $province->provCode }}">{{ $province->provDesc }}</option>
+                                <option value="{{ $province->provCode }}" @if($record->province == $province->provCode) selected @endif >{{ $province->provDesc }}</option>
                             @endforeach
                         </select>
                         <p id="province_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
@@ -674,7 +674,7 @@
                         <p id="municipality_error"
                             class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
                                 class="font-medium">Oops!</span> Select a Municipality.</p>
-                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') }}"
+                        <input type="text" name="municipality" id="municipality" value="{{ old('municipality') ?? $record->municipality }}"
                             hidden>
                     </div>
                 </div>
@@ -692,7 +692,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="start_date" name="start" value="{{ old('start') }}"
+                            <input type="text" id="start_date" name="start" value="{{ old('start') ?? $start_date }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                 placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
 
@@ -711,7 +711,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="end_date" name="end" value="{{ old('end') }}"
+                            <input type="text" id="end_date" name="end" value="{{ old('end') ?? $end_date }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                 placeholder="MM/DD/YYYY" onkeypress="return isNumericDateInput(event)" required>
                             <p id="end_date_error"
@@ -738,7 +738,7 @@
                         <p class="text-sm text-gray-500 mb-2">Specify name of partner, sponsor, or co-organizer. If more
                             than one, separate with comma. Please do not abbreviate the name(s). If no co-implementer write
                             N/A. </p>
-                        <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}"
+                        <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') ?? $record->sponsor }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Name of Implementing Partner/s or Co-Organizer/s" required>
                         <p id="sponsor_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
@@ -760,7 +760,7 @@
                                 required>
                                 <option selected disabled value="">Select</option>
                                 @foreach ($funds as $fund)
-                                    <option value="{{ $fund->fund }}">{{ $fund->fund }}</option>
+                                    <option value="{{ $fund->fund }}" @if($record->fund == $fund->fund) selected @endif >{{ $fund->fund }}</option>
                                 @endforeach
                                 <option value="Other">Other</option>
                             </select>
@@ -778,7 +778,7 @@
                 <div id="otherSourceFund" style="display: none;" class="col-span-2">
                     <label for="otherFundInput" class="block my-2 text-sm font-medium text-gray-900">Other
                         Source of Fund</label>
-                    <input type="text" id="otherFundInput" name="otherFundInput" value="{{ old('otherFundInput') }}"
+                    <input type="text" id="otherFundInput" name="otherFundInput" value="{{ old('otherFundInput') ?? $record->fund }}"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                     <p id="other_fund_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
                         <span class="font-medium">Oops!</span> Input Other Source of Fund.
@@ -794,7 +794,7 @@
                         <p class="text-sm text-gray-500 mb-2">Please specify the Average GIK as a percentage (%). Write N/A
                             if
                             there is no GIK to input.</p>
-                        <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') }}"
+                        <input type="text" id="average_gik" name="average_gik" value="{{ old('average_gik') ?? $record->average_gik ?? 'N/A' }}"
                             min="0" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="40" required />
@@ -812,7 +812,7 @@
                         <div class="grid grid-cols-2 gap-x-1">
                             <div>
                                 <input type="number" id="evaluationInput" name="evaluationInput"
-                                    value="{{ old('evaluationInput') }}" min="1" max="5" step="0.01"
+                                    value="{{ old('evaluationInput') ?? $record->evaluation }}" min="1" max="5" step="0.01"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="4.8" required>
                                 <p id="evaluation_error"
@@ -843,7 +843,7 @@
                             Participants</label>
                         <p class="text-sm text-gray-500 mb-2">If exact number is unknown, make rough estimate</p>
                         <input type="number" id="total_participants" name="total_participants"
-                            value="{{ old('total_participants') }}" min="0"
+                            value="{{ old('total_participants') ?? $record->num_of_participants }}" min="0"
                             aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="100" required />
@@ -884,7 +884,7 @@
                                 data-input-counter data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_farmers_and_growers') ?? $record->num_of_farmers }}" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-seedling"></i>
@@ -918,7 +918,7 @@
                                 data-input-counter data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_extension_workers') ?? $record->num_of_extworkers }}" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-user-tie"></i>
@@ -952,7 +952,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_scientific') ?? $record->num_of_scientific }}" required />
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-book-open-reader"></i>
@@ -981,7 +981,7 @@
                                 <i class="fa-solid fa-minus"></i>
                             </button>
                             <input type="text" id="num_of_other" name="num_of_other" data-input-counter
-                                value="0" data-input-counter-min="0" data-input-counter-max=""
+                                value="{{ old('num_of_other') ?? $record->num_of_other }}" data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
                                 placeholder="0" required />
@@ -1026,7 +1026,7 @@
                                 class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-12 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter value="0"
+                            <input type="text" id="num_of_male" name="num_of_male" data-input-counter value="{{ old('num_of_male') ?? $record->num_of_male }}"
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
@@ -1056,7 +1056,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_female') ?? $record->num_of_female }}" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-person-dress"></i>
@@ -1097,7 +1097,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_indigenous') ?? $record->num_of_indigenous }}" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-people-group"></i>
@@ -1138,7 +1138,7 @@
                                 data-input-counter-min="0" data-input-counter-max=""
                                 aria-describedby="helper-text-explanation"
                                 class="bg-gray-50 border-x-0 border-gray-300 h-12 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 "
-                                placeholder="0" value="0" required />
+                                placeholder="0" value="{{ old('num_of_pwd') ?? $record->num_of_pwd }}" required />
                             <div
                                 class="absolute bottom-2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-wheelchair"></i>
@@ -1175,14 +1175,14 @@
                         <p class="text-sm text-gray-500 mb-6">Upload up to 10 clear photo highlights of the training
                             conducted. Ensure that photo files have been named properly before uploading using the
                             Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
-                        <input required id="photo_doc_event" name="photo_doc_event[]"
+                        <input id="photo_doc_event" name="photo_doc_event[]"
                             accept="image/png, image/gif, image/jpeg"
                             class="flex w-full text-sm text-red-600 border border-red-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
                         {{--  onchange="displayPhotoDocPreviews(this)" --}}
                         {{-- <div id="errorImage" style="color: red; display: none;"></div> --}}
-                        <p id="photo_doc_error" class=" mt-2 text-xs text-center text-red-600 dark:text-red-400">
-                            Photo Documentation of Event/Activity is <span class="font-medium">Required</span>
+                        {{-- <p id="photo_doc_error" class=" mt-2 text-xs text-center text-red-600 dark:text-red-400">
+                            Photo Documentation of Event/Activity is <span class="font-medium">Required</span> --}}
                         </p>
                         <p id="photo_doc_error_more_than_10"
                             class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
@@ -1543,119 +1543,83 @@
         // const dateObject = new Date(`${month}/${day}/${year}`);
 
         // Function to save form data to localStorage
-        function saveFormData() {
-            let formData = {
-                // Section 2
-                "training_title": $("#training_title").val(),
-                "batch": $("#batch").val(),
-                "otherTrainingInput": $("#otherTrainingInput").val(),
-                "training_category": $("#training_category").val(),
-                "training_type": $("#training_type").val(),
-                "mod": $("#mod").val(),
-                "training_venue": $("#training_venue").val(),
-                "internationalTrainingInput": $("#internationalTrainingInput").val(),
-                "withinPhilriceInput": $("#withinPhilriceInput").val(),
-                // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
-                "province": $("#province").val(),
-                "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
-                "start_date": $("#start_date").val(),
-                "end_date": $("#end_date").val(),
-                // Section 3
-                "sponsor": $("#sponsor").val(),
-                "source_of_fund": $("#source_of_fund").val(),
-                "otherFundInput": $("#otherFundInput").val(),
-                "average_gik": $("#average_gik").val(),
-                "evaluationInput": $("#evaluationInput").val(),
-                // Section 4 
-                "total_participants": $("#total_participants").val(),
-                "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
-                "num_of_extension_workers": $("#num_of_extension_workers").val(),
-                "num_of_scientific": $("#num_of_scientific").val(),
-                "num_of_other": $("#num_of_other").val(),
-                "num_of_female": $("#num_of_female").val(),
-                "num_of_male": $("#num_of_male").val(),
-                "num_of_indigenous": $("#num_of_indigenous").val(),
-                "num_of_pwd": $("#num_of_pwd").val(),
-            };
+        // function saveFormData() {
+        //     let formData = {
+        //         // Section 2
+        //         // "training_title": $("#training_title").val(),
+        //         // "batch": $("#batch").val(),
+        //         // "otherTrainingInput": $("#otherTrainingInput").val(),
+        //         // "training_category": $("#training_category").val(),
+        //         // "training_type": $("#training_type").val(),
+        //         // "mod": $("#mod").val(),
+        //         // "training_venue": $("#training_venue").val(),
+        //         // "internationalTrainingInput": $("#internationalTrainingInput").val(),
+        //         // "withinPhilriceInput": $("#withinPhilriceInput").val(),
+        //         // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
+        //         "province": $("#province").val(),
+        //         "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
+        //         // "start_date": $("#start_date").val(),
+        //         // "end_date": $("#end_date").val(),
+        //         // Section 3
+        //         // "sponsor": $("#sponsor").val(),
+        //         // "source_of_fund": $("#source_of_fund").val(),
+        //         // "otherFundInput": $("#otherFundInput").val(),
+        //         // "average_gik": $("#average_gik").val(),
+        //         // "evaluationInput": $("#evaluationInput").val(),
+        //         // Section 4 
+        //         // "total_participants": $("#total_participants").val(),
+        //         // "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
+        //         // "num_of_extension_workers": $("#num_of_extension_workers").val(),
+        //         // "num_of_scientific": $("#num_of_scientific").val(),
+        //         // "num_of_other": $("#num_of_other").val(),
+        //         // "num_of_female": $("#num_of_female").val(),
+        //         // "num_of_male": $("#num_of_male").val(),
+        //         // "num_of_indigenous": $("#num_of_indigenous").val(),
+        //         // "num_of_pwd": $("#num_of_pwd").val(),
+        //     };
 
-            localStorage.setItem('formTrainings', JSON.stringify(formData));
-        }
+        //     localStorage.setItem('formTrainings', JSON.stringify(formData));
+        // }
         // Function to load form data from localStorage
         function loadFormData() {
-            var storedData = localStorage.getItem('formTrainings');
-
-            if (storedData) {
-                var formData = JSON.parse(storedData);
+            // Styling
                 // Section 2
-                $("#training_title").val(formData.training_title);
-                $("#batch").val(formData.batch);
-                $("#otherTrainingInput").val(formData.otherTrainingInput);
-                $("#training_category").val(formData.training_category);
-                $("#training_type").val(formData.training_type);
-                $("#mod").val(formData.mod);
-                $("#training_venue").val(formData.training_venue);
-                $("#internationalTrainingInput").val(formData.internationalTrainingInput);
-                $("#withinPhilriceInput").val(formData.withinPhilriceInput);
-                // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
-                $("#province").val(formData.province);
-                $("#municipality").val(formData.municipality);
-                $("#start_date").val(formData.start_date);
-                $("#end_date").val(formData.end_date);
-                // Section 3
-                $("#sponsor").val(formData.sponsor);
-                $("#source_of_fund").val(formData.source_of_fund);
-                $("#otherFundInput").val(formData.otherFundInput);
-                $("#average_gik").val(formData.average_gik);
-                $("#evaluationInput").val(formData.evaluationInput);
-                // Section 4 
-                $("#total_participants").val(formData.total_participants);
-                $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
-                $("#num_of_extension_workers").val(formData.num_of_extension_workers);
-                $("#num_of_scientific").val(formData.num_of_scientific);
-                $("#num_of_other").val(formData.num_of_other);
-                $("#num_of_female").val(formData.num_of_female);
-                $("#num_of_male").val(formData.num_of_male);
-                $("#num_of_indigenous").val(formData.num_of_indigenous);
-                $("#num_of_pwd").val(formData.num_of_pwd);
-
-                // Styling
-                // Section 2
-                if (formData.training_title) {
+                if ($("#training_title").val()) {
                     $("#training_title").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.batch) {
+                if ($("#batch").val()) {
                     $("#batch").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.training_type) {
+                if ($("#training_type").val()) {
                     $("#training_type").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.training_category) {
+                if ($("#training_category").val()) {
                     $("#training_category").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.mod) {
+                if ($("#mod").val()) {
                     $("#mod").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.start_date) {
+                if ($("#start_date").val()) {
                     $("#start_date").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.end_date) {
+                if ($("#end_date").val()) {
                     $("#end_date").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.training_title === "Other") {
+                if ($("#training_title").val() === "Other") {
                     var otherTrainingTitleDiv = document.getElementById('otherTrainingTitle');
 
                     otherTrainingTitleDiv.style.display = 'block';
@@ -1666,7 +1630,7 @@
                 var row2 = document.getElementById("row2");
                 var row2Classes = row2.classList;
 
-                if (formData.training_type === "International") {
+                if ($("#training_type").val() === "International") {
                     // Adjust grid columns
                     row2Classes.remove("grid-cols-4");
                     row2Classes.add("grid-cols-3");
@@ -1675,39 +1639,39 @@
                     internationalTrainingDiv.style.display = 'block';
                     $("#internationalTrainingInput").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
-                } else if (formData.training_type === "Local") {
+                } else if ($("#training_type").val() === "Local") {
                     // Adjust grid columns
                     row2Classes.remove("grid-cols-3");
                     row2Classes.add("grid-cols-4");
 
-                    if (formData.training_venue) {
+                    if ($("#training_venue").val()) {
                         var trainingVenueDiv = document.getElementById('training_venue_container');
                         trainingVenueDiv.style.display = 'block';
                         $("#training_venue").removeClass('border-gray-300 text-gray-900').addClass(
                             'border-green-600 text-green-600');
 
-                        if (formData.training_venue === "Within PhilRice Station") {
+                        if ($("#training_venue").val() === "Within PhilRice Station") {
                             var withinPhilriceDiv = document.getElementById('withinPhilriceInput');
                             withinPhilriceDiv.style.display = 'block';
 
-                            if (formData.withinPhilriceInput) {
+                            if ($("#withinPhilriceInput").val()) {
                                 $("#withinPhilriceInput").removeClass('border-gray-300 text-gray-900').addClass(
                                     'border-green-600 text-green-600');
                             }
 
 
-                        } else if (formData.training_venue === "Outside PhilRice Station") {
+                        } else if ($("#training_venue").val() === "Outside PhilRice Station") {
                             var outsidePhilriceDiv = document.getElementById('outsidePhilrice');
                             outsidePhilriceDiv.style.display = 'grid';
 
                             outsidePhilriceDiv.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
 
-                            if (formData.province) {
+                            if ($("#province").val()) {
                                 $("#province").removeClass('border-gray-300 text-gray-900').addClass(
                                     'border-green-600 text-green-600');
                             }
 
-                            if (formData.municipality) {
+                            if ($("#municipalitySelect").val()) {
                                 $("#municipalitySelect").removeClass('border-gray-300 text-gray-900').addClass(
                                     'border-green-600 text-green-600');
                             }
@@ -1716,20 +1680,20 @@
                 }
 
                 // Section 3
-                if (formData.sponsor) {
+                if ($("#sponsor").val()) {
                     $("#sponsor").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.source_of_fund) {
+                if ($("#source_of_fund").val()) {
                     $("#source_of_fund").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
 
-                    if (formData.source_of_fund === "Other") {
+                    if ($("#source_of_fund").val() === "Other") {
                         var otherSourceFundDiv = document.getElementById('otherSourceFund');
                         otherSourceFundDiv.style.display = 'block';
 
-                        if (formData.otherFundInput) {
+                        if ($("#otherFundInput").val()) {
                             $("#otherFundInput").removeClass('border-gray-300 text-gray-900').addClass(
                                 'border-green-600 text-green-600');
                         }
@@ -1737,19 +1701,19 @@
 
                 }
 
-                if (formData.average_gik) {
+                if ($("#average_gik").val()) {
                     $("#average_gik").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.evaluationInput) {
+                if ($("#evaluationInput").val()) {
                     $("#evaluationInput").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
 
                     $("#evaluationOutput").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
 
-                    var evaluationInput = formData.evaluationInput;
+                    var evaluationInput = $("#evaluationInput").val();
                     var evaluationOutput = document.getElementById('evaluationOutput');
                     var evaluationOutputClass = evaluationOutput.classList;
 
@@ -1790,26 +1754,24 @@
                     }
                 }
 
-                if (formData.total_participants) {
+                if ($("#total_participants").val()) {
                     $("#total_participants").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.num_of_indigenous === "0") {
+                if ($("#num_of_indigenous").val() === "0") {
                     $("#num_of_indigenous").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                     $("#decrement-button7, #increment-button7").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
 
-                if (formData.num_of_pwd === "0") {
+                if ($("#num_of_pwd").val() === "0") {
                     $("#num_of_pwd").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                     $("#decrement-button8, #increment-button8").removeClass('border-gray-300 text-gray-900').addClass(
                         'border-green-600 text-green-600');
                 }
-            }
-
         }
 
         function showSection(sectionNumber) {
@@ -1976,12 +1938,42 @@
         $(document).ready(function() {
             loadFormData(); // Load form data when document is ready
 
+            var row2 = $("#row2");
+            if(!$("#training_title").val()) {
+                $('#otherTitle').prop('selected', true);
+                $("#otherTrainingTitle").css("display", "block");
+            }
+            if($("#training_title").val() == $("#otherTrainingInput").val()) { 
+                $("#otherTrainingInput").val('');
+            }
+            if($("#training_type").val()) {
+                if($("#training_type").val() == 'International') {
+                    $("#internationalTraining").css("display", "block");
+                } else if($("#training_type").val() == 'Local') {
+                    $("#training_venue_container").css("display", "block");
+                    row2.removeClass("grid-cols-3");
+                    row2.addClass("grid-cols-4");
+                    if($("#training_venue").val() == 'Outside PhilRice Station') {
+                        $("#outsidePhilrice").css("display", "block");
+                    } else if($("#training_venue").val() == 'Within PhilRice Station') {
+                        $("#withinPhilrice").css("display", "block");
+                    }
+                }
+            }
+            if(!$("#source_of_fund").val()) {
+                $('#otherFund').prop('selected', true);
+                $("#otherSourceFund").css("display", "block");
+            }
+            if($("#source_of_fund").val() == $("#otherFundInput").val()) { 
+                $("#otherFundInput").val('');
+            }
+
             // Show the initial section
             showSection(currentSection);
             updateButtons();
 
             // retain the old value in municipality when document is ready
-            if ($("#province").val()) {
+            if($("#province").val()) {
                 var provCode = $("#province").val();
                 var citymunCode = $("#municipality").val();
                 $.ajax({
@@ -1996,14 +1988,13 @@
                         $('#municipalitySelect').html(
                             '<option selected disabled value="">Select</option>');
                         $.each(result, function(key, value) {
-                            var isSelected = value.citymunCode ===
-                                citymunCode; // More explicit comparison
-                            $("#municipalitySelect").append('<option' + (isSelected ?
-                                    ' selected' : '') +
-                                ' value="' + value.citymunCode + '">' + value.citymunDesc +
-                                '</option>');
+                            var isSelected = value.citymunCode === citymunCode; // More explicit comparison
+                            $("#municipalitySelect").append('<option' + (isSelected ? ' selected' : '') +
+                                ' value="' + value.citymunCode + '">' + value.citymunDesc + '</option>');
+                            // $("#municipalitySelect").append('<option @if(' + citymunCode + ' == ' + value.citymunCode + ') selected @endif value="' + value.citymunCode + '">' +
+                            //     value.citymunDesc + '</option>');
                         });
-
+                        
                     },
                     error: function(error) {
                         alert('Something went wrong!');
@@ -2012,7 +2003,7 @@
             }
 
             $('#prevBtn').on('click', function() {
-                saveFormData();
+                // saveFormData();
                 loadFormData();
                 $("#nextBtn").removeAttr("hidden");
                 $("#submitBtn").attr("hidden", true);
@@ -2043,7 +2034,7 @@
             });
 
             $('#nextBtn').on('click', function() {
-                saveFormData();
+                // saveFormData();
                 loadFormData();
 
                 // changes the type of nextBtn into submit
