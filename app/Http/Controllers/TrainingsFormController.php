@@ -4088,7 +4088,7 @@ class TrainingsFormController extends Controller
             'other_doc'=>'max:10',
         ]);
 
-        $existed = $this->processTrainingChecking($request->training_title, $request->batch);
+        $existed = $this->processTrainingCheckingForStore($request->training_title, $request->batch);
         if($existed) {
             return redirect()->route('trainingsform.create')->with(['error' => 'Oops...', 'message' => 'Training Title: ' . $request->training_title . ' Batch (' . $request->batch . ') already exists']);
         }
@@ -4263,17 +4263,31 @@ class TrainingsFormController extends Controller
             ->regCode;
         return $region;
     }
-    private function processTrainingChecking($title, $batch)
+    private function processTrainingCheckingForStore($title, $batch)
     {
         try {
-            TrainingsForm::where('title', $title)
+            return TrainingsForm::where('title', $title)
                         ->where('batch', $batch)
-                        ->firstOrFail();
-            return true;
+                        ->exists();
+            // return true;
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) {
             return false;
         }
     }
+    // private function processTrainingCheckingForUpdate($id, $title, $batch)
+    private function processTrainingCheckingForUpdate($id, $title, $batch)
+    {
+        try {
+            return TrainingsForm::where('id', '!=', $id)
+                        ->where('title', $title)
+                        ->where('batch', $batch)
+                        ->exists();
+            // return true;
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) {
+            return false;
+        }
+    }
+
 
     /**
      * Display the specified resource.
@@ -4371,7 +4385,7 @@ class TrainingsFormController extends Controller
             'other_doc'=>'max:10',
         ]);
 
-        $existed = $this->processTrainingChecking($request->training_title, $request->batch);
+        $existed = $this->processTrainingCheckingForUpdate($id, $request->training_title, $request->batch);
         if($existed) {
             return redirect()->route('trainingsform.create')->with(['error' => 'Oops...', 'message' => 'Training Title: ' . $request->training_title . ' Batch (' . $request->batch . ') already exists']);
         }
@@ -4548,7 +4562,6 @@ class TrainingsFormController extends Controller
 
         TrainingsForm::where('id', $id)->update($updateData);
 
-        return redirect()->route('encoder.edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
         return redirect()->route('encoder.edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
     }
 

@@ -30,21 +30,21 @@
                     </a>
                     <ul id="dropdown-sales" class="py-2 space-y-2">
                         <li>
-                            <a href="{{ route('encoder.ces_view') }}"
+                            <a href="{{ route('encoder.view') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='line-chart'></box-icon>
                                 <span class="ml-3">View Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('encoder.ces_add') }}"
+                            <a href="{{ route('encoder.add') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='plus'></box-icon>
                                 <span class="ml-3">Add Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('encoder.ces_edit') }}"
+                            <a href="{{ route('encoder.edit') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg bg-green-100 transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                 <box-icon name='edit-alt' type='solid'></box-icon>
                                 <span class="ml-3">Edit Data</span>
@@ -1121,81 +1121,81 @@
         // });
 
         // Function to save form data to localStorage
-        function saveFormData() {
-            let formData = {
-                // Section 2
-                "training_title": $("#training_title").val(),
-                "otherTrainingInput": $("#otherTrainingInput").val(),
-                "training_category": $("#training_category").val(),
-                "training_type": $("#training_type").val(),
-                "mod": $("#mod").val(),
-                "training_venue": $("#training_venue").val(),
-                "internationalTrainingInput": $("#internationalTrainingInput").val(),
-                "withinPhilriceInput": $("#withinPhilriceInput").val(),
-                // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
-                "province": $("#province").val(),
-                "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
-                "start_date": $("#start_date").val(),
-                "end_date": $("#end_date").val(),
-                // Section 3
-                "sponsor": $("#sponsor").val(),
-                "source_of_fund": $("#source_of_fund").val(),
-                "otherFundInput": $("#otherFundInput").val(),
-                "average_gik": $("#average_gik").val(),
-                "evaluationInput": $("#evaluationInput").val(),
-                // Section 4 
-                "total_participants": $("#total_participants").val(),
-                "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
-                "num_of_extension_workers": $("#num_of_extension_workers").val(),
-                "num_of_scientific": $("#num_of_scientific").val(),
-                "num_of_other": $("#num_of_other").val(),
-                "num_of_female": $("#num_of_female").val(),
-                "num_of_male": $("#num_of_male").val(),
-                "num_of_indigenous": $("#num_of_indigenous").val(),
-                "num_of_pwd": $("#num_of_pwd").val(),
-            };
+        // function saveFormData() {
+        //     let formData = {
+        //         // Section 2
+        //         "training_title": $("#training_title").val(),
+        //         "otherTrainingInput": $("#otherTrainingInput").val(),
+        //         "training_category": $("#training_category").val(),
+        //         "training_type": $("#training_type").val(),
+        //         "mod": $("#mod").val(),
+        //         "training_venue": $("#training_venue").val(),
+        //         "internationalTrainingInput": $("#internationalTrainingInput").val(),
+        //         "withinPhilriceInput": $("#withinPhilriceInput").val(),
+        //         // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
+        //         "province": $("#province").val(),
+        //         "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
+        //         "start_date": $("#start_date").val(),
+        //         "end_date": $("#end_date").val(),
+        //         // Section 3
+        //         "sponsor": $("#sponsor").val(),
+        //         "source_of_fund": $("#source_of_fund").val(),
+        //         "otherFundInput": $("#otherFundInput").val(),
+        //         "average_gik": $("#average_gik").val(),
+        //         "evaluationInput": $("#evaluationInput").val(),
+        //         // Section 4 
+        //         "total_participants": $("#total_participants").val(),
+        //         "num_of_farmers_and_growers": $("#num_of_farmers_and_growers").val(),
+        //         "num_of_extension_workers": $("#num_of_extension_workers").val(),
+        //         "num_of_scientific": $("#num_of_scientific").val(),
+        //         "num_of_other": $("#num_of_other").val(),
+        //         "num_of_female": $("#num_of_female").val(),
+        //         "num_of_male": $("#num_of_male").val(),
+        //         "num_of_indigenous": $("#num_of_indigenous").val(),
+        //         "num_of_pwd": $("#num_of_pwd").val(),
+        //     };
 
-            localStorage.setItem('formTrainings', JSON.stringify(formData));
-        }
+        //     localStorage.setItem('formTrainings', JSON.stringify(formData));
+        // }
         // Function to load form data from localStorage
-        function loadFormData() {
-            var storedData = localStorage.getItem('formTrainings');
+        // function loadFormData() {
+        //     var storedData = localStorage.getItem('formTrainings');
 
-            if (storedData) {
-                var formData = JSON.parse(storedData);
-                // Section 2
-                $("#training_title").val(formData.training_title);
-                $("#otherTrainingInput").val(formData.otherTrainingInput);
-                $("#training_category").val(formData.training_category);
-                $("#training_type").val(formData.training_type);
-                $("#mod").val(formData.mod);
-                $("#training_venue").val(formData.training_venue);
-                $("#internationalTrainingInput").val(formData.internationalTrainingInput);
-                $("#withinPhilriceInput").val(formData.withinPhilriceInput);
-                // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
-                $("#province").val(formData.province);
-                $("#municipality").val(formData.municipality);
-                $("#start_date").val(formData.start_date);
-                $("#end_date").val(formData.end_date);
-                // Section 3
-                $("#sponsor").val(formData.sponsor);
-                $("#source_of_fund").val(formData.source_of_fund);
-                $("#otherFundInput").val(formData.otherFundInput);
-                $("#average_gik").val(formData.average_gik);
-                $("#evaluationInput").val(formData.evaluationInput);
-                // Section 4 
-                $("#total_participants").val(formData.total_participants);
-                $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
-                $("#num_of_extension_workers").val(formData.num_of_extension_workers);
-                $("#num_of_scientific").val(formData.num_of_scientific);
-                $("#num_of_other").val(formData.num_of_other);
-                $("#num_of_female").val(formData.num_of_female);
-                $("#num_of_male").val(formData.num_of_male);
-                $("#num_of_indigenous").val(formData.num_of_indigenous);
-                $("#num_of_pwd").val(formData.num_of_pwd);
-            }
+        //     if (storedData) {
+        //         var formData = JSON.parse(storedData);
+        //         // Section 2
+        //         $("#training_title").val(formData.training_title);
+        //         $("#otherTrainingInput").val(formData.otherTrainingInput);
+        //         $("#training_category").val(formData.training_category);
+        //         $("#training_type").val(formData.training_type);
+        //         $("#mod").val(formData.mod);
+        //         $("#training_venue").val(formData.training_venue);
+        //         $("#internationalTrainingInput").val(formData.internationalTrainingInput);
+        //         $("#withinPhilriceInput").val(formData.withinPhilriceInput);
+        //         // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
+        //         $("#province").val(formData.province);
+        //         $("#municipality").val(formData.municipality);
+        //         $("#start_date").val(formData.start_date);
+        //         $("#end_date").val(formData.end_date);
+        //         // Section 3
+        //         $("#sponsor").val(formData.sponsor);
+        //         $("#source_of_fund").val(formData.source_of_fund);
+        //         $("#otherFundInput").val(formData.otherFundInput);
+        //         $("#average_gik").val(formData.average_gik);
+        //         $("#evaluationInput").val(formData.evaluationInput);
+        //         // Section 4 
+        //         $("#total_participants").val(formData.total_participants);
+        //         $("#num_of_farmers_and_growers").val(formData.num_of_farmers_and_growers);
+        //         $("#num_of_extension_workers").val(formData.num_of_extension_workers);
+        //         $("#num_of_scientific").val(formData.num_of_scientific);
+        //         $("#num_of_other").val(formData.num_of_other);
+        //         $("#num_of_female").val(formData.num_of_female);
+        //         $("#num_of_male").val(formData.num_of_male);
+        //         $("#num_of_indigenous").val(formData.num_of_indigenous);
+        //         $("#num_of_pwd").val(formData.num_of_pwd);
+        //     }
 
-        }
+        // }
 
         function showSection(sectionNumber) {
             sections.forEach(section => {
@@ -1436,8 +1436,8 @@
             }
 
             $('#prevBtn').on('click', function() {
-                saveFormData();
-                loadFormData();
+                // saveFormData();
+                // loadFormData();
                 $("#nextBtn").removeAttr("hidden");
                 $("#submitBtn").attr("hidden", true);
                 nextBtn.disabled = false;
@@ -1467,8 +1467,8 @@
             });
 
             $('#nextBtn').on('click', function() {
-                saveFormData();
-                loadFormData();
+                // saveFormData();
+                // loadFormData();
                 
                 // changes the type of nextBtn into submit
                 if (currentSection == 5) {
