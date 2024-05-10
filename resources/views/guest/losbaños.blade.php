@@ -1348,7 +1348,7 @@
 
         function loadTrainings(page) {
             $.ajax({
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1396,7 +1396,7 @@
         function loadMunicipalities(page) {
             $.ajax({
                 // url: "/encoder/trainings/filter",
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1450,7 +1450,7 @@
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1681,7 +1681,7 @@
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

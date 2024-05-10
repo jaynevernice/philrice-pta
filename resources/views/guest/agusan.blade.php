@@ -1348,7 +1348,7 @@
 
         function loadTrainings(page) {
             $.ajax({
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1364,9 +1364,6 @@
                     showTrainings(result["records"]);
                     showRegions(result["regions"]);
                     showProvinces(result["provinces"]);
-                    // showMunicipalitiesCol1(result["municipalities_col1"]);
-                    // showMunicipalitiesCol2(result["municipalities_col2"]);
-                    // showMunicipalitiesCol3(result["municipalities_col3"]);
 
                     currentPage = page; // Update current page
 
@@ -1396,7 +1393,7 @@
         function loadMunicipalities(page) {
             $.ajax({
                 // url: "/encoder/trainings/filter",
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1430,7 +1427,6 @@
                         } else {
                             $("#prevButtonMunicipality").show();
                         }
-                        // $("#prevButton").show();
                     }
                 },
                 error: function(error) {
@@ -1450,7 +1446,7 @@
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1478,7 +1474,6 @@
 
                     if (recordsPerPageMunicipality != result["municipalities_col3"].length) {
                         $("#nextButtonMunicipality").hide();
-                        // $("#prevButton").show();
                         if(currentPageMunicipality == 1) {
                             $("#prevButtonMunicipality").hide();
                         } else {
@@ -1491,7 +1486,6 @@
                         } else {
                             $("#prevButtonMunicipality").show();
                         }
-                        // $("#prevButton").show();
                     }
                 },
                 error: function(error) {
@@ -1681,7 +1675,7 @@
 
             $.ajax({
                 // url: "/encoder/trainings/filter",
-                url: "{{ route('filter_station') }}",
+                url: "{{ route('filter_station_guest') }}",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
