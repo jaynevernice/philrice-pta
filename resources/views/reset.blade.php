@@ -64,11 +64,6 @@
                         class="block text-sm text-gray-600 my-4 hover:text-gray-900 text-right underline">Go
                         Back to Login</a>
                 </form>
-
-                {{-- <div class="text-center mt-8">
-                    <a href="{{ route('login') }}"
-                        class="text-green-400 hover:text-green-500 hover:underline font-medium">Go Back</a>
-                </div> --}}
             </div>
 
         </div>

@@ -525,7 +525,6 @@
                                                 <box-icon type='solid' name='user-plus' size="xs"></box-icon>
                                             </button>
                                         </form>
-                                        {{-- If isBlocked = false --}}
                                         @if ($encoder->isBlocked === 0)
                                             <form id="block-{{ $encoder->id }}"
                                                 action="{{ route('super_admin.blocks', $encoder->id) }}" method="POST">
@@ -537,7 +536,6 @@
                                                         size="xs"></box-icon>
                                                 </button>
                                             </form>
-                                            {{-- If isBlocked = true --}}
                                         @elseif ($encoder->isBlocked === 1)
                                             <form id="unblock-{{ $encoder->id }}"
                                                 action="{{ route('super_admin.unblocks', $encoder->id) }}" method="POST">

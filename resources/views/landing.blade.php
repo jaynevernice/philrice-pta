@@ -6,19 +6,12 @@
 
 @section('content')
     <div class="flex flex-col h-screen">
-        {{-- Hero --}}
         <div class="relative flex flex-col justify-center items-center w-full h-full">
-            {{-- <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop>
-                <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video> --}}
             <img src="{{ asset('assets/philrice-1.png') }}" alt="Background Image"
                 class="absolute top-0 left-0 w-full h-full object-cover">
 
-            {{-- Dim video using overlay --}}
             <div class="absolute inset-0 bg-black opacity-50"></div>
 
-            {{-- Text Overlay --}}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
                 <div class="max-w-2xl mx-auto px-4">
                     <h1 class="text-5xl font-bold text-center mb-6">{{ config('app.name') }}</h1>

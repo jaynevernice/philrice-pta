@@ -36,9 +36,6 @@
 
     
     @yield('scripts')
-    
-     {{-- realrashid/sweet-alert --}}
-     {{-- @include('sweetalert::alert') --}}
 
 </body>
 

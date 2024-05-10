@@ -456,10 +456,8 @@
 @endsection
 
 @section('content')
-    {{-- <main class="pt-20 h-full w-[1100px] mx-auto bg-gray-50"> --}}
     <main class="p-8 md:ml-64 pt-24 h-full bg-gray-50">
         {{-- Background Image --}}
-        {{-- <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full"> --}}
         <img src="{{ asset('assets/profile-bg-1.jpg') }}" class="absolute inset-0 h-3/4 w-full object-cover">
 
         <div
@@ -475,7 +473,6 @@
                             <label for="profile_picture"
                                 class="h-40 w-40 rounded-full bg-gray-100 relative cursor-pointer border border-gray-900 overflow-visible">
 
-                                {{-- Placeholder for current profile Picture --}}
                                 <img alt="Current Profile Picture" class="h-full w-full rounded-full object-cover"
                                     id="profile_picture_preview"
                                     @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}"
@@ -496,7 +493,6 @@
                         <h1 class="text-4xl font-bold my-1">{{ old('first_name', Auth::user()->first_name) }}
                             {{ old('mi', Auth::user()->mi) }} {{ old('last_name', Auth::user()->last_name) }}</h1>
                         <p class="text-md text-gray-600 my-1">{{ old('email', Auth::user()->email) }}</p>
-                        {{-- <p class="text-gray-600 my-1">{{ old('philrice_id', Auth::user()->philrice_id) }}</p> --}}
                         <span
                             class="inline-block bg-green-200 text-green-400 text-md font-semibold px-2 py-1 rounded-lg">{{ old('philrice_id', Auth::user()->philrice_id) }}</span>
 
@@ -516,38 +512,6 @@
                         <select
                             class="block bg-gray-50 appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-2 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                             id="station" name="station">
-                            {{-- <option>{{ old('station', Auth::user()->station) }}</option> --}}
-                            {{-- @foreach ($stations as $station)
-                                <option value="{{ $station->id }}">{{ $station->station }}</option>
-                            @endforeach --}}
-                            {{-- Show old user's station by default --}}
-                            {{-- @foreach ($stations as $station)
-                                <option value="{{ $station->id }}"
-                                    {{ old('station', Auth::user()->station) == $station->id ? 'selected' : '' }}>
-                                    {{ $station->station }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($stations as $station)
-                                <option value="{{ $station->station }}"
-                                    {{ old('station', Auth::user()->station) == $station->station ? 'selected' : '' }}>
-                                    {{ $station->station }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($stations as $station)
-                                <option value="{{ $station->id }}"
-                                    {{ old('station', Auth::user()->station) == $station->id ? 'selected' : '' }}>
-                                    {{ $station->station }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($stations as $station)
-                                <option value="{{ $station->station }}"
-                                    {{ old('station', Auth::user()->station) == $station->station ? 'selected' : '' }}>
-                                    {{ $station->station }}
-                                </option>
-                            @endforeach --}}
 
                             @foreach ($stations as $station)
                                 <option value="{{ $station->id }}"
@@ -555,11 +519,6 @@
                                     {{ $station->station }}
                                 </option>
                             @endforeach
-
-                            {{-- @foreach ($stations as $data)
-                                <option value="{{ $data->id }}">PhilRice {{ $data->station }}
-                                </option>
-                            @endforeach --}}
                         </select>
                     </div>
 
@@ -568,27 +527,6 @@
                         <select
                             class="block bg-gray-50 appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-2 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                             id="division" name="division">
-                            {{-- <option>{{ old('division', Auth::user()->division) }}</option> --}}
-                            {{-- @foreach ($divisions as $division)
-                                <option value="{{ $division->id }}"
-                                    {{ old('division', Auth::user()->division) == $division->id ? 'selected' : '' }}>
-                                    {{ $division->division }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($divisions as $division)
-                                <option value="{{ $division->division }}"
-                                    {{ old('division', Auth::user()->division) == $division->division ? 'selected' : '' }}>
-                                    {{ $division->division }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($divisions as $division)
-                                <option value="{{ $division->division }}"
-                                    {{ old('division', Auth::user()->division) == $division->division ? 'selected' : '' }}>
-                                    {{ $division->division }}
-                                </option>
-                            @endforeach --}}
                         </select>
                     </div>
                 </div>
@@ -599,35 +537,6 @@
                         <select
                             class="block bg-gray-50 appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                             id="position" name="position">
-                            {{-- <option>{{ old('position', Auth::user()->position) }}</option> --}}
-
-                            {{-- @foreach ($positions as $position)
-                                <option value="{{ $position->id }}"
-                                    {{ old('position', Auth::user()->position) == $position->id ? 'selected' : '' }}>
-                                    {{ $position->position }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($positions as $position)
-                                <option value="{{ $position->position }}"
-                                    {{ old('position', Auth::user()->position) == $position->position ? 'selected' : '' }}>
-                                    {{ $position->position }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($positions as $position)
-                                <option value="{{ $position->position }}"
-                                    {{ old('position', Auth::user()->position) == $position->position ? 'selected' : '' }}>
-                                    {{ $position->position }}
-                                </option>
-                            @endforeach --}}
-
-                            {{-- @foreach ($positions as $position)
-                                <option value="{{ $position->id }}"
-                                    {{ old('position', Auth::user()->position) == $position->id ? 'selected' : '' }}>
-                                    {{ $position->position }}
-                                </option>
-                            @endforeach --}}
                         </select>
                     </div>
                 </div>
@@ -645,7 +554,6 @@
                         <input type="text" id="sq1" name="sq1"
                             class="h-10 bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 1" value="{{ old('sq1', Auth::user()->sq1) }}">
-                        {{-- @if (Auth::check()) value="{{ Auth::user()->sq1 }}" @endif> --}}
                     </div>
 
                     <div class="mb-2">
@@ -655,7 +563,6 @@
                         <input type="text" id="sq2" name="sq2"
                             class="h-10 bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 2" value="{{ old('sq2', Auth::user()->sq2) }}">
-                        {{-- @if (Auth::check()) value="{{ Auth::user()->sq2 }}" @endif> --}}
                     </div>
 
                     <div class="mb-2">
@@ -665,7 +572,6 @@
                         <input type="text" id="sq3" name="sq3"
                             class="h-10 bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             placeholder="Security Question 3" value="{{ old('sq3', Auth::user()->sq3) }}">
-                        {{-- @if (Auth::check()) value="{{ Auth::user()->sq3 }}" @endif> --}}
                     </div>
                 </div>
 
@@ -709,7 +615,6 @@
                 </div>
 
                 {{-- Save and Go Back --}}
-                {{-- href="{{ url()->previous() }}" --}}
                 <div class="flex justify-end w-full my-8">
                     <a href="{{ route('auth.overview') }}"
                         class="text-gray-700 hover:text-[#0B1215] font-medium rounded-lg text-sm px-3 py-2.5"
@@ -725,7 +630,6 @@
 @endsection
 
 @section('scripts')
-    {{-- Dependent Dropdown. Uses ID so di mapopopulate yung old value ng tama if name and sinave --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var stationDropdown = document.getElementById('station');
@@ -744,7 +648,6 @@
                         divisionDropdown.appendChild(option);
                     }
                 });
-                // Populate positions based on default division selection
                 populatePositions(divisionDropdown.value);
             }
 
@@ -760,7 +663,6 @@
                 });
             }
 
-            // Populate dropdowns with old values and set the selected attribute for the correct option
             var oldStationId = "{{ old('station', Auth::user()->station) }}";
             var oldDivisionId = "{{ old('division', Auth::user()->division) }}";
             var oldPositionId = "{{ old('position', Auth::user()->position) }}";
@@ -768,12 +670,11 @@
             populateDivisions(oldStationId);
             populatePositions(oldDivisionId);
 
-            // Set selected attribute for the correct option in each dropdown
             stationDropdown.value = oldStationId;
             divisionDropdown.value = oldDivisionId;
             positionDropdown.value = oldPositionId;
 
-            // Event listeners for dropdown changes
+            // Event listeners for  changes
             stationDropdown.addEventListener('change', function() {
                 populateDivisions(this.value);
             });
@@ -783,125 +684,6 @@
             });
         });
     </script>
-
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var stationDropdown = document.getElementById('station');
-            var divisionDropdown = document.getElementById('division');
-            var positionDropdown = document.getElementById('position');
-            var divisions = {!! json_encode($divisions) !!};
-            var positions = {!! json_encode($positions) !!};
-
-            function populateDivisions(stationId) {
-                divisionDropdown.innerHTML = '';
-                divisions.forEach(function(division) {
-                    if (division.station_id == stationId) {
-                        var option = document.createElement('option');
-                        option.value = division.id;
-                        option.textContent = division.division;
-                        divisionDropdown.appendChild(option);
-                    }
-                });
-                // Populate positions based on default division selection
-                populatePositions(divisionDropdown.value);
-            }
-
-            function populatePositions(divisionId) {
-                positionDropdown.innerHTML = '';
-                positions.forEach(function(position) {
-                    if (position.division_id == divisionId) {
-                        var option = document.createElement('option');
-                        option.value = position.id;
-                        option.textContent = position.position;
-                        positionDropdown.appendChild(option);
-                    }
-                });
-            }
-
-            // Populate dropdowns with old values and set the selected attribute for the correct option
-            var oldStationId = "{{ old('station', Auth::user()->station) }}";
-            var oldDivisionId = "{{ old('division', Auth::user()->division) }}";
-            var oldPositionId = "{{ old('position', Auth::user()->position) }}";
-
-            populateDivisions(oldStationId);
-            populatePositions(oldDivisionId);
-
-            // Set selected attribute for the correct option in each dropdown
-            stationDropdown.value = oldStationId;
-            divisionDropdown.value = oldDivisionId;
-            positionDropdown.value = oldPositionId;
-
-            // Event listeners for dropdown changes
-            stationDropdown.addEventListener('change', function() {
-                populateDivisions(this.value);
-            });
-
-            divisionDropdown.addEventListener('change', function() {
-                populatePositions(this.value);
-            });
-        });
-    </script> --}}
-
-    {{-- <script>
-        // JavaScript for dynamic dropdowns
-        document.addEventListener('DOMContentLoaded', function() {
-            var stationDropdown = document.getElementById('station');
-            var divisionDropdown = document.getElementById('division');
-            var positionDropdown = document.getElementById('position');
-            var divisions = {!! json_encode($divisions) !!}; // Assuming $divisions is passed from the backend
-            var positions = {!! json_encode($positions) !!}; // Assuming $positions is passed from the backend
-
-            // Populate division dropdown based on selected station
-            function populateDivisions(stationId) {
-                divisionDropdown.innerHTML = ''; // Clear previous options
-                divisions.forEach(function(division) {
-                    if (division.station_id == stationId) {
-                        var option = document.createElement('option');
-                        option.value = division.id;
-                        option.textContent = division.division;
-                        divisionDropdown.appendChild(option);
-                    }
-                });
-                // Populate positions based on default division selection
-                populatePositions(divisionDropdown.value);
-            }
-
-            // Populate positions based on selected division
-            function populatePositions(divisionId) {
-                positionDropdown.innerHTML = ''; // Clear previous options
-                positions.forEach(function(position) {
-                    if (position.division_id == divisionId) {
-                        var option = document.createElement('option');
-                        option.value = position.id;
-                        option.textContent = position.position;
-                        positionDropdown.appendChild(option);
-                    }
-                });
-            }
-
-            // Populate divisions based on default station selection
-            populateDivisions(stationDropdown.value);
-
-            // Event listener for station change
-            stationDropdown.addEventListener('change', function() {
-                populateDivisions(this.value);
-            });
-
-            // Event listener for division change
-            divisionDropdown.addEventListener('change', function() {
-                populatePositions(this.value);
-            });
-        });
-    </script> --}}
-
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Log fetched stations
-            @foreach ($stations as $station)
-                console.log("Station ID: {{ $station->id }}, Station Name: {{ $station->station }}");
-            @endforeach
-        });
-    </script> --}}
 
     {{-- Show All Password --}}
     <script>
@@ -922,7 +704,6 @@
         });
     </script>
 
-    {{-- Script para maidisplay kaagad sa div yung sinelect sa file prompt --}}
     <script>
         function previewProfilePicture(event) {
             const input = event.target;
@@ -936,7 +717,6 @@
         }
     </script>
 
-    {{-- Live Password Validation --}}
     <script>
         function validatePasswords() {
             const password = document.getElementById('password').value;
@@ -945,11 +725,10 @@
             const errorMessage = document.getElementById('password-error-message');
             const matchMessage = document.getElementById('password-match-message');
 
-            errorMessage.textContent = ''; // Clear previous error message
+            errorMessage.textContent = ''; 
             errorMessage.style.color = "red";
-            matchMessage.textContent = ''; // Clear previous match message
+            matchMessage.textContent = '';
 
-            // Define password requirements
             const minLength = 8;
             const hasLowerCase = /[a-z]/.test(password);
             const hasUpperCase = /[A-Z]/.test(password);
@@ -960,37 +739,34 @@
 
             const errorList = [];
 
-            // Check each requirement and update error message
             if (password.length < minLength) {
                 isValid = false;
                 errorMessage.textContent = "Your new password must be at least " + minLength + " characters long.";
-                return; // Exit the function early
+                return; 
             }
             if (!hasLowerCase) {
                 isValid = false;
                 errorMessage.textContent = "Your new password must contain at least one lowercase letter (a-z).";
-                return; // Exit the function early
+                return;
             }
             if (!hasUpperCase) {
                 isValid = false;
                 errorMessage.textContent = "Your new password must contain at least one uppercase letter (A-Z).";
-                return; // Exit the function early
+                return;
             }
             if (!hasNumber) {
                 isValid = false;
                 errorMessage.textContent = "Your new password must contain at least one number (0-9).";
-                return; // Exit the function early
+                return;
             }
             if (!hasSpecialChar) {
                 isValid = false;
                 errorMessage.textContent = "Your new password must contain at least one special character (!@#$%^&*()).";
-                return; // Exit the function early
+                return;
             }
 
-            // If all requirements are met, clear the error message
             errorMessage.textContent = "";
 
-            // Update error message with list and red color
             if (!isValid) {
                 errorMessage.style.color = 'red';
                 errorList.forEach(function(error) {
@@ -998,7 +774,6 @@
                 });
             }
 
-            // Check if passwords match
             if (password !== confirmPassword) {
                 isValid = false;
                 matchMessage.style.color = 'red';
@@ -1033,8 +808,6 @@
                     confirmButtonText: 'Yes, save it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Submit the form if confirmed
-
                         Swal.fire({
                             title: "Update Successful!",
                             text: "Your profile has been updated successfully.",
@@ -1055,13 +828,10 @@
         });
     </script>
 
-    {{-- Go Back Button --}}
     <script>
-        // Add event listener to the "Go Back" link
         document.getElementById('goBackBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default link behavior
+            event.preventDefault(); 
 
-            // Show SweetAlert confirmation dialog
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You have unsaved changes. Are you sure you want to leave without saving?",
@@ -1073,7 +843,6 @@
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // If user confirms, navigate to the appropriate link
                     var userType = "{{ auth()->user()->user_type }}";
                     var redirectUrl = "";
                     redirectUrl = "{{ route('auth.overview') }}";
@@ -1083,12 +852,10 @@
         });
     </script>
 
-    {{-- Sidebar Links --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const links = document.querySelectorAll('#drawer-navigation li a');
             links.forEach(link => {
-                // Check if the current link is the one to exclude
                 if (!link.classList.contains('exclude-from-confirm')) {
                     link.addEventListener('click', function(event) {
                         event.preventDefault(); // Prevent default navigation behavior
@@ -1096,16 +863,15 @@
                         // Display confirmation dialog
                         Swal.fire({
                             title: 'Are you sure?',
-                            text: 'You are leaving the current page. Do you want to continue?',
+                            text: 'You have unsaved changes. Are you sure you want to leave without saving?',
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, leave it!',
+                            confirmButtonText: 'Yes, leave without saving!',
                             cancelButtonText: 'No, stay'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                // If user confirms, navigate to the destination URL
                                 window.location.href = href;
                             }
                         });
@@ -1114,32 +880,4 @@
             });
         });
     </script>
-
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('#drawer-navigation li a');
-            links.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent default navigation behavior
-                    const href = this.getAttribute('href');
-                    // Display confirmation dialog
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: 'You are leaving the current page. Do you want to continue?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, leave it!',
-                        cancelButtonText: 'No, stay'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // If user confirms, navigate to the destination URL
-                            window.location.href = href;
-                        }
-                    });
-                });
-            });
-        });
-    </script> --}}
 @endsection

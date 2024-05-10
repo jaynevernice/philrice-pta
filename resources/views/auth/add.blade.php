@@ -3,7 +3,7 @@
 @section('title')
     Add Data
 @endsection
-
+{{--  --}}
 @section('sidebar')
     <aside
         class="fixed top-0 left-0 z-40 w-64 h-full pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
@@ -409,6 +409,7 @@
 
                 {{--Show Manage Encoders if User is Admin --}}
                 @if (Auth::user()->user_type === 'admin')
+                <hr>
                     <li>
                         <a href="{{ route('admin.manage_encoders') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">

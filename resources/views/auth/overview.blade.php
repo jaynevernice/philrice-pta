@@ -407,8 +407,9 @@
                     </li>
                 @endif
 
-                {{--Show Manage Encoders if User is Admin --}}
+                {{-- Show Manage Encoders if User is Admin --}}
                 @if (Auth::user()->user_type === 'admin')
+                    <hr>
                     <li>
                         <a href="{{ route('admin.manage_encoders') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
@@ -416,8 +417,8 @@
                             <span class="ml-3">Manage Encoders</span>
                         </a>
                     </li>
-                
-                {{-- For Super Admin Only --}}
+
+                    {{-- For Super Admin Only --}}
                 @elseif (Auth::user()->user_type === 'super_admin')
                     {{-- Manage Encoders --}}
                     <hr>
@@ -757,7 +758,7 @@
             {{-- <div id="municipalitiesChart"></div> --}}
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
-                
+
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -770,10 +771,10 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-1">
-                        
+
                     </tbody>
                 </table>
-               
+
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -786,7 +787,7 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-2">
-                        
+
                     </tbody>
                 </table>
 
@@ -802,7 +803,7 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-3">
-                        
+
                     </tbody>
                 </table>
 
@@ -1099,7 +1100,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1111,7 +1112,7 @@
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1123,7 +1124,7 @@
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1194,7 +1195,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1209,7 +1210,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1251,19 +1252,19 @@
                     $("#total_participants_chart").text(total_participants);
                     $("#average_gik_chart").text(average_gik + '%');
                     $("#evaluation_chart").text(evaluation);
-                    
+
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result["municipalities_col3"].length) {
                         $("#nextButton").hide();
                         // $("#prevButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
                         }
                     } else {
                         $("#nextButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
@@ -1521,14 +1522,14 @@
                     if (recordsPerPage != result["municipalities_col3"].length) {
                         $("#nextButton").hide();
                         // $("#prevButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
                         }
                     } else {
                         $("#nextButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();

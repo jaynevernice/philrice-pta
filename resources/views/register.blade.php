@@ -10,17 +10,10 @@
 
             {{-- Left Side --}}
             <div class="flex-1 bg-green-100 text-center hidden lg:flex">
-                {{-- <div class="m-12 xl:m-16 w-full overflow-hidden"> --}}
                 <div class="w-full overflow-hidden relative">
-                    {{-- <video autoplay muted loop class="w-full"> --}}
-                    {{-- <video autoplay muted loop class="h-full object-cover w-full">
-                        <source src="{{ asset('assets/training.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video> --}}
                     <img src="{{ asset('assets/philrice-1.png') }}" class="h-full object-cover w-full">
 
                     {{-- Dim Video using Overlay --}}
-                    {{-- <div class="absolute inset-0 bg-black opacity-50"></div> --}}
                     <div class="absolute inset-0 bg-gradient-to-r to-emerald-600 from-sky-400 opacity-30"></div>
 
                     {{-- Text Overlay --}}
@@ -33,9 +26,7 @@
             {{-- Right Side --}}
             <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
                 <div class="flex flex-col items-center">
-                    {{-- <h1 class="text-2xl xl:text-3xl font-extrabold">Register</h1> --}}
                     <div class="w-full flex-1">
-                        {{-- <div class="mx-auto my-3"> --}}
 
                         <div class="flex flex-row items-center justify-center mb-2">
                             <a href="{{ url('/login') }}">
@@ -50,8 +41,6 @@
                         </div>
 
                         <h1 class="text-2xl xl:text-3xl font-extrabold text-left mb-2">Get Started!</h1>
-                        {{-- <p class="justify-right text-lg text-[#0B1215]">Please provide all the information needed to create
-                            your account.</p> --}}
                         <p class="justify-right text-lg text-[#0B1215]">Enter your details to register.</p>
 
 
@@ -92,26 +81,15 @@
                             </li>
                         </ol>
 
-                        {{-- <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">User Information</h3> --}}
                         @include('_message')
                         @if ($errors->any())
-                            {{-- <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                                role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div> --}}
                             <script>
-                                // Prepare error message HTML
                                 let errorMessage = "<ul>";
                                 @foreach ($errors->all() as $error)
                                     errorMessage += "<li>{{ $error }}</li>";
                                 @endforeach
                                 errorMessage += "</ul>";
 
-                                // Display SweetAlert2 popup with the error message
                                 Swal.fire({
                                     title: 'Oops!',
                                     html: errorMessage,
@@ -216,7 +194,6 @@
                                         <input type="text" id="philrice_id" name="philrice_id"
                                             value="{{ old('philrice_id') }}" id="philrice_id"
                                             class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        {{-- <div id="philriceid-error-message"></div> --}}
                                     </div>
 
                                     {{-- <form> --}}
@@ -238,15 +215,6 @@
                                                     <option value="{{ $data->id }}">PhilRice {{ $data->station }}
                                                     </option>
                                                 @endforeach
-                                                {{-- <option value="CES" >CES</option>
-                                                        <option value="Agusan" >Agusan</option>
-                                                        <option value="Batac" >Batac</option>
-                                                        <option value="Bicol" >Bicol</option>
-                                                        <option value="CMU" >CMU</option>
-                                                        <option value="Isabela" >Isabela</option>
-                                                        <option value="Los Baños" >Los Baños</option>
-                                                        <option value="Midsayap" >Midsayap</option>
-                                                        <option value="Negros" >Negros</option> --}}
                                             </select>
                                         </div>
 
@@ -264,7 +232,6 @@
                                                 class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                                 required>
                                                 <option value="" selected disabled>Division</option>
-                                                {{-- <option value="TMSD" >TMSD</option> --}}
                                             </select>
                                         </div>
 
@@ -284,12 +251,9 @@
                                             class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                             required>
                                             <option value="" selected disabled>Position</option>
-                                            {{-- <option value="Division Head">Division Head</option> --}}
                                         </select>
                                     </div>
-                                    {{-- </form> --}}
                                 </div>
-                                {{-- </div> --}}
                             </div>
 
                             {{-- Step 3 --}}
@@ -312,7 +276,6 @@
                                     <input type="password" name="password" id="password"
                                         onkeyup="validatePassword(this)" required
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    {{-- <div id="password-error-message"></div> --}}
                                 </div>
 
                                 <div class="mb-2">
@@ -330,7 +293,6 @@
                                     <input type="password" name="password_confirmation" id="confirm_password"
                                         onkeyup="matchPassword(this)" required
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    {{-- <div id="password-match-message"></div> --}}
                                 </div>
                                 {{-- Show Password --}}
                                 <div class="flex items-center justify-end my-2">
@@ -414,11 +376,9 @@
         function validatePassword(inputField) {
             const password = inputField.value;
             var errorMessage = document.getElementById("password_validate");
-            errorMessage.textContent = ""; // Clear previous error message
-            // errorMessage.style.color = "red";
-            const nextBtn = document.getElementById('nextBtn'); // next button
+            errorMessage.textContent = "";
+            const nextBtn = document.getElementById('nextBtn');
 
-            // Define password requirements
             const minLength = 8;
             const hasLowerCase = /[a-z]/.test(password);
             const hasUpperCase = /[A-Z]/.test(password);
@@ -427,34 +387,31 @@
 
             let isValid = true;
 
-            // Check each requirement and update error message
             if (password.length < minLength) {
                 isValid = false;
                 errorMessage.textContent = "Password must be at least " + minLength + " characters long.";
-                return; // Exit the function early
+                return; 
             }
             if (!hasLowerCase) {
                 isValid = false;
                 errorMessage.textContent = "Password must contain at least one lowercase letter (a-z).";
-                return; // Exit the function early
+                return; 
             }
             if (!hasUpperCase) {
                 isValid = false;
                 errorMessage.textContent = "Password must contain at least one uppercase letter (A-Z).";
-                return; // Exit the function early
+                return;
             }
             if (!hasNumber) {
                 isValid = false;
                 errorMessage.textContent = "Password must contain at least one number (0-9).";
-                return; // Exit the function early
+                return;
             }
             if (!hasSpecialChar) {
                 isValid = false;
                 errorMessage.textContent = "Password must contain at least one special character (!@#$%^&*()).";
-                return; // Exit the function early
+                return; 
             }
-
-            // If all requirements are met, clear the error message
             errorMessage.textContent = "";
         }
 
@@ -462,7 +419,7 @@
             const password = $('#password').val();
             const confirm_password = inputField.value;
             const matchMessage = document.getElementById("confirm_password_validate");
-            matchMessage.textContent = ""; // Clear previous error message
+            matchMessage.textContent = "";
 
             let isMatch = true;
 
@@ -475,11 +432,10 @@
                 errorList.push("Passwords match.");
             }
 
-            // Update error message with list and red color
-            matchMessage.innerHTML = ""; // Clear previous content (optional)
+            matchMessage.innerHTML = ""; 
             if (!isMatch) {
                 const errorElement = document.createElement("ul");
-                errorElement.style.color = "red"; // Set error message color to red
+                errorElement.style.color = "red"; 
                 for (const error of errorList) {
                     const listItem = document.createElement("li");
                     listItem.textContent = error;
@@ -487,10 +443,9 @@
                 }
                 matchMessage.appendChild(errorElement);
             }
-            // Update match message with green color 
             else {
                 const errorElement = document.createElement("ul");
-                errorElement.style.color = "green"; // Set match message color to green
+                errorElement.style.color = "green"; 
                 for (const error of errorList) {
                     const listItem = document.createElement("li");
                     listItem.textContent = error;
@@ -517,20 +472,16 @@
     </script>
 
     <script>
-        var currentStep = 0; // Current step is set to be the first step (0)
-        updateStep(currentStep); // Display the current step
+        var currentStep = 0;
+        updateStep(currentStep); 
 
         function updateStep(n) {
-            // This function will display the specified step of the form...
             var steps = document.getElementsByClassName("stepIndicator");
             var x = document.getElementsByClassName("step");
-            // Hide all steps:
             for (var i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
             }
-            // Show the current step:
             x[n].style.display = "block";
-            // Fix the Previous/Next buttons:
             if (n == 0) {
                 document.getElementById("prevBtn").style.display = "none";
             } else {
@@ -541,126 +492,50 @@
             } else {
                 document.getElementById("nextBtn").innerHTML = "Next";
             }
-            // Run a function that will display the correct step indicator:
             fixStepIndicator(n);
         }
 
         function nextPrev(n) {
-            // This function will figure out which step to display
             var x = document.getElementsByClassName("step");
-            // Exit the function if any field in the current step is invalid:
             if (n == 1 && !validateForm()) return false;
-            // Hide the current step:
             x[currentStep].style.display = "none";
-            // Increase or decrease the current step by 1:
             currentStep = currentStep + n;
-            // If you have reached the end of the steps...
             if (currentStep >= x.length) {
-                // ...the form gets submitted:
                 document.getElementById("registrationForm").submit();
                 return false;
             }
-            // Otherwise, display the correct step:
             updateStep(currentStep);
         }
 
         function validateForm() {
-            // This function deals with validation of the form fields
             var x, y, i, valid = true;
             x = document.getElementsByClassName("step");
             y = x[currentStep].getElementsByTagName("input");
-            // A loop that checks every input field in the current step:
             for (i = 0; i < y.length; i++) {
                 // If a field is empty...
                 if (y[i].value == "") {
-                    // Add an "invalid" class to the field:
                     y[i].className += " invalid";
-                    // And set the current valid status to false
                     valid = false;
                 }
             }
-            // If the valid status is true, mark the step as finished and valid:
             if (valid) {
                 document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
             }
-            return valid; // Return the valid status
+            return valid; 
         }
-
-        // function validateForm() {
-        // // This function deals with validation of the form fields
-        // var x, y, i, valid = true;
-        // x = document.getElementsByClassName("step");
-        // y = x[currentStep].getElementsByTagName("input");
-        // // A loop that checks every input field in the current step:
-        // for (i = 0; i < y.length; i++) {
-        //     // Only validate visible fields
-        //     if (y[i].offsetParent !== null) {
-        //         // If a field is empty...
-        //         if (y[i].value.trim() === "") {
-        //             // Add an "invalid" class to the field:
-        //             y[i].className += " invalid";
-        //             // And set the current valid status to false
-        //             valid = false;
-        //         }
-        //     }
-        // }
-        // // If the valid status is true, mark the step as finished and valid:
-        // if (valid) {
-        //     document.getElementsByClassName("stepIndicator")[currentStep].classList.add("finish");
-        // }
-        //  return valid; // Return the valid status
-        // }
 
 
         function fixStepIndicator(n) {
-            // This function removes the "active" class of all steps...
             var i, x = document.getElementsByClassName("stepIndicator");
             for (i = 0; i < x.length; i++) {
                 x[i].classList.remove("active");
             }
-            //... and adds the "active" class on the current step:
             x[n].classList.add("active");
         }
     </script>
 
-    {{-- <script>
-        var current = 1; // Initialize current step to Step 1
-
-        document.getElementById("nextBtn").addEventListener("click", function() {
-            var step2Div = document.querySelector('#stepper li:nth-child(2) div');
-            var step2Li = document.querySelector('#stepper li:nth-child(2)');
-            var step3Div = document.querySelector('#stepper li:nth-child(3) div');
-
-            if (current === 1) {
-                step2Div.classList.add("bg-green-100");
-                step2Li.classList.remove("after:border-gray-100");
-                step2Li.classList.add("after:border-green-100");
-                current = 2;
-            } else if (current === 2) {
-                step3Div.classList.add("bg-green-100");
-                current = 3;
-            }
-        });
-
-        document.getElementById("prevBtn").addEventListener("click", function() {
-            var step2Div = document.querySelector('#stepper li:nth-child(2) div');
-            var step2Li = document.querySelector('#stepper li:nth-child(2)');
-            var step3Div = document.querySelector('#stepper li:nth-child(3) div');
-
-            if (current === 3) {
-                step3Div.classList.remove("bg-green-100");
-                current = 2;
-            } else if (current === 2) {
-                step2Div.classList.remove("bg-green-100");
-                step2Li.classList.remove("after:border-green-100");
-                step2Li.classList.add("after:border-gray-100");
-                current = 1;
-            }
-        });
-    </script> --}}
-
     <script>
-        var current = 1; // Initialize current step to Step 1
+        var current = 1; 
 
         document.getElementById("nextBtn").addEventListener("click", function() {
             var step2Div = document.querySelector('#stepper li:nth-child(2) div');
@@ -730,7 +605,6 @@
     {{-- Changing Dropdown Choices in Registration --}}
     <script>
         $(document).ready(function() {
-            // station dropdown change event
             $('#station').on('change', function() {
                 var idStation = this.value;
                 $("#division").html('');

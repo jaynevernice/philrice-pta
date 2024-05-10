@@ -21,14 +21,9 @@
                 <form action="{{ route('post-reset-sq') }}" method="POST">
                     @include('_message')
                     @csrf
-                    {{-- <input
-                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                        type="email" name="email" placeholder="Email" required /> --}}
 
                     {{-- PhilRice ID --}}
                     <div class="my-2" id="idField">
-                        {{-- <label for="philrice_id" class="block text-sm font-medium text-gray-900 dark:text-white">PhilRice
-                            ID</label> --}}
                         <input required type="text" name="philrice_id" value="{{ old('philrice_id') }}" id="philrice_id"
                             class="w-full px-8 py-4 mt-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                             placeholder="PhilRice ID">
@@ -44,7 +39,6 @@
                             </option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            {{-- <box-icon name='chevron-down'></box-icon> --}}
                         </div>
                     </div>
 

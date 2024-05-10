@@ -28,8 +28,6 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-// php artisan make:mail ForgotPasswordMail
-// kapag inedit yung MAIL_USERNAME sa .env run this: php artisan config:cache
 Route::get('/forgot_password', function () {
     return view('forgot_password');
 })->name('forgot');
@@ -61,7 +59,6 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Guest
 Route::group(['prefix' => 'guest'], function () {
-    // Route::get('/overview', function () { return view('guest.overview'); })->name('guest.overview');
     Route::get('/overview', [TrainingsFormController::class, 'index'])->name('guest.overview');
     Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax'])->name('filter_data_guest');
 
@@ -98,10 +95,7 @@ Route::group(['middleware' => 'super_admin'], function () {
         return view('super_admin.web_analytics');
     })->name('super_admin.web_analytics');
 
-    // Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteView'])->name('fetch_view');
-    // Route::get('/get-monthly-site-views', [WebAnalyticsController::class, 'fetchMonthlySiteViews'])->name('fetch_monthly_view');
     Route::get('/get-site-views', [WebAnalyticsController::class, 'fetchSiteViews'])->name('fetch_site_views');
-    
     Route::get('/get-survey-records', [VisitorEvaluationController::class, 'getEvaluations'])->name('fetch_survey_records');
 
 });
@@ -113,47 +107,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('/block/{id}', [UserController::class, 'block'])->name('admin.block');
     Route::put('/unblock/{id}', [UserController::class, 'unblock'])->name('admin.unblock');
 
-});
-
-// Encoder
-Route::group(['middleware' => 'encoder'], function () {
-    Route::group(['prefix' => 'encoder'], function () {
-        // Route::get('/overview', [TrainingsFormController::class, 'index'])->name('encoder.overview');
-
-        // Route::get('/view', [TrainingsFormController::class, 'authView'])->name('encoder.view');
-        // Route::get('/add', [TrainingsFormController::class, 'authAddView'])->name('encoder.add');
-        // Route::get('/edit', [TrainingsFormController::class, 'authEditView'])->name('encoder.edit');
-
-        // Route::post('/trainings/filter', [TrainingsFormController::class, 'filterAjax'])->name('filter_data');
-
-        // // Summary of Trainings Form
-        // Route::group(['prefix' => 'trainings'], function () {
-        //     Route::get('/form', [TrainingsFormController::class, 'create'])->name('trainingsform.create');
-        //     Route::post('form-store', [TrainingsFormController::class, 'store'])->name('trainingsform.store');
-        //     // Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
-        //     Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
-        //     Route::post('/form-update/{id}', [TrainingsFormController::class, 'update'])->name('trainingsform.update');
-        //     Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
-        //     Route::post('/fetch-municipalities', [MunicipalityController::class, 'index'])->name('trainings.fetchMunicipalities');
-        //     Route::post('/fetch-provinces', [ProvinceController::class, 'index'])->name('trainings.fetchProvinces');
-        // });
-
-        // // Export Data into excel
-        // // composer require maatwebsite/excel
-        // Route::post('/export/record', [TrainingsFormController::class, 'export'])->name('export.record');
-
-        // Route::post('/trainings/filter/station', [TrainingsFormController::class, 'filterAjaxStationOnly'])->name('filter_station');
-        // Route::get('/ces', [TrainingsFormController::class, 'cesView'])->name('encoder.ces');
-        // Route::get('/agusan', [TrainingsFormController::class, 'agusanView'])->name('encoder.agusan');
-        // Route::get('/batac', [TrainingsFormController::class, 'batacView'])->name('encoder.batac');
-        // Route::get('/bicol', [TrainingsFormController::class, 'bicolView'])->name('encoder.bicol');
-        // Route::get('/cmu', [TrainingsFormController::class, 'cmuView'])->name('encoder.cmu');
-        // Route::get('/isabela', [TrainingsFormController::class, 'isabelaView'])->name('encoder.isabela');
-        // Route::get('/losbaños', [TrainingsFormController::class, 'losbañosView'])->name('encoder.losbaños');
-        // Route::get('/midsayap', [TrainingsFormController::class, 'midsayapView'])->name('encoder.midsayap');
-        // Route::get('/negros', [TrainingsFormController::class, 'negrosView'])->name('encoder.negros');
-
-    });
 });
 
 // Update Profile
@@ -171,7 +124,6 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'trainings'], function () {
         Route::get('/form', [TrainingsFormController::class, 'create'])->name('trainingsform.create');
         Route::post('form-store', [TrainingsFormController::class, 'store'])->name('trainingsform.store');
-        // Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
         Route::get('/form-edit/{id}', [TrainingsFormController::class, 'edit'])->name('trainingsform.edit');
         Route::post('/form-update/{id}', [TrainingsFormController::class, 'update'])->name('trainingsform.update');
         Route::delete('/form-delete/{id}', [TrainingsFormController::class, 'destroy'])->name('trainingsform.delete');
@@ -179,8 +131,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/fetch-provinces', [ProvinceController::class, 'index'])->name('trainings.fetchProvinces');
     });
 
-    // Export Data into excel
-    // composer require maatwebsite/excel
     Route::post('/export/record', [TrainingsFormController::class, 'export'])->name('export.record');
 
     Route::post('/trainings/filter/station', [TrainingsFormController::class, 'filterAjaxStationOnly'])->name('filter_station');
@@ -198,7 +148,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/{id}', [UserController::class, 'showProfile'])->name('profile');
 
     Route::put('/updateProfile', [UserController::class, 'updateProfile'])->name('updateProfile');
-
-    // Route::post('profile/fetch-divisions', [UserController::class, 'fetchDivisions'])->name('profile.fetchDivisions');
-    // Route::post('profile/fetch-positons', [UserController::class, 'fetchPositions'])->name('profile.fetchPositions');
 });

@@ -500,15 +500,12 @@
                                 {{ $admin->email }}
                             </td>
                             <td class="px-6 py-4">
-                                {{-- {{ $admin->station }} --}}
                                 {{ $stations->firstWhere('id', $admin->station)->station }}
                             </td>
                             <td class="px-6 py-4">
-                                {{-- {{ $admin->division }} --}}
                                 {{ $divisions->firstWhere('id', $admin->division)->division }}
                             </td>
                             <td class="px-6 py-4">
-                                {{-- {{ $admin->position }} --}}
                                 {{ $positions->firstWhere('id', $admin->position)->position }}
                             </td>
                             <td class="px-6 py-4">
@@ -527,7 +524,6 @@
                                                 <box-icon type='solid' name='user-minus' size="xs"></box-icon>
                                             </button>
                                         </form>
-                                        {{-- If isBlocked = false --}}
                                         @if ($admin->isBlocked === 0)
                                             <form id="block-{{ $admin->id }}"
                                                 action="{{ route('super_admin.blocks', $admin->id) }}" method="POST">
@@ -539,7 +535,6 @@
                                                         size="xs"></box-icon>
                                                 </button>
                                             </form>
-                                            {{-- If isBlocked = true --}}
                                         @elseif ($admin->isBlocked === 1)
                                             <form id="unblock-{{ $admin->id }}"
                                                 action="{{ route('super_admin.unblocks', $admin->id) }}" method="POST">

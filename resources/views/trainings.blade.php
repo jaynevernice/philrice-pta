@@ -458,7 +458,6 @@
         {{-- Form Title --}}
         <div class="flex mb-4">
             <h1 class="text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
-                    {{-- class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice CES</span> --}}
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span>
                 Summary of Trainings Conducted</h1>
         </div>
@@ -468,14 +467,6 @@
         {{-- Success/Error Message from TrainingsFormController --}}
         @include('_message')
         @if ($errors->any())
-            {{-- <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div> --}}
             <script>
                 // Prepare error message HTML
                 let errorMessage = "<ul>";
@@ -502,7 +493,6 @@
             <div class="section" data-section="1">
                 <div>
                     <div class="w-full h-80 overflow-hidden">
-                        {{-- <img class="w-full h-full object-cover" src="{{ asset('assets/form1.jpg') }}" alt="Form Header"> --}}
                         <img class="w-full h-full object-cover rounded-lg" src="{{ asset('assets/form-banner-1.jpg') }}" alt="Form Header">
                     </div>
                 </div>
@@ -527,7 +517,6 @@
                 <div class="my-2 grid grid-cols-5 gap-x-4">
 
                     {{-- Training Title --}}
-                    {{-- <div class="col-span-2"> --}}
                     <div class="col-span-4">
                         <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training
                             Title</label>
@@ -642,15 +631,6 @@
                         </div>
                     </div>
 
-                    {{-- Additional Input Field for Outside PhilRice Station --}}
-                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3"> --}}
-                    {{-- <div id="outsidePhilrice" style="display: none;" class="col-span-3">
-                            <label for="outsidePhilriceInput" class="block my-2 text-sm font-medium text-gray-900">Outside
-                                PhilRice Station</label>
-                            <input type="text" id="outsidePhilriceInput" name="outsidePhilriceInput"
-                                class="block w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                        </div> --}}
-
                 </div>
 
                 {{-- Additional Input Field for International Training Type --}}
@@ -707,10 +687,6 @@
                         </label>
                         <select name="municipalitySelect" id="municipalitySelect"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
-                            {{-- <option selected disabled>Select</option> --}}
-                            {{-- @foreach ($municipalities as $municipality)
-                                <option value="{{ $municipality->citymunCode }}">{{ $municipality->citymunDesc }}</option>
-                            @endforeach --}}
                         </select>
                         <p id="municipality_error"
                             class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400"><span
@@ -762,16 +738,12 @@
                     </div>
                 </div>
             </div>
-            {{-- @endif --}}
 
             {{-- Section 3 --}}
             <div class="section" data-section="3" style="display: none;">
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Conduct of Training</h6>
                 </div>
-                {{-- <div id="date-error-message" class="text-red-500"></div> --}}
-
-                {{-- Name of Implementing Partner/s or Co-Organizer/s --}}
                 <div class="my-2 grid grid-cols-2 gap-x-4">
                     <div class="col-span-2">
                         <label for="sponsor" class="block my-2 text-sm font-medium text-gray-900">Name of Implementing
@@ -805,9 +777,6 @@
                                 @endforeach
                                 <option value="Other">Other</option>
                             </select>
-                            {{-- <input type="text" name="other_fund" id="other_fund" value="{{ old('other_fund') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                style="display: none;"> --}}
                             <p id="sof_error" class="hidden animate-pulse mt-2 text-xs text-red-600 dark:text-red-400">
                                 <span class="font-medium">Oops!</span> Select Source of Fund.
                             </p>
@@ -898,13 +867,6 @@
                 <hr class="my-4">
                 <label class="block text-sm font-medium text-gray-900">Remaining Participants to Distribute: <span
                         class="text-red-600" id="remaining_label_1">-</span></label>
-                {{-- <label class="block text-sm font-medium text-gray-900">Participants Remaining: <span class="text-red-600"
-                        id="remaining_label_1">-</span></label> --}}
-                {{-- <label class="block text-sm font-medium text-gray-900">Out of the <span class="text-red-600"
-                        id="remaining_label_1">-</span> participants,</label> --}}
-                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number,</label> --}}
-                {{-- <label class="block text-sm font-medium text-gray-900">Of the total number ( <span
-                        id="left_to_distribute_sector" class="text-red-500"></span> ) </label> --}}
 
                 {{-- Breakdown of Participants  --}}
                 <div class="my-1 grid grid-cols-4 gap-x-4 max-[900px]:grid-cols-1">
@@ -929,7 +891,6 @@
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-seedling"></i>
-                                {{-- <span>Farmers and Seed Growers</span> --}}
                             </div>
                             <button type="button" id="increment-button1"
                                 data-input-counter-increment="num_of_farmers_and_growers"
@@ -1051,10 +1012,6 @@
                 <hr class="my-4">
                 <label class="block text-sm font-medium text-gray-900 dark:text-white">Remaining Participants to
                     Distribute: <span class="text-red-600" id="remaining_label_2">-</span></label>
-                {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Out of the <span
-                        class="text-red-600" id="remaining_label_2">-</span> participants,</label> --}}
-                {{-- <label class="block text-sm font-medium text-gray-900 dark:text-white">Of the total number,</label> --}}
-
                 <div class="my-1 grid grid-cols-2 gap-x-4 max-[760px]:grid-cols-1">
 
                     {{-- Total Num of Male Participants --}}
@@ -1124,8 +1081,6 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-900 dark:text-white">Out of the <span
                                     class="text-red-600" id="remaining_label_3">-</span> participants,</label>
-                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label> --}}
                             <p class="text-sm text-gray-500 mb-2">How many are indigenous individuals?</p>
                         </div>
                         <div class="relative flex items-center">
@@ -1164,8 +1119,6 @@
                     {{-- Total Num of PWD --}}
                     <div class="grid grid-rows-2">
                         <div>
-                            {{-- <label class="block text-sm font-medium text-gray-900">Of the total
-                                number,</label> --}}
                             <label class="block text-sm font-medium text-gray-900">Out of the <span class="text-red-600"
                                     id="remaining_label_4">-</span> participants,</label>
                             <p class="text-sm text-gray-500 mb-2">How many are differently abled individuals (PWD)?</p>
@@ -1220,8 +1173,6 @@
                             accept="image/png, image/gif, image/jpeg"
                             class="flex w-full text-sm text-red-600 border border-red-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
-                        {{--  onchange="displayPhotoDocPreviews(this)" --}}
-                        {{-- <div id="errorImage" style="color: red; display: none;"></div> --}}
                         <p id="photo_doc_error" class=" mt-2 text-xs text-center text-red-600 dark:text-red-400">
                             Photo Documentation of Event/Activity is <span class="font-medium">Required</span>
                         </p>
@@ -1258,7 +1209,6 @@
                             class="flex w-full text-sm text-green-600 border border-green-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
 
-                        {{-- <div id="errorFile" style="color: red; display: none;"></div> --}}
                         <p id="other_doc_error" class=" mt-2 text-xs text-center text-green-600 dark:text-green-400">
                             Other Documentation of Event/Activity is <span class="font-medium">Optional</span>
                         </p>
@@ -1574,14 +1524,7 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const sectionNumberElement = document.getElementById('sectionNumber'); // Added
-        const today = new Date(); // getting date today and formatting into (MM/DD/YYYY)
-        // const formattedDateToday = today.toLocaleDateString('en-US', {
-        //     month: '2-digit',
-        //     day: '2-digit',
-        //     year: 'numeric'
-        // });
-        // const [month, day, year] = formattedDateToday.split('/');
-        // const dateObject = new Date(`${month}/${day}/${year}`);
+        const today = new Date(); 
 
         // Function to save form data to localStorage
         function saveFormData() {
@@ -1596,7 +1539,6 @@
                 "training_venue": $("#training_venue").val(),
                 "internationalTrainingInput": $("#internationalTrainingInput").val(),
                 "withinPhilriceInput": $("#withinPhilriceInput").val(),
-                // "outsidePhilriceInput": $("#outsidePhilriceInput").val(),
                 "province": $("#province").val(),
                 "municipality": $("#municipality").val() || $("#municipalitySelect").val(),
                 "start_date": $("#start_date").val(),
@@ -1637,7 +1579,6 @@
                 $("#training_venue").val(formData.training_venue);
                 $("#internationalTrainingInput").val(formData.internationalTrainingInput);
                 $("#withinPhilriceInput").val(formData.withinPhilriceInput);
-                // $("#outsidePhilriceInput").val(formData.outsidePhilriceInput);
                 $("#province").val(formData.province);
                 $("#municipality").val(formData.municipality);
                 $("#start_date").val(formData.start_date);
@@ -2253,10 +2194,8 @@
         }
     </script>
 
-    {{-- Mano manong validation lets go lol --}}
     <script>
         $(document).ready(function() {
-            // Error messages. Hidden by default.
             $('#batch_error, #training_title_error, #other_training_title_error, #training_type_error, #training_category_error, #mod_error, #training_venue_error, #international_training_error, #within_philrice_error, #start_date_error, #end_date_error')
                 .addClass('hidden');
 
@@ -2264,7 +2203,6 @@
             $('#training_title').change(function() {
                 var trainingTitle = $(this).val();
 
-                // If a value is selected (bukod sa default which is selected value=""), change the border and text color to green
                 if (trainingTitle !== "") {
                     $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                         .addClass('border-green-600 text-green-600');

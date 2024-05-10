@@ -481,7 +481,6 @@
 
             <div class="bg-[#3D6A7F] text-white shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
                 <h1 id="monthlySiteViews" class="mb-2 text-6xl font-extrabold">-</h1>
-                {{-- <p class="text-gray-500 dark:text-gray-400">Site Visits for <span id="selectedMonth">Month</span></p> --}}
                 <p class="text-gray-200 dark:text-gray-400">Site Visits for <span id="selectedMonth">Month</span></p>
             </div>
 
@@ -577,8 +576,6 @@
                     },
                     success: function(response) {
                         $('#monthlySiteViews').text(response.siteViewsPerMonth);
-                        // $('#siteViews').text(response.siteViews);
-                        // $('#selectedMonth').text(response.selectedMonth);
                         $('#selectedMonth').text(selectedMonth);
                     },
                     error: function(xhr, status, error) {
@@ -589,122 +586,6 @@
         });
     </script>
 
-    {{-- Fetch Survey Records --}}
-    {{-- <script>
-        $(document).ready(function() {
-            function getEvaluations() {
-                $.ajax({
-                    url: "{{ route('fetch_survey_records') }}", // Assuming this route exists in your routes file
-                    type: "GET",
-                    dataType: "json",
-                    // success: function(response) {
-                    //     var tableBody = $('#table-body');
-                    //     tableBody.empty(); // Clear existing rows
-
-                    //     $.each(response.evaluations, function(index, data) {
-                    //         var row = '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">' +
-                    //             '<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">' + (data.name ? data.name : "Anonymous") + '</th>' +
-                    //             '<td class="px-6 py-4">' + data.sector + '</td>' +
-                    //             '<td class="px-6 py-4">' + data.purpose + '</td>' +
-                    //             '<td class="px-6 py-4">';
-                    //         tableBody.append(row);
-                    //     });
-                    // },
-                    success: function(response) {
-                        var tableBody = $('#table-body');
-                        tableBody.empty(); // Clear existing rows
-
-                        $.each(response.evaluations.data, function(index, data) {
-                            var row =
-                                '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">' +
-                                '<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">' +
-                                (data.name ? data.name : "Anonymous") + '</th>' +
-                                '<td class="px-6 py-4">' + data.sector + '</td>' +
-                                '<td class="px-6 py-4">' + data.purpose + '</td>' +
-                                '<td class="px-6 py-4">';
-                            tableBody.append(row);
-                        });
-                    },
-
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-
-            // Call the function initially when the page loads
-            getEvaluations();
-
-            // Refresh evaluations every second (adjust interval as needed)
-            setInterval(getEvaluations, 1000);
-        });
-    </script> --}}
-    {{-- <script>
-        $(document).ready(function() {
-            // Variable to keep track of the current page
-            let currentPage = 1;
-
-            // Function to fetch evaluations for a specific page
-            function getEvaluations(page) {
-                $.ajax({
-                    url: "{{ route('fetch_survey_records') }}",
-                    type: "GET",
-                    dataType: "json",
-                    data: {
-                        page: page, // Pass the current page number
-                        per_page: 5 // Define the number of items per page
-                    },
-                    success: function(response) {
-                        var tableBody = $('#table-body');
-                        tableBody.empty(); // Clear existing rows
-
-                        $.each(response.evaluations.data, function(index, data) {
-                            var row =
-                                '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">' +
-                                '<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white max-w-xs">' +
-                                (data.name ? data.name : "Anonymous") + '</th>' +
-                                '<td class="px-6 py-4">' + data.sector + '</td>' +
-                                '<td class="px-6 py-4">' + data.purpose + '</td>' +
-                                '<td class="px-6 py-4">';
-                            tableBody.append(row);
-                        });
-
-                        // Update the current page number
-                        currentPage = page;
-
-                        // Show or hide the previous button based on the current page
-                        if (currentPage === 1) {
-                            $('#prevButton').hide();
-                        } else {
-                            $('#prevButton').show();
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-
-            // Call the function initially when the page loads
-            getEvaluations(currentPage);
-
-            // Previous button click event handler
-            $('#prevButton').click(function() {
-                if (currentPage > 1) {
-                    getEvaluations(currentPage - 1); // Fetch previous page
-                }
-            });
-
-            // Next button click event handler
-            $('#nextButton').click(function() {
-                // Assuming you have the total number of pages available
-                var totalPages = 10; // Update this with the actual total number of pages
-                if (currentPage < totalPages) {
-                    getEvaluations(currentPage + 1); // Fetch next page
-                }
-            });
-        });
-    </script> --}}
     <script>
         $(document).ready(function() {
             // Variable to keep track of the current page
@@ -779,75 +660,3 @@
         });
     </script>
 @endsection
-
-{{-- <script>
-        $(document).ready(function() {
-            function fetchSiteViews(selectedMonth) {
-                $.ajax({
-                    url: "{{ route('fetch_site_views') }}",
-                    type: "GET",
-                    data: {
-                        month: selectedMonth
-                    },
-                    success: function(response) {
-                        $('#monthlySiteViews').text(response.siteViewsPerMonth);
-                        $('#siteViews').text(response.siteViews);
-                        $('#selectedMonth').text(response.monthName);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-
-            // Fetch total site views by default
-            fetchSiteViews('');
-            // setInterval(fetchSiteViews, 1000);
-
-            // Event handler for month select change
-            $('#monthSelect').change(function() {
-                var selectedMonth = $(this).val();
-                fetchSiteViews(selectedMonth);
-            });
-        });
-    </script> --}}
-
-{{-- <script>
-        $(document).ready(function() {
-            function getSiteViews() {
-                $.ajax({
-                    url: "{{ route('fetch_site_view') }}",
-                    type: 'GET',
-                    success: function(response) {
-                        $('#siteViews').text(response.siteViews);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-            function getMonthlySiteViews() {
-                $.ajax({
-                    url: "{{ route('fetch_monthly_view') }}",
-                    type: 'GET',
-                    success: function(response) {
-                        $('#monthlySiteViews').text(response.monthlySiteViews);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-            // Call the functions initially when the page loads
-            getSiteViews();
-            getMonthlySiteViews();
-
-            // Refresh site views every second
-            setInterval(getSiteViews, 1000); // Adjust interval as needed
-
-            // Refresh monthly page views every hour (adjust interval as needed)
-            setInterval(getMonthlySiteViews, 3600000);
-        });
-    </script> --}}

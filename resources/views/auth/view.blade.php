@@ -407,8 +407,9 @@
                     </li>
                 @endif
 
-                {{--Show Manage Encoders if User is Admin --}}
+                {{-- Show Manage Encoders if User is Admin --}}
                 @if (Auth::user()->user_type === 'admin')
+                    <hr>
                     <li>
                         <a href="{{ route('admin.manage_encoders') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
@@ -416,7 +417,7 @@
                             <span class="ml-3">Manage Encoders</span>
                         </a>
                     </li>
-                {{-- For Super Admin Only --}}
+                    {{-- For Super Admin Only --}}
                 @elseif (Auth::user()->user_type === 'super_admin')
                     {{-- Manage Encoders --}}
                     <hr>
@@ -458,12 +459,13 @@
         <div class="flex">
             <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice</span>
-                {{-- Central Experimental Station</h1> --}}
-                {{-- {{ Auth::user()->station }}</h1> --}}
-                {{-- Finds equivalent station name nung id sa station model --}}
-                @if(Auth::user()->station == 1) Central Experimental Station 
-                @elseif (Auth::user()->station == 5) Central Mindanao University
-                @else {{ \App\Models\Station::find(Auth::user()->station)->station }} @endif
+                @if (Auth::user()->station == 1)
+                    Central Experimental Station
+                @elseif (Auth::user()->station == 5)
+                    Central Mindanao University
+                @else
+                    {{ \App\Models\Station::find(Auth::user()->station)->station }}
+                @endif
         </div>
 
         {{-- Filters and Export --}}
@@ -477,7 +479,6 @@
                     <option value="" selected disabled>Year</option>
                     <option value="">All Year</option>
                     @for ($year = date('Y'); $year >= 1990; $year--)
-                        {{-- <option value="{{ $year }}" @if ($year == date('Y')) selected @endif> --}}
                         <option value="{{ $year }}">
                             {{ $year }}
                         </option>
@@ -566,16 +567,6 @@
                     @endforeach
                 </select>
             </div>
-
-            {{-- Export Button --}}
-            {{-- <div class="ml-auto">
-                <button type="button" onclick="exportRecord()"
-                    class="h-12 w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-50 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex justify-center items-center dark:focus:ring-green-50 me-2 mb-2">
-                    <i class="fa-solid fa-file-excel"></i>
-                    <span class="pl-2">Export</span>
-                </button>
-            </div> --}}
-
         </div>
 
         {{-- Chart Row 1 --}}
@@ -749,7 +740,7 @@
             {{-- <div id="municipalitiesChart"></div> --}}
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
-                
+
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -762,10 +753,10 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-1">
-                        
+
                     </tbody>
                 </table>
-               
+
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -778,7 +769,7 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-2">
-                        
+
                     </tbody>
                 </table>
 
@@ -794,7 +785,7 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-3">
-                        
+
                     </tbody>
                 </table>
 
@@ -928,22 +919,13 @@
                 {{-- Modal Header --}}
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                     <h3 id="title" class="text-md font-semibold text-gray-900 bg-green-100 rounded-lg px-2 py-1">
-                        <!-- Content of your title goes here -->
                     </h3>
                     <button type="button" onclick="closeModal()"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                         <box-icon name='x'></box-icon>
                         <span class="sr-only">Close modal</span>
                     </button>
-                </div>                
-                {{-- <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 id="title" class="text-md font-semibold text-gray-900"></h3>
-                    <button type="button" onclick="closeModal()"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
-                        <box-icon name='x'></box-icon>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div> --}}
+                </div>
                 {{-- Modal Body --}}
                 <form class="p-5">
                     {{-- Cards --}}
@@ -1081,7 +1063,6 @@
                     </div>
 
                     {{-- Location --}}
-                    {{-- Display Field for Venue if Training Type = International  --}}
                     <div id="international_container" class="grid gap-4 mb-4 grid-cols-3" style="display: none;">
                         <label for="international_address"
                             class="block my-2 text-sm font-medium text-gray-900">International Address</label>
@@ -1089,7 +1070,6 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                     </div>
 
-                    {{-- Display Field for Venue if Training Type = Local  --}}
                     <div id="local_container" style="display: none;">
                         <div>
                             <label for="venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
@@ -1151,7 +1131,6 @@
         var sex_values = Object.values(sex_charts);
 
         var sex = {
-            // series: [55, 45],
             series: sex_values,
             chart: {
                 width: 380,
@@ -1160,34 +1139,8 @@
                     show: true,
                 }
             },
-            // labels: ['Female', 'Male'],
             labels: sex_labels,
             colors: ['#CA6B54', '#3E6D81'],
-            // title: {
-            //     text: "Sex Distribution",
-            //     align: 'center',
-            //     margin: 0,
-            //     offsetX: 0,
-            //     offsetY: 0,
-            //     floating: false,
-            //     style: {
-            //         fontSize: '14px',
-            //         fontWeight: 'bold',
-            //         fontFamily: undefined,
-            //         color: '#263238'
-            //     },
-            // },
-            // responsive: [{
-            //     breakpoint: 480,
-            //     options: {
-            //         chart: {
-            //             width: 200,
-            //         },
-            //         legend: {
-            //             position: 'bottom'
-            //         }
-            //     }
-            // }]
         };
 
         var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
@@ -1590,7 +1543,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1603,7 +1556,7 @@
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1616,7 +1569,7 @@
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1631,7 +1584,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["province_count"] +
                     `</th>
@@ -1644,7 +1597,7 @@
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["province_count"] +
                     `</th>
@@ -1657,7 +1610,7 @@
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["province_count"] +
                     `</th>
@@ -1672,7 +1625,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1687,7 +1640,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1702,7 +1655,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1774,14 +1727,14 @@
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
                         }
                     } else {
                         $("#nextButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
@@ -1819,14 +1772,14 @@
                     if (recordsPerPageMunicipality != result["municipalities_col3"].length) {
                         $("#nextButtonMunicipality").hide();
                         // $("#prevButton").show();
-                        if(currentPageMunicipality == 1) {
+                        if (currentPageMunicipality == 1) {
                             $("#prevButtonMunicipality").hide();
                         } else {
                             $("#prevButtonMunicipality").show();
                         }
                     } else {
                         $("#nextButtonMunicipality").show();
-                        if(currentPageMunicipality == 1) {
+                        if (currentPageMunicipality == 1) {
                             $("#prevButtonMunicipality").hide();
                         } else {
                             $("#prevButtonMunicipality").show();
@@ -1880,14 +1833,14 @@
                     if (recordsPerPageMunicipality != result["municipalities_col3"].length) {
                         $("#nextButtonMunicipality").hide();
                         // $("#prevButton").show();
-                        if(currentPageMunicipality == 1) {
+                        if (currentPageMunicipality == 1) {
                             $("#prevButtonMunicipality").hide();
                         } else {
                             $("#prevButtonMunicipality").show();
                         }
                     } else {
                         $("#nextButtonMunicipality").show();
-                        if(currentPageMunicipality == 1) {
+                        if (currentPageMunicipality == 1) {
                             $("#prevButtonMunicipality").hide();
                         } else {
                             $("#prevButtonMunicipality").show();
@@ -1955,11 +1908,11 @@
             var regions_charts = @json($region_charts);
 
             regions.series[0].data = regions_charts.map(function(item) {
-                                        return {
-                                            x: item.region_name,
-                                            y: parseInt(item.region_count)
-                                        };
-                                    });
+                return {
+                    x: item.region_name,
+                    y: parseInt(item.region_count)
+                };
+            });
 
             var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
             regionsChart.render();
@@ -1968,16 +1921,16 @@
             var province_charts = @json($province_charts);
 
             provinces.series[0].data = province_charts.map(function(item) {
-                                        return {
-                                            x: item.province_name,
-                                            y: parseInt(item.province_count)
-                                        };
-                                    });
+                return {
+                    x: item.province_name,
+                    y: parseInt(item.province_count)
+                };
+            });
 
             var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
             provincesChart.render();
-            
-            
+
+
         }
 
         // RENDER FILTERED PIE CHART //
@@ -1987,8 +1940,8 @@
             var values = values;
             // handle null data
             values = values.map(value => value === null ? 0 : value);
-            
-            if(chart == 'sex') {
+
+            if (chart == 'sex') {
                 // update sex chart  
                 sex.series = values;
                 sex.labels = labels;
@@ -1996,7 +1949,7 @@
                 var sexChart = new ApexCharts(document.querySelector("#sexChart"), sex);
                 sexChart.render();
             }
-            if(chart == 'ip') {
+            if (chart == 'ip') {
                 // update indigenous chart  
                 ip.series = values;
                 ip.labels = labels;
@@ -2004,7 +1957,7 @@
                 var indigenousChart = new ApexCharts(document.querySelector("#ipChart"), ip);
                 indigenousChart.render();
             }
-            if(chart == 'pwd') {
+            if (chart == 'pwd') {
                 // update PWD chart  
                 pwd.series = values;
                 pwd.labels = labels;
@@ -2018,8 +1971,8 @@
         function renderFilteredBarChart(keys, values, chart) {
             var labels = keys;
             var values = values;
-            
-            if(chart == 'sector') {
+
+            if (chart == 'sector') {
                 sector.series[0].data = values;
                 sector.xaxis.categories = labels;
 
@@ -2029,25 +1982,25 @@
         }
         // RENDER TREE MAP CHART //
         function renderFilteredTreeMapChart(data, chart) {
-            if(chart == 'regions') {
+            if (chart == 'regions') {
                 regions.series[0].data = data.map(function(item) {
-                                        return {
-                                            x: item.region_name,
-                                            y: parseInt(item.region_count)
-                                        };
-                                    });
-                
+                    return {
+                        x: item.region_name,
+                        y: parseInt(item.region_count)
+                    };
+                });
+
                 var regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regions);
                 regionsChart.render();
             }
-            if(chart == 'provinces') {
+            if (chart == 'provinces') {
                 provinces.series[0].data = data.map(function(item) {
-                                        return {
-                                            x: item.province_name,
-                                            y: parseInt(item.province_count)
-                                        };
-                                    });
-                
+                    return {
+                        x: item.province_name,
+                        y: parseInt(item.province_count)
+                    };
+                });
+
                 var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
                 provincesChart.render();
             }
@@ -2058,7 +2011,7 @@
             //                                 y: parseInt(item.city_count)
             //                             };
             //                         });
-                
+
             //     var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
             //     municipalitiesChart.render();
             // }
@@ -2106,9 +2059,12 @@
 
                     currentPage = page; // Update current page
 
-                    var total_participants = result['only_numbers'][0].total_participants != null ? result['only_numbers'][0].total_participants : '0'; 
-                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0].average_gik : '0';
-                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0].evaluation : '0';
+                    var total_participants = result['only_numbers'][0].total_participants != null ? result[
+                        'only_numbers'][0].total_participants : '0';
+                    var average_gik = result['only_numbers'][0].average_gik != null ? result['only_numbers'][0]
+                        .average_gik : '0';
+                    var evaluation = result['only_numbers'][0].evaluation != null ? result['only_numbers'][0]
+                        .evaluation : '0';
 
                     $("#total_participants_chart").text(total_participants);
                     $("#average_gik_chart").text(average_gik + '%');
@@ -2123,12 +2079,16 @@
                     destroyChart(provincesChart);
 
                     // call function to render filtered pie chart
-                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result['sex_charts']), 'sex');
-                    renderFilteredPieChart(Object.keys(result['indigenous_charts']), Object.values(result['indigenous_charts']), 'ip');
-                    renderFilteredPieChart(Object.keys(result['ability_charts']), Object.values(result['ability_charts']), 'pwd');
+                    renderFilteredPieChart(Object.keys(result['sex_charts']), Object.values(result[
+                        'sex_charts']), 'sex');
+                    renderFilteredPieChart(Object.keys(result['indigenous_charts']), Object.values(result[
+                        'indigenous_charts']), 'ip');
+                    renderFilteredPieChart(Object.keys(result['ability_charts']), Object.values(result[
+                        'ability_charts']), 'pwd');
 
                     // call function to render filtered Bar chart
-                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result['sector_charts']), 'sector');
+                    renderFilteredBarChart(Object.keys(result['sector_charts']), Object.values(result[
+                        'sector_charts']), 'sector');
 
                     // call function to render filtered tree map chart
                     renderFilteredTreeMapChart(result['regions'], 'regions');
@@ -2136,14 +2096,14 @@
 
                     if (recordsPerPage != result["records"].length) {
                         $("#nextButton").hide();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
                         }
                     } else {
                         $("#nextButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
@@ -2516,23 +2476,23 @@
                 success: function(result) {
                     // var fileName = 'PhilRice Central Experimental Station (' . date('Y') . ') - Summary of Trainings';
                     var station_name = '';
-                    if(station == 1) {
+                    if (station == 1) {
                         station_name = 'CES';
-                    } else if(station == 2) {
+                    } else if (station == 2) {
                         station_name = 'Agusan';
-                    } else if(station == 3) {
+                    } else if (station == 3) {
                         station_name = 'Batac';
-                    } else if(station == 4) {
+                    } else if (station == 4) {
                         station_name = 'Bicol';
-                    } else if(station == 5) {
+                    } else if (station == 5) {
                         station_name = 'CMU';
-                    } else if(station == 6) {
+                    } else if (station == 6) {
                         station_name = 'Isabela';
-                    } else if(station == 7) {
+                    } else if (station == 7) {
                         station_name = 'Los Baños';
-                    } else if(station == 8) {
+                    } else if (station == 8) {
                         station_name = 'Midsayap';
-                    } else if(station == 9) {
+                    } else if (station == 9) {
                         station_name = 'Negros';
                     }
                     var fileName =
