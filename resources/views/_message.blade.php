@@ -49,15 +49,7 @@
                 return new Promise((resolve) => {
                 // Redirect based on user type after timeout
                 @if (Auth::check())
-                    @if (Auth::user()->user_type === 'super_admin')
-                        window.location.href = "{{ route('super_admin.overview') }}";
-                    @elseif (Auth::user()->user_type === 'admin')
-                        window.location.href = "{{ route('admin.overview') }}";
-                    @elseif (Auth::user()->user_type === 'encoder')
-                        window.location.href = "{{ route('encoder.overview') }}";
-                    @elseif (Auth::user()->user_type === 'viewer')
-                        window.location.href = "{{ route('viewer.overview') }}";
-                    @endif
+                    window.location.href = "{{ route('auth.overview') }}";
                 @endif
                 resolve(false); // Prevent default closing behavior
                 });
@@ -65,15 +57,7 @@
         }).then(() => {
             // after the modal is closed
             @if (Auth::check())
-                @if (Auth::user()->user_type === 'super_admin')
-                    window.location.href = "{{ route('super_admin.overview') }}";
-                @elseif (Auth::user()->user_type === 'admin')
-                    window.location.href = "{{ route('admin.overview') }}";
-                @elseif (Auth::user()->user_type === 'encoder')
-                    window.location.href = "{{ route('encoder.overview') }}";
-                @elseif (Auth::user()->user_type === 'viewer')
-                    window.location.href = "{{ route('viewer.overview') }}";
-                @endif
+                window.location.href = "{{ route('auth.overview') }}";
             @endif
         });
     </script>

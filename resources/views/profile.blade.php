@@ -13,7 +13,7 @@
 
                 {{-- Overview --}}
                 <li>
-                    <a href="{{ route('encoder.overview') }}"
+                    <a href="{{ route('auth.overview') }}"
                         class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                         <box-icon type='solid' name='pie-chart-alt-2'></box-icon>
                         <span class="ml-3">Overview</span>
@@ -31,21 +31,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -55,7 +55,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.ces') }}"
+                        <a href="{{ route('auth.ces') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">CES</span>
@@ -74,21 +74,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -98,7 +98,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.agusan') }}"
+                        <a href="{{ route('auth.agusan') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">AGUSAN</span>
@@ -117,21 +117,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -141,7 +141,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.batac') }}"
+                        <a href="{{ route('auth.batac') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">BATAC</span>
@@ -160,21 +160,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -184,7 +184,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.bicol') }}"
+                        <a href="{{ route('auth.bicol') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">BICOL</span>
@@ -203,21 +203,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -227,7 +227,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.cmu') }}"
+                        <a href="{{ route('auth.cmu') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">CMU</span>
@@ -246,21 +246,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lgtransition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -270,7 +270,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.isabela') }}"
+                        <a href="{{ route('auth.isabela') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">ISABELA</span>
@@ -289,21 +289,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -313,7 +313,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.losbaños') }}"
+                        <a href="{{ route('auth.losbaños') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">LOS BAÑOS</span>
@@ -332,21 +332,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -356,7 +356,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.midsayap') }}"
+                        <a href="{{ route('auth.midsayap') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">MIDSAYAP</span>
@@ -375,21 +375,21 @@
                         </a>
                         <ul id="dropdown-sales" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="{{ route('encoder.view') }}"
+                                <a href="{{ route('auth.view') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='line-chart'></box-icon>
                                     <span class="ml-3">View Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.add') }}"
+                                <a href="{{ route('auth.add') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='plus'></box-icon>
                                     <span class="ml-3">Add Data</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('encoder.edit') }}"
+                                <a href="{{ route('auth.edit') }}"
                                     class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-green-100 dark:text-white dark:hover:bg-green-700">
                                     <box-icon name='edit-alt' type='solid'></box-icon>
                                     <span class="ml-3">Edit Data</span>
@@ -399,7 +399,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('encoder.negros') }}"
+                        <a href="{{ route('auth.negros') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg  dark:text-white hover:bg-green-100 dark:hover:bg-gray-700 group">
                             <box-icon name='building' type='solid'></box-icon>
                             <span class="ml-3">NEGROS</span>
@@ -711,13 +711,11 @@
                 {{-- Save and Go Back --}}
                 {{-- href="{{ url()->previous() }}" --}}
                 <div class="flex justify-end w-full my-8">
-                    <a @if (auth()->user()->user_type === 'encoder') href="{{ route('encoder.overview') }}"
-                        @elseif (auth()->user()->user_type === 'admin')
-                        href="{{ route('admin.overview') }}"
-                        @elseif (auth()->user()->user_type === 'super_admin')
-                        href="{{ route('super_admin.overview') }}" @endif
+                    <a href="{{ route('auth.overview') }}"
                         class="text-gray-700 hover:text-[#0B1215] font-medium rounded-lg text-sm px-3 py-2.5"
-                        id="goBackBtn">Go Back</a>
+                        id="goBackBtn">
+                        Go Back
+                    </a>
                     <button type="submit" id="saveProfileBtn"
                         class="text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save</button>
                 </div>
@@ -1078,13 +1076,7 @@
                     // If user confirms, navigate to the appropriate link
                     var userType = "{{ auth()->user()->user_type }}";
                     var redirectUrl = "";
-                    if (userType === 'encoder') {
-                        redirectUrl = "{{ route('encoder.overview') }}";
-                    } else if (userType === 'admin') {
-                        redirectUrl = "{{ route('admin.overview') }}";
-                    } else if (userType === 'super_admin') {
-                        redirectUrl = "{{ route('super_admin.overview') }}";
-                    }
+                    redirectUrl = "{{ route('auth.overview') }}";
                     window.location.href = redirectUrl;
                 }
             });

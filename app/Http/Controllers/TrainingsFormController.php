@@ -97,14 +97,21 @@ class TrainingsFormController extends Controller
         // }
 
         if (Auth::check()) {
-            return view('encoder.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else if (!Auth::check()) {
             return view('guest.overview', compact('titles', 'regions', 'provinces', 'municipalities', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
 
     }
 
-    public function encoderView()
+    public function authView()
     {
         $station_id = Auth::user()->station;
 
@@ -202,11 +209,29 @@ class TrainingsFormController extends Controller
             ->groupBy('provinces.provDesc')
             ->get();
 
-        // return view('encoder.view', compact('titles', 'sex_charts', 'indigenous_pwd', 'sector_charts'));
-        return view('encoder.view', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        return view('auth.view', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        // if (Auth::user()->user_type === 'super_admin') {
+        //     return view('super_admin.view', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        // } else if(Auth::user()->user_type === 'admin') {
+        //     return view('admin.view', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        // } else if(Auth::user()->user_type === 'encoder') {
+        //     return view('encoder.view', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+        // }
     }
 
-    public function encoderEditView()
+    public function authAddView()
+    {
+        return view('auth.add');
+        // if (Auth::user()->user_type === 'super_admin') {
+        //     return view('super_admin.add');
+        // } else if(Auth::user()->user_type === 'admin') {
+        //     return view('admin.add');
+        // } else if(Auth::user()->user_type === 'encoder') {
+        //     return view('encoder.add');
+        // }
+    }
+
+    public function authEditView()
     {
         if (empty(Auth::check())) {
             abort(404);
@@ -228,8 +253,15 @@ class TrainingsFormController extends Controller
 
         // dd($records->all());
         // return view('encoder.edit', compact('records', 'titles'));
-        return view('encoder.edit', compact('titles'));
-        // return view('encoder.ces_edit');
+
+        return view('auth.edit', compact('titles'));
+        // if (Auth::user()->user_type === 'super_admin') {
+        //     return view('super_admin.edit', compact('titles'));
+        // } else if(Auth::user()->user_type === 'admin') {
+        //     return view('admin.edit', compact('titles'));
+        // } else if(Auth::user()->user_type === 'encoder') {
+        //     return view('encoder.edit', compact('titles'));
+        // }
     }
 
     public function cesView() 
@@ -328,9 +360,16 @@ class TrainingsFormController extends Controller
             ->groupBy('provinces.provDesc')
             ->get();
 
-        // return view('encoder.ces', compact('titles', 'provinces'));
+        
         if (Auth::check()) {
-            return view('encoder.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.ces', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -434,7 +473,14 @@ class TrainingsFormController extends Controller
 
         // return view('encoder.ces', compact('titles', 'provinces'));
         if (Auth::check()) {
-            return view('encoder.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.agusan', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -538,7 +584,14 @@ class TrainingsFormController extends Controller
 
         // return view('encoder.ces', compact('titles', 'provinces'));
         if (Auth::check()) {
-            return view('encoder.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.batac', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -642,7 +695,14 @@ class TrainingsFormController extends Controller
 
         // return view('encoder.ces', compact('titles', 'provinces'));
         if (Auth::check()) {
-            return view('encoder.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.bicol', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -746,7 +806,14 @@ class TrainingsFormController extends Controller
 
         // return view('encoder.ces', compact('titles', 'provinces'));
         if (Auth::check()) {
-            return view('encoder.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.cmu', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -850,7 +917,14 @@ class TrainingsFormController extends Controller
 
         // return view('encoder.ces', compact('titles', 'provinces'));
         if (Auth::check()) {
-            return view('encoder.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.isabela', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -955,7 +1029,14 @@ class TrainingsFormController extends Controller
         // return view('encoder.ces', compact('titles', 'provinces'));
         
         if (Auth::check()) {
-            return view('encoder.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.losbaños', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -1060,7 +1141,14 @@ class TrainingsFormController extends Controller
         // return view('encoder.ces', compact('titles', 'provinces'));
         
         if (Auth::check()) {
-            return view('encoder.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.midsayap', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }
@@ -1165,7 +1253,14 @@ class TrainingsFormController extends Controller
         // return view('encoder.ces', compact('titles', 'provinces'));
     
         if (Auth::check()) {
-            return view('encoder.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            return view('auth.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // if (Auth::user()->user_type === 'super_admin') {
+            //     return view('super_admin.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'admin') {
+            //     return view('admin.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // } else if(Auth::user()->user_type === 'encoder') {
+            //     return view('encoder.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
+            // }
         } else {
             return view('guest.negros', compact('titles', 'provinces', 'sex_charts', 'indigenous_charts', 'ability_charts', 'sector_charts', 'region_charts', 'province_charts'));
         }

@@ -31,15 +31,16 @@ class UserController extends Controller
     public function create(Request $request)
     {
         if (!empty(Auth::check())) {
-            if (Auth::user()->user_type == 'super_admin') {
-                return redirect('/super_admin/overview');
-            } elseif (Auth::user()->user_type == 'admin') {
-                return redirect('/admin/overview');
-            } elseif (Auth::user()->user_type == 'encoder') {
-                return redirect('/encoder/overview');
-            } elseif (Auth::user()->user_type == 'viewer') {
-                return redirect('/viewer/overview');
-            }
+            return redirect()->route('auth.overview');
+            // if (Auth::user()->user_type == 'super_admin') {
+            //     return redirect('/super_admin/overview');
+            // } elseif (Auth::user()->user_type == 'admin') {
+            //     return redirect('/admin/overview');
+            // } elseif (Auth::user()->user_type == 'encoder') {
+            //     return redirect('/encoder/overview');
+            // } elseif (Auth::user()->user_type == 'viewer') {
+            //     return redirect('/viewer/overview');
+            // }
         }
 
         // $stations = Station::get(["station", "id"]);

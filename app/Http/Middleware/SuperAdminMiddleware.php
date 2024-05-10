@@ -18,7 +18,7 @@ class SuperAdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!empty(Auth::check())) {
-            if(Auth::user()->user_type == 'super_admin') {
+            if(Auth::user()->user_type === 'super_admin') {
                 return $next($request);
             } else {
                 Auth::logout();
