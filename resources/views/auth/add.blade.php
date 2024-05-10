@@ -471,7 +471,7 @@
                 <a href="{{ route('trainingsform.create') }}" target="_blank">
                     <div
                         class="flex max-[510px]:flex-col rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 hover:drop-shadow-lg hover:scale-105">
-                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/card-banner-1.jpg') }}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Summary of Trainings
                                 Conducted
@@ -492,7 +492,7 @@
                 <a href="#" onclick="underConstructionAlert()">
                     <div
                         class="flex max-[510px]:flex-col bg-gray-50 rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/card-banner.jpg') }}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Knowledge Sharing
                                 and Learning Monitoring</h3>
@@ -515,7 +515,7 @@
                 <a href="#" onclick="underConstructionAlert()">
                     <div
                         class="flex max-[510px]:flex-col bg-gray-50 rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/card-banner.jpg') }}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Technical Dispatch
                                 Monitoring
@@ -533,7 +533,7 @@
                 <a href="#" onclick="underConstructionAlert()">
                     <div
                         class="flex max-[510px]:flex-col bg-gray-50 rounded-lg shadow border border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed opacity-75">
-                        <img class="h-72 rounded-lg" src="{{ asset('assets/rice.jpg') }}">
+                        <img class="h-72 rounded-lg" src="{{ asset('assets/card-banner.jpg') }}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Technology
                                 Demonstration Monitoring</h3>
