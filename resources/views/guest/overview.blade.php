@@ -475,7 +475,7 @@
             {{-- <div id="municipalitiesChart"></div> --}}
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg grid grid-cols-3">
-                
+
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -488,10 +488,10 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-1">
-                        
+
                     </tbody>
                 </table>
-               
+
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -504,7 +504,7 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-2">
-                        
+
                     </tbody>
                 </table>
 
@@ -520,7 +520,7 @@
                         </tr>
                     </thead>
                     <tbody id="municipality-column-3">
-                        
+
                     </tbody>
                 </table>
 
@@ -590,8 +590,9 @@
                         {{-- Sector --}}
                         <div class="mb-4">
                             <label for="sector" class="block mb-2 text-sm font-medium text-gray-900">Sector</label>
-                            <select name="sector"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <select name="sector" id="sector"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                required>
                                 <option selected>Select sector</option>
                                 <option value="Farmers and Seed Growers">Farmers and Seed Growers</option>
                                 <option value="Government Agencies">Government Agencies</option>
@@ -611,7 +612,7 @@
                         <div class="mb-4">
                             <label for="purpose" class="block mb-2 text-sm font-medium text-gray-900">Purpose
                                 {{-- <span class="text-gray-600 italic">(optional)</span></label> --}}
-                                <textarea name="purpose" rows="4"
+                                <textarea name="purpose" id="purpose" rows="4"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="Kindly state how you intend to use the data" required></textarea>
                         </div>
@@ -960,34 +961,81 @@
 
 @section('alerts')
     <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Add event listener to the save button
+        //     document.getElementById('submitBtn').addEventListener('click', function(event) {
+        //         event.preventDefault();
+
+        //         Swal.fire({
+        //             title: 'Confirm Submission',
+        //             text: 'Are you sure you want to save your evaluation?',
+        //             icon: 'warning',
+        //             showCancelButton: true,
+        //             confirmButtonColor: '#3085d6',
+        //             cancelButtonColor: '#d33',
+        //             confirmButtonText: 'Yes, submit it!'
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 Swal.fire({
+        //                     title: "Submit Successful!",
+        //                     text: "Your evaluation has been submitted successfully.",
+        //                     icon: "success",
+        //                     confirmButtonText: 'Nice!'
+        //                 }).then(() => {
+        //                     document.getElementById('evaluationForm').submit();
+
+        //                     var modal = document.getElementById("evaluation-modal");
+        //                     modal.classList.add('hidden');
+        //                 })
+        //             }
+        //         });
+        //     });
+        // });
         document.addEventListener('DOMContentLoaded', function() {
             // Add event listener to the save button
             document.getElementById('submitBtn').addEventListener('click', function(event) {
                 event.preventDefault();
 
-                Swal.fire({
-                    title: 'Confirm Submission',
-                    text: 'Are you sure you want to save your evaluation?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, submit it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Submit Successful!",
-                            text: "Your evaluation has been submitted successfully.",
-                            icon: "success",
-                            confirmButtonText: 'Nice!'
-                        }).then(() => {
-                            document.getElementById('evaluationForm').submit();
+                // Get the values of purpose and sector fields
+                var purpose = document.getElementById('purpose').value.trim();
+                var sector = document.getElementById('sector').value.trim();
 
-                            var modal = document.getElementById("evaluation-modal");
-                            modal.classList.add('hidden');
-                        })
-                    }
-                });
+                // Check if purpose and sector are not empty
+                if (purpose === '' || sector === '') {
+                    // Display alert if purpose or sector is empty
+                    Swal.fire({
+                        title: 'Incomplete Fields',
+                        text: 'Please fill out the purpose and sector fields before submitting.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    // If purpose and sector are filled out, proceed with submission
+                    Swal.fire({
+                        title: 'Confirm Submission',
+                        text: 'Are you sure you want to save your evaluation?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, submit it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Submit Successful!",
+                                text: "Your evaluation has been submitted successfully.",
+                                icon: "success",
+                                confirmButtonText: 'Nice!'
+                            }).then(() => {
+                                // Submit the form
+                                document.getElementById('evaluationForm').submit();
+
+                                var modal = document.getElementById("evaluation-modal");
+                                modal.classList.add('hidden');
+                            });
+                        }
+                    });
+                }
             });
         });
     </script>
@@ -1007,7 +1055,7 @@
             var tableRow = ``;
             data_first_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1019,7 +1067,7 @@
             var tableRow = ``;
             data_second_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1031,7 +1079,7 @@
             var tableRow = ``;
             data_third_column.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["region_count"] +
                     `</th>
@@ -1102,7 +1150,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1117,7 +1165,7 @@
             var tableRow = ``;
             result.forEach(function(data) {
                 tableRow +=
-                `<tr>
+                    `<tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">` +
                     data["city_count"] +
                     `</th>
@@ -1159,19 +1207,19 @@
                     $("#total_participants_chart").text(total_participants);
                     $("#average_gik_chart").text(average_gik + '%');
                     $("#evaluation_chart").text(evaluation);
-                    
+
                     // Check if there are more records beyond the current page
                     if (recordsPerPage != result["municipalities_col3"].length) {
                         $("#nextButton").hide();
                         // $("#prevButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
                         }
                     } else {
                         $("#nextButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
@@ -1429,14 +1477,14 @@
                     if (recordsPerPage != result["municipalities_col3"].length) {
                         $("#nextButton").hide();
                         // $("#prevButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
                         }
                     } else {
                         $("#nextButton").show();
-                        if(currentPage == 1) {
+                        if (currentPage == 1) {
                             $("#prevButton").hide();
                         } else {
                             $("#prevButton").show();
@@ -1526,6 +1574,5 @@
                 loadFilterTrainings(currentPage - 1);
             }
         }
-
     </script>
 @endsection

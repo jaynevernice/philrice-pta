@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    PhilRice CES | View Data
+    View Data
 @endsection
 
 @section('sidebar')
@@ -927,13 +927,23 @@
             <div class="relative bg-white rounded-lg shadow">
                 {{-- Modal Header --}}
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 id="title" class="text-md font-semibold text-gray-900 bg-green-100 rounded-lg px-2 py-1">
+                        <!-- Content of your title goes here -->
+                    </h3>
+                    <button type="button" onclick="closeModal()"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                        <box-icon name='x'></box-icon>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>                
+                {{-- <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                     <h3 id="title" class="text-md font-semibold text-gray-900"></h3>
                     <button type="button" onclick="closeModal()"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                         <box-icon name='x'></box-icon>
                         <span class="sr-only">Close modal</span>
                     </button>
-                </div>
+                </div> --}}
                 {{-- Modal Body --}}
                 <form class="p-5">
                     {{-- Cards --}}

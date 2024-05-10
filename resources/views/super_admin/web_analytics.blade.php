@@ -479,15 +479,15 @@
         {{-- Cards --}}
         <div class="grid grid-cols-2 gap-2">
 
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+            <div class="bg-[#3D6A7F] text-white shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
                 <h1 id="monthlySiteViews" class="mb-2 text-6xl font-extrabold">-</h1>
                 {{-- <p class="text-gray-500 dark:text-gray-400">Site Visits for <span id="selectedMonth">Month</span></p> --}}
-                <p class="text-gray-500 dark:text-gray-400">Site Visits for <span id="selectedMonth">Month</span></p>
+                <p class="text-gray-200 dark:text-gray-400">Site Visits for <span id="selectedMonth">Month</span></p>
             </div>
 
-            <div class="bg-slate-100 shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
+            <div class="bg-[#C26F54] text-white shadow-lg border-2 rounded-lg h-32 flex flex-col justify-center items-center">
                 <h1 id="siteViews" class="mb-2 text-6xl font-extrabold">-</h1>
-                <p class="text-gray-500 dark:text-gray-400">Total Site Visits</p>
+                <p class="text-gray-200 dark:text-gray-400">Total Site Visits</p>
             </div>
 
         </div>
