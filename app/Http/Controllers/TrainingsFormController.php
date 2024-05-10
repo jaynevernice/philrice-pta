@@ -4000,21 +4000,46 @@ class TrainingsFormController extends Controller
             $division = Division::where('id', '=', Auth::user()->division)->first();
 
             // Query to fetch records with pagination
-            $records = DB::table('trainings_forms')
-                // ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-                ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
-                ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
-                ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
-                ->where('trainings_forms.encoder_id', '=', $encoder_id)
-                // ->where('users.station', '=', $request->station)
-                ->where('trainings_forms.station_encoded', '=', $station_id)
-                ->where('trainings_forms.division', '=', $division->division)
-                ->orderBy('trainings_forms.end_date', 'DESC')
-                // ->latest('trainings_forms.id')
-                ->skip($offset) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
-
+            if(Auth::user()->user_type === 'super_admin') {
+                $records = DB::table('trainings_forms')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    ->skip($offset) // Skip records based on the offset
+                    ->take($recordsPerPage) // Limit the number of records per page
+                    ->get();
+            } else if(Auth::user()->user_type === 'admin') {
+                $records = DB::table('trainings_forms')
+                    ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->where('users.id', '=', $encoder_id)
+                    ->orWhere('users.user_type', '=', 'encoder')
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    ->skip($offset) // Skip records based on the offset
+                    ->take($recordsPerPage) // Limit the number of records per page
+                    ->get();
+            } else {
+                $records = DB::table('trainings_forms')
+                    // ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->where('trainings_forms.encoder_id', '=', $encoder_id)
+                    // ->where('users.station', '=', $request->station)
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->where('trainings_forms.division', '=', $division->division)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    // ->latest('trainings_forms.id')
+                    ->skip($offset) // Skip records based on the offset
+                    ->take($recordsPerPage) // Limit the number of records per page
+                    ->get();
+            }
+            
             return response()->json(['records' => $records]);
         }
 
@@ -4053,41 +4078,109 @@ class TrainingsFormController extends Controller
                 return response()->json(['records' => $records]);
             }
 
-            $records = DB::table('trainings_forms')
-                // ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
-                ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
-                ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
-                ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
-                ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
-                })
-                ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
-                    return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
-                })
-                ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
-                    return $query->whereYear('start_date', '=', $yearSelect);
-                })
-                ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
-                    if($trainingTitle == 'Other') {
-                        return $query->whereNotIn('trainings_forms.title', function ($subquery) {
-                            $subquery->select('trainings_titles.training_title')->from('trainings_titles');
-                        });
-                    } else {
-                        return $query->where('trainings_forms.title', '=', $trainingTitle);
-                    }
-                })
-                ->when(!empty($searchInput), function ($query) use ($searchInput) {
-                    return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
-                })
-                ->where('trainings_forms.encoder_id', '=', $encoder_id)
-                // ->where('users.station', '=', $request->station)
-                ->where('trainings_forms.station_encoded', '=', $station_id)
-                ->where('trainings_forms.division', '=', $division->division)
-                ->orderBy('trainings_forms.end_date', 'DESC')
-                // ->latest('trainings_forms.id')
-                ->skip($offset) // Skip records based on the offset
-                ->take($recordsPerPage) // Limit the number of records per page
-                ->get();
+            if(Auth::user()->user_type === 'super_admin') {
+                $records = DB::table('trainings_forms')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                    })
+                    ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                        return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                    })
+                    ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                        return $query->whereYear('start_date', '=', $yearSelect);
+                    })
+                    ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                        if($trainingTitle == 'Other') {
+                            return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                                $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                            });
+                        } else {
+                            return $query->where('trainings_forms.title', '=', $trainingTitle);
+                        }
+                    })
+                    ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                        return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                    })
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    ->skip($offset) // Skip records based on the offset
+                    ->take($recordsPerPage) // Limit the number of records per page
+                    ->get();
+            } else if(Auth::user()->user_type === 'admin') {
+                $records = DB::table('trainings_forms')
+                    ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                    })
+                    ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                        return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                    })
+                    ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                        return $query->whereYear('start_date', '=', $yearSelect);
+                    })
+                    ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                        if($trainingTitle == 'Other') {
+                            return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                                $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                            });
+                        } else {
+                            return $query->where('trainings_forms.title', '=', $trainingTitle);
+                        }
+                    })
+                    ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                        return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                    })
+                    ->where('users.id', '=', $encoder_id)
+                    ->orWhere('users.user_type', '=', 'encoder')
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    // ->latest('trainings_forms.id')
+                    ->skip($offset) // Skip records based on the offset
+                    ->take($recordsPerPage) // Limit the number of records per page
+                    ->get();
+            } else {
+                $records = DB::table('trainings_forms')
+                    // ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->when(!empty($start_MonthSelect), function ($query) use ($start_MonthSelect) {
+                        return $query->whereMonth('trainings_forms.start_date', '>=', $start_MonthSelect);
+                    })
+                    ->when(!empty($end_MonthSelect), function ($query) use ($end_MonthSelect) {
+                        return $query->whereMonth('trainings_forms.end_date', '<=', $end_MonthSelect);
+                    })
+                    ->when(!empty($yearSelect), function ($query) use ($yearSelect) {
+                        return $query->whereYear('start_date', '=', $yearSelect);
+                    })
+                    ->when(!empty($trainingTitle), function ($query) use ($trainingTitle) {
+                        if($trainingTitle == 'Other') {
+                            return $query->whereNotIn('trainings_forms.title', function ($subquery) {
+                                $subquery->select('trainings_titles.training_title')->from('trainings_titles');
+                            });
+                        } else {
+                            return $query->where('trainings_forms.title', '=', $trainingTitle);
+                        }
+                    })
+                    ->when(!empty($searchInput), function ($query) use ($searchInput) {
+                        return $query->where('trainings_forms.title', 'LIKE', "%$searchInput%");
+                    })
+                    ->where('trainings_forms.encoder_id', '=', $encoder_id)
+                    // ->where('users.station', '=', $request->station)
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->where('trainings_forms.division', '=', $division->division)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    // ->latest('trainings_forms.id')
+                    ->skip($offset) // Skip records based on the offset
+                    ->take($recordsPerPage) // Limit the number of records per page
+                    ->get();
+            }
 
             return response()->json(['records' => $records]);
         }
@@ -4403,13 +4496,52 @@ class TrainingsFormController extends Controller
             abort(404);
         }
 
+        $station_id = Auth::user()->station;
+        $encoder_id = Auth::user()->id;
+
         $record = TrainingsForm::findOrFail($id);
 
-        if(Auth::user()->id != $record->encoder_id) {
-            Auth::logout();
-            abort(404);
+        if(Auth::user()->user_type === 'super_admin') {
+            $records_collect = DB::table('trainings_forms')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    ->get();
+            $recordExists = $records_collect->contains('id', $record->id);
+
+            if(!$recordExists) {
+                Auth::logout();
+                return redirect()->route('login');
+                // abort(404);
+            }
+        } else if(Auth::user()->user_type === 'admin') {
+            $records_collect = DB::table('trainings_forms')
+                    ->leftJoin('users', 'trainings_forms.encoder_id', '=', 'users.id')
+                    ->leftJoin('municipalities', 'trainings_forms.municipality', '=', 'municipalities.citymunCode')
+                    ->leftJoin('provinces', 'trainings_forms.province', '=', 'provinces.provCode')
+                    ->select('trainings_forms.*', 'municipalities.citymunDesc as citymunDesc', 'provinces.provDesc as provDesc')
+                    ->where('users.id', '=', $encoder_id)
+                    ->orWhere('users.user_type', '=', 'encoder')
+                    ->where('trainings_forms.station_encoded', '=', $station_id)
+                    ->orderBy('trainings_forms.end_date', 'DESC')
+                    ->get();
+            $recordExists = $records_collect->contains('id', $record->id);
+
+            if(!$recordExists) {
+                Auth::logout();
+                return redirect()->route('login');
+                // abort(404);
+            }
+        } else if(Auth::user()->user_type === 'encoder') {
+            if(Auth::user()->id != $record->encoder_id) {
+                Auth::logout();
+                return redirect()->route('login');
+                // abort(404);
+            }
         }
- 
+        
         $station = Auth::user()->station;
 
         // $station_id = Station::where('station', '=', $station)->first();
@@ -4446,7 +4578,7 @@ class TrainingsFormController extends Controller
     {
         $record = TrainingsForm::findOrFail($id);
 
-        if(empty($record) || empty(Auth::check()) || Auth::user()->id != $record->encoder_id) {
+        if(empty($record) || empty(Auth::check())) {
             Auth::logout();
             abort(404);
         }

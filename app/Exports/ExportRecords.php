@@ -42,6 +42,8 @@ class ExportRecords implements FromCollection, WithMapping, WithHeadings, Should
     {
         return [
             // headers in excel
+            "DATE ENCODED",
+            "DATE UPDATED",
             "TRAINING TITLE",
             "DATE",
             "CONDUCTING DIVISION",
@@ -69,6 +71,9 @@ class ExportRecords implements FromCollection, WithMapping, WithHeadings, Should
     public function map($records): array
     {
         $date = date("F-d-Y", strtotime($records->start_date)) . " - " . date("F-d-Y", strtotime($records->end_date));
+
+        $date_created = date("F-d-Y", strtotime($records->created_at));
+        $date_updated = date("F-d-Y", strtotime($records->updated_at));
         
         $stationName = '';
         if($records->station_id != 0) {
@@ -91,6 +96,8 @@ class ExportRecords implements FromCollection, WithMapping, WithHeadings, Should
         $num_of_other = (int) $records->num_of_other ?? 0;
 
         return [
+            $date_created,
+            $date_updated,
             $records->title,
             $date,
             $records->division,

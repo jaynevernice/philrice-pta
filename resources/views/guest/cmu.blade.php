@@ -1988,7 +1988,15 @@
                     link.download = fileName + ".xls";
                     link.click();
 
-                    alert("Thank you for downloading!");
+                    // alert("Thank you for downloading!");
+                    Swal.fire({
+                        title: "Download Complete",
+                        html: "Thank you for downloading!",
+                        imageUrl: "{{ asset('assets/thankyou.gif') }}",
+                        imageWidth: '80%',
+                        // imageHeight: '90%',
+                        imageAlt: "Thank You",
+                    });
                 },
                 error: function(error) {
                     alert("Oops something went wrong!");
