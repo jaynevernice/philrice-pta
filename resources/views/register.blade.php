@@ -127,24 +127,46 @@
                                 <h3 class="mb-4 text-lg font-medium leading-none text-[#0B1215] dark:text-white">Personal
                                     Information</h3>
                                 <div class="my-4">
-                                    <label for="first_name"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">First
-                                        Name</label>
-                                    <input required type="text" name="first_name" value="{{ old('first_name') }}"
+                                    <div class="flex justify-between">
+                                        <label for="first_name"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">First
+                                            Name</label>
+                                        <p id="fname_error"
+                                            class="hidden animate-pulse text-xs text-center text-red-600 dark:text-red-400">
+                                            Your
+                                            First Name is <span class="font-medium">Required</span>
+                                        </p>
+                                    </div>
+                                    <input required type="text" id="first_name" name="first_name"
+                                        value="{{ old('first_name') }}"
+                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                </div>
+                                <div class="my-4">
+                                    <div class="flex justify-between">
+                                        <label for="mi"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Middle
+                                            Initial</label>
+                                        <p id="mi_error"
+                                            class="hidden animate-pulse text-xs text-center text-red-600 dark:text-red-400">
+                                            Your
+                                            Middle Initial is <span class="font-medium">Required</span></p>
+                                    </div>
+                                    <input required type="text" id="mi" name="mi" value="{{ old('mi') }}"
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-4">
-                                    <label for="mi"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Middle
-                                        Initial</label>
-                                    <input required type="text" name="mi" value="{{ old('mi') }}"
-                                        class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                </div>
-                                <div class="my-4">
-                                    <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Last
-                                        Name</label>
-                                    <input required type="text" name="last_name" value="{{ old('last_name') }}"
+                                    <div class="flex justify-between">
+                                        <label for="last_name"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Last
+                                            Name</label>
+                                        <p id="lname_error"
+                                            class="hidden animate-pulse text-xs text-center text-red-600 dark:text-red-400">
+                                            Your
+                                            Last Name is <span class="font-medium">Required</span></p>
+                                    </div>
+                                    <input required type="text" id="last_name" name="last_name"
+                                        value="{{ old('last_name') }}"
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                             </div>
@@ -156,30 +178,59 @@
                                         Professional Information</h3>
                                     {{-- Email --}}
                                     <div class="my-2">
-                                        <label for="email"
-                                            class="block mb-1 text-sm font-medium text-[#0B1215] dark:text-white">Email</label>
+                                        <div class="flex justify-between">
+                                            <label for="email"
+                                                class="block mb-1 text-sm font-medium text-[#0B1215] dark:text-white">Email</label>
+                                            <p id="email_error"
+                                                class="hidden animate-pulse text-xs text-center text-red-600 dark:text-red-400">
+                                                Your Email is <span class="font-medium"> Required</span></p>
+                                            <p id="email_taken_error"
+                                                class="hidden animate-pulse text-xs text-center text-red-600 dark:text-red-400">
+                                                <span class="font-medium">Oops! </span>This email is already taken
+                                            </p>
+                                        </div>
                                         <input type="email" name="email" value="{{ old('email') }}" id="email"
                                             class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <div id="email-error-message"></div>
                                     </div>
 
                                     {{-- PhilRice ID --}}
                                     <div class="my-2" id="idField">
-                                        <label for="philrice_id"
-                                            class="block mb-1 text-sm font-medium text-[#0B1215] dark:text-white">PhilRice
-                                            ID</label>
-                                        <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
-                                            id="philrice_id"
+                                        <div class="flex justify-between">
+                                            <label for="philrice_id"
+                                                class="block mb-1 text-sm font-medium text-[#0B1215] dark:text-white">PhilRice
+                                                ID</label>
+                                            <p id="philrice_id_error"
+                                                class="hidden animate-pulse text-xs text-center text-red-600 dark:text-red-400">
+                                                Your
+                                                PhilRice ID is <span class="font-medium">Required</span></p>
+                                            <p id="philrice_id_taken_error"
+                                                class="hidden animate-pulse text-xs  text-center text-red-600 dark:text-red-400">
+                                                <span class="font-medium">Oops!</span> This PhilRice ID is already taken
+                                            </p>
+                                            <p id="philrice_id_syntax_error"
+                                                class="hidden animate-pulse text-xs  text-center text-red-600 dark:text-red-400">
+                                                <span class="font-medium">Oops!</span> Please ensure your PhilRice ID
+                                                follows the correct syntax.
+                                            </p>
+                                        </div>
+                                        <input type="text" id="philrice_id" name="philrice_id"
+                                            value="{{ old('philrice_id') }}" id="philrice_id"
                                             class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <div id="philriceid-error-message"></div>
+                                        {{-- <div id="philriceid-error-message"></div> --}}
                                     </div>
 
                                     {{-- <form> --}}
                                     <div class="grid grid-cols-2 my-1">
                                         {{-- Station --}}
                                         <div class="relative mr-1 my-1" id="stationField">
-                                            <label for="station"
-                                                class="block text-sm font-medium text-[#0B1215] mb-1">Station</label>
+                                            <div class="flex justify-between">
+                                                <label for="station"
+                                                    class="block text-sm font-medium text-[#0B1215] mb-1">Station</label>
+                                                <p id="station_error"
+                                                    class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                                    Your
+                                                    Station is <span class="font-medium">Required</span></p>
+                                            </div>
                                             <select name="station" id="station" {{ old('station') }} required
                                                 class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
                                                 <option selected disabled>Station</option>
@@ -201,8 +252,14 @@
 
                                         {{-- Division --}}
                                         <div class="relative mr-1 my-1" id="divisionField">
-                                            <label for="division"
-                                                class="block text-sm font-medium text-[#0B1215] mb-1">Division</label>
+                                            <div class="flex justify-between">
+                                                <label for="division"
+                                                    class="block text-sm font-medium text-[#0B1215] mb-1">Division</label>
+                                                <p id="division_error"
+                                                    class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                                    Your
+                                                    Division is <span class="font-medium">Required</span></p>
+                                            </div>
                                             <select name="division" id="division"
                                                 class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                                 required>
@@ -215,8 +272,14 @@
 
                                     {{-- Position --}}
                                     <div class="relative my-2" id="positionField">
-                                        <label for="position"
-                                            class="block text-sm font-medium text-[#0B1215] mb-1">Position</label>
+                                        <div class="flex justify-between">
+                                            <label for="position"
+                                                class="block text-sm font-medium text-[#0B1215] mb-1">Position</label>
+                                            <p id="position_error"
+                                                class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                                Your
+                                                Position is <span class="font-medium">Required</span></p>
+                                        </div>
                                         <select name="position" id="position"
                                             class="bg-gray-50 block appearance-none w-full h-10 border border-gray-300 text-[#0B1215] py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm"
                                             required>
@@ -235,21 +298,39 @@
                                     Credentials
                                 </h3>
                                 <div class="mb-2">
-                                    <label for="password"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Password</label>
+                                    <div class="flex justify-between">
+                                        <label for="password"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Password</label>
+                                        <p id="password_validate"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                        </p>
+                                        <p id="password_error"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                            Your
+                                            Password is <span class="font-medium">Required</span></p>
+                                    </div>
                                     <input type="password" name="password" id="password"
                                         onkeyup="validatePassword(this)" required
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <div id="password-error-message"></div>
+                                    {{-- <div id="password-error-message"></div> --}}
                                 </div>
+
                                 <div class="mb-2">
-                                    <label for="confirm_password"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Confirm
-                                        password</label>
+                                    <div class="flex justify-between">
+                                        <label for="confirm_password"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">Confirm
+                                            password</label>
+                                        <p id="confirm_password_validate"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                        </p>
+                                        <p id="confirm_password_error"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                            Confirm Your Password</p>
+                                    </div>
                                     <input type="password" name="password_confirmation" id="confirm_password"
                                         onkeyup="matchPassword(this)" required
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <div id="password-match-message"></div>
+                                    {{-- <div id="password-match-message"></div> --}}
                                 </div>
                                 {{-- Show Password --}}
                                 <div class="flex items-center justify-end my-2">
@@ -268,23 +349,43 @@
                                 <p class="text-sm text-gray-600 mb-4 dark:text-gray-400">These will be used to verify your
                                     identity and reset your password in case you forget it.</p>
                                 <div class="my-2">
-                                    <label for="sq1"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What is your
-                                        favorite color?</label>
+                                    <div class="flex justify-between">
+                                        <label for="sq1"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What is
+                                            your
+                                            favorite color?</label>
+                                        <p id="sq1_error"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                             Answer is <span class="font-medium">Required</span>
+                                        </p>
+                                    </div>
                                     <input type="text" id="sq1" name="sq1" value="{{ old('sq1') }}"
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-2">
-                                    <label for="sq2"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What
-                                        province were you born in?</label>
+                                    <div class="flex justify-between">
+                                        <label for="sq2"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What
+                                            province were you born in?</label>
+                                        <p id="sq2_error"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                            Answer is <span class="font-medium">Required</span>
+                                        </p>
+                                    </div>
                                     <input type="text" id="sq2" name="sq2" value="{{ old('sq2') }}"
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div class="my-2">
-                                    <label for="sq3"
-                                        class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What is the
-                                        name of your elementary school?</label>
+                                    <div class="flex justify-between">
+                                        <label for="sq3"
+                                            class="block mb-2 text-sm font-medium text-[#0B1215] dark:text-white">What is
+                                            the
+                                            name of your elementary school?</label>
+                                        <p id="sq3_error"
+                                            class="hidden animate-pulse text-xs text-center mr-2 text-red-600 dark:text-red-400">
+                                            Answer is <span class="font-medium">Required</span>
+                                        </p>
+                                    </div>
                                     <input type="text" id="sq3" name="sq3" value="{{ old('sq3') }}"
                                         class="bg-gray-50 border border-gray-300 text-[#0B1215] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
@@ -312,9 +413,9 @@
     <script>
         function validatePassword(inputField) {
             const password = inputField.value;
-            const errorMessage = document.getElementById("password-error-message");
+            var errorMessage = document.getElementById("password_validate");
             errorMessage.textContent = ""; // Clear previous error message
-            errorMessage.style.color = "red";
+            // errorMessage.style.color = "red";
             const nextBtn = document.getElementById('nextBtn'); // next button
 
             // Define password requirements
@@ -360,7 +461,7 @@
         function matchPassword(inputField) {
             const password = $('#password').val();
             const confirm_password = inputField.value;
-            const matchMessage = document.getElementById("password-match-message");
+            const matchMessage = document.getElementById("confirm_password_validate");
             matchMessage.textContent = ""; // Clear previous error message
 
             let isMatch = true;
@@ -716,10 +817,10 @@
 
                 // check in the database if PhilRice ID already exists
                 var philriceID = $('#philrice_id').val(); // Get the current PhilRice ID value
-                $("#philriceid-error-message").css("color", "red");
+                // $("#philriceid-error-message").css("color", "red");
                 $.ajax({
                     url: "{{ route('check-if-exists') }}",
-                    method: 'POST', 
+                    method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
@@ -729,9 +830,18 @@
                     },
                     success: function(result) {
                         if (result.exists) {
-                            $("#philriceid-error-message").text("Your PhilRice ID is already taken!");
+                            $("#philrice_id_error").addClass('hidden');
+                            $("#philrice_id_taken_error").removeClass('hidden');
+                            $('#philrice_id').removeClass(
+                                    'border-gray-300 text-gray-900 border-green-600 text-green-600'
+                                )
+                                .addClass('border-red-600 text-red-600');
                         } else {
-                            $("#philriceid-error-message").text("");
+                            $("#philrice_id_taken_error").addClass('hidden');
+                            $("#philrice_id_error").addClass('hidden');
+                            $('#philrice_id').removeClass(
+                                    'border-gray-300 text-gray-900 border-red-600 text-red-600')
+                                .addClass('border-green-600 text-green-600');
                         }
                     },
                     error: function(error) {
@@ -739,14 +849,14 @@
                     }
                 });
             });
-            
+
             // CHECK EMAIL IF ALREADY TAKEN
             $('#email').on('input', function() {
                 var email = $('#email').val(); // Get the current Email value
-                $("#email-error-message").css("color", "red");
+                // $("#email-error-message").css("color", "red");
                 $.ajax({
                     url: "{{ route('check-if-exists') }}",
-                    method: 'POST', 
+                    method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
@@ -756,9 +866,19 @@
                     },
                     success: function(result) {
                         if (result.exists) {
-                            $("#email-error-message").text("Your Email is already taken!");
+                            // $("#email-error-message").text("Your Email is already taken!");
+                            $("#email_error").addClass('hidden');
+                            $("#email_taken_error").removeClass('hidden');
+                            $('#email').removeClass(
+                                    'border-gray-300 text-gray-900 border-green-600 text-green-600'
+                                )
+                                .addClass('border-red-600 text-red-600');
                         } else {
-                            $("#email-error-message").text("");
+                            $("#email_taken_error").addClass('hidden');
+                            $("#email_error").addClass('hidden');
+                            $('#email').removeClass(
+                                    'border-gray-300 text-gray-900 border-red-600 text-red-600')
+                                .addClass('border-green-600 text-green-600');
                         }
                     },
                     error: function(error) {
@@ -766,6 +886,272 @@
                     }
                 });
             });
+        });
+    </script>
+
+    {{-- Live Validation --}}
+    <script>
+        // Step 1
+        $('#first_name').on('keypress', function(event) {
+            var fname = $(this).val().trim();
+            if (fname !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#fname_error').addClass('hidden');
+            }
+
+            var mi = $('#mi').val().trim();
+            var lname = $('#last_name').val().trim();
+            var email = $('#email').val().trim();
+            var philriceId = $('#philrice_id').val().trim();
+            var station = $('#station').val();
+            var division = $('#division').val();
+            var position = $('#position').val();
+
+            if (!mi) {
+                $('#mi').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#mi_error').removeClass('hidden');
+            }
+
+            if (!lname) {
+                $('#last_name').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#lname_error').removeClass('hidden');
+            }
+
+            if (!email) {
+                $('#email').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#email_error').removeClass('hidden');
+            }
+
+            if (!philriceId) {
+                $('#philrice_id').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#philrice_id_error').removeClass('hidden');
+            }
+
+            if (!station) {
+                $('#station').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#station_error').removeClass('hidden');
+            }
+
+            if (!division) {
+                $('#division').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#division_error').removeClass('hidden');
+            }
+
+            if (!position) {
+                $('#position').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#position_error').removeClass('hidden');
+            }
+        });
+
+        $('#mi').on('keypress', function(event) {
+            var mi = $(this).val().trim();
+            if (mi !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#mi_error').addClass('hidden');
+            }
+
+            var fname = $('#first_name').val().trim();
+            var lname = $('#last_name').val().trim();
+
+            if (!fname) {
+                $('#first_name').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#fname_error').removeClass('hidden');
+            }
+
+            if (!lname) {
+                $('#last_name').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#lname_error').removeClass('hidden');
+            }
+        });
+
+        $('#last_name').on('keypress', function(event) {
+            var lname = $(this).val().trim();
+            if (lname !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#lname_error').addClass('hidden');
+            }
+
+            var fname = $('#first_name').val().trim();
+            var mi = $('#mi').val().trim();
+
+            if (!fname) {
+                $('#first_name').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#fname_error').removeClass('hidden');
+            }
+
+            if (!mi) {
+                $('#mi').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#mi_error').removeClass('hidden');
+            }
+        });
+
+        // Step 2
+        $('#email').on('keypress', function(event) {
+            var email = $(this).val();
+            if (email !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#email_error').addClass('hidden');
+            }
+
+            var password = $('#password').val().trim();
+            var confPassword = $('#confirm_password').val().trim();
+
+            if (!password) {
+                $('#password').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#password_error').removeClass('hidden');
+            }
+
+            if (!confPassword) {
+                $('#confirm_password').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#confirm_password_error').removeClass('hidden');
+            }
+        });
+
+        $('#philrice_id').on('keypress', function(event) {
+            var charCode = event.which ? event.which : event.keyCode;
+
+            if (charCode < 48 || charCode > 57) {
+                event.preventDefault();
+                $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#philrice_id_syntax_error').removeClass('hidden').addClass('items-center');
+                $('#philrice_id_error').addClass('hidden');
+            } else {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600').addClass(
+                    'border-green-600 text-green-600');
+                $('#philrice_id_error').addClass('hidden');
+                $('#philrice_id_syntax_error').addClass('hidden');
+            }
+        });
+
+        $('#station').change(function() {
+            var station = $(this).val();
+            if (station !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#station_error').addClass('hidden');
+            }
+        });
+
+        $('#division').change(function() {
+            var division = $(this).val();
+            if (division !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#division_error').addClass('hidden');
+            }
+        });
+
+        $('#position').change(function() {
+            var position = $(this).val();
+            if (position !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#position_error').addClass('hidden');
+            }
+        });
+
+        $('#password').on('keypress', function(event) {
+            var password = $(this).val().trim();
+            if (password !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#password_error').addClass('hidden');
+                $('#password_validate').removeClass('hidden');
+            }
+
+            var sq1 = $('#sq1').val().trim();
+            var sq2 = $('#sq2').val().trim();
+            var sq3 = $('#sq3').val().trim();
+
+            if (!sq1) {
+                $('#sq1').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#sq1_error').removeClass('hidden');
+            }
+
+            if (!sq2) {
+                $('#sq2').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#sq2_error').removeClass('hidden');
+            }
+
+            if (!sq1) {
+                $('#sq3').removeClass(
+                        'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                    .addClass('border-red-600 text-red-600');
+                $('#sq3_error').removeClass('hidden');
+            }
+        });
+
+        $('#confirm_password').on('keypress', function(event) {
+            var confPassword = $(this).val().trim();
+            if (confPassword !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#confirm_password_error').addClass('hidden');
+                $('#confirm_password_validate').removeClass('hidden');
+            }
+        });
+
+        // Step 4
+        $('#sq1').on('keypress', function(event) {
+            var sq1 = $(this).val().trim();
+            if (sq1 !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#sq1_error').addClass('hidden');
+            }
+        });
+
+        $('#sq2').on('keypress', function(event) {
+            var sq2 = $(this).val().trim();
+            if (sq2 !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#sq2_error').addClass('hidden');
+            }
+        });
+
+        $('#sq3').on('keypress', function(event) {
+            var sq3 = $(this).val().trim();
+            if (sq3 !== "") {
+                $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                    .addClass('border-green-600 text-green-600');
+                $('#sq3_error').addClass('hidden');
+            }
         });
     </script>
 @endsection

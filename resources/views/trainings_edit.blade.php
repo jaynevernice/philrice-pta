@@ -1177,13 +1177,13 @@
                             Station_typeoftraining_site format (e.g. Batac_FFS_Piddig)</p>
                         <input id="photo_doc_event" name="photo_doc_event[]"
                             accept="image/png, image/gif, image/jpeg"
-                            class="flex w-full text-sm text-red-600 border border-red-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="flex w-full text-sm text-green-600 border border-green-600 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             type="file" multiple>
                         {{--  onchange="displayPhotoDocPreviews(this)" --}}
                         {{-- <div id="errorImage" style="color: red; display: none;"></div> --}}
                         {{-- <p id="photo_doc_error" class=" mt-2 text-xs text-center text-red-600 dark:text-red-400">
-                            Photo Documentation of Event/Activity is <span class="font-medium">Required</span> --}}
-                        </p>
+                            Photo Documentation of Event/Activity is <span class="font-medium">Required</span>
+                        </p> --}}
                         <p id="photo_doc_error_more_than_10"
                             class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
                                 class="font-medium">Oops!</span> You can only upload up to 10 photos
@@ -1218,9 +1218,9 @@
                             type="file" multiple>
 
                         {{-- <div id="errorFile" style="color: red; display: none;"></div> --}}
-                        <p id="other_doc_error" class=" mt-2 text-xs text-center text-green-600 dark:text-green-400">
+                        {{-- <p id="other_doc_error" class=" mt-2 text-xs text-center text-green-600 dark:text-green-400">
                             Other Documentation of Event/Activity is <span class="font-medium">Optional</span>
-                        </p>
+                        </p> --}}
                         <p id="other_doc_error_more_than_10"
                             class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
                                 class="font-medium">Oops!</span> You can only upload up to 10 files
