@@ -87,11 +87,19 @@
                                 <input type="text" name="philrice_id" value="{{ old('philrice_id') }}"
                                     id="philrice_id" placeholder="PhilRice ID" required @if(Auth::check()) disabled @endif
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]">
+                                <p id="philrice_id_error"
+                                    class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
+                                        class="font-medium">Oops!</span>  Please ensure your PhilRice ID follows the correct syntax.
+                                </p>
 
                                 <div class="relative mt-5">
                                     <input id="password" @if(Auth::check()) disabled @endif
                                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white lg:w-[436px]"
                                         type="password" name="password" id="password" placeholder="Password" required/>
+                                    <p id="password_error"
+                                        class="hidden animate-pulse mt-2 text-xs text-center text-red-600 dark:text-red-400"><span
+                                            class="font-medium">Note: </span>Don't forget to enter your password.
+                                    </p>
 
 
                                     {{-- Toggle password visbility --}}
@@ -209,4 +217,49 @@
         });
     </script>
 
+    {{-- Live Validation --}}
+    <script>
+        $('#philrice_id').on('keypress', function(event) {
+                var charCode = event.which ? event.which : event.keyCode;
+
+                if (charCode < 48 || charCode > 57) {
+                    event.preventDefault();
+                    $(this).removeClass('border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#philrice_id_error').removeClass('hidden');
+                } else {
+                    // event.preventDefault();
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600').addClass('border-green-600 text-green-600');
+                    $('#philrice_id_error').addClass('hidden');
+                }
+
+                var password = $('#password').val();
+
+                if (!password) {
+                    $('#password').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#password_error').removeClass('hidden');
+                }
+            });
+        
+            $('#password').on('keypress', function(event) {
+                var password = $(this).val();
+                if (password !== "") {
+                    $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
+                        .addClass('border-green-600 text-green-600');
+                    $('#password_error').addClass('hidden');
+                }
+
+                var philriceId = $('#philrice_id').val();
+
+                if (!philriceId) {
+                    $('#philrice_id').removeClass(
+                            'border-gray-300 text-gray-900 border-green-600 text-green-600')
+                        .addClass('border-red-600 text-red-600');
+                    $('#philrice_id_error').removeClass('hidden');
+                }
+            });
+
+    </script>
 @endsection

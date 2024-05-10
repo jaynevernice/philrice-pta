@@ -502,7 +502,8 @@
             <div class="section" data-section="1">
                 <div>
                     <div class="w-full h-80 overflow-hidden">
-                        <img class="w-full h-full object-cover" src="{{ asset('assets/form1.jpg') }}" alt="Form Header">
+                        {{-- <img class="w-full h-full object-cover" src="{{ asset('assets/form1.jpg') }}" alt="Form Header"> --}}
+                        <img class="w-full h-full object-cover rounded-lg" src="{{ asset('assets/form-banner-1.jpg') }}" alt="Form Header">
                     </div>
                 </div>
                 <div>

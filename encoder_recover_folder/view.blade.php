@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    PhilRice CES | View Data
+    View Data
 @endsection
 
 @section('sidebar')

@@ -1,9 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{-- <title>Encoder Overview</title> --}}
-    {{-- PhilRice CES - Summary of Trainings ({{ date('Y') }}) --}}
-    PhilRice CES | Edit Data
+    Edit Data
 @endsection
 
 @section('sidebar')
