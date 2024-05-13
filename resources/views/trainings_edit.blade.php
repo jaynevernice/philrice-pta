@@ -458,6 +458,7 @@
         {{-- Form Title --}}
         <div class="flex mb-4">
             <h1 class="text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"><span
+                    {{-- class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">PhilRice CES</span> --}}
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span>
                 Summary of Trainings Conducted</h1>
         </div>
@@ -516,6 +517,7 @@
                 <div class="my-2 grid grid-cols-5 gap-x-4">
 
                     {{-- Training Title --}}
+                    {{-- <div class="col-span-2"> --}}
                     <div class="col-span-4">
                         <label for="training_title" class="block my-2 text-sm font-medium text-gray-900">Training
                             Title</label>
@@ -670,6 +672,7 @@
                         </label>
                         <select name="province" id="province"
                             class="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-sm">
+                            {{-- <option disabled value="">Select</option> --}}
                             @foreach ($provinces as $province)
                                 <option value="{{ $province->provCode }}" @if($record->province == $province->provCode) selected @endif >{{ $province->provDesc }}</option>
                             @endforeach
@@ -743,6 +746,8 @@
                 <div class="flex">
                     <h6 class="text-lg font-bold dark:text-white">Conduct of Training</h6>
                 </div>
+                {{-- <div id="date-error-message" class="text-red-500"></div> --}}
+
                 {{-- Name of Implementing Partner/s or Co-Organizer/s --}}
                 <div class="my-2 grid grid-cols-2 gap-x-4">
                     <div class="col-span-2">
@@ -891,6 +896,7 @@
                             <div
                                 class="absolute bottom-5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                                 <i class="fa-solid fa-seedling"></i>
+                                {{-- <span>Farmers and Seed Growers</span> --}}
                             </div>
                             <button type="button" id="increment-button1"
                                 data-input-counter-increment="num_of_farmers_and_growers"
@@ -1375,8 +1381,6 @@
         }
     </script>
 
-
-
     {{-- Toggle for Optional Inputs --}}
     <script>
         function toggleOtherTitle() {
@@ -1518,7 +1522,7 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const sectionNumberElement = document.getElementById('sectionNumber'); // Added
-        const today = new Date(); /
+        
         // Function to load form data from localStorage
         function loadFormData() {
             // Styling
@@ -1951,8 +1955,6 @@
                             var isSelected = value.citymunCode === citymunCode; // More explicit comparison
                             $("#municipalitySelect").append('<option' + (isSelected ? ' selected' : '') +
                                 ' value="' + value.citymunCode + '">' + value.citymunDesc + '</option>');
-                            // $("#municipalitySelect").append('<option @if(' + citymunCode + ' == ' + value.citymunCode + ') selected @endif value="' + value.citymunCode + '">' +
-                            //     value.citymunDesc + '</option>');
                         });
                         
                     },
@@ -2163,8 +2165,10 @@
         }
     </script>
 
+    {{-- Mano manong validation lets go lol --}}
     <script>
         $(document).ready(function() {
+            // Error messages. Hidden by default.
             $('#batch_error, #training_title_error, #other_training_title_error, #training_type_error, #training_category_error, #mod_error, #training_venue_error, #international_training_error, #within_philrice_error, #start_date_error, #end_date_error')
                 .addClass('hidden');
 
@@ -2172,6 +2176,7 @@
             $('#training_title').change(function() {
                 var trainingTitle = $(this).val();
 
+                // If a value is selected (bukod sa default which is selected value=""), change the border and text color to green
                 if (trainingTitle !== "") {
                     $(this).removeClass('border-gray-300 text-gray-900 border-red-600 text-red-600')
                         .addClass('border-green-600 text-green-600');
