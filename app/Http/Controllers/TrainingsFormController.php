@@ -4789,7 +4789,7 @@ class TrainingsFormController extends Controller
 
         TrainingsForm::where('id', $id)->update($updateData);
 
-        return redirect()->route('encoder.edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
+        return redirect()->route('auth.edit')->with(['success' => 'Great!', 'message' => 'You have successfully edited a data']);
     }
 
     /**

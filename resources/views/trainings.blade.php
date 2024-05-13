@@ -1247,7 +1247,7 @@
                         class="text-gray-900 border border-gray-300 bg-gray-50 hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2">Previous</button>
                     <button type="button" id="nextBtn" onclick="nextSection()"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next</button>
-                    <button type="submit" id="submitBtn" hidden
+                    <button type="submit" id="submitBtn" hidden onclick="loadingPrompt()"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         Submit
                     </button>
@@ -1820,6 +1820,30 @@
                 showSection(currentSection);
             }
             updateButtons();
+        }
+
+        function loadingPrompt() {
+            if($('#photo_doc_event')[0].files.length > 0) {
+                Swal.fire({
+                    title: "Uploading...",
+                    icon: 'success',
+                    showConfirmButton: false, // Remove confirmation button
+                    timer: 3000,
+                    allowOutsideClick: false, // Prevent closing on outside click
+                    didOpen: () => {
+                        Swal.showLoading(); // Display loading indicator
+                    },
+                    willClose: () => {
+                        return new Promise((resolve) => {
+                        // Redirect based on user type after timeout
+                        resolve(false); // Prevent default closing behavior
+                        });
+                    }
+                }).then(() => {
+                    // after the modal is closed
+                });
+            }
+            
         }
 
         function updateButtons() {
