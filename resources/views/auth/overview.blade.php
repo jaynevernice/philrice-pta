@@ -810,7 +810,7 @@
             </div>
 
             {{-- Previous and Next Buttons for Pagination --}}
-            <div class="flex justify-end">
+            <div class="flex justify-end py-4">
                 <div class="mb-4">
                     {{-- page button for no filter --}}
                     <button id="prevButton" onclick="prevPage()"

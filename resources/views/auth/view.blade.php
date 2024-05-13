@@ -1117,6 +1117,59 @@
                         </div>
                     </div>
 
+                    {{-- Photo Documentation --}}
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <label for="photo_doc" class="block my-2 text-sm font-medium text-gray-900">Photo
+                                Documentation</label>
+                            <label class="text-green-600 text-xs animate-pulse"><span
+                                    class="font-medium text-green-600">Note: </span>Hover over an image to pause autoplay.
+                                You can also use the Left and Right Arrow Keys for navigation.</label>
+                        </div>
+                        <div id="photo-doc-carousel" class="relative w-full">
+                            <!-- Carousel wrapper -->
+                            <div id="photo-doc-carousel-wrapper" class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                                {{-- Carousel Items go here --}}
+                            </div>
+                            {{-- Slider Controls --}}
+                            <button type="button"
+                                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                id="prevBtn">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 1 1 5l4 4" />
+                                    </svg>
+                                    <span class="sr-only">Previous</span>
+                                </span>
+                            </button>
+                            <button type="button"
+                                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                id="nextBtn">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 9 4-4-4-4" />
+                                    </svg>
+                                    <span class="sr-only">Next</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Other Documentation --}}
+                    <div>
+                        <label for="photo_doc" class="block my-2 text-sm font-medium text-gray-900">Other Forms of
+                            Documentation</label>
+                        <div id="other_doc" class="grid grid-cols-4 p-2 rounded-lg">
+                            {{-- Files go here --}}
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -1378,7 +1431,7 @@
         function openModal(id, title, category, type, mod, sponsor, fund, gik, evaluation, start_date, end_date,
             num_of_participants, num_of_male, num_of_female, num_of_indigenous, num_of_pwd, num_of_farmers,
             num_of_extworkers, num_of_scientific, num_of_other, international_address, training_venue, province,
-            municipality, station) {
+            municipality, station, photo_doc, other_doc) {
 
             var modal = document.getElementById('trainings-modal');
             modal.classList.add('flex');
@@ -1454,6 +1507,123 @@
                 internationalDiv.style.display = 'none';
                 localDiv.style.display = 'none';
             }
+
+            // Photo Documentation
+            var photoArray = photo_doc.split('|');
+            var carouselWrapper = document.getElementById('photo-doc-carousel-wrapper');
+            carouselWrapper.innerHTML = '';
+
+            photoArray.forEach(function(photo, index) {
+                var carouselItem = document.createElement('div');
+                carouselItem.classList.add('duration-700', 'ease-in-out');
+
+                var imagePath = '/public/images/' + photo;
+                carouselItem.innerHTML =
+                    `<img src="${imagePath}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">`;
+                carouselWrapper.appendChild(carouselItem);
+
+                var currentIndex = 0; // Track the current index of the displayed image
+
+                var prevBtn = document.getElementById('prevBtn');
+                var nextBtn = document.getElementById('nextBtn');
+
+                // Event listener for previous button
+                prevBtn.addEventListener('click', function() {
+                    showImage(currentIndex - 1);
+                });
+
+                // Event listener for next button
+                nextBtn.addEventListener('click', function() {
+                    showImage(currentIndex + 1);
+                });
+
+                // Function to display the image at the specified index
+                function showImage(index) {
+                    var carouselItems = carouselWrapper.querySelectorAll('div');
+
+                    if (index < 0) {
+                        index = carouselItems.length - 1;
+                    } else if (index >= carouselItems.length) {
+                        index = 0;
+                    }
+
+                    carouselItems.forEach(function(item) {
+                        item.style.display = 'none';
+                    });
+                    carouselItems[index].style.display = 'block';
+                    currentIndex = index;
+                }
+
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'ArrowLeft') {
+                        showImage(currentIndex - 1);
+                    } else if (event.key === 'ArrowRight') {
+                        showImage(currentIndex + 1);
+                    }
+                });
+
+                var intervalId; 
+                function startAutoSlide() {
+                    showImage(currentIndex); 
+                    intervalId = setInterval(function() {
+                        showImage(currentIndex + 1);
+                    }, 3000);
+                }
+
+                function stopAutoSlide() {
+                    clearInterval(intervalId);
+                }
+
+                carouselWrapper.addEventListener('mouseenter', stopAutoSlide); 
+                carouselWrapper.addEventListener('mouseleave', startAutoSlide);
+                startAutoSlide();
+            });
+
+            // Other Forms of Documentation
+            if (other_doc.trim() === '') {
+                var fileArray = [];
+            } else {
+                var fileArray = other_doc.split('|');
+            }
+
+            console.log(fileArray);
+
+            var fileContainer = document.getElementById('other_doc');
+
+            fileContainer.innerHTML = '';
+
+            if (fileArray.length === 0) {
+                var message = document.createElement('p');
+                message.setAttribute('class', 'col-span-4 text-red-600 text-sm text-center font-bold animate-pulse');
+                message.textContent = 'There were no other forms of documentation uploaded for this record';
+                fileContainer.appendChild(message);
+            } else {
+                fileArray.forEach(function(file) {
+                    var link = document.createElement('a');
+                    link.setAttribute('class',
+                        'h-16 p-2 mb-2 mx-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center'
+                    );
+                    link.setAttribute('href', '/public/files/' + file);
+
+                    var div = document.createElement('div');
+                    div.setAttribute('class', 'flex justify-center items-center');
+
+                    var icon = document.createElement('box-icon');
+                    icon.setAttribute('name', 'download');
+                    icon.setAttribute('color', 'black');
+                    icon.setAttribute('class', 'mr-2 hover-bg-gray-50');
+
+                    var p = document.createElement('p');
+                    p.setAttribute('class', 'text-xs text-gray-700');
+                    p.textContent = file.split('/').pop();
+
+                    div.appendChild(icon);
+                    div.appendChild(p);
+                    link.appendChild(div);
+
+                    fileContainer.appendChild(link);
+                });
+            }
         }
 
         function capitalizeFirstLetter(string) {
@@ -1525,7 +1695,7 @@
 
                         <td class="px-6 py-4 text-center">
                             <button
-                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik'] || ''}%', '${data['evaluation']}', formatDate('${data['start_date']}'), formatDate('${data['end_date']}'), '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['provDesc']}', '${data['citymunDesc']}', '${data['station_id']}')"
+                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik'] || ''}%', '${data['evaluation']}', formatDate('${data['start_date']}'), formatDate('${data['end_date']}'), '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['provDesc']}', '${data['citymunDesc']}', '${data['station_id']}', '${data['image']}', '${data['file']}')"
                             type="button" 
                             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8">
                                 <box-icon name='expand-alt' size="xs"></box-icon>
@@ -1710,9 +1880,6 @@
                     showTrainings(result["records"]);
                     showRegions(result["regions"]);
                     showProvinces(result["provinces"]);
-                    // // showMunicipalitiesCol1(result["municipalities_col1"]);
-                    // // showMunicipalitiesCol2(result["municipalities_col2"]);
-                    // // showMunicipalitiesCol3(result["municipalities_col3"]);
 
                     currentPage = page; // Update current page
 
@@ -1845,7 +2012,6 @@
                         } else {
                             $("#prevButtonMunicipality").show();
                         }
-                        // $("#prevButton").show();
                     }
                 },
                 error: function(error) {
@@ -2004,17 +2170,6 @@
                 var provincesChart = new ApexCharts(document.querySelector("#provincesChart"), provinces);
                 provincesChart.render();
             }
-            // if(chart == 'municipalities') {
-            //     municipalities.series[0].data = data.map(function(item) {
-            //                             return {
-            //                                 x: item.city_name,
-            //                                 y: parseInt(item.city_count)
-            //                             };
-            //                         });
-
-            //     var municipalitiesChart = new ApexCharts(document.querySelector("#municipalitiesChart"), municipalities);
-            //     municipalitiesChart.render();
-            // }
         }
 
         // Function to destroy a chart if it exists
