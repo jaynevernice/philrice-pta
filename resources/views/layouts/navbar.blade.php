@@ -56,7 +56,7 @@
                         {{-- <img class="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" src="{{ asset('assets/icon.jpg') }}" --}}
                         {{-- alt="user photo" /> --}}
                         <img class="w-8 h-8 rounded-full"
-                            @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}" 
+                            @if (Auth::check() && Auth::user()->profile_picture) src="{{ "/philrice-pta/" . Auth::user()->profile_picture }}" 
                     @else 
                     src="{{ asset('assets/icon.jpg') }}" @endif
                             alt="Profile Picture" />

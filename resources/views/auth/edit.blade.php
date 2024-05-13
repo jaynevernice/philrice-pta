@@ -691,227 +691,273 @@
       </ul>
   </div> --}}
 
-        {{-- Modal for CES Summary of Trainings --}}
-        <div id="trainings-modal" tabindex="-1" aria-hidden="true"
-            class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-36">
-            <div class="fixed inset-0 bg-black opacity-50 h-full"></div>
-            <div class="relative p-4 w-full max-w-4xl">
-                {{-- Modal Content --}}
-                <div class="relative bg-white rounded-lg shadow">
-                    {{-- Modal Header --}}
-                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                        <h3 id="title" class="text-md font-semibold text-gray-900"></h3>
-                        <button type="button" onclick="closeModal()"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
-                            <box-icon name='x'></box-icon>
-                            <span class="sr-only">Close modal</span>
-                        </button>
+    </main>
+
+    {{-- Modal for CES Summary of Trainings --}}
+    <div id="trainings-modal" tabindex="-1" aria-hidden="true"
+        class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-8">
+        <div class="fixed inset-0 bg-black opacity-50 h-full"></div> 
+        <div class="relative p-4 w-full max-w-4xl h-full">
+            {{-- Modal Content --}}
+            <div class="relative bg-white rounded-lg shadow">
+                {{-- Modal Header --}}
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 id="title" class="text-md font-semibold text-gray-900 bg-green-100 rounded-lg px-2 py-1">
+                    </h3>
+                    <button type="button" onclick="closeModal()"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                        <box-icon name='x'></box-icon>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                {{-- Modal Body --}}
+                <form class="p-5">
+                    {{-- Cards --}}
+                    <div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <a
+                                class="h-32 max-w-sm p-2 mb-2 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow flex justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_participants" class="mx-2 text-6xl font-extrabold">-
+                                    </h1>
+                                    <p class="text-lg text-gray-700">Participants</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-32 max-w-sm p-2 mb-2 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow flex justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_female" class="mx-2 text-6xl font-extrabold">-
+                                    </h1>
+                                    <p class="text-lg text-gray-700">Women</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-32 max-w-sm p-2 mb-2 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow flex justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_male" class="mx-2 text-6xl font-extrabold">-</h1>
+                                    <p class="text-lg text-gray-700">Men</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a
+                                class="h-20 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-center items-center">
+                                <div class="flex items-center justify-center">
+                                    <h1 id="num_of_pwd" class="mx-2 text-4xl font-extrabold">-
+                                    </h1>
+                                    <p class="text-md text-gray-700">Indigenous People
+                                    </p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-20 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-center items-center">
+                                <div class="flex items-center justify-center">
+                                    <h1 id="num_of_indigenous" class="mx-2 text-4xl font-extrabold">-</h1>
+                                    <p class="text-md text-gray-700">People with Disabilities</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <a
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_farmers" class="mx-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Farmers and Seed Growers</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_extworkers" class="mx-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Ext. Workers & Intermediaries</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_scientific" class="mx-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Scientific Community</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_other" class="mx-2 text-lg font-extrabold">-</h1>
+                                    <p class="text-xs text-gray-700">Other Sectors</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    {{-- Modal Body --}}
-                    <form class="p-5">
-                        {{-- Cards --}}
-                        <div class="grid gap-4 mb-4 grid-cols-4">
-                            <div>
-                                <a
-                                    class="h-40 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-1 my-2">
-                                        <h1 id="num_of_participants"
-                                            class="mb-2 text-6xl font-extrabold flex items-center">-
-                                        </h1>
-                                        <p class="font-normal text-gray-700 flex items-center">Participants</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="grid grid-rows-2">
-                                <a
-                                    class="h-[72px] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 my-2">
-                                        <h1 id="num_of_female" class="mb-2 text-4xl font-extrabold flex items-center">-
-                                        </h1>
-                                        <p class="font-normal text-gray-700 flex items-center">Women</p>
-                                    </div>
-                                </a>
-                                <a
-                                    class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 my-2">
-                                        <h1 id="num_of_male" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
-                                        <p class="font-normal text-gray-700 flex items-center">Men</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="grid grid-rows-2">
-                                <a
-                                    class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 my-2">
-                                        <h1 id="num_of_pwd" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
-                                        <p class="font-normal text-gray-700 flex items-center">Indigenous People</p>
-                                    </div>
-                                </a>
-                                <a
-                                    class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 my-2">
-                                        <h1 id="num_of_indigenous" class="mb-2 text-4xl font-extrabold flex items-center">
-                                            -
-                                        </h1>
-                                        <p class="font-normal text-gray-700flex items-center">People with Disabilities</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="grid grid-rows-4">
-                                <a
-                                    class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 items-center">
-                                        <h1 id="num_of_farmers" class="mb-0 text-lg font-extrabold self-center">-</h1>
-                                        <p class="text-xs text-gray-700">Farmers and Seed Growers</p>
-                                    </div>
-                                </a>
-                                <a
-                                    class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 items-center">
-                                        <h1 id="num_of_extworkers" class="mb-0 text-lg font-extrabold self-center">-</h1>
-                                        <p class="text-xs text-gray-700">Ext. Workers & Intermediaries</p>
-                                    </div>
-                                </a>
-                                <a
-                                    class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 items-center">
-                                        <h1 id="num_of_scientific" class="mb-0 text-lg font-extrabold self-center">-</h1>
-                                        <p class="text-xs text-gray-700">Scientific Community</p>
-                                    </div>
-                                </a>
-                                <a
-                                    class="h-1 max-w-sm p-3 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                    <div class="flex gap-3 items-center">
-                                        <h1 id="num_of_other" class="mb-0 text-lg font-extrabold self-center">-</h1>
-                                        <p class="text-xs text-gray-700">Other Sectors</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
 
-                        {{-- Start Date and End Date --}}
-                        <div date-rangepicker class="my-2 mb-2 grid grid-cols-2 gap-x-4">
-                            <div>
-                                <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start
-                                    Date</label>
-                                <div class="relative w-full">
-                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                        </svg>
-                                    </div>
-                                    <input type="text" id="start_date" name="start" disabled
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                        placeholder="MM/DD/YYYY">
+                    {{-- Start Date and End Date --}}
+                    <div date-rangepicker class="my-2 mb-2 grid grid-cols-2 gap-x-4">
+                        <div>
+                            <label for="start_date" class="block my-2 text-sm font-medium text-gray-900">Start
+                                Date</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
                                 </div>
+                                <input type="text" id="start_date" name="start" disabled
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="MM/DD/YYYY">
                             </div>
-                            <div>
-                                <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End
-                                    Date</label>
-                                <div class="relative w-full">
-                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                        </svg>
-                                    </div>
-                                    <input type="text" id="end_date" name="end" disabled
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                        placeholder="MM/DD/YYYY">
+                        </div>
+                        <div>
+                            <label for="end_date" class="block my-2 text-sm font-medium text-gray-900">End Date</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
                                 </div>
+                                <input type="text" id="end_date" name="end" disabled
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                    placeholder="MM/DD/YYYY">
                             </div>
                         </div>
+                    </div>
 
-                        {{-- Training Details --}}
-                        <div class="grid gap-4 mb-4 grid-cols-3">
-                            <div>
-                                <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
-                                    Training</label>
-                                <input disabled type="text" name="training_type" id="training_type"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
-                            <div>
-                                <label for="training_category"
-                                    class="block my-2 text-sm font-medium text-gray-900">Training
-                                    Category</label>
-                                <input disabled type="text" name="training_category" id="training_category"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
-                            <div>
-                                <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
-                                    Delivery</label>
-                                <input disabled type="text" name="mod" id="mod"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
-                        </div>
-
-                        {{-- Location --}}
-                        {{-- Display Field for Venue if Training Type = International  --}}
-                        <div id="international_container" class="grid gap-4 mb-4 grid-cols-3" style="display: none;">
-                            <label for="international_address"
-                                class="block my-2 text-sm font-medium text-gray-900">International Address</label>
-                            <input disabled type="text" name="international_address" id="international_address"
+                    {{-- Training Details --}}
+                    <div class="grid gap-4 mb-4 grid-cols-3">
+                        <div>
+                            <label for="training_type" class="block my-2 text-sm font-medium text-gray-900">Type of
+                                Training</label>
+                            <input disabled type="text" name="training_type" id="training_type"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         </div>
-
-                        {{-- Display Field for Venue if Training Type = Local  --}}
-                        <div id="local_container" style="display: none;">
-                            <div>
-                                <label for="venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
-                                <input disabled type="text" name="venue" id="venue"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
-                            <div>
-                                <label for="local_address" class="block my-2 text-sm font-medium text-gray-900">Local
-                                    Address</label>
-                                <input disabled type="text" name="local_address" id="local_address"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
+                        <div>
+                            <label for="training_category" class="block my-2 text-sm font-medium text-gray-900">Training
+                                Category</label>
+                            <input disabled type="text" name="training_category" id="training_category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         </div>
-
-                        {{-- Partners and Sponsors --}}
-                        <div class="grid gap-4 mb-4 grid-cols-2">
-                            <div>
-                                <label for="sponsor" class="block my-2 text-sm font-medium text-gray-900">Name of
-                                    Implementing
-                                    Partner/s or Co-Organizer/s</label>
-                                <input disabled type="text" name="sponsor" id="sponsor"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
-                            <div>
-                                <label for="source_of_fund" class="block my-2 text-sm font-medium text-gray-900">Source of
-                                    Fund</label>
-                                <input disabled type="text" name="source_of_fund" id="source_of_fund"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
+                        <div>
+                            <label for="mod" class="block my-2 text-sm font-medium text-gray-900">Mode of
+                                Delivery</label>
+                            <input disabled type="text" name="mod" id="mod"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         </div>
+                    </div>
 
-                        {{-- GIK and Training Evaluation --}}
-                        <div class="grid gap-4 mb-4 grid-cols-2">
-                            <div>
-                                <label for="average_gik" class="block my-2 text-sm font-medium text-gray-900">Average
-                                    GIK</label>
-                                <input disabled type="text" name="average_gik" id="average_gik"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
-                            <div>
-                                <label for="evaluation" class="block my-2 text-sm font-medium text-gray-900">Overall
-                                    Training
-                                    Evaluation Rating</label>
-                                <input disabled type="text" name="evaluation" id="evaluation"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            </div>
+                    {{-- Location --}}
+                    <div id="international_container" class="grid gap-4 mb-4 grid-cols-3" style="display: none;">
+                        <label for="international_address"
+                            class="block my-2 text-sm font-medium text-gray-900">International Address</label>
+                        <input disabled type="text" name="international_address" id="international_address"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                    </div>
+
+                    <div id="local_container" style="display: none;">
+                        <div>
+                            <label for="venue" class="block my-2 text-sm font-medium text-gray-900">Venue</label>
+                            <input disabled type="text" name="venue" id="venue"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         </div>
+                        <div>
+                            <label for="local_address" class="block my-2 text-sm font-medium text-gray-900">Local
+                                Address</label>
+                            <input disabled type="text" name="local_address" id="local_address"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
 
-                    </form>
-                </div>
+                    {{-- Partners and Sponsors --}}
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div>
+                            <label for="sponsor" class="block my-2 text-sm font-medium text-gray-900">Name of
+                                Implementing
+                                Partner/s or Co-Organizer/s</label>
+                            <input disabled type="text" name="sponsor" id="sponsor"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="source_of_fund" class="block my-2 text-sm font-medium text-gray-900">Source of
+                                Fund</label>
+                            <input disabled type="text" name="source_of_fund" id="source_of_fund"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
+
+                    {{-- GIK and Training Evaluation --}}
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div>
+                            <label for="average_gik" class="block my-2 text-sm font-medium text-gray-900">Average
+                                GIK</label>
+                            <input disabled type="text" name="average_gik" id="average_gik"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="evaluation" class="block my-2 text-sm font-medium text-gray-900">Overall Training
+                                Evaluation Rating</label>
+                            <input disabled type="text" name="evaluation" id="evaluation"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        </div>
+                    </div>
+
+                    {{-- Photo Documentation --}}
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <label for="photo_doc" class="block my-2 text-sm font-medium text-gray-900">Photo
+                                Documentation</label>
+                            <label class="text-green-600 text-xs animate-pulse"><span
+                                    class="font-medium text-green-600">Note: </span>Hover over an image to pause autoplay.
+                                You can also use the Left and Right Arrow Keys for navigation.</label>
+                        </div>
+                        <div id="photo-doc-carousel" class="relative w-full">
+                            <!-- Carousel wrapper -->
+                            <div id="photo-doc-carousel-wrapper" class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                                {{-- Carousel Items go here --}}
+                            </div>
+                            {{-- Slider Controls --}}
+                            <button type="button"
+                                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                id="prevBtn">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 1 1 5l4 4" />
+                                    </svg>
+                                    <span class="sr-only">Previous</span>
+                                </span>
+                            </button>
+                            <button type="button"
+                                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                id="nextBtn">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 9 4-4-4-4" />
+                                    </svg>
+                                    <span class="sr-only">Next</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Other Documentation --}}
+                    <div>
+                        <label for="photo_doc" class="block my-2 text-sm font-medium text-gray-900">Other Forms of
+                            Documentation</label>
+                        <div id="other_doc" class="grid grid-cols-4 p-2 rounded-lg">
+                            {{-- Files go here --}}
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
-
-    </main>
+    </div>
 @endsection
 
 @section('scripts')
@@ -919,10 +965,10 @@
         function openModal(id, title, category, type, mod, sponsor, fund, gik, evaluation, start_date, end_date,
             num_of_participants, num_of_male, num_of_female, num_of_indigenous, num_of_pwd, num_of_farmers,
             num_of_extworkers, num_of_scientific, num_of_other, international_address, training_venue, province,
-            municipality, station) {
+            municipality, station, photo_doc, other_doc) {
 
             var modal = document.getElementById('trainings-modal');
-            modal.classList.add('flex');
+            modal.classList.add('flex', 'items-center', 'justify-center');
             modal.classList.remove('hidden');
             document.querySelector('body').classList.add('overflow-hidden');
             window.addEventListener('keydown', closeModalOnEsc);
@@ -994,6 +1040,125 @@
             } else {
                 internationalDiv.style.display = 'none';
                 localDiv.style.display = 'none';
+            }
+
+            // Photo Documentation
+            var photoArray = photo_doc.split('|');
+            var carouselWrapper = document.getElementById('photo-doc-carousel-wrapper');
+            carouselWrapper.innerHTML = '';
+
+            photoArray.forEach(function(photo, index) {
+                var carouselItem = document.createElement('div');
+                carouselItem.classList.add('duration-700', 'ease-in-out');
+
+                // var imagePath = '/public/images/' + photo;
+                var imagePath = '/philrice-pta/public/images/' + photo;
+                carouselItem.innerHTML =
+                    `<img src="${imagePath}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">`;
+                carouselWrapper.appendChild(carouselItem);
+
+                var currentIndex = 0; // Track the current index of the displayed image
+
+                var prevBtn = document.getElementById('prevBtn');
+                var nextBtn = document.getElementById('nextBtn');
+
+                // Event listener for previous button
+                prevBtn.addEventListener('click', function() {
+                    showImage(currentIndex - 1);
+                });
+
+                // Event listener for next button
+                nextBtn.addEventListener('click', function() {
+                    showImage(currentIndex + 1);
+                });
+
+                // Function to display the image at the specified index
+                function showImage(index) {
+                    var carouselItems = carouselWrapper.querySelectorAll('div');
+
+                    if (index < 0) {
+                        index = carouselItems.length - 1;
+                    } else if (index >= carouselItems.length) {
+                        index = 0;
+                    }
+
+                    carouselItems.forEach(function(item) {
+                        item.style.display = 'none';
+                    });
+                    carouselItems[index].style.display = 'block';
+                    currentIndex = index;
+                }
+
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'ArrowLeft') {
+                        showImage(currentIndex - 1);
+                    } else if (event.key === 'ArrowRight') {
+                        showImage(currentIndex + 1);
+                    }
+                });
+
+                var intervalId; 
+                function startAutoSlide() {
+                    showImage(currentIndex); 
+                    intervalId = setInterval(function() {
+                        showImage(currentIndex + 1);
+                    }, 3000);
+                }
+
+                function stopAutoSlide() {
+                    clearInterval(intervalId);
+                }
+
+                carouselWrapper.addEventListener('mouseenter', stopAutoSlide); 
+                carouselWrapper.addEventListener('mouseleave', startAutoSlide);
+                startAutoSlide();
+            });
+
+            // Other Forms of Documentation
+            if (other_doc.trim() === '') {
+                var fileArray = [];
+            } else {
+                var fileArray = other_doc.split('|');
+            }
+
+            console.log(fileArray);
+
+            var fileContainer = document.getElementById('other_doc');
+
+            fileContainer.innerHTML = '';
+
+            if (fileArray.length === 0) {
+                var message = document.createElement('p');
+                message.setAttribute('class', 'col-span-4 text-red-600 text-sm text-center font-bold animate-pulse');
+                message.textContent = 'There were no other forms of documentation uploaded for this record';
+                fileContainer.appendChild(message);
+            } else {
+                fileArray.forEach(function(file) {
+                    var link = document.createElement('a');
+                    link.setAttribute('class',
+                        'h-16 p-2 mb-2 mx-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center'
+                    );
+                    // link.setAttribute('href', '/public/files/' + file);
+                    link.setAttribute('href', '/philrice-pta/public/files/' + file);
+
+                    var div = document.createElement('div');
+                    div.setAttribute('class', 'flex justify-center items-center');
+
+                    var icon = document.createElement('box-icon');
+                    icon.setAttribute('name', 'download');
+                    icon.setAttribute('color', 'black');
+                    icon.setAttribute('class', 'mr-2 hover-bg-gray-50');
+
+                    var p = document.createElement('p');
+                    p.setAttribute('class', 'text-xs text-gray-700');
+                    p.textContent = file.split('/').pop();
+
+                    div.appendChild(icon);
+                    div.appendChild(p);
+                    link.appendChild(div);
+
+                    fileContainer.appendChild(link);
+                });
             }
         }
 
@@ -1073,7 +1238,7 @@
                         <td class="px-6 py-4 text-center">
                              <div class="flex items-center justify-center">
                             <button
-                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik'] || ''}%', '${data['evaluation']}', formatDate('${data['start_date']}'), formatDate('${data['end_date']}'), '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['provDesc']}', '${data['citymunDesc']}', '${data['station_id']}')"
+                            onclick="openModal('${data['id']}', '${data['title']}', '${data['category']}', '${data['type']}', '${data['mod']}', '${data['sponsor']}', '${data['fund']}', '${data['average_gik'] || ''}%', '${data['evaluation']}', formatDate('${data['start_date']}'), formatDate('${data['end_date']}'), '${data['num_of_participants']}', '${data['num_of_male']}', '${data['num_of_female']}', '${data['num_of_indigenous']}', '${data['num_of_pwd']}', '${data['num_of_farmers']}', '${data['num_of_extworkers']}', '${data['num_of_scientific']}', '${data['num_of_other']}', '${data['international_address']}', '${data['training_venue']}', '${data['provDesc']}', '${data['citymunDesc']}', '${data['station_id']}', '${data['image']}', '${data['file']}')"
                             type="button" 
                             class="text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center items-center justify-center w-8 h-8 m-[0.5px] mx-1">
                                 <box-icon name='expand-alt' size="xs"></box-icon>

@@ -475,7 +475,7 @@
 
                                 <img alt="Current Profile Picture" class="h-full w-full rounded-full object-cover"
                                     id="profile_picture_preview"
-                                    @if (Auth::check() && Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}"
+                                    @if (Auth::check() && Auth::user()->profile_picture) src="{{ "/philrice-pta/". Auth::user()->profile_picture }}"
                     @else
                         src="{{ asset('assets/icon.jpg') }}" @endif>
 

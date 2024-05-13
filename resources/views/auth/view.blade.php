@@ -911,9 +911,9 @@
 
     {{-- Modal for CES Summary of Trainings --}}
     <div id="trainings-modal" tabindex="-1" aria-hidden="true"
-        class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-36">
-        <div class="fixed inset-0 bg-black opacity-50 h-full"></div>
-        <div class="relative p-4 w-full max-w-4xl">
+        class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-50 justify-center items-center pt-8">
+        <div class="fixed inset-0 bg-black opacity-50 h-full"></div> 
+        <div class="relative p-4 w-full max-w-4xl h-full">
             {{-- Modal Content --}}
             <div class="relative bg-white rounded-lg shadow">
                 {{-- Modal Header --}}
@@ -929,76 +929,76 @@
                 {{-- Modal Body --}}
                 <form class="p-5">
                     {{-- Cards --}}
-                    <div class="grid gap-4 mb-4 grid-cols-4">
-                        <div>
+                    <div>
+                        <div class="grid grid-cols-3 gap-2">
                             <a
-                                class="h-40 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-1 my-2">
-                                    <h1 id="num_of_participants" class="mb-2 text-6xl font-extrabold flex items-center">-
+                                class="h-32 max-w-sm p-2 mb-2 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow flex justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_participants" class="mx-2 text-6xl font-extrabold">-
                                     </h1>
-                                    <p class="font-normal text-gray-700 flex items-center">Participants</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid grid-rows-2">
-                            <a
-                                class="h-[72px] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 my-2">
-                                    <h1 id="num_of_female" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
-                                    <p class="font-normal text-gray-700 flex items-center">Women</p>
+                                    <p class="text-lg text-gray-700">Participants</p>
                                 </div>
                             </a>
                             <a
-                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 my-2">
-                                    <h1 id="num_of_male" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
-                                    <p class="font-normal text-gray-700 flex items-center">Men</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid grid-rows-2">
-                            <a
-                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 my-2">
-                                    <h1 id="num_of_pwd" class="mb-2 text-4xl font-extrabold flex items-center">-</h1>
-                                    <p class="font-normal text-gray-700 flex items-center">Indigenous People</p>
-                                </div>
-                            </a>
-                            <a
-                                class="h-[72px] max-w-sm p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 my-2">
-                                    <h1 id="num_of_indigenous" class="mb-2 text-4xl font-extrabold flex items-center">-
+                                class="h-32 max-w-sm p-2 mb-2 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow flex justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_female" class="mx-2 text-6xl font-extrabold">-
                                     </h1>
-                                    <p class="font-normal text-gray-700flex items-center">People with Disabilities</p>
+                                    <p class="text-lg text-gray-700">Women</p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-32 max-w-sm p-2 mb-2 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow flex justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_male" class="mx-2 text-6xl font-extrabold">-</h1>
+                                    <p class="text-lg text-gray-700">Men</p>
                                 </div>
                             </a>
                         </div>
-                        <div class="grid grid-rows-4">
+                        <div class="grid grid-cols-2 gap-2">
                             <a
-                                class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_farmers" class="mb-0 text-lg font-extrabold self-center">-</h1>
+                                class="h-20 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-center items-center">
+                                <div class="flex items-center justify-center">
+                                    <h1 id="num_of_pwd" class="mx-2 text-4xl font-extrabold">-
+                                    </h1>
+                                    <p class="text-md text-gray-700">Indigenous People
+                                    </p>
+                                </div>
+                            </a>
+                            <a
+                                class="h-20 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-center items-center">
+                                <div class="flex items-center justify-center">
+                                    <h1 id="num_of_indigenous" class="mx-2 text-4xl font-extrabold">-</h1>
+                                    <p class="text-md text-gray-700">People with Disabilities</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <a
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_farmers" class="mx-2 text-lg font-extrabold">-</h1>
                                     <p class="text-xs text-gray-700">Farmers and Seed Growers</p>
                                 </div>
                             </a>
                             <a
-                                class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_extworkers" class="mb-0 text-lg font-extrabold self-center">-</h1>
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_extworkers" class="mx-2 text-lg font-extrabold">-</h1>
                                     <p class="text-xs text-gray-700">Ext. Workers & Intermediaries</p>
                                 </div>
                             </a>
                             <a
-                                class="h-1 max-w-sm p-4 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_scientific" class="mb-0 text-lg font-extrabold self-center">-</h1>
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_scientific" class="mx-2 text-lg font-extrabold">-</h1>
                                     <p class="text-xs text-gray-700">Scientific Community</p>
                                 </div>
                             </a>
                             <a
-                                class="h-1 max-w-sm p-3 mb-0.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center">
-                                <div class="flex gap-3 items-center">
-                                    <h1 id="num_of_other" class="mb-0 text-lg font-extrabold self-center">-</h1>
+                                class="h-16 p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center">
+                                <div class="flex justify-center items-center">
+                                    <h1 id="num_of_other" class="mx-2 text-lg font-extrabold">-</h1>
                                     <p class="text-xs text-gray-700">Other Sectors</p>
                                 </div>
                             </a>
@@ -1434,7 +1434,7 @@
             municipality, station, photo_doc, other_doc) {
 
             var modal = document.getElementById('trainings-modal');
-            modal.classList.add('flex');
+            modal.classList.add('flex', 'items-center', 'justify-center');
             modal.classList.remove('hidden');
             document.querySelector('body').classList.add('overflow-hidden');
             window.addEventListener('keydown', closeModalOnEsc);
@@ -1517,7 +1517,8 @@
                 var carouselItem = document.createElement('div');
                 carouselItem.classList.add('duration-700', 'ease-in-out');
 
-                var imagePath = '/public/images/' + photo;
+                // var imagePath = '/public/images/' + photo;
+                var imagePath = '/philrice-pta/public/images/' + photo;
                 carouselItem.innerHTML =
                     `<img src="${imagePath}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">`;
                 carouselWrapper.appendChild(carouselItem);
@@ -1603,7 +1604,8 @@
                     link.setAttribute('class',
                         'h-16 p-2 mb-2 mx-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex items-center justify-center'
                     );
-                    link.setAttribute('href', '/public/files/' + file);
+                    // link.setAttribute('href', '/public/files/' + file);
+                    link.setAttribute('href', '/philrice-pta/public/files/' + file);
 
                     var div = document.createElement('div');
                     div.setAttribute('class', 'flex justify-center items-center');

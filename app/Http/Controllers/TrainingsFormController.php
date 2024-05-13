@@ -4276,7 +4276,7 @@ class TrainingsFormController extends Controller
             'other_doc'=>'max:10',
         ]);
 
-        $existed = $this->processTrainingCheckingForStore($request->training_title, $request->batch);
+        $existed = $this->processTrainingCheckingForStore($request->training_title, $request->batch, Auth::user()->station);
         if($existed) {
             return redirect()->route('trainingsform.create')->with(['error' => 'Oops...', 'message' => 'Training Title: ' . $request->training_title . ' Batch (' . $request->batch . ') already exists']);
         }
@@ -4451,11 +4451,12 @@ class TrainingsFormController extends Controller
             ->regCode;
         return $region;
     }
-    private function processTrainingCheckingForStore($title, $batch)
+    private function processTrainingCheckingForStore($title, $batch, $station_encoded)
     {
         try {
             return TrainingsForm::where('title', $title)
                         ->where('batch', $batch)
+                        ->where('station_encoded', $station_encoded)
                         ->exists();
             // return true;
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) {
@@ -4463,12 +4464,13 @@ class TrainingsFormController extends Controller
         }
     }
     // private function processTrainingCheckingForUpdate($id, $title, $batch)
-    private function processTrainingCheckingForUpdate($id, $title, $batch)
+    private function processTrainingCheckingForUpdate($id, $title, $batch, $station_encoded)
     {
         try {
             return TrainingsForm::where('id', '!=', $id)
                         ->where('title', $title)
                         ->where('batch', $batch)
+                        ->where('station_encoded', $station_encoded)
                         ->exists();
             // return true;
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) {
@@ -4612,7 +4614,7 @@ class TrainingsFormController extends Controller
             'other_doc'=>'max:10',
         ]);
 
-        $existed = $this->processTrainingCheckingForUpdate($id, $request->training_title, $request->batch);
+        $existed = $this->processTrainingCheckingForUpdate($id, $request->training_title, $request->batch, Auth::user()->station);
         if($existed) {
             return redirect()->route('trainingsform.create')->with(['error' => 'Oops...', 'message' => 'Training Title: ' . $request->training_title . ' Batch (' . $request->batch . ') already exists']);
         }
