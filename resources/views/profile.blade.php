@@ -473,9 +473,10 @@
                             <label for="profile_picture"
                                 class="h-40 w-40 rounded-full bg-gray-100 relative cursor-pointer border border-gray-900 overflow-visible">
 
+                                {{-- "/philrice-pta". --}}
                                 <img alt="Current Profile Picture" class="h-full w-full rounded-full object-cover"
                                     id="profile_picture_preview"
-                                    @if (Auth::check() && Auth::user()->profile_picture) src="{{ "/philrice-pta/". Auth::user()->profile_picture }}"
+                                    @if (Auth::check() && Auth::user()->profile_picture) src="{{ "/philrice-pta/" . Auth::user()->profile_picture }}" 
                     @else
                         src="{{ asset('assets/icon.jpg') }}" @endif>
 

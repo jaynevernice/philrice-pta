@@ -87,12 +87,12 @@ class UserController extends Controller
         // }
 
         // need muna icheck sa database kung valid yung PhilRice ID //
-        $token = Http::post('https://isd.philrice.gov.ph/api_center/api/login',[
-            "username" => 'hrisapi-ojt',
-            "password" => 'P@ssw0rd'
+        $token = Http::post('https://isd.philrice.gov.ph/api_center/api/login', [
+            'username' => 'hrisapi-ojt',
+            'password' => 'P@ssw0rd',
         ]);
         $bearer_token = json_decode($token);
-        $response = Http::withToken('Bearer ' .$bearer_token->token)->get('https://isd.philrice.gov.ph/api_center/api/hris/employees');
+        $response = Http::withToken('Bearer ' . $bearer_token->token)->get('https://isd.philrice.gov.ph/api_center/api/hris/employees');
         // collection of philrice id
         $philriceIDs = collect($response['employees'])->pluck('emp_idno');
 
@@ -113,7 +113,9 @@ class UserController extends Controller
         ]);
 
         if ($philriceIDs->contains($request->philrice_id)) {
-            return redirect()->back()->with(['error' => 'Oops...', 'message' => 'Your PhilRice ID is already taken!']);
+            return redirect()
+                ->back()
+                ->with(['error' => 'Oops...', 'message' => 'Your PhilRice ID is already taken!']);
         }
 
         // User::where('email', '=', $email)->first();
@@ -235,7 +237,7 @@ class UserController extends Controller
         $user->station = $request->input('station');
         $user->division = $request->input('division');
         $user->position = $request->input('position');
-        
+
         // Update select fields. Saves names as values
         // if ($request->filled('station')) {
         //     $station = Station::findOrFail($request->station);
@@ -255,24 +257,48 @@ class UserController extends Controller
         // Update profile picture if a new one is provided
         if ($request->hasFile('profile_picture')) {
             $request->validate([
-                // 'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif',
             ]);
 
             $image = $request->file('profile_picture');
-            $imageName = time() . '.' . $image->extension();
-            $image->move(public_path('profile_picture'), $imageName);
+            $originalName = $image->getClientOriginalName();
+            $originalName = str_replace(['.png', '.gif', '.jpg'], '', $originalName);
+            $extension = $image->getClientOriginalExtension();
+            $imageName = $originalName. '.' .$extension;
+            $upload_path = 'public/profile_picture/';
+            $image->move($upload_path, $imageName);
 
             // Delete old profile picture if exists
             if ($user->profile_picture) {
-                $oldImagePath = public_path() . $user->profile_picture;
+                $oldImagePath = public_path($user->profile_picture);
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
                 }
             }
 
-            $user->profile_picture = '/profile_picture/' . $imageName;
+            $user->profile_picture = 'public/profile_picture/' . $imageName;
         }
+
+        // if ($request->hasFile('profile_picture')) {
+        //     $request->validate([
+        //         // 'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        //         'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif',
+        //     ]);
+
+        //     $image = $request->file('profile_picture');
+        //     $imageName = time() . '.' . $image->extension();
+        //     $image->move(public_path('profile_picture'), $imageName);
+
+        //     // Delete old profile picture if exists
+        //     if ($user->profile_picture) {
+        //         $oldImagePath = public_path() . $user->profile_picture;
+        //         if (file_exists($oldImagePath)) {
+        //             unlink($oldImagePath);
+        //         }
+        //     }
+
+        //     $user->profile_picture = '/profile_picture/' . $imageName;
+        // }
 
         // Update security questions
         $user->update($request->only(['sq1', 'sq2', 'sq3']));
